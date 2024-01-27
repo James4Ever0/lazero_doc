@@ -1,0 +1,10 @@
+{
+    "summary": "This code is a Bash script that mounts cgroup filesystem and prints its location. It uses the \"mount\" command to list all mounted devices, filters for those with \"cgroup\" in their name (ignoring case), and then uses awk to extract and print the device name, filesystem type, and mount point of each found \"cgroup\" entry.",
+    "details": [
+        {
+            "comment": "This code is a Bash script that mounts cgroup filesystem and prints its location. It uses the \"mount\" command to list all mounted devices, filters for those with \"cgroup\" in their name (ignoring case), and then uses awk to extract and print the device name, filesystem type, and mount point of each found \"cgroup\" entry.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/check_mount.sh\":0-1",
+            "content": "#!/bin/bash\nsudo mount | grep -i cgroup | awk '{print $1\" \" $3\" \" $6}'"
+        }
+    ]
+}

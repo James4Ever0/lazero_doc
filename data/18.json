@@ -1,0 +1,538 @@
+{
+    "1800": {
+        "file_id": 300,
+        "content": "import re\ndef windowConv(a, window_size):\n    return [a[x: x + window_size] for x in range(len(a) - window_size)]\ndef windowEndMark(a, window_size):\n    return [a[x * window_size: (x + 1) * window_size] for x in range(len(a) // window_size)]\ndef windowEndMarkEx(a, window_size):\n    return [a[x * window_size: (x + 1) * window_size] for x in range(len(a) // window_size)]+[a[len(a)-len(a)%window_size:len(a)]]\ndef phraseStartMark(a, start_phrase):\n    return re.findall(r'{}.+'.format(re.escape(start_phrase)), a)\ndef phraseEndMark(a, end_phrase):\n    return re.findall(r'.+{}'.format(re.escape(end_phrase)), a)\ndef phraseSegment(a, start_phrase, end_phrase):\n    return re.findall(r'{}.+{}'.format(re.escape(start_phrase), re.escape(end_phrase)), a)\ndef setStartMark(a, start_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(start_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    start_phrase = \"\".join(set(start_phrase))\n    return re.findall(r'['+r'{}'.format(re.escape(start_phrase))+r']{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:1-33"
+    },
+    "1801": {
+        "file_id": 300,
+        "content": "This code includes various functions for window conversion and pattern matching using regular expressions. The functions are windowConv, windowEndMark, windowEndMarkEx, phraseStartMark, phraseEndMark, phraseSegment, and setStartMark. These functions can be used to extract specific segments or patterns from a given string based on window sizes, start and end phrases, and optional sigma value for randomness.",
+        "type": "comment"
+    },
+    "1802": {
+        "file_id": 300,
+        "content": "def setEndMark(a, end_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(end_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    end_phrase = \"\".join(set(end_phrase))\n    return re.findall(r'.+[{}]'.format(re.escape(end_phrase))+r'{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)\ndef setSegment(a, start_phrase, end_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(end_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    len_phrase = len(start_phrase)\n    a2, a3 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    start_phrase = \"\".join(set(start_phrase))\n    end_phrase = \"\".join(set(end_phrase))\n    return re.findall(r'['+r'{}'.format(re.escape(start_phrase))+r']{'+r'{},{}'.format(str(a2), str(a3))+r'}'+r'.+[{}]'.format(re.escape(end_phrase))+r'{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)\ndef containRestrict(a, text, least_occurance, most_occurance):\n    assert least_occurance <= most_occurance",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:36-56"
+    },
+    "1803": {
+        "file_id": 300,
+        "content": "This code contains functions setEndMark, setSegment and containRestrict for pattern matching. The setEndMark function takes in a string 'a', end_phrase, and sigma to find occurrences of the end phrase within 'a' by considering two possible lengths based on sigma value. Similarly, the setSegment function finds occurrences of a segment defined by start and end phrases within 'a' using sigma-based lengths for both phrases. Finally, containRestrict asserts that least_occurance is less than or equal to most_occurance before searching for a pattern in string 'a'.",
+        "type": "comment"
+    },
+    "1804": {
+        "file_id": 300,
+        "content": "    assert type(least_occurance) == int\n    assert type(most_occurance) == int\n    assert least_occurance >= 1\n    assert type(text) == str\n    lt = len(text)\n    assert lt >= 1\n    gc = 0\n    for x in windowConv(a, lt):\n        if x == text:\n            gc += 1\n    return (gc >= least_occurance and gc <= most_occurance)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:57-67"
+    },
+    "1805": {
+        "file_id": 300,
+        "content": "This code checks the input types and ranges, then iterates through window converted values to count occurrences of text within a specified length range. It returns true if the count is within the given least/most occurrence limits.",
+        "type": "comment"
+    },
+    "1806": {
+        "file_id": 301,
+        "content": "/bootstrap/legacy/concentration/old_toys/frozen_demo.py",
+        "type": "filepath"
+    },
+    "1807": {
+        "file_id": 301,
+        "content": "This code creates a list 'a' with two frozensets containing the same elements but in different order, then converts 'a' into a set 'b'. The print statement outputs the unique elements present in 'b', which would be [\"a\", \"b\"].",
+        "type": "summary"
+    },
+    "1808": {
+        "file_id": 301,
+        "content": "a=[frozenset([\"a\",\"b\"]),frozenset([\"b\",\"a\"])]\nb=set(a)\nprint(b)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/frozen_demo.py:1-3"
+    },
+    "1809": {
+        "file_id": 301,
+        "content": "This code creates a list 'a' with two frozensets containing the same elements but in different order, then converts 'a' into a set 'b'. The print statement outputs the unique elements present in 'b', which would be [\"a\", \"b\"].",
+        "type": "comment"
+    },
+    "1810": {
+        "file_id": 302,
+        "content": "/bootstrap/legacy/concentration/old_toys/insert_command_name.py",
+        "type": "filepath"
+    },
+    "1811": {
+        "file_id": 302,
+        "content": "Code imports functions from \"core4\" and \"getFromDill\", retrieves a list of commands, and applies the \"merge_node\" function to each command in the list.",
+        "type": "summary"
+    },
+    "1812": {
+        "file_id": 302,
+        "content": "from core4 import merge_node\nfrom getFromDill import returnXList\nr=returnXList(\"all_commands\")\nfor x in r:\n    merge_node(x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/insert_command_name.py:1-5"
+    },
+    "1813": {
+        "file_id": 302,
+        "content": "Code imports functions from \"core4\" and \"getFromDill\", retrieves a list of commands, and applies the \"merge_node\" function to each command in the list.",
+        "type": "comment"
+    },
+    "1814": {
+        "file_id": 303,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/README",
+        "type": "filepath"
+    },
+    "1815": {
+        "file_id": 303,
+        "content": "This code calculates storage and download speeds for a project launching on another media, with formulas for zoom levels and preference for downloading maps online.",
+        "type": "summary"
+    },
+    "1816": {
+        "file_id": 303,
+        "content": "this project is not going to be launched on this disk.\ninstead, the total storage will be precalculated, and therefore run on another media.\nmy disk resources are precious, and i do not want to make it ugly.\ninternet-map.net, unwilling to give out the source info, i have to manually configure the information.\nreally should i do so? maybe it is hidden inside some apis which i never know.\nIf my only purpose is to get the full list of all websites, then there should be no need to manually download all images.\nocr can be hard to perfrom. but once you've got the biggest picture avaliable, you can create some smaller images from that.\nbut it sounds stupid.\nif pure black, then that image will be abandoned.\nwill use throttle technique to do the best job.\navg_download_speed:100kb/s=6mb/min=0.36gb/hr=8.64gb/d\n    14:15000*15000*2kb=450000.0mb=450gb,52d\n    13:8000**2*2kb=128000.0mb=128gb,14.8d\n    >>skip 12\n    11:2000**2*2kb,0.95d\n    10:1000**2*2kb,0.2375d (QUESTIONABLE)\nscheme: (x,y)\n    (0,0)---------(1000,0)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/README:1-23"
+    },
+    "1817": {
+        "file_id": 303,
+        "content": "The code discusses a project that won't be launched on the current disk, instead precalculating total storage to run on another media. It also mentions manually configuring information from internet-map.net and downloading website images. The calculations include throttle technique estimates for download speeds and disk storage capacities for different resolutions.",
+        "type": "comment"
+    },
+    "1818": {
+        "file_id": 303,
+        "content": "        |               |\n        |               |\n    (0,1000)-----(1000,1000)\nformula:\n    for one zoom level k with t sequences in both dimentions, we have to scan:\n        s(t)=t**2+(t-1)**2+2+t*(t-1)\n    for different zoom levels, we have:\n        f(k)=t, f(k)=f(k-1)*2\n    we have k within [3,10], so to sum up them all:\n        sigma[k from 3 to 10]{s(f(k))}\nshould it be 1024.\nmath notations are like shits.\nyou can dynamically load them, as you wish.\nexamples:\n    https://d2h9tsxwphc7ip.cloudfront.net/14/7102%206010.png\n    https://d2h9tsxwphc7ip.cloudfront.net/0/0%200.png\nif i had a choice, i would choose to download it from internet, instead of local synth.\nspeed could be an issue, but i wouldn't prefer to get my phone burned.\nthis is meaningless. not using math, or using math, both need your participation. it is all about your personal choice.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/README:24-48"
+    },
+    "1819": {
+        "file_id": 303,
+        "content": "This code seems to be calculating a summation of a function s(f(k)) for zoom levels k ranging from 3 to 10. The formula s(t) is defined, and the function f(k) is given as t and double the previous value for different zoom levels. The author expresses frustration with math notations and would prefer downloading maps from the internet instead of synthesizing them locally.",
+        "type": "comment"
+    },
+    "1820": {
+        "file_id": 304,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/basepak.py",
+        "type": "filepath"
+    },
+    "1821": {
+        "file_id": 304,
+        "content": "getPic retrieves images with specific dimensions and validates parameters, while getRange calculates point grids based on power of 2. getShift generates lists of shifted positions in various directions.",
+        "type": "summary"
+    },
+    "1822": {
+        "file_id": 304,
+        "content": "import requests\nimport traceback\nimport copy\ndef getPic(a, b, c):\n    try:\n        assert type(a) == int and a >= 0 and a <= 10\n        assert type(b) == int and b >= 0 and b <= 1024\n        assert type(c) == int and c >= 0 and c <= 1024\n        # d=(a,b,c)\n        # d=list(map(str,d))\n        r = \"https://d2h9tsxwphc7ip.cloudfront.net/{}/{}%20{}.png\".format(\n            a, b, c)\n        r = requests.get(r)\n        r = r.content\n        return r\n    except:\n        e = traceback.format_exc()\n        print(e)\n        return None\ndef getRange(a):\n    a = 2**a\n    return [(x, y) for x in range(a) for y in range(a)]\n    # it should be preconfigured.\ndef getShift(a, s, c):\n    # a is a pair.\n    # remove candidate?\n    b = copy.deepcopy((a[0], a[1]))\n    assert type(s) == int and s in [0, 1, 2, 3]\n    # must include themselves.\n    # length == 0 -> do not check.\n    if s == 0:\n        return []\n    elif s == 1:\n        return [(c, b[0]+1, b[1])]\n    elif s == 2:\n        return [(c, b[0], b[1]+1)]\n    else:\n        return [(c, b[0], b[1]+1), (c, b[0]+1, b[1]), (c, b[0]+1, b[1]+1)]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/basepak.py:1-44"
+    },
+    "1823": {
+        "file_id": 304,
+        "content": "getPic takes three integer arguments (a, b, c) and returns the content of an image with dimensions a x b and name c. It asserts that the input parameters are within valid ranges. getRange calculates a grid of points based on the power of 2 of its argument a. getShift generates a list of shifted positions from a given position (a, b) in any of four directions (0: none, 1: right, 2: down, 3: diagonally down-right). It requires an integer s representing the direction and a copy of the original position.",
+        "type": "comment"
+    },
+    "1824": {
+        "file_id": 304,
+        "content": "        # domain problem. just observe this.\n# talk about arrangement.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/basepak.py:45-46"
+    },
+    "1825": {
+        "file_id": 304,
+        "content": "These lines seem to be a placeholder or an unfinished note, possibly related to domain issues and the arrangement of elements within it.",
+        "type": "comment"
+    },
+    "1826": {
+        "file_id": 305,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/checkSingle.py",
+        "type": "filepath"
+    },
+    "1827": {
+        "file_id": 305,
+        "content": "The code imports libraries, defines image processing functions, applies operations based on sv value, splits data into chunks, uses OpenCV and numpy for analysis but faces issues with exploration in OpenCV and poor Skimage performance.",
+        "type": "summary"
+    },
+    "1828": {
+        "file_id": 305,
+        "content": "# from dbM2 import\nimport numpy as np\nimport cv2\nfrom dbM2 import regcheck, inf\nfrom basepak import getShift\nfrom classic import getRead as batchRead\n# use some image reading thing.\nfrom dbM import show\nfrom multiprocessing import Pool, freeze_support\nfrom endmark import windowEndMarkEx as windowEndmarkEx\n# TimeoutError?\n# use graph query to do this.\n# randomly select three?\ntable_name = \"projects\"\n# use tesseract now!\nthreshold = 5\nbatch_size = 10\ndef parallel(x, v, z):\n    with Pool(processes=x) as pool:\n        return pool.map(v, z)\n# say we've got a sample.\n# you can adjust this.\ndef knock(sample):\n    sd = sample[1:3]\n    sv = sample[-1]\n    sk = sample[0]\n    sn = [sample[:-1]]+getShift(sd, sv, sk), sv\n    return sn\ndef get_1(s0, sv):\n    assert sv == 1\n    assert len(s0) == 2\n    # print(type(s0), len(s0))\n    s1 = s0[0]\n    # s2=cv2.imread(s1)\n    # this is not right.\n    # oh you may say, let the machine to decode the image!\n    # just wait.\n    s2 = np.frombuffer(s1, np.uint8)\n    s2 = cv2.imdecode(s2, 1)\n    s3 = np.frombuffer(s0[1], np.uint8)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/checkSingle.py:1-49"
+    },
+    "1829": {
+        "file_id": 305,
+        "content": "The code is importing various libraries and modules for image processing, database operations, and parallel computing. It defines functions to process a given sample, adjust the sample if needed, and uses tesseract for OCR. The code also uses OpenCV library for image decoding and manipulation.",
+        "type": "comment"
+    },
+    "1830": {
+        "file_id": 305,
+        "content": "    s3 = cv2.imdecode(s3, 1)\n    # s4=s3\n    h1, w1 = s3.shape[:2]\n    h2, w2 = s2.shape[:2]\n    res = np.zeros(shape=(max(h1, h2), w1+w2, 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res[:h2, :w2, i] = np.ones([h1, w1])*s2[:, :, i]\n        res[:h2, w2:w2+w1, i] = np.ones([h1, w1])*s3[:, :, i]\n    _, w1 = res.shape[:2]\n    w1 = int(w1/4)\n    return res[:, w1:w1*3, :]\ndef get_2(s0, sv):\n    assert sv == 2\n    assert len(s0) == 2\n    # print(type(s0), len(s0))\n    s1 = s0[0]\n    # s2=cv2.imread(s1)\n    # this is not right.\n    # oh you may say, let the machine to decode the image!\n    # just wait.\n    s2 = np.frombuffer(s1, np.uint8)\n    s2 = cv2.imdecode(s2, 1)\n    s3 = np.frombuffer(s0[1], np.uint8)\n    s3 = cv2.imdecode(s3, 1)\n    # s4=s3\n    h1, w1 = s3.shape[:2]\n    h2, w2 = s2.shape[:2]\n    res = np.zeros(shape=(h1+h2, max(w1, w2), 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res[:h2, :w2, i] = np.ones([h1, w1])*s2[:, :, i]\n        res[h2:h2+h1, :w1, i] = np.ones([h1, w1])*s3[:, :, i]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/checkSingle.py:50-82"
+    },
+    "1831": {
+        "file_id": 305,
+        "content": "This code reads two image files, resizes them to fit into a single frame, and returns the new frame. It uses OpenCV library for image decoding and manipulation, NumPy for creating zeros array and handling image buffers. The main purpose is to combine two images horizontally into one frame with equal widths.",
+        "type": "comment"
+    },
+    "1832": {
+        "file_id": 305,
+        "content": "    w1, _ = res.shape[:2]\n    w1 = int(w1/4)\n    return res[w1:w1*3, :, :]\ndef get_0(s0, sv):\n    assert sv == 0\n    assert len(s0) == 1\n    s2 = np.frombuffer(s0[0], np.uint8)\n    s2 = cv2.imdecode(s2, 1)\n    return s2\ndef get_3(s0, sv):\n    assert sv == 3\n    assert len(s0) == 4\n    # print(type(s0), len(s0))\n    s1 = s0[0]\n    # s2=cv2.imread(s1)\n    # this is not right.\n    # oh you may say, let the machine to decode the image!\n    # just wait.\n    s2 = np.frombuffer(s1, np.uint8)\n    s2 = cv2.imdecode(s2, 1)\n    s3 = np.frombuffer(s0[1], np.uint8)\n    s3 = cv2.imdecode(s3, 1)\n    # s4=s3\n    h1, w1 = s3.shape[:2]\n    h2, w2 = s2.shape[:2]\n    res = np.zeros(shape=(h1+h2, max(w1, w2), 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res[:h2, :w2, i] = np.ones([h1, w1])*s2[:, :, i]\n        res[h2:h2+h1, :w1, i] = np.ones([h1, w1])*s3[:, :, i]\n    s4 = np.frombuffer(s0[2], np.uint8)\n    s4 = cv2.imdecode(s4, 1)\n    s5 = np.frombuffer(s0[3], np.uint8)\n    s5 = cv2.imdecode(s5, 1)\n    h1, w1 = s5.shape[:2]\n    h2, w2 = s4.shape[:2]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/checkSingle.py:83-121"
+    },
+    "1833": {
+        "file_id": 305,
+        "content": "This code defines three functions: `checkSingle`, `get_0`, and `get_3`. The first function returns a section of an image, the second one decodes an image with sv value equal to 0, and the third one decodes two images with sv value equal to 3. It then combines the two images into one by splitting them vertically and concatenating their channels horizontally.",
+        "type": "comment"
+    },
+    "1834": {
+        "file_id": 305,
+        "content": "    res0 = np.zeros(shape=(h1+h2, max(w1, w2), 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res0[:h2, :w2, i] = np.ones([h1, w1])*s4[:, :, i]\n        res0[h2:h2+h1, :w1, i] = np.ones([h1, w1])*s5[:, :, i]\n    h1, w1 = res.shape[:2]\n    h2, w2 = res0.shape[:2]\n    res1 = np.zeros(shape=(max(h1, h2), w1+w2, 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res1[:h2, :w2, i] = np.ones([h1, w1])*res[:, :, i]\n        res1[:h2, w2:w2+w1, i] = np.ones([h1, w1])*res0[:, :, i]\n    h1, w1 = res1.shape[:2]\n    h1, w1 = int(h1/4), int(w1/4)\n    res2 = res1[h1:h1*3, w1:w1*3, :]\n    return res2\ndef getSingle(sample):\n    s, sv = knock(sample)\n    s0 = show(table_name, s)\n    if sv == 0:\n        return get_0(s0, sv)\n    elif sv == 1:\n        return get_1(s0, sv)\n    elif sv == 2:\n        return get_2(s0, sv)\n    elif sv == 3:\n        return get_3(s0, sv)\n    else:\n        raise Exception(\"shit happens!\")\n    return\ndef ver_black(p):\n    return np.mean(p) > threshold\ndef getDouble(sample):\n    g = getSingle(sample)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/checkSingle.py:122-159"
+    },
+    "1835": {
+        "file_id": 305,
+        "content": "The code performs image processing operations on a given sample, returning an image after applying certain functions based on the sample's value (sv). It also includes error handling for unexpected sv values.",
+        "type": "comment"
+    },
+    "1836": {
+        "file_id": 305,
+        "content": "    if ver_black(g):\n        return {sample: batchRead(g)}\n    else:\n        return {sample: \"\"}\ndef streamDouble(smp):\n    r = parallel(len(smp), getDouble, smp)\n    r0 = {}\n    for x in r:\n        r0.update(x)\n    return r0\n# there are many dots over the spot.\n# result will be inaccurate.\ndef upDouble(d):\n    y = d.keys()\n    # for x in y:\n    inf(table_name, [(d[x], *x) for x in y])\n    # print(\"imports:\", len(y), \"contents:\", *[d[x] for x in y])\n    return\n# all shit.\nif __name__ == \"__main__\":\n    freeze_support()\n    f = regcheck(table_name)\n    print(\"WORKLOAD\",len(f))\n    # you can set some batch size.\n    f0 = windowEndmarkEx(f,batch_size)\n    # print(f0)  # working.\n    for z in f0:\n        print(z)\n        s = streamDouble(z)\n        upDouble(s)\n# you plan to get it all?\n# sample = (5, 0, 0, 2)  # to pics.\n# s, sv = knock(sample)\n# # print(s)\n# s0 = show(table_name, s)\n# r = get_2(s0, sv)\n# sample = (5, 0, 0, 3)  # to pics.\n# s, sv = knock(sample)\n# # print(s)\n# s0 = show(table_name, s)\n# r0 = get_3(s0, sv)\n# e=[r,r0]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/checkSingle.py:160-208"
+    },
+    "1837": {
+        "file_id": 305,
+        "content": "This code is performing double streaming and updating process. It checks if the version is black, returns a sample with batch reading, otherwise it returns an empty string. The `streamDouble` function performs parallel streaming for a given sample, updates the result, and returns it. The `upDouble` function takes the result of the streaming and updates the table with the provided data. If the main script is run, it sets up the file, prints the workload length, sets batch size, and then iterates over the file, streams data, doubles it, and updates the table. It might be used to process large amounts of data by splitting it into smaller chunks for processing. The code seems incomplete as some functions are referred without proper definition, such as `regcheck`, `windowEndmarkEx`, `knock`, `get_2`, `get_3`, `show`, and `table_name`. Additionally, there might be syntax errors or typos.",
+        "type": "comment"
+    },
+    "1838": {
+        "file_id": 305,
+        "content": "# e0=batchRead(e)\n# print(e0)\n# skip pure black.\n# be it 2.\n# sv=sample[-1]\n# try different.\n# opencv is great but i cannot expolre.\n# print(r)\n# you will always get only one result.\n# p = np.mean(r)\n# print(p)\n# if this is applied, then return '' instead of None.\n# cv2.imshow(\" \", r)\n# cv2.waitKey(0)\n# cv2.imshow(\" \",res2)\n# cv2.waitKey(0)\n# just combine? too much computation.\n# not too bad.\n# same, do not do that to skimage. it sucks.\n# print(s2,s2.shape)\n# # not working.\n# people tend to freak each other out.\n# perform a single shot.\n# print(s)\n# now, how to get those pics?\n# print(sd,sv)\n# s=show(table_name,[(0,0,0)])\n# just get one?\n# print(s)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/checkSingle.py:209-237"
+    },
+    "1839": {
+        "file_id": 305,
+        "content": "The code attempts to perform image analysis, using OpenCV and numpy. It reads an image, skips pure black ones, and tries different methods for analysis. However, the author mentions issues with exploration in OpenCV and poor performance of Skimage. The code then prints various shapes and images, performs a single shot analysis, and discusses potential issues or improvements.",
+        "type": "comment"
+    },
+    "1840": {
+        "file_id": 306,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/chords.py",
+        "type": "filepath"
+    },
+    "1841": {
+        "file_id": 306,
+        "content": "The code contains incomplete and non-functional parts, managing a process with multiple steps involving item status checks, list cleaning, file writing, progress updates, pauses, purge operations, monitoring a variable 'pdd', resetting and handling overload situations. It may run better on a cellphone and is part of a machine learning program using GANs for data preparation and prediction evaluation.",
+        "type": "summary"
+    },
+    "1842": {
+        "file_id": 306,
+        "content": "from dbM import regcheck, inf\nimport requests\nimport requests_ftp\nimport random\n# from endmark import windowEndMarkEx\nfrom basepak import getPic\nfrom multiprocessing import Process, freeze_support\nimport time\nfrom endmark import windowEndMarkEx as windowEndmarkEx\nGFC = 75\n# does not matter. it is all the same.\n# limitation on max connection.\nTHROTTLE = 10\nMAX_PATIENCE = 5\nRESETTING = 5\nMAX_TOLERANCE = 5\n# def parallel(v, z):\n#     with Pool(processes=len(z)) as pool:\n#         return pool.map(v, z)\n# really strange idea.\n# will you encounter some overflow issues?\n# in theory, no.\n# you can also set it to be 20.\ndef check(a):\n    return sum([int(x[0].is_alive()) for x in a]+[0])\ndef clean(a):\n    return [x for x in a if x[0].is_alive()]\ndef check_w(s, x):\n    while True:\n        try:\n            # r = random.random()*0.1\n            # time.sleep(r)\n            with open(s, \"w+\") as f:\n                f.write(str(x))\n            break  # also dead code.\n        except:\n            dum()\n            continue\n    return\n#just dead code.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/chords.py:1-45"
+    },
+    "1843": {
+        "file_id": 306,
+        "content": "This code defines variables for connection limitations, patience timeouts, and other settings. It also includes a function to check the alive status of items in a list, another function to clean the list by keeping only the active items, and a function to write data to a file. Some dead code is also present in the script.",
+        "type": "comment"
+    },
+    "1844": {
+        "file_id": 306,
+        "content": "def dum():\n    r = random.random()*0.1\n    time.sleep(r)\ndef check_r(s):\n    # while True:\n    try:\n        with open(s, \"r\") as f:\n            return int(f.read())\n#        break  # also dead code.\n    except:\n        # dum()\n        # continue\n        return 0\n    # return 0\n#     return GFC  # dead code.\n#     not greater than 10.\n# just pass it through.\n#     return\n# use a database to do the task.\n# this sucks.\n# it is getting sparsed.\ndef scars(r0):\n    try:\n        return getPic(*r0)\n        # requests_ftp.monkeypatch_session()\n        # s = requests.Session()\n        # # really fucking slow?\n        # r1 = s.get(r0)\n        # s.close()\n        # return r1.content\n    except:\n        return\n    return\n# no idea where it is heading to.\ndef checker(a, c):\n    d = scars(a)\n    inf(\"projects\", [(d, *a)])  # it should be inserted.\n    dum()\n    # b = check_r(c)-1\n    # check_w(c, b)\n    print(\"DONE\", b, a)\n    return\n    # dead code?\n# i do not know. maybe it is for http only.\nif __name__ == \"__main__\":\n    r = regcheck(\"projects\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/chords.py:48-100"
+    },
+    "1845": {
+        "file_id": 306,
+        "content": "The code appears to be a mix of functions and seems incomplete or partially working. The 'dum' function pauses for a random amount of time, while 'check_r' attempts to read an input file and returns its content as an integer or 0 if it fails. 'scars' tries to retrieve data from an external source using the requests library, but may not be functioning correctly due to exceptions. The 'checker' function uses the 'scars' function and calls another potentially non-existent function 'check_w'. Finally, there is a conditional statement that checks if the script is being run directly and then calls the 'regcheck' function with \"projects\" as an argument.",
+        "type": "comment"
+    },
+    "1846": {
+        "file_id": 306,
+        "content": "    # # print(r)\n    zr = windowEndmarkEx(r, THROTTLE)\n    a = []\n    apr = \"proc_shuffle.log\"\n    # check_w(a, 0)\n    # r = list(map(lambda x: x[0], r))\n    # r = windowEndMarkEx(r, 10)  # strange\n    # do it on cellphone. pack it up.\n    # maybe the .gz file really helps.\n    lf=len(r)\n    print(\"REMAINING WORK\", lf)\n    print(\"PROGRESS\",check_r(apr)-lf)\n    check_w(apr,lf)\n    time.sleep(2)\n    pxx = 0\n    pdd = 0\n    pcc = 0\n    pb = None\n    # does this work?\n    # print(\"sleepover\")\n    for x in zr:\n        a = clean(a)\n        b = check(a)\n        # b = check_r(a)\n        if b < GFC:\n            # pdd = 0\n            for y in range(len(x)):\n                c = b+y  # just a hint.\n                print(\"dispached\", c)\n                zx = x[y]\n                # cannot pass this around?\n                # strange.\n                # just do not make the fucking same mistake.\n                p = Process(target=checker, args=(zx, c))\n                p.start()\n                a.append((p, zx))\n            pcc += 1\n            if pcc > int(GFC//THROTTLE)+5:",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/chords.py:101-138"
+    },
+    "1847": {
+        "file_id": 306,
+        "content": "This code appears to be managing a process that involves multiple steps. It seems to create multiple processes for each input item in a list, with the number of processes limited by a throttle value and an additional safety margin. Each process is assigned a unique identifier and the results are returned. The code also includes progress updates and pauses between steps.",
+        "type": "comment"
+    },
+    "1848": {
+        "file_id": 306,
+        "content": "                pcc = 0\n                pdd = 0\n            # b += 1\n            # check_w(a, b)\n        else:  # do a purge logic.\n            pcc = 0\n            if pb == b:\n                pxx += 1\n            else:\n                pxx = 0\n            pb = b\n            if pxx >= MAX_PATIENCE:\n                pool = []\n                counter = 0\n                skip_counter = 0\n                for f0 in a:\n                    try:\n                        f0[0].terminate()\n                        pool.append(f0[1])\n                        print(\"purge\", counter)\n                        # that process does not indicate shit.\n                        counter += 1\n                    except:\n                        print(\"skip\", skip_counter)\n                        skip_counter += 1\n                        pass\n                print(\"kill\", counter, \"skip\", skip_counter)\n                zr = zr+windowEndmarkEx(pool, THROTTLE)\n                # DOES THIS REALLY WORK?\n                # it is fucking horrible!\n                a = []",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/chords.py:139-169"
+    },
+    "1849": {
+        "file_id": 306,
+        "content": "This code is performing a purge operation on a list of processes. If the number of active processes exceeds the maximum patience level, it terminates the extra processes and adds them to a new list. It then prints the count of purged processes and skipped processes. The code also increments counters for tracking progress and updates the process list. Finally, it mentions that the code is horrible and possibly needs improvement.",
+        "type": "comment"
+    },
+    "1850": {
+        "file_id": 306,
+        "content": "                if pdd < MAX_TOLERANCE:\n                    print(\"RESETTING FOR\", RESETTING, \"SECS\")\n                    print(\"TOLERANCE\", MAX_TOLERANCE-pdd)\n                    time.sleep(RESETTING)\n                    # reset the pxx.\n                    pxx = 0\n                    pdd += 1\n                else:\n                    print(\"resetting your blocked IP!\")\n                    break\n            else:\n                # pcc = 0\n                print(\"waiting\", b, \"patience\", MAX_PATIENCE-pxx)\n                time.sleep(1)\n        # else:\n        # hope it will work?\n        #     print(\"OVERLOAD!\", b)\n        #     print(\"RESETTING TO ZERO!\")\n        #     check_w(a, 0)\n        # p = parallel(wrapper, x)\n        # try:\n        #     inf(\"projects\", p)\n        # except:\n        #     print(\"___FAILURE___\")\n        # # really no issue?\n    # alright. problem occurs.\n    # maybe run this on cellphone?\n    # pickle issue.\n    # print(p)\n    # print(type(p))\n    # this is really slow as hell.\n    # print(len(p))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/chords.py:170-201"
+    },
+    "1851": {
+        "file_id": 306,
+        "content": "This code appears to be monitoring a variable 'pdd' and checking if it is below a certain threshold, MAX_TOLERANCE. If it is, the program resets after a specified time interval, 'RESETTING'. If 'pdd' exceeds the threshold, it breaks out of the loop. The code also includes waiting logic with a maximum patience limit, 'MAX_PATIENCE', and handles potential overload situations by resetting to zero. However, there seem to be some issues with the variable 'p' which may involve pickling and could potentially run better on a cellphone.",
+        "type": "comment"
+    },
+    "1852": {
+        "file_id": 306,
+        "content": "    # ok now i can prepare for the stuff?\n    # just try once.\n    # for x in r:\n        # do it.\n        # r0=r[0]\n        # print(r0)\n# you consider evaluate the predictions to get the real thing.\n# yes you might consider this is right. GAN.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/chords.py:202-209"
+    },
+    "1853": {
+        "file_id": 306,
+        "content": "This code snippet seems to be part of a machine learning or image processing program. It appears to attempt preparing something (likely data) for a specific task, possibly using Generative Adversarial Networks (GANs). The code might evaluate the predictions and use them to obtain the real results. However, the syntax is incorrect and the purpose unclear without more context.",
+        "type": "comment"
+    },
+    "1854": {
+        "file_id": 307,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/classic.py",
+        "type": "filepath"
+    },
+    "1855": {
+        "file_id": 307,
+        "content": "This code uses Tesseract for OCR, image processing techniques like grayscale conversion and thresholding, and OpenCV to display images. The author found this approach not optimal and plans to switch to character segments for production-ready code.",
+        "type": "summary"
+    },
+    "1856": {
+        "file_id": 307,
+        "content": "import cv2\nimport pytesseract\ndef getText(f):\n  config = (\"-c tessedit_do_invert=0 --oem 1 --psm 12\")  # LSTM is awful.\n  # get it a try.\n  # must likely we shall use a language detector before use?\n  return pytesseract.image_to_string(f, lang=\"eng+\",config=config,nice=0)\n# def saveMe(a,b):\n#     cv2.imwrite(\"dreamer/\"+str(a)+\".png\",b)\n# this is a simple method. we can adjust the values with ease.\n# we can have different values with filter.\n# x,y,w,h\n# this cannot detect the line direction -> fourier transform -> linear analysis.\n# if __name__ == \"__main__\":\n  # freeze_support()\n  # do this in __main__\ndef getRead(image):\n  # image = cv2.imread(sx)\n  gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n  return getText(gray)\n# def batchRead(ig):\n#     return parallel(len(ig),getRead,ig)\n#   blur = cv2.GaussianBlur(gray, (9,3), 0)# odd different.\n#   thresh = cv2.adaptiveThreshold(blur,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,11,30)\n#   kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (11,2))\n#   dilate = cv2.dilate(thresh, kernel, iterations=4)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/classic.py:1-28"
+    },
+    "1857": {
+        "file_id": 307,
+        "content": "This code imports necessary libraries and defines a function to extract text from an image using Tesseract OCR with specific configuration. The code also includes functions for saving images, converting images to grayscale, and applying thresholding and dilation techniques to improve the OCR results.",
+        "type": "comment"
+    },
+    "1858": {
+        "file_id": 307,
+        "content": "#   cnts = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)\n#   cnts = cnts[0] if len(cnts) == 2 else cnts[1]\n#   ar=[]\n#   ROI_number = 0 # i must slice it around.\n#   # shall we use multithreading?\n#   # use multilanguage mode.\n#   # too fucking long.\n#   for c in cnts:\n#       area=cv2.contourArea(c)\n#       x, y, w, h = cv2.boundingRect(c)\n#       try:\n#         f=image[y-4:y+8+h,x:x+w] # the way to crop the image.\n#         ar.append([f, [x, y, w, h], area])  # we are gonna check this twice.\n#       except:\n#         pass\n#   asr,axr=list(reversed(sorted(ar,key=(lambda x: x[2]))))[:5],[]\n#   for ra,rx in enumerate(parallel(5,getText,list(map((lambda x:x[0]),asr)))):\n#       text = rx\n#       axr.append([text, asr[ra][1]])\n#   return axr\n      # do the recording.\n  #     cv2.rectangle(image, (x, y - 4), (x + w, 8 + y + h), (36, 255, 12), 3)\n  #     cv2.putText(image,text,(int(x+w/2),int(y+h/2)),cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)\n  # af=0\n  # for a0, b0 in ar:\n  #     saveMe(af,a0)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/classic.py:29-54"
+    },
+    "1859": {
+        "file_id": 307,
+        "content": "This code performs contour detection on an image, crops the detected regions, extracts text from those regions using multithreading and sorts them based on their areas. It then displays the bounding boxes around the regions and stores them for further processing.",
+        "type": "comment"
+    },
+    "1860": {
+        "file_id": 307,
+        "content": "  #     af+=1\n  # cv2.imshow('thresh', thresh)\n  # cv2.imshow('dilate', dilate)\n  # cv2.imshow('image', image)\n  # cv2.waitKey()\n# this shit is production ready.\n# better use char segments.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/classic.py:55-61"
+    },
+    "1861": {
+        "file_id": 307,
+        "content": "This code snippet is likely from a computer vision or image processing project. It seems to display images using OpenCV's imshow function and wait for user input with cv2.waitKey(). The comments suggest that the author found this approach not optimal, possibly due to performance reasons, and decided to switch to using character segments instead for production-ready code.",
+        "type": "comment"
+    },
+    "1862": {
+        "file_id": 308,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/classic_segment.py",
+        "type": "filepath"
+    },
+    "1863": {
+        "file_id": 308,
+        "content": "This code performs image processing for OCR using multiprocessing, Tesseract OCR, and OpenCV. It crops, adjusts contrast, resizes images, handles errors, and processes objects likely for OCR purposes. The author recommends using character segments instead.",
+        "type": "summary"
+    },
+    "1864": {
+        "file_id": 308,
+        "content": "import cv2\nimport pytesseract\nfrom multiprocessing import Pool, freeze_support\nimport traceback\n# nvm.\n# TimeoutError?\n# use graph query to do this.\n# randomly select three?\ndef parallel(x, v, z):\n    with Pool(processes=x) as pool:\n        return pool.map(v, z)\ndef getText(f):  # shit.\n    config = (\"-c tessedit_do_invert=0 --oem 3 --psm 6\")  # LSTM is awful.\n    # get it a try.\n    # must likely we shall use a language detector before use?\n    return pytesseract.image_to_string(f, lang=\"eng\", config=config, nice=0)\n# def saveMe(a,b):\n#     cv2.imwrite(\"dreamer/\"+str(a)+\".png\",b)\n# this is a simple method. we can adjust the values with ease.\n# we can have different values with filter.\n# x,y,w,h\n# do we need conversions here?\n# this cannot detect the line direction -> fourier transform -> linear analysis.\n# if __name__ == \"__main__\":\n    # freeze_support()\n    # do this in __main__\ndef getRead(image):\n    # image = cv2.imread(sx)\n    # change this config.\n    # turn it into some b&w.\n    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/classic_segment.py:1-37"
+    },
+    "1865": {
+        "file_id": 308,
+        "content": "Code is importing necessary libraries, using multiprocessing to map a function over a set of inputs, applying Tesseract OCR on images, and performing image processing with OpenCV to convert color images into grayscale. This could be part of an application dealing with Optical Character Recognition (OCR) from images.",
+        "type": "comment"
+    },
+    "1866": {
+        "file_id": 308,
+        "content": "    sh, sw = gray.shape[:2]\n    gray = cv2.bitwise_not(gray)\n    blur = cv2.GaussianBlur(gray, (3, 1), 0)  # odd different.\n    thresh = cv2.adaptiveThreshold(\n        blur, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 30)\n    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (11, 2))\n    dilate = cv2.dilate(thresh, kernel, iterations=4)\n    cnts = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)\n    cnts = cnts[0] if len(cnts) == 2 else cnts[1]\n    ar = []\n    ROI_number = 0  # i must slice it around.\n#   # shall we use multithreading?\n#   cv2.imshow(\"gray\",gray)\n#   cv2.waitKey(0)\n#   cv2.imshow(\"blur\",blur)\n#   cv2.waitKey(0)\n#   cv2.imshow(\"thresh\",thresh)\n#   cv2.waitKey(0)\n#   cv2.imshow(\"dilate\",dilate)\n#   cv2.waitKey(0)\n# #   cv2.imshow(\" \",gray)\n#   cv2.waitKey(0)\n#   cv2.imshow(\" \",gray)\n#   cv2.waitKey(0)\n    # use multilanguage mode.\n    # too fucking long.\n    # what the heck?\n    for c in cnts:\n        area = cv2.contourArea(c)\n        x, y, w, h = cv2.boundingRect(c)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/classic_segment.py:38-67"
+    },
+    "1867": {
+        "file_id": 308,
+        "content": "This code performs image processing operations on a grayscale image, applying bitwise not, Gaussian blur, adaptive thresholding, dilation, and contour detection. It then calculates the area of each detected contour and stores it in 'area'. The code also includes optional display of intermediate image results using OpenCV's imshow function.",
+        "type": "comment"
+    },
+    "1868": {
+        "file_id": 308,
+        "content": "        # fucking hell.\n        try:\n            y0_, y1_ = y-4, y+8+h\n            if y0_ < 0:\n                y0_ = 0\n            if y1_ > sh:\n                y1_ = sh\n            f = gray[y0_:y1_, x:x+w]  # the way to crop the image.\n            _thresh = 127\n            # increase contrast?\n            # how comes?\n            # f0=cv2.adaptiveThreshold(f,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV,3,1)*0.03\n            f = cv2.threshold(f, _thresh, 255, cv2.THRESH_BINARY)[1]\n            # f=f+(f0*0.05)\n            h1, w1 = f.shape[:2]\n            f = cv2.resize(f, (w1*2, h1*2), 2, 2)\n            # fx,fy=f.shape\n            # finally some shit?\n            # # f=cv2.bitwise_not(f)\n            # cv2.imshow(\"dilate\",f)\n            # cv2.waitKey(0)\n            # we are gonna check this twice.\n            ar.append([f, [x, y, w, h], area])\n        except:\n            e = traceback.format_exc()\n            print(e)\n            pass\n    asr, axr = list(reversed(sorted(ar, key=(lambda x: x[2]))))[:5], []",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/classic_segment.py:68-95"
+    },
+    "1869": {
+        "file_id": 308,
+        "content": "This code segment appears to be performing image processing and analysis. It crops an image, applies a threshold operation to increase contrast, resizes the image, and stores the result in a list for further analysis. If any errors occur during this process, it catches them and prints the error message. Finally, it sorts the list of results based on image area and selects the top 5 for further processing.",
+        "type": "comment"
+    },
+    "1870": {
+        "file_id": 308,
+        "content": "    for ra, rx in enumerate(parallel(5, getText, list(map((lambda x: x[0]), asr)))):\n        text = rx\n        axr.append([text, asr[ra][1]])\n    return axr\n    # store some python objects?\n    # do the recording.\n    #     cv2.rectangle(image, (x, y - 4), (x + w, 8 + y + h), (36, 255, 12), 3)\n    #     cv2.putText(image,text,(int(x+w/2),int(y+h/2)),cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)\n    # af=0\n    # positional data? nvm.\n    # for a0, b0 in ar:\n    #     saveMe(af,a0)\n    #     af+=1\n    # cv2.imshow('thresh', thresh)\n    # cv2.imshow('dilate', dilate)\n    # cv2.imshow('image', image)\n    # cv2.waitKey()\n# this shit is production ready.\n# better use char segments.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/classic_segment.py:96-114"
+    },
+    "1871": {
+        "file_id": 308,
+        "content": "This code segment is likely part of an image processing or OCR (Optical Character Recognition) program. It uses OpenCV functions to draw rectangles and text overlay on the image. The code then appears to process a list of objects, possibly for recognition and extraction purposes. There are also mentions of saving these processed objects, but the exact details are unclear. The last two lines indicate that the author is not satisfied with the current implementation and suggests using character segments instead.",
+        "type": "comment"
+    },
+    "1872": {
+        "file_id": 309,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/configure.py",
+        "type": "filepath"
+    },
+    "1873": {
+        "file_id": 309,
+        "content": "Code imports functions from dbM and basepak modules to create main function and initialize data. It iterates through a range (10 times), gets a range of data, formats it into a list, initializes \"projects\" with the data, and prints configuration status for each iteration.",
+        "type": "summary"
+    },
+    "1874": {
+        "file_id": 309,
+        "content": "from dbM import createMain, initial\nfrom basepak import getRange\n# format is png.\ncreateMain()\nfor x in range(11):\n    g=getRange(x)\n    g=[(x,a,b) for a,b in g]\n    initial(\"projects\",g)\n    print(\"configured\",x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/configure.py:1-10"
+    },
+    "1875": {
+        "file_id": 309,
+        "content": "Code imports functions from dbM and basepak modules to create main function and initialize data. It iterates through a range (10 times), gets a range of data, formats it into a list, initializes \"projects\" with the data, and prints configuration status for each iteration.",
+        "type": "comment"
+    },
+    "1876": {
+        "file_id": 310,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/configure2.py",
+        "type": "filepath"
+    },
+    "1877": {
+        "file_id": 310,
+        "content": "The code imports functions from dbM2 and basepak modules. It creates a main function and defines a verx function. Then, it iterates through a range of 11 values, limits the ranges based on each value, initializes data for each range with different conditions, and prints the configured number for each iteration.",
+        "type": "summary"
+    },
+    "1878": {
+        "file_id": 310,
+        "content": "from dbM2 import createMain, initial\nfrom basepak import getRange\n# format is png.\ncreateMain()\n# def verx(a, b):\n#     if len(a) == 0:\n#         return True\n#     else:\n#         r = [int(x in b) for x in a]\n#         return len(r) == sum(r)\n# math won't hurt.\nfor x in range(11):\n    limit = 2**x  # less than this.\n    g = getRange(x)\n    # initial(\"projects\", g)\n    # this is wrong.\n    g0 = [(x, a, b, 0) for a, b in g]\n    initial(\"projects\", g0)\n    g1 = [(x, a, b, 1) for a, b in g if a+1 < limit]\n    initial(\"projects\", g1)\n    g2 = [(x, a, b, 2) for a, b in g if b+1 < limit]\n    initial(\"projects\", g2)\n    g3 = [(x, a, b, 3) for a, b in g if ((a+1 < limit) and (b+1 < limit))]\n    initial(\"projects\", g3)\n    print(\"configured\", x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/configure2.py:1-29"
+    },
+    "1879": {
+        "file_id": 310,
+        "content": "The code imports functions from dbM2 and basepak modules. It creates a main function and defines a verx function. Then, it iterates through a range of 11 values, limits the ranges based on each value, initializes data for each range with different conditions, and prints the configured number for each iteration.",
+        "type": "comment"
+    },
+    "1880": {
+        "file_id": 311,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/endmark.py",
+        "type": "filepath"
+    },
+    "1881": {
+        "file_id": 311,
+        "content": "This code provides window conversion and pattern matching functions using regular expressions, enabling specific segment extraction. It checks input types and ranges, iterates through converted values to count occurrences within specified lengths, and returns true if count is within given limits.",
+        "type": "summary"
+    },
+    "1882": {
+        "file_id": 311,
+        "content": "import re\ndef windowConv(a, window_size):\n    return [a[x: x + window_size] for x in range(len(a) - window_size)]\ndef windowEndMark(a, window_size):\n    return [a[x * window_size: (x + 1) * window_size] for x in range(len(a) // window_size)]\ndef windowEndMarkEx(a, window_size):\n    return [a[x * window_size: (x + 1) * window_size] for x in range(len(a) // window_size)]+[a[len(a)-len(a)%window_size:len(a)]]\ndef phraseStartMark(a, start_phrase):\n    return re.findall(r'{}.+'.format(re.escape(start_phrase)), a)\ndef phraseEndMark(a, end_phrase):\n    return re.findall(r'.+{}'.format(re.escape(end_phrase)), a)\ndef phraseSegment(a, start_phrase, end_phrase):\n    return re.findall(r'{}.+{}'.format(re.escape(start_phrase), re.escape(end_phrase)), a)\ndef setStartMark(a, start_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(start_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    start_phrase = \"\".join(set(start_phrase))\n    return re.findall(r'['+r'{}'.format(re.escape(start_phrase))+r']{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:1-33"
+    },
+    "1883": {
+        "file_id": 311,
+        "content": "This code includes various functions for window conversion and pattern matching using regular expressions. The functions are windowConv, windowEndMark, windowEndMarkEx, phraseStartMark, phraseEndMark, phraseSegment, and setStartMark. These functions can be used to extract specific segments or patterns from a given string based on window sizes, start and end phrases, and optional sigma value for randomness.",
+        "type": "comment"
+    },
+    "1884": {
+        "file_id": 311,
+        "content": "def setEndMark(a, end_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(end_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    end_phrase = \"\".join(set(end_phrase))\n    return re.findall(r'.+[{}]'.format(re.escape(end_phrase))+r'{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)\ndef setSegment(a, start_phrase, end_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(end_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    len_phrase = len(start_phrase)\n    a2, a3 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    start_phrase = \"\".join(set(start_phrase))\n    end_phrase = \"\".join(set(end_phrase))\n    return re.findall(r'['+r'{}'.format(re.escape(start_phrase))+r']{'+r'{},{}'.format(str(a2), str(a3))+r'}'+r'.+[{}]'.format(re.escape(end_phrase))+r'{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)\ndef containRestrict(a, text, least_occurance, most_occurance):\n    assert least_occurance <= most_occurance",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:36-56"
+    },
+    "1885": {
+        "file_id": 311,
+        "content": "This code contains functions setEndMark, setSegment and containRestrict for pattern matching. The setEndMark function takes in a string 'a', end_phrase, and sigma to find occurrences of the end phrase within 'a' by considering two possible lengths based on sigma value. Similarly, the setSegment function finds occurrences of a segment defined by start and end phrases within 'a' using sigma-based lengths for both phrases. Finally, containRestrict asserts that least_occurance is less than or equal to most_occurance before searching for a pattern in string 'a'.",
+        "type": "comment"
+    },
+    "1886": {
+        "file_id": 311,
+        "content": "    assert type(least_occurance) == int\n    assert type(most_occurance) == int\n    assert least_occurance >= 1\n    assert type(text) == str\n    lt = len(text)\n    assert lt >= 1\n    gc = 0\n    for x in windowConv(a, lt):\n        if x == text:\n            gc += 1\n    return (gc >= least_occurance and gc <= most_occurance)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:57-67"
+    },
+    "1887": {
+        "file_id": 311,
+        "content": "This code checks the input types and ranges, then iterates through window converted values to count occurrences of text within a specified length range. It returns true if the count is within the given least/most occurrence limits.",
+        "type": "comment"
+    },
+    "1888": {
+        "file_id": 312,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/extend_while_iterate.py",
+        "type": "filepath"
+    },
+    "1889": {
+        "file_id": 312,
+        "content": "The code creates a list d with values 0-7, initializes variable c to 0 and then iterates through each element x in the list. If c is less than or equal to 4, it appends 1+7+c to the list d and increments c. The code prints each element x as it iterates through the list d.",
+        "type": "summary"
+    },
+    "1890": {
+        "file_id": 312,
+        "content": "# a running folder is a living hell.\nd=[0,1,2,3,4,5,6,7]\nc=0\n# it works. fucking hell.\nfor x in d:\n    if c<=4:\n        d+=[1+7+c]\n        c+=1\n    print(x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/extend_while_iterate.py:1-9"
+    },
+    "1891": {
+        "file_id": 312,
+        "content": "The code creates a list d with values 0-7, initializes variable c to 0 and then iterates through each element x in the list. If c is less than or equal to 4, it appends 1+7+c to the list d and increments c. The code prints each element x as it iterates through the list d.",
+        "type": "comment"
+    },
+    "1892": {
+        "file_id": 313,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/microscope.py",
+        "type": "filepath"
+    },
+    "1893": {
+        "file_id": 313,
+        "content": "Code creates a process pool, repeatedly checks the count of alive processes and dispatches new ones if less than 10 are alive. It also prints the current number of alive processes, waits for 1 second, and sleeps for 10 seconds before printing \"I AM DEAD\" and calling the 'dum' function. The 'dum' function generates a random sleep time between 0 and 0.1 seconds.",
+        "type": "summary"
+    },
+    "1894": {
+        "file_id": 313,
+        "content": "from multiprocessing import Process, freeze_support\nimport time\nimport random\ndef dum():\n    r = random.random()*0.1\n    time.sleep(r)\ndef f(a):\n    time.sleep(10)\n    print(\"I AM DEAD\", a)\n    dum()\ndef check(a):\n    return sum([int(x.is_alive()) for x in a]+[0])\ndef clean(a):\n    return [x for x in a if x.is_alive()]\nif __name__ == \"__main__\":\n    a = []\n    # m = 0\n    while True:\n        a=clean(a)\n        m=check(a)\n        if m<10:\n            print(\"dispached\",m)\n            p = Process(target=f, args=(m,))\n            p.start()\n            a.append(p)\n            # break\n        else:\n            print(\"waiting\",m)\n            time.sleep(1)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/microscope.py:1-37"
+    },
+    "1895": {
+        "file_id": 313,
+        "content": "Code creates a process pool, repeatedly checks the count of alive processes and dispatches new ones if less than 10 are alive. It also prints the current number of alive processes, waits for 1 second, and sleeps for 10 seconds before printing \"I AM DEAD\" and calling the 'dum' function. The 'dum' function generates a random sleep time between 0 and 0.1 seconds.",
+        "type": "comment"
+    },
+    "1896": {
+        "file_id": 314,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py",
+        "type": "filepath"
+    },
+    "1897": {
+        "file_id": 314,
+        "content": "The code utilizes OpenCV, Tesseract and other libraries for image processing, multiprocessing and OCR. It faces challenges with parallel processing and multiple dots on spots, performing image processing and data analysis to improve results.",
+        "type": "summary"
+    },
+    "1898": {
+        "file_id": 314,
+        "content": "# from dbM2 import\n# this time we need to use that thing.\n# strange. it tends to be slower.\nimport numpy as np\nimport cv2\nfrom dbM2 import regcheck, inf\nfrom basepak import getShift\nfrom classic_segment import getRead as batchRead\n# use some image reading thing.\nfrom dbM import show\nimport time\n# from multiprocessing import Pool, freeze_support\nfrom multiprocessing import Process, freeze_support\nfrom endmark import windowEndMarkEx as windowEndmarkEx\n# TimeoutError?\n# use graph query to do this.\n# randomly select three?\n# this will not work.\nGFC = 25\n# 25 -> 75\n# you can do this at night, but not when you are working.\n# does not matter. it is all the same.\n# limitation on max connection.\nTHROTTLE = 5\ntable_name = \"projects\"\n# use tesseract now!\nthreshold = 2  # very fucking awful and nasty.\n# this is really messy.\n# batch_size = 10\ndef check(a):\n    return sum([int(x[0].is_alive()) for x in a]+[0])\ndef clean(a):\n    return [x for x in a if x[0].is_alive()]\n# def parallel(x, v, z):\n#     with Pool(processes=x) as pool:\n#         return pool.map(v, z)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py:1-40"
+    },
+    "1899": {
+        "file_id": 314,
+        "content": "The code imports necessary modules, defines constants such as GFC and THROTTLE, and provides two functions check() and clean(). It also uses multiprocessing with Process and possibly Pool for parallel processing. The code aims to use tesseract for OCR and works with the \"projects\" table, applying a threshold value of 2 for an unknown task. However, the specific purpose or functionality is not clear from this segment of code alone.",
+        "type": "comment"
+    }
+}

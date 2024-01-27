@@ -1,0 +1,10 @@
+{
+    "summary": "Code is creating an Electron app window with a size of 800x1500 and loading Github website. The window is set to be shown initially, but can be hidden by changing the show property to false. The code also logs the contents of the window to the console.",
+    "details": [
+        {
+            "comment": "Code is creating an Electron app window with a size of 800x1500 and loading Github website. The window is set to be shown initially, but can be hidden by changing the show property to false. The code also logs the contents of the window to the console.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/election.js\":0-15",
+            "content": "// run this under electron prefix?\nconsole.log(\"from electron\");\n// it is running just fine. but how to hide it?\nconst { app,BrowserWindow } = require(\"electron\");\nfunction createWindow(){\nconst win = new BrowserWindow({ width: 800, height: 1500 ,show:true})\n//const win = new BrowserWindow({ width: 800, height: 1500 ,show:false})\nwin.loadURL('https://github.com')\nconst contents = win.webContents\nconsole.log(contents)\n}\napp.on('ready', createWindow);\n// can we use nightmare here?\n// can we import other packages?\n// app is launched, but headless. great. Now check modules."
+        }
+    ]
+}

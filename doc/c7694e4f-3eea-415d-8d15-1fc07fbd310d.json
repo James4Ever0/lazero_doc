@@ -1,0 +1,10 @@
+{
+    "summary": "This Python script takes a user input keyword and searches for related information. It supports only one search page, and the results are stored in a file named \"data.json\". The code uses the functions getSearched and parse_page to retrieve and process the data, respectively. The script prints each result to the console, but could be modified to use the results as needed. The execution time is recorded and stored with each result.",
+    "details": [
+        {
+            "comment": "This Python script takes a user input keyword and searches for related information. It supports only one search page, and the results are stored in a file named \"data.json\". The code uses the functions getSearched and parse_page to retrieve and process the data, respectively. The script prints each result to the console, but could be modified to use the results as needed. The execution time is recorded and stored with each result.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/new_toys/bing_wheel.py\":0-32",
+            "content": "import time\nfrom pythonbasics import getSearched as getLinked\nfrom dbM import up\ndef ml(x):\n    return [z for y in x for z in y]\ndef main():\n    keyword = input(\"\u8f93\u5165\u5173\u952e\u5b57:\")\n    # only supports one page.\n    # page = input(\"\u8f93\u5165\u67e5\u627e\u9875\u6570:\")\n    # url = get_url(keyword)\n    # p=int(page)\n    # results=ml([getLinked(keyword) for d in range(p)])\n    results = getLinked(keyword)\n    # results = parse_page(url, page)\n    # # \u5199\u5165\u6587\u4ef6\n    # file = open(\"data.json\", 'w+', encoding='utf-8')\n    # it is not that fast.\n    file = -1\n    t = int(time.time())\n    for result in results:\n        up(t, file, keyword, result)\n        file -= 1\n        # waht if we want to use the result?\n        print(result)\n    #     file.write(json.dumps(result, indent=2, ensure_ascii=False))\nif __name__ == '__main__':\n    main()"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports necessary modules, sets database file path, retrieves data from \"projects\" table, and prints each row.",
+    "details": [
+        {
+            "comment": "Code imports necessary modules, sets database file path, retrieves data from \"projects\" table, and prints each row.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/oneShot.py\":0-6",
+            "content": "import sys\nsys.path.append(\"../\")\nimport dbM\ndbM.setter(\"../Monitor.db\")\na=dbM.show(\"projects\")\nfor x in a:\n    print(x)"
+        }
+    ]
+}

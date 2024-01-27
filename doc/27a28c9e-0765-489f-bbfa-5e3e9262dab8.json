@@ -1,0 +1,10 @@
+{
+    "summary": "This script runs libjudger.so with different executable paths, potentially testing its behavior and functionality.",
+    "details": [
+        {
+            "comment": "This script runs libjudger.so with different executable paths, potentially testing its behavior and functionality.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jpython.sh\":0-3",
+            "content": "#!/bin/bash\n./libjudger.so --seccomp_rule_name=\"randomfuck\" --exe_path=$(which python)\n#./libjudger.so --exe_path=/sbin/shutdown --args=\"0\"\n# this cannot be run."
+        }
+    ]
+}

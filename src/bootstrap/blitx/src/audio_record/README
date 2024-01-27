@@ -1,0 +1,5 @@
+linux needs portaudio(xx)-dev installed.
+don't know if obs bindings working for android. maybe?
+shall check logic for android broadcast app. demo please?
+
+you can get a virtual termux runtime by simply packing it up.

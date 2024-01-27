@@ -1,0 +1,15 @@
+{
+    "summary": "The code makes a POST request with base64 data and spawns a child process using curl for an HTTP GET request, logging the output, logs errors, handles exceptions, and exits with a timeout.",
+    "details": [
+        {
+            "comment": "This code is making a POST request with base64 encoded data to \"http://localhost:7777/phantom_render\". It also spawns a child process using the \"curl\" command to make an HTTP GET request to \"http://localhost:7777/random\" and logs the standard output, standard error, and exit code.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/phantom_post.js\":0-34",
+            "content": "const base64=\"hello world\";\nvar http = new XMLHttpRequest();\nhttp.open(\"POST\", \"http://localhost:7777/phantom_render\", true);\n//\t  http.setRequestHeader(\"Content-type\",\"application/png\");\nhttp.send(base64);\n// can you get return value? we need the return.\n\t  //  string. can be other things. make a post request. fetch.\n\t  /*var data= new FormData();\n\t  data.append(\"screenshot\",data)*/\n\t  /*fetch(\"http://localhost:7777/phantom_render\",{\n\t\t  method:\"POST\",\n\t\t  body:base64\n\t  });*/\n\t  // send it into other things.\n// this one is called the webkit.\n// no websecurity.\nvar spawn = require(\"child_process\").spawn\nvar execFile = require(\"child_process\").execFile\n// not getting shit from this.\nvar child = spawn(\"curl\", [\"http://localhost:7777/random\"])\nchild.stdout.on(\"data\", function (data) {\n  console.log(\"spawnSTDOUT: \");\n\tconsole.log(data);\n\t// no multi-arg log support.\n})\nchild.stderr.on(\"data\", function (data) {\n  console.log(\"spawnSTDERR: \");\n\tconsole.log(data);\n})\nchild.on(\"exit\", function (code) {\n  console.log(\"spawnEXIT: \")"
+        },
+        {
+            "comment": "Code snippet is logging an error, killing the child process, and executing a curl command to make an HTTP request. It also has a timeout function for phantom.exit().",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/phantom_post.js\":35-49",
+            "content": "\tconsole.log(code);\n})\n// but no returning.\n//child.kill(\"SIGKILL\")\n// all fucked up.\n/*execFile(\"curl\", [\"-v\",\"http://localhost:7777/phantomjs\"], null, function (err, stdout, stderr) {\n  console.log(\"execFileSTDOUT:\");\n\tconsole.log(typeof(stdout));\n  console.log(\"execFileSTDERR:\");\n\t\tconsole.log(typeof(stderr));\n})*/\n/*\nsetTimeout(function () {\n  phantom.exit(0)\n}, 2000)*/"
+        }
+    ]
+}

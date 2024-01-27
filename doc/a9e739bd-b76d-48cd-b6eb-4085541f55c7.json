@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a systemd service file for the Lazero UUID service. It specifies the description, type of service, execution command, and installation settings to ensure the service is part of the multi-user target during system startup.",
+    "details": [
+        {
+            "comment": "This code defines a systemd service file for the Lazero UUID service. It specifies the description, type of service, execution command, and installation settings to ensure the service is part of the multi-user target during system startup.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_0/uuid_service.service\":0-8",
+            "content": "[Unit]\nDescription=Lazero UUID service.\n[Service]\nType=simple\nExecStart=/usr/bin/nodejs /usr/bin/uuid_server.js\n[Install]\nWantedBy=multi-user.target"
+        }
+    ]
+}

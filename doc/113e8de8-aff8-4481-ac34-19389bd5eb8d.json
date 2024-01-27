@@ -1,0 +1,10 @@
+{
+    "summary": "This script executes unloadram.sh, creates a directory fs/workdir, sets its permissions to 777, and mounts a tmpfs filesystem named myramdisk_workdir with 10M size on fs/workdir directory.",
+    "details": [
+        {
+            "comment": "This script executes unloadram.sh, creates a directory fs/workdir, sets its permissions to 777, and mounts a tmpfs filesystem named myramdisk_workdir with 10M size on fs/workdir directory.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/loadram.sh\":0-5",
+            "content": "#!/bin/bash\n./unloadram.sh\n#sudo mkdir ramdisk\nsudo mkdir fs/workdir\nsudo chmod 777 fs/workdir\nsudo mount -t tmpfs -o size=10m myramdisk_workdir fs/workdir"
+        }
+    ]
+}

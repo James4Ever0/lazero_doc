@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports necessary libraries, reads data from a file containing features and labels, prints the data, and then proceeds to define an adjacency matrix for graph representation. It uses sparse matrices for efficiency and converts data into appropriate formats. The purpose seems to be decomposing data and creating a graph representation for further analysis or processing. However, it ends abruptly without completing the intended task.",
+    "details": [
+        {
+            "comment": "The code imports necessary libraries, reads data from a file containing features and labels, prints the data, and then proceeds to define an adjacency matrix for graph representation. It uses sparse matrices for efficiency and converts data into appropriate formats. The purpose seems to be decomposing data and creating a graph representation for further analysis or processing. However, it ends abruptly without completing the intended task.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_0.py\":0-23",
+            "content": "import numpy as np\nimport scipy.sparse as sp\nidx_features_labels = np.genfromtxt(\"pygcn/data/cora/cora.content\",\n                                        dtype=np.dtype(str))\nprint(idx_features_labels)\nprint(idx_features_labels.shape)\n# whatever shit you do.\n# do something useful?\n# such as some char?\n# great. do it.\n# it is not adj matrix.\n# why so many zeros? i need to check.\n# so both thing have some property.\n# the node has property, while nodes have some relationships inbetween.\n# z0=idx_features_labels[:, 1:-1]\n# features = sp.csr_matrix(z0, dtype=np.float32)\n# # just some decompose.\n# print(features)\n# just move on.\n# print(z0)\n# # only have these zeros.\n# adj = sp.coo_matrix((np.ones(edges.shape[0]), (edges[:, 0], edges[:, 1])),\n#                         shape=(labels.shape[0], labels.shape[0]),\n#                         dtype=np.float32)"
+        }
+    ]
+}

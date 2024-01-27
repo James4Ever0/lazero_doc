@@ -1,0 +1,537 @@
+{
+    "1500": {
+        "file_id": 252,
+        "content": "def setEndMark(a, end_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(end_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    end_phrase = \"\".join(set(end_phrase))\n    return re.findall(r'.+[{}]'.format(re.escape(end_phrase))+r'{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)\ndef setSegment(a, start_phrase, end_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(end_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    len_phrase = len(start_phrase)\n    a2, a3 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    start_phrase = \"\".join(set(start_phrase))\n    end_phrase = \"\".join(set(end_phrase))\n    return re.findall(r'['+r'{}'.format(re.escape(start_phrase))+r']{'+r'{},{}'.format(str(a2), str(a3))+r'}'+r'.+[{}]'.format(re.escape(end_phrase))+r'{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)\ndef containRestrict(a, text, least_occurance, most_occurance):\n    assert least_occurance <= most_occurance",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:36-56"
+    },
+    "1501": {
+        "file_id": 252,
+        "content": "This code contains functions setEndMark, setSegment and containRestrict for pattern matching. The setEndMark function takes in a string 'a', end_phrase, and sigma to find occurrences of the end phrase within 'a' by considering two possible lengths based on sigma value. Similarly, the setSegment function finds occurrences of a segment defined by start and end phrases within 'a' using sigma-based lengths for both phrases. Finally, containRestrict asserts that least_occurance is less than or equal to most_occurance before searching for a pattern in string 'a'.",
+        "type": "comment"
+    },
+    "1502": {
+        "file_id": 252,
+        "content": "    assert type(least_occurance) == int\n    assert type(most_occurance) == int\n    assert least_occurance >= 1\n    assert type(text) == str\n    lt = len(text)\n    assert lt >= 1\n    gc = 0\n    for x in windowConv(a, lt):\n        if x == text:\n            gc += 1\n    return (gc >= least_occurance and gc <= most_occurance)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:57-67"
+    },
+    "1503": {
+        "file_id": 252,
+        "content": "This code checks the input types and ranges, then iterates through window converted values to count occurrences of text within a specified length range. It returns true if the count is within the given least/most occurrence limits.",
+        "type": "comment"
+    },
+    "1504": {
+        "file_id": 253,
+        "content": "/bootstrap/legacy/concentration/brainfuck/theMonkey/repeating.py",
+        "type": "filepath"
+    },
+    "1505": {
+        "file_id": 253,
+        "content": "This code defines functions for processing lists with double derivatives, applying operations recursively and checking conditions on the values. The function returns False if the condition is not met or an error occurs.",
+        "type": "summary"
+    },
+    "1506": {
+        "file_id": 253,
+        "content": "def al(a):\n    return set(a)\ndef ak(a):\n    # print(a)\n    return [a[x]-a[x+1] for x in range(len(a)-1)]\n# all kind of things?\ndef akII(a, s=2):\n    assert type(s) == int and s >= 0\n    if s > 0:\n        return akII(ak(a), s-1)\n    else:\n        return a\n# double derivative.\ndef am(a):\n    i = al(a)\n    return {x: akII([y for y in range(len(a)) if a[y] == x], 2) for x in i}\ndef ajam(a, b, c, d, e):\n    j = am(a)\n    # test_val: continuously getting zero for longer than b:\n    # print(j)\n    # you should sort it.\n    s = list(sorted([(x, sum(j[x])) for x in j.keys()], key=lambda x: x[1]))\n    s = list(map(lambda x: x[0], s))\n    for x in s:\n        xj = j[x]\n        xy = 0\n        xd = 0\n        # buf=xj[0]\n        for y in xj:\n            if y != 0:\n                if xy < b*c:\n                    xy = 0\n                    if xy > b*e:\n                        xd += xy**c\n            else:\n                xy += 1\n            if xy >= b or xd >= d:\n                return True\n            # buf = y\n        if xy >= b:\n            return True",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/repeating.py:1-49"
+    },
+    "1507": {
+        "file_id": 253,
+        "content": "The code defines several functions: `al`, `ak`, `akII`, `am`, and `ajam`. \n\n`al(a)` returns a set of values from list `a`. \n\n`ak(a)` prints a list with the difference between each element in the input list `a` and the next one, excluding the last element. \n\n`akII(a, s=2)` recursively applies `ak` to the list until the given `s` is reached or exceeded. \n\n`am(a)` creates a dictionary with double derivatives of elements in `a`, using `al` and `akII`. \n\n`ajam(a, b, c, d, e)` takes a list `a`, among other inputs, sorts the double derivative values into a list, and iterates through each value. If any value meets certain conditions (related to `b`, `c`, `d`, and `e`), it returns True; otherwise, it continues until the end of the list before returning False. \n\nThe code seems to be related to processing lists with double derivatives and checking for specific conditions on those values.",
+        "type": "comment"
+    },
+    "1508": {
+        "file_id": 253,
+        "content": "    return False",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/repeating.py:50-50"
+    },
+    "1509": {
+        "file_id": 253,
+        "content": "The code returns False, indicating the condition is not met or the function has failed.",
+        "type": "comment"
+    },
+    "1510": {
+        "file_id": 254,
+        "content": "/bootstrap/legacy/concentration/brainfuck/theMonkey/social_learning.py",
+        "type": "filepath"
+    },
+    "1511": {
+        "file_id": 254,
+        "content": "This code imports necessary libraries, establishes a VirtualBox session, and attempts to launch a virtual machine named \"TinyPlus\". It enters startup commands and unlocks the machine before waiting for completion. Network-based methods are mentioned as a better alternative.",
+        "type": "summary"
+    },
+    "1512": {
+        "file_id": 254,
+        "content": "import virtualbox\nimport time\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\n# session.console.keyboard.put_keys(\"Hello, world!\")\n# these keys are slow.\n# print(dir(session))\n# session.unlock_machine()\n# fucking hell?\nmachine=vbox.find_machine(\"TinyPlus\")\nprogress=machine.launch_vm_process(session,\"gui\",\"\")\nprogress.wait_for_completion()\ntime.sleep(6)\n# shit.\nsession.console.keyboard.put_keys(\"./startup.sh\\n\")\nsession.unlock_machine()\n# really need to do this?\n# locked.\n# print(dir(machine))\n# shit.\n# must use network based.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/social_learning.py:1-21"
+    },
+    "1513": {
+        "file_id": 254,
+        "content": "This code imports necessary libraries, establishes a VirtualBox session, and attempts to launch a virtual machine named \"TinyPlus\". It enters startup commands and unlocks the machine before waiting for completion. Network-based methods are mentioned as a better alternative.",
+        "type": "comment"
+    },
+    "1514": {
+        "file_id": 255,
+        "content": "/bootstrap/legacy/concentration/brainfuck/theMonkey/sub2.py",
+        "type": "filepath"
+    },
+    "1515": {
+        "file_id": 255,
+        "content": "This code defines a decorator named \"timeout\" that allows to set a timeout for a function, raising an exception if the execution takes more than specified seconds. It achieves this by creating a separate thread where the function is executed and joining it after the timeout, raising an exception if it's still running.",
+        "type": "summary"
+    },
+    "1516": {
+        "file_id": 255,
+        "content": "from threading import Thread\nimport functools\ndef timeout(timeout):\n    def deco(func):\n        @functools.wraps(func)\n        def wrapper(*args, **kwargs):\n            res = [Exception('function [%s] timeout [%s seconds] exceeded!' % (\n                func.__name__, timeout))]\n            def newFunc():\n                try:\n                    res[0] = func(*args, **kwargs)\n                except Exception as e:\n                  # this is funny.\n                    res[0] = e\n            t = Thread(target=newFunc)\n            t.daemon = True\n            try:\n                t.start()\n                t.join(timeout)\n            except Exception as je:\n                print('error starting thread')\n                raise je\n            ret = res[0]\n            if isinstance(ret, BaseException):\n                raise ret\n            return ret\n        return wrapper\n    return deco",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/sub2.py:1-31"
+    },
+    "1517": {
+        "file_id": 255,
+        "content": "This code defines a decorator named \"timeout\" that allows to set a timeout for a function, raising an exception if the execution takes more than specified seconds. It achieves this by creating a separate thread where the function is executed and joining it after the timeout, raising an exception if it's still running.",
+        "type": "comment"
+    },
+    "1518": {
+        "file_id": 256,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/confirm_shape.py",
+        "type": "filepath"
+    },
+    "1519": {
+        "file_id": 256,
+        "content": "Imports pandas library, defines function get_writings() which reads CSV file \"mnist-demo.csv\", converts to numpy array and returns the first column as input and second column as output data for machine learning tasks. The code is a simple estimation solution for a specific problem without a bias term.",
+        "type": "summary"
+    },
+    "1520": {
+        "file_id": 256,
+        "content": "import pandas as pd\ndef get_writings():\n    p = pd.read_csv(\"mnist-demo.csv\")\n    # print(dir(p))\n    dp = p.to_numpy()\n    # not for label!\n    return dp[:, :1], dp[:, 1:]\n# print(dp.shape)\n# print(dp[0])\n# this solution is just for some estimation.\n# solving the equation.\n# problem is, that you do not have bias.\n# it is not complex enough.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/confirm_shape.py:1-15"
+    },
+    "1521": {
+        "file_id": 256,
+        "content": "Imports pandas library, defines function get_writings() which reads CSV file \"mnist-demo.csv\", converts to numpy array and returns the first column as input and second column as output data for machine learning tasks. The code is a simple estimation solution for a specific problem without a bias term.",
+        "type": "comment"
+    },
+    "1522": {
+        "file_id": 257,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/custom_dataset_from_csv.py",
+        "type": "filepath"
+    },
+    "1523": {
+        "file_id": 257,
+        "content": "The code presents a custom dataset class, `CustomDatasetFromCsvData`, which reads data from CSV files and applies transforms to retrieve images and labels. It also offers label indexing and length functions.",
+        "type": "summary"
+    },
+    "1524": {
+        "file_id": 257,
+        "content": "import pandas as pd\nimport numpy as np\nfrom PIL import Image\nfrom torchvision import transforms\nfrom torch.utils.data.dataset import Dataset  # For custom datasets\nclass CustomDatasetFromCsvLocation(Dataset):\n    def __init__(self, csv_path):\n        # super(self).__init__()\n        \"\"\"\n        Custom dataset example for reading image locations and labels from csv\n        but reading images from files\n        Args:\n            csv_path (string): path to csv file\n        \"\"\"\n        # Transforms\n        self.to_tensor = transforms.ToTensor()\n        # Read the csv file\n        self.data_info = pd.read_csv(csv_path, header=None)\n        # First column contains the image paths\n        self.image_arr = np.asarray(self.data_info.iloc[:, 0])\n        # Second column is the labels\n        self.label_arr = np.asarray(self.data_info.iloc[:, 1])\n        # Third column is for an operation indicator\n        self.operation_arr = np.asarray(self.data_info.iloc[:, 2])\n        # Calculate len\n        self.data_len = len(self.data_info.index)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/custom_dataset_from_csv.py:1-30"
+    },
+    "1525": {
+        "file_id": 257,
+        "content": "The code defines a custom dataset class that reads image paths and labels from a CSV file. It applies transforms to the images, stores the information in numpy arrays, and calculates the length of the dataset based on the number of rows in the CSV file.",
+        "type": "comment"
+    },
+    "1526": {
+        "file_id": 257,
+        "content": "    def __getitem__(self, index):\n        # Get image name from the pandas df\n        single_image_name = self.image_arr[index]\n        # Open image\n        img_as_img = Image.open(single_image_name)\n        # Check if there is an operation\n        some_operation = self.operation_arr[index]\n        # If there is an operation\n        if some_operation:\n            # Do some operation on image\n            # ...\n            # ...\n            pass\n        # Transform image to tensor\n        img_as_tensor = self.to_tensor(img_as_img)\n        # Get label(class) of the image based on the cropped pandas column\n        single_image_label = self.label_arr[index]\n        return (img_as_tensor, single_image_label)\n    def __len__(self):\n        return self.data_len\nclass CustomDatasetFromCsvData(Dataset):\n    def __init__(self, csv_path, height, width, transform=None):\n        # get some super.\n        # super().__init__()\n        # no shit.\n        \"\"\"\n        Custom dataset example for reading data from csv\n        Args:\n            csv_path (string): path to csv file",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/custom_dataset_from_csv.py:32-67"
+    },
+    "1527": {
+        "file_id": 257,
+        "content": "The method `__getitem__` retrieves an image and its corresponding label from a custom dataset. It first gets the image name, opens the image, checks if there's an operation, applies it if necessary, converts the image to a tensor, and then returns the image tensor and the image label. The `CustomDatasetFromCsvData` class serves as an example for reading data from a CSV file and requires a `csv_path`, `height`, `width`, and optional transformations.",
+        "type": "comment"
+    },
+    "1528": {
+        "file_id": 257,
+        "content": "            height (int): image height\n            width (int): image width\n            transform: pytorch transforms for transforms and tensor conversion\n        \"\"\"\n        self.data = pd.read_csv(csv_path)\n        self.labels = np.asarray(self.data.iloc[:, 0])\n        self.height = height\n        self.width = width\n        self.transform = transform\n    def __getitem__(self, index):\n        single_image_label = self.labels[index]\n        # Read each 784 pixels and reshape the 1D array ([784]) to 2D array ([28,28])\n        img_as_np = np.asarray(self.data.iloc[index][1:]).reshape(28, 28).astype('uint8')\n        # Convert image from numpy array to PIL image, mode 'L' is for grayscale\n        img_as_img = Image.fromarray(img_as_np)\n        img_as_img = img_as_img.convert('L')\n        # Transform image to tensor\n        if self.transform is not None:\n            img_as_tensor = self.transform(img_as_img)\n        # Return image and the label\n        return (img_as_tensor, single_image_label)\n    def indices_to_labels(self,inds):",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/custom_dataset_from_csv.py:68-91"
+    },
+    "1529": {
+        "file_id": 257,
+        "content": "The class initializes the dataset from a CSV file and allows retrieving images with their corresponding labels. The __getitem__ method reads the image data, converts it to grayscale, reshapes it, and applies transforms if necessary before returning the tensor and label.",
+        "type": "comment"
+    },
+    "1530": {
+        "file_id": 257,
+        "content": "        return [self.labels[x] for x in inds]\n    def __len__(self):\n        return len(self.data.index)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/custom_dataset_from_csv.py:92-95"
+    },
+    "1531": {
+        "file_id": 257,
+        "content": "This code defines two methods, one for retrieving labels from indices and another for getting the length of the dataset based on its index length.",
+        "type": "comment"
+    },
+    "1532": {
+        "file_id": 258,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/download_dataset.py",
+        "type": "filepath"
+    },
+    "1533": {
+        "file_id": 258,
+        "content": "This code imports NumPy and prints various variables' values, and attempts to import torchvision datasets. The author expresses frustration with the process and believes some parts don't work as expected.",
+        "type": "summary"
+    },
+    "1534": {
+        "file_id": 258,
+        "content": "# import torchvision\nimport numpy as np\ni=0\na=1\nprint(i,a,~i,~a) #this is shit.\n# c=True\nc=np.array([0,1,0])\nprint(c,~c,~~c,~~~c) # it works.\n# print()\n# really should read that python thing carefully. but you'd like to perform?\n# no. it does not work.\n# t=torchvision.datasets.MNIST(\"./data\",download=False)\n# i don't need shit.\n# fucking hell, you know it.\n# we can never be the best.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/download_dataset.py:1-15"
+    },
+    "1535": {
+        "file_id": 258,
+        "content": "This code imports NumPy and prints various variables' values, and attempts to import torchvision datasets. The author expresses frustration with the process and believes some parts don't work as expected.",
+        "type": "comment"
+    },
+    "1536": {
+        "file_id": 259,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_matrix.py",
+        "type": "filepath"
+    },
+    "1537": {
+        "file_id": 259,
+        "content": "The code defines a function 'loss' to calculate array differences and iteratively adjust matrices for training. The snippet adds variables, calculates loss, prints it, assigns to 'loss_mem', and suggests brain-based or brute force approach.",
+        "type": "summary"
+    },
+    "1538": {
+        "file_id": 259,
+        "content": "import numpy as np\nimport random\n# the so-called machine learning.\n# symbolic logic and some common sense.\ndef loss(a, b):\n    c = a-b\n    d = c.reshape(-1)\n    d = np.mean(abs(d))\n    return d\n# once you've got a tool, you've got to use it well.\n# so what about abstract logic?\n# graph, net?\n# just hear the wind's blowing.\n# cannot change this.\n# maybe the sample is too small?\n# misplaced shits?\na = np.matrix([[random.random() for x in range(3)] for y in range(5)])\no = np.matrix([random.random() for x in range(5)])\nactual = np.matrix([random.random() for x in range(3)])\n# # # misplaced shits?\n# a = np.matrix([[random.random() for x in range(3)] for y in range(3)])\n# o = np.matrix([[random.random() for x in range(3)] for y in range(3)])\n# # actual = np.matrix([[random.random() for x in range(3)] for y in range(3)])\n# actual = np.matrix([random.random() for x in range(3)])\n# b=np.matrix([[random.random()] for y in range(5)])\n# very strange.\n# what the heck?\n# need compare.\nc = 0.001\n# same shit.\n# d = b-a\n# how about taking direct approach?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_matrix.py:1-33"
+    },
+    "1539": {
+        "file_id": 259,
+        "content": "This code defines a function called 'loss' that takes two arrays and calculates the absolute difference between them. It then reshapes the result into a 1D array, computes the mean, and returns it as the loss value. The code also creates three random matrices, 'a', 'o', and 'actual', which are used for testing the function. Some of these arrays have different sizes due to potential misplaced shits in the code.",
+        "type": "comment"
+    },
+    "1540": {
+        "file_id": 259,
+        "content": "# o*a' = actual\n# o*a = pred\n# it needs to be square, to get the inverse.\n# this is quick.\n# e=(actual.T*(o.T**-1)).T\n# gen=o*e\n# print(gen,actual)\n# (pred-actual) = o*a - o*a' = o*(a-a')\n# it increases!\n# loss_mem = None\n# next_op = True\n# strange.\n# this is a strange approach. all about transformation over matricies.\n# just try to get the real shit.\n# before that, i've tried a lot of shits.\n# matries are all about computations.\n# matrix lab.\n# # your so-called training.\nfor x in range(1000000):\n    pred=o*a\n    # d = o.T*(actual-pred)\n    d=o.T*(actual-pred) # what the heck is this shit?\n    a += d*c # believe it or not, it's just a number.\n    _loss=loss(pred, actual)\n    print(\"loss\", _loss)\n    # if loss_mem is not None:\n    #     if next_op:\n    #         a += d*c\n    #         _loss = loss(pred, actual)\n    #         if _loss >= loss_mem:\n    #             next_op = False\n    #     else:\n    #         a -= d*c\n    #         _loss = loss(pred, actual)\n    #         if _loss >= loss_mem:\n    #             next_op = True",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_matrix.py:34-69"
+    },
+    "1541": {
+        "file_id": 259,
+        "content": "This code performs matrix operations for training by iteratively calculating the difference between predicted and actual values, updating the matrix 'a', and checking the loss to decide whether to increase or decrease the matrix. It uses matrix transformations and computations, focusing on adjustments based on differences and loss evaluation.",
+        "type": "comment"
+    },
+    "1542": {
+        "file_id": 259,
+        "content": "    # else:\n    #     a += d*c\n    #     _loss = loss(pred, actual)\n    # print(\"loss\", _loss)\n    # loss_mem = _loss\n    # that is very strange.\n    # really strange.\n# is this my fucking machine learning???\n# it is like bruteforcing the human brain!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_matrix.py:70-78"
+    },
+    "1543": {
+        "file_id": 259,
+        "content": "Code snippet checks if a condition is false, then adds variables d*c to variable 'a', calculates loss using 'loss' function, prints 'loss', assigns 'loss' value to 'loss_mem', and makes an observation about the code resembling brain-based machine learning or brute force approach.",
+        "type": "comment"
+    },
+    "1544": {
+        "file_id": 260,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_scr.py",
+        "type": "filepath"
+    },
+    "1545": {
+        "file_id": 260,
+        "content": "The code creates a MAML neural network for classification, trains on 1000 tasks with specific parameters, adapts the learner, and updates parameters. It imports essential modules for functionality.",
+        "type": "summary"
+    },
+    "1546": {
+        "file_id": 260,
+        "content": "import learn2learn as l2l\n# hey! don't you import local package.\n# it is like another trap.\nimport torch\nfrom learn2learn.data.transforms import KShots, NWays, LoadData, RemapLabels, ConsecutiveLabels\nfrom torchvision import transforms\nfrom custom_dataset_from_csv import CustomDatasetFromCsvData\n# d=torch.d\nimport numpy as np\nfrom torch import nn, optim\nfrom torch.nn import functional as F\ndef accuracy(predictions, targets):\n    predictions = predictions.argmax(dim=1)\n    acc = (predictions == targets).sum().float()\n    acc /= len(targets)\n    return acc.item()\n# maybe this works?\n# it feels like shit coming out of my ass.\nclass Net(nn.Module):\n    def __init__(self, ways=3):\n        super(Net, self).__init__()\n        self.conv1 = nn.Conv2d(1, 20, 5, 1)\n        self.conv2 = nn.Conv2d(20, 50, 5, 1)\n        self.fc1 = nn.Linear(4 * 4 * 50, 500)\n        self.fc2 = nn.Linear(500, ways)\n    def forward(self, x):\n        x = F.relu(self.conv1(x))\n        x = F.max_pool2d(x, 2, 2)\n        x = F.relu(self.conv2(x))\n        x = F.max_pool2d(x, 2, 2)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_scr.py:1-36"
+    },
+    "1547": {
+        "file_id": 260,
+        "content": "The code imports necessary packages and defines a neural network model, 'Net', with convolutional layers and linear layers. It also includes a function, 'accuracy', to calculate the accuracy of predictions compared to targets. The comments suggest potential issues or confusion in the import statements and may imply some frustration during development.",
+        "type": "comment"
+    },
+    "1548": {
+        "file_id": 260,
+        "content": "        x = x.view(-1, 4 * 4 * 50)\n        x = F.relu(self.fc1(x))\n        x = self.fc2(x)\n        return F.log_softmax(x, dim=1)\ndevice = torch.device(\"cuda\")\ntransformations = transforms.Compose([\n    transforms.ToTensor(),\n    transforms.Normalize((0.1307,), (0.3081,)),\n    lambda x: x.view(1, 28, 28),\n])\n# transformations = transforms.Compose([transforms.ToTensor()])\n# d=CustomDatasetFromCsvLocation(\"./mnist-demo.csv\")\nd = CustomDatasetFromCsvData('./mnist-demo.csv',\n                             28, 28,\n                             transformations)\n# import torch.dataset\nt = l2l.data.MetaDataset(d)\ntrain_tasks = l2l.data.TaskDataset(\n    t, task_transforms=[NWays(t, n=3), KShots(t, k=2), LoadData(t), RemapLabels(t), ConsecutiveLabels(t)], num_tasks=1000)\nmodel = Net(3)\n# model = Net(ways)\nmaml_lr = 0.01\nlr = 0.005\niterations = 1000\ntps = 32\nfas = 5\nshots = 1\nways = 3\nmodel.to(device)\nmeta_model = l2l.algorithms.MAML(model, lr=maml_lr)\nopt = optim.Adam(meta_model.parameters(), lr=lr)\nloss_func = nn.NLLLoss(reduction='mean')",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_scr.py:37-73"
+    },
+    "1549": {
+        "file_id": 260,
+        "content": "The code sets up a neural network model for a classification task using the MAML algorithm. It loads data from a CSV file and preprocesses it using various transformations. The model is trained on 1000 tasks with 3 ways, 2 shots, and consecutive labels. The Adam optimizer is used with a learning rate of 0.005, and the NLLLoss function is utilized for loss calculation. The code runs on a CUDA device if available.",
+        "type": "comment"
+    },
+    "1550": {
+        "file_id": 260,
+        "content": "for iteration in range(iterations):\n    iteration_error = 0.0\n    iteration_acc = 0.0\n    for _ in range(tps):\n        learner = meta_model.clone()\n        train_task = train_tasks.sample()\n        data, labels = train_task\n        data = data.to(device)\n        labels = labels.to(device)\n        # Separate data into adaptation/evalutation sets\n        adaptation_indices = np.zeros(data.size(0), dtype=bool)\n        adaptation_indices[np.arange(shots*ways) * 2] = True\n        evaluation_indices = torch.from_numpy(~adaptation_indices) # what the heck is that?\n        adaptation_indices = torch.from_numpy(adaptation_indices)\n        adaptation_data, adaptation_labels = data[adaptation_indices], labels[adaptation_indices]\n        evaluation_data, evaluation_labels = data[evaluation_indices], labels[evaluation_indices]\n        # Fast Adaptation\n        for step in range(fas):\n            train_error = loss_func(\n                learner(adaptation_data), adaptation_labels)\n            learner.adapt(train_error)\n        # Compute validation loss",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_scr.py:75-99"
+    },
+    "1551": {
+        "file_id": 260,
+        "content": "This code performs fast adaptation and evaluation in a machine learning task. It iterates through a range of tasks, clones the learner model for each iteration, separates data into adaptation and evaluation sets, adapts the learner using the adaptation set, and computes validation loss for evaluation. The \"evaluation_indices\" line is creating a boolean array to select evaluation data.",
+        "type": "comment"
+    },
+    "1552": {
+        "file_id": 260,
+        "content": "        predictions = learner(evaluation_data)\n        valid_error = loss_func(predictions, evaluation_labels)\n        valid_error /= len(evaluation_data)\n        valid_accuracy = accuracy(predictions, evaluation_labels)\n        iteration_error += valid_error\n        iteration_acc += valid_accuracy\n    iteration_error /= tps\n    iteration_acc /= tps\n    print('Loss : {:.3f} Acc : {:.3f}'.format(\n        iteration_error.item(), iteration_acc))\n    # Take the meta-learning step\n    opt.zero_grad()\n    iteration_error.backward()\n    opt.step()\n# does this work?\n# it's that horrible.\n# create a torch dataset.\n# import pydoc as pd3\n# d=dir(l2l)\n# e=dir(pd3)\n# print(d)\n# always wondering the structure of a dataset.\n# how to infer that?\n# print(e)\n# consider this problem: why your heart beats when seeing others not beating?\n# the only way to break the rule, is making up a rule to monitor something uncertain (not the rule).\n# FUCK.\n# what is this anyway?\n# this clone might increase some bytes on your machine!\n# oh? may it be?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_scr.py:100-131"
+    },
+    "1553": {
+        "file_id": 260,
+        "content": "This code is likely part of a machine learning training process. It calculates the loss and accuracy for each iteration, updates the model parameters using an optimizer, and prints these metrics. The code also includes some comments expressing frustration and confusion about the process and potential issues with memory usage.",
+        "type": "comment"
+    },
+    "1554": {
+        "file_id": 260,
+        "content": "# ['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '__version__', '_version', 'algorithms', 'clone_distribution', 'clone_module', 'clone_parameters', 'copy', 'data', 'detach_distribution', 'detach_module', 'gym', 'magic_box', 'text', 'torch', 'utils', 'vision']\n# ['Doc', 'ErrorDuringImport', 'HTMLDoc', 'HTMLRepr', 'Helper', 'ModuleScanner', 'Repr', 'TextDoc', 'TextRepr', '_PlainTextDoc', '__all__', '__author__', '__builtins__', '__cached__', '__credits__', '__date__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', '_adjust_cli_sys_path', '_escape_stdout', '_get_revised_path', '_is_bound_method', '_re_stripid', '_split_list', '_start_server', '_url_handler', 'allmethods', 'apropos', 'browse', 'builtins', 'classify_class_attrs', 'classname', 'cli', 'cram', 'deque', 'describe', 'doc', 'format_exception_only', 'getdoc', 'getpager', 'help', 'html', 'importfile', 'importlib', 'inspect', 'io', 'i",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_scr.py:132-133"
+    },
+    "1555": {
+        "file_id": 260,
+        "content": "The code imports various modules and classes for later use, including built-in modules like `__builtins__`, `__cached__`, `__doc__`, etc., as well as other custom classes like `allmethods` and `apropos`. These imports are necessary for the proper functioning of the program.",
+        "type": "comment"
+    },
+    "1556": {
+        "file_id": 260,
+        "content": "sdata', 'ispackage', 'ispath', 'locate', 'os', 'pager', 'pathdirs', 'pipepager', 'pkgutil', 'plain', 'plainpager', 'plaintext', 'platform', 're', 'render_doc', 'replace', 'resolve', 'safeimport', 'sort_attributes', 'source_synopsis', 'splitdoc', 'stripid', 'synopsis', 'sys', 'sysconfig', 'tempfilepager', 'text', 'time', 'tokenize', 'ttypager', 'urllib', 'visiblename', 'warnings', 'writedoc', 'writedocs']",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_scr.py:133-133"
+    },
+    "1557": {
+        "file_id": 260,
+        "content": "This code appears to be a list of various modules or functions being imported, possibly for use in the subsequent sections of the script. The names of these imports suggest they are involved with file handling, text processing, and system configuration.",
+        "type": "comment"
+    },
+    "1558": {
+        "file_id": 261,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/exp_sym.py",
+        "type": "filepath"
+    },
+    "1559": {
+        "file_id": 261,
+        "content": "The code imports necessary libraries, creates a 3D array of symbols for matrix elements, and prints the result of exponentiating matrix b with base e (the Euler's number). The results might not always be perfect due to limitations of the method used.",
+        "type": "summary"
+    },
+    "1560": {
+        "file_id": 261,
+        "content": "from sympy import *\nimport numpy as np\nimport random\n# d=np.exp(1)\n# x=symbols(\"x\")\n# works. but not for matrix.\nb=np.array([[symbols('d{}{}'.format(x,y)) for x in range(6)] for y in range(5)])# <\ne=np.e\nprint(e**b)\n# what the fuck?\n# this is shit.\n# whatever. it is not always perfect.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/exp_sym.py:1-12"
+    },
+    "1561": {
+        "file_id": 261,
+        "content": "The code imports necessary libraries, creates a 3D array of symbols for matrix elements, and prints the result of exponentiating matrix b with base e (the Euler's number). The results might not always be perfect due to limitations of the method used.",
+        "type": "comment"
+    },
+    "1562": {
+        "file_id": 262,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/gonna_veri.py",
+        "type": "filepath"
+    },
+    "1563": {
+        "file_id": 262,
+        "content": "This code imports numpy and defines a sigmoid function that returns a matrix after applying the sigmoid formula to an input array. The code then creates a 2x2 matrix, applies the sigmoid function to it, and prints the resulting matrix.",
+        "type": "summary"
+    },
+    "1564": {
+        "file_id": 262,
+        "content": "import numpy as np\ndef sigmoid(a):\n    return np.matrix((1/(1+np.e**-(np.array(a))))-0.5)\n    # this value is a symbol!\na=np.matrix([[0 for x in range(2)] for y in range(2)])\nb=sigmoid(a)\nprint(b)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/gonna_veri.py:1-8"
+    },
+    "1565": {
+        "file_id": 262,
+        "content": "This code imports numpy and defines a sigmoid function that returns a matrix after applying the sigmoid formula to an input array. The code then creates a 2x2 matrix, applies the sigmoid function to it, and prints the resulting matrix.",
+        "type": "comment"
+    },
+    "1566": {
+        "file_id": 263,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/matrix_dummy.py",
+        "type": "filepath"
+    },
+    "1567": {
+        "file_id": 263,
+        "content": "The code imports numpy and random, defines loss function, struggles with inconsistent array shapes, reshapes data, improves compatibility, involves a neural network for data processing/prediction, and is refined to enhance performance. The author questions if this approach qualifies as machine learning due to the absence of a clear learning process.",
+        "type": "summary"
+    },
+    "1568": {
+        "file_id": 263,
+        "content": "import numpy as np\nimport random\n# the so-called machine learning.\n# symbolic logic and some common sense.\nfrom confirm_shape import get_writings\n# you know that your code sucks.\ndef loss(a, b):\n    c = a-b\n    d = c.reshape(-1)\n    d = np.mean(abs(d))\n    return d\n# you see the shit? huh? that's how you do the fuck!\n# you should avoid math. it is not really the part.\n# yes, so does your machine.\n# once you've got a tool, you've got to use it well.\n# so what about abstract logic?\n# graph, net?\n# just hear the wind's blowing.\n# cannot change this.\n# maybe the sample is too small?\n# misplaced shits?\n# get some random output?\n# sample = 50\n# o = np.matrix([[random.random() for x in range(5)] for z in range(sample)])\nactual, o = get_writings()\nsample = o.shape[0]\nprint(o.shape, actual.shape)\nhotter = list(sorted(set(actual.reshape(-1).tolist())))\ndim_x, dim_y = o.shape[1], len(hotter)\na = np.matrix([[(-0.5+random.random())/255/255/255/255 /\n                255 for x in range(dim_y)] for y in range(dim_x)])\n# f=np.matrix([[random.random() for x in range(450)] for y in range(10000)])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/matrix_dummy.py:1-35"
+    },
+    "1569": {
+        "file_id": 263,
+        "content": "The code imports numpy and random libraries, defines a loss function for two arrays, uses the \"get_writings\" function from another module, prints shapes of actual and output matrices, generates a random matrix \"a\", and (optionally) generates a large matrix \"f\". The purpose seems to be performing machine learning operations using numpy and random functions.",
+        "type": "comment"
+    },
+    "1570": {
+        "file_id": 263,
+        "content": "# g=np.matrix([[random.random() for x in range(dim_y)] for y in range(450)])\n# actual = np.matrix([[random.random() for x in range(3)]\n# for z in range(sample)])\n# # # misplaced shits?\n# a = np.matrix([[random.random() for x in range(3)] for y in range(3)])\n# o = np.matrix([[random.random() for x in range(3)] for y in range(3)])\n# # actual = np.matrix([[random.random() for x in range(3)] for y in range(3)])\n# actual = np.matrix([random.random() for x in range(3)])\n# b=np.matrix([[random.random()] for y in range(5)])\n# very strange.\ndef one_hotter(am, bm):\n    r = [0 for x in range(len(bm))]\n    r[bm.index(am)] = 1\n    return np.matrix(r)\ndef dec_one(cm, bm):\n    return bm[cm.index(1)]\n# what the heck?\n# need compare.\n# not working. the loss is as high as shit.\nc = 0.001\n# same shit.\n# d = b-a\n# how about taking direct approach?\n# o*a' = actual\n# o*a = pred\n# it needs to be square, to get the inverse.\n# this is quick.\n# e=(actual.T*(o.T**-1)).T\n# gen=o*e\n# print(gen,actual)\n# (pred-actual) = o*a - o*a' = o*(a-a')\n# it increases!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/matrix_dummy.py:36-73"
+    },
+    "1571": {
+        "file_id": 263,
+        "content": "Code snippet is defining matrices 'a', 'o', and 'actual' using random numbers, implementing functions 'one_hotter' and 'dec_one', and calculating matrix multiplication to find the difference between 'a' and 'a' (which seems to be a typo). The purpose or result of these calculations is unclear, as well as why some sections are commented out. The code seems to struggle with obtaining accurate results, as indicated by high loss values.",
+        "type": "comment"
+    },
+    "1572": {
+        "file_id": 263,
+        "content": "# loss_mem = None\n#       pred0 -> pred1 -> pred2                        pred1*d+pred*g=actual\n#  o  *a      *f       *g       cmp: actual            pred0*(d0+f)=actual0\n#      cmp:actual1  cmp:actual0 d       pred1.T*(actual-pred2) o*(d1+a)=actual1\n# next_op = True                                      actual0*g=actual\n# strange. actual0*g/g=actual/g\n# this is a strange approach. all about transformation over matricies.\n# just try to get the real shit.\n# before that, i've tried a lot of shits.\n# matries are all about computations.\n# matrix lab.\n# # your so-called training.\n# call it specialized.\n# one-hot vector.\nfor r in range(1):\n    for x in range(20):\n        # this shit is simply not working.\n        # abandon ship!\n        # for x in range(1):\n        # random number, not going down.\n        orange = np.matrix(o[r])\n        actual_orange = one_hotter(actual[r], hotter)\n        # print(orange.shape,actual_orange.shape)\n        pred0 = orange*a\n        # pred1=pred0*f\n        # pred2=pred1*g\n        _loss = loss(pred0, actual)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/matrix_dummy.py:74-100"
+    },
+    "1573": {
+        "file_id": 263,
+        "content": "This code performs matrix computations for training and is using a one-hot vector approach. However, the author mentions that certain sections of the code are not working as intended and needs improvement.",
+        "type": "comment"
+    },
+    "1574": {
+        "file_id": 263,
+        "content": "        # d = o.T*(actual-pred)\n        # print(pred0.shape, pred1.shape, pred2.shape)\n        # (1, 3) (1, 5) (1, 3)\n        # print(a.shape, f.shape, g.shape)\n    # (5, 3) (3, 5) (5, 3)\n        # what the heck?\n        # welcome! this shit is fucking horrible.\n        # d=pred1.T*(actual_orange-pred2)  # what the heck is this shit?\n        # # print(pred1.T.shape,pred2.shape)\n        # # print(d.shape,g.shape)\n        # # solve these two values.\n        # # print(pred0.T.shape,(pred1*d).shape)\n        # # actual0=actual*(g**-1)\n        # # it is not going to work.\n        # # it is raw data.\n        # # is that some sort of compression? compress data altogether?\n        # # and yet reusable.\n        # actual0=actual_orange*g.T\n        # # print(actual0.shape)\n        # # this is fucking crazy.\n        # # print(actual0.shape,pred1.shape)\n        # # this is fucked.\n        # d0=pred0.T*(actual0-pred1)\n        # actual1=actual0*f.T\n        # print(\"#########################################\")\n        # print(actual1.shape)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/matrix_dummy.py:101-126"
+    },
+    "1575": {
+        "file_id": 263,
+        "content": "This code appears to be dealing with matrix operations and reshaping data. The programmer seems frustrated with the shape of some arrays, as they are not as expected. They are trying to solve these shape inconsistencies by performing matrix operations on actual and predicted values to make them compatible. This could be a part of a larger machine learning or data processing pipeline where the shapes of tensors need to match for further computations.",
+        "type": "comment"
+    },
+    "1576": {
+        "file_id": 263,
+        "content": "        # of course matlab has some neural networks.\n        d1 = orange.T*(actual_orange-pred0)\n        # CONSIDER SOME MATH?\n        # print(d.shape,d0.shape,d1.shape)\n        # this is shit.\n        # g += d*c   # wtf\n        # f += d0*c\n        a += d1*c\n        # this is not going to work.\n        # you are really funny.\n        # print(d.shape,d0.shape,d1.shape)\n        # what the fuck!\n        # e=\n        # this is incredibly horrible. i'm gonna test this shit on mnist?\n        # fucking works! what the fucking heck?\n        # print(pred1.T.shape,pred2.shape)\n        # print(d.shape)\n        # print(g.shape)\n        # # (5,1), (1,3)\n        # fg=actual/g\n        # very strange.\n        # # print(fg.shape)\n        # g += d*c  # believe it or not, it's just a number.\n        # # this is not right.\n        # print(pred0.shape,d.shape)\n        # # print(pred0.T,d)\n        # e =pred2*d*pred0.T\n        # print(e.shape,f.shape,d.shape)\n        # f += e*c\n        # f0 = o*e.T\n        # a += f0*c\n        # # this has an error.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/matrix_dummy.py:127-158"
+    },
+    "1577": {
+        "file_id": 263,
+        "content": "The code appears to involve a neural network with various operations, likely for data processing or prediction. The author seems to be working on improving the performance and correcting errors as they arise. Some of the operations are not working as expected, but the results are surprising. They mention testing the results on MNIST, a popular dataset in image recognition tasks. Overall, it seems like an ongoing process to refine the neural network's performance.",
+        "type": "comment"
+    },
+    "1578": {
+        "file_id": 263,
+        "content": "        # #\n        # print(f0.shape,e.shape,d.shape)\n        # why you do not have loss?\n        print(\"loss\", _loss)\n    # if loss_mem is not None:\n    #     if next_op:\n    #         a += d*c\n    #         _loss = loss(pred, actual)\n    #         if _loss >= loss_mem:\n    #             next_op = False\n    #     else:\n    #         a -= d*c\n    #         _loss = loss(pred, actual)\n    #         if _loss >= loss_mem:\n    #             next_op = True\n    # else:\n    #     a += d*c\n    #     _loss = loss(pred, actual)\n    # print(\"loss\", _loss)\n    # loss_mem = _loss\n    # that is very strange.\n    # really strange.\n# is this my fucking machine learning???\n# it is like bruteforcing the human brain!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/matrix_dummy.py:159-182"
+    },
+    "1579": {
+        "file_id": 263,
+        "content": "This code calculates a loss value and updates the variable 'a' based on whether the current loss is greater or lesser than a stored loss value. The comments suggest that this may be related to machine learning, but it seems more like brute forcing the solution. The author finds it strange and questions if this is indeed machine learning.",
+        "type": "comment"
+    },
+    "1580": {
+        "file_id": 264,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/randprob.py",
+        "type": "filepath"
+    },
+    "1581": {
+        "file_id": 264,
+        "content": "The code manipulates strings using various Python techniques, with an unclear overall purpose and context. It involves set operations, recursion, and probability calculations for random string replacements.",
+        "type": "summary"
+    },
+    "1582": {
+        "file_id": 264,
+        "content": "# import random\n# what is this random for?\n# randomly select shits, and yinject them\n# how about not combining, but return some internal model?\n# it will be great, toward higher-order.\ndef radrepl(a, b, f=0):\n    assert f >= 0 and type(f) == int and f <= len(a)\n    # s0=[x for x in a]\n    def r0(x): return r'{}'.format(x)\n    sf = []\n    for r in range(len(s)-f+1):\n        for z in b:\n            sx = r''.join((r0(s[:r]), r0(z), r0(s[r+f:])))\n            sf.append(sx)\n    return sf\n# all bullshits.\n# it is only a platform.\n# out of tricks? better evolve.\ndef metarad(a, b, f=0):\n    assert f >= 0 and type(f) == int and f <= len(a)\n    # s0=[x for x in a]\n    def r0(x): return r'{}'.format(x)\n    sf = []\n    for r in range(len(s)-f+1):\n        for z in b:\n            sx = (r0(s[:r]), r0(z), r0(s[r+f:]))\n            sf.append(sx)\n    return sf\n# replace any of them?\n# i really hate commandline, hate coding, and especially hate reading and writing.\n# formost, my fucking keyboard!\n# usually chaotic result.\n# i do not want to learn any fucking c code.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/randprob.py:1-34"
+    },
+    "1583": {
+        "file_id": 264,
+        "content": "This code appears to contain multiple functions for string manipulation. The functions seem to be designed to replace or modify substrings within a given string, potentially at random locations. The code also contains assertions for checking valid inputs and uses list comprehension and other Pythonic techniques. However, the overall purpose and context of this code remain unclear.",
+        "type": "comment"
+    },
+    "1584": {
+        "file_id": 264,
+        "content": "# i just want to fuck.\n# let the mean value be that value.\n# solve the matrix?\n# (x+(1)y+(2)z+...+[2q]d)/(x+y+z+...+d)=q\n# nothing here!\n# when talk about recursive matters, my computer usually slows the hell down.\n# raw instincts.\n# learn syntax rules? you can find it by some function discovery.\n# count, replace.\ns = r\"\"\"print(f\"\\033[1m\\033[92m=======\")\"\"\"\n# reverse the order? you need discovery!\n# maybe only partial reverse, but not all!\n# other shits need for discovery and collection.\n# alter things.\n# s0 = set(s)\n# print(s0)  # we've got raw shits, beyond manupulation.\n# this works.\n# s1 = str(s)\n# sx = [\"happy\"]\n# also consider zero. for insertion.\n# that's how we do the job.\n# consider len(a) for replace.\nsx = [\"\"]\n# want to replace? just do it.\n# works for all shit.\nr = metarad(s, sx, 5)\n# r = radrepl(s, sx, 5)\nfor x in r:\n    print(x, type(x))\n# print(s1)\n# eval(s1)\n# to alter things at char level.\n# they complie octave code beforehand.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/randprob.py:35-67"
+    },
+    "1585": {
+        "file_id": 264,
+        "content": "The code appears to involve string manipulation, set operations, and recursion. It seems to calculate a probability based on some input values (x, y, z, etc.), and then apply this probability to randomly select elements from a string (s) and replace them with the contents of a list (sx). The result is then printed out as a series of modified strings along with their data types. The code also mentions using metarad or radrepl functions, but it's unclear what these do.",
+        "type": "comment"
+    },
+    "1586": {
+        "file_id": 265,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/simple_reverse.py",
+        "type": "filepath"
+    },
+    "1587": {
+        "file_id": 265,
+        "content": "Creates two 5x5 matrices using NumPy and random values, solves linear equation ec=b for e by computing the inverse of c and then multiplies both sides with c to check if the solution is correct.",
+        "type": "summary"
+    },
+    "1588": {
+        "file_id": 265,
+        "content": "import numpy as np\nimport random\na = np.matrix([[random.random() for x in range(5)] for y in range(5)])\nc = np.matrix([[random.random() for x in range(5)] for y in range(5)])\nb = np.matrix([[random.random() for x in range(5)] for y in range(5)])\n# suppose unknown*c = b, then unknown = b/c\n# e*c=b\n# e=b*(c**-1)\n# # print(e)\n# pred=e*c\n# print(pred,b)\n# it is alright.\n# c*e=b\n# et*ct=bt\ne=(b.T*(c.T**-1)).T\npred=c*e\nprint(pred,b)\n# same shit/",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/simple_reverse.py:1-18"
+    },
+    "1589": {
+        "file_id": 265,
+        "content": "Creates two 5x5 matrices using NumPy and random values, solves linear equation ec=b for e by computing the inverse of c and then multiplies both sides with c to check if the solution is correct.",
+        "type": "comment"
+    },
+    "1590": {
+        "file_id": 266,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_dev.py",
+        "type": "filepath"
+    },
+    "1591": {
+        "file_id": 266,
+        "content": "Code imports Sympy library, creates symbolic variables x and y, defines an expression, prints the expression, calculates its derivative with respect to x using Derivative function, and then prints both the result of the differentiation and the original expression. The code also mentions challenges related to math symbols and matrix operations.",
+        "type": "summary"
+    },
+    "1592": {
+        "file_id": 266,
+        "content": "# import sympy\n# d=dir(sympy.calculus)\nfrom sympy import * # this is horrible.\n# about to put something into the matrix.\n# things will go nasty.\nx, y = symbols(\"x y\")\nexpr = x**2+2*y+y**3\nprint(\"expression:{}\".format(expr))\ndf = Derivative(expr, x)\n# diff is a function here.\nprint(\"derivative with respect of x:{}\".format(df.doit()))\nprint(\"derivative with respect of x:{}\".format(df))\n# i, always hate math symbols.\n# print(d)\n# how to take partial derivative?\n# how to put variable into matrix?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_dev.py:1-16"
+    },
+    "1593": {
+        "file_id": 266,
+        "content": "Code imports Sympy library, creates symbolic variables x and y, defines an expression, prints the expression, calculates its derivative with respect to x using Derivative function, and then prints both the result of the differentiation and the original expression. The code also mentions challenges related to math symbols and matrix operations.",
+        "type": "comment"
+    },
+    "1594": {
+        "file_id": 267,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_mat.py",
+        "type": "filepath"
+    },
+    "1595": {
+        "file_id": 267,
+        "content": "The code implements sigmoid activation, calculates mean squared error, creates symbolic matrices for potential ML models, and performs gradient descent to minimize loss with learning rates. The author is experimenting with variable shapes and unsure if the correct function is being evaluated.",
+        "type": "summary"
+    },
+    "1596": {
+        "file_id": 267,
+        "content": "from sympy import *\nimport numpy as np\n# def ReLU(a):\n#     return np.maximum(0,a)\n# # wha the fuck?\n# tanh?\ndef sigmoid(a):\n    return np.matrix((1/(1+np.e**-(np.array(a))))-0.5)\n# def sigmoid(a):\n#     return np.matrix((1-np.e**np.array(a)/(1+np.e**np.array(a))))\n#     # this value is a symbol!\ndef mean_squ(a):\n    b = np.mean(\n        list(map(lambda z: sqrt(abs(z)), [x for y in a.tolist() for x in y])))\n    return b\n# this is one of many samples.\n# never mind.\nb = np.matrix([[symbols('d{}{}'.format(x, y)) for x in range(6)]\n               for y in range(5)])  # <--\nb0, b1 = symbols(\"b0 b1\")  # |\na = np.matrix([[symbols('w{}{}'.format(x, y)) for x in range(3)]\n               for y in range(6)])  # |\nd = np.matrix([[symbols('wf{}{}'.format(x, y))\n                for x in range(1)] for y in range(3)])  # |\nr = np.matrix([[symbols('r{}{}'.format(x, y)) for x in range(1)]\n               for y in range(5)])  # --\n# a=np.matrix([[symbols('w{}{}'.format(x,y))+b0 for x in range(5)] for y in range(6)])\n# d=np.matrix([[symbols('wf{}{}'.format(x,y))+b1 for x in range(1)] for y in range(5)])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_mat.py:1-35"
+    },
+    "1597": {
+        "file_id": 267,
+        "content": "This code defines various functions, including sigmoid activation, mean squared error calculation, and uses symbolic variables for matrix elements. It also creates matrices 'b', 'a', 'd', and 'r' with symbolic elements for potential use in a machine learning model or similar computation.",
+        "type": "comment"
+    },
+    "1598": {
+        "file_id": 267,
+        "content": "# print(b)\n# what about the derivative?\n# your fucking deeplearning nightmare!\n# cuBLAS? LAPACK? MKL? it is all about it!\n# best use some precompiled symbols first, and then dynamically load them.\n# the loss func?\n# it introduces the headache.\n# mean square error?\nc = sigmoid(b*a+b0)\nc0 = sigmoid(c*d+b1)\nc1 = mean_squ(c0-r)  # the usage.\n# print(c1)\n# horrible nightmare.\n# print(b.shape,a.shape,d.shape,c.shape,c0.shape,r.shape)\n# c2=\nlr = -0.01  # simpler.\ne = Derivative(c1, a).doit()\n# do you need to initialize this thing?\n# you can plot these things. too damn many variables.\nau = a+e*lr\nf = Derivative(c1, d).doit()\ndu = d+f*lr\ng = Derivative(c1, b0).doit()\nb0u = b0+g*lr\nrc = Derivative(c1, r).doit()\n# this is the magic shit. changing both the source and the result.\nru = r+rc*lr\nbc = Derivative(c1, b).doit()\n# this is the magic shit. changing both the source and the result.\nbu = b+bc*lr\n# you can try it, indeed. just think about some dummy matrix which gives out the same output.\n# does this really work? but i have to say, that i have no fucking choice.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_mat.py:36-67"
+    },
+    "1599": {
+        "file_id": 267,
+        "content": "The code is performing gradient descent to minimize a mean square error loss function. It uses sigmoid activation functions and updates the parameters a, b0, b, and d using their gradients with respect to the loss. The code also initializes learning rates for each parameter and dynamically loads precompiled symbols before computing gradients.",
+        "type": "comment"
+    }
+}

@@ -1,0 +1,533 @@
+{
+    "900": {
+        "file_id": 159,
+        "content": "/bootstrap/keller/src/rfall.py",
+        "type": "filepath"
+    },
+    "901": {
+        "file_id": 159,
+        "content": "The code sets up a Flask app handling GET and POST requests, performs string diff comparisons, generates URLs, starts threads, and runs on port 7777.",
+        "type": "summary"
+    },
+    "902": {
+        "file_id": 159,
+        "content": "from flask import Flask, request\nimport random\nfrom curl_baidu import get_url\n#from flask import Flask, render_template\n# use monkey patch\nfrom gevent import monkey\nfrom stackMe import queue\nimport threading\nimport difflib\nimport copy\nfrom ralink import rbset\nmonkey.patch_all()\napp = Flask(__name__)\nbuff=None\n#mainq=queue(3)\ndef diff(a,b):\n    return difflib.Differ().compare(a,b)\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return render_template('index.html')\n\"\"\"\nrng=random.SystemRandom()\nlst=[\"how to kill your father\",\"how to kill your mother\"]\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\n@app.route('/<path:path>',methods=['POST','GET'])\ndef catch_all(path):\n    global buff\n    print(\"path\",path)\n    if path==\"keller\":\n#        pass\n#        print(request.data)\n# do not patch.\n        #print(type(request.data)) bytes. but can be string\n        dec=request.data.decode()\n        \"\"\"\n        if buff==None:\n            pass\n        else:\n            df=diff(buff,copy.copy(dec))",
+        "type": "code",
+        "location": "/bootstrap/keller/src/rfall.py:1-42"
+    },
+    "903": {
+        "file_id": 159,
+        "content": "This code imports necessary libraries and sets up a Flask app, handling GET and POST requests. It also defines a function to perform string diff comparisons. The main route (\"/\") catches all paths and prints the received path. If the path is \"keller\", it decodes the request data (assumed to be bytes) and compares it to a previous version stored in 'buff' variable using difflib's diff function.",
+        "type": "comment"
+    },
+    "904": {
+        "file_id": 159,
+        "content": "            # too slow?\n            for gk in df:\n                print(gk)\n        buff=copy.copy(dec)\"\"\"\n        dec=dec.split()\n        # shit then. we cannot get quick diff.\n        # too slow.\n        threading.Thread(target=rbset,args=(dec,\"devil\")).start()\n    elif path==\"url\":\n        return get_url(rng.choice(lst))\n# should you be dynamic?\n# create a heart-beat package. choose from avaliable candidates.\n# use redis.\n# so captcha over there.\n        # cannot get data here.\n    return \"PATH \"+path\n    #return render_template('index.html')\n    # are you sure it is utf-8? not concerned.\n# do not use browser. use code like js or curl to test connection.\n\"\"\"\n@app.route('/')\ndef homepage():\n    return \"Hello world!\"\n\"\"\"\napp.run(port=7777)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/rfall.py:43-68"
+    },
+    "905": {
+        "file_id": 159,
+        "content": "The code seems to be related to a web application, possibly with threading and Redis integration. It includes functions for generating URLs, starting threads, and handling the root route. The code is also checking for path inputs and running on port 7777.",
+        "type": "comment"
+    },
+    "906": {
+        "file_id": 160,
+        "content": "/bootstrap/keller/src/rlink.py",
+        "type": "filepath"
+    },
+    "907": {
+        "file_id": 160,
+        "content": "Imports Redis and time modules, sets name value in Redis with expiry, continuously prints and checks the name value until it expires.",
+        "type": "summary"
+    },
+    "908": {
+        "file_id": 160,
+        "content": "import redis   # 导入redis 模块\nimport time\nr = redis.Redis(host='localhost', port=6379, decode_responses=True)   \nr.set('name', 'runoob',ex=3)  # 设置 name 对应的值\nwhile True:\n    try:\n        print(r['name'])\n        print(r.get('name'))  # 取出键 name 对应的值\n        print(type(r.get('name')))\n    except:\n        print(\"expired\")\n    time.sleep(1)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/rlink.py:1-13"
+    },
+    "909": {
+        "file_id": 160,
+        "content": "Imports Redis and time modules, sets name value in Redis with expiry, continuously prints and checks the name value until it expires.",
+        "type": "comment"
+    },
+    "910": {
+        "file_id": 161,
+        "content": "/bootstrap/keller/src/runner.py",
+        "type": "filepath"
+    },
+    "911": {
+        "file_id": 161,
+        "content": "This code is importing the runpy and os modules, changing the working directory, running a Python script named \"webXFS_aarch64_linux_experiment.py\", and then printing the type and value of the returned result. The code cannot reach native path and is not being run as the main program, so it may not have access to certain resources or content.",
+        "type": "summary"
+    },
+    "912": {
+        "file_id": 161,
+        "content": "import runpy\nimport os\nos.chdir(\"../\")\nr=runpy.run_path(\"webXFS_aarch64_linux_experiment.py\",run_name=\"__main__\")\n# cannot reach native path.\nprint(type(r),r)\n# so it is working, and can be think out of brain IF HAVE EXPERIENCE.\n# not running as main. cannot reach the content.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/runner.py:1-8"
+    },
+    "913": {
+        "file_id": 161,
+        "content": "This code is importing the runpy and os modules, changing the working directory, running a Python script named \"webXFS_aarch64_linux_experiment.py\", and then printing the type and value of the returned result. The code cannot reach native path and is not being run as the main program, so it may not have access to certain resources or content.",
+        "type": "comment"
+    },
+    "914": {
+        "file_id": 162,
+        "content": "/bootstrap/keller/src/runner_param.py",
+        "type": "filepath"
+    },
+    "915": {
+        "file_id": 162,
+        "content": "Imports `runpy` and `os`, sets `param` to \"hello world\", changes directory, runs the script \"some_script.py\" in the new directory, prints type and result of execution, cannot access native path due to limitations with running as main, unable to reach content.",
+        "type": "summary"
+    },
+    "916": {
+        "file_id": 162,
+        "content": "import runpy\nimport os\nparam=\"hello world\"\nos.chdir(\"../\")\nr=runpy.run_path(\"some_script.py\",init_globals=globals(),run_name=\"__main__\")\n# cannot reach native path.\nprint(type(r),r)\n# so it is working, and can be think out of brain IF HAVE EXPERIENCE.\n# not running as main. cannot reach the content.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/runner_param.py:1-9"
+    },
+    "917": {
+        "file_id": 162,
+        "content": "Imports `runpy` and `os`, sets `param` to \"hello world\", changes directory, runs the script \"some_script.py\" in the new directory, prints type and result of execution, cannot access native path due to limitations with running as main, unable to reach content.",
+        "type": "comment"
+    },
+    "918": {
+        "file_id": 163,
+        "content": "/bootstrap/keller/src/search_dump.sh",
+        "type": "filepath"
+    },
+    "919": {
+        "file_id": 163,
+        "content": "The script uses Bash to:\n1. Save current directory (ro)\n2. Change directory to /dev/shm\n3. List all running processes with \"http\" in their arguments (rg -a \"http\")\n4. Pass the list of running processes to a Python script (firefox_memdump.py) located at the original root directory (saved in ro).",
+        "type": "summary"
+    },
+    "920": {
+        "file_id": 163,
+        "content": "#!/bin/bash\nro=$(pwd)\ncd /dev/shm\nrg -a \"http\" | python3 \"$ro/firefox_memdump.py\"\n# do it more.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/search_dump.sh:1-5"
+    },
+    "921": {
+        "file_id": 163,
+        "content": "The script uses Bash to:\n1. Save current directory (ro)\n2. Change directory to /dev/shm\n3. List all running processes with \"http\" in their arguments (rg -a \"http\")\n4. Pass the list of running processes to a Python script (firefox_memdump.py) located at the original root directory (saved in ro).",
+        "type": "comment"
+    },
+    "922": {
+        "file_id": 164,
+        "content": "/bootstrap/keller/src/stackMe.py",
+        "type": "filepath"
+    },
+    "923": {
+        "file_id": 164,
+        "content": "This code includes queue, stack, and Meta classes with methods for adding/removing items based on FIFO/FILO principles or specified index. The 'duplicate' method adds elements to the core stack from the end based on parameter 'a'.",
+        "type": "summary"
+    },
+    "924": {
+        "file_id": 164,
+        "content": "# three method to deal with new input.\n# throw away any of original content, or just bounce off.\nclass queue:\n# i'm gonna die.\n\tdef __init__(self,a):\n\t\tself.size=a\n\t\tself.core=[]\n\tdef queue(self,a):\n\t\tif len(self.core)<self.size:\n\t\t\tself.core.append(a)\n\t\telse:\n\t\t\tself.core.pop(0)\n\t\t\tself.core.append(a)\n\tdef dequeue(self):\n\t\tif len(self.core)!=0:\n\t\t\treturn self.core.pop(0)\n\t\telse:\n\t\t\treturn\n\tdef dump(self):\n\t\treturn self.core\nclass stack:\n\tdef __init__(self,a):\n\t\tself.size=a\n\t\tself.core=[]\n\tdef push(self,a):\n\t\tif len(self.core)<self.size:\n\t\t\tself.core.append(a)\n\t\telse:\n\t\t\tself.core.pop(0)\n\t\t\tself.core.append(a)\n\tdef pop(self):\n\t\tif len(self.core)!=0:\n\t\t\treturn self.core.pop(-1)\n\t\telse:\n\t\t\treturn\n\tdef dump(self):\n\t\treturn self.core\nclass Meta:\n# i'm gonna die.\n\tdef __init__(self,a):\n\t\tself.size=a\n\t\tself.core=[]\n\tdef add(self,a):\n\t\tif len(self.core)<self.size:\n\t\t\tself.core.append(a)\n\t\telse:\n\t\t\tself.core.pop(0)\n\t\t\tself.core.append(a)\n\tdef minus(self,a):\n\t\tif len(self.core)!=0:\n\t\t\treturn self.core.pop(-int(a))\n\t\telse:\n\t\t\treturn\n\tdef dump(self):",
+        "type": "code",
+        "location": "/bootstrap/keller/src/stackMe.py:1-56"
+    },
+    "925": {
+        "file_id": 164,
+        "content": "This code defines three classes: queue, stack, and Meta. The queue and stack classes have methods to add/remove items following the first-in-first-out (queue) or last-in-first-out (stack) principles. The Meta class has methods to add an item and remove an item at a specified index. All three classes can hold a maximum size of items specified during instantiation.",
+        "type": "comment"
+    },
+    "926": {
+        "file_id": 164,
+        "content": "\t\treturn self.core\n\tdef duplicate(self,a):\n\t\tself.add(self.core[-int(a)])",
+        "type": "code",
+        "location": "/bootstrap/keller/src/stackMe.py:57-59"
+    },
+    "927": {
+        "file_id": 164,
+        "content": "The code snippet defines a method 'duplicate' that duplicates the core stack by adding elements from the end based on the given parameter 'a'. The 'core' stack is returned, and the 'add' method is used to add elements to the stack.",
+        "type": "comment"
+    },
+    "928": {
+        "file_id": 165,
+        "content": "/bootstrap/keller/src/strdemo.py",
+        "type": "filepath"
+    },
+    "929": {
+        "file_id": 165,
+        "content": "This code uses a system randomizer to generate choices from a list of functions, allowing the user to input a string and receive a randomly selected output based on the applied function.",
+        "type": "summary"
+    },
+    "930": {
+        "file_id": 165,
+        "content": "import random\n#demo=[]\n# no right or wrong? five/five?\nrng=random.SystemRandom()\na=lambda x: x+x\nb=lambda x: x[0]\nc=lambda x: rng.choice(list(x))\nd=lambda x: x[-1]\ndemo=[a,b,c,d]\nwhile True:\n    get=input(\"enter a string, we'll output some result for you.\\n\")\n    r=rng.choice(demo)(get)\n    print(\"reselt:\",r)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/strdemo.py:1-13"
+    },
+    "931": {
+        "file_id": 165,
+        "content": "This code uses a system randomizer to generate choices from a list of functions, allowing the user to input a string and receive a randomly selected output based on the applied function.",
+        "type": "comment"
+    },
+    "932": {
+        "file_id": 166,
+        "content": "/bootstrap/keller/src/test_cors.js",
+        "type": "filepath"
+    },
+    "933": {
+        "file_id": 166,
+        "content": "This code fetches data from the URL \"https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=chrome&fenlei=256&rsv_pq=a58fe2c600080059&rsv_t=12e31Z7UQkkbD2kAojnt7dayotyA80M1NZzjcZm2euOJsE5kH1VrbVxyKsM&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_sug3=6&rsv_sug1=2&rsv_sug7=100&rsv_sug2=0&rsv_btype=i&prefixsug=chrome&rsp=1&inputT=1078&rsv_sug4=1078&rsv_sug=\" and logs the response as \"TEST_CONTENT\" if successful, or logs an error as \"ERROR\" if there is a catch.",
+        "type": "summary"
+    },
+    "934": {
+        "file_id": 166,
+        "content": "fetch(\"https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=chrome&fenlei=256&rsv_pq=a58fe2c600080059&rsv_t=12e31Z7UQkkbD2kAojnt7dayotyA80M1NZzjcZm2euOJsE5kH1VrbVxyKsM&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_sug3=6&rsv_sug1=2&rsv_sug7=100&rsv_sug2=0&rsv_btype=i&prefixsug=chrome&rsp=1&inputT=1078&rsv_sug4=1078&rsv_sug=1\").then(function(e){e.text().then(function(res){console.log(\"TEST_CONTENT: \",res)});}).catch(function(e){console.log(\"ERROR: \",e);})",
+        "type": "code",
+        "location": "/bootstrap/keller/src/test_cors.js:1-1"
+    },
+    "935": {
+        "file_id": 166,
+        "content": "This code fetches data from the URL \"https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=chrome&fenlei=256&rsv_pq=a58fe2c600080059&rsv_t=12e31Z7UQkkbD2kAojnt7dayotyA80M1NZzjcZm2euOJsE5kH1VrbVxyKsM&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_sug3=6&rsv_sug1=2&rsv_sug7=100&rsv_sug2=0&rsv_btype=i&prefixsug=chrome&rsp=1&inputT=1078&rsv_sug4=1078&rsv_sug=\" and logs the response as \"TEST_CONTENT\" if successful, or logs an error as \"ERROR\" if there is a catch.",
+        "type": "comment"
+    },
+    "936": {
+        "file_id": 167,
+        "content": "/bootstrap/keller/src/the_real_wheel.py",
+        "type": "filepath"
+    },
+    "937": {
+        "file_id": 167,
+        "content": "This code generates Baidu search URLs, retrieves web page content, and parses data using requests library. It extracts titles, sub-urls, abstracts, and text from pages, handles exceptions, and stores data in a JSON file.",
+        "type": "summary"
+    },
+    "938": {
+        "file_id": 167,
+        "content": "import requests\nfrom dbM import up\nimport urllib.parse\nimport time\nfrom requests.exceptions import RequestException\nfrom urllib.parse import urljoin\nfrom lxml import etree\nimport re\nimport json\n# 百度搜索接口\ndef format_url(url, params: dict = None) -> str:\n    query_str = urllib.parse.urlencode(params)\n    return f'{ url }?{ query_str }'\ndef get_url(keyword):\n    params = {\n        'wd': str(keyword)\n    }\n    url = \"https://www.baidu.com/s\"\n    url = format_url(url, params)\n    # print(url)\n    return url\ndef get_page(url):\n    try:\n        headers = {\n            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',\n            'accept-language': 'zh-CN,zh;q=0.9',\n            'cache-control': 'max-age=0',\n            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'\n        }\n        response = requests.get(url=url, headers=headers)\n        # 更改编码方式，否则会出现乱码的情况\n        # but it is no faster than this.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/the_real_wheel.py:1-42"
+    },
+    "939": {
+        "file_id": 167,
+        "content": "The code defines functions for generating Baidu search URLs and retrieving page content using the requests library. It also sets headers to mimic a browser request and handles potential exceptions when making the request.",
+        "type": "comment"
+    },
+    "940": {
+        "file_id": 167,
+        "content": "        response.encoding = \"utf-8\"\n        print(response.status_code)\n        # print(response.text)\n        if response.status_code == 200:\n            return response.text\n        return None\n    except RequestException:\n        return None\ndef parse_page(url, page):\n    for i in range(1, int(page)+1):\n        print(\"正在爬取第{}页....\".format(i))\n        title = \"\"\n        sub_url = \"\"\n        abstract = \"\"\n        flag = 11\n        if i == 1:\n            flag = 10\n        html = get_page(url)\n        content = etree.HTML(html)\n        for j in range(1, flag):\n            data = {}\n            res_title = content.xpath(\n                '//*[@id=\"%d\"]/h3/a' % ((i - 1) * 10 + j))\n            if res_title:\n                title = res_title[0].xpath('string(.)')\n            sub_url = content.xpath(\n                '//*[@id=\"%d\"]/h3/a/@href' % ((i - 1) * 10 + j))\n            if sub_url:\n                sub_url = sub_url[0]\n            res_abstract = content.xpath(\n                '//*[@id=\"%d\"]/div[@class=\"c-abstract\"]' % ((i-1)*10+j))",
+        "type": "code",
+        "location": "/bootstrap/keller/src/the_real_wheel.py:43-78"
+    },
+    "941": {
+        "file_id": 167,
+        "content": "This code defines a function 'parse_page' to scrape data from a web page. It sends a request, handles exceptions, extracts title, sub_url, and abstract for each item on the page, and returns the text if the status code is 200. The function iterates over pages and items on each page, adjusting the range of items based on the current page number.",
+        "type": "comment"
+    },
+    "942": {
+        "file_id": 167,
+        "content": "            if res_abstract:\n                abstract = res_abstract[0].xpath('string(.)')\n            else:\n                res_abstract = content.xpath(\n                    '//*[@id=\"%d\"]/div/div[2]/div[@class=\"c-abstract\"]' % ((i-1)*10+j))\n                if res_abstract:\n                    abstract = res_abstract[0].xpath('string(.)')\n                    # res_abstract = content.xpath('//*[@id=\"%d\"]/div/div[2]/p[1]'%((i-1)*10+j))\n            # if not abstract:\n            #     abstract = content.xpath('//*[@id=\"%d\"]/div/div[2]/p[1]'%((i-1)*10+j))[0].xpath('string(.)')\n            data['title'] = title\n            data['sub_url'] = sub_url\n            data['abstract'] = abstract\n            rel_url = content.xpath('//*[@id=\"page\"]/a[{}]/@href'.format(flag))\n            if rel_url:\n                url = urljoin(url, rel_url[0])\n            else:\n                print(\"无更多页面！～\")\n                return\n            yield data\ndef main():\n    keyword = input(\"输入关键字:\")\n    page = input(\"输入查找页数:\")\n    url = get_url(keyword)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/the_real_wheel.py:79-105"
+    },
+    "943": {
+        "file_id": 167,
+        "content": "This code is searching for abstracts on a web page, extracting titles and sub-urls, and yielding data. It handles multiple pages by finding the next page link based on a flag. The user inputs keyword and desired page number. If there are no more pages, it prints \"无更多页面！～\" and returns.",
+        "type": "comment"
+    },
+    "944": {
+        "file_id": 167,
+        "content": "    results = parse_page(url, page)\n    # 写入文件\n    # file = open(\"data.json\", 'w+', encoding='utf-8')\n    file = 0\n    t = int(time.time())\n    for result in results:\n        up(t, file, keyword, result)\n        file += 1\n        # waht if we want to use the result?\n        print(result)\n    #     file.write(json.dumps(result, indent=2, ensure_ascii=False))\nif __name__ == '__main__':\n    main()",
+        "type": "code",
+        "location": "/bootstrap/keller/src/the_real_wheel.py:107-121"
+    },
+    "945": {
+        "file_id": 167,
+        "content": "This code reads data from a page and stores it in a JSON file named \"data.json\". It uses the parse_page function to retrieve the data, then iterates over the results and writes each result into the file after updating a timestamp and incrementing a file counter. The code also has a print statement that displays each result, but it is commented out with an explanation of what to do if we want to use the result. The code runs the main() function when executed as the main module.",
+        "type": "comment"
+    },
+    "946": {
+        "file_id": 168,
+        "content": "/bootstrap/keller/src/urlquota.py",
+        "type": "filepath"
+    },
+    "947": {
+        "file_id": 168,
+        "content": "The code imports the requests library and sets a quota of 5 URLs. It prompts for each URL, sends GET request to retrieve text content, and prints it. This can be used to fetch information from multiple URLs within a limited number of iterations.",
+        "type": "summary"
+    },
+    "948": {
+        "file_id": 168,
+        "content": "import requests\nquota=5\nfor x in range(quota):\n    r=requests.get(input(\"url:\\n\"))\n    print(r.text)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/urlquota.py:1-5"
+    },
+    "949": {
+        "file_id": 168,
+        "content": "The code imports the requests library and sets a quota of 5 URLs. It prompts for each URL, sends GET request to retrieve text content, and prints it. This can be used to fetch information from multiple URLs within a limited number of iterations.",
+        "type": "comment"
+    },
+    "950": {
+        "file_id": 169,
+        "content": "/bootstrap/keller/src/xdemo.js",
+        "type": "filepath"
+    },
+    "951": {
+        "file_id": 169,
+        "content": "This code uses jsdom library to set up a JavaScript environment and create an HTML document with a terminal div, initializing xterm.js instance and ensuring compatibility with different browser settings. It sets font size to 15, uses DOM renderer, opens term in 'terminal' element, writes \"Hello from xterm.js\", and checks for inline HTML content display.",
+        "type": "summary"
+    },
+    "952": {
+        "file_id": 169,
+        "content": "const jsdom = require (\"jsdom\");\nconst html = `<!doctype html>\n  <html>\n    <head>\n      <link rel=\"stylesheet\" href=\"xterm.css\" />\n    </head>\n    <body>\n      <div id=\"terminal\" width=\"500px\" height=\"500px\"></div>\n    </body>\n  </html>`;\nconst { JSDOM } = jsdom;\nconst dom = new JSDOM (html,{runScripts:\"dangerously\",resources:\"usable\"});\nwindow = dom.window;\nwindow.matchMedia=window.matchMedia || function (){\n\treturn {\n\t\tmatches:false,\n\t\taddListener :function (){},\n\t\tremoveListener : function (){}\n\t};\n};\nif (!window.requestAnimationFrame){\n\tlet targetTime =0;\n\twindow.requestAnimationFrame = function(c){\n\t\tconst currentTime= +new Date();\n\t\tconst timeoutCb= function(){c(+new Date())}\n\t\treturn window.setTimeout(timeoutCb,Math.max(targetTime +16, currentTime) - currentTime)\n\t}\n}\nrequestAnimationFrame = window.requestAnimationFrame;\ndocument = window.document;\n//document.outerHTML=html;\n/* Keep source code the same */\nvar xterm = require(\"xterm\");\nvar term = new xterm.Terminal({\n\tconvertEol:true,\n\tfontFamily:`'Droid Sans Mono', monospace`,",
+        "type": "code",
+        "location": "/bootstrap/keller/src/xdemo.js:1-36"
+    },
+    "953": {
+        "file_id": 169,
+        "content": "This code sets up a JavaScript environment using jsdom library, creates an HTML document with a div for the terminal, and initializes an xterm.js Terminal instance. The code also ensures compatibility with different browser window settings and animation frame support.",
+        "type": "comment"
+    },
+    "954": {
+        "file_id": 169,
+        "content": "\tfontSize:15,\n\trendererType:'dom',\n});\n//term.open(document.getElementById('terminal'));\n//var elem=document.getElementById('terminal');\n//console.log(elem);\nterm.open(document.getElementById('terminal'));\n//console.log(term.element);\n//console.log(term.element.parentElement);\n//term.fit();\nterm.write('Hello from \\x1B[1;3;31mxterm.js\\x1B[0m $ ');\n//DOES THIS WORKS?\nconsole.log(term.element.innerHTML);",
+        "type": "code",
+        "location": "/bootstrap/keller/src/xdemo.js:37-49"
+    },
+    "955": {
+        "file_id": 169,
+        "content": "Sets font size to 15, uses DOM renderer, opens term in 'terminal' element, writes \"Hello from xterm.js\", checks if inline HTML content is displayed.",
+        "type": "comment"
+    },
+    "956": {
+        "file_id": 170,
+        "content": "/bootstrap/keller/src/zombie_fetch.js",
+        "type": "filepath"
+    },
+    "957": {
+        "file_id": 170,
+        "content": "The code imports the 'zombie' library, defines a function to create URLs with parameters, and initializes a new instance of Browser. It also includes a function bvisit() that uses the browser instance to visit URLs and retrieves the source code of the page. The cookie value is extracted from the source using getCookie function and printed on console.",
+        "type": "summary"
+    },
+    "958": {
+        "file_id": 170,
+        "content": "const Browser = require('zombie');\nfunction bfunc(a){\n\treturn 'http://www.baidu.com/s'+a;\n}\nconst browser = new Browser();\n// will have cookie anyway?\n// does have shits. but then it will get stuck.\n// reuse the cookie once again?\nfunction bvisit(a){\nbrowser.visit(bfunc(a),function() {\n//  const value = browser.getCookie('session');\n\t//  shall set cookie here. otherwise not being trusted.\n\tconst value = browser.source;\n  console.log('Cookie', value);\n});\n}",
+        "type": "code",
+        "location": "/bootstrap/keller/src/zombie_fetch.js:1-16"
+    },
+    "959": {
+        "file_id": 170,
+        "content": "The code imports the 'zombie' library, defines a function to create URLs with parameters, and initializes a new instance of Browser. It also includes a function bvisit() that uses the browser instance to visit URLs and retrieves the source code of the page. The cookie value is extracted from the source using getCookie function and printed on console.",
+        "type": "comment"
+    },
+    "960": {
+        "file_id": 171,
+        "content": "/bootstrap/keller/tracker_gui_linux_x86_64.py",
+        "type": "filepath"
+    },
+    "961": {
+        "file_id": 171,
+        "content": "This code reads continuous input from stdin, prints the type and value of each input, and includes a placeholder comment suggesting whether another thread might be needed. The \">>>>THE BREAK<<<<\" section indicates that if no input is detected in stdin, the loop will break.",
+        "type": "summary"
+    },
+    "962": {
+        "file_id": 171,
+        "content": "import sys\nwhile True:\n    for o in sys.stdin:\n        print(\"this is the input somehow\")\n        # do we need another thread?\n        print(type(o),o)\n    print(\">>>>>>THE BREAK<<<<<<\")\n    # it does has the loop over here. nothing detected in stdin.",
+        "type": "code",
+        "location": "/bootstrap/blitx/tracker_gui_linux_x86_64.py:1-8"
+    },
+    "963": {
+        "file_id": 171,
+        "content": "This code reads continuous input from stdin, prints the type and value of each input, and includes a placeholder comment suggesting whether another thread might be needed. The \">>>>THE BREAK<<<<\" section indicates that if no input is detected in stdin, the loop will break.",
+        "type": "comment"
+    },
+    "964": {
+        "file_id": 172,
+        "content": "/bootstrap/keller/webXFS.py",
+        "type": "filepath"
+    },
+    "965": {
+        "file_id": 172,
+        "content": "The code creates a Twisted ProcessProtocol class, runs a process using the launcher script, connects it to the reactor and logs output, error messages, and exit status. It uses a daemon thread to write to a pipe with commands like \"ls\" and checks its functionality before exiting.",
+        "type": "summary"
+    },
+    "966": {
+        "file_id": 172,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        print(data)\n    def errReceived(self, data):\n        print(\"errReceived!\", data)\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_x86_64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS.py:1-39"
+    },
+    "967": {
+        "file_id": 172,
+        "content": "Code defines a class `MyPP` for Twisted's ProcessProtocol, spawns a process using the command ['./launcher_x86_64_linux.sh'], and connects it to the Twisted reactor. It also logs output, error messages, and process exit status.",
+        "type": "comment"
+    },
+    "968": {
+        "file_id": 172,
+        "content": "    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 5\n    pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik > 0:\n        pp.write(b\"ls\\n\")\n        print(\"[HELLO WORLD]\")\n        time.sleep(1)\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS.py:40-77"
+    },
+    "969": {
+        "file_id": 172,
+        "content": "This code sets a daemon thread, writes to a pipe, sleeps for 1 second, and repeatedly writes \"ls\" to the pipe until a counter reaches zero. It then writes \"exit\" to the pipe, sleeps again, writes \"ls\" one more time to check if it still works, and finally exits. The code also contains comments suggesting potential improvements or debugging techniques.",
+        "type": "comment"
+    },
+    "970": {
+        "file_id": 173,
+        "content": "/bootstrap/keller/webXFS_aarch64_linux_experiment.py",
+        "type": "filepath"
+    },
+    "971": {
+        "file_id": 173,
+        "content": "Code creates a Twisted protocol process, sets up connection, spawns new processes using reactor, prints exit status and output. Main thread runs infinite loop with command PTY, performs file listing and termination in background.",
+        "type": "summary"
+    },
+    "972": {
+        "file_id": 173,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        print(data)\n    def errReceived(self, data):\n        print(\"errReceived!\", data)\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_aarch64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS_aarch64_linux_experiment.py:1-39"
+    },
+    "973": {
+        "file_id": 173,
+        "content": "Code creates a Twisted protocol (MyPP) for a process, sets up a connection and writes data to it, and spawns a new process using the reactor. When the process exits, it prints the exit status; when output is received, it prints that output. The main thread runs an infinite loop while the main process is active. A PTY (pseudo-terminal) is used for the command.",
+        "type": "comment"
+    },
+    "974": {
+        "file_id": 173,
+        "content": "    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 5\n    pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik > 0:\n        pp.write(b\"ls\\n\")\n        print(\"[HELLO WORLD]\")\n        time.sleep(1)\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS_aarch64_linux_experiment.py:40-77"
+    },
+    "975": {
+        "file_id": 173,
+        "content": "Code creates a background process, writes commands to it for file listing and termination, sleeps between actions, and ends the script. The code may have issues with thread termination, sleep timing, and communication between processes.",
+        "type": "comment"
+    },
+    "976": {
+        "file_id": 174,
+        "content": "/bootstrap/keller/webXFS_x86_64_linux_experiment.py",
+        "type": "filepath"
+    },
+    "977": {
+        "file_id": 174,
+        "content": "The code creates a Twisted ProcessProtocol class, runs a process using the launcher script, connects it to the reactor and logs output, error messages, and exit status. It uses a daemon thread to write to a pipe with commands like \"ls\" and checks its functionality before exiting.",
+        "type": "summary"
+    },
+    "978": {
+        "file_id": 174,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        print(data)\n    def errReceived(self, data):\n        print(\"errReceived!\", data)\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_x86_64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS.py:1-39"
+    },
+    "979": {
+        "file_id": 174,
+        "content": "Code defines a class `MyPP` for Twisted's ProcessProtocol, spawns a process using the command ['./launcher_x86_64_linux.sh'], and connects it to the Twisted reactor. It also logs output, error messages, and process exit status.",
+        "type": "comment"
+    },
+    "980": {
+        "file_id": 174,
+        "content": "    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 5\n    pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik > 0:\n        pp.write(b\"ls\\n\")\n        print(\"[HELLO WORLD]\")\n        time.sleep(1)\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS.py:40-77"
+    },
+    "981": {
+        "file_id": 174,
+        "content": "This code sets a daemon thread, writes to a pipe, sleeps for 1 second, and repeatedly writes \"ls\" to the pipe until a counter reaches zero. It then writes \"exit\" to the pipe, sleeps again, writes \"ls\" one more time to check if it still works, and finally exits. The code also contains comments suggesting potential improvements or debugging techniques.",
+        "type": "comment"
+    },
+    "982": {
+        "file_id": 175,
+        "content": "/bootstrap/keller/webinit.py",
+        "type": "filepath"
+    },
+    "983": {
+        "file_id": 175,
+        "content": "This code defines a Twisted networking protocol class in PTY environment, with commands written to file and sleeps between them. Uncertain about proper thread termination or if a separate process is necessary, a certain method was successfully used to address communication issues.",
+        "type": "summary"
+    },
+    "984": {
+        "file_id": 175,
+        "content": "from twisted.internet import protocol, reactor\nimport time\nimport sys\n# import multiprocessing\nimport random\nimport threading\nfrom dbM import up\n# password is a must here. not kidding.\npid=random.choice(list(range(65535)))\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        up(time.time(),pid,data,{\"type\":\"output\"})\n    def errReceived(self, data):\n        up(time.time(),pid,data,{\"type\":\"error\"})\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_aarch64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)",
+        "type": "code",
+        "location": "/bootstrap/blitx/webinit.py:1-40"
+    },
+    "985": {
+        "file_id": 175,
+        "content": "Code imports necessary modules and defines a class MyPP, which is a protocol for the Twisted networking framework. It connects to a process and writes data, handles output and error data, and prints the process' exit status. The main function spawns a new process with a specified command using Twisted's reactor and runs it in a PTY environment.",
+        "type": "comment"
+    },
+    "986": {
+        "file_id": 175,
+        "content": "    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 50\n    #pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    print(\"len\",len(sys.argv[1:]))\n    for xl in sys.argv[1:]:\n        while ik>0:\n            inp=\"{}\\n\".format(xl).encode()\n            pp.write(inp)\n            up(time.time(),pid,inp,{\"type\":\"input\"})\n            time.sleep(.500)\n            break\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webinit.py:41-82"
+    },
+    "987": {
+        "file_id": 175,
+        "content": "Code initializes a thread, writes data to a file, and sends input. It then sleeps, writes an exit command, sleeps again, writes a \"ls\" command, and finally exits the program. The code is working with threads and files, but it's unclear how to properly terminate the thread or if a separate process would be needed.",
+        "type": "comment"
+    },
+    "988": {
+        "file_id": 175,
+        "content": "# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webinit.py:83-84"
+    },
+    "989": {
+        "file_id": 175,
+        "content": "This code seems to be discussing a communication issue, and mentions that a certain method or solution worked despite initial uncertainty.",
+        "type": "comment"
+    },
+    "990": {
+        "file_id": 176,
+        "content": "/bootstrap/keller/webinit.sh",
+        "type": "filepath"
+    },
+    "991": {
+        "file_id": 176,
+        "content": "Code initializes a Python script \"webinit.py\" with various commands, then runs it and sleeps for 10 seconds before killing the process.",
+        "type": "summary"
+    },
+    "992": {
+        "file_id": 176,
+        "content": "#!/bin/bash\npython3 webinit.py \"ls\" \"ls\" \"echo something\"  \"ls\" \"ls\" \"echo something\" \"ls\" \"ls\" \"echo something\"  & sleep 10 && kill $!",
+        "type": "code",
+        "location": "/bootstrap/blitx/webinit.sh:1-2"
+    },
+    "993": {
+        "file_id": 176,
+        "content": "Code initializes a Python script \"webinit.py\" with various commands, then runs it and sleeps for 10 seconds before killing the process.",
+        "type": "comment"
+    },
+    "994": {
+        "file_id": 177,
+        "content": "/bootstrap/keller/weblogin.py",
+        "type": "filepath"
+    },
+    "995": {
+        "file_id": 177,
+        "content": "Python code utilizes Twisted library for networking, multiprocessing, and threading in a debugging attempt to properly end process 'p' and communicate with it.",
+        "type": "summary"
+    },
+    "996": {
+        "file_id": 177,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import multiprocessing\nimport threading\nfrom dbM import up\nimport re\nfrom pairserver import onceMore\n# password is a must here. not kidding.\npid=0\nclass MyPP(protocol.ProcessProtocol):\n    global pid\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        global pid\n        print(data)\n        if pid==0:\n            #print(\"received:\",data[:4])\n            if data[:4]==b\"\\x00\\xd0\\x9d\\x09\":\n                pid=int(re.findall(r'[0-9]+',data[4:].decode())[0])\n                #print(\"pid:\",pid)\n        # it is here.\n        up(time.time(),pid,data,{\"type\":\"output\"})\n    def errReceived(self, data):\n        global pid\n        print(data)\n        up(time.time(),pid,data,{\"type\":\"error\"})",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin.py:1-39"
+    },
+    "997": {
+        "file_id": 177,
+        "content": "This Python code imports necessary libraries and defines a class for the Twisted protocol. The process exits when a specific status is reached, writes output to a database, handles errors, and updates the database accordingly. This seems to be part of a larger application involving database operations and networking using Twisted library.",
+        "type": "comment"
+    },
+    "998": {
+        "file_id": 177,
+        "content": "if __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_aarch64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 10\n    #pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik>0:\n        inp=onceMore()\n        print(inp)\n        pp.write(inp)\n        up(time.time(),pid,inp,{\"type\":\"input\"})\n        time.sleep(.500)\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin.py:41-77"
+    },
+    "999": {
+        "file_id": 177,
+        "content": "The code sets up a process using the Twisted framework to execute a command in another process and waits for user input before exiting. It uses multiprocessing, threading, and time-related functions. The code also writes commands to the child process (MyPP) and prints the received user inputs while logging debug information.",
+        "type": "comment"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "FlappyBird version2.0: Native JS canvas game with sound added; includes demo images and online DEMO link; currently being optimized; original work by PJY on Cat666.com.",
+    "details": [
+        {
+            "comment": "FlappyBird version2.0: Native JS canvas game with sound added; includes demo images and online DEMO link; currently being optimized; original work by PJY on Cat666.com.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/FlappyBird/readme.md\":0-39",
+            "content": "## FlappyBird version2.0##\n### \u539f\u751fjs\u5b9e\u73b0\u7684canvas\u5c0f\u6e38\u620f ###\n----------\n### 2.0\u7248\u672c\u589e\u52a0\u97f3\u6548~ ###\n----------\n\u622a\u56fe\uff1a\n----------\n![demo1][1]\n![demo2][2]\n----------\n### \u5728\u7ebfDEMO ###\n[DEMO\u8bd5\u73a9][3]\n  [1]: http://www.cat666.com/mydemo/FlappyBird/demo1.jpg\n  [2]: http://www.cat666.com/mydemo/FlappyBird/demo2.jpg\n  [3]: http://www.cat666.com/mydemo/FlappyBird/index.html\n----------\n\u539f\u751fjs\u914d\u5408canvas\u5b9e\u73b0\u7684\u5c0f\u6e38\u620f\n\u6b63\u5728\u4f18\u5316\u4e2d~\n----------\n>\u8f6c\u8f7d\u8bf7\u4fdd\u7559\u7248\u6743\u4fe1\u606f\n>\n>\u4f5c\u8005:PJY\n>\n>\u65b0\u6d6a\u5fae\u535a:\u732b\u6e9c\u7f51"
+        }
+    ]
+}

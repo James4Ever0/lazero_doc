@@ -1,0 +1,10 @@
+{
+    "summary": "This code is a shell script for Linux. It executes an unloadram_fs.sh file, creates a directory called \"fs\", sets the necessary permissions using sudo chmod 777, and mounts a tmpfs filesystem named myramdisk_fs with a size of 10m to the directory \"fs\". This process involves loading RAM disk into memory.",
+    "details": [
+        {
+            "comment": "This code is a shell script for Linux. It executes an unloadram_fs.sh file, creates a directory called \"fs\", sets the necessary permissions using sudo chmod 777, and mounts a tmpfs filesystem named myramdisk_fs with a size of 10m to the directory \"fs\". This process involves loading RAM disk into memory.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/loadram_fs.sh\":0-5",
+            "content": "#!/bin/bash\n./unloadram_fs.sh\n#sudo mkdir ramdisk\nsudo mkdir fs\nsudo chmod 777 fs\nsudo mount -t tmpfs -o size=10m myramdisk_fs fs"
+        }
+    ]
+}

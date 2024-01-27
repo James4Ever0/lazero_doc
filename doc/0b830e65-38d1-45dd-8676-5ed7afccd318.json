@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a main function that executes the command \"echo hello world\" using the system() function. The author seems frustrated with the code and its dependencies but believes it works fine. They also mention the possibility of running the code in RAM and refer to an unspecified graph sample.",
+    "details": [
+        {
+            "comment": "This code defines a main function that executes the command \"echo hello world\" using the system() function. The author seems frustrated with the code and its dependencies but believes it works fine. They also mention the possibility of running the code in RAM and refer to an unspecified graph sample.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/script.c\":0-19",
+            "content": "#include <stdio.h>\n// #include <os.h>\n// so you mean that you are fucked and desperate, waiting for shit to come????\n// that doesn't make sense.\n// i can redirect the output.\n// but it works just fine.\n// i can rewrite the shit and make it bounce.\n// cannot even believe this.\n// what is this tool used for?\n// shit. I just want to use the feature. what's wrong about this?\n// it is faster than shit.\n// here is the end of everything.\nint main(int argc, char *argv[]){\n    system(\"echo hello world\");\n    return 0;\n}\n// where the hell should we report this shit?\n// having found the fuck?\n// yes you can do it in the ram.\n// sample graph."
+        }
+    ]
+}

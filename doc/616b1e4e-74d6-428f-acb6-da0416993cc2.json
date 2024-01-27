@@ -1,0 +1,10 @@
+{
+    "summary": "This code includes the unistd.h library and defines a main function that uses usleep() to pause execution for 100 milliseconds before returning an exit status of 0.",
+    "details": [
+        {
+            "comment": "This code includes the unistd.h library and defines a main function that uses usleep() to pause execution for 100 milliseconds before returning an exit status of 0.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/sleep100ms.cpp\":0-1",
+            "content": "#include <unistd.h>\nint main(){usleep(1000*100);return 0;}"
+        }
+    ]
+}

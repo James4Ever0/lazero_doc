@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports the NetworkX library, creates a graph object G, adds an edge between \"find\" and \"node\", gets the nodes in the graph, but does not print them. It suggests there is only one way to infinite loops, which might be related to the graph structure or algorithmic approach.",
+    "details": [
+        {
+            "comment": "The code imports the NetworkX library, creates a graph object G, adds an edge between \"find\" and \"node\", gets the nodes in the graph, but does not print them. It suggests there is only one way to infinite loops, which might be related to the graph structure or algorithmic approach.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/looklikes.py\":0-5",
+            "content": "import networkx\nG=networkx.Graph()\nG.add_edge(\"find\",\"node\")\np=G.nodes()\n# print(p)\n# there is only way to infinity, and this is the only way."
+        }
+    ]
+}

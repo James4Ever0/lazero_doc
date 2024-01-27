@@ -1,0 +1,535 @@
+{
+    "2200": {
+        "file_id": 351,
+        "content": "            start_row,start_col,end_row,end_col,NULL,NULL,arr);\n            printf(\"____________________\\n\");\n            printf(\"%s\",bufferx);\n            // yes this does work. but what about that GArray?\n            sleep(1); //cool. -> not responding before it is done.\n            // this is in seconds.\n            // not even again.\n            // no fucking gui anymore???\n            // but accepting the change somehow?\n        }\n        return 0;\n        // it should be doing this repeatedly.\n        // maybe we should repeat this process over and over again?\n    };\n    // try to spawn a process?\n    myParams mps={sampler};\n    g_timeout_add(1000, samp,&mps );\n    // g_idle_add(samp,&mps);\n    // fucking hell.\n    // fucking shit. it is not working as a separate thread.\n    // not fucking responding! -> try 3 times.\n    // not to rush???\n    gtk_main();\n    // not reached here.\n    // maybe the same for that thing.\n    // spawn a process and then feed back into the terminal!\n    printf(\"not hello world!\\n\");// shit.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/term.c:106-132"
+    },
+    "2201": {
+        "file_id": 351,
+        "content": "This code appears to be part of a larger program, specifically targeting the term.c file within the container_0 directory. The code is attempting to execute a process repeatedly using g_timeout_add function with a 1-second delay (samp). However, it seems that this process is not functioning as a separate thread and may not be responding as expected. Additionally, the code includes a printf statement displaying \"not hello world!\". The overall purpose of this specific section of code is unclear, but it seems to involve spawning processes and updating a terminal with their results.",
+        "type": "comment"
+    },
+    "2202": {
+        "file_id": 351,
+        "content": "}",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/term.c:133-133"
+    },
+    "2203": {
+        "file_id": 351,
+        "content": "This code is closing a block of code, possibly defining or implementing a function.",
+        "type": "comment"
+    },
+    "2204": {
+        "file_id": 352,
+        "content": "/bootstrap/legacy/container_0/term.py",
+        "type": "filepath"
+    },
+    "2205": {
+        "file_id": 352,
+        "content": "The code creates a Gtk.Window with an embedded Vte.Terminal, sets window size and default terminal options, spawns an asynchronous process, places elements in a scroller, sets up connections, and starts the GTK main loop.",
+        "type": "summary"
+    },
+    "2206": {
+        "file_id": 352,
+        "content": "from gi.repository import Gtk, Vte, GLib, Pango, Gio\nimport gi\ngi.require_version('Gtk', '3.0')\ngi.require_version('Vte', '2.91')\n# if you really want to, use java instead to do terminal emulation.\n# no fucking horrible shits, please?\n# either replace it or use it.\nclass TheWindow(Gtk.Window):\n    def __init__(self):\n        Gtk.Window.__init__(self, title=\"GTK3 IDE\")\n        self.set_default_size(600, 300)\n        terminal = Vte.Terminal()\n        #pty = terminal.pty_new_sync(Vte.PtyFlags.DEFAULT)\n        pty = Vte.Pty.new_sync(Vte.PtyFlags.DEFAULT)\n        terminal.set_pty(pty)\n        pty.spawn_async(\n            None,\n            [\"/bin/python\"],\n            None,\n            GLib.SpawnFlags.DO_NOT_REAP_CHILD,\n            None,\n            None,\n            -1,\n            None,\n            self.ready\n        )\n        # self.terminal.get_pty(self.pty)\n        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)\n        scroller = Gtk.ScrolledWindow()\n        scroller.set_hexpand(True)\n        scroller.set_vexpand(True)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/term.py:1-36"
+    },
+    "2207": {
+        "file_id": 352,
+        "content": "This code imports necessary libraries and defines a class called TheWindow, which is a Gtk.Window instance with a Vte.Terminal embedded in it. It sets the default size of the window to 600x300 pixels and creates a terminal object. It then spawns an asynchronous process for running Python code inside the terminal using pty_new_sync and GLib.SpawnFlags.DO_NOT_REAP_CHILD, and places it within a Gtk.Box and Gtk.ScrolledWindow for user interaction.",
+        "type": "comment"
+    },
+    "2208": {
+        "file_id": 352,
+        "content": "        scroller.add(terminal)\n        box.pack_start(scroller, False, True, 2)\n        self.add(box)\n    def ready(self, pty, task):\n        print('pty ', pty)\nwin = TheWindow()\nwin.connect('destroy', Gtk.main_quit)\nwin.show_all()\nGtk.main()\n#  what the heck?\n# check the implementation of vscode terminal. -> the joke out there.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/term.py:37-50"
+    },
+    "2209": {
+        "file_id": 352,
+        "content": "This code creates a window, adds a scroller and terminal to it, sets up connections for when the window is destroyed, shows all elements in the window, and starts the GTK main loop.",
+        "type": "comment"
+    },
+    "2210": {
+        "file_id": 353,
+        "content": "/bootstrap/legacy/container_0/testYes.py",
+        "type": "filepath"
+    },
+    "2211": {
+        "file_id": 353,
+        "content": "This code uses multiprocessing to execute commands and capture output, attempting to link with OBSStudio for ahead-of-time processing or recording.",
+        "type": "summary"
+    },
+    "2212": {
+        "file_id": 353,
+        "content": "# import asyncio\nimport threading\n# import multiprocessing\n# import time\n# import termios\n# import fcntl\n# import tempfile\n# pretend to be a terminal.\n# it can do some harm on you. consider a sandbox for everything.\n# {SANDBOX}! -> deepfreeze.\nimport time\nimport subprocess\nimport os\n# with threading.Lock():\n# write some env to it. both os and popen.\n# three fucking python.\n# send it into a pseudo terminal like some kind of .js file.\nos.environ['TERM'] = 'xterm'\nenv=os.environ.copy()\n# heck!\ndef run(cmd):\n    # await asyncio.sleep(1)\n    globlock=True\n    # just render it into something else.\n    # stdin=tempfile.TemporaryFile(\"w+b\")\n    proc = subprocess.Popen(\n        cmd,stdin=subprocess.PIPE,\n        stdout=subprocess.PIPE,\n        stderr=subprocess.PIPE,env=env)\n    # proc.stdin.write(b\"junk\\n\")\n    def readline(a,b):\n        while globlock:\n            buff=a.readline()\n            print(b+buff)\n    # they seem to copy the same things several times?\n    # only one fucking process when using threading.\n    p=threading.Thread(target=readline,args=(proc.stdout,b\"stdout: \"))",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/testYes.py:1-37"
+    },
+    "2213": {
+        "file_id": 353,
+        "content": "The code aims to create a pseudo terminal by setting the TERM environment variable, copying all environment variables, and then running a command in a separate process using subprocess.Popen(). The code also utilizes threading for reading output from the process and prints it with a prefix indicating the source (stdout:).",
+        "type": "comment"
+    },
+    "2214": {
+        "file_id": 353,
+        "content": "    p0=threading.Thread(target=readline,args=(proc.stderr,b\"stderr: \"))\n    # does not share information?\n    p.start()\n    p0.start()\n    # start another shit.\n    # read what?\n    # when it is dead, it goes crazy. so share the namespace please?\n    # not gonna start.\n    # ik=5\n    # x=[\"links\",\"elinks\",\"vim\",\"ps\",\"sed\"]\n    # while ik>0:\n    proc.stdin.write(b\"yes\\n\")\n    proc.stdin.flush()\n    #     ik-=1\n    # yes it can be killed.\n    # how to receive that signal? share the space please?\n    # do it there.\n    time.sleep(1)\n    print(\"_____theStop_____\")\n    # not working for process.\n    globlock=False # process have a different namespace though.\n    # but working for threads.\n    time.sleep(2)\n    proc.kill()\n    # print(dir(p))\n    # p.kill()\n    # p.terminate()\n    # p0.kill()\n    # p0.terminate()\n    # p0.n()\n    # this works.\n    # not inserting shit. fuck me please?\n    # does not affect?\n    # how comes.\n    # set the overall value into something else?\n    print(\"_EOL_\")\n    # or multiprocessing works the same?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/testYes.py:38-74"
+    },
+    "2215": {
+        "file_id": 353,
+        "content": "The code creates a thread (p0) that reads from stderr, starts the thread and main process, and writes \"yes\" to stdin every iteration in a while loop. It then waits for 1 second, prints \"_theStop_\", sets a global variable to False, waits for 2 seconds, and kills the process. The code attempts to kill the threads and terminate but is unsuccessful. Finally, it prints \"_EOL_\"",
+        "type": "comment"
+    },
+    "2216": {
+        "file_id": 353,
+        "content": "    # stdout, stderr = await proc.communicate()\n    # print(f'[{cmd!r} exited with {proc.returncode}]')\n    # if stdout:\n    #     print(f'[stdout]\\n{stdout.decode()}')\n    # if stderr:\n    #     print(f'[stderr]\\n{stderr.decode()}')\n# somewhat works.\n# how to link to OBSstudio?\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    run('bash')\n    print(\"AHEAD OF TIME\")\n    # well, you can record things from daily typings.\n    # it is all that one machine can receive. replay it if needed.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/testYes.py:75-88"
+    },
+    "2217": {
+        "file_id": 353,
+        "content": "This code snippet attempts to execute a command using the multiprocessing module and capture stdout, stderr output. It prints the result if there's any output from the command execution. The code is trying to link with OBSStudio but hasn't succeeded yet. It mentions that it can record things from daily typings and replay them if needed. The \"AHEAD OF TIME\" comment suggests that the code is part of an ahead-of-time processing or recording process.",
+        "type": "comment"
+    },
+    "2218": {
+        "file_id": 354,
+        "content": "/bootstrap/legacy/container_0/uuid_server.js",
+        "type": "filepath"
+    },
+    "2219": {
+        "file_id": 354,
+        "content": "A developer creates a JavaScript code snippet to generate UUIDv4, potentially for use in server-side applications. The code may encounter issues with browsers and checks for multi-clipboard support across operating systems while using HTTP server on port 7000.",
+        "type": "summary"
+    },
+    "2220": {
+        "file_id": 354,
+        "content": "// #!/usr/bin/nodejs\nvar http=require('http');\n// var crypto = require('crypto');\n// the heck.\n// it would be hard if browsing the fucking thing.\n// i mean PDF.\n// and still don't know how to get it right.\n// but we can do this, by remote access.\n// the shell! yeah!\n// var crypto = require('crypto'); \n// I HATE ALL FUCKING BROWSERS.\n// check if there are multi-clipboard implementations on ANDROID, WINDOWS and LINUX.\n// also the goddamn MACOS.\n// time to do your own fucking browser, huh?\n// able to operate on its own???\n// huh?? -> window manager -> x server -> console automation\nfunction uuidv4(){\n    var dt = new Date().getTime();\n    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\n        var r = (dt + Math.random()*16)%16 | 0;\n        dt = Math.floor(dt/16);\n        return (c=='x' ? r :(r&0x3|0x8)).toString(16);\n    });\n    return uuid;\n}\n// function uuidv4() {\n//     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>\n//         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/uuid_server.js:1-28"
+    },
+    "2221": {
+        "file_id": 354,
+        "content": "Code snippet generates a UUIDv4 using JavaScript, potentially for use in a server-side application or service. The developer expresses frustration with browsers and mentions checking for multi-clipboard implementations on various operating systems.",
+        "type": "comment"
+    },
+    "2222": {
+        "file_id": 354,
+        "content": "//     );\n// }\n// man the heck is running.\n// say either get it from clipboard or from web.\n// return it via web or clipboard.\nvar server = http.createServer((function (request, response) {// never read the request?\n    response.writeHead(200,\n        { \"Content-Type\": \"text/plain\" });\n    var k = uuidv4();\n    // you should invoke another program.\n    // maybe? maybe not.\n    response.end(k);\n}));\nserver.listen(7000);",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/uuid_server.js:29-42"
+    },
+    "2223": {
+        "file_id": 354,
+        "content": "This code creates an HTTP server on port 7000 that returns a randomly generated UUID in response to any request. The UUID generation is done using the `uuidv4()` function, but it may require invoking another program for its functionality.",
+        "type": "comment"
+    },
+    "2224": {
+        "file_id": 355,
+        "content": "/bootstrap/legacy/container_0/uuid_service.service",
+        "type": "filepath"
+    },
+    "2225": {
+        "file_id": 355,
+        "content": "This code defines a systemd service file for the Lazero UUID service. It specifies the description, type of service, execution command, and installation settings to ensure the service is part of the multi-user target during system startup.",
+        "type": "summary"
+    },
+    "2226": {
+        "file_id": 355,
+        "content": "[Unit]\nDescription=Lazero UUID service.\n[Service]\nType=simple\nExecStart=/usr/bin/nodejs /usr/bin/uuid_server.js\n[Install]\nWantedBy=multi-user.target",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/uuid_service.service:1-9"
+    },
+    "2227": {
+        "file_id": 355,
+        "content": "This code defines a systemd service file for the Lazero UUID service. It specifies the description, type of service, execution command, and installation settings to ensure the service is part of the multi-user target during system startup.",
+        "type": "comment"
+    },
+    "2228": {
+        "file_id": 356,
+        "content": "/bootstrap/legacy/container_0/webDocker.py",
+        "type": "filepath"
+    },
+    "2229": {
+        "file_id": 356,
+        "content": "This code creates a Twisted protocol class, MyPP, to establish connections and execute processes with command-line arguments. It uses threading for the Twisted reactor, possibly with timestamps, but may have issues with termination and process communication.",
+        "type": "summary"
+    },
+    "2230": {
+        "file_id": 356,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import multiprocessing\nimport threading\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        print(data)\n    def errReceived(self, data):\n        print(\"errReceived!\", data)\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['docker','run','-it','alpine','sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    # print(\"{AHEAD}\")\n    # somehow.\n    # all dead here. not even better than JS.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/webDocker.py:1-40"
+    },
+    "2231": {
+        "file_id": 356,
+        "content": "The code is creating a Twisted protocol class named MyPP, which establishes a connection and executes a process using the command given in the if __name__ == \"__main__\" block. The code spawns the process using reactor.spawnProcess and prints out the output and error messages received from the process. It also uses threading to run the Twisted reactor, but it is not clear how this ties into the main execution flow.",
+        "type": "comment"
+    },
+    "2232": {
+        "file_id": 356,
+        "content": "    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 5\n    # not working here.\n    while ik > 0:\n        pp.write(b\"ls\\n\")\n        print(\"[HELLO WORLD]\")\n        time.sleep(1)\n        ik-=1\n    # p.kill()\n    # print(dir(p))\n    exit()\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n    print(\"__EOL__\")\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/webDocker.py:41-62"
+    },
+    "2233": {
+        "file_id": 356,
+        "content": "This code is trying to start a process, potentially with a timestamp, and then execute some commands within a loop before possibly killing the process and printing the process's attributes. However, it appears that the code may have issues with termination and communication between processes.",
+        "type": "comment"
+    },
+    "2234": {
+        "file_id": 357,
+        "content": "/bootstrap/legacy/container_0/webTwist.py",
+        "type": "filepath"
+    },
+    "2235": {
+        "file_id": 357,
+        "content": "The code creates a Twisted protocol class MyPP, spawns a process, and communicates with it via stdout/stderr within the reactor event loop. It handles process exit status, outputs, and errors in the main thread, and uses a while loop to control communication.",
+        "type": "summary"
+    },
+    "2236": {
+        "file_id": 357,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import multiprocessing\nimport threading\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        print(data)\n    def errReceived(self, data):\n        print(\"errReceived!\", data)\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    pp = MyPP()\n    # command = ['screen', '-x']\n    command = ['bash']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    # print(\"{AHEAD}\")\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/webTwist.py:1-40"
+    },
+    "2237": {
+        "file_id": 357,
+        "content": "Code creates a Twisted protocol class MyPP, spawns a process using the given command (bash in this case), and communicates with it via stdout/stderr. It handles process exit status, outputs, and errors, all within the reactor event loop. The main thread is started separately to ensure the reactor can run independently.",
+        "type": "comment"
+    },
+    "2238": {
+        "file_id": 357,
+        "content": "    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 5\n    # not working here.\n    while ik > 0:\n        pp.write(b\"ls\\n\")\n        print(\"[HELLO WORLD]\")\n        time.sleep(1)\n        ik-=1\n    # p.kill()\n    # print(dir(p))\n    exit()\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n    print(\"__EOL__\")\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/webTwist.py:41-61"
+    },
+    "2239": {
+        "file_id": 357,
+        "content": "The code seems to be trying to terminate a process or thread and communicate with it. It's using a while loop to write a command, sleep for a second, then decrement a counter until it reaches zero. The code also mentions trying to kill the process or checking its attributes but is unsure how to do so.",
+        "type": "comment"
+    },
+    "2240": {
+        "file_id": 358,
+        "content": "/bootstrap/legacy/container_1/dockerFriendly.sh",
+        "type": "filepath"
+    },
+    "2241": {
+        "file_id": 358,
+        "content": "This code sets up a Docker container with specific resource limitations and runs the Alpine image with a shell session. The --read-only flag ensures the container's filesystem is read-only, which can improve performance if using XFS file system.",
+        "type": "summary"
+    },
+    "2242": {
+        "file_id": 358,
+        "content": "#!/bin/bash\ndocker run --read-only --rm --kernel-memory=\"8m\" --memory-swap=\"16m\" --cpus=\"0.05\" --memory=\"16m\" --memory-reservation=\"8m\" -it alpine sh\n# --read-only\n# if it is XFS it is way better than now.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/dockerFriendly.sh:1-4"
+    },
+    "2243": {
+        "file_id": 358,
+        "content": "This code sets up a Docker container with specific resource limitations and runs the Alpine image with a shell session. The --read-only flag ensures the container's filesystem is read-only, which can improve performance if using XFS file system.",
+        "type": "comment"
+    },
+    "2244": {
+        "file_id": 359,
+        "content": "/bootstrap/legacy/container_1/dockerXFS.sh",
+        "type": "filepath"
+    },
+    "2245": {
+        "file_id": 359,
+        "content": "This script runs a read-only container using Alpine Linux, limiting CPU usage and memory allocations. It also checks for the rootlesskit and mentions potential XFS storage improvement.",
+        "type": "summary"
+    },
+    "2246": {
+        "file_id": 359,
+        "content": "#!/bin/bash\n# not even a tty! better run away from this.\n#echo parrot | sudo -S docker run --rm --kernel-memory=\"8m\" --memory-swap=\"16m\" --cpus=\"0.05\" --memory=\"16m\" --memory-reservation=\"8m\" -it alpine sh\ndocker run --rm --read-only --kernel-memory=\"8m\" --cpus=\"0.05\" --memory=\"16m\" --memory-reservation=\"8m\" -it alpine sh\n# better check the rootlesskit.\n# this one is for service. # --storage-opt overlay2.size=0.008G\n# --read-only\n# if it is XFS it is way better than now.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/dockerXFS.sh:1-8"
+    },
+    "2247": {
+        "file_id": 359,
+        "content": "This script runs a read-only container using Alpine Linux, limiting CPU usage and memory allocations. It also checks for the rootlesskit and mentions potential XFS storage improvement.",
+        "type": "comment"
+    },
+    "2248": {
+        "file_id": 360,
+        "content": "/bootstrap/legacy/container_1/dockerd.service",
+        "type": "filepath"
+    },
+    "2249": {
+        "file_id": 360,
+        "content": "This code configures the Docker daemon service. It specifies the description, sets the executable start command with registry mirror, and adds it to the multi-user target installation.",
+        "type": "summary"
+    },
+    "2250": {
+        "file_id": 360,
+        "content": "[Unit]\nDescription=Docker daemon Service.\n[Service]\nType=simple\nExecStart=/usr/bin/dockerd --registry-mirror=http://hub-mirror.c.163.com\n[Install]\nWantedBy=multi-user.target",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/dockerd.service:1-9"
+    },
+    "2251": {
+        "file_id": 360,
+        "content": "This code configures the Docker daemon service. It specifies the description, sets the executable start command with registry mirror, and adds it to the multi-user target installation.",
+        "type": "comment"
+    },
+    "2252": {
+        "file_id": 361,
+        "content": "/bootstrap/legacy/container_1/friendlyShell.sh",
+        "type": "filepath"
+    },
+    "2253": {
+        "file_id": 361,
+        "content": "The code is setting up a firejail environment for the bash script. It limits resources, restricts permissions and access to specific directories, and applies apparmor and other security measures to enhance security and isolation.",
+        "type": "summary"
+    },
+    "2254": {
+        "file_id": 361,
+        "content": "#!/bin/bash\n# firejail --cgroup=/sys/fs/cgroup/lazero/tasks  --apparmor --disable-mnt bash\n# so what? file size and more?\nfirejail --rlimit-as=15000000 --rlimit-cpu=1 --rlimit-fsize=2000000  --private --blacklist=/ --read-only=/home --nonewprivs --noroot --apparmor --disable-mnt bash\n# what the heck is going on? why it is able to modify shits?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/friendlyShell.sh:1-5"
+    },
+    "2255": {
+        "file_id": 361,
+        "content": "The code is setting up a firejail environment for the bash script. It limits resources, restricts permissions and access to specific directories, and applies apparmor and other security measures to enhance security and isolation.",
+        "type": "comment"
+    },
+    "2256": {
+        "file_id": 362,
+        "content": "/bootstrap/legacy/container_1/infinia.c",
+        "type": "filepath"
+    },
+    "2257": {
+        "file_id": 362,
+        "content": "The provided code, located at \"lazero/bootstrap/legacy/container_1/infinia.c\", contains a simple infinite loop function main() that continuously loops forever.",
+        "type": "summary"
+    },
+    "2258": {
+        "file_id": 362,
+        "content": "int main(){while(1);}",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/infinia.c:1-1"
+    },
+    "2259": {
+        "file_id": 362,
+        "content": "The provided code, located at \"lazero/bootstrap/legacy/container_1/infinia.c\", contains a simple infinite loop function main() that continuously loops forever.",
+        "type": "comment"
+    },
+    "2260": {
+        "file_id": 363,
+        "content": "/bootstrap/legacy/container_1/random/CNAME",
+        "type": "filepath"
+    },
+    "2261": {
+        "file_id": 363,
+        "content": "The code contains a domain name \"lazero.io\", which represents the main website or web application associated with this project or service. This domain can be accessed by users for various purposes depending on its functionality.",
+        "type": "summary"
+    },
+    "2262": {
+        "file_id": 363,
+        "content": "lazero.io",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/CNAME:1-1"
+    },
+    "2263": {
+        "file_id": 363,
+        "content": "The code contains a domain name \"lazero.io\", which represents the main website or web application associated with this project or service. This domain can be accessed by users for various purposes depending on its functionality.",
+        "type": "comment"
+    },
+    "2264": {
+        "file_id": 364,
+        "content": "/bootstrap/legacy/container_1/random/comp.py",
+        "type": "filepath"
+    },
+    "2265": {
+        "file_id": 364,
+        "content": "The code imports numpy library, defines a complex number 'n', calculates hyperbolic tangent of 'n' and assigns the result to 'n0', then prints 'n0'.",
+        "type": "summary"
+    },
+    "2266": {
+        "file_id": 364,
+        "content": "import numpy as np\nn=1+1J\nn0=np.tanh(n)\nprint(n0)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/comp.py:1-5"
+    },
+    "2267": {
+        "file_id": 364,
+        "content": "The code imports numpy library, defines a complex number 'n', calculates hyperbolic tangent of 'n' and assigns the result to 'n0', then prints 'n0'.",
+        "type": "comment"
+    },
+    "2268": {
+        "file_id": 365,
+        "content": "/bootstrap/legacy/container_1/random/compare_loader.py",
+        "type": "filepath"
+    },
+    "2269": {
+        "file_id": 365,
+        "content": "The code reads files, splits them into lines, compares the content with custom strings, classifies lines as present or absent, groups them, and identifies differences between two grouped lists.",
+        "type": "summary"
+    },
+    "2270": {
+        "file_id": 365,
+        "content": "import re\n# /sys/fs/cgroup to find it.\ndef readFile(a):\n    with open(a,\"r\") as f:\n        return f.read()\ndef splitlines(a):\n    return a.split(\"\\n\")\ndef verifier(a,b):\n    for c in b:\n        if c in a:\n            return a\n    return\ndef checker(a,b):\n    return list(filter(lambda x: x!=None,[verifier(c,b) for c in a]))\ndef reader(a):\n    custom=[\"is not set\",\"=y\",\"=m\"]\n    return checker(splitlines(readFile(a)),custom)\ndef classifier(a):\n    custom=[\"=y\",\"=m\"]\n    for c in custom:\n        if c in a:\n            return(a.replace(c,\"\"),True)\n    return (a.replace(\"is not set\",\"\")[2:-1],False)\ndef batcher(a):\n    return [classifier(b) for b in a]\ndef unifier(a):\n    u={\"True\":[],\"False\":[]}\n    for b in a:\n        if b[1]:\n            u[\"True\"].append(b[0])\n        else:\n            u[\"False\"].append(b[0])\n    u[\"True\"]=list(set(u[\"True\"]))\n    u[\"False\"]=list(set(u[\"False\"]))\n    return u\ndef compare(a,b):\n    a0,a1=a[\"True\"],a[\"False\"]\n    b0,b1=b[\"True\"],b[\"False\"] # b is the standard.\n    # check the difference?\n#    u={\"Possible\":[],\"Missing\"[]}",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/compare_loader.py:1-48"
+    },
+    "2271": {
+        "file_id": 365,
+        "content": "The code reads a file, splits it into lines, and compares the content with custom strings. It then classifies each line as either present or absent, and finally groups them as \"True\" (present) or \"False\" (absent). The main function 'compare' takes two such grouped lists and checks the difference between them.",
+        "type": "comment"
+    },
+    "2272": {
+        "file_id": 365,
+        "content": "    u=[]\n    for c0 in b0:\n        if c0 not in a0:\n#            u[\"Missing\"].append(c0)\n            if c0 in a1:\n                u.append((c0,True)) # possible.\n            else:\n                u.append((c0,False))\n    return u\nfileSet={\"android\":\"config\",\"kali\":\"config-5.6.0-kali1-amd64\"}\nf0=reader(fileSet[\"android\"])\nf1=reader(fileSet[\"kali\"])\nb0=batcher(f0)\nb1=batcher(f1) # kali\nu0=unifier(b0)\nu1=unifier(b1)\nc=compare(u0,u1)\nprint(\"++++++++++++++++++++++\")\nprint()\nprint(\"_____BRIEF REPORT_____\")\nprint()\nprint(\"++++++++++++++++++++++\")\nprint()\nfor u in c:\n    x=u[1]\n#    if x:\n#        print(\">> \"+u[0]+\" << [POSSIBLE]\")\n#    else:\n    print(u[0])\n    # too much.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/compare_loader.py:49-85"
+    },
+    "2273": {
+        "file_id": 365,
+        "content": "Code reads files \"android\" and \"kali\", batches them, unifies the data from both, compares the unified data, and prints a list of elements that are present in one but not the other.",
+        "type": "comment"
+    },
+    "2274": {
+        "file_id": 366,
+        "content": "/bootstrap/legacy/container_1/random/pinpoint_id_with_path.py",
+        "type": "filepath"
+    },
+    "2275": {
+        "file_id": 366,
+        "content": "The code imports the dogtail module and defines a function walker() to traverse a tree structure, while experimenting with different functionalities such as listing directories and checking for enabled utilities. The programmer is facing challenges regarding Windows support.",
+        "type": "summary"
+    },
+    "2276": {
+        "file_id": 366,
+        "content": "#import dogtail\nfrom dogtail import *\n# actually you can find out what is in here by looking into the globals.\n# can you do anonymous shits? adding prefix will do the trick.\n# finally get it right?\nf=\"________________________________________________________________\"\n# # distribution?\n# # fuck the code?\n# print(f)\n# for x in dir(utils):\n#dogtail.config.childrenLimit=1000\n#     print(x)\n# where is the config?\ndef walker(a,f):\n    a.childrenLimit=1000\n# not setting it?\n#    config.childrenLimit=1000\n    for x in a.children:\n        print(x.path.split(\"/\")[-1])\n        # get the extent.\n        print(x.extents)\n        # get the name somehow.\n        # somewhat we don't need the name?\n        # the last digits.\n#        for j in f:\n#            try:\n#                eval(\"\"\"print(\">>>>>{}\",x.{})\"\"\".format(j,j))\n#            except:\n#                pass\n        walker(x,f)\n# Only returning 100 children. You may change config.childrenLimit if you wish. This message will only be printed once.\n# so change it?\nr=tree.root\n#print(r.id)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/pinpoint_id_with_path.py:1-34"
+    },
+    "2277": {
+        "file_id": 366,
+        "content": "This code imports the dogtail module and defines a function walker() which traverses a tree structure, printing the name and extents of each node. The code also mentions changing config.childrenLimit to increase the number of children returned, but the specific context is unclear.",
+        "type": "comment"
+    },
+    "2278": {
+        "file_id": 366,
+        "content": "f=dir(r)\nwalker(r,f)\n#for x in r.children:\n#    print(x.id)\n# get a walker for this.\n#print(r,type(r))\n#print(f)\n#for x in dir(r):\n#    print(x)\n#print(f)\n#print(r.dump())\n# this is fucking awesome.\n# what is this class??\n    # always the fucking cron job!\n    # it is hard to tell. check that shit first?\n    # this is gnome compatible. but remember, there's some tinycore linux over the spot.\n    # well, we don't use it.\n    # there is a sniff util.\n# f=utils.isA11yEnabled()\n# f=utils.screenshot()\n# print(f)\n# returning a path.\n# it can be done with a little script.\n# whatever. this is not the main focus.\n# print the tree of all shits? what about windows?\n# shit man.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/pinpoint_id_with_path.py:35-60"
+    },
+    "2279": {
+        "file_id": 366,
+        "content": "This code appears to be in a development stage, as the programmer is experimenting and testing different functionalities. They are trying to explore the object \"r\" by listing its directory, printing its type, and checking if certain utilities like screenshot or sniff are enabled. The primary focus seems to be on the container and its child elements, while mentioning compatibility with Gnome and Tinycore Linux. The programmer is looking for a way to return a path and print the tree of all elements but facing some challenges in doing so, particularly regarding Windows support.",
+        "type": "comment"
+    },
+    "2280": {
+        "file_id": 367,
+        "content": "/bootstrap/legacy/container_1/random/sample_manager.py",
+        "type": "filepath"
+    },
+    "2281": {
+        "file_id": 367,
+        "content": "The code imports Dogtail GUI testing framework and interacts with the root of a tree, but lacks focus or specific functionality. It may be an incomplete placeholder or expressing frustration.",
+        "type": "summary"
+    },
+    "2282": {
+        "file_id": 367,
+        "content": "# import dogtail\nfrom dogtail import *\n# actually you can find out what is in here by looking into the globals.\n# can you do anonymous shits? adding prefix will do the trick.\n# finally get it right?\nf=\"________________________________________________________________\"\n# # distribution?\n# # fuck the code?\n# print(f)\n# for x in dir(utils):\n#     print(x)\n# Only returning 100 children. You may change config.childrenLimit if you wish. This message will only be printed once.\n# so change it?\nr=tree.root\nprint(r,type(r))\nprint(f)\nfor x in dir(r):\n    print(x)\nprint(f)\nprint(r.dump())\n# this is fucking awesome.\n# what is this class??\n    # always the fucking cron job!\n    # it is hard to tell. check that shit first?\n    # this is gnome compatible. but remember, there's some tinycore linux over the spot.\n    # well, we don't use it.\n    # there is a sniff util.\n# f=utils.isA11yEnabled()\n# f=utils.screenshot()\n# print(f)\n# returning a path.\n# it can be done with a little script.\n# whatever. this is not the main focus.\n# print the tree of all shits? what about windows?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/sample_manager.py:1-34"
+    },
+    "2283": {
+        "file_id": 367,
+        "content": "The code appears to import Dogtail, a GUI testing framework, and interact with the root of a tree. It prints some basic information about the root object and its attributes but seems to be incomplete and not focused on any specific task or functionality.",
+        "type": "comment"
+    },
+    "2284": {
+        "file_id": 367,
+        "content": "# shit man.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/sample_manager.py:35-35"
+    },
+    "2285": {
+        "file_id": 367,
+        "content": "The code snippet seems to be a placeholder or an incomplete comment, expressing frustration or surprise. It doesn't appear to have any specific function or purpose within the context of the codebase.",
+        "type": "comment"
+    },
+    "2286": {
+        "file_id": 368,
+        "content": "/bootstrap/legacy/container_1/random/tree_modified.py",
+        "type": "filepath"
+    },
+    "2287": {
+        "file_id": 368,
+        "content": "The Python module uses AT-SPI API for accessibility, featuring an Accessible class and tree node with focus handling, logging, and format capabilities. It enables GUI app manipulation, dialogs, windows, and animations with exception handling and search options.",
+        "type": "summary"
+    },
+    "2288": {
+        "file_id": 368,
+        "content": "# -*- coding: utf-8 -*-\nfrom __future__ import absolute_import, division, print_function, unicode_literals\nfrom dogtail.config import config\nfrom dogtail import path\nfrom dogtail import predicate\nfrom dogtail import rawinput\nfrom dogtail.logging import debugLogger as logger\nfrom dogtail.utils import doDelay, Blinker, Lock\nfrom time import sleep\nfrom types import LambdaType\nimport gi\nfrom gi.repository import GLib\nimport os\nimport sys\ntry:\n    import pyatspi\n    import Accessibility\nexcept ImportError:  # pragma: no cover\n    raise ImportError(\"Error importing the AT-SPI bindings\")\n\"\"\"Makes some sense of the AT-SPI API\nThe tree API handles various things for you:\n    - fixes most timing issues\n    - can automatically generate (hopefully) highly-readable logs of what the\nscript is doing\n    - traps various UI malfunctions, raising exceptions for them (again,\nhopefully improving the logs)\nThe most important class is Node. Each Node is an element of the desktop UI.\nThere is a tree of nodes, starting at 'root', with applications as its",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1-33"
+    },
+    "2289": {
+        "file_id": 368,
+        "content": "This code is a Python module that utilizes the AT-SPI (Accessibility Session Protocol) API to interact with desktop UI elements. It provides a tree-like structure for accessing and manipulating UI components, handles timing issues, generates logs of its actions, and traps UI malfunctions.",
+        "type": "comment"
+    },
+    "2290": {
+        "file_id": 368,
+        "content": "children, with the top-level windows and dialogs as their children. The various\nwidgets that make up the UI appear as descendents in this tree. All of these\nelements (root, the applications, the windows, and the widgets) are represented\nas instances of Node in a tree (provided that the program of interest is\ncorrectly exporting its user-interface to the accessibility system). The Node\nclass is a mixin for Accessible and the various Accessible interfaces.\nThe Action class represents an action that the accessibility layer exports as\nperformable on a specific node, such as clicking on it. It's a wrapper around\nAccessibility.Action.\nWe often want to look for a node, based on some criteria, and this is provided\nby the Predicate class.\nDogtail implements a high-level searching system, for finding a node (or\nnodes) satisfying whatever criteria you are interested in. It does this with\na 'backoff and retry' algorithm. This fixes most timing problems e.g. when a\ndialog is in the process of opening but hasn't yet done so.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:34-51"
+    },
+    "2291": {
+        "file_id": 368,
+        "content": "This code defines classes for representing nodes, actions, and predicates in a tree-like user interface structure. The high-level searching system uses backoff and retry algorithms to find nodes satisfying specific criteria while handling timing issues like dialogs opening.",
+        "type": "comment"
+    },
+    "2292": {
+        "file_id": 368,
+        "content": "If a search fails, it waits 'config.searchBackoffDuration' seconds, and then\ntries again, repeatedly. After several failed attempts (determined by\nconfig.searchWarningThreshold) it will start sending warnings about the search\nto the debug log. If it still can't succeed after 'config.searchCutoffCount'\nattempts, it raises an exception containing details of the search. You can see\nall of this process in the debug log by setting 'config.debugSearching' to True\nWe also automatically add a short delay after each action\n('config.defaultDelay' gives the time in seconds). We'd hoped that the search\nbackoff and retry code would eliminate the need for this, but unfortunately we\nstill run into timing issues. For example, Evolution (and probably most\nother apps) set things up on new dialogs and wizard pages as they appear, and\nwe can run into 'setting wars' where the app resets the widgetry to defaults\nafter our script has already filled out the desired values, and so we lose our\nvalues. So we give the app time to set the widgetry up before the rest of the",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:53-67"
+    },
+    "2293": {
+        "file_id": 368,
+        "content": "If search fails, code waits and retries. After multiple failed attempts, it logs warnings and raises an exception with details of the search. A delay is added after each action due to timing issues caused by 'setting wars' where apps reset widgetry after script fills out desired values.",
+        "type": "comment"
+    },
+    "2294": {
+        "file_id": 368,
+        "content": "script runs.\nThe classes trap various UI malfunctions and raise exceptions that better\ndescribe what went wrong. For example, they detects attempts to click on an\ninsensitive UI element and raise a specific exception for this.\nUnfortunately, some applications do not set up the 'sensitive' state\ncorrectly on their buttons (e.g. Epiphany on form buttons in a web page). The\ncurrent workaround for this is to set config.ensureSensitivity=False, which\ndisables the sensitivity testing.\n\"\"\"\n__author__ = \"\"\"Zack Cerza <zcerza@redhat.com>,\nDavid Malcolm <dmalcolm@redhat.com>\n\"\"\"\nif config.checkForA11y:\n    from dogtail.utils import checkForA11y\n    checkForA11y()\n# We optionally import the bindings for libWnck.\ntry:\n    gi.require_version('Wnck', '3.0')\n    from gi.repository import Wnck\n    gotWnck = True  # pragma: no cover\nexcept (ImportError, ValueError):\n    # Skip this warning, since the functionality is almost entirely nonworking anyway.\n    # print \"Warning: Dogtail could not import the Python bindings for\n    # libwnck. Window-manager manipulation will not be available.\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:68-95"
+    },
+    "2295": {
+        "file_id": 368,
+        "content": "This code ensures UI sensitivity testing in a script. It detects and raises exceptions for attempts to click on insensitive elements, but might need a workaround for some applications like Epiphany with incorrect button setup. The code checks for accessibility compliance using libWnck bindings. However, if the bindings are not imported, window-manager manipulation may not be available.",
+        "type": "comment"
+    },
+    "2296": {
+        "file_id": 368,
+        "content": "    gotWnck = False\nhaveWarnedAboutChildrenLimit = False\nclass SearchError(Exception):\n    pass\nclass NotSensitiveError(Exception):\n    \"\"\"\n    The widget is not sensitive.\n    \"\"\"\n    message = \"Cannot %s %s. It is not sensitive.\"\n    def __init__(self, action):\n        self.action = action\n    def __str__(self):\n        return self.message % (self.action.name, self.action.node.getLogString())\nclass ActionNotSupported(Exception):\n    \"\"\"\n    The widget does not support the requested action.\n    \"\"\"\n    message = \"Cannot do '%s' action on %s\"\n    def __init__(self, actionName, node):\n        self.actionName = actionName\n        self.node = node\n    def __str__(self):\n        return self.message % (self.actionName, self.node.getLogString())\nclass Action(object):\n    \"\"\"\n    Class representing an action that can be performed on a specific node\n    \"\"\"\n    # Valid types of actions we know about. Feel free to add any you see.\n    types = ('click',\n             'press',\n             'release',\n             'activate',\n             'jump',",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:96-141"
+    },
+    "2297": {
+        "file_id": 368,
+        "content": "This code defines several exception classes: SearchError, NotSensitiveError, and ActionNotSupported. These exceptions are used to handle errors when performing actions on specific nodes, such as clicking or pressing. The Action class represents an action that can be performed on a node and has predefined types of actions like click, press, release, etc.",
+        "type": "comment"
+    },
+    "2298": {
+        "file_id": 368,
+        "content": "             'check',\n             'dock',\n             'undock',\n             'open',\n             'menu')\n    def __init__(self, node, action, index):\n        self.node = node\n        self.__action = action\n        self.__index = index\n    @property\n    def name(self):\n        return self.__action.getName(self.__index)\n    @property\n    def description(self):\n        return self.__action.getDescription(self.__index)\n    @property\n    def keyBinding(self):\n        return self.__action.getKeyBinding(self.__index)\n    def __str__(self):\n        return \"[action | %s | %s ]\" % \\\n            (self.name, self.keyBinding)\n    def do(self):\n        \"\"\"\n        Performs the given tree.Action, with appropriate delays and logging.\n        \"\"\"\n        logger.log(str(\"%s on %s\") % (str(self.name), self.node.getLogString()))\n        if not self.node.sensitive:\n            if config.ensureSensitivity:\n                raise NotSensitiveError(self)\n            else:\n                nSE = NotSensitiveError(self)\n                logger.log(\"Warning: \" + str(nSE))",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:142-179"
+    },
+    "2299": {
+        "file_id": 368,
+        "content": "This code defines a class for representing an action that can be performed on a node in a tree. The action has name, description, and key binding properties, which can be accessed via getter methods. It also has a 'do' method to perform the action with appropriate delays and logging.",
+        "type": "comment"
+    }
+}

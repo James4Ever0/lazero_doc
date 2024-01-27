@@ -1,0 +1,10 @@
+{
+    "summary": "Code snippet is a discussion on using proot with symlinks and concerns about running firejail or libjudger inside the chroot environment. It also mentions potential issues with device busy errors and pipe duplication.",
+    "details": [
+        {
+            "comment": "Code snippet is a discussion on using proot with symlinks and concerns about running firejail or libjudger inside the chroot environment. It also mentions potential issues with device busy errors and pipe duplication.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/README\":0-16",
+            "content": "you should do this carefully. do not let it confuse you.\nfirst, do not make root tools get into the root.\nsecond, is it good to use proot with symlink across ramdisk?\n\thttps://github.com/proot-me/proot/issues/123\nDevice or resource busy\n/dev/block/sda17 on /data type ext4 (rw,seclabel,nosuid,nodev,noatime,noauto_da_alloc,resgid=1065,errors=panic,data=ordered)\n/dev/block/bootdevice/by-name/userdata on /data type ext4 (rw,seclabel,nosuid,nodev,noatime,noauto_da_alloc,resgid=1065,errors=panic,data=ordered)\nit is nearly impossible to run firejail inside, but libjudger can have a try.\nno, it cannot be run inside the chroot. cause the pipe cannot be duplicated."
+        }
+    ]
+}

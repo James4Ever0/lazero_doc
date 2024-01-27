@@ -1,0 +1,17 @@
+you should do this carefully. do not let it confuse you.
+
+first, do not make root tools get into the root.
+
+second, is it good to use proot with symlink across ramdisk?
+
+	https://github.com/proot-me/proot/issues/123
+
+Device or resource busy
+
+/dev/block/sda17 on /data type ext4 (rw,seclabel,nosuid,nodev,noatime,noauto_da_alloc,resgid=1065,errors=panic,data=ordered)
+
+/dev/block/bootdevice/by-name/userdata on /data type ext4 (rw,seclabel,nosuid,nodev,noatime,noauto_da_alloc,resgid=1065,errors=panic,data=ordered)
+
+it is nearly impossible to run firejail inside, but libjudger can have a try.
+
+no, it cannot be run inside the chroot. cause the pipe cannot be duplicated.

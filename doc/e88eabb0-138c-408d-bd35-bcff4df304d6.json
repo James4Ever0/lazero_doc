@@ -1,0 +1,10 @@
+{
+    "summary": "This code is for a Bash script that uses the libjudger.so library to run a program with specific options. The --seccomp_rule_name is set to \"randomfuck\" and the exe_path is set to the path of bash, which is obtained using the which command.",
+    "details": [
+        {
+            "comment": "This code is for a Bash script that uses the libjudger.so library to run a program with specific options. The --seccomp_rule_name is set to \"randomfuck\" and the exe_path is set to the path of bash, which is obtained using the which command.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jbash.sh\":0-3",
+            "content": "#!/bin/bash\n./libjudger.so --seccomp_rule_name=\"randomfuck\" --exe_path=$(which bash)\n#./libjudger.so --exe_path=/sbin/shutdown --args=\"0\"\n# this cannot be run."
+        }
+    ]
+}

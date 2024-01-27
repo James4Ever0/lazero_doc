@@ -1,0 +1,10 @@
+{
+    "summary": "This code creates a list 'a' with two frozensets containing the same elements but in different order, then converts 'a' into a set 'b'. The print statement outputs the unique elements present in 'b', which would be [\"a\", \"b\"].",
+    "details": [
+        {
+            "comment": "This code creates a list 'a' with two frozensets containing the same elements but in different order, then converts 'a' into a set 'b'. The print statement outputs the unique elements present in 'b', which would be [\"a\", \"b\"].",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/frozen_demo.py\":0-2",
+            "content": "a=[frozenset([\"a\",\"b\"]),frozenset([\"b\",\"a\"])]\nb=set(a)\nprint(b)"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code sets up headers for a request, then formats them as separate \"--header\" lines and prints them. It uses the 'headers' dictionary to store user-agent, accept-language, cache-control, and accept values. The lambda function x0 formats each header with its corresponding value, which are joined into a single string using \" \".join(). Finally, the formatted headers are printed.",
+    "details": [
+        {
+            "comment": "This code sets up headers for a request, then formats them as separate \"--header\" lines and prints them. It uses the 'headers' dictionary to store user-agent, accept-language, cache-control, and accept values. The lambda function x0 formats each header with its corresponding value, which are joined into a single string using \" \".join(). Finally, the formatted headers are printed.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/curl_header.py\":0-8",
+            "content": "headers = {\n            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',\n            'accept-language': 'zh-CN,zh;q=0.9',\n            'cache-control': 'max-age=0',\n            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'\n        }\nx0=lambda x: \"--header \\\"{}: {}\\\"\".format(x,headers[x])\nj=\" \".join(list(map(x0,headers.keys())))\nprint(j)"
+        }
+    ]
+}

@@ -1,0 +1,245 @@
+{
+    "3100": {
+        "file_id": 503,
+        "content": "/lego/redis_checker.py",
+        "type": "filepath"
+    },
+    "3101": {
+        "file_id": 503,
+        "content": "Code imports necessary modules, checks if \"dump.rdb\" file exists in the current directory, runs a shell script and parses its output. If there is only one number present, it compares it to DEFAULT and exits with a status code indicating success or failure.",
+        "type": "summary"
+    },
+    "3102": {
+        "file_id": 503,
+        "content": "import os\nimport subprocess\nfrom parse import *\nDEFAULT=5\no = os.listdir(\".\")\nif \"dump.rdb\" in o:\n    s = subprocess.Popen([\"./rdb_checker.sh\"],stdout=subprocess.PIPE,stderr= subprocess.PIPE)\n    s = s.communicate()\n    pr = parse(\"{}\",s[0].decode())\n    pr = [x for x in pr]\n    dec = False\n    if len(pr)==1:\n        try:\n            i = int(pr[0])\n            print(\"the number:\",i)\n            dec = i<DEFAULT\n            # what is wrong?\n#            exit(0)\n        except:\n            print(\"error\")\n            pass\n#            exit(False)\n        exit(dec)\n    else:\n        print(\"not qualified\")\n        exit(False)\n# execute some commands.",
+        "type": "code",
+        "location": "/lego/redis_checker.py:1-27"
+    },
+    "3103": {
+        "file_id": 503,
+        "content": "Code imports necessary modules, checks if \"dump.rdb\" file exists in the current directory, runs a shell script and parses its output. If there is only one number present, it compares it to DEFAULT and exits with a status code indicating success or failure.",
+        "type": "comment"
+    },
+    "3104": {
+        "file_id": 504,
+        "content": "/lego/redis_checker.sh",
+        "type": "filepath"
+    },
+    "3105": {
+        "file_id": 504,
+        "content": "This script checks if the Redis server is running correctly by executing a background save, waiting for 1 second, and then running another script called \"redis_checker.py\". It stores the exit code (ecp) from the script and uses it to determine whether to kill a Redis server elsewhere or not.",
+        "type": "summary"
+    },
+    "3106": {
+        "file_id": 504,
+        "content": "#!/bin/bash\n# check if the thing is running properly.\nredis-cli bgsave\n# check the time.\nsleep 1\n#echo sleep done\npython3 redis_checker.py \necp=$?\necho $ecp\n# use this value somehow. kill redis server running elsewhere.\n# check if it is here.\n# if getting that value, then we'll return.",
+        "type": "code",
+        "location": "/lego/redis_checker.sh:1-12"
+    },
+    "3107": {
+        "file_id": 504,
+        "content": "This script checks if the Redis server is running correctly by executing a background save, waiting for 1 second, and then running another script called \"redis_checker.py\". It stores the exit code (ecp) from the script and uses it to determine whether to kill a Redis server elsewhere or not.",
+        "type": "comment"
+    },
+    "3108": {
+        "file_id": 505,
+        "content": "/lego/regular_shrink.sh",
+        "type": "filepath"
+    },
+    "3109": {
+        "file_id": 505,
+        "content": "This script is a bash file that executes python3 script \"shrink.py\" on judger.log, replacing original judger.log with the shrunken version.",
+        "type": "summary"
+    },
+    "3110": {
+        "file_id": 505,
+        "content": "#!/bin/bash\n# fuck! store it later.\n# will you store working script somewhere?\ncat judger.log | python3 shrink.py > judger_shrink.log\nmv judger_shrink.log judger.log",
+        "type": "code",
+        "location": "/lego/regular_shrink.sh:1-5"
+    },
+    "3111": {
+        "file_id": 505,
+        "content": "This script is a bash file that executes python3 script \"shrink.py\" on judger.log, replacing original judger.log with the shrunken version.",
+        "type": "comment"
+    },
+    "3112": {
+        "file_id": 506,
+        "content": "/lego/server_discover.py",
+        "type": "filepath"
+    },
+    "3113": {
+        "file_id": 506,
+        "content": "This Python code reads input from stdin, parses it, and stores the data in a dictionary. It expects lines in a specific format and extracts UUID values from the parsed data to be printed out.",
+        "type": "summary"
+    },
+    "3114": {
+        "file_id": 506,
+        "content": "import sys\nfrom parse import *\npx = None\nps = {}\nfor x in sys.stdin:\n#    print(\"original\",x)\n    pr = parse(\"info from {}\",x)\n    try:\n        if pr is not None:\n#            print(type(pr),dir(pr))\n            pr = [x for x in pr]\n#            print(pr)\n            if len(pr)==1:\n                pr = int(pr[0])\n#            print(pr)\n        # nope.\n                px = pr\n                ps.update({px:[]})\n        else:\n            if px is not None:\n                ps[px].append(x)\n    except:\n#        if px is not None:\n#            ps[px].append(x)\n        pass\n#print(ps)\n# so this is a dict.\n#py = {}\n# check the uuid format?\nfor x in ps.keys():\n    xn = ps[x]\n    for y in xn:\n        p = parse(\"hello from server! UUID:{}\",y)\n        if p is not None:\n            p = [x for x in p]\n            if len(p)==1:\n#                print(p[0])\n                print(x)\n#                py.update({x:p[0]})\n#print(py)\n# you are gonna print the thing out.\n    # this is the working area.\n#    print(pr)",
+        "type": "code",
+        "location": "/lego/server_discover.py:1-43"
+    },
+    "3115": {
+        "file_id": 506,
+        "content": "This Python code reads input from stdin, parses it, and stores the data in a dictionary. It expects lines in a specific format and extracts UUID values from the parsed data to be printed out.",
+        "type": "comment"
+    },
+    "3116": {
+        "file_id": 507,
+        "content": "/lego/shit.sh",
+        "type": "filepath"
+    },
+    "3117": {
+        "file_id": 507,
+        "content": "Code starts with a bash script, displays \"no hello shit but screw you\", refers to a composer (possibly referring to a music composer), states \"no shit but screw you\" twice, mentions writing a kernel and accepting the idea.",
+        "type": "summary"
+    },
+    "3118": {
+        "file_id": 507,
+        "content": "#!/bin/bash\necho \"no hello shit but screw you\"\n# so that's our starting point. great composer?\necho \"no shit but screw you\"\necho echo\n# fool man, i am the lego man.\n# it is good to write a kernel. in fact, i fully accept the idea.",
+        "type": "code",
+        "location": "/lego/shit.sh:1-7"
+    },
+    "3119": {
+        "file_id": 507,
+        "content": "Code starts with a bash script, displays \"no hello shit but screw you\", refers to a composer (possibly referring to a music composer), states \"no shit but screw you\" twice, mentions writing a kernel and accepting the idea.",
+        "type": "comment"
+    },
+    "3120": {
+        "file_id": 508,
+        "content": "/lego/shrink.py",
+        "type": "filepath"
+    },
+    "3121": {
+        "file_id": 508,
+        "content": "This code reads input from stdin, concatenates it into a single string, splits the string into words, converts them to a set (removing duplicates), and finally joins the words back together with spaces before printing.",
+        "type": "summary"
+    },
+    "3122": {
+        "file_id": 508,
+        "content": "import sys\nv=\"\"\nfor x in sys.stdin:\n    v+=x\nv = v.split()\nv = set(v)\nv = \" \".join(v)\nprint(v)",
+        "type": "code",
+        "location": "/lego/shrink.py:1-8"
+    },
+    "3123": {
+        "file_id": 508,
+        "content": "This code reads input from stdin, concatenates it into a single string, splits the string into words, converts them to a set (removing duplicates), and finally joins the words back together with spaces before printing.",
+        "type": "comment"
+    },
+    "3124": {
+        "file_id": 509,
+        "content": "/lego/syntax.py",
+        "type": "filepath"
+    },
+    "3125": {
+        "file_id": 509,
+        "content": "This script creates and tests multiple executable files, iterating over each line of the input file. It avoids direct system command execution by manipulating function structure for safer execution.",
+        "type": "summary"
+    },
+    "3126": {
+        "file_id": 509,
+        "content": "a = open(\"shit.sh\",\"r\").read()\n#print(a)\n# ready to learn shit or be shit.\n# you know that. python is just another unsafe implementation of CMD.\ns = [x for x in a]\nprint(s)\n# so let's conclude. how many syntaxs are there?\nimport os\nimport subprocess\n# for safe evaluation.\n# the execution cannot be done too fast.\n# os.system(\"\".join(s))\n# executed without problem.\n# check this out.\nfor x in range(len(s)):\n    print(x,len(s[x:]))\n    # map things here.\n#   print(s[x:])\n# tell me, that I can imagine the scenario a bit.\n    with open(\"fuck.sh\",\"w+\") as f:\n        f.write(\"\".join(s[x:]))\n    os.system(\"chmod +x fuck.sh\")\n    # do other stuff.\n    sx = subprocess.Popen([\"./libjudger.so\",\"--exe_path=fuck.sh\",\"--max_cpu_time=500\",\"--max_real_time=500\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    stdoe = sx.communicate()\n    # so we are creating a civilization.\n    # we need to time it. so in order to time, either do it in libjudger or in here.\n    print(stdoe)\n    # so how you're gonna execute the thing?\n    # we're gonna pretend the thing to happen.",
+        "type": "code",
+        "location": "/lego/syntax.py:1-30"
+    },
+    "3127": {
+        "file_id": 509,
+        "content": "The code opens a file, reads its content, and iterates over each line to execute it safely. It creates a new file, writes the current line to it, makes it executable, and runs it using libjudger. The output is printed for timing purposes. This script seems to be creating and testing multiple executable files.",
+        "type": "comment"
+    },
+    "3128": {
+        "file_id": 509,
+        "content": "    # do emulate the process first?\n    # so this is a no-go. must check the things first?\n#    os.system(\"\".join(s[x:]))\n# so what the fuss? extract some function structure so we can manipulate it again?",
+        "type": "code",
+        "location": "/lego/syntax.py:31-34"
+    },
+    "3129": {
+        "file_id": 509,
+        "content": "Extracting function structure to manipulate it again, avoiding direct system command execution.",
+        "type": "comment"
+    },
+    "3130": {
+        "file_id": 510,
+        "content": "/lego/syntax_shrink.sh",
+        "type": "filepath"
+    },
+    "3131": {
+        "file_id": 510,
+        "content": "This script reads the contents of \"syntax.log\", passes it through a Python script named \"shrink.py\" which presumably reduces its size, and saves the output in \"syntax_shrink.log\". Finally, it replaces the original file \"syntax.log\" with the shrunken version.",
+        "type": "summary"
+    },
+    "3132": {
+        "file_id": 510,
+        "content": "#!/bin/bash\n# fuck! store it later.\n# will you store working script somewhere?\ncat syntax.log | python3 shrink.py > syntax_shrink.log\nmv syntax_shrink.log syntax.log",
+        "type": "code",
+        "location": "/lego/syntax_shrink.sh:1-5"
+    },
+    "3133": {
+        "file_id": 510,
+        "content": "This script reads the contents of \"syntax.log\", passes it through a Python script named \"shrink.py\" which presumably reduces its size, and saves the output in \"syntax_shrink.log\". Finally, it replaces the original file \"syntax.log\" with the shrunken version.",
+        "type": "comment"
+    },
+    "3134": {
+        "file_id": 511,
+        "content": "/lego/termsplit.py",
+        "type": "filepath"
+    },
+    "3135": {
+        "file_id": 511,
+        "content": "This code reads input lines from stdin, transforms the data into a matrix format, applies text processing operations, and analyzes each column's content by identifying the most frequent words. It then determines if those words are potential splitters or meaningful terms based on a predefined list (`asm`). The script outputs various statistics including the longest, average, and minimum line lengths as well as the ratio of the maximum frequency to the total length.",
+        "type": "summary"
+    },
+    "3136": {
+        "file_id": 511,
+        "content": "import sys\n# must be a matrix.\ndef transform(a):\n    x,y = len(a),len(a[0])\n    return [[a[z1][z0] for z1 in range(x)] for z0 in range(y)]\n#    for x in a:\n#        for y in x:\ndef counter(a):\n    return {x:a.count(x) for x in set(a)}\nxp = []\nxa = []\nfor x in sys.stdin:\n    xa.append(len(x))\n    xp.append(x)\n# transform.\nprint(\"longest\",max(xa),\"average\",sum(xa)/len(xa),\"minimum\",min(xa))\n# so this time do the minimum.\n# not too short.\nlx = len(xp)\nxs = []\nfor x in xp:\n    xs.append(x[:min(xa)])\nxs = transform(xs)\nxs = [counter(x) for x in xs]\n#print(xs)\nasm = [\" \"]\ndef compare(a,b):\n    if len(a)==1:\n        return a[0] in b\n    else:\n        return False\nfor x in range(len(xs)):\n    mx = xs[x]\n    # assume some are the spliters.\n    md = max([mx[y] for y in mx.keys()])\n    my = [y for y in mx.keys() if mx[y] == md]\n#    print(\"standard\",lx,\"max\",mx)\n# assume some are meaningful?\n    print(\"column\",x,\"ratio\",md/lx,\"spliter\",compare(my,asm))\n# so analyze the pattern.\n#purity indicator.",
+        "type": "code",
+        "location": "/lego/termsplit.py:1-42"
+    },
+    "3137": {
+        "file_id": 511,
+        "content": "This code reads input lines from stdin, transforms the data into a matrix format, applies text processing operations, and analyzes each column's content by identifying the most frequent words. It then determines if those words are potential splitters or meaningful terms based on a predefined list (`asm`). The script outputs various statistics including the longest, average, and minimum line lengths as well as the ratio of the maximum frequency to the total length.",
+        "type": "comment"
+    },
+    "3138": {
+        "file_id": 512,
+        "content": "/lego/webpaste.py",
+        "type": "filepath"
+    },
+    "3139": {
+        "file_id": 512,
+        "content": "The Tornado web server with UUIDs per request, 3 handlers, and lacking security has a code snippet that communicates with a subprocess, parses its output for port numbers, creates an app, and starts the IOLoop.",
+        "type": "summary"
+    },
+    "3140": {
+        "file_id": 512,
+        "content": "import tornado.ioloop\nimport tornado.web\nimport uuid\nimport subprocess\nfrom parse import *\n# get a random port somewhere.\n#import sys\n# cannot find these processes on the OS!\n#import threading\n#import time\n# password is a must here. not kidding.\n# called the connection to a process.\n# that thing is calling the dynamic shell processor.\n#def terminate():\n#    time.sleep(0.1)\n#    exit()\n# just find the right shit.\nblob = None\nuuid_s = str(uuid.uuid4())\n# might have collision.\n# we need some predefined things.\nclass Hello(tornado.web.RequestHandler):\n    def get(self):\n        global uuid_s\n        self.write(\"hello from server! UUID:{}\\n\".format(uuid_s))\nclass Refresh_UUID(tornado.web.RequestHandler):\n    # maybe you can consider multiple pasteboard instance on the same server.\n    def get(self):\n        global uuid_s\n        uuid_s = str(uuid.uuid4())\n        self.write(\"UUID refreshed! UUID:{}\\n\".format(uuid_s))\nclass Terminate(tornado.web.RequestHandler):\n    def get(self):\n        global uuid_s\n        self.write(\"terminating webserver. UUID:{}\\n\".format(uuid_s))",
+        "type": "code",
+        "location": "/lego/webpaste.py:1-37"
+    },
+    "3141": {
+        "file_id": 512,
+        "content": "This code sets up a simple Tornado web server with three handler classes: Hello, Refresh_UUID, and Terminate. The server generates a UUID for each request and can refresh it or terminate the server itself. However, it lacks proper error handling, security measures, and may have some performance issues without appropriate concurrency management.",
+        "type": "comment"
+    },
+    "3142": {
+        "file_id": 512,
+        "content": "#        print(dir(self))\n        self.finish()\n        exit()\n#        terminate()\n        # anyway. just do this.\n#        threading.Thread(target=terminate).start()\n        # it is not the main thread.\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        if blob is None:\n            self.write(\"no data here.\\n\")\n        elif type(blob) == bytes:\n            self.write(blob)\n        else:\n            self.write(\"internal data error.\\n\")\n    def post(self):\n        # you can post things here. relay to 8888.\n        sp = self.request.body\n        blob = sp\n        self.write(\"message received.\\n\")\n        # do you want to clear the data?\n        # pass a function to the place?\n        # whatever the link is.\n    def make_app():\n        return tornado.web.Application([(r\"/terminate\",Terminate),(r\"/uuid\",Hello),(r\"/refresh_uuid\",Refresh_UUID),(r\".+\",MainHandler),])\nif __name__ == \"__main__\":\n    f0 = subprocess.Popen([\"python3\",\"ports_chooser.py\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)",
+        "type": "code",
+        "location": "/lego/webpaste.py:38-65"
+    },
+    "3143": {
+        "file_id": 512,
+        "content": "This code is a Tornado web application that handles HTTP requests and responses. It has three endpoints (\"/terminate\", \"/uuid\", and \"/refresh_uuid\"), with the main handler class handling all other routes. The \"make_app\" function sets up the web application with these handlers, and the main section of code runs a subprocess for \"ports_chooser.py\". If no data is present, it returns \"no data here.\" It writes incoming bytes to the response, and can be configured to clear data or pass a function to the link. The code also includes comments suggesting potential improvements or functionality additions.",
+        "type": "comment"
+    },
+    "3144": {
+        "file_id": 512,
+        "content": "    fa,fb = f0.communicate()\n    fa = parse(\"port {}\",fa.decode())\n    if fa is not None:\n        fa = [x for x in fa]\n        if len(fa)==1:\n            fa = fa[0]\n            try:\n                fa = int(fa)\n#    print(fa) # great. no shit.\n#    print(fa,fb)\n                app = MainHandler.make_app()\n                app.listen(fa)\n    # need the arg.\n    # so you are gonna check all ports one by one.\n    # of course you can use all ports.\n    # check avaliable ports? using utility?\n                tornado.ioloop.IOLoop.current().start()\n    # we must terminate the thing somehow.\n                exit()\n            except:\n                pass\n    # sys.exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?",
+        "type": "code",
+        "location": "/lego/webpaste.py:66-92"
+    },
+    "3145": {
+        "file_id": 512,
+        "content": "Code snippet communicates with a subprocess, retrieves its output and attempts to parse it as an available port number. If successful, it creates a Tornado application and listens on the obtained port. The code then starts the IOLoop and exits the process. If any error occurs during execution, it continues running without terminating.",
+        "type": "comment"
+    }
+}

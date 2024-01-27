@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a custom neural network layer called \"EdgeConv\" that performs message passing on graph edges. It inherits from the MessagePassing class and contains an mlp module for feature transformation. The EdgeConv layer takes in feature sizes F_in and F_out as parameters, initializes the mlp with these sizes, and implements forward, message, and propagate functions. An instance of this layer is created with sizes 10 and 10.",
+    "details": [
+        {
+            "comment": "This code defines a custom neural network layer called \"EdgeConv\" that performs message passing on graph edges. It inherits from the MessagePassing class and contains an mlp module for feature transformation. The EdgeConv layer takes in feature sizes F_in and F_out as parameters, initializes the mlp with these sizes, and implements forward, message, and propagate functions. An instance of this layer is created with sizes 10 and 10.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/package_archive/graph_impl.py\":0-20",
+            "content": "import torch\nfrom torch.nn import Sequential as Seq, Linear as Lin, ReLU\nfrom torch_geometric.nn import MessagePassing\n# what the heck does it contain?\nclass EdgeConv(MessagePassing):\n    def __init__(self, F_in, F_out):\n        super(EdgeConv, self).__init__(aggr=\"max\")\n        self.mlp = Seq(Lin(2*F_in, F_out), ReLU(), Lin(F_out, F_out))\n    def forward(self, x, edge_index):\n        return self.propagate(edge_index, x=x)\n    def message(self, x_i, x_j):\n        edge_features = torch.cat([x_i, x_j-x_i], dim=1)\n        return self.mlp(edge_features)\na = EdgeConv(10, 10)\n# works? never know."
+        }
+    ]
+}

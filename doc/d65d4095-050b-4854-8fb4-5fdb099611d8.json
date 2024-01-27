@@ -1,0 +1,10 @@
+{
+    "summary": "This script retrieves and displays the current cgroup configuration from /proc/cgroups file.",
+    "details": [
+        {
+            "comment": "This script retrieves and displays the current cgroup configuration from /proc/cgroups file.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/check_cgroups.sh\":0-1",
+            "content": "#!/bin/bash\ncat /proc/cgroups"
+        }
+    ]
+}

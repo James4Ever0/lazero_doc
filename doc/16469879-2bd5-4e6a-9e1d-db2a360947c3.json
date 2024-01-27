@@ -1,0 +1,10 @@
+{
+    "summary": "This script creates a new directory 'certs', generates an X.509 self-signed certificate with a 4096-bit RSA key, and saves it as cert.pem and key.pem in the 'certs' directory, all valid for 365 days.",
+    "details": [
+        {
+            "comment": "This script creates a new directory 'certs', generates an X.509 self-signed certificate with a 4096-bit RSA key, and saves it as cert.pem and key.pem in the 'certs' directory, all valid for 365 days.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/keygen.sh\":0-2",
+            "content": "#!/bin/bash\nmkdir certs\nopenssl req -x509 -newkey rsa:4096 -nodes -out certs/cert.pem -keyout certs/key.pem -days 365"
+        }
+    ]
+}

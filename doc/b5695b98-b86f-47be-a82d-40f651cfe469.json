@@ -1,0 +1,10 @@
+{
+    "summary": "This script uses curl to send a GET request to localhost on port 7777, with \"null=anything\" as the query parameter. It redirects any error messages (stderr) to /dev/null and sends stdout to stderr.",
+    "details": [
+        {
+            "comment": "This script uses curl to send a GET request to localhost on port 7777, with \"null=anything\" as the query parameter. It redirects any error messages (stderr) to /dev/null and sends stdout to stderr.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/type_fault.sh\":0-1",
+            "content": "#!/bin/bash\ncurl http://localhost:7777/input?null=anything 2>/dev/null  1>&2 "
+        }
+    ]
+}

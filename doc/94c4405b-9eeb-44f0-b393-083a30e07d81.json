@@ -1,0 +1,10 @@
+{
+    "summary": "This code is importing the \"dogtail\" library and collecting a list of variables related to it. Then, it generates pydoc3 documentation for each variable and appends it to the \"sample_diag.log\" file. The comments suggest that the script may be tracing text or configuring text in some way, potentially from Firefox-ESR to Gnome-Shell.",
+    "details": [
+        {
+            "comment": "This code is importing the \"dogtail\" library and collecting a list of variables related to it. Then, it generates pydoc3 documentation for each variable and appends it to the \"sample_diag.log\" file. The comments suggest that the script may be tracing text or configuring text in some way, potentially from Firefox-ESR to Gnome-Shell.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/getMem.py\":0-18",
+            "content": "from dogtail import *\nimport os\ng=globals()\nf=[x for x in g]\ng=list(map(lambda x:\"dogtail.\"+x,f))\nfor x in g:\n    os.system(\"pydoc3 \"+x+\" >> sample_diag.log\")\n    os.system(\"echo '___________spliter___________' >> sample_diag.log\")\n    # cd /proc/self.\n    # it does not make sense. there is no fucking text over the place.\n    # do you want to trace along the place?\n    # do you want to change the way we configure the text?\n    # whatever you mean, it is always the same shit.\n    # you want to get the text. yes I know it exactly.\n    # you want it. always.\n    # do it for whatever reason?\n    # have not done for that shit. you have not get the core of it.\n    # here we go from firefox-esr to gnome-shell\n    # whatever it takes."
+        }
+    ]
+}

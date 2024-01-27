@@ -1,0 +1,10 @@
+{
+    "summary": "The script is a Bash shell script that executes the Python3 code 'indicator_x86_64.py'. It appears to be responsible for running the associated Python script, likely an indicator script used in the bootstrap process.",
+    "details": [
+        {
+            "comment": "The script is a Bash shell script that executes the Python3 code 'indicator_x86_64.py'. It appears to be responsible for running the associated Python script, likely an indicator script used in the bootstrap process.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/indicator_x86_64.sh\":0-1",
+            "content": "#!/bin/bash\npython3 indicator_x86_64.py"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The code uses Nightmare, a headless browser, to visit \"https://www.baidu.com\" and retrieve the document title. It also defines a sleep function for waiting and an async function named santa. The code has issues with running on Linux due to sandbox restrictions and requires adjustments for proper execution.",
+    "details": [
+        {
+            "comment": "The code uses Nightmare, a headless browser, to visit \"https://www.baidu.com\" and retrieve the document title. It also defines a sleep function for waiting and an async function named santa. The code has issues with running on Linux due to sandbox restrictions and requires adjustments for proper execution.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/blindknight.js\":0-17",
+            "content": "//use nodejs this time.\nconst Nightmare = require('nightmare')\n//const nightmare = Nightmare({ show: true,switches:{'ignore-certificate-errors': true}})\n// shit. nightmare won't run on linux.\n// too few?\n// must be string array.\nconst nightmare = Nightmare({cli_args:[\"--no-sandbox\"],show:false});\n//const nightmare = Nightmare({width:1000,height:1000,switches: {\"sandbox\":false},show:true});\n// not running.\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}\nnightmare.goto('https://www.baidu.com').evaluate(() => {return document.title;}).end().then((title) => {console.log(title);})\nasync function santa(){await sleep(10);}\nsanta();\n// all fucked up."
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the pandas library, reads a CSV file of Boston house prices, selects specific rows and columns, converts the dataframe to numpy array, and then swaps the axes order. The purpose may be for data exploration or preprocessing before machine learning tasks.",
+    "details": [
+        {
+            "comment": "This code imports the pandas library, reads a CSV file of Boston house prices, selects specific rows and columns, converts the dataframe to numpy array, and then swaps the axes order. The purpose may be for data exploration or preprocessing before machine learning tasks.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/package_archive/find_load.py\":0-21",
+            "content": "import pandas as pd\ns = \"/usr/local/lib/python3.8/dist-packages/sklearn/datasets/data/boston_house_prices.csv\"\nlf = pd.read_csv(s)\nn = 5\n# col_name=lf.iloc[n]\ncol_name = lf.iloc[0]\n# col_name=lf.iloc[n,0]\n# print(col_name)\n# dt=lf.iloc[0:]\ndt = lf.iloc[1:]\n# print(dir(dt))\n# print(dt.to_numpy())\ndt = dt.to_numpy()\nprint(dt)\n# print(dt.transform(-1,4))\n# print(dt.astype(\"float64\").T)\n# print(dt.transpose(1,0))\n# maybe no difference.\nprint(dt.swapaxes(1,0))\nprint(dt.swapaxes(0,1))\n# yes! no fucking difference.\n# i guess it is the order of axes."
+        }
+    ]
+}

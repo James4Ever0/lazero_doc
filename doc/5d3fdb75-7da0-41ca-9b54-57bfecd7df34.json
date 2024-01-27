@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports numpy and defines a sigmoid function that returns a matrix after applying the sigmoid formula to an input array. The code then creates a 2x2 matrix, applies the sigmoid function to it, and prints the resulting matrix.",
+    "details": [
+        {
+            "comment": "This code imports numpy and defines a sigmoid function that returns a matrix after applying the sigmoid formula to an input array. The code then creates a 2x2 matrix, applies the sigmoid function to it, and prints the resulting matrix.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/the_new_pack/gonna_veri.py\":0-7",
+            "content": "import numpy as np\ndef sigmoid(a):\n    return np.matrix((1/(1+np.e**-(np.array(a))))-0.5)\n    # this value is a symbol!\na=np.matrix([[0 for x in range(2)] for y in range(2)])\nb=sigmoid(a)\nprint(b)"
+        }
+    ]
+}

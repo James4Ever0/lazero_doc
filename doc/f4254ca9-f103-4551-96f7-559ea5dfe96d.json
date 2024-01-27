@@ -1,0 +1,10 @@
+{
+    "summary": "Script for finding the visible window with a specific PID using xdotool and checking its properties with xprop.",
+    "details": [
+        {
+            "comment": "Script for finding the visible window with a specific PID using xdotool and checking its properties with xprop.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/pid_linux_xorg.sh\":0-7",
+            "content": "#!/bin/bash\nxdotool search --any --pid 3193\necho ______SPILTER______\nxdotool search --onlyvisible --pid 3193\n# useful even minimized\necho ______SPILTER______\nxprop -id 46137345\n# check for class name? not stable."
+        }
+    ]
+}

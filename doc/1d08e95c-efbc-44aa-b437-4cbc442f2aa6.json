@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script identifies the processor architecture using the 'uname -m' command.",
+    "details": [
+        {
+            "comment": "This Bash script identifies the processor architecture using the 'uname -m' command.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/platform.sh\":0-1",
+            "content": "#!/bin/bash\nuname -m"
+        }
+    ]
+}

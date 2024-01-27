@@ -1,0 +1,10 @@
+{
+    "summary": "The code executes a series of commands to compile all C++ files in the current directory, naming the output file the same as the input file. The commands are: list files with 'cpp' extension; extract non-directory names preceding the '.' character; and for each found name, use gcc to compile the corresponding .cpp file into an executable with the same name.",
+    "details": [
+        {
+            "comment": "The code executes a series of commands to compile all C++ files in the current directory, naming the output file the same as the input file. The commands are: list files with 'cpp' extension; extract non-directory names preceding the '.' character; and for each found name, use gcc to compile the corresponding .cpp file into an executable with the same name.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/eol.sh\":0-1",
+            "content": "#!/bin/bash\nls | grep cpp | grep -Eo \"^[^\\.]+\" | xargs -I % gcc %.cpp -o % "
+        }
+    ]
+}

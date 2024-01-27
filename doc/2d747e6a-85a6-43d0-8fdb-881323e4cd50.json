@@ -1,0 +1,10 @@
+{
+    "summary": "This code demonstrates abstraction by creating dictionaries with similar key-value pairs and ignoring unnecessary details. It creates a namespace for further processing.",
+    "details": [
+        {
+            "comment": "This code demonstrates abstraction by creating dictionaries with similar key-value pairs and ignoring unnecessary details. It creates a namespace for further processing.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archiver/posession_on_meta.py\":0-7",
+            "content": "# demostration on abstraction.\n# taking only the result (part of it), ignore name and much more details.\na = {\"name\": \"dog\", \"trait\": 1, \"trait_a\": 0}\nd = {\"name\": \"cat\", \"trait\": 1, \"trait_a\": 1}\nm = {\"name\": None, \"trait\": 1, \"trait_a\": None}\nm_0 = {\"name\": None, \"trait_a\": 0}\nm_1 = {\"name\": None, \"trait_a\": 1}\n# namespace"
+        }
+    ]
+}

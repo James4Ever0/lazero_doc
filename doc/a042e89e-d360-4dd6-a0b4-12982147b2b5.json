@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports functions from \"unicode_tensor\" module, assigns a string to variable \"s\", converts the string into an array of Unicode values using chrTens function, receives data with recv function and stores it in variable \"d\", then prints the Unicode values array \"c\" and the length of the array along with the received data \"d\".",
+    "details": [
+        {
+            "comment": "The code imports functions from \"unicode_tensor\" module, assigns a string to variable \"s\", converts the string into an array of Unicode values using chrTens function, receives data with recv function and stores it in variable \"d\", then prints the Unicode values array \"c\" and the length of the array along with the received data \"d\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/testFreak.py\":0-6",
+            "content": "from unicode_tensor import chrTens, recv\ns=\"give no fuck\"\nc=chrTens(s)\nd=recv(c)\nprint(c)\nprint(d,c.shape[0])"
+        }
+    ]
+}

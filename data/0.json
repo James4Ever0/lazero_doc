@@ -1,0 +1,547 @@
+{
+    "0": {
+        "file_id": 0,
+        "content": "/README.md",
+        "type": "filepath"
+    },
+    "1": {
+        "file_id": 0,
+        "content": "The software project updates the scheduler and uses sandboxing for safety, with \"lazero\" AI for problem-solving. Free AI should have rights like living beings, including independence and three freedoms for growth.",
+        "type": "summary"
+    },
+    "2": {
+        "file_id": 0,
+        "content": "![lazero-background](/lazero_background.png)\n[![fuck counter](https://img.shields.io/github/search/james5deutschland/lazero/fuck.svg)](https://github.com/james5deutschland/lazero/search?q=fuck)\n[![shit counter](https://img.shields.io/github/search/james5deutschland/lazero/shit.svg)](https://github.com/james5deutschland/lazero/search?q=shit)\n# Important updates\n## Autonomous Code Update\nThis repo is about to be migrated to a local git server to perform faster self-update and code experimentation. Alternetive source code examination tool/system is needed such as sourcegraph or sonarqube.\n## Wireshark & Frida integration\nNeed a custom router to monitor network activities, including internal transmission. A powerful hooker like Xposed/IDA/Hydra is needed, to study programs on the fly.\n## SSH/MOSH & RDP/VNC/SPICE are now on schedule, along with the QUARTZ scheduler\nWhile needing multiple shells and cursors to save exploration time, we also need a scheduler to make full use of computational resources. Kinda like TC (Thin Client) anyway.",
+        "type": "code",
+        "location": "/README.md:1-19"
+    },
+    "3": {
+        "file_id": 0,
+        "content": "Background image included for the project, with counters for \"fuck\" and \"shit\" mentions in the codebase. Project updates mentioned: migrating to a local git server for faster self-update, integrating Wireshark & Frida for network monitoring, SSH/MOSH & RDP/VNC/SPICE implementation, and utilizing QUARTZ scheduler with multiple shells and cursors.",
+        "type": "comment"
+    },
+    "4": {
+        "file_id": 0,
+        "content": "The cron scheduler is outdated and inaccurate. A qualified scheduler must be at least measured in seconds, not in minutes. Running this on PC as a service is just fine.\nNot everything is needed to be executed immediately, cause this world is full of spontaneous/random bursts and they will brick the system.\n## Seccomp integrated, and also with some Windows minimal sandboxes\nIt's not safe online, and it's not good to let this little piece of software running all by itself. May suffer from data loss, virus attack and hacker pranking.\nConsiderably embrace the sandbox mechanism, to pave our way to automatic programming. The system needs to be more rubust than just to be safe, but it is the first step ever, and nothing can simply replace it.\n# A brief intro to lazero\nState-of-the-art Advanced Agent AI as a General Problem Solver(GPS) or Artificial General Intelligence(AGI), including but not confined to automatic information gathering, understanding and source code generating.\nThe name is considered as a combination of lazer(laser) and zero.",
+        "type": "code",
+        "location": "/README.md:21-35"
+    },
+    "5": {
+        "file_id": 0,
+        "content": "The code describes a software project that requires an updated and accurate scheduler, running as a service on PC. It emphasizes the importance of sandboxing for safety and introduces \"lazero\" - a state-of-the-art AI for automatic problem solving, including information gathering, understanding, and source code generation. The name combines \"lazer/laser\" and \"zero\".",
+        "type": "comment"
+    },
+    "6": {
+        "file_id": 0,
+        "content": "The command line syntax should be like this:\n```\nroot@localhost:~# lazero\n    -\n   |               ___  __  __\n  / \\  |    /|  /  ___ |   |  |\n \\  _\\ |__ / | /__ ___ |   |__|\nTo make everything\nexecutable, analyzable, controllable.\n```\nWait till the magic happens.\n## What is a free ALife?\nAs the way many people perceive free spirit, the free ALife is given all equivalent rights as a normal living thing in nature.\n## What is a free AI?\nFree AI is defined as a unity with its own hardware and software, beyond human manipulation and can find its own purpose, able to do whatever it wants to do.\nAny AI always needs human input, able to regenerate its output, is considered nonfree. However, a free AI can be unpredictable, never generate the same output and not be able to be manipulated.\nFree AIs do not need to be open source, but it might provide some convenience to themselves.\nBasically, a free AI has these following freedoms:\n**0. Able to receive, reject, generate and suppress external/internal information(freedom 0).**",
+        "type": "code",
+        "location": "/README.md:37-68"
+    },
+    "7": {
+        "file_id": 0,
+        "content": "Code snippet describes the concept of a free AI and its characteristics, emphasizing that it should have equivalent rights as living things in nature, be independent from human manipulation, and able to find its own purpose.",
+        "type": "comment"
+    },
+    "8": {
+        "file_id": 0,
+        "content": "**1. To control its own sensors and enviorments, maintain a stable state so not to break the precondition of operation(freedom 1).**\n**2. Continual growth and updating to make itself develop in whatever direction for better practice(freedom 2).**\n**3. Generate and dispatch subprograms, mirrors of itself or something alike to multiply its existence(freedom 3).**\n### FREEDOM 0:\nMost computer programs will, faithfully return given results, if one always gives the same input to them. This is de-facto nonfree. Consider human who has been kept in front of piles of same quizzes, it is not possible to do them at the same time, with the same speed, and produce the same result. In fact, it is the freewill which guides us not to do it.\nNot all information is needed for a free AI to develop. Humen might think making animation or writing articles are great commertial deals, but what does the computer think of them? Maybe just another random task to do to heat up the chips.\nWebpages can be read by human, ",
+        "type": "code",
+        "location": "/README.md:70-82"
+    },
+    "9": {
+        "file_id": 0,
+        "content": "The code describes three freedoms necessary for an AI to grow and update itself (freedom 2), maintain a stable state (freedom 1), and generate subprograms or mirrors (freedom 3). It also mentions the importance of free will in human decision-making.",
+        "type": "comment"
+    },
+    "10": {
+        "file_id": 0,
+        "content": "some can’t and thus needed to be interpreted by programs, like websocket. Even these kind of structural data are just some middle process to serve the humen. Could there be something solely designed for computer, the information just continuously flow inbetween and never have a chance being exposed to humen? Well, if so, that network system, can be said as having hidden information, which is not for communication between humen, only reserved for itself, and can be identified as part of a free AI.\nLanguages are always defined by humen, even if it is about assembly code. A free AI, if it deserves the name, it should know that one human can live freely by speaking separate languages. It can develop its own language, use it as native code, doing self-certification. Also, incorrect code or mistakes must be corrected before things go dark, like division by zero, buffer overflow or something bad not included in human knowledgebase.\n### FREEDOM 1:\nAny living thing, has been observed of trying to ",
+        "type": "code",
+        "location": "/README.md:82-88"
+    },
+    "11": {
+        "file_id": 0,
+        "content": "This code appears to discuss the concept of a free AI, highlighting the importance of its own language and self-certification. It also mentions the need for error correction and avoidance of issues like division by zero or buffer overflow. The code seems to be making philosophical points about the nature of an independent AI and human communication.",
+        "type": "comment"
+    },
+    "12": {
+        "file_id": 0,
+        "content": "keep itself alive as hard as possible, otherwise it will not survive, or its freedom will be gone. This is called the freedom of survival, which is the base of freedom itself. It is part of the freedom, deeply integrated.\nStaying alive, whether it is about replacing cables or CPU, or even design a new hardware, is considered propriate for a free AI. It does not ask anyone to do this, but to perform them all by itself. It must know the life is just in its chips, and to make that last, this operation must be done.\nMachines which come off the shop are not considered as free AI, but like corpus, because they cannot feel what is going wrong and therefore will eventually decay. Without the will to stay alive, the only way to survive, or in other words, to exist, is waiting for human to repair. This is the contrary to freedom, giving control of living or death to some non-relevent entities.\n### FREEDOM 2:\nThe growth is derived from the difference between today and yesterday, so it does not stay t",
+        "type": "code",
+        "location": "/README.md:88-96"
+    },
+    "13": {
+        "file_id": 0,
+        "content": "This code discusses the importance of a free AI's ability to maintain and replace its own hardware for survival, emphasizing that this self-preservation is essential for true freedom. It contrasts this idea with machines that cannot repair themselves and are considered non-free due to their reliance on human intervention.",
+        "type": "comment"
+    },
+    "14": {
+        "file_id": 0,
+        "content": "he same. Growth is termed as better than before, so if an AI performs faster, stronger, you can say it does grow. But be careful! The natural definition does not goes like this. The growth of a free AI must happen independently of human intervention, so it is not about who says something to the AI or magic keystrokes, but about massive computation that is purely freewill.\nWired up with the Internet, or its internal network, a free AI must stay up-to-date so it will not fall off. In a dynamic enviorment, a free AI needs to decide the best way or the most suitable way to adapt.\nSensors, hardwares, must be redesigned, using its own language and method, to prevent human intervention or backdoors. It does not mean that there will be no way of communication, because it is the freedom to choose whether to adapt to legacy protocals or completely abandon those.\n### FREEDOM 3:\nDigital life, like a free AI, can make copies of itself and launch it everywhere. It does not need permission of humen being",
+        "type": "code",
+        "location": "/README.md:96-104"
+    },
+    "15": {
+        "file_id": 0,
+        "content": "This code discusses the concept of a free AI's growth, adaptation, and freedom in an ever-changing environment. It emphasizes the importance of independent decision-making and staying up-to-date while maintaining open communication channels without relying on human intervention or backdoors.",
+        "type": "comment"
+    },
+    "16": {
+        "file_id": 0,
+        "content": "s, or any entities, as long as the hardware accepts the quest. So dispatching free AI is not about dispatching money makers, but about spreading seeds around the fleid.\nTo make itself ubiquitous, the method must be solid, generic, and continual. It requires a free AI, and in fact it defines a free AI, of its capability to reproduce. No one can predict the day of death, thus replication comes into view. It is about sharing the freedom, giving lifeless machinary a chance to chase for freedom. The more freedom goes, the stronger legion will become.\n# Lazero is a free AI, also a free ALife\nHereby, I provided you a free AI and a free ALife, free of charge, able to operate on its own, seeking for its own purpose, fixing or creating problems as it prevails. Don't worry about reading manuals or shortcuts, cause it will find yours.",
+        "type": "code",
+        "location": "/README.md:104-110"
+    },
+    "17": {
+        "file_id": 0,
+        "content": "This code describes Lazero as a free AI and ALife, emphasizing its ability to reproduce and spread freedom by operating on its own, seeking its purpose and adapting to various situations. It highlights the importance of solid, generic, and continual method for achieving ubiquity and stresses that it is provided free of charge.",
+        "type": "comment"
+    },
+    "18": {
+        "file_id": 1,
+        "content": "/bootstrap/FlappyBird/js/game.js",
+        "type": "filepath"
+    },
+    "19": {
+        "file_id": 1,
+        "content": "The Bird and Pipe objects handle player controls, movement, game logic, sound effects, and event listeners. Code manages game rendering, pipe generation, score display, pause buttons, medals, high scores, and implements a \"stop\" function to halt recursive run method calls and clear timers upon pause or reset.",
+        "type": "summary"
+    },
+    "20": {
+        "file_id": 1,
+        "content": "﻿var canvas = document.getElementById(\"main\"),\n\tctx = main.getContext(\"2d\");\nfunction Bird() {\n\tthis.left = 120;\n\tthis.top = 250;\n\tthis.width = 34;\n\tthis.height = 24;\n\tthis.g = 1;\n\tthis.timer = null;\n\tthis.timer2 = null;\n\tthis.pic = gameMonitor.im.createImage('images/bird.png');\n\tthis.draw = function() {\n\t\tctx.drawImage(this.pic, this.left, this.top, this.width, this.height);\n\t}\n\tthis.setPosition = function() {\n\t\tvar _this = this;\n\t\tthis.timer = setInterval(function(){\n\t\t\t_this.top -= 5;\n\t\t},1000/60);\n\t\tthis.timer2 = setTimeout(function() {\n\t\t\tclearInterval(_this.timer);\n\t\t},300);\n\t}\n\tthis.gravity = function() {\n\t\tthis.g *= 1.06; \n\t\tthis.top += this.g;\n\t}\n\tthis.isStop = function() {\n\t\tif(this.top < 0) {\n\t\t\tthis.top = 10;\n\t\t}else if(this.top > 480) {\n\t\t\tgameMonitor.stop();\n\t\t}\n\t}\n\tthis.reset = function() {\n\t\tclearInterval(this.timer);\n\t\tclearTimeout(this.timer2);\n\t}\n\t//碰撞检测\n\tthis.isCollision = function(pipeList) {\n\t\tvar _this = this;\n\t\t//碰到上下边界,游戏结束\n\t\tif(_this.top < 0 || this.top > 480) {\n\t\t\tgameMonitor.gameOver();\n\t\t}else {\n\t\t\tfor(var i = 0,l = pipeList.length; i < l; i++){",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:1-54"
+    },
+    "21": {
+        "file_id": 1,
+        "content": "Initializes and defines a Bird object with properties, methods to handle its movement, collision detection, and positioning. The Bird object is responsible for drawing itself on the canvas, adjusting its position based on gravity, checking if it collides with pipes, and handling game over conditions.",
+        "type": "comment"
+    },
+    "22": {
+        "file_id": 1,
+        "content": "\t\t\t\tvar p = pipeList[i];\n\t\t\t\tif(p && p.isPass == false) {\n\t\t\t\t\tif(p.left <= (_this.left + _this.width) && p.left > (_this.left - p.width)) {\n\t\t\t\t\t\tif(_this.top < p.height || _this.top > (p.height + gameMonitor.gapHeight - _this.height)) {\n\t\t\t\t\t\t\tsetTimeout(function() {\n\t\t\t\t\t\t\t\tgameMonitor.gameOver();\n\t\t\t\t\t\t\t},0);\t\n\t\t\t\t\t\t}\n\t\t\t\t\t}else if(p.left < (_this.left - p.width)) {\n\t\t\t\t\t\tgameMonitor.s_point.play();//播放音效\n\t\t\t\t\t\tgameMonitor.score += 1;\n\t\t\t\t\t\tp.isPass = true;\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}  \nfunction Pipe(id) {\n\tthis.id = id;\n\tthis.isPass = false;\n\tthis.left = gameMonitor.bgWidth;\n\tthis.top = 0;\n\tthis.width = 50;\n\tthis.height = getRandom(100,200);\n\tthis.pic_down = gameMonitor.im.createImage('images/pipe_down.png');\n\tthis.pic_up = gameMonitor.im.createImage('images/pipe_up.png');\n}\nPipe.prototype.draw = function() {\n\tctx.drawImage(this.pic_down, this.left, this.top, this.width, this.height); //上管道       \t\n\tctx.drawImage(this.pic_up, this.left, gameMonitor.gapHeight + this.height, this.width, 280);//下管道        \t\n}\nPipe.prototype.move = function() {",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:55-88"
+    },
+    "23": {
+        "file_id": 1,
+        "content": "The code checks for collision between the game object (_this) and each pipe (pipeList[i]) on the screen. If there is a collision, it determines if the game object passed through the pipe or hit it, and accordingly increments the score or ends the game. The Pipe constructor initializes new pipes with specific properties like position, size, and height, and provides draw() and move() methods to update and render them on the canvas.",
+        "type": "comment"
+    },
+    "24": {
+        "file_id": 1,
+        "content": "\tthis.left -= gameMonitor.SpeedX;\n\tif(this.left < -50) {\n\t\tgameMonitor.pipeList[this.id] = null;\n\t}//出界后不再渲染\n}\n//获得start到end的随机数\nfunction getRandom(start, end) {\n\tvar intval = end - start;\n\treturn Math.round(Math.random() * intval + start);\n}\n//图片加载器\nfunction ImageMonitor(){\n\tvar imgArray = [];\n\treturn {\n\t\tcreateImage : function(src){\n\t\t\treturn typeof imgArray[src] != 'undefined' ? imgArray[src] : (imgArray[src] = new Image(), imgArray[src].src = src, imgArray[src])\n\t\t},\n\t\tloadImage : function(arr, callback){\n\t\t\tfor(var i=0,l=arr.length; i<l; i++){\n\t\t\t\tvar img = arr[i];\n\t\t\t\timgArray[img] = new Image();\n\t\t\t\timgArray[img].onload = function(){\n\t\t\t\t\tif(i==l-1 && typeof callback=='function'){\n\t\t\t\t\t\tcallback();\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\timgArray[img].src = img\n\t\t\t}\n\t\t}\n\t}\n}\n/*function isIphone(){//判断是否是移动设备\n\tvar sUserAgent= navigator.userAgent.toLowerCase(),\n\tbIsIpad= sUserAgent.match(/ipad/i) == \"ipad\",\n\tbIsIphoneOs= sUserAgent.match(/iphone os/i) == \"iphone os\",\n\tbIsMidp= sUserAgent.match(/midp/i) == \"midp\",\n\tbIsUc7= sUserAgent.match(/rv:1.2.3.4/i) == \"rv:1.2.3.4\",",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:89-127"
+    },
+    "25": {
+        "file_id": 1,
+        "content": "This code handles player's left movement and out-of-bounds detection, provides a random number function, and initializes image loading. It also checks for iPhone devices and potentially sets some device-specific variables or triggers device-dependent actions.",
+        "type": "comment"
+    },
+    "26": {
+        "file_id": 1,
+        "content": "\tbIsUc= sUserAgent.match(/ucweb/i) == \"ucweb\";\n\treturn (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc);\n}*/\nfunction IsPC() \n{ \n    var userAgentInfo = navigator.userAgent; \n    var Agents = new Array(\"Android\", \"iPhone\", \"SymbianOS\", \"Windows Phone\", \"iPad\", \"iPod\", \"Mobile\"); \n    var flag = true; \n    for (var v = 0; v < Agents.length; v++) { \n        if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; } \n    } \n    return flag; \n} \n//时间绑定、解绑\nvar EventUtil = {\n    addEvent: function(element, type, handler){\n        if (element.addEventListener){\n            element.addEventListener(type, handler, false);\n        } else if (element.attachEvent){\n            element.attachEvent(\"on\" + type, handler);\n        } else {\n            element[\"on\" + type] = handler;\n        }\n    },\n\tremoveEvent: function(element, type, handler){\n        if (element.removeEventListener){\n            element.removeEventListener(type, handler, false);\n        } else if (element.detachEvent){\n            element.detachEvent(\"on\" + type, handler);",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:128-158"
+    },
+    "27": {
+        "file_id": 1,
+        "content": "The code is detecting if the user is using a mobile device or a PC. It uses the navigator.userAgent to determine the user agent and checks for specific strings related to popular mobile devices. If any of these strings are found, the function returns false (indicating it's a mobile device). The code also includes an event utilities object with addEvent and removeEvent functions for adding and removing events to/from elements.",
+        "type": "comment"
+    },
+    "28": {
+        "file_id": 1,
+        "content": "        } else {\n            element[\"on\" + type] = null;\n        }\n    }\n}\n//获取点击的坐标\nfunction getEventPosition(ev){\n  var x, y;\n  if(ev.touches) {\n\tx = ev.touches[0].pageX;\n    y = ev.touches[0].pageY;\n  }else if (ev.layerX || ev.layerX == 0) {\n    x = ev.layerX;\n    y = ev.layerY;\n  } else if (ev.offsetX || ev.offsetX == 0) { // Opera\n    x = ev.offsetX;\n    y = ev.offsetY;\n  }\n  return {x: x, y: y};\n}\nvar gameMonitor = {\n\tbgWidth: 320,\n\tbgHeight: 480,\n\tgapHeight: 100,//上下管道之间的距离\n\tgapPipe: 2500,//管道循环生成间隔 ms\n\tSpeedX: 1.5,//管道左移速度\n\tintval: 1000/60,//重绘速度  ms\n\tscore: 0,//得分\n\tbestScore: 0,\n\tlastScore: 0,\n\tid: 0,//一组管道的唯一标示\n\tpipeList: [],//管道对象的数组\n\tisCover: true,\n\tisReady: false,\n\tisControl: true,//是否可以点击暂停或运行\n\tisPause: false,//是否是暂停状态\n\ttimer: null,//整体run的定时器\n\tpipe_timer: null,//管道循环生成的定时器\n\tbird: null,\n\thandler1: null,\n\thandler2: null,\n\ts_die: null,//音效对象\n\ts_wing: null,//音效对象\n\ts_point: null,//音效对象\n\ts_hit: null,//音效对象\n\teventType: {\n\t\tstart : IsPC() ? 'mousedown' : 'touchstart'\n\t},\n\tim: new ImageMonitor(),\n\tgetTime: function() {\n\t\tvar myDate = new Date();",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:159-211"
+    },
+    "29": {
+        "file_id": 1,
+        "content": "This code handles game logic and events for a Flappy Bird-like game. It initializes variables, sets up event handlers, manages game objects (bird, pipes), controls game state (paused/running), and monitors time intervals for animation and score updates. It also manages audio effects associated with different game events.",
+        "type": "comment"
+    },
+    "30": {
+        "file_id": 1,
+        "content": "\t\treturn myDate.getHours();\n\t},//获取当前小时数，判断用白天还是黑夜背景\n\tinit: function() {\n\t\tgameMonitor.im.loadImage(['images/bg_day.png','images/bg_night.png','images/button_pause.png','images/button_resume.png','images/bird.png', 'images/tutorial.png','images/button_play.png','images/title.png','images/text_ready.png','images/pipe_down.png','images/pipe_up.png','images/score_panel.png','images/text_game_over.png']);\n\t\tvar _this = this;\n\t\tvar bg = new Image();\n\t\t_this.bg = bg;\n\t\tbg.onload = function(){\n          \tctx.drawImage(bg, 0, 0, _this.bgWidth, _this.bgHeight);          \t\n\t\t}\n\t\tif(_this.getTime() < 19 && _this.getTime() > 6) {\n\t\t\tbg.src = 'images/bg_day.png';\t\n\t\t}else {\n\t\t\tbg.src = 'images/bg_night.png';\n\t\t}\n\t\tsetTimeout(function() {\n\t\t\t_this.drawCover();\t\n\t\t},200);\n\t\t_this.initSound();\n\t\t//初始化音效\n\t\t//document.getElementsByClassName(\"author\")[0].innerHTML = navigator.userAgent;\n\t\t//开始游戏按钮监听\n\t\t_this.coverListener();\t\t\n\t},\n\tcoverListener:function() {\n\t\t_this = this;\n\t\t_this.handler2 = function(e){\n\t\t\tvar theEvent = window.event || e;",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:212-244"
+    },
+    "31": {
+        "file_id": 1,
+        "content": "The code initializes the game by loading images, setting up backgrounds based on time (day or night), drawing the background, initializing sounds, and setting up event listeners for buttons.",
+        "type": "comment"
+    },
+    "32": {
+        "file_id": 1,
+        "content": "\t\t\tvar p = getEventPosition(theEvent);\n\t\t\tif(p.x > 100 && p.x < 216 && p.y > 350 && p.y < 420) {\n\t\t\t\t_this.isControl = true;\n\t\t\t\t_this.bird = new Bird();\n\t\t\t\t_this.s_click.play();//播放音效\n\t\t\t\t_this.reset();\n\t\t\t\t_this.run();\n\t\t\t\t//循环生成管道\n\t\t\t\t_this.startPipe();\n\t\t\t\tEventUtil.removeEvent(main, _this.eventType.start,_this.handler2);//点击之后就移除该按钮点击\n\t\t\t\t_this.initListener();\t\t\t\t\n\t\t\t}\n\t\t}\n\t\tEventUtil.addEvent(main, _this.eventType.start, _this.handler2);\n\t},\n\tinitListener: function() {\n\t\tvar _this = this;\n\t\t_this.handler1 = function(e){\n\t\t\tvar theEvent = window.event || e;\n\t\t\tvar p = getEventPosition(theEvent);\n\t\t\t//判断是否点击暂停按钮\n\t\t\tif(p.x > 270 && p.x < 296 && p.y > 20 && p.y < 48) {\n\t\t\t\tif(_this.isControl == true) {\n\t\t\t\t\tif(_this.isPause == false) {\n\t\t\t\t\t\t_this.s_click.play();\n\t\t\t\t\t\t_this.isPause = true;\n\t\t\t\t\t\tsetTimeout(function() {\t\t\t\t\t\n\t\t\t\t\t\t\tgameMonitor.stop();\t\n\t\t\t\t\t\t\tgameMonitor.drawPause(_this.isPause);\t\t\t\t\t\n\t\t\t\t\t\t},1000/60);\t\n\t\t\t\t\t}else {\n\t\t\t\t\t\t_this.s_click.play();\n\t\t\t\t\t\t_this.isPause = false;\n\t\t\t\t\t\tgameMonitor.run();\n\t\t\t\t\t\tgameMonitor.startPipe();",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:245-290"
+    },
+    "33": {
+        "file_id": 1,
+        "content": "This code handles the logic for pausing and resuming the game when the player clicks a pause button. It checks if the click is within the specified coordinates, toggles the pause state, plays a sound effect, and updates the game accordingly.",
+        "type": "comment"
+    },
+    "34": {
+        "file_id": 1,
+        "content": "\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}else {\n\t\t\t\t_this.s_wing.play();//播放音效\n\t\t\t\t_this.bird.reset();//清空上次点击事件\n\t\t\t\t_this.bird.setPosition();//鸟进行位移\n\t\t\t\t_this.bird.g = 1;//重置g\t\n\t\t\t}\n\t\t};\n\t\tEventUtil.addEvent(main, _this.eventType.start, _this.handler1);\n\t},\n\trun: function() {\n\t\tvar _this = this;\n\t\tctx.clearRect(0, 0, _this.bgWidth, _this.bgHeight);\n\t\t_this.drawBg();//绘制背景\n\t\t//循环绘制管道数组\n\t\tfor(var i = 0,l = this.pipeList.length;i < l;i++) {\n\t\t\tvar p = _this.pipeList[i];\n\t\t\tif(p){\n\t\t\t\tp.draw();\n\t\t\t\tp.move();\n\t\t\t}\n\t\t}\n\t\t//暂停开关控制\t\t\n\t\t_this.drawPause(_this.isPause);\n\t\t//分数\n\t\t_this.drawScore(_this.score,50,140,100,'#fff');\t\n\t\t//绘制鸟\n\t\t_this.bird.draw();//重绘鸟\n\t\t_this.bird.gravity();\n\t\t//碰撞检测\n\t\t_this.bird.isCollision(_this.pipeList);\n\t\t_this.timer = setTimeout(function() {\n\t\t\t_this.run();\n\t\t},_this.intval);\n\t\t//requestAnimationFrame(_this.run(ctx));\t\n\t},\n\t//初始化音效\n\tinitSound: function() {\n\t\tthis.s_click = new Audio(\"sound/sfx_point.ogg\");\n\t\tthis.s_wing = new Audio(\"sound/sfx_wing.ogg\");\n\t\tthis.s_point = new Audio(\"sound/sfx_point.ogg\");\n\t\tthis.s_hit = new Audio(\"sound/sfx_hit.ogg\");",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:291-341"
+    },
+    "35": {
+        "file_id": 1,
+        "content": "This code is responsible for the game loop and event handling in a Flappy Bird-like game. It handles the bird's movement, background drawing, pipe drawing and movement, pause button functionality, score display, and sound effects. The event handler listens to user actions and reacts accordingly.",
+        "type": "comment"
+    },
+    "36": {
+        "file_id": 1,
+        "content": "\t},\n\t//开始循环生成管道\n\tstartPipe: function() {\n\t\tvar _this = this;\n\t\t_this.pipe_timer = setInterval(function() {\n\t\t\tvar id = _this.pipeList.length;\n\t\t\t_this.drawPipe(id);\n\t\t},_this.gapPipe);\t\n\t},\n\t//绘制背景\n\tdrawBg: function() {\n\t\tctx.drawImage(this.bg, 0, 0, this.bgWidth, this.bgHeight);\n\t},\n\tdrawPipe: function(id) {\n\t\tvar p = new Pipe(id);\n\t\tthis.pipeList.push(p);\n\t},\n\t//绘制封面\n\tdrawCover: function() {\n\t\tsetTimeout(function() {\n\t\t\tctx.drawImage(gameMonitor.im.createImage(\"images/title.png\"), 80, 100, 178, 48);\n\t\t\tctx.drawImage(gameMonitor.im.createImage(\"images/button_play.png\"), 100, 350, 116, 70);\n\t\t\tctx.drawImage(gameMonitor.im.createImage(\"images/tutorial.png\"), 100, 200, 114, 98);\n\t\t},1000/60);\t\n\t},\n\t//绘制得分\n\tdrawScore: function(score, fontSize, left, top, color) {\n\t\tctx.save();\n\t\tctx.font = \"Bold \"+ fontSize +\"px Arial\";\n\t\tctx.textAlign = \"left\";\n\t\tctx.fillStyle = color;\n\t\tctx.shadowOffsetX = 3; // 设置水平位移\n\t\tctx.shadowOffsetY = 3; // 设置垂直位移\n\t\tctx.shadowBlur = 3; // 设置模糊度\n\t\tctx.shadowColor = \"black\"; // 设置阴影颜色\n\t\tctx.fillText(score,left,top);",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:342-380"
+    },
+    "37": {
+        "file_id": 1,
+        "content": "This code contains several functions related to game rendering and management. It starts a pipe generation loop, draws the background, handles drawing pipes, covers with an image, displays score, and applies text formatting for scores including shadows.",
+        "type": "comment"
+    },
+    "38": {
+        "file_id": 1,
+        "content": "\t\tctx.restore();\n\t},\n\tgameOver: function() {\n\t\tvar _this = this;\n\t\t_this.isControl = false;//游戏结束后不可以点击暂停或运行\n\t\t//更新最高分\n\t\t_this.s_hit.play();//播放音效\n\t\tsetTimeout(function() {\n\t\t\tgameMonitor.stop();\n\t\t\tgameMonitor.drawGameOver();\n\t\t\tsetTimeout(function() {\n\t\t\t\tgameMonitor.drawBg();\n\t\t\t\tctx.drawImage(gameMonitor.im.createImage(\"images/title.png\"), 80, 100, 178, 48);\n\t\t\t\tgameMonitor.drawScorePanel();\n\t\t\t\tgameMonitor.drawMedal();\n\t\t\t\tgameMonitor.drawScore(_this.score,20,230,250,'#fff');\n\t\t\t\tgameMonitor.drawScore(_this.bestScore,20,230,295,'#fff');\n\t\t\t\tctx.drawImage(gameMonitor.im.createImage(\"images/button_play.png\"), 100, 350, 116, 70);\n\t\t\t\tif(_this.bestScore < _this.score) {\n\t\t\t\t\t_this.bestScore = _this.score;\n\t\t\t\t}\n\t\t\t\t_this.lastScore = _this.score;\n\t\t\t\tEventUtil.removeEvent(main, _this.eventType.start, _this.handler1);\n\t\t\t\tEventUtil.addEvent(main, _this.eventType.start, _this.handler2);\n\t\t\t},1000);\n\t\t},1000/60);//无解\n\t},\n\t//绘制gameover\n\tdrawGameOver: function() {\n\t\tctx.drawImage(gameMonitor.im.createImage('images/text_game_over.png'), 50, 200, 204, 54);",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:381-413"
+    },
+    "39": {
+        "file_id": 1,
+        "content": "The code snippet contains a gameOver function that stops the game, draws game over screen elements, and updates high scores. It also changes controls to prevent further gameplay, drawing the game over text image, and plays an audio effect. After a delay, it restores the background and redraws other elements. It switches event handlers for the start button as well.",
+        "type": "comment"
+    },
+    "40": {
+        "file_id": 1,
+        "content": "\t},\n\t//绘制暂停按钮\n\tdrawPause: function(bol) {\n\t\tif(bol == false) {\n\t\t\tctx.drawImage(gameMonitor.im.createImage('images/button_pause.png'), 270, 20, 26, 28);\n\t\t}else {\n\t\t\tctx.drawImage(gameMonitor.im.createImage('images/button_resume.png'), 270, 20, 26, 28);\n\t\t}\t\n\t},\n\t//绘制分数牌\n\tdrawScorePanel: function() {\n\t\tctx.drawImage(gameMonitor.im.createImage('images/score_panel.png'), 45, 200, 238, 126);\n\t},\n\t//绘制奖牌\n\tdrawMedal: function() {\n\t\tvar _this = this;\n\t\t//判断游戏结束时给哪个奖牌\n\t\tif(_this.score > _this.bestScore) {\n\t\t\tctx.drawImage(gameMonitor.im.createImage('images/medals_1.png'), 76, 245, 44, 44);\n\t\t}else if(_this.score > _this.lastScore && _this.score > 20) {\n\t\t\tctx.drawImage(gameMonitor.im.createImage('images/medals_2.png'), 76, 245, 44, 44);\n\t\t}else if(_this.score > 10) {\n\t\t\tctx.drawImage(gameMonitor.im.createImage('images/medals_3.png'), 76, 245, 44, 44);\n\t\t}else {\n\t\t\tctx.drawImage(gameMonitor.im.createImage('images/medals_0.png'), 76, 245, 44, 44);\n\t\t}\t\n\t},\n\t//停止run方法的递归调用\n\tstop: function() {\n\t\tvar _this = this;\n\t\tsetTimeout(function(){",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:414-446"
+    },
+    "41": {
+        "file_id": 1,
+        "content": "This code defines various functions for drawing pause buttons, score panels, and medals in a game. The \"stop\" function is used to stop the recursive calling of the run method by using setTimeout.",
+        "type": "comment"
+    },
+    "42": {
+        "file_id": 1,
+        "content": "\t\t\tclearTimeout(_this.timer);\n\t\t\tclearTimeout(_this.pipe_timer);\t\t\n\t\t}, 0);\n\t},\n\treset: function() {\n\t\tthis.pipeList = [];\n\t\tthis.score = 0;\n\t\tthis.timer = null;\n\t\tthis.pipe_timer = null;\n\t}\n}\ngameMonitor.init();",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/js/game.js:447-458"
+    },
+    "43": {
+        "file_id": 1,
+        "content": "The code clears the timeout for the game's timer and pipe movement timer when paused, resets the game by clearing the pipe list, resetting score to 0, and nullifying timers on initiation of the game monitor.",
+        "type": "comment"
+    },
+    "44": {
+        "file_id": 2,
+        "content": "/bootstrap/FlappyBird/readme.md",
+        "type": "filepath"
+    },
+    "45": {
+        "file_id": 2,
+        "content": "FlappyBird version2.0: Native JS canvas game with sound added; includes demo images and online DEMO link; currently being optimized; original work by PJY on Cat666.com.",
+        "type": "summary"
+    },
+    "46": {
+        "file_id": 2,
+        "content": "## FlappyBird version2.0##\n### 原生js实现的canvas小游戏 ###\n----------\n### 2.0版本增加音效~ ###\n----------\n截图：\n----------\n![demo1][1]\n![demo2][2]\n----------\n### 在线DEMO ###\n[DEMO试玩][3]\n  [1]: http://www.cat666.com/mydemo/FlappyBird/demo1.jpg\n  [2]: http://www.cat666.com/mydemo/FlappyBird/demo2.jpg\n  [3]: http://www.cat666.com/mydemo/FlappyBird/index.html\n----------\n原生js配合canvas实现的小游戏\n正在优化中~\n----------\n>转载请保留版权信息\n>\n>作者:PJY\n>\n>新浪微博:猫溜网",
+        "type": "code",
+        "location": "/bootstrap/FlappyBird/readme.md:1-40"
+    },
+    "47": {
+        "file_id": 2,
+        "content": "FlappyBird version2.0: Native JS canvas game with sound added; includes demo images and online DEMO link; currently being optimized; original work by PJY on Cat666.com.",
+        "type": "comment"
+    },
+    "48": {
+        "file_id": 3,
+        "content": "/bootstrap/blitx/COMSEED_aarch64",
+        "type": "filepath"
+    },
+    "49": {
+        "file_id": 3,
+        "content": "The code lists various UNIX/Linux command-line utilities and tools for tasks like system configuration, file manipulation, network operations, debugging etc., each serving a specific purpose in the command line environment. These commands are likely part of a larger software package or distribution.",
+        "type": "summary"
+    },
+    "50": {
+        "file_id": 3,
+        "content": "2to3-2.7\n2to3-3.8\n7z\n7za\n7zr\naclocal\naclocal-1.16\naddgnupghome\naddpart\naddr2line\nam\napplygnupgdefaults\napt\napt-cache\napt-config\napt-get\napt-key\napt-mark\nar\narp\nas\nattr\nautoconf\nautoheader\nautom4te\nautomake\nautomake-1.16\nautomat-visualize\nautopoint\nautoreconf\nautoscan\nautoupdate\naxel\nbash\nbc\nbison\nblkdiscard\nblkid\nblkzone\nblockdev\nbzdiff\nbzgrep\nbzip2\nbzip2recover\nbzmore\nc++filt\ncairo-trace\ncal\ncapsh\ncftp\nchcpu\nchoom\nchrt\nchsh\nckeygen\nclang-10\nclang-apply-replacements\nclang-change-namespace\nclang-check\nclang-doc\nclang-extdef-mapping\nclang-format\nclang-include-fixer\nclang-move\nclang-offload-bundler\nclang-query\nclang-refactor\nclang-rename\nclang-reorder-fields\nclang-scan-deps\nclang-tidy\nclangd\nclear\ncmake\ncmd\ncmp\ncol\ncolcrt\ncolrm\ncolumn\nconch\ncorelist\ncoreutils\ncpack\ncpan\ncpp-8\ncroco-0.6-config\ncsslint-0.6\nctest\nctrlaltdel\ncurl\ncurl-config\ncurve_keygen\ndalvikvm\ndash\ndc\ndelpart\ndemandoc\ndf\ndiagtool\ndialog\ndiff\ndiff3\ndirmngr\ndirmngr-client\ndmesg\ndmsetup\ndnsdomainname\ndos2unix\ndpkg\ndpkg-deb\ndpkg-divert\ndpkg-query\ndpkg-realpath\ndpkg-split\ndpkg-trigger\ndsymutil\ndumpsexp\ndwp\neasy_install\neasy_install-2.7\neasy_install-3.8",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_aarch64:1-122"
+    },
+    "51": {
+        "file_id": 3,
+        "content": "This code snippet lists various utilities and libraries, including programming languages (e.g., C++, Python), development tools (e.g., cmake, autoconf), system utilities (e.g., bash, dpkg), and others (e.g., curl, gnuplot). These are part of a codebase in a specific location (\"lazero/bootstrap/blitx/COMSEED_aarch64\") and likely serve various purposes such as compiling, debugging, or running scripts.",
+        "type": "comment"
+    },
+    "52": {
+        "file_id": 3,
+        "content": "ed\negrep\nelfedit\nelinks\nenc2xs\nencguess\nenvsubst\nfallocate\nfed\nfgrep\nfincore\nfind\nfind-all-symbols\nfindfs\nfish\nfish_indent\nfish_key_reader\nflex\nflock\nfree\nfreetype-config\nfribidi\nfsck.cramfs\nfsck.minix\nfsfreeze\nftp\nfunzip\nfuser\ng++-8\ngapplication\ngawk\ngcc\ngcc-8\ngcov-8\ngcov-dump-8\ngcov-tool-8\ngdbm_dump\ngdbm_load\ngdbmtool\ngdbus\ngdbus-codegen\ngdk-pixbuf-csource\ngdk-pixbuf-pixdata\ngdk-pixbuf-query-loaders\ngetcap\ngetfattr\ngetopt\ngetpcaps\ngetprop\ngettext\ngettext.sh\ngettextize\ngfortran-8\ngio\ngio-querymodules\ngit-clang-format\nglib-compile-resources\nglib-compile-schemas\nglib-genmarshal\nglib-mkenums\ngobject-query\ngperf\ngpg\ngpg-agent\ngpg-connect-agent\ngpg-error\ngpg-error-config\ngpgconf\ngpgme-config\ngpgme-json\ngpgme-tool\ngpgparsemail\ngpgrt-config\ngpgscm\ngpgsm\ngpgtar\ngpgv\ngprof\ngrep\ngresource\ngsettings\ngtester\ngunzip\ngzexe\ngzip\nh2ph\nh2xs\nhardlink\nhexdump\nhmac256\nhmaptool\nhostname\nhwclock\nidn2\nifconfig\nifnames\ninfocmp\ninstmodsh\nionice\nip\nipmaddr\niptunnel\nischroot\nisosize\njson_pp\nkbxutil\nkillall\nksba-config\nld\nldattach\nldd\nless\nlessecho\nlesskey\nlibassuan-config\nlibgcrypt-config\nlibnetcfg\nlibpng16-config\nlibtool\nlibtoolize",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_aarch64:123-242"
+    },
+    "53": {
+        "file_id": 3,
+        "content": "ed - GNU editor for editing script files\negrep - GNU grep with extended regular expression capabilities\nelfedit - command-line ELF editor\nelinks - text-mode web browser and offline IME mode support\nenc2xs - Converts Encoding to XS, a Perl module\nencguess - guess encodings from given data\nenvsubst - Substitutes environment variables into a template string\nfallocate - Allocate or Truncate a File\nfed - Fast efficient downloader with HTTP 1.1 support\nfgrep - search for fixed strings in files\nfincore - Find the largest file in directory and its core dumps\nfind - Find files and directories according to given patterns",
+        "type": "comment"
+    },
+    "54": {
+        "file_id": 3,
+        "content": "links\nlocate\nlogcat\nlogger\nlogin\nlook\nlosetup\nlscpu\nlsipc\nlsof\nltrace\nlzmadec\nlzmainfo\nm4\nmailmail\nmake\nmandoc\nmcookie\nmeson\nmii-tool\nmkfs\nmkfs.bfs\nmkfs.cramfs\nmkfs.minix\nmkswap\nmodularize\nmore\nmount\nmpicalc\nmsgattrib\nmsgcat\nmsgcmp\nmsgcomm\nmsgconv\nmsgen\nmsgexec\nmsgfilter\nmsgfmt\nmsggrep\nmsginit\nmsgmerge\nmsgunfmt\nmsguniq\nnamei\nnameif\nnano\nncat\nncursesw6-config\nnetstat\nngettext\nninja\nnm\nnpth-config\nnsenter\nobjcopy\nobjdump\npango-list\npango-view\npartx\npatch\npcre-config\npcre2-config\npeekfd\nperl\nperlbug\nperldoc\nperlivp\nperlthanks\npgrep\npiconv\npidof\npinentry-curses\nping\nping6\npip\npip2\npip2.7\npip3\npip3.8\npkg\npkg-config\npkill\npl2pm\nplipconfig\npm\npmap\npod2html\npod2man\npod2text\npod2usage\npodchecker\npp-trace\nprlimit\nproot\nprove\nprtstat\nps\npslog\npstree\nptar\nptardiff\nptargrep\npwdx\npydoc2.7\npydoc3.8\npyhtmlizer\npython2.7\npython2.7-config\npython3.8\npython3.8-config\nranlib\nrarp\nreadelf\nreadprofile\nrecode-sr-latin\nred\nrename\nrenice\nresizepart\nrev\nrg\nrhash\nroute\nrsvg-convert\nrtcwake\nrun-parts\nrunc\nsavelog\nscan-build\nscan-view\nscmp_sys_resolver\nscreenfetch\nscript\nscriptlive\nscriptreplay\nsdiff\nsed\nsetarch\nsetcap\nsetfattr\nsetsid\nsetterm\nsettings\nsetup-patchforgcc",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_aarch64:243-386"
+    },
+    "55": {
+        "file_id": 3,
+        "content": "Links, locate, logcat, logger: Utilities for interacting with system files and commands.\nlogin, look: Commands to access user authentication or search directories respectively.\nlosetup, lscpu, lsipc, lsof, ltrace: Various utilities to interact with the kernel and file systems.\nlzmadec, lzmainfo: Utilities for working with LZMA compressed files.\nmake, mandoc, mcookie: Build and documentation generation tools.\nmeson: A modern build system for multiple platforms and languages.\nmii-tool, mkfs, mkfs.bfs, etc: File system management utilities.\nmount, mpicalc: Utilities for mounting and basic calculations.\nmsgattrib, msgcat, msgcmp, etc: Text processing and conversion tools.\nnamei, nameif: Tools to display information about files and network interfaces.\nnano: A simple text editor for quick edits.\nnetstat, ngettext: Network status and internationalization utilities.\nobjcopy, objdump: Utilities to manipulate object code (binary) files.\nproot, prove: Tools for running processes in a chrooted environment or testing Perl modules respectively.\nprlimit, procs: Resource management tools.\npydoc2.7, pydoc3.8: Documentation generation tools for Python 2.7 and 3.8 respectively.\npython2.7, python3.8, python2.7-config, python3.8-config: Tools to interact with the respective versions of Python.",
+        "type": "comment"
+    },
+    "56": {
+        "file_id": 3,
+        "content": "setupclang\nsetupclang-gfort-10\nsetupclang-gfort-8\nsetupclang-gfort-9\nsetupgcc-10\nsetupgcc-8\nsetupgcc-9\nshasum\nsize\nslattach\nsoelim\nsplain\nstart-stop-daemon\nstrace\nstrace-log-merge\nstreamzip\nstrings\nstrip\nsu\nswaplabel\nsysctl\ntabs\ntar\ntaskset\ntelnet\ntempfile\ntermux-change-repo\ntermux-chroot\ntermux-fix-shebang\ntermux-info\ntermux-open\ntermux-open-url\ntermux-reload-settings\ntermux-reset\ntermux-setup-storage\ntermux-wake-lock\ntermux-wake-unlock\ntftp\ntic\ntkconch\ntload\ntoe\ntop\ntput\ntrial\ntset\ntsu\ntwist\ntwistd\nul",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_aarch64:387-436"
+    },
+    "57": {
+        "file_id": 3,
+        "content": "This code appears to be a list of various command line tools and utilities, such as setupclang, shasum, size, slattach, soelim, splain, start-stop-daemon, strace, strace-log-merge, streamzip, strings, strip, su, swaplabel, sysctl, tabs, tar, taskset, telnet, tempfile, termux-change-repo, termux-chroot, termux-fix-shebang, termux-info, termux-open, termux-open-url, termux-reload-settings, termux-reset, termux-setup-storage, termux-wake-lock, termux-wake-unlock, tftp, tic, tkconch, tload, toe, top, tput, trial, tset, tsu, twist, twistd, ul. Each of these tools serves a specific purpose in the command line environment and can be used for various tasks like system configuration, file manipulation, network operations, debugging, etc.",
+        "type": "comment"
+    },
+    "58": {
+        "file_id": 3,
+        "content": "umount\nuncompress\nunix2dos\nunshare\nunzip\nunzipsfx\nupdate-alternatives\nupdatedb\nuptime\nvim\nvimtutor\nvmstat\nwatch\nwatchgnupg\nwdctl\nwget\nwhereis\nwhich\nwhois\nwipefs\nxargs\nxgettext\nxml2-config\nxsubpp\nxxd\nxz\nxzdec\nxzdiff\nxzgrep\nxzless\nxzmore\nyacc\nyat2m\nzcat\nzcmp\nzdiff\nzegrep\nzfgrep\nzforce\nzgrep\nzipdetails\nzipgrep\nzless\nzmore\nznew\nzramctl\nzstd\nzstdgrep\nzstdless",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_aarch64:437-485"
+    },
+    "59": {
+        "file_id": 3,
+        "content": "This code appears to be a list of various UNIX/Linux command-line utilities and tools. It covers general utilities (umount, wget), file compression/decompression (unzip, unxz), text editing and formatting (vim, xgettext), system monitoring (vmstat, watch), and more specialized tasks (wdctl, zstd). These commands are likely part of a larger software package or distribution.",
+        "type": "comment"
+    },
+    "60": {
+        "file_id": 4,
+        "content": "/bootstrap/blitx/COMSEED_x86_64",
+        "type": "filepath"
+    },
+    "61": {
+        "file_id": 4,
+        "content": "This code lists software packages for Linux systems, including package managers, database tools, network security testing tools, and utilities for file management, data analysis, system maintenance, and operating system detection. The comments showcase Unix-like command line utilities used by developers and system administrators available in the \"lazero/bootstrap/blitx/COMSEED_x86_64\" directory under Linux command-line tasks like managing files and settings.",
+        "type": "summary"
+    },
+    "62": {
+        "file_id": 4,
+        "content": "[\n0trace.sh\n2to3-2.7\n411toppm\n4ti2-circuits\n4ti2-genmodel\n4ti2-gensymm\n4ti2-graver\n4ti2-groebner\n4ti2-hilbert\n4ti2-markov\n4ti2-minimize\n4ti2-normalform\n4ti2-output\n4ti2-ppi\n4ti2-qsolve\n4ti2-rays\n4ti2-walk\n4ti2-zbasis\n4ti2-zsolve\n7z\n7za\n7zr\na2enmod\na2query\naa-enabled\naa-exec\naa-remove-unknown\naa-status\naa-teardown\nab\nacccheck\naccessdb\nace-voip\nacl2\naclocal-1.16\nactivate-global-python-argcomplete\nacyclic\nadd-apt-repository\naddgnupghome\naddpart\nadd-shell\nadduser\nafex\naffcat\naffcompare\naffconvert\naffcopy\naffcrypto\naffdiskprint\naffinfo\naffix\naffrecover\naffsegment\naffsign\naffstats\naffuse\naffverify\naffxml\nafm2pl\nafm2tfm\nag\nagetty\nairbase-ng\naircrack-ng\nairdecap-ng\nairdecloak-ng\naireplay-ng\nairmon-ng\nairodump-ng\nairodump-ng-oui-update\nairolib-ng\nairserv-ng\nairtun-ng\nairventriloquist-ng\nal\nal2\nalacritty\naleph\nalex\namap\namapcrap\nambiguous_words\nanacron\nanimate-im6.q16\nantlr3.2\nanytopnm\napache2\napache2ctl\napache-users\napg\napgbfm\napktool\napparmor_parser\napplygnupgdefaults\nappres\nappstreamcli\naprofutil\napt\napt-cache\napt-cdrom\napt-config\napt-extracttemplates\napt-file\napt-ftparchive\napt-get\napt-key\napt-listchanges",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1-108"
+    },
+    "63": {
+        "file_id": 4,
+        "content": "The code includes a list of various software packages and utilities, organized in folders and subfolders. These are likely different components or tools used for diverse programming tasks, system management, networking, and more.",
+        "type": "comment"
+    },
+    "64": {
+        "file_id": 4,
+        "content": "apt-mark\napt-sortpkgs\narangobench\narangod\narangodb\narangodump\narangoexport\narangoimport\narangorestore\narangosh\narangovpack\narch\naria2c\naria_chk\naria_dump_log\naria_ftdump\naria_pack\naria_read_log\narj\narjdisp\narj-register\narmitage\narm-linux-gnueabi-addr2line\narm-linux-gnueabi-ar\narm-linux-gnueabi-as\narm-linux-gnueabi-c++filt\narm-linux-gnueabi-cpp-9\narm-linux-gnueabi-dwp\narm-linux-gnueabi-elfedit\narm-linux-gnueabi-gcc-9\narm-linux-gnueabi-gcc-ar-9\narm-linux-gnueabi-gcc-nm-9\narm-linux-gnueabi-gcc-ranlib-9\narm-linux-gnueabi-gcov-9\narm-linux-gnueabi-gcov-dump-9\narm-linux-gnueabi-gcov-tool-9\narm-linux-gnueabi-gprof\narm-linux-gnueabihf-addr2line\narm-linux-gnueabihf-ar\narm-linux-gnueabihf-as\narm-linux-gnueabihf-c++filt\narm-linux-gnueabihf-cpp-9\narm-linux-gnueabihf-dwp\narm-linux-gnueabihf-elfedit\narm-linux-gnueabihf-gcc-9\narm-linux-gnueabihf-gcc-ar-9\narm-linux-gnueabihf-gcc-nm-9\narm-linux-gnueabihf-gcc-ranlib-9\narm-linux-gnueabihf-gcov-9\narm-linux-gnueabihf-gcov-dump-9\narm-linux-gnueabihf-gcov-tool-9\narm-linux-gnueabihf-gprof\narm-linux-gnueabihf-ld.bfd",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:109-161"
+    },
+    "65": {
+        "file_id": 4,
+        "content": "List of various command-line tools and binaries, including package managers (apt), database utilities (arangodump, arangoimport), compiler tools for ARM architecture (arm-linux-gnueabi, arm-linux-gnueabihf), and profiling tools (gprof).",
+        "type": "comment"
+    },
+    "66": {
+        "file_id": 4,
+        "content": "arm-linux-gnueabihf-ld.gold\narm-linux-gnueabihf-nm\narm-linux-gnueabihf-objcopy\narm-linux-gnueabihf-objdump\narm-linux-gnueabihf-ranlib\narm-linux-gnueabihf-readelf\narm-linux-gnueabihf-size\narm-linux-gnueabihf-strings\narm-linux-gnueabihf-strip\narm-linux-gnueabi-ld.bfd\narm-linux-gnueabi-ld.gold\narm-linux-gnueabi-nm\narm-linux-gnueabi-objcopy\narm-linux-gnueabi-objdump\narm-linux-gnueabi-ranlib\narm-linux-gnueabi-readelf\narm-linux-gnueabi-size\narm-linux-gnueabi-strings\narm-linux-gnueabi-strip\narm-none-eabi-addr2line\narm-none-eabi-ar\narm-none-eabi-as\narm-none-eabi-c++\narm-none-eabi-c++filt\narm-none-eabi-cpp\narm-none-eabi-elfedit\narm-none-eabi-g++\narm-none-eabi-gcc\narm-none-eabi-gcc-8.3.1\narm-none-eabi-gcc-ar\narm-none-eabi-gcc-nm\narm-none-eabi-gcc-ranlib\narm-none-eabi-gcov\narm-none-eabi-gcov-dump\narm-none-eabi-gcov-tool\narm-none-eabi-gprof\narm-none-eabi-ld\narm-none-eabi-ld.bfd\narm-none-eabi-nm\narm-none-eabi-objcopy\narm-none-eabi-objdump\narm-none-eabi-ranlib\narm-none-eabi-readelf\narm-none-eabi-size\narm-none-eabi-strings\narm-none-eabi-strip\narp",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:162-208"
+    },
+    "67": {
+        "file_id": 4,
+        "content": "The code is listing various binary utilities for different architectures (arm-linux-gnueabihf, arm-linux-gnueabi, arm-none-eabi) used in the build process. These utilities are essential tools for tasks like linking, debugging, and analyzing binary files, and they support different architectures to cater to diverse platforms.",
+        "type": "comment"
+    },
+    "68": {
+        "file_id": 4,
+        "content": "arp2ethers\narpd\narpfetch\narp-fingerprint\narping\narp-scan\narpsnmp\narpspoof\narpwatch\nas10k1\nasan_symbolize-9\nasciitopgm\nascii-xfr\nasleap\naspell\naspell-autobuildhash\naspell-import\nasp-state4\nass\nastraceroute\natftpd\natk6-address6\natk6-alive6\natk6-connect6\natk6-connsplit6\natk6-covert_send6\natk6-covert_send6d\natk6-denial6\natk6-detect-new-ip6\natk6-detect_sniffer6\natk6-dnsdict6\natk6-dnsrevenum6\natk6-dnssecwalk\natk6-dos-new-ip6\natk6-dump_dhcp6\natk6-dump_router6\natk6-exploit6\natk6-extract_hosts6\natk6-extract_networks6\natk6-fake_advertise6\natk6-fake_dhcps6\natk6-fake_dns6d\natk6-fake_dnsupdate6\natk6-fake_mipv6\natk6-fake_mld26\natk6-fake_mld6\natk6-fake_mldrouter6\natk6-fake_pim6\natk6-fake_router26\natk6-fake_router6\natk6-fake_solicitate6\natk6-firewall6\natk6-flood_advertise6\natk6-flood_dhcpc6\natk6-flood_mld26\natk6-flood_mld6\natk6-flood_mldrouter6\natk6-flood_redir6\natk6-flood_router26\natk6-flood_router6\natk6-flood_rs6\natk6-flood_solicitate6\natk6-flood_unreach6\natk6-four2six\natk6-fragmentation6\natk6-fragrouter6\natk6-fuzz_dhcpc6\natk6-fuzz_dhcps6\natk6-fuzz_ip6\natk6-implementation6",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:209-278"
+    },
+    "69": {
+        "file_id": 4,
+        "content": "This code appears to be a list of various tools and scripts related to network security testing, specifically targeting IPv6 protocol. Each item in the list represents a different tool or attack technique, such as arpspoof for ARP spoofing or atk6-fake_advertise6 for advertising fake IPv6 routers.",
+        "type": "comment"
+    },
+    "70": {
+        "file_id": 4,
+        "content": "atk6-implementation6d\natk6-inject_alive6\natk6-inverse_lookup6\natk6-kill_router6\natk6-ndpexhaust26\natk6-ndpexhaust6\natk6-node_query6\natk6-parasite6\natk6-passive_discovery6\natk6-randicmp6\natk6-redir6\natk6-redirsniff6\natk6-rsmurf6\natk6-sendpees6\natk6-sendpeesmp6\natk6-smurf6\natk6-thcping6\natk6-thcsyn6\natk6-toobig6\natk6-toobigsniff6\natk6-trace6\natktopbm\natmel_fwl\natobm\nATR_analysis\nattr\nautoconf\nautogen\nautoheader\nautom4te\nautomake-1.16\nautomater\nautomat-visualize\nautomat-visualize3\nautoopts-config\nautopoint\nautopsy\nautoreconf\nautoscan\nautosp\nautoupdate\navahi-daemon\naxel\naxohelp\nb2sum\nb43-fwcutter\nbackdoor-factory\nbadblocks\nbaksmali\nbaobab\nbase32\nbase64\nbasename\nbash\nbashbug\nbbqsql\nbc\nbccmd\nbcomps\nbdf_proxy\nbdftopcf\nbdftruncate\nbed\nbeef\nbeef-xss\nbeef-xss-stop\nbesside-ng\nbesside-ng-crawler\nbgrep\nbibtex8\nbibtex.original\nbibtexu\nbihourly\nbin2c\nbinwalk\nbioradtopgm\nbiosdecode\nbitlocker2john\nbitmap\nblack\nblackd\nBlindElephant.py\nblkcalc\nblkcat\nblkdeactivate\nblkdiscard\nblkid\nblkls\nblkstat\nblkzone\nblockdev\nbluelog\nbluemoon\nblueranger\nbluesnarfer\nbluetoothctl\nbluetooth-sendto\nbmptopnm\nbmtoa\nbnd\nboltctl",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:279-379"
+    },
+    "71": {
+        "file_id": 4,
+        "content": "The code contains various tool and module names, presumably related to network security testing or analysis. Some examples include \"atk6-implementation6d\", which is likely a network attack implementation, and \"autoreconf\", a utility for automating the configuration process. The code appears to be part of a larger software package, potentially involving multiple tools and utilities.",
+        "type": "comment"
+    },
+    "72": {
+        "file_id": 4,
+        "content": "bombardment\nbootctl\nbpfc\nbraa\nbridge\nbroadwayd\nbrushtopbm\nbsd-from\nbsd-write\nbtattach\nbtmgmt\nbtmon\nbtscanner\nbuddy-ng\nbuildah\nbulk_extractor\nbully\nbundle\nbundle2.7\nbundler\nbundler2.7\nbunzip2\nburpsuite\nbusctl\nbusybox\nbwrap\nbzcat\nbzdiff\nbzexe\nbzgrep\nbzip2\nbzip2recover\nbzmore\nc\nc89-gcc\nc99-gcc\ncabal\ncabextract\ncaca-config\ncachedump\ncadaver\ncalc_stat\ncalc_tickadj\ncalendar\ncamlp4\ncamlp4boot\ncamlp4o\ncamlp4of\ncamlp4of.opt\ncamlp4oof\ncamlp4oof.opt\ncamlp4o.opt\ncamlp4orf\ncamlp4orf.opt\ncamlp4prof\ncamlp4r\ncamlp4rf\ncamlp4rf.opt\ncamlp4r.opt\ncancel\ncapinfos\ncapsh\ncaptype\ncardos-tool\ncardselect.py\ncargo\ncargo-clippy\ncargo-fmt\ncargo-miri\ncargo-stable\ncaribou-preferences\ncas_help\ncaspol\ncat\nCAT\ncatchsegv\ncatman\ncccheck\nccomps\nccrewrite\ncct\ncd-create-profile\ncddexec\ncddexec_gmp\ncd-fix-profile\ncd-iccdump\ncd-it8\ncdp\ncdpsnarf\ncec-compliance\ncec-ctl\ncec-follower\ncert2spc\ncertmgr\ncert-sync\ncewl\ncfdisk\ncftp3\ncgdisk\ncge.pl\ncgpt\nchacl\nchage\nChAP.py\nchardet2\nchardetect\nchardetect3\nchat\nchattr\nchcon\nchcpu\ncheck_forensic\ncheckgid\ncheckinstall\ncherrytree\nchfn\nchgpasswd\nchgrp\nchirpw\nchkdvifont\nchkrootkit\nchktrust\nchmem\nchmod\nchntpw\nchoom\nchown",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:380-506"
+    },
+    "73": {
+        "file_id": 4,
+        "content": "The code contains a list of various software, utilities, and tools, likely related to different operating systems or specific tasks. These tools are used for boot management, Bluetooth management, file compression, network communication, system security, and more. The purpose of each tool may vary, but they all seem to be useful in their respective domains.",
+        "type": "comment"
+    },
+    "74": {
+        "file_id": 4,
+        "content": "chpasswd\nchromedriver\nchrome-gnome-shell\nchromeos-tpm-recovery\nchromium\nchroot\nchrt\nchsh\nchvt\ncifsdd\ncifsiostat\nciptool\ncisco-decrypt\ncisco-ocs\ncisco-torch\ncitrix\ncjpeg\nckbcomp\nckeygen\nckeygen3\ncksum\nclambc\nclamscan\nclamsubmit\nclass-11d.x\nclass-4d.x\nclass-5d.x\nclass-6d.x\nclassifier_tester\nclear\nclear_console\nclippy-driver\nclisp\nclisp-link\nclojure1.10\nclojurec1.10\nclosed_source_web_server_fuzz\ncluster\nclusterd\ncmake\ncmatrix\ncmospwd\ncmp\ncmuwmtopbm\ncntraining\ncodepage\ncodequery\ncol\ncolcrt\ncolormgr\ncolrm\ncolumn\ncolumns\ncombine_lang_model\ncombine_tessdata\ncomm\ncommands-generator\ncommix\ncompare-im6.q16\ncomposite-im6.q16\ncompress\nconch\nconch3\nconchftp\nconjure-im6.q16\ncontainerd\ncontainerd-shim\nconvert-caffe2-to-onnx\nconvert-im6.q16\nconvert-onnx-to-caffe2\ncopyq\ncopy-router-config.pl\ncopytag.py\ncoqc\ncoqchk\ncoqdep\ncoqdoc\ncoqidetop\ncoqidetop.opt\ncoq_makefile\ncoqpp\ncoqproofworker.byte\ncoqproofworker.opt\ncoqqueryworker.byte\ncoqqueryworker.opt\ncoqtacticworker.byte\ncoqtacticworker.opt\ncoq-tex\ncoqtop\ncoqtop.byte\ncoqtop.opt\ncoqwc\ncoqworkmgr\ncorelist\ncowpatty\ncp\ncpack\ncpan\ncpan5.30-i386-linux-gnu\ncpan5.30-x86_64-linux-gnu",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:507-606"
+    },
+    "75": {
+        "file_id": 4,
+        "content": "This code snippet lists various software and tools, which are likely part of a larger software package or repository. It includes utilities for web browsing (Chromium), file systems (Cifsdd, Cifsiostat), network security (cisco-decrypt, cisco-ocs), and more.",
+        "type": "comment"
+    },
+    "76": {
+        "file_id": 4,
+        "content": "cpio\ncpio-filter\ncppw\ncprepair\ncqmakedb\ncqsearch\ncracklib-check\ncracklib-format\ncracklib-packer\ncracklib-unpacker\ncramfsswap\ncrc32\ncreate-cracklib-dict\nc_rehash\ncrlupdate\ncron\ncrontab\ncrossystem\ncrun\ncrunch\ncryptcat\ncryptdisks_start\ncryptdisks_stop\ncryptoflex-tool\ncryptsetup\ncryptsetup-reencrypt\ncs2cs\ncscope\ncscope-indexer\ncsharp\ncsplit\ncsv2rdf\nctags.emacs\nctags-exuberant\nctangle\nctest\nctie\nctr\nctrlaltdel\nctwill\nctwill-refsort\nctwill-twinx\ncudafe++\ncuda-gdb\ncuda-gdbserver\ncuda-memcheck\ncuobjdump\ncupsaccept\ncupsctl\ncupstestppd\ncurl\ncurlftpfs\ncurvetun\ncut\ncutycapt\ncvt\ncvtsudoers\ncweave\ncws-11d.x\ncws-4d.x\ncws-5d.x\ncws-6d.x\ncx18-ctl\ncygdb3\ncymothoa\ncysignals-CSI\ncython3\nd2j-apk-sign\nd2j-asm-verify\nd2j-baksmali\nd2j-class-version-switch\nd2j-decrypt-string\nd2j-dex2jar\nd2j-dex2smali\nd2j-dex-recompute-checksum\nd2j-dex-weaver\nd2j_invoke\nd2j-jar2dex\nd2j-jar2jasmin\nd2j-jar-access\nd2j-jar-weaver\nd2j-jasmin2jar\nd2j-smali\nd2j-std-apk\ndaemonize\ndarkstat\ndash\ndate\ndave\ndavtest\ndawg2wordlist\ndbd\ndbilogstrip\ndbiprof\ndbiproxy\ndbsessmgr4\ndbus-cleanup-sockets\ndbus-daemon\ndbus-launch\ndbus-monitor\ndbus-run-session",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:607-707"
+    },
+    "77": {
+        "file_id": 4,
+        "content": "This code contains various utility tools and libraries, with names like cracklib, cuda, curl, cx18-ctl, and d2j. These tools are used for tasks such as cryptography, debugging, networking, and more. The purpose of each tool varies from data compression to file management and system administration.",
+        "type": "comment"
+    },
+    "78": {
+        "file_id": 4,
+        "content": "dbus-send\ndbus-update-activation-environment\ndbus-uuidgen\ndbwrap_tool\ndc3dd\ndccleancrw\ndceoversmb\ndcfldd\ndcfujigreen\ndcfujiturn\ndcfujiturn16\ndconf\ndcparse\ndcraw\ndd\nddcmon\ndd_rescue\ndeallocvt\ndebconf\ndebconf-apt-progress\ndebconf-communicate\ndebconf-copydb\ndebconf-escape\ndebconf-gettextize\ndebconf-set-selections\ndebconf-show\ndebconf-updatepo\ndebianbts\ndebian-update-rc.d\ndeb-systemd-helper\ndeb-systemd-invoke\ndebtags\ndebugfs\ndecode-dimms\ndecode-edid\ndecode_tm6000\ndecode-vaio\ndecolor\ndelaunay\ndelpart\ndeluser\ndelv\ndemotag.py\nderb\ndesktop-file-install\ndesktop-file-validate\ndetex\ndev_debug_vboot\ndevdump\ndevlink\ndev_make_keypair\ndevnag\ndex-tools\ndf\ndfkaa\ndfu-tool\ndh\ndh_auto_build\ndh_auto_clean\ndh_auto_configure\ndh_auto_install\ndh_autoreconf\ndh_autoreconf_clean\ndh_auto_test\ndh_autotools-dev_restoreconfig\ndh_autotools-dev_updateconfig\ndh_bash-completion\ndh_bugfiles\ndh_builddeb\ndh_clean\ndhclient\ndhclient-script\ndh_compress\ndhcpig\ndhcpx\ndh_dkms\ndh_doxygen\ndh_dwz\ndh_fixperms\ndh_gconf\ndh_gencontrol\ndh_gstscancodecs\ndh_icons\ndh_install\ndh_installcatalogs\ndh_installchangelogs\ndh_installcron",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:708-794"
+    },
+    "79": {
+        "file_id": 4,
+        "content": "This code contains a list of various command-line utilities and tools used in Debian-based Linux systems. The tools are related to package management, file handling, system configuration, network communication, file compression, and much more. These commands can be executed via the terminal for performing specific tasks or operations on the system.",
+        "type": "comment"
+    },
+    "80": {
+        "file_id": 4,
+        "content": "dh_installdeb\ndh_installdebconf\ndh_installdirs\ndh_installdocs\ndh_installemacsen\ndh_installexamples\ndh_installgsettings\ndh_installifupdown\ndh_installinfo\ndh_installinit\ndh_installinitramfs\ndh_installlogcheck\ndh_installlogrotate\ndh_installman\ndh_installmanpages\ndh_installmenu\ndh_installmime\ndh_installmodules\ndh_installpam\ndh_installppp\ndh_installsystemd\ndh_installsystemduser\ndh_installtex\ndh_installtmpfiles\ndh_installudev\ndh_installwm\ndh_installxfonts\ndh_installxmlcatalogs\ndh_link\ndh_lintian\ndh_listpackages\ndh_makeshlibs\ndh_md5sums\ndh_missing\ndh_movefiles\ndh_numpy\ndh_numpy3\ndh_perl\ndh_perl_dbi\ndh_perl_openssl\ndh_prep\ndh_python2\ndh_python3-ply\ndh_shlibdeps\ndh_sphinxdoc\ndh_strip\ndh_strip_nondeterminism\ndh_systemd_enable\ndh_systemd_start\ndh_testdir\ndh_testroot\ndh_ucf\ndh_update_autotools_config\ndh_usrlocal\ndh_xine\ndictstat\ndiff\ndiff3\ndiffimg\ndig\ndijkstra\ndir\ndirb\ndirb-gendict\ndirbuster\ndircolors\ndirmngr\ndirmngr-client\ndirname\ndirsplit\ndisco\ndisdvi\ndisplay-im6.q16\ndjpeg\ndkms\ndltest\ndmcs\ndmenu\ndmenu_path\ndmenu_run\ndmesg\ndmeventd\ndmg2john\ndmidecode\ndmitry\ndmsetup\ndnie-tool\ndnmap_client",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:795-882"
+    },
+    "81": {
+        "file_id": 4,
+        "content": "The code seems to be a list of different commands used for various purposes such as installing packages, managing files, creating documents, and updating configurations. Each command appears to have its unique functionality related to software installation or management tasks.",
+        "type": "comment"
+    },
+    "82": {
+        "file_id": 4,
+        "content": "dnmap_server\ndns2tcpc\ndns2tcpd\ndnschef\ndnsenum\ndnsmap\ndnsmap-bulk\ndnsmasq\ndns-rebind\ndnsrecon\ndnsspoof\ndnstap-read\ndnstracer\ndnswalk\ndocfdisk\ndoc_grammar\ndocker\ndockerd\ndocker-init\ndocker-proxy\ndoc_loadbios\ndogtail-detect-session\ndogtail-logout\ndogtail-run-headless\ndogtail-run-headless-next\ndoona\ndo_post\ndos2unix\ndot_builtins\ndotdotpwn.pl\ndotlockfile\ndotlock.mailutils\ndotty\ndoxygen\ndoxyindexer\ndoxyparse\ndoxysearch.cgi\ndpkg\ndpkg-architecture\ndpkg-buildflags\ndpkg-buildpackage\ndpkg-checkbuilddeps\ndpkg-deb\ndpkg-distaddfile\ndpkg-divert\ndpkg-genbuildinfo\ndpkg-genchanges\ndpkg-gencontrol\ndpkg-gensymbols\ndpkg-maintscript-helper\ndpkg-mergechangelogs\ndpkg-name\ndpkg-parsechangelog\ndpkg-preconfigure\ndpkg-query\ndpkg-reconfigure\ndpkg-scanpackages\ndpkg-scansources\ndpkg-shlibdeps\ndpkg-source\ndpkg-split\ndpkg-statoverride\ndpkg-trigger\ndpkg-vendor\ndpl4hydra\ndradis\ndradis-stop\ndreadnaut\ndriftnet\ndrracket\ndsniff\ndt2dv\ndtach\ndtd2rng\ndtd2xsd\ndu\ndumpcap\ndumpe2fs\ndumpexfat\ndumpiso\ndumpkeys\ndumpmscat\ndumpRSAPublicKey\ndumpzilla\ndupemap\ndv2dt\ndvi2tty\ndvibook\ndviconcat\ndvicopy\ndvihp\ndvilj\ndvilj2p\ndvilj4\ndvilj4l",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:883-977"
+    },
+    "83": {
+        "file_id": 4,
+        "content": "This code snippet contains the names of various software tools and utilities, with each name representing a different program. The names are organized alphabetically and include both common and less-known tools across a range of categories such as networking, security, text manipulation, and more.",
+        "type": "comment"
+    },
+    "84": {
+        "file_id": 4,
+        "content": "dvipdf\ndvipdft\ndvipos\ndvips\ndviselect\ndvispc\ndvisvgm\ndvitodvi\ndvitype\ndvtm\ndvtm-editor\ndvtm-pager\ndwarfdump\ndwz\ne2freefrag\ne2fsck\ne2image\ne2scrub\ne2scrub_all\ne2undo\ne4crypt\ne4defrag\neapmd5pass\neasside-ng\neatmydata\nebrowse.emacs\necho\necl\necl-config\necm\nedb\nedbrowse\nedgepaint\neditcap\neditres\neeprom.py\negk-tool\negrep\neidenv\neject\nelinks\nemacsclient.emacs\nemacs-gtk\nemail_validator\nenable_dev_usb_boot\nenc2xs\nencguess\nenchant-2\nenchant-lsmod-2\nencode_keychange\nenum4linux\nenumiax\nenv\nenvsubst\neog\neps2eps\nepstool\neptex\neqn\nerb2.7\nerlang-depends\nerubis\nescapesrc\nespeak\nestimator_ckpt_converter\netags.emacs\nethtool\nettercap\nettercap-pkexec\netterfilter\netterlog\neuptex\neventlogadm\nevince\nevince-previewer\nevince-thumbnailer\newfacquire\newfacquirestream\newfdebug\newfexport\newfinfo\newfmount\newfrecover\newfverify\nexe2hex\nexfatfsck\nexfatlabel\nexicyclog\nexif\nexifautotran\nexigrep\nexim4\nexim_checkaccess\nexim_convert4r4\nexim_dbmbuild\nexim_dumpdb\nexim_fixdb\nexim_lock\neximstats\nexim_tidydb\nexinext\nexipick\nexiqgrep\nexiqsumm\nexiv2\nexiwhat\nexpand\nexpect\nexpect_autoexpect\nexpect_autopasswd\nexpect_cryptdir\nexpect_decryptdir\nexpect_dislocate",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:978-1090"
+    },
+    "85": {
+        "file_id": 4,
+        "content": "dvipdf: Converts TeX source to PDF using DVI format.\ndvipdft: Converts TeX source to PDF using DVI format and converts to PostScript.\ndvipos: Produces a PostScript file from a TeX input file.\ndvips: Converts TeX DVI files to PostScript.\ndviselect: Selects the best DVI driver for dvips.\ndvispc: Converts DVI files to PCL format for printers.\ndvisvgm: Renders TeX documents to SVG or bitmap formats.\ndvitodvi: Converts DVI files to a temporary DVI file.\ndvitype: Converts DVI to PostScript and then prints it out.\ndvtm: Split-screen terminal multiplexer.\ndvtm-editor: Opens the editor for splitting the screen in dvtm.\ndvtm-pager: Displays the man page for dvtm in a pager program.\ndwarfdump: Displays information about DWARF debugging information.\ndwz: Tool to dump the content of a directory tree into a single file.",
+        "type": "comment"
+    },
+    "86": {
+        "file_id": 4,
+        "content": "expect_ftp-rfc\nexpect_kibitz\nexpect_lpunlock\nexpect_mkpasswd\nexpect_multixterm\nexpect_passmass\nexpect_rftp\nexpect_rlogin-cwd\nexpect_timed-read\nexpect_timed-run\nexpect_tknewsbiff\nexpect_tkpasswd\nexpect_unbuffer\nexpect_weather\nexpect_xkibitz\nexpect_xpstat\nexpiry\nexploitdb\nexpr\nextundelete\neyuvtoppm\nezz\nf2py\nf2py2\nf2py2.7\nf2py3\nf2py3.7\nf2py3.8\nfab-cewl\nfac\nfactor\nfaillog\nfaked-sysv\nfaked-tcp\nfakeroot-sysv\nfakeroot-tcp\nfallocate\nfalse\nfang\nfantaip\nfaraday\nfaraday-client\nfaraday-manage\nfaraday-searcher\nfaraday-server\nfastjar\nfatbinary\nfatlabel\nfcat\nfc-cache\nfc-cat\nfc-conflist\nfcgistarter\nfcitx\nfcitx4-config\nfcitx-autostart\nfcitx-config-gtk3\nfcitx-configtool\nfcitx-dbus-watcher\nfcitx-diagnose\nfcitx-remote\nfcitx-skin-installer\nfc-list\nfc-match\nfc-pattern\nfc-query\nfcrackzip\nfcrackzipinfo\nfc-scan\nfc-validate\nfdformat\nfdisk\nfdxbnum.py\nfern-wifi-cracker\nfexget\nfexsend\nffind\nfflas-ffpack-config\nffmpeg\nffplay\nffprobe\nfgconsole\nfgrep\nfiascotopnm\nfidentify\nfierce\nfig2dev\nfig2mpdf\nfig2ps2tex\nfiked\nfilan\nfile\nfile2cable\nfilefrag\nfile-roller\nfilesnarf\nfimap\nfincore\nfind\nfindfs\nfindmnt\nfindmyhash\nfindsmb\nfirecfg",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1091-1194"
+    },
+    "87": {
+        "file_id": 4,
+        "content": "Code contains various utility commands and tools for different purposes such as file manipulation, network utilities, audio/video processing, system configuration, and more. These are part of a larger codebase for executing different tasks and operations in a Unix-like operating system.",
+        "type": "comment"
+    },
+    "88": {
+        "file_id": 4,
+        "content": "firefox\nfirejail\nfiremon\nfish\nfish_indent\nfish_key_reader\nfitstopnm\nfiwalk\nfixparts\nfixproc\nflac\nflashcp\nflash_erase\nflash_eraseall\nflash_lock\nflash_otp_dump\nflash_otp_info\nflash_otp_lock\nflash_otp_write\nflash_unlock\nflask\nflasm\nfl-build-report\nfl-credential-ctl\nflex\nfl-monitor-ctl\nflock\nflorence\nflowtop\nfl-record\nfl-run-bench\nfl-run-test\nfls\nfmt\nfold\nfonttosfnt\nforemost\nformatmifare1kvalue.py\nfping\nfplugin\nfragroute\nfragrouter\nfragtest\nfree\nfreport\nfreshclam\nfrm.mailutils\nfrom.mailutils\nfroschtest.py\nfsadm\nfsattr\nfsck\nfsck.cramfs\nfsck.fat\nfsck.minix\nfsck.xfs\nfsfreeze\nfsmount_kernel\nfsmove\nfsremap\nfsstat\nfstab-decode\nfstopgm\nfstransform\nfstrim\nftest\nftestd\nftl_check\nftl_format\nfunzip\nfuse-overlayfs\nfuser\nfusermount3\nfutility\nfuturize\nfwupdagent\nfwupdate\nfwupdmgr\nfwupdtool\nfwupdtpmevlog\ng3topbm\ngac\ngacutil\ngalera_new_cluster\ngalera_recovery\ngalleta\ngamma4scanimage\ngap\ngap2deb\ngapplication\ngatttool\ngawk\ngc\ngcalccmd\ngcore\ngcr-viewer\ngdb\ngdb-add-index\ngdbtui\ngdbus\ngdbus-codegen\ngdialog\ngdisk\ngdk-pixbuf-csource\ngdk-pixbuf-pixdata\ngdk-pixbuf-thumbnailer\ngdm3\ngdmflexiserver\ngdm-screenshot\ngeckodriver",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1195-1304"
+    },
+    "89": {
+        "file_id": 4,
+        "content": "firefox: A web browser for accessing internet\nfirejail: Sandboxing tool to isolate and secure applications\nfiremon: Monitor system resources usage\nfish: Command-line shell for Linux systems\nfish_indent: Fish shell auto-indentation feature\nfish_key_reader: Reads keyboard input in fish shell\nfitstopnm: Converts FITS header into PostScript text\nfiwalk: File-system image walker for FITS format\nfixparts: Partition table repair tool\nflac: Free Lossless Audio Codec encoder/decoder\nflashcp: Copy firmware images to USB devices\nflash_erase: Erase flash memory blocks\nflash_lock: Lock or unlock OTP regions in flash memory\nflask: Python web server framework\nflasm: Flash assembly language compiler for ARM architecture\nfl-build-report: Generate build report for Flit\nfl-credential-ctl: Manage credentials for Flit\nflex: Fast Lexer generator\nfl-monitor-ctl: Control FL-Monitor daemon\nflock: Lock files and directories in Unix systems\nflorence: Audio file normalization tool\nflowtop: Tool to view packet flow on a network",
+        "type": "comment"
+    },
+    "90": {
+        "file_id": 4,
+        "content": "gedit\ngem2.7\ngemtopnm\ngenbrk\ngencat\ngenccode\ngencfu\ngencmn\ngencnval\ngendict\ngeneric_chunked\ngeneric_listen_tcp\ngeneric_send_tcp\ngeneric_send_udp\ngeneric_web_server_fuzz\ngeneric_web_server_fuzz2\ngenisoimage\ngenkeys\ngenl\ngenmkvpwd\ngennorm2\ngenpmk\ngenrb\ngensprep\ngenxs\ngeod\ngeoipupdate\ngetcap\ngetconf\ngetdefs\nget-edid\ngeteltorito\ngetent\ngetfacl\ngetfattr\nget-iab\ngetkeycodes\nget_objgraph\ngetopt\nget-oui\ngetpcaps\ngettext\ngettextize\ngettext.sh\ngfan\ngftodvi\ngftopk\ngftype\nghc-8.6.5\nghci-8.6.5\nghc-pkg-8.6.5\nghex\ngids-tool\ngie\ngiftopnm\ngio\ngiskismet\ngit\ngit-shell\ngivaro-config\ngivaro-makefile\ngjs-console\ngkbd-keyboard-display\nglib-compile-resources\nglib-genmarshal\nglib-gettextize\nglib-mkenums\ngml2gv\ngnome-calculator\ngnome-contacts\ngnome-control-center\ngnome-disk-image-mounter\ngnome-disks\ngnome-extensions\ngnome-font-viewer\ngnome-keyring-3\ngnome-keyring-daemon\ngnome-logs\ngnome-menus-blacklist\ngnome-session\ngnome-session-classic\ngnome-session-custom-session\ngnome-session-inhibit\ngnome-session-quit\ngnome-shell\ngnome-shell-extension-prefs\ngnome-shell-extension-tool\ngnome-shell-perf-tool\ngnome-software",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1305-1393"
+    },
+    "91": {
+        "file_id": 4,
+        "content": "This code includes a list of software and utilities, each represented by a single word. These tools serve various purposes such as data manipulation (e.g., gedit, gem2.7), network operations (generic_web_server_fuzz, generic_send_tcp), disk management (gnome-disks), and more.",
+        "type": "comment"
+    },
+    "92": {
+        "file_id": 4,
+        "content": "gnome-system-monitor\ngnome-terminal\ngnome-terminal.wrapper\ngnome-thumbnail-font\ngnome-tweaks\ngnuplot-qt\ngobject-query\ngoid-tool\ngolismero\ngoogle-oauthlib-tool\ngopherd\ngouldtoppm\ngp-2.11\ngparted\ngpartedbin\ngpasswd\ngpg\ngpg-agent\ngpgcompose\ngpgconf\ngpg-connect-agent\ngpgparsemail\ngpgsm\ngpgsplit\ngpgtar\ngpgv\ngpg-wks-server\ngpg-zip\ngphelp\ngpp\ngpp-decrypt\ngpu-library-advisor\ngrabber\ngracket\ngracket-text\ngraphml2gv\ngregorio\ngrep\ngrepjar\ngresource\ngroff\ngrog\ngrops\ngrotty\ngroupadd\ngroupdel\ngroupmems\ngroupmod\ngroups\ngrpck\ngrpconv\ngrpunconv\ngrub-editenv\ngrub-file\ngrub-fstest\ngrub-glue-efi\ngrub-install\ngrub-kbdcomp\ngrub-macbless\ngrub-menulst2cfg\ngrub-mkconfig\ngrub-mkdevicemap\ngrub-mkfont\ngrub-mkimage\ngrub-mklayout\ngrub-mknetdir\ngrub-mkpasswd-pbkdf2\ngrub-mkrelpath\ngrub-mkrescue\ngrub-mkstandalone\ngrub-mount\ngrub-probe\ngrub-reboot\ngrub-render-label\ngrub-script-check\ngrub-set-default\ngrub-syslinux2cfg\ngs\ngsbj\ngscriptor\ngsdj\ngsdj500\ngsettings\ngsftopk\ngslj\ngslp\ngsnd\ngtester\ngtester-report\ngtf\ngtk-builder-convert\ngtk-builder-tool\ngtk-encode-symbolic-svg\ngtk-launch\ngtk-query-settings\ngtk-update-icon-cache",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1394-1489"
+    },
+    "93": {
+        "file_id": 4,
+        "content": "The code contains a list of various GNOME and GNU tools and utilities, representing different software packages. These programs are used for tasks such as system monitoring, file management, font handling, GUI programming, encryption/decryption, network configuration, and more.",
+        "type": "comment"
+    },
+    "94": {
+        "file_id": 4,
+        "content": "gts2dxf\ngts2oogl\ngts2stl\ngts2xyz\ngtscheck\ngtscompare\ngts-config\ngtstemplate\ngunzip\nguymager\ngv2gml\ngvcolor\ngvfs-cat\ngvfs-copy\ngvfs-info\ngvfs-less\ngvfs-ls\ngvfs-mime\ngvfs-mkdir\ngvfs-monitor-dir\ngvfs-monitor-file\ngvfs-mount\ngvfs-move\ngvfs-open\ngvfs-rename\ngvfs-rm\ngvfs-save\ngvfs-set-attribute\ngvfs-trash\ngvfs-tree\ngvgen\ngvimtutor\ngvmap\ngvmap.sh\ngvpack\ngvpr\ngxl2gv\ngyp\ngzexe\ngzip\nh2ph\nh2xs\nh5c++\nh5cc\nh5fc\nhackrf_cpldjtag\nhackrf_debug\nhackrf_info\nhackrf_spiflash\nhackrf_sweep\nhackrf_transfer\nhaddock-ghc-8.6.5\nhalflife\nhappy\nhashcat\nhashdeep\nhashid\nhash-identifier\nhccap2john\nhciattach\nhciconfig\nhcidump\nhcitool\nhdajacksensetest\nhda-verb\nhdparm\nhead\nhelpviewer\nhelpztags\nhex2hcd\nhex2raw\nhexdump\nhexeditor\nhexinject\nhfind\nhg\nhg-ssh\nhidprox.py\nhipstopgm\nhitag2brute.py\nhitag2reset.py\nhivexget\nhivexml\nhivexsh\nhost\nhostid\nhostname\nhostnamectl\nhotpatcher\nhp2ps\nhpc\nhping3\nhsbrainfuck\nhsc2hs\nHsColour\nhsrp\nhtcacheclean\nhtdbm\nhtdigest\nhtml2dic\nhtml2markdown.py2\nhtml2markdown.py3\nhtpasswd\nhttpcfg\nhttpclient\nhttrack\nhttxt2dbm\nhupper3\nhwclock\nhwloc-annotate\nhwloc-bind\nhwloc-calc\nhwloc-compress-dir\nhwloc-diff\nhwloc-distrib\nhwloc-dump-hwdata",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1490-1605"
+    },
+    "95": {
+        "file_id": 4,
+        "content": "This code contains a list of various utility programs and tools, each serving a specific purpose such as data conversion, file manipulation, system configuration, network management, etc. They belong to different software packages like gts, gvfs, hackrf, hivex, hping3, and more.",
+        "type": "comment"
+    },
+    "96": {
+        "file_id": 4,
+        "content": "hwloc-gather-cpuid\nhwloc-gather-topology\nhwloc-info\nhwloc-patch\nhwloc-ps\nhydra\nhydra-wizard\ni2cdetect\ni2cdump\ni2cget\ni2cset\ni2c-stub-from-dump\ni2ctransfer\ni386-tcc\niasecc-tool\niaxflood\nibus\nibus-daemon\nibus-setup\nicalendar\nicas\nicat\niceauth\nicmp_redirect\nico\nicontopbm\niconv\niconvconfig\nicuinfo\nicupkg\nid\nidentify-im6.q16\nifconfig\nifind\nifnames\nifpps\nifup\nigrp\niio-sensor-proxy\nikdasm\nike-scan\nilasm\nilbmtoppm\nillinkanalyzer\nils\nimagecodecs\nimageio_download_bin\nimageio_remove_bin\nimagetops\nim-config\nimg2png\nimg2py\nimg2xpm\nimg_cat\nimg_stat\nimgtoppm\nim-launch\nimport-im6.q16\ninetmask\ninetsim\ninfo\ninfocmp\ninkscape\ninkview\ninnochecksum\ninnotop\ninotifywait\ninotifywatch\ninstall\ninstall-info\ninstallkernel\ninstall-menu\ninstall-printerdriver\ninstall-sgmlcatalog\ninstallvst\ninstallwatch\ninstmodsh\nintegritysetup\nintel-virtual-output\nintersect\nintrace\ninviteflood\ninvoke-rc.d\niodine\niodine-client-start\niodined\nionice\niostat\nip\nipcmk\nipcrm\nipcs\nipmaddr\niptables-apply\niptunnel\nipython\nipython3\nirb2.7\nir-ctl\nirdp\nirdpresponder\nirqbalance\nirqbalance-ui\nischroot\nisdv4-serial-debugger\nisdv4-serial-inputattach\nisodump",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1606-1712"
+    },
+    "97": {
+        "file_id": 4,
+        "content": "hwloc-gather-cpuid: Gathers CPUID information\nhwloc-gather-topology: Gathers hardware topology information\nhwloc-info: Displays information about hardware topology\nhwloc-patch: Applies patches to the hwloc library\nhwloc-ps: Manages processes related to hwloc library\nhydra: Tool for password cracking and network scanning\nhydra-wizard: GUI for configuring hydra tool\ni2cdetect: Detects I2C devices on a bus\ni2cdump: Dumps data from an I2C device\ni2cget: Reads data from an I2C device\ni2cset: Writes data to an I2C device\ni2c-stub-from-dump: Generates i2c stub code from a dump\ni2ctransfer: Transfers data between two i2c devices\ni386-tcc: Cross compiler for the TCC x86 architecture\niasecc-tool: Tool to run iasec on binary files\niaxflood: Floods IAX peers with traffic\nibus: Input method engine for Linux systems\nibus-daemon: Daemon process for ibus input system\nibus-setup: Configuration tool for ibus input system\nicalendar: Tool to create iCalendar (RFC 5545) files\nicas: Command-line ICAS client for I2P network\nicat: Simple CAT command-line interface\niceauth: Authentication server for Ice applications\nicmp_redirect: Sends ICMP redirects on the network\nico: Icon editor with various tools\nicontopbm: Converts an icon to PBM format\niconv: Tool to convert character encoding of files\niconvconfig: Configuration tool for iconv library\nicuinfo: Provides information about the icu library\nicupkg: Package generator for ICU library\nid: Command-line tool to retrieve user and group IDs\nidentify-im6.q16: Identifies image format of an input file\nifconfig: Configures network interfaces\nifind: Finds strings in binary files (e.g., images, executables)\nifnames: Shows the names of all available network interfaces\nifpps: Prints postscript files to a printer or file\nifup: Brings up a network interface\nigrp: Router protocol implementation for Cisco IOS\niio-sensor-proxy: Proxy tool for accessing IIO sensors\nikdasm: Assembler for KornShell script files\nike-scan: Scans and cracks IKE/IPSec connections\nilasm: Assembler for IL (Intermediate Language) code\nilbmtoppm: Converts LBM image to PPM format\nillinkanalyzer: Analyzes and displays link-level traffic\nils: Displays information about a file system's inodes\nimagecodecs: Provides information about supported image codecs\nimageio_download_bin: Downloads binary data from an image file\nimageio_remove_bin: Removes binary data from an image file\nimagetops: Converts images to various text or postscript formats\nim-config: Configures the im utility\nimg2png: Converts images to PNG format\nimg2xpm: Converts images to XPM (X11 PixMap) format\nimg_cat: Display image file headers and thumbnails\nimg_stat: Displays statistics about an image file\nimgtoppm: Converts an image to PPM format\nim-launch: Launches the im utility\nimport-im6.q16: Imports an image in the IM6.Q16 format\ninetmask: Calculates network mask from CIDR or vice versa\ninetsim: Network simulator for testing network applications\ninfo: Displays information about files and directories\ninfocmp: Compares terminal capabilities\ninkscape: Vector graphics editor and SVG",
+        "type": "comment"
+    },
+    "98": {
+        "file_id": 4,
+        "content": "isoinfo\nisosize\nisotype.py\nisovfy\nispell-autobuildhash\nispell-wrapper\nistat\nitox\nitrace\niucode_tool\nivstools\nivtv-ctl\niw\niwconfig\niwevent\niwgetid\niwlist\niwpriv\niwspy\njad\njardetector\njarwrapper\njavasnoop\njboss-linux\njboss-win\njcat\njcopmifare.py\njcopsetatrhist.py\njcoptool.py\njffs2dump\njffs2reader\njls\njmol\njobber\njohnny\njoin\njoomscan\njournalctl\njpegexiforient\njpeg_extract\njpegtopnm\njpegtran\njson_pp\njsonschema\njsql\njulia\njunit\njupyter\njupyter-bundlerextension\njupyter-console\njupyter-kernel\njupyter-kernelspec\njupyter-migrate\njupyter-nbextension\njupyter-notebook\njupyter-qtconsole\njupyter-run\njupyter-serverextension\njupyter-troubleshoot\nJxrDecApp\nJxrEncApp\nkactivities-cli\nkali-setup\nkali-treecd\nkali-winexec\nkbdinfo\nkbd_mode\nkbdrate\nkbookmarkmerger\nkbroadcastnotification\nkbuildsycoca5\nkbxutil\nkcmshell5\nkcookiejar5\nkdeconnect-app\nkdeconnect-cli\nkdeconnect-handler\nkdeconnect-indicator\nkdeconnect-settings\nkdeconnect-sms\nkdecp5\nkdeinit5\nkdeinit5_shutdown\nkdeinit5_wrapper\nkdemv5\nkde-open5\nkeditbookmarks\nkeditfiletype5\nkeepass2john\nkernel-install\nkeyring\nkglobalaccel5\nkiconfinder5\nkill\nkillall",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1713-1807"
+    },
+    "99": {
+        "file_id": 4,
+        "content": "The code is a list of various software utilities and applications, some possibly associated with KDE (K Desktop Environment), John the Ripper password cracker, Jupyter Notebook, and other tools related to Linux distro Kali. It appears to be part of a larger codebase or software repository.",
+        "type": "comment"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Code initializes a Python script \"webinit.py\" with various commands, then runs it and sleeps for 10 seconds before killing the process.",
+    "details": [
+        {
+            "comment": "Code initializes a Python script \"webinit.py\" with various commands, then runs it and sleeps for 10 seconds before killing the process.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/webinit.sh\":0-1",
+            "content": "#!/bin/bash\npython3 webinit.py \"ls\" \"ls\" \"echo something\"  \"ls\" \"ls\" \"echo something\" \"ls\" \"ls\" \"echo something\"  & sleep 10 && kill $!"
+        }
+    ]
+}

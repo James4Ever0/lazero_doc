@@ -1,0 +1,15 @@
+{
+    "summary": "This code installs Deno, a JavaScript/TypeScript runtime, on x64 systems by checking compatibility and providing an easy installation process.",
+    "details": [
+        {
+            "comment": "Checks if system architecture and dependencies are compatible before downloading the latest Deno release from GitHub's releases page. Sets up a simple installation process for Deno, ensuring it is supported on x64 systems.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/install.sh\":0-35",
+            "content": "#!/bin/sh\n# Copyright 2019 the Deno authors. All rights reserved. MIT license.\n# TODO(everyone): Keep this script simple and easily auditable.\n# i do computer because it is right.\n# like my plan before. it is simlpy right and just.\nset -e\nif [ \"$(uname -m)\" != \"x86_64\" ]; then\n\techo \"Error: Unsupported architecture $(uname -m). Only x64 binaries are available.\" 1>&2\n\texit 1\nfi\nif ! command -v unzip >/dev/null; then\n\techo \"Error: unzip is required to install Deno (see: https://github.com/denoland/deno_install#unzip-is-required).\" 1>&2\n\texit 1\nfi\ncase $(uname -s) in\nDarwin) target=\"x86_64-apple-darwin\" ;;\n*) target=\"x86_64-unknown-linux-gnu\" ;;\nesac\nif [ \"$(uname -m)\" != \"x86_64\" ]; then\n\techo \"Unsupported architecture $(uname -m). Only x64 binaries are available.\"\n\texit\nfi\nif [ $# -eq 0 ]; then\n\tdeno_asset_path=$(\n\t\tcurl -sSf https://github.com/denoland/deno/releases |\n\t\t\tgrep -o \"/denoland/deno/releases/download/.*/deno-${target}\\\\.zip\" |\n\t\t\thead -n 1\n\t)\n\tif [ ! \"$deno_asset_path\" ]; then\n\t\techo \"Error: Unable to find latest Deno release on GitHub.\" 1>&2"
+        },
+        {
+            "comment": "This code downloads Deno, a JavaScript/TypeScript runtime, and installs it on the user's system. It checks if Deno is already installed, then retrieves and extracts the required file, sets necessary environment variables, and provides instructions for running the installation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/install.sh\":36-65",
+            "content": "\t\texit 1\n\tfi\n\tdeno_uri=\"https://github.com${deno_asset_path}\"\nelse\n\tdeno_uri=\"https://github.com/denoland/deno/releases/download/${1}/deno-${target}.zip\"\nfi\ndeno_install=\"${DENO_INSTALL:-$HOME/.deno}\"\nbin_dir=\"$deno_install/bin\"\nexe=\"$bin_dir/deno\"\nif [ ! -d \"$bin_dir\" ]; then\n\tmkdir -p \"$bin_dir\"\nfi\ncurl --fail --location --progress-bar --output \"$exe.zip\" \"$deno_uri\"\ncd \"$bin_dir\"\nunzip -o \"$exe.zip\"\nchmod +x \"$exe\"\nrm \"$exe.zip\"\necho \"Deno was installed successfully to $exe\"\nif command -v deno >/dev/null; then\n\techo \"Run 'deno --help' to get started\"\nelse\n\techo \"Manually add the directory to your \\$HOME/.bash_profile (or similar)\"\n\techo \"  export DENO_INSTALL=\\\"$deno_install\\\"\"\n\techo \"  export PATH=\\\"\\$DENO_INSTALL/bin:\\$PATH\\\"\"\n\techo \"Run '$exe --help' to get started\"\nfi"
+        }
+    ]
+}

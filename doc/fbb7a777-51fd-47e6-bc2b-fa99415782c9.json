@@ -1,0 +1,15 @@
+{
+    "summary": "getPic retrieves images with specific dimensions and validates parameters, while getRange calculates point grids based on power of 2. getShift generates lists of shifted positions in various directions.",
+    "details": [
+        {
+            "comment": "getPic takes three integer arguments (a, b, c) and returns the content of an image with dimensions a x b and name c. It asserts that the input parameters are within valid ranges. getRange calculates a grid of points based on the power of 2 of its argument a. getShift generates a list of shifted positions from a given position (a, b) in any of four directions (0: none, 1: right, 2: down, 3: diagonally down-right). It requires an integer s representing the direction and a copy of the original position.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/internet_maps/basepak.py\":0-43",
+            "content": "import requests\nimport traceback\nimport copy\ndef getPic(a, b, c):\n    try:\n        assert type(a) == int and a >= 0 and a <= 10\n        assert type(b) == int and b >= 0 and b <= 1024\n        assert type(c) == int and c >= 0 and c <= 1024\n        # d=(a,b,c)\n        # d=list(map(str,d))\n        r = \"https://d2h9tsxwphc7ip.cloudfront.net/{}/{}%20{}.png\".format(\n            a, b, c)\n        r = requests.get(r)\n        r = r.content\n        return r\n    except:\n        e = traceback.format_exc()\n        print(e)\n        return None\ndef getRange(a):\n    a = 2**a\n    return [(x, y) for x in range(a) for y in range(a)]\n    # it should be preconfigured.\ndef getShift(a, s, c):\n    # a is a pair.\n    # remove candidate?\n    b = copy.deepcopy((a[0], a[1]))\n    assert type(s) == int and s in [0, 1, 2, 3]\n    # must include themselves.\n    # length == 0 -> do not check.\n    if s == 0:\n        return []\n    elif s == 1:\n        return [(c, b[0]+1, b[1])]\n    elif s == 2:\n        return [(c, b[0], b[1]+1)]\n    else:\n        return [(c, b[0], b[1]+1), (c, b[0]+1, b[1]), (c, b[0]+1, b[1]+1)]"
+        },
+        {
+            "comment": "These lines seem to be a placeholder or an unfinished note, possibly related to domain issues and the arrangement of elements within it.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/internet_maps/basepak.py\":44-45",
+            "content": "        # domain problem. just observe this.\n# talk about arrangement."
+        }
+    ]
+}

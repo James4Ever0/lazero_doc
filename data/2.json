@@ -1,0 +1,530 @@
+{
+    "200": {
+        "file_id": 17,
+        "content": "/bootstrap/blitx/check_mount.sh",
+        "type": "filepath"
+    },
+    "201": {
+        "file_id": 17,
+        "content": "This code is a Bash script that mounts cgroup filesystem and prints its location. It uses the \"mount\" command to list all mounted devices, filters for those with \"cgroup\" in their name (ignoring case), and then uses awk to extract and print the device name, filesystem type, and mount point of each found \"cgroup\" entry.",
+        "type": "summary"
+    },
+    "202": {
+        "file_id": 17,
+        "content": "#!/bin/bash\nsudo mount | grep -i cgroup | awk '{print $1\" \" $3\" \" $6}'",
+        "type": "code",
+        "location": "/bootstrap/blitx/check_mount.sh:1-2"
+    },
+    "203": {
+        "file_id": 17,
+        "content": "This code is a Bash script that mounts cgroup filesystem and prints its location. It uses the \"mount\" command to list all mounted devices, filters for those with \"cgroup\" in their name (ignoring case), and then uses awk to extract and print the device name, filesystem type, and mount point of each found \"cgroup\" entry.",
+        "type": "comment"
+    },
+    "204": {
+        "file_id": 18,
+        "content": "/bootstrap/blitx/check_mount_aarch64.sh",
+        "type": "filepath"
+    },
+    "205": {
+        "file_id": 18,
+        "content": "This code is a shell script for Linux that checks if the cgroup filesystem is mounted on the system. It uses 'sudo mount' to list all mounted file systems, 'grep -i cgroup' to filter the output for any lines containing \"cgroup\", and 'awk' to print only the device name, mount point, and target of the cgroup mount point if it exists.",
+        "type": "summary"
+    },
+    "206": {
+        "file_id": 18,
+        "content": "#!/data/data/com.termux/files/usr/bin/bash\nsudo mount | grep -i cgroup | awk '{print $1\" \" $3\" \" $6}'",
+        "type": "code",
+        "location": "/bootstrap/blitx/check_mount_aarch64.sh:1-2"
+    },
+    "207": {
+        "file_id": 18,
+        "content": "This code is a shell script for Linux that checks if the cgroup filesystem is mounted on the system. It uses 'sudo mount' to list all mounted file systems, 'grep -i cgroup' to filter the output for any lines containing \"cgroup\", and 'awk' to print only the device name, mount point, and target of the cgroup mount point if it exists.",
+        "type": "comment"
+    },
+    "208": {
+        "file_id": 19,
+        "content": "/bootstrap/blitx/cruncher.py",
+        "type": "filepath"
+    },
+    "209": {
+        "file_id": 19,
+        "content": "The code defines functions to return consecutive occurrences of input strings/bytes, creating a flattened list from nested parameters with multiprocessing support.",
+        "type": "summary"
+    },
+    "210": {
+        "file_id": 19,
+        "content": "# string first.\n#from numba import jit as  autojit\nimport multiprocessing\nimport time\n#@autojit(nopython=True, nogil=True)\ndef blackwhite(a,b,c=True):\n    byte=False\n    if type(a)==str:\n        assert type(b)==str\n    elif type(a)==bytes:\n        assert type(b)==bytes\n        byte=True\n    else:\n        return None\n    assert type(c)==bool\n    buf=\"\" if not byte else b\"\"\n    cb=[]\n    t=len(a)\n    for d in range(t):\n        x=a[d:d+1]\n        \"\"\"if d%1000==0:\n            print(\"byte\",d,\"total\",t)\"\"\"\n        if c:\n            if x in b:\n                buf+=x\n            elif (buf!=\"\" and not byte) or (buf!=b\"\" and byte):\n                cb.append(buf)\n                buf=\"\" if not byte else b\"\"\n        else:\n            if x not in b:\n                buf+=x\n            elif (buf!=\"\" and not byte) or (buf!=b\"\" and byte):\n                cb.append(buf)\n                buf=\"\" if not byte else b\"\"\n    if (buf!=\"\" and not byte) or (buf!=b\"\" and byte):\n        cb.append(buf)\n    return cb\n#@autojit(nopython=True, nogil=True)\ndef bw(a,b,d,e,c=True):",
+        "type": "code",
+        "location": "/bootstrap/blitx/cruncher.py:1-41"
+    },
+    "211": {
+        "file_id": 19,
+        "content": "The code defines two functions: \"blackwhite\" and \"bw\". These functions take in one or two parameters, either string or bytes, and return a list of strings/bytes where each element represents consecutive occurrences of the parameter value. The functions handle both string and byte input types and have an optional boolean flag for inverting the output. The code also includes conditional print statements for debugging purposes.",
+        "type": "comment"
+    },
+    "212": {
+        "file_id": 19,
+        "content": "    s=blackwhite(a,b,c)\n    e[d]=s\n#@autojit(nopython=True, nogil=True)\ndef multibw(a,b,d,c=True):\n    byte=False\n    if type(a)==str:\n        assert type(b)==str\n    elif type(a)==bytes:\n        assert type(b)==bytes\n        byte=True\n    else:\n        return None\n    assert type(c)==bool \n    l=len(a)\n    assert d<=l and d>1 and type(d)==int\n    r=l%d\n    s=l//d\n    k=[(x*s,(x+1)*s) for x in range(d-1)]\n    k+=[((d-1)*s,d*s+r)]\n    #param={x:None for x in range(d)}\n    mgr = multiprocessing.Manager()\n    param = mgr.dict()\n    for x in range(d):\n        param[x]=None\n    jobs = [multiprocessing.Process(target=bw, args=(a[k[x][0]:k[x][1]],b,x,param,c)) for x in range(d)]\n    for j in jobs:\n        j.start()\n    for j in jobs:\n        j.join()\n    \"\"\"for x in range(d):\n        k0,k1=k[x]\n        print(k0,k1)\n        threading.Thread(target=bw,args=(a[k0:k1],b,x,param)).start()\n    while True:\n        su=sum([int(param[x]==None) for x in range(d)])\n        print(su)\n        if su==0:\n            break\n        else:\n            time.sleep(1)\"\"\"",
+        "type": "code",
+        "location": "/bootstrap/blitx/cruncher.py:42-82"
+    },
+    "213": {
+        "file_id": 19,
+        "content": "The code defines a function `multibw` that takes in two arrays (or strings/bytes) and performs parallel processing on each slice of the input arrays. It uses multiprocessing to split the work into multiple processes, each handling a portion of the input arrays. The code also provides an alternative threading-based implementation within comments. The function returns None if the input types are incorrect or if the specified dimension `d` is invalid.",
+        "type": "comment"
+    },
+    "214": {
+        "file_id": 19,
+        "content": "    result=[param[x] for x in range(d)]\n    result=[x for y in result for x in y]\n    # can increase complexity.\n    return result\n    #print(result)\n    # use multiprocessing.\n    \"\"\"if byte:\n        return b\"\".join(result)\n    else:\n        return \"\".join(result)\"\"\"",
+        "type": "code",
+        "location": "/bootstrap/blitx/cruncher.py:83-92"
+    },
+    "215": {
+        "file_id": 19,
+        "content": "This code is creating a flattened list from a nested parameter 'param' with dimensions 'd'. It uses list comprehension to accomplish this and provides the option to join the resulting elements into a byte string or a regular string using multiprocessing.",
+        "type": "comment"
+    },
+    "216": {
+        "file_id": 20,
+        "content": "/bootstrap/blitx/gui_linux_x86_64.sh",
+        "type": "filepath"
+    },
+    "217": {
+        "file_id": 20,
+        "content": "This Bash script runs Firefox within a sandboxed environment (firejail) and pipes its output to a Python tracker script. It seems to be used for GUI-based operations on Linux x86_64 systems.",
+        "type": "summary"
+    },
+    "218": {
+        "file_id": 20,
+        "content": "#!/bin/bash\n#mkfifo blitx\n# maybe we need to use some nonblocking reading.\n#firejail firefox &> /dev/null & echo $!\nfirejail firefox &>/dev/stdout | python3 tracker_gui_linux_x86_64.py",
+        "type": "code",
+        "location": "/bootstrap/blitx/gui_linux_x86_64.sh:1-5"
+    },
+    "219": {
+        "file_id": 20,
+        "content": "This Bash script runs Firefox within a sandboxed environment (firejail) and pipes its output to a Python tracker script. It seems to be used for GUI-based operations on Linux x86_64 systems.",
+        "type": "comment"
+    },
+    "220": {
+        "file_id": 21,
+        "content": "/bootstrap/blitx/indicator.py",
+        "type": "filepath"
+    },
+    "221": {
+        "file_id": 21,
+        "content": "This code reads a file, removes newline characters, and sends each line as a message with a one-second delay between messages.",
+        "type": "summary"
+    },
+    "222": {
+        "file_id": 21,
+        "content": "from aloofclient import sender\nfrom cruncher import blackwhite\ndef returnAList(a):\n    with open(a,\"r\") as f:\n        s=f.read()\n        s=blackwhite(s,\"\\r\\n\",False)\n        return s\nr = returnAList(\"COMSEED_aarch64\")\n# print()\nimport time\nfor x in r:\n    sender(x)\n    time.sleep(1)\n        # print(d)",
+        "type": "code",
+        "location": "/bootstrap/blitx/indicator.py:1-15"
+    },
+    "223": {
+        "file_id": 21,
+        "content": "This code reads a file, removes newline characters, and sends each line as a message with a one-second delay between messages.",
+        "type": "comment"
+    },
+    "224": {
+        "file_id": 22,
+        "content": "/bootstrap/blitx/indicator.sh",
+        "type": "filepath"
+    },
+    "225": {
+        "file_id": 22,
+        "content": "This script executes the Python file \"indicator.py\" using the Python 3 interpreter, likely serving as a bootstrap for running an indicator or dashboard program.",
+        "type": "summary"
+    },
+    "226": {
+        "file_id": 22,
+        "content": "#!/bin/bash\npython3 indicator.py",
+        "type": "code",
+        "location": "/bootstrap/blitx/indicator.sh:1-2"
+    },
+    "227": {
+        "file_id": 22,
+        "content": "This script executes the Python file \"indicator.py\" using the Python 3 interpreter, likely serving as a bootstrap for running an indicator or dashboard program.",
+        "type": "comment"
+    },
+    "228": {
+        "file_id": 23,
+        "content": "/bootstrap/blitx/indicator_x86_64.py",
+        "type": "filepath"
+    },
+    "229": {
+        "file_id": 23,
+        "content": "This code reads a file, removes specific line breaks, and sends the content to a sender function in a loop with a 1 second delay between each send.",
+        "type": "summary"
+    },
+    "230": {
+        "file_id": 23,
+        "content": "from aloofclient import sender\nfrom cruncher import blackwhite\ndef returnAList(a):\n    with open(a,\"r\") as f:\n        s=f.read()\n        s=blackwhite(s,\"\\r\\n\",False)\n        return s\nr = returnAList(\"COMSEED_x86_64\")\n# print()\nimport time\nfor x in r:\n    sender(x)\n    time.sleep(1)\n        # print(d)",
+        "type": "code",
+        "location": "/bootstrap/blitx/indicator_x86_64.py:1-15"
+    },
+    "231": {
+        "file_id": 23,
+        "content": "This code reads a file, removes specific line breaks, and sends the content to a sender function in a loop with a 1 second delay between each send.",
+        "type": "comment"
+    },
+    "232": {
+        "file_id": 24,
+        "content": "/bootstrap/blitx/indicator_x86_64.sh",
+        "type": "filepath"
+    },
+    "233": {
+        "file_id": 24,
+        "content": "The script is a Bash shell script that executes the Python3 code 'indicator_x86_64.py'. It appears to be responsible for running the associated Python script, likely an indicator script used in the bootstrap process.",
+        "type": "summary"
+    },
+    "234": {
+        "file_id": 24,
+        "content": "#!/bin/bash\npython3 indicator_x86_64.py",
+        "type": "code",
+        "location": "/bootstrap/blitx/indicator_x86_64.sh:1-2"
+    },
+    "235": {
+        "file_id": 24,
+        "content": "The script is a Bash shell script that executes the Python3 code 'indicator_x86_64.py'. It appears to be responsible for running the associated Python script, likely an indicator script used in the bootstrap process.",
+        "type": "comment"
+    },
+    "236": {
+        "file_id": 25,
+        "content": "/bootstrap/blitx/launcher_aarch64_linux.sh",
+        "type": "filepath"
+    },
+    "237": {
+        "file_id": 25,
+        "content": "The script attempts to execute a binary using a launcher on Aarch64 Linux. It first checks if it has the necessary permissions, and then executes the \"launcher_aarch64_linux.sh\" script. The execution is controlled by the \"libjudger.so\" library which enforces security rules, limits CPU time, memory usage, and process numbers. The input, output, and error paths are specified, and it runs with root privileges using the \"sudo\" command.",
+        "type": "summary"
+    },
+    "238": {
+        "file_id": 25,
+        "content": "#!/data/data/com.termux/files/usr/bin/bash\nfile_target=$( ./on_premise_filter_aarch64.sh )\ncd bin/linux/aarch64\n#./libjudger.so --exe_path=$(which bash) --seccomp_rule_name=\"randomfuck\" --max_cpu_time=500 --max_real_time=5000 --max_memory=14213120 --max_stack=500000 --max_process_number=2 --args=\"--rcfile\" --args=\"../../../bashrc\"\n# does that work without intervention?\nwhile true\ndo\n\tsudo bash -c \"chmod 777 $file_target\"\n\tsudo bash -c \"echo $$ > $file_target\"\n\tif [ $? -eq 0 ]; then\n\t\tbreak\n\tfi\n\tcd ../../../\n\tsudo bash -c \"./launcher_aarch64_linux.sh\"\n\texit 0\ndone\nsudo ./libjudger.so --exe_path=$(which bash) --seccomp_rule_name=\"random\"  --max_cpu_time=500 --max_real_time=10000 --max_memory=14213120 --max_stack=500000 --max_process_number=2  --input_path=/proc/self/fd/0 --output_path=/proc/self/fd/1 --error_path=/proc/self/fd/2 --uid=0 --gid=0 --args=\"--rcfile\" --args=\"../../../bashrc\"",
+        "type": "code",
+        "location": "/bootstrap/blitx/launcher_aarch64_linux.sh:1-18"
+    },
+    "239": {
+        "file_id": 25,
+        "content": "The script attempts to execute a binary using a launcher on Aarch64 Linux. It first checks if it has the necessary permissions, and then executes the \"launcher_aarch64_linux.sh\" script. The execution is controlled by the \"libjudger.so\" library which enforces security rules, limits CPU time, memory usage, and process numbers. The input, output, and error paths are specified, and it runs with root privileges using the \"sudo\" command.",
+        "type": "comment"
+    },
+    "240": {
+        "file_id": 26,
+        "content": "/bootstrap/blitx/launcher_x86_64_linux.sh",
+        "type": "filepath"
+    },
+    "241": {
+        "file_id": 26,
+        "content": "This script is setting necessary permissions and running a launcher on x86_64 Linux. It first changes the file's permission, writes its process ID into the file, then runs the launcher. Afterwards, it executes a libjudger with specific parameters for execution time, memory limits, security rules, and arguments.",
+        "type": "summary"
+    },
+    "242": {
+        "file_id": 26,
+        "content": "#!/bin/bash\nfile_target=$( ./on_premise_filter.sh )\ncd bin/linux/x86_64\n#./libjudger.so --exe_path=$(which bash) --seccomp_rule_name=\"randomfuck\" --max_cpu_time=500 --max_real_time=5000 --max_memory=14213120 --max_stack=500000 --max_process_number=2 --args=\"--rcfile\" --args=\"../../../bashrc\"\n# does that work without intervention?\nwhile true\ndo\n        sudo bash -c \"chmod 777 $file_target\"\n        sudo bash -c \"echo $$ > $file_target\"\n        if [ $? -eq 0 ]; then\n                break\n        fi\n\tcd ../../../\n\tsudo bash -c \"./launcher_x86_64_linux.sh\"\n\texit 0\t\ndone\nsudo ./libjudger.so --exe_path=$(which bash) --seccomp_rule_name=\"randomfuck\"  --max_cpu_time=500 --max_real_time=10000 --max_memory=14213120 --max_stack=500000 --max_process_number=2 --args=\"--rcfile\" --args=\"../../../bashrc\"",
+        "type": "code",
+        "location": "/bootstrap/blitx/launcher_x86_64_linux.sh:1-17"
+    },
+    "243": {
+        "file_id": 26,
+        "content": "This script is setting necessary permissions and running a launcher on x86_64 Linux. It first changes the file's permission, writes its process ID into the file, then runs the launcher. Afterwards, it executes a libjudger with specific parameters for execution time, memory limits, security rules, and arguments.",
+        "type": "comment"
+    },
+    "244": {
+        "file_id": 27,
+        "content": "/bootstrap/blitx/on_premise_filter.sh",
+        "type": "filepath"
+    },
+    "245": {
+        "file_id": 27,
+        "content": "The script checks for specific cgroups, retrieves kernel version, filters directories based on a target string, creates new \"blitx\" directory and sets CPU quota/period values, and handles invalid conditions by outputting \"none\".",
+        "type": "summary"
+    },
+    "246": {
+        "file_id": 27,
+        "content": "#!/bin/bash\nget_checked(){\n\t# parameters are not named.\n\techo $1\n}\nget_kernel(){\n\tkern=$( echo $(./check_cgroups.sh | awk '{print $1}'))\n\t#kern=$()\n\tread -ra ADDR <<<\"$kern\"\n\tv=0\n\tfor i in \"${ADDR[@]}\";\n\tdo\n\t\tif [ \"$i\" == \"cpu\" ]; then\n\t\t\tv+=1\n\t\telse\n\t\t\t:\n\t\tfi\n#\t\techo $i\n\tdone\n\techo $v\n\tif [ $v -ne 0 ] ; then\n\t\treturn 0\n\telse\n\t\treturn 1\n\tfi\n}\nres0=$(echo $(./check_mount.sh | grep -i cpu | awk '{print $2}'))\nIFS=' '\nread -ra ADDR <<<\"$res0\"\nARRAY=()\nfor i in \"${ADDR[@]}\";\ndo\n\ttarget_string=\"cpu.cfs_quota_us\"\n\techo_string=$( get_checked $(sudo ls $i -1 | grep -i $target_string) )\n\tif [ \"$target_string\" == \"$echo_string\" ]; then\n\t\t# use this directory. append to candidate list.\n\t\tARRAY+=$i\n\telse\n\t\t:\n\t\t# this is when things going philosophical.\n\t\t# the null command.\n\tfi\n#\techo \"delimiter\"\n# check if it has the thing.\n# then make the subfolder. you might want to do it. any python bindings on cgroups?\n# worst day of my life.\n# might be used by cgroup2.\ndone\ncandidates=${#ARRAY[@]}\n#candidates=0\nif [ $candidates -gt 0 ]; then\n\ttardir=${ARRAY[0]}",
+        "type": "code",
+        "location": "/bootstrap/blitx/on_premise_filter.sh:1-53"
+    },
+    "247": {
+        "file_id": 27,
+        "content": "This script checks if a specific cgroup exists, retrieves kernel version, and finds directories related to CPU. It then filters out the appropriate directory based on a specified target string (e.g., \"cpu.cfs_quota_us\") and stores candidate directories in an array. If candidate directories exist, it selects the first one in the list.",
+        "type": "comment"
+    },
+    "248": {
+        "file_id": 27,
+        "content": "\ttarget_string=\"blitx\"\n\techo_string=$( get_checked $(sudo ls $tardir -1 | grep -i $target_string) )\n\tif [ \"$target_string\" == \"$echo_string\" ]; then\n\t\t:\n\telse\n\t\tsudo mkdir $tardir/blitx\n\t\t# this is when things going philosophical.\n\t\t# the null command.\n\tfi\n\tsudo bash -c \"echo 5000 > $tardir/blitx/cpu.cfs_quota_us\"\n\tsudo bash -c \"echo 50000 > $tardir/blitx/cpu.cfs_period_us\"\n\t# do the stuff then.\n\t# return the directory, for future use.\n\techo $tardir/blitx/cgroup.procs\n\t# check if there's blitx directory.\n#\techo \"No candy\"\nelse\n\t# check kernel support first.\n\tif get_kernel; then\n\t\tdefault_cpu=/sys/fs/cgroups/cpu\n\t\tsudo mkdir -p $default_cpu/blitx \n\t\tsudo mount -t cgroup -o cpu none $default_cpu\n\t\t# if this fails, might be used by cgroup-v2, and we need to redefine the function.\n\t\t# really? not know.\n\t\tsudo bash -c \"echo 5000 > $default_cpu/blitx/cpu.cfs_quota_us\"\n\t\tsudo bash -c \"echo 50000 > $default_cpu/blitx/cpu.cfs_period_us\"\n\t\t# do the stuff then.\n\t\t# return the directory, for future use.\n\t\techo $default_cpu/blitx/cgroup.procs",
+        "type": "code",
+        "location": "/bootstrap/blitx/on_premise_filter.sh:54-82"
+    },
+    "249": {
+        "file_id": 27,
+        "content": "This script checks if the \"blitx\" directory exists. If it doesn't, it creates a new directory and sets CPU quota and period values. If the kernel supports cgroups, it creates a new cgroup and sets the same CPU quota and period values. It returns the directory path for future use.",
+        "type": "comment"
+    },
+    "250": {
+        "file_id": 27,
+        "content": "\telse\n\t\techo none\n\tfi\n#\techo \"yes man\"\n# might have to handle the launcher yourself.\nfi\n#for i in \"${ARRAY[@]}\"\n#do\n#\techo $i\n#done",
+        "type": "code",
+        "location": "/bootstrap/blitx/on_premise_filter.sh:83-92"
+    },
+    "251": {
+        "file_id": 27,
+        "content": "This code snippet appears to be part of a script that filters on-premise deployments. When an invalid condition is met, it outputs \"none\". There are comments suggesting to add the message \"yes man\" and potentially handle the launcher manually. The code also includes a loop to iterate through an array, but it seems incomplete or unused.",
+        "type": "comment"
+    },
+    "252": {
+        "file_id": 28,
+        "content": "/bootstrap/blitx/on_premise_filter_aarch64.sh",
+        "type": "filepath"
+    },
+    "253": {
+        "file_id": 28,
+        "content": "This code segment checks for AARCH64 directories, sets CPU quotas for a specific directory, and mounts cgroup file system for kernel support. It returns the directory path for future use. The script prints \"none\" if a certain condition is not met and suggests handling the launcher manually, implying it might be necessary in some cases.",
+        "type": "summary"
+    },
+    "254": {
+        "file_id": 28,
+        "content": "#!/data/data/com.termux/files/usr/bin/bash\nget_checked(){\n\t# parameters are not named.\n\techo $1\n}\nget_kernel(){\n\tkern=$( echo $(./check_cgroups.sh | awk '{print $1}'))\n\t#kern=$()\n\tread -ra ADDR <<<\"$kern\"\n\tv=0\n\tfor i in \"${ADDR[@]}\";\n\tdo\n\t\tif [ \"$i\" == \"cpu\" ]; then\n\t\t\tv+=1\n\t\telse\n\t\t\t:\n\t\tfi\n#\t\techo $i\n\tdone\n\techo $v\n\tif [ $v -ne 0 ] ; then\n\t\treturn 0\n\telse\n\t\treturn 1\n\tfi\n}\nres0=$(echo $(./check_mount_aarch64.sh | grep -i cpu | awk '{print $2}'))\nIFS=' '\nread -ra ADDR <<<\"$res0\"\nARRAY=()\nfor i in \"${ADDR[@]}\";\ndo\n\ttarget_string=\"cpu.cfs_quota_us\"\n\techo_string=$( get_checked $(sudo ls $i -1 | grep -i $target_string) )\n\tif [ \"$target_string\" == \"$echo_string\" ]; then\n\t\t# use this directory. append to candidate list.\n\t\tARRAY+=$i\n\telse\n\t\t:\n\t\t# this is when things going philosophical.\n\t\t# the null command.\n\tfi\n#\techo \"delimiter\"\n# check if it has the thing.\n# then make the subfolder. you might want to do it. any python bindings on cgroups?\n# worst day of my life.\n# might be used by cgroup2.\ndone\ncandidates=${#ARRAY[@]}\n#candidates=0\nif [ $candidates -gt 0 ]; then",
+        "type": "code",
+        "location": "/bootstrap/blitx/on_premise_filter_aarch64.sh:1-52"
+    },
+    "255": {
+        "file_id": 28,
+        "content": "Function \"get_checked\" does not use named parameters and echoes the first parameter passed.\nFunction \"get_kernel\" retrieves kernel information from output of \"check_cgroups.sh\", counts occurrences of \"cpu\", and returns 0 or 1 based on the count.\nThe script checks if \"cpu.cfs_quota_us\" exists in mounted AARCH64 directories, appending valid folders to the ARRAY variable, then counts the number of candidates found.",
+        "type": "comment"
+    },
+    "256": {
+        "file_id": 28,
+        "content": "\ttardir=${ARRAY[0]}\n\ttarget_string=\"blitx\"\n\techo_string=$( get_checked $(sudo ls $tardir -1 | grep -i $target_string) )\n\tif [ \"$target_string\" == \"$echo_string\" ]; then\n\t\t:\n\telse\n\t\tsudo mkdir $tardir/blitx\n\t\t# this is when things going philosophical.\n\t\t# the null command.\n\tfi\n\tsudo bash -c \"echo 20000 > $tardir/blitx/cpu.cfs_quota_us\"\n\tsudo bash -c \"echo 50000 > $tardir/blitx/cpu.cfs_period_us\"\n\t# do the stuff then.\n\t# return the directory, for future use.\n\techo $tardir/blitx/cgroup.procs\n\t# check if there's blitx directory.\n#\techo \"No candy\"\nelse\n\t# check kernel support first.\n\tif get_kernel; then\n\t\tdefault_cpu=/sys/fs/cgroups/cpu\n\t\tsudo mkdir -p $default_cpu/blitx \n\t\tsudo mount -t cgroup -o cpu none $default_cpu\n\t\t# if this fails, might be used by cgroup-v2, and we need to redefine the function.\n\t\t# really? not know.\n\t\tsudo bash -c \"echo 20000 > $default_cpu/blitx/cpu.cfs_quota_us\"\n\t\tsudo bash -c \"echo 50000 > $default_cpu/blitx/cpu.cfs_period_us\"\n\t\t# do the stuff then.\n\t\t# return the directory, for future use.\n\t\techo $default_cpu/blitx/cgroup.procs",
+        "type": "code",
+        "location": "/bootstrap/blitx/on_premise_filter_aarch64.sh:53-82"
+    },
+    "257": {
+        "file_id": 28,
+        "content": "Code checks if \"blitx\" directory exists, creates it if not, and sets CPU quotas. If kernel support is available, mounts the cgroup file system and sets CPU quotas for \"blitx\". Returns the directory path for future use.",
+        "type": "comment"
+    },
+    "258": {
+        "file_id": 28,
+        "content": "\telse\n\t\techo none\n\tfi\n#\techo \"yes man\"\n# might have to handle the launcher yourself.\nfi\n#for i in \"${ARRAY[@]}\"\n#do\n#\techo $i\n#done",
+        "type": "code",
+        "location": "/bootstrap/blitx/on_premise_filter_aarch64.sh:83-92"
+    },
+    "259": {
+        "file_id": 28,
+        "content": "This code segment checks if a certain condition is met and prints \"none\" when it's not. It then suggests handling the launcher manually, implying that it might be necessary for certain scenarios. The inner loop seems unused as it is commented out.",
+        "type": "comment"
+    },
+    "260": {
+        "file_id": 29,
+        "content": "/bootstrap/blitx/pairclient.py",
+        "type": "filepath"
+    },
+    "261": {
+        "file_id": 29,
+        "content": "Imports zmq, random, sys, and time libraries. Defines the port number as \"5757\". Initializes a ZMQ context and creates a PAIR socket. Sets socket to not linger on disconnect. Connects the socket to a server at \"tcp://127.0.0.7:%s\" % port. Prompts for user input, sends it through the socket in non-blocking mode, and handles any potential timeout.",
+        "type": "summary"
+    },
+    "262": {
+        "file_id": 29,
+        "content": "import zmq\nimport random\nimport sys\nimport time\n# from sub2 import timeout\nport = \"5757\"\ncontext = zmq.Context()\nsocket = context.socket(zmq.PAIR)\nsocket.setsockopt(zmq.LINGER, 0)\n# this works. not blocking.\nsocket.connect(\"tcp://127.0.0.7:%s\" % port)\n#while True:\n#        msg = socket.recv()\n#        print msg\n# performing one-shot.\n#        socket.send(\"client message to server1\")\n# fuck.\n# for the latter.\nsend_string = socket.send_string\n# send_string = timeout(1)(socket.send_string)\nsend_string(input(\"Enter the command:\\r\\n\"))\n# cannot send shit.\n# will stuck if no receive. switch to non-block mode here?\n#        time.sleep(1)\n# asshole.\n# WTF?\n# just to send one single string.",
+        "type": "code",
+        "location": "/bootstrap/blitx/pairclient.py:1-28"
+    },
+    "263": {
+        "file_id": 29,
+        "content": "Imports zmq, random, sys, and time libraries. Defines the port number as \"5757\". Initializes a ZMQ context and creates a PAIR socket. Sets socket to not linger on disconnect. Connects the socket to a server at \"tcp://127.0.0.7:%s\" % port. Prompts for user input, sends it through the socket in non-blocking mode, and handles any potential timeout.",
+        "type": "comment"
+    },
+    "264": {
+        "file_id": 30,
+        "content": "/bootstrap/blitx/pairserver.py",
+        "type": "filepath"
+    },
+    "265": {
+        "file_id": 30,
+        "content": "This code imports necessary modules, sets up a TCP server socket for communication with clients, and includes a function called \"onceMore\" that will receive a message from the connected client. It also has a comment expressing confusion about a missing part of the code.",
+        "type": "summary"
+    },
+    "266": {
+        "file_id": 30,
+        "content": "import zmq\nimport random\nimport sys\nimport time\nport = \"5757\"\ncontext = zmq.Context()\nsocket = context.socket(zmq.PAIR)\nsocket.bind(\"tcp://127.0.0.7:%s\" % port)\n# while True:\n#        socket.send_string(\"Server message to client3\")\n# what the fuck is this?\ndef onceMore():\n    msg = (socket.recv_string()+\"\\r\\n\").encode()\n    return msg\n    # will it stuck?\n    # print(type(msg),msg)\n        # this is fuck.\n#        time.sleep(1)\n# we'll receive it.",
+        "type": "code",
+        "location": "/bootstrap/blitx/pairserver.py:1-20"
+    },
+    "267": {
+        "file_id": 30,
+        "content": "This code imports necessary modules, sets up a TCP server socket for communication with clients, and includes a function called \"onceMore\" that will receive a message from the connected client. It also has a comment expressing confusion about a missing part of the code.",
+        "type": "comment"
+    },
+    "268": {
+        "file_id": 31,
+        "content": "/bootstrap/blitx/pidTest.py",
+        "type": "filepath"
+    },
+    "269": {
+        "file_id": 31,
+        "content": "Iterates through input lines, then characters in each line, encodes and prints the character along with its type. Ends each line with \"one line ends.\" message.",
+        "type": "summary"
+    },
+    "270": {
+        "file_id": 31,
+        "content": "import sys\nfor x in sys.stdin:\n    for z in x:\n        print(z.encode(),type(z))\n# to integer?\n    print(\"one line ends.\")",
+        "type": "code",
+        "location": "/bootstrap/blitx/pidTest.py:1-6"
+    },
+    "271": {
+        "file_id": 31,
+        "content": "Iterates through input lines, then characters in each line, encodes and prints the character along with its type. Ends each line with \"one line ends.\" message.",
+        "type": "comment"
+    },
+    "272": {
+        "file_id": 32,
+        "content": "/bootstrap/blitx/pidTest.sh",
+        "type": "filepath"
+    },
+    "273": {
+        "file_id": 32,
+        "content": "The script echoes a value representing the current process ID (PID) using a specific hexadecimal format.",
+        "type": "summary"
+    },
+    "274": {
+        "file_id": 32,
+        "content": "#!/bin/bash\necho -e \"\\x00\\xd0\\x9d\\x09$$\"",
+        "type": "code",
+        "location": "/bootstrap/blitx/pidTest.sh:1-2"
+    },
+    "275": {
+        "file_id": 32,
+        "content": "The script echoes a value representing the current process ID (PID) using a specific hexadecimal format.",
+        "type": "comment"
+    },
+    "276": {
+        "file_id": 33,
+        "content": "/bootstrap/blitx/pid_linux_xorg.sh",
+        "type": "filepath"
+    },
+    "277": {
+        "file_id": 33,
+        "content": "Script for finding the visible window with a specific PID using xdotool and checking its properties with xprop.",
+        "type": "summary"
+    },
+    "278": {
+        "file_id": 33,
+        "content": "#!/bin/bash\nxdotool search --any --pid 3193\necho ______SPILTER______\nxdotool search --onlyvisible --pid 3193\n# useful even minimized\necho ______SPILTER______\nxprop -id 46137345\n# check for class name? not stable.",
+        "type": "code",
+        "location": "/bootstrap/blitx/pid_linux_xorg.sh:1-8"
+    },
+    "279": {
+        "file_id": 33,
+        "content": "Script for finding the visible window with a specific PID using xdotool and checking its properties with xprop.",
+        "type": "comment"
+    },
+    "280": {
+        "file_id": 34,
+        "content": "/bootstrap/blitx/sample.sh",
+        "type": "filepath"
+    },
+    "281": {
+        "file_id": 34,
+        "content": "This script defines a function called \"get_kernel\" that checks if the kernel has any non-cpu cgroups. If it does, it returns 0 (indicating no CPU usage), otherwise it returns 1. The script then calls this function and conditionally echoes either \"something\" or \"nothing\".",
+        "type": "summary"
+    },
+    "282": {
+        "file_id": 34,
+        "content": "#!/bin/bash\nget_kernel(){\n\tkern=$( echo $(./check_cgroups.sh | awk '{print $1}'))\n\t#kern=$()\n\tread -ra ADDR <<<\"$kern\"\n\tv=0\n\tfor i in \"${ADDR[@]}\";\n\tdo\n\t\tif [ \"$i\" == \"cpu\" ]; then\n\t\t\tv+=1\n\t\telse\n\t\t\t:\n\t\tfi\n#\t\techo $i\n\tdone\n\techo $v\n\tif [ $v -ne 0 ] ; then\n\t\treturn 0\n\telse\n\t\treturn 1\n\tfi\n}\n#echo $( retval get_kernel )\nif get_kernel; then\n\techo \"something\"\nelse\n\techo \"nothing\"\nfi",
+        "type": "code",
+        "location": "/bootstrap/blitx/sample.sh:1-28"
+    },
+    "283": {
+        "file_id": 34,
+        "content": "This script defines a function called \"get_kernel\" that checks if the kernel has any non-cpu cgroups. If it does, it returns 0 (indicating no CPU usage), otherwise it returns 1. The script then calls this function and conditionally echoes either \"something\" or \"nothing\".",
+        "type": "comment"
+    },
+    "284": {
+        "file_id": 35,
+        "content": "/bootstrap/blitx/src/README",
+        "type": "filepath"
+    },
+    "285": {
+        "file_id": 35,
+        "content": "This code snippet seems to be discussing the arrangement of 'make' and 'cmake' commands, followed by mentioning the need to retrieve information about these commands.",
+        "type": "summary"
+    },
+    "286": {
+        "file_id": 35,
+        "content": "do not know the meaning of doing so.\nit seems to be the arrangement of make & cmake.\nnext is to get the info of commands.",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/README:1-4"
+    },
+    "287": {
+        "file_id": 35,
+        "content": "This code snippet seems to be discussing the arrangement of 'make' and 'cmake' commands, followed by mentioning the need to retrieve information about these commands.",
+        "type": "comment"
+    },
+    "288": {
+        "file_id": 36,
+        "content": "/bootstrap/blitx/src/audio_record/README",
+        "type": "filepath"
+    },
+    "289": {
+        "file_id": 36,
+        "content": "This code discusses the installation of portaudio(xx)-dev on Linux, the uncertainty of OBS bindings working on Android, checking the logic for an Android broadcast app, and obtaining a virtual Termux runtime by packing it up.",
+        "type": "summary"
+    },
+    "290": {
+        "file_id": 36,
+        "content": "linux needs portaudio(xx)-dev installed.\ndon't know if obs bindings working for android. maybe?\nshall check logic for android broadcast app. demo please?\nyou can get a virtual termux runtime by simply packing it up.",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/audio_record/README:1-5"
+    },
+    "291": {
+        "file_id": 36,
+        "content": "This code discusses the installation of portaudio(xx)-dev on Linux, the uncertainty of OBS bindings working on Android, checking the logic for an Android broadcast app, and obtaining a virtual Termux runtime by packing it up.",
+        "type": "comment"
+    },
+    "292": {
+        "file_id": 37,
+        "content": "/bootstrap/blitx/src/audio_record/deathmatch.sh",
+        "type": "filepath"
+    },
+    "293": {
+        "file_id": 37,
+        "content": "This script continuously executes the Python script \"sc.py\" in an infinite loop using Bash.",
+        "type": "summary"
+    },
+    "294": {
+        "file_id": 37,
+        "content": "#!/bin/bash\nwhile true\ndo\n\tpython3 sc.py\ndone",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/audio_record/deathmatch.sh:1-5"
+    },
+    "295": {
+        "file_id": 37,
+        "content": "This script continuously executes the Python script \"sc.py\" in an infinite loop using Bash.",
+        "type": "comment"
+    },
+    "296": {
+        "file_id": 38,
+        "content": "/bootstrap/blitx/src/audio_record/rec_nosound.py",
+        "type": "filepath"
+    },
+    "297": {
+        "file_id": 38,
+        "content": "The code records audio in chunks of 1024 samples, with 16 bits per sample, and two channels at a frequency of 44100 samples per second for three seconds. It then stops the stream, terminates PortAudio interface, and saves the recorded data as a WAV file named \"output.wav\".",
+        "type": "summary"
+    },
+    "298": {
+        "file_id": 38,
+        "content": "import pyaudio\nimport wave\nchunk = 1024  # Record in chunks of 1024 samples\nsample_format = pyaudio.paInt16  # 16 bits per sample\nchannels = 2\nfs = 44100  # Record at 44100 samples per second\nseconds = 5\nfilename = \"output.wav\"\np = pyaudio.PyAudio()  # Create an interface to PortAudio\nprint('Recording')\nstream = p.open(format=sample_format,\n                channels=channels,\n                rate=fs,\n                frames_per_buffer=chunk,\n                input=True)\nframes = []  # Initialize array to store frames\n# Store data in chunks for 3 seconds\nfor i in range(0, int(fs / chunk * seconds)):\n    data = stream.read(chunk)\n    frames.append(data)\n# Stop and close the stream \nstream.stop_stream()\nstream.close()\n# Terminate the PortAudio interface\np.terminate()\nprint('Finished recording')\n# Save the recorded data as a WAV file\nwf = wave.open(filename, 'wb')\nwf.setnchannels(channels)\nwf.setsampwidth(p.get_sample_size(sample_format))\nwf.setframerate(fs)\nwf.writeframes(b''.join(frames))\nwf.close()",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/audio_record/rec_nosound.py:1-42"
+    },
+    "299": {
+        "file_id": 38,
+        "content": "The code records audio in chunks of 1024 samples, with 16 bits per sample, and two channels at a frequency of 44100 samples per second for three seconds. It then stops the stream, terminates PortAudio interface, and saves the recorded data as a WAV file named \"output.wav\".",
+        "type": "comment"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This script checks the length of command-line arguments, examines each process, and kills non-daemon processes. If all processes are daemons, it exits with status 1; otherwise, it exits with status 0. The last line suggests that only understanding parts of the code tree is necessary for its operation.",
+    "details": [
+        {
+            "comment": "This script checks the length of command-line arguments, examines each process, and kills non-daemon processes. If all processes are daemons, it exits with status 1; otherwise, it exits with status 0. The last line suggests that only understanding parts of the code tree is necessary for its operation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/check_daemon_multiargs.sh\":0-24",
+            "content": "#!/bin/bash\n# who cares? it is all about the kernel. all relatively simple.\n# not this?\n# check the length. the argument length.\nedy=$#\nedv=$edy\nfor var in \"$@\"\ndo\n\techo \"examing process $var\"\n\tpstree $var -p -s -T | python3 check_daemon.py $var\n\tedx=$?\n\tif [ $edx -eq 0 ]\n\tthen\n\t\tedy=$(($edy - 1))\n\t\techo \"killing non-daemon $var\"\n\t\tkill $var\n\tfi\ndone\nif [ $edy -eq $edv ]\nthen\n\texit 1\nfi\nexit 0\n# we do not need to understand the whole tree."
+        }
+    ]
+}

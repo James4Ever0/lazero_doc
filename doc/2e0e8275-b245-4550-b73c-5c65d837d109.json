@@ -1,0 +1,10 @@
+{
+    "summary": "The code is a Bash script that executes other scripts sequentially: \"unloadoverlay.sh\", \"unloadroot.sh\", \"unloadram.sh\", \"unloadram_upper.sh\", and \"unloadram_fs.sh\". It appears to be part of a larger process for unloading modules or services.",
+    "details": [
+        {
+            "comment": "The code is a Bash script that executes other scripts sequentially: \"unloadoverlay.sh\", \"unloadroot.sh\", \"unloadram.sh\", \"unloadram_upper.sh\", and \"unloadram_fs.sh\". It appears to be part of a larger process for unloading modules or services.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/unprepare.sh\":0-5",
+            "content": "#!/bin/bash\nbash -c ./unloadoverlay.sh\nbash -c ./unloadroot.sh\nbash -c ./unloadram.sh\nbash -c ./unloadram_upper.sh\nbash -c ./unloadram_fs.sh"
+        }
+    ]
+}

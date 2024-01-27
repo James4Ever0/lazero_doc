@@ -1,0 +1,10 @@
+{
+    "summary": "Code generates two 5x5 random matrices, divides one by the other and prints the result. Then it calculates matrix multiplication between transposed first matrix and second matrix, and prints the result.",
+    "details": [
+        {
+            "comment": "Code generates two 5x5 random matrices, divides one by the other and prints the result. Then it calculates matrix multiplication between transposed first matrix and second matrix, and prints the result.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/the_new_pack/vertical.py\":0-7",
+            "content": "import numpy as np\nimport random\na= np.matrix([[random.random() for x in range(5)] for y in range(5)])\nb= np.matrix([[random.random() for x in range(5)] for y in range(5)])\nprint(b/a)\nprint(\"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\")\nprint(a.T*b)\n# what the heck?"
+        }
+    ]
+}

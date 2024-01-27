@@ -1,0 +1,537 @@
+{
+    "1300": {
+        "file_id": 222,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/complex_torch.py",
+        "type": "filepath"
+    },
+    "1301": {
+        "file_id": 222,
+        "content": "This PyTorch code creates a complex tensor, generates random batches, and tests operation speed. It trains a neural network model with two layers using MSE loss and SGD optimizer for 5000 epochs but faces issues due to unsupported complex data types.",
+        "type": "summary"
+    },
+    "1302": {
+        "file_id": 222,
+        "content": "import torch\nimport torch.nn as nn\nimport time\nfrom pytorch_complex_tensor import ComplexTensor\n# import numpy as np\n# it is not getting any better.\n# strange.\n# we will check cpu later.\n# device = torch.device(\"cuda\")\n# total time 113.9896514415741\n# ideep, hip, msnpu, mkldnn\n# opengl, opencl\n# upper case!\n# there's thing called language server!\n# also shell server, database server, and finally, nerual network server!\ndevice = torch.device(\"cpu\")\n# total time 42.38628387451172\n# you know, it is not significantly faster.\n# middle is for hiddern layer dimension.\nn_in, n_h, n_out, batch_size = 10, 5, 1, 10\n# wrong fuckiung def,\nx0 = torch.randn(batch_size, n_in).tolist()\nx1 = torch.randn(batch_size, n_in).tolist()\n# # # print(dir(x1))\n# # # print(x1)\n# x = torch.randn(batch_size, n_in)\nx = ComplexTensor([x0, x1])\n# loss=0.07\n# really? but how does it directly being applied?\n# is this fraud?\n######################################\n# LOSS MATRIX: UNDER BATCH SIZE 5000 #\n# Y \\ X    REAL   COMPLEX            #\n# REAL     0.19   0.0464             #",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/complex_torch.py:1-34"
+    },
+    "1303": {
+        "file_id": 222,
+        "content": "The code imports necessary libraries, sets the device as CPU due to performance reasons, defines input and output sizes for a neural network, generates random batches of data, and creates a ComplexTensor object. It also mentions a possible loss value.",
+        "type": "comment"
+    },
+    "1304": {
+        "file_id": 222,
+        "content": "# COMPLEX  0.17   0.07               #\n######################################\n# does this really matter?\n# wrong.\n# this can still fucking work. i do not know why.\n# to list first.\n# print(x)\n# is this for verification?\n# what if the result is defined in matrix form or some imaginary form?\n# just calm down.\n# fucking hell.\n# wahtever. do it later. always got time to fuck over.\n# test the speed first.\n# y=torch.tensor([ 1. +1.j ,  0. +0.j ,  0. +0.j ,  1. +1.j ,  1. +1.j ,  0.5-0.2j,  -0.2+0.8j, -0.5+0.5j, -0.3-0.1j,  1. +0.1j], dtype=torch.complex64)\n# y = ComplexTensor([[1.0, 0.0, 0.0, 1.0, 1.0,\n#                   1.0, 0.0, 0.0, 1.0, 1.0],[0.5, -0.2, -0.5, -0.3, 1.0,\n#                   -0.2, 0.8, 0.5, -0.1, 0.1]])\n# according to the batch size.\ny = ComplexTensor([[[1.0], [0.0], [0.0], [1.0], [1.0],\n                    [1.0], [0.0], [0.0], [1.0], [1.0]], [[0.5], [-0.2], [-0.5], [-0.3], [1.0],\n                                                         [-0.2], [0.8], [0.5], [-0.1], [0.1]]])\n# y = torch.tensor([[[1.0], [0.0], [0.0], [1.0], [1.0],",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/complex_torch.py:35-56"
+    },
+    "1305": {
+        "file_id": 222,
+        "content": "This code is creating a complex tensor using PyTorch. The tensor has 2 dimensions, representing the batch size and number of features. Each element in the tensor represents a complex number with real and imaginary parts. It appears that the code is testing the speed of this operation.",
+        "type": "comment"
+    },
+    "1306": {
+        "file_id": 222,
+        "content": "#                     [1.0], [0.0], [0.0], [1.0], [1.0]], [[0.5], [-0.2], [-0.5], [-0.3], [1.0],\n#                                                          [-0.2], [0.8], [0.5], [-0.1], [0.1]]])\n# the model, is it changeable?\n# just by making it different.\n# not working though.\nmodel = nn.Sequential(nn.Linear(n_in, n_h), nn.ReLU(),\n                      nn.Linear(n_h, n_out), nn.Sigmoid())\n# out is five.\ncriterion = torch.nn.MSELoss()\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)  # learning rate\n# you always got something to say.\n# can we reload it?\n# can we use cuda?\n# print(model,type(model))\n# # you can check it, just for sure.\n# always got doc.\n# cast it to list then.\n# does not support complex datatype.\n# we will check it later.\n# better print it here.\nmodel = model.to(device)\nx = x.to(device)\ny = y.to(device)\nt = time.time()\n# get the params out!\nfor epoch in range(5000):\n    y_pred = model(x)\n    # print(y)\n    # s=y_pred.tolist()\n    # # print(s)\n    # y_pred=ComplexTensor(s)\n    # print(\"prediction\", y_pred.size())",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/complex_torch.py:57-88"
+    },
+    "1307": {
+        "file_id": 222,
+        "content": "The code defines a neural network model, specifies the loss function and optimizer, and trains the model for 5000 epochs. The model is defined as a sequential module with two linear layers and non-linear activations. It uses the MSE loss and SGD optimizer. The model parameters are moved to GPU if available. The code aims to predict complex values but encounters issues due to complex data type not being supported.",
+        "type": "comment"
+    },
+    "1308": {
+        "file_id": 222,
+        "content": "    # print(\"target\",y.size())\n    yz = y.tolist()\n    # print(\"prediction\",ComplexTensor(y_pred.tolist()))\n    # print(\"target\", y)\n    loss = criterion(y_pred, torch.tensor(yz))  # here is the problem.\n    # two parts.\n    # what the heck?\n    print(\"epoch\", epoch, \"loss\", loss, type(loss))\n    optimizer.zero_grad()\n    loss.backward()\n    optimizer.step()\nprint(\"total time\", time.time()-t)\nmeta=list(model.parameters())\nprint(meta,[type(x) for x in meta])\n# does not have complex tensor inside.\n# it is like a function estimator.\n# can we change it dynamically?\n# you are fucking with me.\n# this time we have less accuracy.\n# maybe we can speed it up by reducing it?\n# it is just not so accurate.\n# i do not know what is the way to it.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/complex_torch.py:89-110"
+    },
+    "1309": {
+        "file_id": 222,
+        "content": "The code seems to be part of a neural network training process. It is using the PyTorch library to perform calculations and optimize a model's parameters (meta). The code uses the ComplexTensor class for some operations, possibly due to complex numbers involved in the calculations. However, there seems to be an issue with the loss calculation as the variable yz is converted from a tensor to a list using .tolist() before being used as target input. The author also expresses confusion and dissatisfaction with the model's accuracy.",
+        "type": "comment"
+    },
+    "1310": {
+        "file_id": 223,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/find_load.py",
+        "type": "filepath"
+    },
+    "1311": {
+        "file_id": 223,
+        "content": "This code imports the pandas library, reads a CSV file of Boston house prices, selects specific rows and columns, converts the dataframe to numpy array, and then swaps the axes order. The purpose may be for data exploration or preprocessing before machine learning tasks.",
+        "type": "summary"
+    },
+    "1312": {
+        "file_id": 223,
+        "content": "import pandas as pd\ns = \"/usr/local/lib/python3.8/dist-packages/sklearn/datasets/data/boston_house_prices.csv\"\nlf = pd.read_csv(s)\nn = 5\n# col_name=lf.iloc[n]\ncol_name = lf.iloc[0]\n# col_name=lf.iloc[n,0]\n# print(col_name)\n# dt=lf.iloc[0:]\ndt = lf.iloc[1:]\n# print(dir(dt))\n# print(dt.to_numpy())\ndt = dt.to_numpy()\nprint(dt)\n# print(dt.transform(-1,4))\n# print(dt.astype(\"float64\").T)\n# print(dt.transpose(1,0))\n# maybe no difference.\nprint(dt.swapaxes(1,0))\nprint(dt.swapaxes(0,1))\n# yes! no fucking difference.\n# i guess it is the order of axes.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/find_load.py:1-22"
+    },
+    "1313": {
+        "file_id": 223,
+        "content": "This code imports the pandas library, reads a CSV file of Boston house prices, selects specific rows and columns, converts the dataframe to numpy array, and then swaps the axes order. The purpose may be for data exploration or preprocessing before machine learning tasks.",
+        "type": "comment"
+    },
+    "1314": {
+        "file_id": 224,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/fix_x_torch.py",
+        "type": "filepath"
+    },
+    "1315": {
+        "file_id": 224,
+        "content": "The code uses PyTorch to train a neural network on the CIFAR-10 dataset, utilizing GPU acceleration and testing for speed with baseIV(). It faces potential challenges in verification and testing.",
+        "type": "summary"
+    },
+    "1316": {
+        "file_id": 224,
+        "content": "import torch\nimport torch.nn as nn\nimport time\nimport random\n# https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz\n# it is not getting any better.\n# strange.\n# we will check cpu later.\n# device = torch.device(\"cuda\")\n# total time 113.9896514415741\n# ideep, hip, msnpu, mkldnn\n# opengl, opencl\ndevice = torch.device(\"cuda\")\n# total time 42.38628387451172\n# you know, it is not significantly faster.\n# middle is for hiddern layer dimension.\nn_in, n_h, n_out, batch_size = 10, 5, 1, 10\n# is this for verification?\n# what if the result is defined in matrix form or some imaginary form?\n# just calm down.\n# fucking hell.\n# wahtever. do it later. always got time to fuck over.\n# test the speed first.\ndef baseIV():\n    # x = torch.randn(batch_size, n_in)\n    y = torch.tensor([random.choice([[1.0], [0.0]]) for x in range(10)])\n    # x = x.to(device)\n    y = y.to(device)\n    return y\nx = torch.randn(batch_size, n_in)\nx = x.to(device)\n# the model, is it changeable?\nmodel = nn.Sequential(nn.Linear(n_in, n_h), nn.ReLU(),\n                      nn.Linear(n_h, n_out), nn.Sigmoid())",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/fix_x_torch.py:1-38"
+    },
+    "1317": {
+        "file_id": 224,
+        "content": "Code is working with PyTorch library and a neural network model. It loads data from the CIFAR-10 dataset, uses GPU acceleration (CUDA) for faster computation, defines a linear model with ReLU and Sigmoid activation functions, and provides a function to generate input data. The code aims to test the speed of the model using the baseIV() function but seems to experience issues with GPU performance and might face further challenges in verification and testing.",
+        "type": "comment"
+    },
+    "1318": {
+        "file_id": 224,
+        "content": "criterion = torch.nn.MSELoss()\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)  # learning rate\n# you always got something to say.\n# can we reload it?\n# can we use cuda?\n# print(model,type(model))\n# # you can check it, just for sure.\n# always got doc.\n# maybe this is how we stay alert?\n# and that's why we need to differentiate.\n# there's no way to it.\nmodel = model.to(device)\nt = time.time()\nfor epoch in range(50000):\n    y = baseIV()  # very strange.\n    y_pred = model(x)\n    print(\"prediction\", y_pred)\n    loss = criterion(y_pred, y)\n    print(\"epoch\", epoch, \"loss\", loss, type(loss))\n    optimizer.zero_grad()\n    loss.backward()\n    optimizer.step()\nprint(\"total time\", time.time()-t)\n# congratudation! a brand new middle ager!\n# it is like a function estimator.\n# can we change it dynamically?\n# you are fucking with me.\n# this time we have less accuracy.\n# maybe we can speed it up by reducing it?\n# it is just not so accurate.\n# the result will never be good.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/fix_x_torch.py:39-69"
+    },
+    "1319": {
+        "file_id": 224,
+        "content": "The code defines a model, sets an optimizer and criterion, moves the model to GPU if available, and trains it for 50000 epochs. The training process includes forward pass, calculating loss, backpropagation, and updating weights. The code prints prediction, epoch, loss, and type of loss during each epoch. After training, the total time is printed. The code seems to be testing the model's performance and accuracy, potentially considering dynamic changes or speed improvements.",
+        "type": "comment"
+    },
+    "1320": {
+        "file_id": 225,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/fix_y_torch.py",
+        "type": "filepath"
+    },
+    "1321": {
+        "file_id": 225,
+        "content": "The code initializes a neural network model, trains it using stochastic gradient descent with mean squared error loss for 50,000 epochs on GPU memory, and faces potential issues with matrix or imaginary results. The author plans to test speed before considering AutoKeras as an alternative and aims to adjust for better performance after measuring time taken and evaluating accuracy.",
+        "type": "summary"
+    },
+    "1322": {
+        "file_id": 225,
+        "content": "import torch\nimport torch.nn as nn\nimport time\nimport random\n# it is not getting any better.\n# strange.\n# googledrivedownloader, llvmlite, numba, plyfile, isodate, rdflib, imagecodecs, tifffile, PyWavelets, imageio, scikit-image, torch-geometric\n# Successfully installed PyWavelets-1.1.1 googledrivedownloader-0.4 imagecodecs-2020.2.18 imageio-2.8.0 isodate-0.6.0 llvmlite-0.32.1 numba-0.49.1 plyfile-0.7.2 rdflib-5.0.0 scikit-image-0.17.2 tifffile-2020.5.11 torch-geometric-1.4.3\n# we will check cpu later.\n# device = torch.device(\"cuda\")\n# total time 113.9896514415741\n# ideep, hip, msnpu, mkldnn\n# opengl, opencl\ndevice = torch.device(\"cuda\")\n# total time 42.38628387451172\n# you know, it is not significantly faster.\n# middle is for hiddern layer dimension.\nn_in, n_h, n_out, batch_size = 10, 5, 1, 10\n# is this for verification?\n# what if the result is defined in matrix form or some imaginary form?\n# just calm down.\n# fucking hell.\n# wahtever. do it later. always got time to fuck over.\n# test the speed first.\n# there is autokeras, but no need to worry.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/fix_y_torch.py:1-25"
+    },
+    "1323": {
+        "file_id": 225,
+        "content": "The code is importing necessary libraries and defining variables for a neural network model. It uses the \"cuda\" device for GPU acceleration, but notes that the performance improvement may not be significant. The code checks the CPU later, likely for testing purposes. The author expresses frustration with potential issues related to matrix or imaginary forms of result data. They plan to test the speed first and mention AutoKeras as an alternative.",
+        "type": "comment"
+    },
+    "1324": {
+        "file_id": 225,
+        "content": "# just be patient.\n# you could implement some highlighter. npm.\ndef baseIV():\n    x = torch.randn(batch_size, n_in)\n    # y = torch.tensor([random.choice([[1.0], [0.0]]) for x in  range(10)])\n    x = x.to(device)\n    # y = y.to(device)\n    return x\n# the model, is it changeable?\nmodel = nn.Sequential(nn.Linear(n_in, n_h), nn.ReLU(),\n                      nn.Linear(n_h, n_out), nn.Sigmoid())\ncriterion = torch.nn.MSELoss()\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)  # learning rate\n# you always got something to say.\n# can we reload it?\n# can we use cuda?\n# print(model,type(model))\ny = torch.tensor([[1.0], [0.0], [0.0], [1.0], [1.0],\n                  [1.0], [0.0], [0.0], [1.0], [1.0]])\n# # you can check it, just for sure.\ny = y.to(device)\n# always got doc.\n# fucking hell. we cannot develop any abstraction from it.\nmodel = model.to(device)\nt = time.time()\nfor epoch in range(50000):\n    x = baseIV()  # very strange.\n    y_pred = model(x)\n    print(\"prediction\", y_pred)\n    loss = criterion(y_pred, y)\n    print(\"epoch\", epoch, \"loss\", loss, type(loss))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/fix_y_torch.py:26-59"
+    },
+    "1325": {
+        "file_id": 225,
+        "content": "This code defines a neural network model, initializes an optimizer, and trains it on a given dataset for 50,000 epochs. The model is defined as a sequential linear layer with ReLU activation followed by another linear layer with sigmoid activation. The data is loaded onto GPU memory using the .to(device) method, and the model is trained using stochastic gradient descent (SGD). The loss is calculated using Mean Squared Error (MSE) criterion. The code also prints prediction values and current epoch's loss at each iteration.",
+        "type": "comment"
+    },
+    "1326": {
+        "file_id": 225,
+        "content": "    optimizer.zero_grad()\n    loss.backward()\n    optimizer.step()\nprint(\"total time\", time.time()-t)\n# congratudation! a brand new middle ager!\n# it is like a function estimator.\n# can we change it dynamically?\n# you are fucking with me.\n# this time we have less accuracy.\n# maybe we can speed it up by reducing it?\n# it is just not so accurate.\n# the result will never be good.\n# it sounds stupid, but i have to try it out.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/fix_y_torch.py:60-72"
+    },
+    "1327": {
+        "file_id": 225,
+        "content": "The code performs gradient descent optimization, measures time taken, and evaluates accuracy, possibly considering speedup methods. However, the result is not accurate enough and may require adjustments for better performance.",
+        "type": "comment"
+    },
+    "1328": {
+        "file_id": 226,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/graph_impl.py",
+        "type": "filepath"
+    },
+    "1329": {
+        "file_id": 226,
+        "content": "This code defines a custom neural network layer called \"EdgeConv\" that performs message passing on graph edges. It inherits from the MessagePassing class and contains an mlp module for feature transformation. The EdgeConv layer takes in feature sizes F_in and F_out as parameters, initializes the mlp with these sizes, and implements forward, message, and propagate functions. An instance of this layer is created with sizes 10 and 10.",
+        "type": "summary"
+    },
+    "1330": {
+        "file_id": 226,
+        "content": "import torch\nfrom torch.nn import Sequential as Seq, Linear as Lin, ReLU\nfrom torch_geometric.nn import MessagePassing\n# what the heck does it contain?\nclass EdgeConv(MessagePassing):\n    def __init__(self, F_in, F_out):\n        super(EdgeConv, self).__init__(aggr=\"max\")\n        self.mlp = Seq(Lin(2*F_in, F_out), ReLU(), Lin(F_out, F_out))\n    def forward(self, x, edge_index):\n        return self.propagate(edge_index, x=x)\n    def message(self, x_i, x_j):\n        edge_features = torch.cat([x_i, x_j-x_i], dim=1)\n        return self.mlp(edge_features)\na = EdgeConv(10, 10)\n# works? never know.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/graph_impl.py:1-21"
+    },
+    "1331": {
+        "file_id": 226,
+        "content": "This code defines a custom neural network layer called \"EdgeConv\" that performs message passing on graph edges. It inherits from the MessagePassing class and contains an mlp module for feature transformation. The EdgeConv layer takes in feature sizes F_in and F_out as parameters, initializes the mlp with these sizes, and implements forward, message, and propagate functions. An instance of this layer is created with sizes 10 and 10.",
+        "type": "comment"
+    },
+    "1332": {
+        "file_id": 227,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/highlight_mycode.js",
+        "type": "filepath"
+    },
+    "1333": {
+        "file_id": 227,
+        "content": "The code uses the 'highlighter' module to highlight code in a file, experimenting with other language highlighters. The developer expresses dissatisfaction with a previous language's highlight feature and praises JavaScript for its performance. They also consider alternatives like CUDA and discuss possible disk performance issues.",
+        "type": "summary"
+    },
+    "1334": {
+        "file_id": 227,
+        "content": "var Highlight = require('highlighter')();\n// var marked = require('marked');//just test.\n// no module.\n// var style =\n// it even got brainfuck.\n// it does have the output. but never render it to image. or you have to use chrome.\nvar fs = require('fs');\n// //does this work?\n// did not applied the style.\n// it is getting altered by cnpm.\n// var html = require('highlight-xml');\n// var js = require('highlight-javascript');\n// it is always about the <pre></pre>\n// i can do it. i can let my computer to shredder.\nvar data = fs.readFileSync('scipy.html', 'utf8'); // it works.\n// var data = fs.readFileSync('./fix_x_torch.py', 'utf8');\nvar a = Highlight(data, \"html\");// does this work?\nconsole.log('<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"androidstudio.css\" ></head><body><pre><code>' + a + \"</code></pre></body></html>\");\n// it got shit for every shit.\n// what about other languages?\n// var highlight = new Highlight()\n//   .use(html)\n//   .use(js);\n// html=data\n// // var el = document.querySelector('.code-sample');",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/highlight_mycode.js:1-25"
+    },
+    "1335": {
+        "file_id": 227,
+        "content": "This code imports the 'highlighter' module, reads a file ('scipy.html'), and uses 'highlighter' to highlight the code within the file. It then outputs the highlighted code wrapped in HTML for viewing, with a reference to an external CSS file. The code also demonstrates some experimentation with other language highlighters, such as 'highlight-xml' and 'highlight-javascript'.",
+        "type": "comment"
+    },
+    "1336": {
+        "file_id": 227,
+        "content": "// // highlight.element(el);\n// highlight.all();\n// console.log(html);\n// this is not a package.\n// i have to admit javascript has some advantages here.\n// and it just fucking works.\n// we always got a lot of fucks.\n// broken code, and more.\n// the guesslang might be good but we need to have conda or something that can switch to cuda.\n// nvm. move forward.\n// is my disk getting slow? that could be serious problem.\n// chrome is not working.\n// fuck it. it sucks.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/highlight_mycode.js:26-38"
+    },
+    "1337": {
+        "file_id": 227,
+        "content": "Code chunk discusses frustration with the current codebase, mentioning JavaScript advantages and potential disk performance issues. The developer is expressing their dissatisfaction with a previous language's highlight feature and appreciates that JavaScript \"just fucking works\". They also briefly touch upon possible alternatives like CUDA and Chrome performance issues.",
+        "type": "comment"
+    },
+    "1338": {
+        "file_id": 228,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/linspa.py",
+        "type": "filepath"
+    },
+    "1339": {
+        "file_id": 228,
+        "content": "The code trains a neural network module \"Lin\" using SGD optimizer and MSELoss criterion for 5000 epochs, prints final weights, and includes seaborn library's lmplot, matplotlib plotting, I/O error, and humorous statement.",
+        "type": "summary"
+    },
+    "1340": {
+        "file_id": 228,
+        "content": "import torch\nimport numpy as np\nimport matplotlib.pyplot as plt\n# from matplotlib.animation import FuncAnimation\n# hard to find complex parameters.\n# plenty of fuck.\nimport seaborn as sns\nimport pandas as pd\n# %matplotlib inline\nimport torch\nimport torch.nn as nn\nfrom torch.autograd import Variable\n# this is for jupyter.\n# maybe this machine needs some rest?\n# yeah, just maybe.\nclass Lin(nn.Module):\n    # TODO: unfinished!\n    def __init__(self, input_dim, output_dim):\n        # super(Lin,self)\n        super().__init__()\n        self.linear = nn.Linear(input_dim, output_dim)\n    def forward(self, s):\n        out = self.linear(s)\n        return out\n    def dump(self):\n        return self.linear\nm = 2\nc = 3\nx = np.random.rand(256)\nnoise = np.random.rand(256)/4\ny = x*m+c+noise\ndf = pd.DataFrame()\ndf['x'] = x\ndf['y'] = y\nx_train = torch.tensor(x.reshape(-1, 1).astype(\"float32\"))\n# they always hide the dimension.\n# print(x_train.shape,x.shape)# does not have second dimension.\n# hell. then we will only get one fucking neuron.\ny_train = torch.tensor(y.reshape(-1, 1).astype(\"float32\"))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/linspa.py:1-45"
+    },
+    "1341": {
+        "file_id": 228,
+        "content": "The code imports necessary libraries, creates a custom neural network module called \"Lin\", generates random input data, and prepares the input and output training data for a simple linear regression model.",
+        "type": "comment"
+    },
+    "1342": {
+        "file_id": 228,
+        "content": "# not tensor.\ninput_dim = x_train.shape[1]\noutput_dim = y_train.shape[1]\nmodel = Lin(input_dim, output_dim)\ncriterion = torch.nn.MSELoss()  # anything else?\n# device = torch.device(\"cuda\")\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)\ndevice = torch.device(\"cpu\")\nx_train = x_train.to(device)\ny_train = y_train.to(device)\nmodel= model.to(device)\n# no fucking cache?\n# it is sitting still. strange.\n# print(x_train)\n# remove the thing first.\nfor epoch in range(5000):\n    y_pred = model.forward(x_train)\n    # print(\"prediction\", y_pred)\n    loss = criterion(y_pred, y_train)\n    print(\"epoch\", epoch, \"loss\", loss, type(loss))\n    # optimizer = torch.optim.SGD(model.parameters(), lr=0.01)\n    # does position matters?\n    # does not matter.\n    optimizer.zero_grad()\n    loss.backward()\n    optimizer.step()\n# you know the shape, and the rule.\nfwb=list(model.parameters())\nprint(fwb)\n# 2 and 3. correct.\n# used to use some other shits.\n# you know it will.\n# complex tensors always have weird shape.\n# print(fwb)\n# has random init values.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/linspa.py:46-80"
+    },
+    "1343": {
+        "file_id": 228,
+        "content": "This code is training a linear regression model using the SGD optimizer and MSELoss criterion. The input and output dimensions are set based on the shape of the training data, and the model is trained for 5000 epochs. The weights of the model are printed after training.",
+        "type": "comment"
+    },
+    "1344": {
+        "file_id": 228,
+        "content": "# print(input_dim,output_dim)\n# strange.\n# sns.lmplot(x='x',y='y',data=df)\n# plt.show()\n# what the heck.\n# with regression model.\n# you always got options.\n# leaving this for too damn long will cause I/O error.\n# fine. i will buy you a thing.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/linspa.py:81-89"
+    },
+    "1345": {
+        "file_id": 228,
+        "content": "This code seems to be a snippet with multiple comments, suggesting it's part of a larger script or program. It prints input and output dimensions, uses seaborn library's lmplot for linear regression plotting, shows a plot using matplotlib (possibly), mentions I/O error, and ends with a somewhat humorous statement about buying something.",
+        "type": "comment"
+    },
+    "1346": {
+        "file_id": 229,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/out_torch.py",
+        "type": "filepath"
+    },
+    "1347": {
+        "file_id": 229,
+        "content": "The code initializes a PyTorch neural network for linear regression with two linear layers and ReLU activation. It trains the model on GPU for 50,000 epochs and prints predictions and loss at each step while calculating total time taken. Batch size reduction may improve speed.",
+        "type": "summary"
+    },
+    "1348": {
+        "file_id": 229,
+        "content": "import torch\nimport torch.nn as nn\nimport time\n# it is not getting any better.\n# strange.\n# we will check cpu later.\n# device = torch.device(\"cuda\")\n# total time 113.9896514415741\n# ideep, hip, msnpu, mkldnn\n# opengl, opencl\n# language is a sparse matrix.\n# many things are sparse. just wait and see.\ndevice = torch.device(\"cpu\")\n# total time 42.38628387451172\n# you know, it is not significantly faster.\n# middle is for hiddern layer dimension.\nn_in, n_h, n_out, batch_size = 10, 5, 1, 10\nx = torch.randn(batch_size, n_in)\n# is this for verification?\n# what if the result is defined in matrix form or some imaginary form?\n# just calm down.\n# fucking hell.\n# wahtever. do it later. always got time to fuck over.\n# test the speed first.\ny = torch.tensor([[1.0], [0.0], [0.0], [1.0], [1.0],\n                  [1.0], [0.0], [0.0], [1.0], [1.0]])\n# the model, is it changeable?\nmodel = nn.Sequential(nn.Linear(n_in, n_h), nn.ReLU(),\n                      nn.Linear(n_h, n_out), nn.Sigmoid())\ncriterion = torch.nn.MSELoss()\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)  # learning rate",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/out_torch.py:1-31"
+    },
+    "1349": {
+        "file_id": 229,
+        "content": "The code is initializing a neural network model using PyTorch for linear regression. It defines a Sequential model with two linear layers and ReLU activation, followed by Sigmoid activation. It also sets the criterion as Mean Squared Error loss and optimizer as Stochastic Gradient Descent (SGD) with a learning rate of 0.01. The code is testing the speed of the CPU, possibly considering GPU acceleration later.",
+        "type": "comment"
+    },
+    "1350": {
+        "file_id": 229,
+        "content": "# you always got something to say.\n# can we reload it?\n# can we use cuda?\n# print(model,type(model))\n# # you can check it, just for sure.\n# always got doc.\nmodel = model.to(device)\nx = x.to(device)\ny = y.to(device)\nt = time.time()\nfor epoch in range(50000):\n    y_pred = model(x)\n    print(\"prediction\", y_pred)\n    loss = criterion(y_pred, y)\n    print(\"epoch\", epoch, \"loss\", loss, type(loss))\n    optimizer.zero_grad()\n    loss.backward()\n    optimizer.step()\nprint(\"total time\", time.time()-t)\n# it is like a function estimator.\n# can we change it dynamically?\n# you are fucking with me.\n# this time we have less accuracy.\n# maybe we can speed it up by reducing it?\n# it is just not so accurate.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/out_torch.py:32-56"
+    },
+    "1351": {
+        "file_id": 229,
+        "content": "Code is training a machine learning model for 50000 epochs on GPU using CUDA, printing predictions and loss at each step, and then calculating total time taken. The model accuracy may need improvement, and reducing batch size might speed up the process.",
+        "type": "comment"
+    },
+    "1352": {
+        "file_id": 230,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/project_toy.py",
+        "type": "filepath"
+    },
+    "1353": {
+        "file_id": 230,
+        "content": "The code imports sklearn modules, defines a data organizing function using the Boston housing dataset as an example, and showcases package and module importation methods. It also prints functions, global variables, and refers to a deep or hidden module with potential future functionality.",
+        "type": "summary"
+    },
+    "1354": {
+        "file_id": 230,
+        "content": "# import sklearn\nfrom sklearn import datasets\nfrom sklearn.datasets import clear_data_home\n# i cannot tell difference between package and modules.\n# is this how to import deepshit?\n# print(dir(datasets))\n# fake news!\n# what about that __all__ again?\n\"\"\"['__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__path__', '__spec__', '_base', '_california_housing', '_covtype', '_kddcup99', '_lfw', '_olivetti_faces', '_openml', '_rcv1', '_samples_generator', '_species_distributions', '_svmlight_format_fast', '_svmlight_format_io', '_twenty_newsgroups', 'clear_data_home', 'dump_svmlight_file', 'fetch_20newsgroups', 'fetch_20newsgroups_vectorized', 'fetch_california_housing', 'fetch_covtype', 'fetch_kddcup99', 'fetch_lfw_pairs', 'fetch_lfw_people', 'fetch_olivetti_faces', 'fetch_openml', 'fetch_rcv1', 'fetch_species_distributions', 'get_data_home', 'load_boston', 'load_breast_cancer', 'load_diabetes', 'load_digits', 'load_files', 'load_iris', 'load_l",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/project_toy.py:1-9"
+    },
+    "1355": {
+        "file_id": 230,
+        "content": "This code imports necessary modules from the sklearn library and defines a clear_data_home function for organizing data. It also shows confusion between package and module importation methods.",
+        "type": "comment"
+    },
+    "1356": {
+        "file_id": 230,
+        "content": "innerud', 'load_sample_image', 'load_sample_images', 'load_svmlight_file', 'load_svmlight_files', 'load_wine', 'make_biclusters', 'make_blobs', 'make_checkerboard', 'make_circles', 'make_classification', 'make_friedman1', 'make_friedman2', 'make_friedman3', 'make_gaussian_quantiles', 'make_hastie_10_2', 'make_low_rank_matrix', 'make_moons', 'make_multilabel_classification', 'make_regression', 'make_s_curve', 'make_sparse_coded_signal', 'make_sparse_spd_matrix', 'make_sparse_uncorrelated', 'make_spd_matrix', 'make_swiss_roll']\"\"\"\nd=datasets.load_boston()\n# f=dir(clear_data_home)\n# print(f)\nprint(d)\nprint(type(d))\n# e=datasets.__all__\n\"\"\"['clear_data_home', 'dump_svmlight_file', 'fetch_20newsgroups', 'fetch_20newsgroups_vectorized', 'fetch_lfw_pairs', 'fetch_lfw_people', 'fetch_olivetti_faces', 'fetch_species_distributions', 'fetch_california_housing', 'fetch_covtype', 'fetch_rcv1', 'fetch_kddcup99', 'fetch_openml', 'get_data_home', 'load_boston', 'load_diabetes', 'load_digits', 'load_files', '",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/project_toy.py:9-16"
+    },
+    "1357": {
+        "file_id": 230,
+        "content": "This code is importing the necessary modules for data manipulation and loading a dataset (Boston housing dataset) using the \"datasets.load_boston()\" function. It then prints the loaded dataset and its type.",
+        "type": "comment"
+    },
+    "1358": {
+        "file_id": 230,
+        "content": "load_iris', 'load_breast_cancer', 'load_linnerud', 'load_sample_image', 'load_sample_images', 'load_svmlight_file', 'load_svmlight_files', 'load_wine', 'make_biclusters', 'make_blobs', 'make_circles', 'make_classification', 'make_checkerboard', 'make_friedman1', 'make_friedman2', 'make_friedman3', 'make_gaussian_quantiles', 'make_hastie_10_2', 'make_low_rank_matrix', 'make_moons', 'make_multilabel_classification', 'make_regression', 'make_s_curve', 'make_sparse_coded_signal', 'make_sparse_spd_matrix', 'make_sparse_uncorrelated', 'make_spd_matrix', 'make_swiss_roll']\"\"\"\n# print(e)\n# print(globals())\n# you just hope, that someday it might work.\n# some deep module (deep shit) or hidden module.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/project_toy.py:16-20"
+    },
+    "1359": {
+        "file_id": 230,
+        "content": "The code imports various functions from different modules and prints them along with the global variables. It also mentions a hope for eventual functionality and refers to a deep or hidden module.",
+        "type": "comment"
+    },
+    "1360": {
+        "file_id": 231,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/rand_torch.py",
+        "type": "filepath"
+    },
+    "1361": {
+        "file_id": 231,
+        "content": "The code creates a neural network model, trains it using generated data for 50,000 epochs, and measures speed while discussing potential accuracy improvements.",
+        "type": "summary"
+    },
+    "1362": {
+        "file_id": 231,
+        "content": "import torch\nimport torch.nn as nn\nimport time\nimport random\n# it is not getting any better.\n# strange.\n# we will check cpu later.\n# device = torch.device(\"cuda\")\n# total time 113.9896514415741\n# ideep, hip, msnpu, mkldnn\n# opengl, opencl\ndevice = torch.device(\"cuda\")\n# total time 42.38628387451172\n# you know, it is not significantly faster.\n# middle is for hiddern layer dimension.\nn_in, n_h, n_out, batch_size = 10, 5, 1, 10\n# is this for verification?\n# what if the result is defined in matrix form or some imaginary form?\n# just calm down.\n# fucking hell.\n# wahtever. do it later. always got time to fuck over.\n# test the speed first.\ndef baseIV():\n    x = torch.randn(batch_size, n_in)\n    y = torch.tensor([random.choice([[1.0], [0.0]]) for x in  range(10)])\n    x = x.to(device)\n    y = y.to(device)\n    return x, y\n# the model, is it changeable?\nmodel = nn.Sequential(nn.Linear(n_in, n_h), nn.ReLU(),\n                      nn.Linear(n_h, n_out), nn.Sigmoid())\ncriterion = torch.nn.MSELoss()\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)  # learning rate",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/rand_torch.py:1-37"
+    },
+    "1363": {
+        "file_id": 231,
+        "content": "The code imports the necessary libraries, sets the device to CUDA for GPU usage (if available), defines parameters such as number of inputs, hidden layers, and outputs, creates a neural network model with two linear layers and activation functions, initializes the loss function, optimizer with a learning rate, and includes a function to generate random input and target data. The code seems focused on testing the speed of this process.",
+        "type": "comment"
+    },
+    "1364": {
+        "file_id": 231,
+        "content": "# you always got something to say.\n# can we reload it?\n# can we use cuda?\n# print(model,type(model))\n# # you can check it, just for sure.\n# always got doc.\nmodel = model.to(device)\nt = time.time()\nfor epoch in range(50000):\n    x,y=baseIV() # very strange.\n    y_pred = model(x)\n    print(\"prediction\", y_pred)\n    loss = criterion(y_pred, y)\n    print(\"epoch\", epoch, \"loss\", loss, type(loss))\n    optimizer.zero_grad()\n    loss.backward()\n    optimizer.step()\nprint(\"total time\", time.time()-t)\n# congratudation! a brand new middle ager!\n# it is like a function estimator.\n# can we change it dynamically?\n# you are fucking with me.\n# this time we have less accuracy.\n# maybe we can speed it up by reducing it?\n# it is just not so accurate.\n# the result will never be good.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/rand_torch.py:38-63"
+    },
+    "1365": {
+        "file_id": 231,
+        "content": "The code trains a model for 50,000 epochs using the baseIV() function to generate data. It prints prediction results and loss for each epoch, optimizes the model's parameters, and measures the total time taken. The accuracy of the model is discussed, suggesting possible improvements like reducing batch size or dynamically changing the model.",
+        "type": "comment"
+    },
+    "1366": {
+        "file_id": 232,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/reshaper.py",
+        "type": "filepath"
+    },
+    "1367": {
+        "file_id": 232,
+        "content": "The code imports libraries, defines an array 's' with complex values and reshapes it. It converts the reshaped array to a ComplexTensor object and checks its length. The code also initializes a nested dictionary 'r', converts it to a numpy array 's', reshapes and flattens it, then creates a torch tensor from the array.",
+        "type": "summary"
+    },
+    "1368": {
+        "file_id": 232,
+        "content": "import numpy as np\nimport torch\n# import torch_complex\nfrom pytorch_complex_tensor import ComplexTensor\n# n = np.array([1, 2, 3, 4, 2, 2, 3, 4])\n# d = n.reshape(-1, 4, 1)\n# print(d)\n# # compare with tensor.\n# t=torch.tensor(d)\n# # what the heck?\n# print(t)\n# t0=d.tolist()\n# t0=torch.tensor(t0)\n# print(t0)\n# # fuck.\n# different reprsentation.\ns=[[[1.0], [0.0], [0.0], [1.0], [1.0],\n                    [1.0], [0.0], [0.0], [1.0], [1.0]], [[0.5], [-0.2], [-0.5], [-0.3], [1.0],\n                                                         [-0.2], [0.8], [0.5], [-0.1], [0.1]]]\ns0=np.array(s)\n# strange, no matter how you call it.\ns1=s0.reshape(2,-1)\nprint(s1,s1.shape)\ny = ComplexTensor(s1)\nprint(y,y.shape)\n# # print(dir(y))\nprint(len(y))\n# it does not have the correct format.\n# e=[x for x in y]\n# print(e)\n# z=y.tolist()\n# # print()\n# e=torch.tensor(z)\n# print(e,e.shape)\n# # print(z)\n# that's why i say it is strange.\n# print(n.shape, d.shape)\n# # what is the difference?\n# print(n.tolist())\n# print(d.tolist())\n# # this is how we flattern shits? what about dict?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/reshaper.py:1-41"
+    },
+    "1369": {
+        "file_id": 232,
+        "content": "Code imports necessary libraries and defines an array 's' with complex values. It then reshapes the numpy array using .reshape() method, prints the reshaped array and its shape. Converts the reshaped array into a ComplexTensor object, prints the tensor and its shape. Finally, it checks the length of the tensor, which is different from the original array size due to the complex format.",
+        "type": "comment"
+    },
+    "1370": {
+        "file_id": 232,
+        "content": "# # r={\"1\",1,\"2\",2}\n# # holy shit. this is comprehensible. can this be tensor?\n# r = {\"1\": 1, \"2\": 2, \"v\": {\"#\": 3, \"s\": {\"##\": 4}}}\n# # this is a set, not a dict\n# s = np.array(r)\n# print(s, type(s), type(r))\n# # flat.\n# # this one has size one.\n# f = s.tolist()\n# print(f, type(f))\n# holy shit.\n# f=s.reshape(-1,0)\n# print(f,f.shape)\n# what the heck?\n# v=torch.Tensor(s)\n# type is object.\n# print(v,type(v))\n# everything numpy?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/reshaper.py:42-59"
+    },
+    "1371": {
+        "file_id": 232,
+        "content": "Code snippet initializes a nested dictionary 'r' and converts it to a numpy array 's'. The code then converts the numpy array back to a list, 'f', reshapes it, prints the flattened list and its shape. Finally, it creates a torch tensor from the numpy array, printing the tensor and its type.",
+        "type": "comment"
+    },
+    "1372": {
+        "file_id": 233,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/super_0.py",
+        "type": "filepath"
+    },
+    "1373": {
+        "file_id": 233,
+        "content": "The code defines classes ARA and ARB, with sup0 method in ARA and sup method in ARB that attempts to access a nonexistent superclass. The code is incomplete and lacks proper documentation. It seems to be part of a larger program utilizing the capabilities of the ARB class for superscript calculations.",
+        "type": "summary"
+    },
+    "1374": {
+        "file_id": 233,
+        "content": "class ARA:\n    def init(self):\n        self.code=\"nothing\"\n    def sup0(self,a):\n        # def pr(a):\n        #     print(a)\n        # ab=super()# super of ARB.\n        # print(type(sup0))\n        # it is a super class?\n        # must be in class.\n        # print(dir(ab))\n        # print(ab.sup(a))\n        return a\nclass ARB(ARA):\n    # waht the heck?\n    def init(self):\n        self.code=\"nothing\"\n    def sup(self,a):\n        # def pr(a):\n            # print(a)\n        # ab=super(type(self))# super of ARB.\n        ab=super().sup0\n        # oh shit.\n        # really awful.\n        # init the class.\n        print(type(ab))\n        # it is a super class?\n        # must be in class.\n        print(dir(ab))\n        print(ab(a))\n        print(dir(self))\n        print(dir(super()))\n        # all hidden shit.\n        return a\n    # print(dir(pr.__code__))\n    # print(pr.__code__.__format__(pr.__code__))\n    # ac=ab.__thisclass__(pr.__code__,globals())\n    # print(ac)\n#     # what?\n# Help on module code:\n# whatever.\n# NAME\n#     code - Utilities needed to emulate Python's interactive interpreter.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/super_0.py:1-44"
+    },
+    "1375": {
+        "file_id": 233,
+        "content": "This code defines two classes, ARA and ARB. The class ARA has a method sup0 which doesn't seem to have any functionality besides returning the input value. The class ARB also has an init method and a method sup which attempts to access a superclass method called sup0 but it appears that this superclass does not exist, leading to confusion about the purpose of sup0. Additionally, there is a lot of print statements which seem unnecessary for understanding the functionality of the code. The code seems incomplete and lacks proper documentation or clear functionality.",
+        "type": "comment"
+    },
+    "1376": {
+        "file_id": 233,
+        "content": "C=ARB()\nC.sup(\"2\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/super_0.py:45-46"
+    },
+    "1377": {
+        "file_id": 233,
+        "content": "This code imports the ARB class from the ARB module and creates an instance of it called C. Then, it sets the superscript value of C to 2 using the sup() method. This might be part of a larger program that utilizes the capabilities of the ARB class for mathematical or scientific calculations involving superscripts.",
+        "type": "comment"
+    },
+    "1378": {
+        "file_id": 234,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/toy_project.py",
+        "type": "filepath"
+    },
+    "1379": {
+        "file_id": 234,
+        "content": "The code snippet loads the Boston dataset using sklearn, converts it to PyTorch Tensor, and demonstrates various tensor operations like printing sizes, converting from numpy arrays, and displaying data. The author plans to document this process later.",
+        "type": "summary"
+    },
+    "1380": {
+        "file_id": 234,
+        "content": "# also easy to get killed: pydoc3 -k database\n# pydoc3 is better than your fucking hell evil recursive import module.\n# i need tool to inspect one package.\n# it is accessible, via .__all__\n# really funny.\n# consider text writing as multidimentional. espec+-ially in source code composition.\n# use ipython3?\n# that is wrong. i always make the same mistake.\n# it would be problematic.\n# it only appends those with modules, but does not append those without a module.\n# i think i need to sample those modules.\n# cd /usr/lib/go-1.14/pkg/tool/linux_amd64\n# addr2line*  buildid*  cover*  fix*   objdump*  test2json*\n# api*        cgo*      dist*   link*  pack*     trace*\n# asm*        compile*  doc*    nm*    pprof*    vet*\nimport torch\nfrom sklearn import datasets\nd = datasets.load_boston().data\n# print(type(d))\ne=torch.from_numpy(d)\n# <class 'numpy.ndarray'>\n# <class 'torch.Tensor'>\n# print(type(e))\n# and that is nothing.\np=e.size()\nprint(p)\n# what the heck is that?\nprint(e[:2,:5])\n# that is my dirty hack.\n# doc that thing later.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/toy_project.py:1-30"
+    },
+    "1381": {
+        "file_id": 234,
+        "content": "Code snippet is importing necessary libraries and loading the Boston dataset from sklearn. It converts the data to a torch Tensor, prints the types of original numpy array and converted tensor, calculates the size of tensor, and prints the first two rows and first five columns of the tensor. The author mentions they will document this hack later.",
+        "type": "comment"
+    },
+    "1382": {
+        "file_id": 234,
+        "content": "# only use a small fraction of code.\n# great. git will never store any valuable information.\n# print(d.size())\n# t = torch.FloatTensor([23, 24, 24.5])\n# p = t.size()\n# print(p)\n# x = torch.rand(10)\n# y = x.size()\n# print(y)\n# boston_tensor= torch.from_numpy(boston.data)\n# print(boston_tensor)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/toy_project.py:31-41"
+    },
+    "1383": {
+        "file_id": 234,
+        "content": "This code snippet is testing the functionality of various Tensor operations in PyTorch, such as creating tensors, printing sizes, and converting data from numpy arrays to tensor format.",
+        "type": "comment"
+    },
+    "1384": {
+        "file_id": 235,
+        "content": "/bootstrap/legacy/concentration/brainfuck/precise_replace.py",
+        "type": "filepath"
+    },
+    "1385": {
+        "file_id": 235,
+        "content": "\"PublicDocument\" is a class for document tracking with timestamps, including data manipulation methods and atomic changes. The code utilizes multiple processes but may require sharing documents to ensure proper functioning. Code waits for processes to finish before printing the final result using is_alive().",
+        "type": "summary"
+    },
+    "1386": {
+        "file_id": 235,
+        "content": "# unlike human, computer will not type word by word.\n# check the multi-editing enviorment?\n# that's how we get the elephant and cooperation!\nimport time\nimport copy\n# passing to multiple clients or threads?\nfrom multiprocessing import Process, freeze_support\n# yes you propose few shits upon my face. and then what?\n# stop thinking about real-time ML or any other real-time stuff. just focus on the basics.\n# or, more likely, the 10000x times slower rule.\n# you can also do multi-user image editing, video-editing and so on.\n# i don't see the point of it.\n# i mean, can we just use some other fs supports multiple changes?\n# hold on. it is not important. we have the answer.\n# how about this?\n# there's thing, and it is not too bad?\nclass PublicDocument(object):\n    def __init__(self, a):\n        self.a = a\n        self.t = time.time()\n    def commit(self, d):\n        self.a = d\n        t = time.time()\n        self.t = t\n        return t\n    def changeSingle(self, b, c):\n        a = self.a\n        # a for string. immutable.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/precise_replace.py:1-32"
+    },
+    "1387": {
+        "file_id": 235,
+        "content": "Class \"PublicDocument\" tracks changes in a document with timestamps, prevents real-time updates to focus on the basics, and uses time.time() for tracking commit times. It's not clear why multiprocessing or specific file system support is needed.",
+        "type": "comment"
+    },
+    "1388": {
+        "file_id": 235,
+        "content": "        # b for range.\n        # c for replaced things.\n        return a[:b[0]]+c+a[b[1]:]\n    def viewSingle(self, b):\n        a = self.a\n        return a[b[0]:b[1]], self.t\n    def viewMultiple(self, b):\n        # a = self.a\n        return {x: self.viewSingle(x) for x in b}\n    def checkChange(self, t):\n        return t == self.t\n    def dumpAll(self):\n        return self.a, self.t\n    # def dumpTime(self):\n    #     return self.t\n    def atomicChange(self, b, c, t):\n        if t == self.t:\n            a = copy.deepcopy(self.a)\n            # print(\"deepcopy\", a)\n            # print(\"parameter\", b, c)\n            d = self.changeSingle(b, c)\n            # print(\"what is this?\", d)\n            v = self.commit(d)\n            if v == self.t:\n                # print(\"here\")\n                return True\n            else:\n                self.commit(a)\n                # print(\"there\")\n                return False\n        else:\n            return False\n        # must have the view.\n        # def changeMultiple(a,b):\n        #     # who is first?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/precise_replace.py:33-75"
+    },
+    "1389": {
+        "file_id": 235,
+        "content": "The code defines methods for manipulating data, including single and multiple view functions, checking changes, and performing atomic changes. It also includes a deepcopy of the data and commits changes if successful. The code appears to be part of a larger program focusing on data management and transactions.",
+        "type": "comment"
+    },
+    "1390": {
+        "file_id": 235,
+        "content": "        #     # might introduce error?\n        #     # check last change date. important.\n        #     # but can we resolve this?\n        #     for c,d in b:\n        # run two threads at a time?\n# shit?\ndef generalQuest(e, n):\n    sample, b, c = e\n    # sample = sample.get()\n    assert type(sample) == PublicDocument\n    g = sample.t\n    d = sample.viewSingle(b)\n    smp = sample.changeSingle(b, c)\n    # shit.\n    print(\"sample\", smp)\n    print(g, n)\n    print(c, d, n)\n    s = sample.atomicChange(b, c, g)\n    print(s, sample.a, n)\n    print(sample.a, n)\n    # q.put(sample)\n    return\n# not working.\nif __name__ == \"__main__\":\n    # not sharing document.\n    # let them share the same object.\n    # but it usually needs some logic? network? check how database works?\n    # that's different.\n    # have fun in math. just like that.\n    freeze_support()\n    sample = PublicDocument(\"5556, 5557, 5558\")\n    # v = (sample, (2, 4), \"\")\n    # v = (sample, (2, 2), \"\")\n    # qu = Queue()\n    # q = Queue()\n    v = (sample, (-2, -4), \"hello\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/precise_replace.py:76-115"
+    },
+    "1391": {
+        "file_id": 235,
+        "content": "The code defines a function `generalQuest()` which takes parameters `e` and `n`. It seems to be working with objects of type `PublicDocument`. The main block checks if the name is `__main__` and initializes an object `sample` with arguments \"5556, 5557, 5558\", or possibly \"-2, -4\" and a string. It then prints various attributes of `sample` and other variables to debug or check if the code is running correctly. The code also mentions using two threads at a time but it might introduce errors. It suggests sharing documents and checking how databases work for further logic. The code may not be functioning as intended, as indicated by \"not working\" comments.",
+        "type": "comment"
+    },
+    "1392": {
+        "file_id": 235,
+        "content": "    g = Process(target=generalQuest, args=(v, 0))\n    g0 = Process(target=generalQuest, args=(v, 1))\n    g01 = Process(target=generalQuest, args=(v, 2))\n    g02 = Process(target=generalQuest, args=(v, 3))\n    g03 = Process(target=generalQuest, args=(v, 4))\n    x = [g, g0, g01, g02, g03]\n    for f in x:\n        f.start()\n    # qu.put(sample)\n    # # qu.put(sample)\n    # sample = q.get()\n    # qu.put(sample)\n    # sample = q.get()\n    # qu.put(sample)\n    # sample = q.get()\n    # qu.put(sample)\n    # sample = q.get()\n    # print(\"lol\")\n    # # sample = q.get()\n    # q.close()\n    # print(\"lol\")\n    # q.join_thread()\n    # print(\"lol\")\n    # qu.close()\n    # print(\"lol\")\n    # # q.join_thread() # what the heck?\n    # print(\"lol\")\n    # # z = [y.join() for y in x]\n    # print(\"lol\")\n    # exit(0) # will not do.\n    # print(\"lol\")\n    # exit\n    # qu.put(sample)\n    # only have two things.\n    # you can consider a global lock.\n    # qu.put(sample)\n    while True:\n        if sum([int(y.is_alive()) for y in x]) == 0:\n            print(\"final:\", sample.a)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/precise_replace.py:116-154"
+    },
+    "1393": {
+        "file_id": 235,
+        "content": "This code creates multiple processes and starts them, then waits for them to finish before printing the final result. It uses a while loop to check if all processes have finished using their is_alive() method. The code also includes comments that discuss possible solutions, but it's unclear what exactly they are referring to.",
+        "type": "comment"
+    },
+    "1394": {
+        "file_id": 235,
+        "content": "            break\n        else:\n            time.sleep(1)\n            print(\"await\")\n# equal for insert, and cross-editing is about...\n# think about it. just think.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/precise_replace.py:155-160"
+    },
+    "1395": {
+        "file_id": 235,
+        "content": "This code appears to be part of a larger program, potentially involved in cross-editing or insert operations. When the break condition is not met, it pauses for one second before printing \"await\" and likely continues with further processing.",
+        "type": "comment"
+    },
+    "1396": {
+        "file_id": 236,
+        "content": "/bootstrap/legacy/concentration/brainfuck/randomTapping/README",
+        "type": "filepath"
+    },
+    "1397": {
+        "file_id": 236,
+        "content": "The code discusses virtual machine initialization and potential emulation on cellphones, focusing on automation, self-aware machines, and data collection for optimal performance. The author expresses frustration with the command-line interface and debugging process, seeking a more straightforward approach.",
+        "type": "summary"
+    },
+    "1398": {
+        "file_id": 236,
+        "content": "about to initialize a minimized kernel on VM.\nalso consider some emulation on cellphone.\nit's gonna be chaotic, but it is needed to get the response.\ncollect the data for further implementation.\nalso, the image is getting bigger than expected. think about the final size.\nit's clearly not going to be pleasant.\n5min -> 112k\n60/5=12, ih -> 112*12k\n1d -> 9h -> 112*9*12k = 112*9*12/1024mb = 11.8mb\n1y -> 4.3g\nwould you like to place it elsewhere?\nyes. but only after my implementation on random tapping.\nit is the direct approach on automated machine and self-aware machine.\nall the code, all the laws, written by me and the entire humanity, exist around this world.\nit is weird that machine cannot run properly without code. but what's the real thing that keeps it going?\nconsider linking with your phone, and charge it while doing stuff.\nlet's start another shit. json stuff and more?\nwould be great.\nbasically, all sort of things are based on massive collected data, removing biase and achieving the best performance.\nremember, that a real phone will blow while virtualbox won't.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/README:1-35"
+    },
+    "1399": {
+        "file_id": 236,
+        "content": "This code discusses the initialization of a minimized kernel on a virtual machine and potential emulation on a cellphone. The author collects data for future implementation and considers the growing image size, anticipating it to be unpleasant. They express the importance of placing the code elsewhere after their random tapping implementation. The code focuses on automation, self-aware machines, and utilizing massive collected data for optimal performance. The author also reminds readers that a real phone may struggle while a virtualbox won't.",
+        "type": "comment"
+    }
+}

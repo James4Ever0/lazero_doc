@@ -1,0 +1,10 @@
+{
+    "summary": "This script retrieves the first line from \"locate.db\", counts its characters, calculates the size of the file, and then truncates the file to remove the first line.",
+    "details": [
+        {
+            "comment": "This script retrieves the first line from \"locate.db\", counts its characters, calculates the size of the file, and then truncates the file to remove the first line.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/sampler.sh\":0-5",
+            "content": "#!/bin/bash\ndata=$(tail locate.db --lines 1)\necho $data\ncount=$(echo $data | wc -c)\nsize=$(wc -c locate.db | awk '{print $1}')\ntruncate -c -s $[$size-$count] locate.db"
+        }
+    ]
+}

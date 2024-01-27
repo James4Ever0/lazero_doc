@@ -1,0 +1,10 @@
+{
+    "summary": "Code is trying to execute a command using subprocess in Python, with a timeout of 0.001 seconds. It then uses try-except block to handle any potential errors and prints the size of the output received from the process. The code seems to be stuck and may have issues on different operating systems or with different signals (SIGKILL, SIGTERM).",
+    "details": [
+        {
+            "comment": "Code is trying to execute a command using subprocess in Python, with a timeout of 0.001 seconds. It then uses try-except block to handle any potential errors and prints the size of the output received from the process. The code seems to be stuck and may have issues on different operating systems or with different signals (SIGKILL, SIGTERM).",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/testFrame.py\":0-23",
+            "content": "# computer gets stuck.\nimport subprocess\nimport sys\n# from sub2 import timeout\nx = \"timeout 0.001 yes\"\n# what the fuck?\np = subprocess.Popen\np = p(x+\"\\n\", shell=True, stdout=subprocess.PIPE,\n      stderr=subprocess.PIPE, stdin=subprocess.PIPE)\ng = None\ntry:\n    # g = p.communicate(input=b'\\n\\n\\n', timeout=1)\n    g= p.communicate(input=b'\\n\\n\\n')\nexcept:\n    print(\"error\")\nprint(sys.getsizeof(g[0]), type(g))\n# this is not right?\n# but nothing here?\n# heck man, this gets stuck in no time.\n# it is stuck.\n# great.\n# many difference here? I mean windows and more?\n# SIGKILL, SIGTERM????\n# I want to send those shits."
+        }
+    ]
+}

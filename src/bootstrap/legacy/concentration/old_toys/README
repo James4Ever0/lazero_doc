@@ -1,0 +1,4 @@
+But the csv import does not support binary data.
+You can try some assembly code or some specific code.
+You can try base64 encoding.
+Just do it. maybe there's chance to decode data during import?

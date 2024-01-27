@@ -1,0 +1,20 @@
+{
+    "summary": "This code initializes a NeuralNetwork, trains it with backpropagation, saves weights, and uses the model for predictions, despite potential ineffectiveness.",
+    "details": [
+        {
+            "comment": "The code defines a NeuralNetwork class with an input, hidden, and output layer. It initializes two weight matrices, performs matrix multiplication, applies sigmoid activation function, and calculates the forward pass. The backward pass is not implemented in this code snippet.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_package/convent.py\":0-34",
+            "content": "import torch\nimport torch.nn as nn\nimport torch.nn.init as init\nclass NeuralNetwork(nn.Module):\n    # where the fuck is the model?\n    def __init__(self, a, b, c):\n        super().__init__()\n        self.inputSize = a\n        self.outputSize = b\n        self.hiddenSize = c\n        self.w1 = torch.randn(self.inputSize, self.hiddenSize)\n        self.w2 = torch.randn(self.hiddenSize, self.outputSize)\n        init.normal_(self.w1, 0.0, 0.2)\n        init.normal_(self.w2, 0.0, 0.2)\n    def sigmold(self, s):\n        return 1/(1*torch.exp(-s))\n    def sigmoldPrime(self, s):\n        return s*(1-s)\n    def forward(self, x):\n        self.z = torch.matmul(x, self.w1)\n        # mm=matmul?\n        self.z2 = self.sigmold(self.z)\n        self.z3 = torch.matmul(self.z2, self.w2)\n        o = self.sigmold(self.z3)  # this is output.\n        # neural networks are just some fancy name to get the correct matrix.\n        # print(self.z,self.z2,self.z3)\n        # print(o)\n        return o\n    def backward(self, x, y, o):\n        self.o_error = y-o"
+        },
+        {
+            "comment": "The code initializes a NeuralNetwork model with two input nodes, one output node, and three hidden nodes. It trains the model using backpropagation for 10000 iterations and predicts outputs for given inputs. The model's weights are saved to a file called \"CNN\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_package/convent.py\":35-67",
+            "content": "        # print(\"loss\",self.o_error)\n        self.o_delta = self.o_error*self.sigmoldPrime(o)\n        self.z2_error = torch.matmul(self.o_delta, torch.t(self.w2))\n        self.z2_delta = self.z2_error*self.sigmoldPrime(self.z2)\n        self.w1 += torch.matmul(torch.t(x), self.z2_delta)\n        self.w2 += torch.matmul(torch.t(self.z2), self.o_delta)\n        init.normal_(self.w1, 0.0, 0.2)\n        init.normal_(self.w2, 0.0, 0.2)\n        # is that the problem?\n# you want to get this right?\n# just about shape convention?\n    def train(self,x, y):\n        o = self.forward(x)\n        self.backward(x, y, o)\n    def saveWeights(self, model):\n        torch.save(model, \"CNN\")\n    def predict(self, x, y):\n        x0=self.forward(x)\n        # print(\"input\", x)\n        print(\"predict\", x0)\n        print(\"compare\", (y-x0).squeeze())\n#again, the hard disk stops spinning.\nmodel = NeuralNetwork(2, 1, 3)\nbatch_size = 100\nn_in = 2\nn_out = 1\nx = torch.randn(batch_size, n_in)\ny = torch.randn(batch_size, n_out)\nfor r in range(10000):\n    model.train(x, y)"
+        },
+        {
+            "comment": "This code snippet is training a model using x and y data, but the author believes it's not effective and has issues. The model is then used to make predictions instead of further training.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_package/convent.py\":68-73",
+            "content": "# model.train(x, y)\n# this sucks.\nmodel.predict(x,y)\n# looks like it's been fucked.\n# i feel like shit.\n# learn your shit."
+        }
+    ]
+}

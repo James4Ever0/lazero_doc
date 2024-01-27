@@ -1,0 +1,10 @@
+{
+    "summary": "This code is importing the runpy and os modules, changing the working directory, running a Python script named \"webXFS_aarch64_linux_experiment.py\", and then printing the type and value of the returned result. The code cannot reach native path and is not being run as the main program, so it may not have access to certain resources or content.",
+    "details": [
+        {
+            "comment": "This code is importing the runpy and os modules, changing the working directory, running a Python script named \"webXFS_aarch64_linux_experiment.py\", and then printing the type and value of the returned result. The code cannot reach native path and is not being run as the main program, so it may not have access to certain resources or content.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/runner.py\":0-7",
+            "content": "import runpy\nimport os\nos.chdir(\"../\")\nr=runpy.run_path(\"webXFS_aarch64_linux_experiment.py\",run_name=\"__main__\")\n# cannot reach native path.\nprint(type(r),r)\n# so it is working, and can be think out of brain IF HAVE EXPERIENCE.\n# not running as main. cannot reach the content."
+        }
+    ]
+}

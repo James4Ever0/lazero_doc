@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads two log files, identifies numbers in the first file and numbers in the second file, finds their intersection, converts intersected numbers to integers, and then prints these integers.",
+    "details": [
+        {
+            "comment": "This code reads two log files, identifies numbers in the first file and numbers in the second file, finds their intersection, converts intersected numbers to integers, and then prints these integers.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/matcher.py\":0-20",
+            "content": "import re\na = open(\"candidate.log\",\"r\").read()\nb = open(\"pid_matcher.log\",\"r\").read().split()\npa = set(b)\nr = re.findall(r\"\\d+\",a)\npb = set(r)\n#print(dir(pb))\n# so we do not know.\nps = pb.intersection(pa)\n#print(ps)\nps = [x for x in ps if len(x)>3]\n#print(ps)\npy = []\nfor x in ps:\n    try:\n        ix = int(x)\n        py.append(ix)\n        print(ix)\n    except:\n        pass\n#print(py)"
+        }
+    ]
+}

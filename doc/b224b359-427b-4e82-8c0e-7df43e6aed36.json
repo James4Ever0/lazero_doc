@@ -1,0 +1,10 @@
+{
+    "summary": "Creates a headless browser with specified viewport size, sets clipRect to capture the entire page, opens \"https://www.baidu.com/\", renders as \"github.png\", and exits.",
+    "details": [
+        {
+            "comment": "Creates a headless browser with specified viewport size, sets clipRect to capture the entire page, opens \"https://www.baidu.com/\", renders as \"github.png\", and exits.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/phantom_test.js\":0-9",
+            "content": "var page = require('webpage').create();\n  //viewportSize being the actual size of the headless browser\n  page.viewportSize = { width: 1024, height: 768 };\n  //the clipRect is the portion of the page you are taking a screenshot of\n  page.clipRect = { top: 0, left: 0, width: 1024, height: 768 };\n  //the rest of the code is the same as the previous example\n  page.open('https://www.baidu.com/', function() {\n    page.render('github.png');\n    phantom.exit();\n  });"
+        }
+    ]
+}

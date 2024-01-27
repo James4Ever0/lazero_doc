@@ -1,0 +1,10 @@
+{
+    "summary": "Unmounts and removes the filesystem workdir directory using sudo commands.",
+    "details": [
+        {
+            "comment": "Unmounts and removes the filesystem workdir directory using sudo commands.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/unloadram.sh\":0-2",
+            "content": "#!/bin/bash\nsudo umount fs/workdir\nsudo rm -rf fs/workdir"
+        }
+    ]
+}

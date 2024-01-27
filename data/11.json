@@ -1,0 +1,537 @@
+{
+    "1100": {
+        "file_id": 191,
+        "content": "import torch\nimport torch.nn as nn\nimport torch.nn.init as init\nclass NeuralNetwork(nn.Module):\n    # where the fuck is the model?\n    def __init__(self, a, b, c):\n        super().__init__()\n        self.inputSize = a\n        self.outputSize = b\n        self.hiddenSize = c\n        self.w1 = torch.randn(self.inputSize, self.hiddenSize)\n        self.w2 = torch.randn(self.hiddenSize, self.outputSize)\n        init.normal_(self.w1, 0.0, 0.2)\n        init.normal_(self.w2, 0.0, 0.2)\n    def sigmold(self, s):\n        return 1/(1*torch.exp(-s))\n    def sigmoldPrime(self, s):\n        return s*(1-s)\n    def forward(self, x):\n        self.z = torch.matmul(x, self.w1)\n        # mm=matmul?\n        self.z2 = self.sigmold(self.z)\n        self.z3 = torch.matmul(self.z2, self.w2)\n        o = self.sigmold(self.z3)  # this is output.\n        # neural networks are just some fancy name to get the correct matrix.\n        # print(self.z,self.z2,self.z3)\n        # print(o)\n        return o\n    def backward(self, x, y, o):\n        self.o_error = y-o",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/convent.py:1-35"
+    },
+    "1101": {
+        "file_id": 191,
+        "content": "The code defines a NeuralNetwork class with an input, hidden, and output layer. It initializes two weight matrices, performs matrix multiplication, applies sigmoid activation function, and calculates the forward pass. The backward pass is not implemented in this code snippet.",
+        "type": "comment"
+    },
+    "1102": {
+        "file_id": 191,
+        "content": "        # print(\"loss\",self.o_error)\n        self.o_delta = self.o_error*self.sigmoldPrime(o)\n        self.z2_error = torch.matmul(self.o_delta, torch.t(self.w2))\n        self.z2_delta = self.z2_error*self.sigmoldPrime(self.z2)\n        self.w1 += torch.matmul(torch.t(x), self.z2_delta)\n        self.w2 += torch.matmul(torch.t(self.z2), self.o_delta)\n        init.normal_(self.w1, 0.0, 0.2)\n        init.normal_(self.w2, 0.0, 0.2)\n        # is that the problem?\n# you want to get this right?\n# just about shape convention?\n    def train(self,x, y):\n        o = self.forward(x)\n        self.backward(x, y, o)\n    def saveWeights(self, model):\n        torch.save(model, \"CNN\")\n    def predict(self, x, y):\n        x0=self.forward(x)\n        # print(\"input\", x)\n        print(\"predict\", x0)\n        print(\"compare\", (y-x0).squeeze())\n#again, the hard disk stops spinning.\nmodel = NeuralNetwork(2, 1, 3)\nbatch_size = 100\nn_in = 2\nn_out = 1\nx = torch.randn(batch_size, n_in)\ny = torch.randn(batch_size, n_out)\nfor r in range(10000):\n    model.train(x, y)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/convent.py:36-68"
+    },
+    "1103": {
+        "file_id": 191,
+        "content": "The code initializes a NeuralNetwork model with two input nodes, one output node, and three hidden nodes. It trains the model using backpropagation for 10000 iterations and predicts outputs for given inputs. The model's weights are saved to a file called \"CNN\".",
+        "type": "comment"
+    },
+    "1104": {
+        "file_id": 191,
+        "content": "# model.train(x, y)\n# this sucks.\nmodel.predict(x,y)\n# looks like it's been fucked.\n# i feel like shit.\n# learn your shit.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/convent.py:69-74"
+    },
+    "1105": {
+        "file_id": 191,
+        "content": "This code snippet is training a model using x and y data, but the author believes it's not effective and has issues. The model is then used to make predictions instead of further training.",
+        "type": "comment"
+    },
+    "1106": {
+        "file_id": 192,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_package/csdn.py",
+        "type": "filepath"
+    },
+    "1107": {
+        "file_id": 192,
+        "content": "The code imports libraries, defines layers for a neural network using PyTorch, encounters RuntimeErrors due to tensor shape issues and CNN initialization, and applies transformations including one-hot vectors and potential timeouts.",
+        "type": "summary"
+    },
+    "1108": {
+        "file_id": 192,
+        "content": "# no such package.\n# reversed learning: upside-down RL\n# this is how we become responsible: we'd like to take the hit.\nimport torch\nfrom torch.autograd import Variable\n# does this work?\nfrom sub2 import timeout\nimport torch.nn.functional as F\n# ?????\n# import functools\n# fit-in, fit-out, run.\nimport numpy as np\n# it nearly kills me.\n# what the heck is going on?\n# what the heck is going on?\ndef checkFlow(a):\n    return a.in_channels, a.out_channels\n# what the heck is going on?\n# what the heck is going on?\n# moduledict? what the heck?\n# i'm gonna fuck.\nxo = timeout(2)(torch.randn)\n# xo=xo((300,300,300,2))\n# xo=xo((47,48,48,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[47, 48, 48, 48] to have 3 channels, but got 48 channels instead\n# xo=xo((48,47,48,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[48, 47, 48, 48] to have 3 channels, but got 47 channels instead\n# xo=xo((48,48,47,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[48, 48, 47, 48] to have 3 channels, but got 48 channels instead",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/csdn.py:1-29"
+    },
+    "1109": {
+        "file_id": 192,
+        "content": "The code imports necessary libraries, defines a function to check the input and output channels of a layer, and attempts to create a variable xo using torch.randn with an incorrect shape, resulting in multiple RuntimeErrors. The correct input shape seems to be (48, 47, 48, 3).",
+        "type": "comment"
+    },
+    "1110": {
+        "file_id": 192,
+        "content": "xo = xo((100, 3, 48, 48))\n# tensorflow will become another battlefield.\n# print(dir(xo))\n# print(xo)\n# strange shit.\n# first for sample.\n# second for channels.\n# this is weird. magic.\n# Traceback (most recent call last):\n#   File \"csdn.py\", line 14, in <module>\n#     xo=xo((300,300,300,300))\n#   File \"/root/AGI/lazero/brainfuck/sub2.py\", line 28, in wrapper\n#     raise ret\n# Exception: function [randn] timeout [2 seconds] exceeded!\n# this is considered as a problem. major problem.\n# xo=torch.randn((18,3,3,3))\n# print(xo)\n# print(xo.shape)\n# need experiment here. what the fuck?\n# a=torch.nn.Conv2d(3,18,kernel_size=3,stride=1,padding=1)\na = torch.nn.Conv2d(3, 18, kernel_size=3, stride=4, padding=2)\n# you jump too damn far.\n# what the heck?\n# is it makeup?\n# it reduces the dimensions after that?\n# a=torch.nn.Conv2d(3,18,kernel_size=7,stride=1,padding=1)\n# it matters to the size.\n# what about the stride here?\n# print(dir(a))\n# the computer is really heated.\n# if you get some screws bounced off, you will be screwed.\n# print(checkFlow(a))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/csdn.py:30-61"
+    },
+    "1111": {
+        "file_id": 192,
+        "content": "The code attempts to initialize a tensor and apply a convolutional neural network layer but experiences issues with the function timeout, stride, padding, and potential overheating of the computer.",
+        "type": "comment"
+    },
+    "1112": {
+        "file_id": 192,
+        "content": "# b=torch.nn.Conv2d(3,18,kernel_size=3,stride=1,padding=1)\nb = torch.nn.MaxPool2d(kernel_size=2, stride=(2, 1), padding=0)\n# it is for different rows. the stride.\n# DIFFERENT ROWS!\n# just how about three dimentional or n-dimentional shit?\n# print(checkFlow(b))\n# print(dir(b))\n# try arbitrary data?\n# i am bad at math.\na.__name__ = \"arbitrary\"\nb.__name__ = \"arbitrary\"\n# AttributeError: 'Conv2d' object has no attribute '__name__'\n# fucking hell.\n# i do not trust you guys.\nz = timeout(2)(a)\nz = z(xo)\nx = timeout(2)(F.relu)(z)\n# always have endless errors.\nprint(x.shape)\n# what the heck?\n# second shit: 3 -> 18\nx = timeout(2)(b)(x)\nprint(x.shape)\nxd=x.shape[1:]\nprint(xd)\n# y0 = eval(\"*\".join([str(y) for y in x.shape[1:]]))\n# fucking hell.\n# y0=functools.reduce(lambda x,y:x*y,x.shape[1:])\n# really strange.\ny0=np.array(xd).prod()\nprint(y0)\n# this is no exception.\nx = x.view(-1, y0)\n# print(x.shape)\nz0=torch.nn.Linear(y0,64)\nz0.__name__ = \"arbitrary\"\n# internal logic applies.\nx= timeout(2)(z0)(x)\nx= timeout(2)(F.relu)(x) # why different names?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/csdn.py:62-100"
+    },
+    "1113": {
+        "file_id": 192,
+        "content": "The code snippet defines a Conv2d and MaxPool2d layers using PyTorch, applies various transformations and functions, and prints the shapes of the output tensors. The code also assigns names to the layers and performs some calculations using numpy.",
+        "type": "comment"
+    },
+    "1114": {
+        "file_id": 192,
+        "content": "z1=torch.nn.Linear(64,10)\nz1.__name__= \"arbitrary\"\nx= timeout(2)(z1)(x)\n# print(x)\nprint(x.shape)\n# that is one-hot vector.\n# it marks my machine.\n# put the training later on.\n# time to pause.\n# either you work to death or computer.\n# fuck.\n# the third and forth shit -> cut half.\n# you even want 4 dimensional shit?\n# what the heck?\n# print(a.shape)??\n# ['__annotations__', '__call__', '__class__', '__constants__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattr__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_apply', '_backward_hooks', '_buffers', '_conv_forward', '_forward_hooks', '_forward_pre_hooks', '_get_name', '_load_from_state_dict', '_load_state_dict_pre_hooks', '_modules', '_named_members', '_padding_repeated_twice', '_parameters'",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/csdn.py:101-116"
+    },
+    "1115": {
+        "file_id": 192,
+        "content": "This code defines a neural network layer and sets its name as \"arbitrary\". It then applies timeout function for 2 iterations on the layer and passes input x through it. The shape of the output is printed, and a comment mentions that this could be a one-hot vector representing a machine marking. Training may occur later and there's a pause in the code execution. The code comments also mention dimensionality checks but don't provide specific information on what these dimensions are or why they matter in this context.",
+        "type": "comment"
+    },
+    "1116": {
+        "file_id": 192,
+        "content": ", '_register_load_state_dict_pre_hook', '_register_state_dict_hook', '_replicate_for_data_parallel', '_save_to_state_dict', '_slow_forward', '_state_dict_hooks', '_version', 'add_module', 'apply', 'bfloat16', 'bias', 'buffers', 'children', 'cpu', 'cuda', 'dilation', 'double', 'dump_patches', 'eval', 'extra_repr', 'float', 'forward', 'groups', 'half', 'in_channels', 'kernel_size', 'load_state_dict', 'modules', 'named_buffers', 'named_children', 'named_modules', 'named_parameters', 'out_channels', 'output_padding', 'padding', 'padding_mode', 'parameters', 'register_backward_hook', 'register_buffer', 'register_forward_hook', 'register_forward_pre_hook', 'register_parameter', 'requires_grad_', 'reset_parameters', 'share_memory', 'state_dict', 'stride', 'to', 'train', 'training', 'transposed', 'type', 'weight', 'zero_grad']\n# class smpC(torch.nn.Module):\n#     def __init__(self):\n#         super().__init__()\n#         # man i got shit!\n#         # yes then you create shit for us!\n#         # in and out.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/csdn.py:116-122"
+    },
+    "1117": {
+        "file_id": 192,
+        "content": "This code defines a class 'smpC' that extends torch.nn.Module. It contains attributes and methods for various operations, such as 'forward', 'load_state_dict', and 'apply'. The comments suggest frustration with the complexity of the code, but the purpose or functionality is not explicitly provided.",
+        "type": "comment"
+    },
+    "1118": {
+        "file_id": 192,
+        "content": "#         self.conv1=torch.nn.Conv2d(3,18,kernel_size=3,stride=1,padding=1)\n#         # immediately after?\n#         self.pool=torch.nn.MaxPool2d(kernel_size=2,stride=2,padding=0)\n#         # how to calculate the feature?\n#         self.fc1=torch.nn.Linear()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/csdn.py:123-127"
+    },
+    "1119": {
+        "file_id": 192,
+        "content": "This code initializes Conv2d and MaxPool2d layers for a neural network. The Conv2d layer takes 3 input channels, has 18 output channels, uses a 3x3 kernel size, and performs strided convolution with stride of 1 and padding of 1. The MaxPool2d layer applies 2x2 pooling with stride of 2 and no padding. The Linear layer (fc1) is initialized but no specific parameters are given.",
+        "type": "comment"
+    },
+    "1120": {
+        "file_id": 193,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_package/isint.py",
+        "type": "filepath"
+    },
+    "1121": {
+        "file_id": 193,
+        "content": "Code initializes x as an integer, checks if it is of type int using isinstance(), and prints the result. Then it assigns string \"hair\" to z and checks if it is of type int, which it is not. Finally, it runs a for loop that checks each element in range(100) if it is of type int and prints only integers (which are all the elements from 0 to 99). The comment \"i think you are shit\" has no relevance to the code functionality and can be disregarded.",
+        "type": "summary"
+    },
+    "1122": {
+        "file_id": 193,
+        "content": "x=int(2)\ny=isinstance(x,type(x))\nprint(y)\nz=\"hair\"\nprint(isinstance(z,type(x)))\nfor x in range(100):#  i think you are shit.\n    if isinstance(x,int):\n        print(x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/isint.py:1-8"
+    },
+    "1123": {
+        "file_id": 193,
+        "content": "Code initializes x as an integer, checks if it is of type int using isinstance(), and prints the result. Then it assigns string \"hair\" to z and checks if it is of type int, which it is not. Finally, it runs a for loop that checks each element in range(100) if it is of type int and prints only integers (which are all the elements from 0 to 99). The comment \"i think you are shit\" has no relevance to the code functionality and can be disregarded.",
+        "type": "comment"
+    },
+    "1124": {
+        "file_id": 194,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_package/nrav.py",
+        "type": "filepath"
+    },
+    "1125": {
+        "file_id": 194,
+        "content": "The code is trying to create a tensor using PyTorch and numpy, but it encounters various RuntimeErrors due to mismatched dimensions. It eventually succeeds in creating a tensor with shape (100, 3) and prints its values and shape.",
+        "type": "summary"
+    },
+    "1126": {
+        "file_id": 194,
+        "content": "import numpy as np\nimport torch\nfrom sub2 import timeout\n# n=np.array()\nxo = timeout(2)(torch.randn)\n# xo=xo((300,300,300,2))\n# xo=xo((47,48,48,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[47, 48, 48, 48] to have 3 channels, but got 48 channels instead\n# xo=xo((48,47,48,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[48, 47, 48, 48] to have 3 channels, but got 47 channels instead\n# xo=xo((48,48,47,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[48, 48, 47, 48] to have 3 channels, but got 48 channels instead\nxo = xo((100, 3))\n# print([x for x in dir(xo) if \"numpy\" in x])\n# [\"numpy\"]\n# this is shit.\nxo=xo.numpy().ravel()\nxo=xo.ravel()\n# fuck.\nprint(xo)\nprint(xo.shape)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/nrav.py:1-21"
+    },
+    "1127": {
+        "file_id": 194,
+        "content": "The code is trying to create a tensor using PyTorch and numpy, but it encounters various RuntimeErrors due to mismatched dimensions. It eventually succeeds in creating a tensor with shape (100, 3) and prints its values and shape.",
+        "type": "comment"
+    },
+    "1128": {
+        "file_id": 195,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_package/rgrad.py",
+        "type": "filepath"
+    },
+    "1129": {
+        "file_id": 195,
+        "content": "This code uses libraries to define variables, create tensors, and initialize weights. It computes loss and calculates gradients for backpropagation, zeroing w1 gradient data and printing it for verification.",
+        "type": "summary"
+    },
+    "1130": {
+        "file_id": 195,
+        "content": "import torch\nimport numpy as np\nfrom torch.autograd import Variable\nimport torch.nn.init as init\ndtype = torch.FloatTensor\ninput_size, hidden_size, output_size = 7, 6, 1\nepochs = 300\nseq_length = 20\nlr = 0.1\ndata_time_steps = np.linspace(2, 10, seq_length+1)\n# print(data_time_steps)\n# not a rng.\n# strange conversion.\n# u use sin!\ndata = np.sin(data_time_steps)\ndata.resize((seq_length+1, 1))\n# print(data.shape)\nx = Variable(torch.Tensor(data[:-1]).type(dtype), requires_grad=False)\ny = Variable(torch.Tensor(data[1:]).type(dtype), requires_grad=False)\n# print(x.shape)\n# print(y.shape)\n# mismatched thing.\nw1 = torch.FloatTensor(input_size, hidden_size).type(dtype)\nw1 = Variable(w1, requires_grad=True)\ninit.normal_(w1, 0.0, 0.4)\n# w1.backward()\n# w1=w1.mm(w1.T)\n# w1=sum(w1)\npred = w1\n# target=np.sin(w1*2)\ntarget = Variable(torch.FloatTensor(np.sin(w1.detach().numpy())).type(dtype))\n# it sums all shit up.\nloss = (pred-target).pow(2).sum()/2\n# w1.backward()\nloss.backward()\n# do it implicitly.\n# fucking hell.\n# what the heck?\n# print(w1.shape)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/rgrad.py:1-39"
+    },
+    "1131": {
+        "file_id": 195,
+        "content": "This code imports necessary libraries and defines variables. It creates input and target tensors from data, initializes a weight tensor with normal distribution, computes the loss between predictions and targets using mean squared error, and calculates gradients for backpropagation.",
+        "type": "comment"
+    },
+    "1132": {
+        "file_id": 195,
+        "content": "# 2 dims.\n# w1.grad.data.zero_()\nwx = w1.grad.data\nprint(wx)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/rgrad.py:40-43"
+    },
+    "1133": {
+        "file_id": 195,
+        "content": "Setting w1 gradient data (2D) to zero.\nPrinting the new zeroed w1.grad.data for verification or debugging purposes.",
+        "type": "comment"
+    },
+    "1134": {
+        "file_id": 196,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_package/rsdn.py",
+        "type": "filepath"
+    },
+    "1135": {
+        "file_id": 196,
+        "content": "The code trains a neural network, iterating over input data, calculating predictions and loss, updating weights, preserving context state, and prints epoch and loss every 10 epochs. The author experiences confusion and frustration while discovering new concepts and ideas in the data visualization process using Python's matplotlib library.",
+        "type": "summary"
+    },
+    "1136": {
+        "file_id": 196,
+        "content": "import torch\n# red-lang?\nfrom torch.autograd import Variable\nimport numpy as np\nimport pylab as pl\nimport torch.nn.init as init\n# all kinds of bullshit.\ndtype = torch.FloatTensor\ninput_size, hidden_size, output_size = 7, 6, 1\nepochs = 300\nseq_length = 20\nlr = 0.1\ndata_time_steps = np.linspace(2, 10, seq_length+1)\n# print(data_time_steps)\n# not a rng.\n# strange conversion.\n# u use sin!\ndata = np.sin(data_time_steps)\ndata.resize((seq_length+1, 1))\n# print(data.shape)\nx = Variable(torch.Tensor(data[:-1]).type(dtype), requires_grad=False)\ny = Variable(torch.Tensor(data[1:]).type(dtype), requires_grad=False)\n# you can make it true.\n# print(x.shape)\n# print(y.shape)\n# mismatched thing.\nw1 = torch.FloatTensor(input_size, hidden_size).type(dtype)\ninit.normal_(w1, 0.0, 0.4)\n# standard_deviation for second.\nw1 = torch.autograd.Variable(w1, requires_grad=True)\n# w2=torch.\nw2 = torch.FloatTensor(hidden_size, output_size).type(dtype)\n# fucking stat.\ninit.normal_(w2, 0.0, 0.3)\nw2 = torch.autograd.Variable(w2, requires_grad=True)\ndef forward(input, context_state, w1, w2):",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/rsdn.py:1-38"
+    },
+    "1137": {
+        "file_id": 196,
+        "content": "Imports necessary libraries for deep learning, defines variables, and sets up input and output data along with their respective weights. Initializes the weights using normal distribution with specified standard deviations and makes them variables requiring gradients for backpropagation. Defines a forward function to process inputs and update states based on the defined weights.",
+        "type": "comment"
+    },
+    "1138": {
+        "file_id": 196,
+        "content": "    # same as my process.\n    # i do the same.\n    xh = torch.cat((input, context_state), 1)\n    context_state = torch.tanh(xh.mm(w1))\n    out = context_state.mm(w2)\n    return (out, context_state)\nfor i in range(epochs):\n    total_loss = 0\n    context_state = Variable(torch.zeros(\n        (1, hidden_size)).type(dtype), requires_grad=True)\n    # cleared at first.\n    for j in range(x.size(0)):\n        input_ = x[j:(j+1)]\n        target = y[j:(j+1)]\n        (pred, context_state) = forward(input_, context_state, w1, w2)\n        # loss = (pred-target).pow(2+0.1j).sum()\n        # not working.\n        # consider some complex tensors?\n        loss = (pred-target).pow(2).sum()\n        # loss of context?\n        # we alter this.\n        total_loss += loss\n        loss.backward()  # add gradient to it?\n        w1.data -= lr*w1.grad.data  # would you print it?\n        w2.data -= lr*w2.grad.data\n        w1.grad.data.zero_()\n        w2.grad.data.zero_()\n        context_state = Variable(context_state.data)\n    if i % 10 == 0:\n        print(\"epoch\", i, \"loss\", loss, type(loss))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/rsdn.py:39-70"
+    },
+    "1139": {
+        "file_id": 196,
+        "content": "This code performs a neural network training process. It iterates over input data, calculates predictions, computes loss between predictions and targets, updates weights based on gradients, and keeps track of the total loss for each epoch. The context state is preserved across iterations to improve accuracy. Prints the epoch and loss every 10 epochs.",
+        "type": "comment"
+    },
+    "1140": {
+        "file_id": 196,
+        "content": "context_state = Variable(torch.zeros(\n    (1, hidden_size)).type(dtype), requires_grad=False)\npredictions = []\nfor i in range(x.size(0)):\n    input = x[i:i+1]\n    (pred, context_state) = forward(input, context_state, w1, w2)\n    # not moving?\n    context_state = context_state  # what the heck?\n    predictions.append(pred.data.numpy().ravel()[0])  # what is this fuck?\n# pl.scatter(data_time_steps[:-1],)\n# # what is this s?\n# pl.scatter(y.data.numpy(),x.data.numpy(),s=90,label=\"Actual\")\n# # fucking shit.\n# pl.scatter(predictions,x.data.numpy(),label=\"Predicted\")\npl.scatter(data_time_steps[:-1], x.data.numpy(), s=90, label=\"Actual_P\")\npl.scatter(data_time_steps[1:], y.data.numpy(), s=45, label=\"Actual_F\")\n# fucking shit.\npl.scatter(data_time_steps[1:], predictions, label=\"Predicted\")\n# all fucking twisted code.\npl.legend()\npl.show()\n# fucking hell.\n# numpy.ndarray.ravel = ravel(...)\n# a.ravel([order])\n# Return a flattened array.\n# Refer to `numpy.ravel` for full documentation.\n# See Also\n# --------\n# numpy.ravel : equivalent function",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/rsdn.py:72-103"
+    },
+    "1141": {
+        "file_id": 196,
+        "content": "Code snippet is part of a data visualization process using Python's matplotlib library. It plots actual and predicted data, possibly for time-series analysis or prediction task. The code creates a scatter plot with different markers for actual values (actual_P, actual_F) and predicted values. The author seems to be frustrated by the code structure or complexity.",
+        "type": "comment"
+    },
+    "1142": {
+        "file_id": 196,
+        "content": "# holy shit.\n# chain rule.\n# don't you need to discover more shits?\n# what the heck is this?\n# remember, imitate, repeat.\n# what is this?\n# print(w1)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/rsdn.py:104-110"
+    },
+    "1143": {
+        "file_id": 196,
+        "content": "The code appears to contain comments expressing confusion, disbelief, and a lack of understanding regarding the specific purpose or functionality being discussed. It seems like the author is discovering new concepts and ideas while working through this codebase, leading to questions and curiosity.",
+        "type": "comment"
+    },
+    "1144": {
+        "file_id": 197,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_package/strik.py",
+        "type": "filepath"
+    },
+    "1145": {
+        "file_id": 197,
+        "content": "The code is trying to resize the input tensor `xo` multiple times, but it keeps encountering a RuntimeError due to the mismatch between the expected number of channels and the actual number of channels in the input. Finally, it settles on the shape (100, 3, 48, 48) without any errors. The code also mentions that `xo` is a tensor with stride, which refers to the jump necessary to go from one element to the next in a specific dimension.",
+        "type": "summary"
+    },
+    "1146": {
+        "file_id": 197,
+        "content": "import torch\nfrom sub2 import timeout\nxo=timeout(2)(torch.randn)\n# xo=xo((300,300,300,2))\n# xo=xo((47,48,48,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[47, 48, 48, 48] to have 3 channels, but got 48 channels instead\n# xo=xo((48,47,48,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[48, 47, 48, 48] to have 3 channels, but got 47 channels instead\n# xo=xo((48,48,47,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[48, 48, 47, 48] to have 3 channels, but got 48 channels instead\nxo=xo((100,3,48,48))\n# xo=xo.stride()\n# print(dir(xo))\n# this is used when it is flatterned.\nprint(type(xo))\n# print(xo.shape)\n# print(type(xo),xo)\n    # Stride is the jump necessary to go from one element to the next one in the\n    # specified dimension :attr:`dim`. A tuple of all strides is returned when no\n    # argument is passed in. Otherwise, an integer value is returned as the stride in\n    # the particular dimension :attr:`dim`.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/strik.py:1-21"
+    },
+    "1147": {
+        "file_id": 197,
+        "content": "The code is trying to resize the input tensor `xo` multiple times, but it keeps encountering a RuntimeError due to the mismatch between the expected number of channels and the actual number of channels in the input. Finally, it settles on the shape (100, 3, 48, 48) without any errors. The code also mentions that `xo` is a tensor with stride, which refers to the jump necessary to go from one element to the next in a specific dimension.",
+        "type": "comment"
+    },
+    "1148": {
+        "file_id": 198,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_package/sub2.py",
+        "type": "filepath"
+    },
+    "1149": {
+        "file_id": 198,
+        "content": "The \"timeout\" decorator wraps a function and executes it in a new thread, raising an exception if it exceeds the specified timeout. It handles exceptions and returns the result or a wrapper function.",
+        "type": "summary"
+    },
+    "1150": {
+        "file_id": 198,
+        "content": "from threading import Thread\nimport functools\n# notice, you might need to write a browser?\n# you draw outline for us?\n# well, i can rewrite this.\ndef timeout(timeout):\n    def deco(func):\n        @functools.wraps(func)\n        def wrapper(*args, **kwargs):\n            res = [Exception('function [%s] timeout [%s seconds] exceeded!' % (\n                func.__name__, timeout))]\n                # so-called deep understanding of python func names.\n                # it is about remembering and forgetting.\n                # that's learning.\n            def newFunc():\n                try:\n                    res[0] = func(*args, **kwargs)\n                except Exception as e:\n                  # this is funny.\n                    res[0] = e\n            t = Thread(target=newFunc)\n            t.daemon = True\n            try:\n                t.start()\n                t.join(timeout)\n            except Exception as je:\n                print('error starting thread')\n                raise je\n            ret = res[0]\n            if isinstance(ret, BaseException):",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/sub2.py:1-30"
+    },
+    "1151": {
+        "file_id": 198,
+        "content": "This code defines a decorator called \"timeout\" which takes the timeout value as an argument. It wraps the decorated function and creates a new thread to execute it. If the execution exceeds the specified timeout, it raises an exception. The original exception is caught if one occurs during the function's execution.",
+        "type": "comment"
+    },
+    "1152": {
+        "file_id": 198,
+        "content": "                raise ret\n            return ret\n        return wrapper\n    return deco",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_package/sub2.py:31-34"
+    },
+    "1153": {
+        "file_id": 198,
+        "content": "Handles exceptions, returns the result, or a wrapper function.",
+        "type": "comment"
+    },
+    "1154": {
+        "file_id": 199,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/check_useful_func.py",
+        "type": "filepath"
+    },
+    "1155": {
+        "file_id": 199,
+        "content": "The code defines a list 'a' with three lambda functions: one to concatenate a string, another to multiply a number by 2, and the last to greet with a specific message. It then applies each function to a sample value and prints the result along with its type. The comments suggest that this is a simplified representation of the author's thought process.",
+        "type": "summary"
+    },
+    "1156": {
+        "file_id": 199,
+        "content": "import traceback\na=[]\nb=lambda x: \"\".join(x)\na.append(b)\nc=lambda x: x*2\na.append(c)\nd=lambda x:\"hello \"+x+\" world\"\na.append(d)\nsample=1\nfor x in a:\n    try:\n        z=x(sample)\n        print(\"result:\",z,type(z))\n    except:\n        e= traceback.format_exc()\n        print(e)\n# it is not always aboout numbers.\n# this emulates my fucking brain.\n# only a fraction of it.\n# ONLY A FUCKING FRACTION!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/check_useful_func.py:1-20"
+    },
+    "1157": {
+        "file_id": 199,
+        "content": "The code defines a list 'a' with three lambda functions: one to concatenate a string, another to multiply a number by 2, and the last to greet with a specific message. It then applies each function to a sample value and prints the result along with its type. The comments suggest that this is a simplified representation of the author's thought process.",
+        "type": "comment"
+    },
+    "1158": {
+        "file_id": 200,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/demo_leaving.py",
+        "type": "filepath"
+    },
+    "1159": {
+        "file_id": 200,
+        "content": "The code demonstrates how to store data in neurons by creating a 2D list 'a' with initial values as None, then assigning each character of the string \"hello world\" to the corresponding index in the list. The code ensures that after each iteration, the previous value is set to None and only the current character is preserved. Finally, it removes the last element from the list.",
+        "type": "summary"
+    },
+    "1160": {
+        "file_id": 200,
+        "content": "# demostration on how to store data in neurons.\na=[[None,None] for x in range(100)]\nb=\"hello world\"\nc=\"hello world\"\nfor x in range(len(b)):\n    if x==0:\n        a[x][0]=b[x]\n        a[x][1]=b\n    else:\n        a[x][0]=a[x-1][1][1]\n        a[x][1]=a[x-1][1][1:]\n        a[x-1][1]=None\n    print(a)\na[len(b)-1][1]=None\nprint(a)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/demo_leaving.py:1-15"
+    },
+    "1161": {
+        "file_id": 200,
+        "content": "The code demonstrates how to store data in neurons by creating a 2D list 'a' with initial values as None, then assigning each character of the string \"hello world\" to the corresponding index in the list. The code ensures that after each iteration, the previous value is set to None and only the current character is preserved. Finally, it removes the last element from the list.",
+        "type": "comment"
+    },
+    "1162": {
+        "file_id": 201,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/exp_img.py",
+        "type": "filepath"
+    },
+    "1163": {
+        "file_id": 201,
+        "content": "This code defines a \"recv\" function that takes a number as input and stores it in the \"registry\" variable if it's the first time receiving that number. If not, it returns the sum of the received number and the current registry value. The list \"px\" contains a sequence of numbers, which are then passed to the \"recv\" function and printed. This process is self-repeating as each number in the list is used as input for the function. The author believes that this process could be used to generate data for deep learning applications by converting abstract concepts into numerical form.",
+        "type": "summary"
+    },
+    "1164": {
+        "file_id": 201,
+        "content": "registry = None\ndef recv(number):\n    global registry\n    if registry is not None:\n        if number == registry:\n            return number+number*1j\n        else:\n            r=number+registry*1j\n            registry=number\n            return r\n    else:\n        registry=number\n        return number\n# this is self-repeating.\npx=[1,2,3,4,5,4,3,2,1]\nfor x in px:\n    print(recv(x))\n    # are you sure we can do deeplearning by generating numbers?\n    # yes! i am pretty sure. by generating numbers, computer can turn some abstract things into their puriest form.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/exp_img.py:1-19"
+    },
+    "1165": {
+        "file_id": 201,
+        "content": "This code defines a \"recv\" function that takes a number as input and stores it in the \"registry\" variable if it's the first time receiving that number. If not, it returns the sum of the received number and the current registry value. The list \"px\" contains a sequence of numbers, which are then passed to the \"recv\" function and printed. This process is self-repeating as each number in the list is used as input for the function. The author believes that this process could be used to generate data for deep learning applications by converting abstract concepts into numerical form.",
+        "type": "comment"
+    },
+    "1166": {
+        "file_id": 202,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/form_truth_matrix.py",
+        "type": "filepath"
+    },
+    "1167": {
+        "file_id": 202,
+        "content": "Code snippet creates a truth matrix using random choices of True or False in a 10x10 array, representing potential inputs and outputs. The matrix represents logical relationships between inputs and outputs without considering perceptions.",
+        "type": "summary"
+    },
+    "1168": {
+        "file_id": 202,
+        "content": "# sample to perform a truth table. linear and more.\nimport random\nimport numpy as np\n# a=[random.choice([True,False]) for x in range(10)]\n# a=np.array([[x==y for x in a] for y in a])\n# nothing about perceptions here. all about matrix.\na=np.array([[random.choice([True,False])  for y in range(10)] for x in range(10)])\nprint(\"is it a cat?\")\nprint(a)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/form_truth_matrix.py:1-9"
+    },
+    "1169": {
+        "file_id": 202,
+        "content": "Code snippet creates a truth matrix using random choices of True or False in a 10x10 array, representing potential inputs and outputs. The matrix represents logical relationships between inputs and outputs without considering perceptions.",
+        "type": "comment"
+    },
+    "1170": {
+        "file_id": 203,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/posession_on_meta.py",
+        "type": "filepath"
+    },
+    "1171": {
+        "file_id": 203,
+        "content": "This code demonstrates abstraction by creating dictionaries with similar key-value pairs and ignoring unnecessary details. It creates a namespace for further processing.",
+        "type": "summary"
+    },
+    "1172": {
+        "file_id": 203,
+        "content": "# demostration on abstraction.\n# taking only the result (part of it), ignore name and much more details.\na = {\"name\": \"dog\", \"trait\": 1, \"trait_a\": 0}\nd = {\"name\": \"cat\", \"trait\": 1, \"trait_a\": 1}\nm = {\"name\": None, \"trait\": 1, \"trait_a\": None}\nm_0 = {\"name\": None, \"trait_a\": 0}\nm_1 = {\"name\": None, \"trait_a\": 1}\n# namespace",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/posession_on_meta.py:1-8"
+    },
+    "1173": {
+        "file_id": 203,
+        "content": "This code demonstrates abstraction by creating dictionaries with similar key-value pairs and ignoring unnecessary details. It creates a namespace for further processing.",
+        "type": "comment"
+    },
+    "1174": {
+        "file_id": 204,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/random_approach.py",
+        "type": "filepath"
+    },
+    "1175": {
+        "file_id": 204,
+        "content": "The code defines a function called \"approach\" that takes a target and an error as parameters. It performs a random selection process to generate a list of numbers based on the target and error values, until the error is within the specified tolerance. The function then returns the final list of numbers. The main part of the code tests this function by setting specific target and error values, running the approach function, and printing the resulting mean value.",
+        "type": "summary"
+    },
+    "1176": {
+        "file_id": 204,
+        "content": "import random\nimport math\nimport copy\nimport statistics\ndef approach(target,error):\n    assert target>0\n    assert error>0 and error<0.1\n    s=math.ceil(target*2)\n    s0=int(s+1)\n    s1=list(range(s0))\n    s2=[x for x in s1 if x > target]\n    s3=[x for x in s1 if x not in s2]\n    mean=copy.deepcopy(s1)\n    # ep=-error\n    e=error*2\n    while True:\n        m=statistics.mean(mean)\n        e=m-target\n        # print(m,target,e)\n        # print(mean)\n        # print(e)\n        if abs(e)>error:\n            if e>0:\n                mean.append(random.choice(s3))\n            elif e<0:\n                mean.append(random.choice(s2))\n        else:\n            break\n            # return mean\n    return mean\n# final result is shit.\nif __name__ == \"__main__\":\n    # demo.\n    # allow error otherwise there's no need to pose this solution.\n    target=12.7\n    error=0.01\n    a=approach(target,error)\n    # print(a)\n    b=statistics.mean(a)\n    print(b)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/random_approach.py:1-40"
+    },
+    "1177": {
+        "file_id": 204,
+        "content": "The code defines a function called \"approach\" that takes a target and an error as parameters. It performs a random selection process to generate a list of numbers based on the target and error values, until the error is within the specified tolerance. The function then returns the final list of numbers. The main part of the code tests this function by setting specific target and error values, running the approach function, and printing the resulting mean value.",
+        "type": "comment"
+    },
+    "1178": {
+        "file_id": 205,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/recursive_networks.py",
+        "type": "filepath"
+    },
+    "1179": {
+        "file_id": 205,
+        "content": "This code initializes a random node in a recursive network, updates and prints data, then processes it using a function. It is part of a larger system where nodes interact and process data.",
+        "type": "summary"
+    },
+    "1180": {
+        "file_id": 205,
+        "content": "# demo for my so-called recursive net.\n# we are gonna randomly spark these things.\n# can we use some hidden nodes?\n# they just pass data directly to another.\n# no way.\nimport numpy as np\nimport random\n# this is an unfinished script.\n# maybe useful to some extent.\nclass data_overlay:\n    def __init__(self, data, forward_ratio, remaining_life, direction):\n        self.data = data\n        self.forward_ratio = forward_ratio\n        self.remaining_life = remaining_life\n        self.direction = direction\n    def dump(self):\n        return self.data, self.forward_ratio, self.remaining_life, self.direction\nclass data_final:\n    def init(self, data):\n        self.data = data\n    def dump(self):\n        return self.data\nclass node:\n    def __init__(self, node_coord, node_neighbor):\n        # self.node_direction=node_direction\n        # different for different neighbors.\n        # they do not do anything to the data. therefore, it is waiting for further modification.\n        self.node_neighbor = node_neighbor\n        self.node_coord = node_coord",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/recursive_networks.py:1-36"
+    },
+    "1181": {
+        "file_id": 205,
+        "content": "This code appears to be an unfinished implementation of a recursive network for data processing. It defines classes for data overlays, final data, and nodes in the network. The node class stores neighbor coordinates and seems to have different directions depending on neighbors. The purpose or functionality of this network is not clear from the provided code.",
+        "type": "comment"
+    },
+    "1182": {
+        "file_id": 205,
+        "content": "    def returnCoord(self):\n        return self.node_coord\n    def returnNeighbor(self):\n        return self.node_neighbor\n    def updateCoord(self, new_coord):\n        self.node_coord = new_coord\n    def updateNeighbor(self, new_neighbor):\n        self.node_neighbor = new_neighbor\n    def process(self, data_struct,candidates):\n        s = self.rep(data_struct)\n        if s != None:\n            if type(s).__name__ == \"data_overlay\":\n                data, forward_ratio, remaining_life, direction = s.dump()\n                # the probability.\n                f0 = [x[1] for x in self.node_neighbor if x[0] == direction]\n                v = min(forward_ratio, len(f0))\n                f1 = [f0[x] for x in random.sample(range(len(f0)), v)]\n                # just build a static one. we will consider something else later.\n                # there is a evil math.\n                return (s, tuple(f1))\n            elif type(s).__name__ == \"data_final\":\n                return (s, None)\n            elif s is None:\n                return (s, None)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/recursive_networks.py:38-65"
+    },
+    "1183": {
+        "file_id": 205,
+        "content": "Function 'returnCoord' and 'returnNeighbor': return the current coordinate and neighbor respectively. Function 'updateCoord' and 'updateNeighbor': update the node's current coordinate and neighbor respectively. The 'process' function: processes the data structure, creates a tuple of the data structure and a random subset of the forward links if it is an overlay, returns the tuple; otherwise, if the data structure is final or null, it returns the data structure along with None as its second element.",
+        "type": "comment"
+    },
+    "1184": {
+        "file_id": 205,
+        "content": "            else:\n                raise Exception(\"node error!\")\n        # if rep right, then we do the thing.\n    def rep(self, dstruct):\n        if type(dstruct).__name__ == \"data_overlay\":\n            data, forward_ratio, remaining_life, direction = dstruct.dump()\n            assert remaining_life >= 0\n            # do we have a direction for each node?\n            # can it alter?\n            # we can define the type of it.\n            if remaining_life > 1:\n                return data_overlay(data, forward_ratio, remaining_life-1, direction)\n            else:\n                return data_final(data)\n        elif type(dstruct).__name__ == \"data_final\":\n            return None\n        else:\n            raise Exception(\"inproper datastruct.\")\n# def transmit(n,n0,n1):\n#     a,b=n0\n#     c,d=n1\n#     # just map it rightly.\n#     if a is not None:\n#         if b is not None:\n#             if b == (): # you can do this again.\n#                 # print(a.dump())\n#                 s1=[n[x].process(a) for x in d]\n#                 # this time it is the same result.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/recursive_networks.py:66-95"
+    },
+    "1185": {
+        "file_id": 205,
+        "content": "This code seems to handle data transmission and processing in a network. It has different types of data structures, such as \"data_overlay\" and \"data_final\", which are used to store information and have associated attributes like remaining life and direction. The code handles exceptions for improper data structures and has a function to transmit and process data between nodes.",
+        "type": "comment"
+    },
+    "1186": {
+        "file_id": 205,
+        "content": "#                 s2=s1[0][0]\n#                 s3=(x for y in list(map(lambda x:x[1],s1)) for x in y)\n#                 return (s2,s3,n1)\n#                 # print(a)\n#                 # s=n[r].process(a)\n#                 # return s\n#             else:\n#                 # merge the thing.\n#                 s1=[n[x].process(a) for x in b]\n#                 # this time it is the same result.\n#                 s2=s1[0][0]\n#                 s3=(x for y in list(map(lambda x:x[1],s1)) for x in y)\n#                 return (s2,s3,n0)\n#         else:\n#             print(\"content:\",a)\n#             return (*n0,n0)\n#     else:\n#         print(\"the end!\")\n#         return (*n0,n0)\n# all six types:\n# ->->->|  ->->->| |<-<-<-  |<-<-<-  ->->->| |<-<-<- |<- ->|\n#   ->->|  ->->    |<-<-       <-<-\n#     ->|  ->      |<-           <-\n#     ->|  ->      |<-           <-\nif __name__ == \"__main__\":\n    n = {(x, y): node((x, y), None) for x in range(10) for y in range(10)}\n    sn = list(n.keys())\n    for x in n.keys():\n        n[x].updateNeighbor(",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/recursive_networks.py:96-124"
+    },
+    "1187": {
+        "file_id": 205,
+        "content": "This code appears to implement a recursive network process involving several conditions and operations. It seems to involve processing data (a) at nodes with specific coordinates, merging results from multiple nodes, and potentially returning different combinations of the node list based on certain conditions. The code also includes printing statements for debugging or logging purposes.",
+        "type": "comment"
+    },
+    "1188": {
+        "file_id": 205,
+        "content": "            list(map(lambda y: (random.choice([True, False]), y), random.sample(sn, 10))))\n    r = random.choice(sn)\n    v = (data_overlay(\"hello world\", 1, 5, True),(r,))\n    # not sending, so you need to solve it?\n    # dead, so you need not to solve?\n    print(v)\n    # can we predict it?\n    # for x in range(10):\n    #     print(\"epoch\",x)\n    #     print(v)\n    #     v=transmit(n,v,v)\n    # n0=n[r].process(v)\n    # print(n0)\n                # print(s[0].dump())",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/recursive_networks.py:125-138"
+    },
+    "1189": {
+        "file_id": 205,
+        "content": "This code is initializing a random value 'r' from a set of nodes (sn). It then creates a tuple 'v' containing the data overlay \"hello world\", and the random node 'r'. The code prints this tuple. After that, it enters a loop where it prints the current epoch and the value 'v', then updates 'v' with a call to function 'transmit(n, v, v)'. Finally, it assigns the result of 'n[r].process(v)' to 'n0' and prints it. The code seems to be part of a larger network processing system where nodes interact and process data.",
+        "type": "comment"
+    },
+    "1190": {
+        "file_id": 206,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/say_we_have_words.py",
+        "type": "filepath"
+    },
+    "1191": {
+        "file_id": 206,
+        "content": "The code defines functions for 2D array operations, initializes an array with random values, and includes a training function for simulating brain behavior. It also represents a 2D boolean array for a one-dimensional data structure with state duration calculations.",
+        "type": "summary"
+    },
+    "1192": {
+        "file_id": 206,
+        "content": "# we have a list of parameters!\n# they have work to do!\n# to emulate the brain? no need. we just need a cyber brain!\n# swap the values when you want to.\n# keep, swap, eliminate\n# random actions, not taking account.\nimport random\nimport copy\nimport numpy as np\nimport time\n# really strange artifact.\n# so we does not need random swapping.\n# it is not random at all.\n# we can even create value specific rules!\n# REMEMBER: SPARSE IS BETTER THAN DENSE.\ndef still(a, b):\n    return a, b\ndef keep(a, b):\n    return a, a\ndef swap(a, b):\n    return b, a\ndef eliminate(a, b):\n    return b, b\ndef init(a):\n    b = np.array([[random.choice([True, False])\n                   for y in range(10)] for x in range(10)])\n    return b\ndef train(a):  # you can print the difference.\n    # time.sleep(0.1)\n    b = copy.copy(a)\n    for x in range(len(a)**2):\n        xa = random.choice(list(range(len(a))))\n        # for y in range(len(a)):\n        # nonsense = x+y\n        xb = random.choice(list(range(len(a))))\n        ax = random.choice(list(range(len(a))))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/say_we_have_words.py:1-47"
+    },
+    "1193": {
+        "file_id": 206,
+        "content": "This code defines functions for operations on 2D arrays and initializes an array with random values. It also includes a training function that randomly selects indices to swap or eliminate array elements. The comment suggests that the code aims to simulate a brain's behavior, but it seems more focused on manipulating arrays and doesn't necessarily emulate any specific brain functionality.",
+        "type": "comment"
+    },
+    "1194": {
+        "file_id": 206,
+        "content": "        # for y in range(len(a)):\n        # nonsense = x+y\n        bx = random.choice(list(range(len(a))))\n        f = random.choice([keep, swap, eliminate, still])\n        # f = random.choice([keep, swap])\n        # f = random.choice([swap, eliminate])\n        # f = random.choice([keep, eliminate])\n        # why it is the same?\n        # it is about swapping column.\n        # you will get the same column.\n        # print(b[xa], b[xb], f.__name__)\n        b[xa][ax], b[xb][bx] = f(b[xa][ax], b[xb][bx])\n        # print(b[xa], b[xb])\n    if np.all(a == b):\n        print(\"same\")\n    else:\n        print(\"not same\")\n    return b\n# always remains Equilibrium.\n# i need to check it. what the heck is going on.\n    # a0=list(range(len(a)))\n    # a1=copy.copy(a0)\n    # for x in a0:\n    #     xa=random.choice(list(range(len(a1))))\n    #     a2=copy.copy(a0)\n    #     for\n# that is another alternative.\nepoch = 20000\ndim = 10\ni = init(dim)\nfor x in range(epoch):\n    # print(i.sum())\n    print(i)\n    i = train(i)\nprint(\"final\")\nprint(i)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/say_we_have_words.py:48-85"
+    },
+    "1195": {
+        "file_id": 206,
+        "content": "Code snippet is performing a swapping operation on two columns in a 2D array 'b'. It randomly chooses the column indices and the type of operation (keep, swap, eliminate, or still) to be applied. If after all operations, array 'a' is equal to array 'b', it prints \"same\", otherwise it prints \"not same\". The code also includes an unfinished alternative method for selecting column indices. At the end, it runs a training loop with 20,000 epochs and prints the final result of the trained array 'i'.",
+        "type": "comment"
+    },
+    "1196": {
+        "file_id": 206,
+        "content": "# stack the whole thing into a meta-block?\n# but it can only interact with meta-blocks.\n# so what the heck? must need outside stimulation?\n# we can calculagte how long we can maintain the state.\n# this is for one-dimension.\n# [[False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]]\n# [[False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/say_we_have_words.py:86-103"
+    },
+    "1197": {
+        "file_id": 206,
+        "content": "This code represents a 2D array of boolean values, possibly for an algorithm that operates on a one-dimensional data structure. The rows and columns represent the state of elements in the data structure at different points in time. True indicates an active or \"on\" state, while False denotes an inactive or \"off\" state. The code suggests calculations are being performed to determine how long this state can be maintained.",
+        "type": "comment"
+    },
+    "1198": {
+        "file_id": 206,
+        "content": "#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]]\n# for two-dimentional swap.\n# [[ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/say_we_have_words.py:104-120"
+    },
+    "1199": {
+        "file_id": 206,
+        "content": "This code appears to be a representation of a two-dimensional array or matrix. It contains several rows and columns, where each cell is either True or False. The specific arrangement seems to represent a pattern or logic used for two-dimensional swapping.",
+        "type": "comment"
+    }
+}

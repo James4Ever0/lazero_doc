@@ -1,0 +1,48 @@
+this project is not going to be launched on this disk.
+instead, the total storage will be precalculated, and therefore run on another media.
+my disk resources are precious, and i do not want to make it ugly.
+
+internet-map.net, unwilling to give out the source info, i have to manually configure the information.
+really should i do so? maybe it is hidden inside some apis which i never know.
+If my only purpose is to get the full list of all websites, then there should be no need to manually download all images.
+
+ocr can be hard to perfrom. but once you've got the biggest picture avaliable, you can create some smaller images from that.
+but it sounds stupid.
+
+if pure black, then that image will be abandoned.
+will use throttle technique to do the best job.
+
+avg_download_speed:100kb/s=6mb/min=0.36gb/hr=8.64gb/d
+    14:15000*15000*2kb=450000.0mb=450gb,52d
+    13:8000**2*2kb=128000.0mb=128gb,14.8d
+    >>skip 12
+    11:2000**2*2kb,0.95d
+    10:1000**2*2kb,0.2375d (QUESTIONABLE)
+
+scheme: (x,y)
+    (0,0)---------(1000,0)
+        |               |
+        |               |
+    (0,1000)-----(1000,1000)
+
+formula:
+    for one zoom level k with t sequences in both dimentions, we have to scan:
+        s(t)=t**2+(t-1)**2+2+t*(t-1)
+    for different zoom levels, we have:
+        f(k)=t, f(k)=f(k-1)*2
+    we have k within [3,10], so to sum up them all:
+        sigma[k from 3 to 10]{s(f(k))}
+
+should it be 1024.
+math notations are like shits.
+you can dynamically load them, as you wish.
+
+examples:
+    https://d2h9tsxwphc7ip.cloudfront.net/14/7102%206010.png
+    https://d2h9tsxwphc7ip.cloudfront.net/0/0%200.png
+
+if i had a choice, i would choose to download it from internet, instead of local synth.
+
+speed could be an issue, but i wouldn't prefer to get my phone burned.
+
+this is meaningless. not using math, or using math, both need your participation. it is all about your personal choice.

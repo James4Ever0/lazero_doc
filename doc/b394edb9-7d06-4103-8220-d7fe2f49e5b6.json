@@ -1,0 +1,10 @@
+{
+    "summary": "The code demonstrates how to store data in neurons by creating a 2D list 'a' with initial values as None, then assigning each character of the string \"hello world\" to the corresponding index in the list. The code ensures that after each iteration, the previous value is set to None and only the current character is preserved. Finally, it removes the last element from the list.",
+    "details": [
+        {
+            "comment": "The code demonstrates how to store data in neurons by creating a 2D list 'a' with initial values as None, then assigning each character of the string \"hello world\" to the corresponding index in the list. The code ensures that after each iteration, the previous value is set to None and only the current character is preserved. Finally, it removes the last element from the list.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archiver/demo_leaving.py\":0-14",
+            "content": "# demostration on how to store data in neurons.\na=[[None,None] for x in range(100)]\nb=\"hello world\"\nc=\"hello world\"\nfor x in range(len(b)):\n    if x==0:\n        a[x][0]=b[x]\n        a[x][1]=b\n    else:\n        a[x][0]=a[x-1][1][1]\n        a[x][1]=a[x-1][1][1:]\n        a[x-1][1]=None\n    print(a)\na[len(b)-1][1]=None\nprint(a)"
+        }
+    ]
+}

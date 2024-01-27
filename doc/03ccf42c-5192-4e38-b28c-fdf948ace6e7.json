@@ -1,0 +1,15 @@
+{
+    "summary": "This Express server sets up a single '/keller' endpoint that generates UUIDs on POST requests while handling CORS. It listens on port 7777 and logs request data to the console.",
+    "details": [
+        {
+            "comment": "This code imports the Express module, defines a function to generate UUIDs, and sets up an Express server with a single endpoint '/keller'. When a POST request is made to '/keller', it generates a new UUID and sends it back as plain text in the response. The code also handles CORS by setting the 'Access-Control-Allow-Origin' header to '*' for the response.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/register.js\":0-34",
+            "content": "// #!/usr/bin/nodejs\nvar express = require('express')\n// var crypto = require('crypto');\n// not this one.\n//var multer = require('multer')\n//var upload = multer({dest:''})\nfunction uuidv4() {\n  var dt = new Date().getTime()\n  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (\n    c\n  ) {\n    var r = (dt + Math.random() * 16) % 16 | 0\n    dt = Math.floor(dt / 16)\n    return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16)\n  })\n  return uuid\n}\nvar app = express()\n//app.use(myParser.urlencoded({extended : true,limit:'50mb'}));\n//  app.use(bodyParser.json({ limit: '50mb' }))\n// return it via web or clipboard.\napp.post('/keller', function (req, res) {\n  var k = uuidv4()\n  // const body = req.body.Body\n  // why nothing here?\n  //console.log(req.data)\n  //console.log(req.file)\n  // console.log(req.data)\n  res.set('Access-Control-Allow-Origin', '*')\n  res.set('Content-Type', 'text/plain')\n  res.send(k)\n})\n// payload too large\n// what the heck?\n// var server = http.createServer(function (request, response) {"
+        },
+        {
+            "comment": "Code snippet logs \"message received.\" and request data to console, and sends a 200 response with 'Content-Type' header set to 'text/plain'. It listens on port 7777 for incoming requests.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/register.js\":35-44",
+            "content": "// //   // never read the request?\n//   response.writeHead(200, { 'Content-Type': 'text/plain' })\n// use some standard outputs, redirect them.\n//     console.log(\"message received.\")\n//     console.log(request.data)\n//     // console.log(request.content)\n//     // does not distinguish type?\n//     response.end(k)\n// })\napp.listen(7777)"
+        }
+    ]
+}

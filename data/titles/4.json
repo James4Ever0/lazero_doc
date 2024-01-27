@@ -1,0 +1,9 @@
+{
+    "/lego/syntax.py:31-34": "Function Syntax Manipulation",
+    "/lego/syntax_shrink.sh": "Log Shrinker Script",
+    "/lego/termsplit.py": "Text Splitter Analyzer",
+    "/lego/webpaste.py": "Tornado UUID Handler Parser",
+    "/lego/webpaste.py:1-37": "Tornado Web Server with UUID Generation",
+    "/lego/webpaste.py:38-65": "Tornado Web App with Endpoints & Handlers",
+    "/lego/webpaste.py:66-92": "Automated Tornado App Deployment via Subprocess"
+}

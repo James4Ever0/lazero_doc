@@ -1,0 +1,10 @@
+{
+    "summary": "This code captures a portion of the screen, converts it to a NumPy array and displays it using OpenCV. It calculates FPS and continues until 'q' is pressed.",
+    "details": [
+        {
+            "comment": "This code captures a portion of the screen, converts it to a NumPy array and displays it using OpenCV. It calculates FPS and continues until 'q' is pressed.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/video_record/mss_rec.py\":0-28",
+            "content": "import time\nimport cv2\nimport mss\nimport numpy\nwith mss.mss() as sct:\n    # Part of the screen to capture\n    monitor = {'top': 40, 'left': 0, 'width': 800, 'height': 640}\n    while 'Screen capturing':\n        last_time = time.time()\n        # Get raw pixels from the screen, save it to a Numpy array\n        img = numpy.array(sct.grab(monitor))\n        # Display the picture\n        cv2.imshow('OpenCV/Numpy normal', img)\n        # Display the picture in grayscale\n        # cv2.imshow('OpenCV/Numpy grayscale',\n        # cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY))\n        print('fps: {0}'.format(1 / (time.time()-last_time)))\n        # Press \"q\" to quit\n        if cv2.waitKey(25) & 0xFF == ord('q'):\n            cv2.destroyAllWindows()\n            break"
+        }
+    ]
+}

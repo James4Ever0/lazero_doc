@@ -1,0 +1,10 @@
+{
+    "summary": "This code snippet is printing the value of a variable named \"param\".",
+    "details": [
+        {
+            "comment": "This code snippet is printing the value of a variable named \"param\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/some_script.py\":0-0",
+            "content": "print(param)"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This script reads the contents of \"syntax.log\", passes it through a Python script named \"shrink.py\" which presumably reduces its size, and saves the output in \"syntax_shrink.log\". Finally, it replaces the original file \"syntax.log\" with the shrunken version.",
+    "details": [
+        {
+            "comment": "This script reads the contents of \"syntax.log\", passes it through a Python script named \"shrink.py\" which presumably reduces its size, and saves the output in \"syntax_shrink.log\". Finally, it replaces the original file \"syntax.log\" with the shrunken version.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/syntax_shrink.sh\":0-4",
+            "content": "#!/bin/bash\n# fuck! store it later.\n# will you store working script somewhere?\ncat syntax.log | python3 shrink.py > syntax_shrink.log\nmv syntax_shrink.log syntax.log"
+        }
+    ]
+}

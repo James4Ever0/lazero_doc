@@ -1,0 +1,10 @@
+{
+    "summary": "This script continuously executes the 'cquery.sh' script in an infinite loop using Bash. This could be used for continuous monitoring or data collection processes where real-time updates are needed.",
+    "details": [
+        {
+            "comment": "This script continuously executes the 'cquery.sh' script in an infinite loop using Bash. This could be used for continuous monitoring or data collection processes where real-time updates are needed.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/deathquery.sh\":0-4",
+            "content": "#!/bin/bash\nwhile true;\ndo\n\t./cquery.sh\ndone"
+        }
+    ]
+}

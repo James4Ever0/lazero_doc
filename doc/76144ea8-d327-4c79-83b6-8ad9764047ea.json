@@ -1,0 +1,10 @@
+{
+    "summary": "This script aims to dump Firefox memory and save it in /dev/shm, potentially using gcore. It struggles with Windows compatibility and Android issues related to /dev/shm, and suggests piping output to a Python script for analysis.",
+    "details": [
+        {
+            "comment": "This script aims to dump Firefox memory and save it in /dev/shm, potentially using gcore. It struggles with Windows compatibility and Android issues related to /dev/shm, and suggests piping output to a Python script for analysis.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/dump_and_collect.sh\":0-8",
+            "content": "#!/bin/bash\n# dump firefox. don't know how to do this in Windows. Maybe use Cheat Engine?\n# nowhere to hide this time.\n# and still don't know about android. why the fuck my /dev/shm won't work?\n# you can pipe the output to python script. don't worry. just print it out.\n# do a fifo stuff. maybe sandbox can read it.\nffx=$(ps -A | grep firefox | awk '{print $1}')\n#gdb -p $ffx dump memory /dev/shm/dump\ngcore -a -o /dev/shm/dump $ffx"
+        }
+    ]
+}

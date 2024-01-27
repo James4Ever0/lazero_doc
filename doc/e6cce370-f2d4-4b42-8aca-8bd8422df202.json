@@ -1,0 +1,10 @@
+{
+    "summary": "This script unmounts a RAM disk and removes its contents, ensuring it's cleared from the system.",
+    "details": [
+        {
+            "comment": "This script unmounts a RAM disk and removes its contents, ensuring it's cleared from the system.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/unloadram.sh\":0-2",
+            "content": "#!/bin/bash\nsudo umount ramdisk\nsudo rm -rf ramdisk"
+        }
+    ]
+}

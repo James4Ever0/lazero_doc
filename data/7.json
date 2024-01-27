@@ -1,0 +1,530 @@
+{
+    "700": {
+        "file_id": 116,
+        "content": "/bootstrap/keller/src/ctest.sh",
+        "type": "filepath"
+    },
+    "701": {
+        "file_id": 116,
+        "content": "This code uses curl to send a GET request with data 'all=fuck' to the specified URL (http://localhost:7777/search) via HTTP POST method.",
+        "type": "summary"
+    },
+    "702": {
+        "file_id": 116,
+        "content": "#!/bin/bash\ncurl --url \"http://localhost:7777/search\" -G -d'all=fuck'",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ctest.sh:1-2"
+    },
+    "703": {
+        "file_id": 116,
+        "content": "This code uses curl to send a GET request with data 'all=fuck' to the specified URL (http://localhost:7777/search) via HTTP POST method.",
+        "type": "comment"
+    },
+    "704": {
+        "file_id": 117,
+        "content": "/bootstrap/keller/src/curl_baidu.py",
+        "type": "filepath"
+    },
+    "705": {
+        "file_id": 117,
+        "content": "The code defines a function \"get_url\" that takes a keyword, creates parameters for a Baidu search URL, formats the URL using the \"format_url\" function, and returns the formatted URL. The main loop prints the formatted URLs for each line of input from stdin.",
+        "type": "summary"
+    },
+    "706": {
+        "file_id": 117,
+        "content": "import urllib.parse\nimport sys\ndef format_url(url, params: dict = None) -> str:\n    query_str = urllib.parse.urlencode(params)\n    return f'{ url }?{ query_str }'\ndef get_url(keyword):\n    params = {\n        'wd': str(keyword)\n    }\n    url = \"http://www.baidu.com/s\"\n    url = format_url(url, params)\n    # print(url)\n    return url\nif __name__ == \"__main__\":\n    for x in sys.stdin:\n        print(get_url(x))",
+        "type": "code",
+        "location": "/bootstrap/keller/src/curl_baidu.py:1-20"
+    },
+    "707": {
+        "file_id": 117,
+        "content": "The code defines a function \"get_url\" that takes a keyword, creates parameters for a Baidu search URL, formats the URL using the \"format_url\" function, and returns the formatted URL. The main loop prints the formatted URLs for each line of input from stdin.",
+        "type": "comment"
+    },
+    "708": {
+        "file_id": 118,
+        "content": "/bootstrap/keller/src/curl_baidu.sh",
+        "type": "filepath"
+    },
+    "709": {
+        "file_id": 118,
+        "content": "This code uses Bash script to execute a Python script, retrieves the result and sends an HTTP GET request with specific headers and URL obtained from the Python script.",
+        "type": "summary"
+    },
+    "710": {
+        "file_id": 118,
+        "content": "#!/bin/bash\nCLO=$(echo \"how to kill your father\" | python3 curl_baidu.py)\ncurl --header \"user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\" --header \"accept-language: zh-CN,zh;q=0.9\" --header \"cache-control: max-age=0\" --header \"accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\" \"$CLO\"",
+        "type": "code",
+        "location": "/bootstrap/keller/src/curl_baidu.sh:1-3"
+    },
+    "711": {
+        "file_id": 118,
+        "content": "This code uses Bash script to execute a Python script, retrieves the result and sends an HTTP GET request with specific headers and URL obtained from the Python script.",
+        "type": "comment"
+    },
+    "712": {
+        "file_id": 119,
+        "content": "/bootstrap/keller/src/curl_header.py",
+        "type": "filepath"
+    },
+    "713": {
+        "file_id": 119,
+        "content": "This code sets up headers for a request, then formats them as separate \"--header\" lines and prints them. It uses the 'headers' dictionary to store user-agent, accept-language, cache-control, and accept values. The lambda function x0 formats each header with its corresponding value, which are joined into a single string using \" \".join(). Finally, the formatted headers are printed.",
+        "type": "summary"
+    },
+    "714": {
+        "file_id": 119,
+        "content": "headers = {\n            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',\n            'accept-language': 'zh-CN,zh;q=0.9',\n            'cache-control': 'max-age=0',\n            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'\n        }\nx0=lambda x: \"--header \\\"{}: {}\\\"\".format(x,headers[x])\nj=\" \".join(list(map(x0,headers.keys())))\nprint(j)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/curl_header.py:1-9"
+    },
+    "715": {
+        "file_id": 119,
+        "content": "This code sets up headers for a request, then formats them as separate \"--header\" lines and prints them. It uses the 'headers' dictionary to store user-agent, accept-language, cache-control, and accept values. The lambda function x0 formats each header with its corresponding value, which are joined into a single string using \" \".join(). Finally, the formatted headers are printed.",
+        "type": "comment"
+    },
+    "716": {
+        "file_id": 120,
+        "content": "/bootstrap/keller/src/deathloop.sh",
+        "type": "filepath"
+    },
+    "717": {
+        "file_id": 120,
+        "content": "The script continuously executes the \"mlinks.sh\" script in a loop. This is likely used for monitoring or continuous processing tasks.",
+        "type": "summary"
+    },
+    "718": {
+        "file_id": 120,
+        "content": "#!/bin/bash\nwhile true;\ndo\n\t./mlinks.sh\ndone",
+        "type": "code",
+        "location": "/bootstrap/keller/src/deathloop.sh:1-5"
+    },
+    "719": {
+        "file_id": 120,
+        "content": "The script continuously executes the \"mlinks.sh\" script in a loop. This is likely used for monitoring or continuous processing tasks.",
+        "type": "comment"
+    },
+    "720": {
+        "file_id": 121,
+        "content": "/bootstrap/keller/src/deathquery.sh",
+        "type": "filepath"
+    },
+    "721": {
+        "file_id": 121,
+        "content": "This script continuously executes the 'cquery.sh' script in an infinite loop using Bash. This could be used for continuous monitoring or data collection processes where real-time updates are needed.",
+        "type": "summary"
+    },
+    "722": {
+        "file_id": 121,
+        "content": "#!/bin/bash\nwhile true;\ndo\n\t./cquery.sh\ndone",
+        "type": "code",
+        "location": "/bootstrap/keller/src/deathquery.sh:1-5"
+    },
+    "723": {
+        "file_id": 121,
+        "content": "This script continuously executes the 'cquery.sh' script in an infinite loop using Bash. This could be used for continuous monitoring or data collection processes where real-time updates are needed.",
+        "type": "comment"
+    },
+    "724": {
+        "file_id": 122,
+        "content": "/bootstrap/keller/src/deathride.sh",
+        "type": "filepath"
+    },
+    "725": {
+        "file_id": 122,
+        "content": "The code is a Bash script that continuously tries to install the 'canvas' package globally using 'yarn'. It runs an infinite loop and breaks out when the installation is successful.",
+        "type": "summary"
+    },
+    "726": {
+        "file_id": 122,
+        "content": "#!/bin/bash\nwhile true\ndo\n\tsudo yarn global add canvas \n\tif [ $? -eq 0 ]; then\n                break\n\tfi\ndone",
+        "type": "code",
+        "location": "/bootstrap/keller/src/deathride.sh:1-8"
+    },
+    "727": {
+        "file_id": 122,
+        "content": "The code is a Bash script that continuously tries to install the 'canvas' package globally using 'yarn'. It runs an infinite loop and breaks out when the installation is successful.",
+        "type": "comment"
+    },
+    "728": {
+        "file_id": 123,
+        "content": "/bootstrap/keller/src/demo.py",
+        "type": "filepath"
+    },
+    "729": {
+        "file_id": 123,
+        "content": "This code imports the random module, defines four lambda functions for basic arithmetic operations, uses a SystemRandom instance for secure random choices, and creates an infinite loop that prompts the user for input, chooses a random function from the list, applies it to the user's input, and prints the result.",
+        "type": "summary"
+    },
+    "730": {
+        "file_id": 123,
+        "content": "import random\n#demo=[]\n# no right or wrong? five/five?\na=lambda x: x+1\nb=lambda x: x-1\nc=lambda x: x*2\nd=lambda x: x/2\nrng=random.SystemRandom()\ndemo=[a,b,c,d]\nwhile True:\n    get=input(\"enter a number, we'll output some result for you.\\n\")\n    r=rng.choice(demo)(int(get))\n    print(\"reselt:\",r)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/demo.py:1-13"
+    },
+    "731": {
+        "file_id": 123,
+        "content": "This code imports the random module, defines four lambda functions for basic arithmetic operations, uses a SystemRandom instance for secure random choices, and creates an infinite loop that prompts the user for input, chooses a random function from the list, applies it to the user's input, and prints the result.",
+        "type": "comment"
+    },
+    "732": {
+        "file_id": 124,
+        "content": "/bootstrap/keller/src/dump_and_collect.sh",
+        "type": "filepath"
+    },
+    "733": {
+        "file_id": 124,
+        "content": "This script aims to dump Firefox memory and save it in /dev/shm, potentially using gcore. It struggles with Windows compatibility and Android issues related to /dev/shm, and suggests piping output to a Python script for analysis.",
+        "type": "summary"
+    },
+    "734": {
+        "file_id": 124,
+        "content": "#!/bin/bash\n# dump firefox. don't know how to do this in Windows. Maybe use Cheat Engine?\n# nowhere to hide this time.\n# and still don't know about android. why the fuck my /dev/shm won't work?\n# you can pipe the output to python script. don't worry. just print it out.\n# do a fifo stuff. maybe sandbox can read it.\nffx=$(ps -A | grep firefox | awk '{print $1}')\n#gdb -p $ffx dump memory /dev/shm/dump\ngcore -a -o /dev/shm/dump $ffx",
+        "type": "code",
+        "location": "/bootstrap/keller/src/dump_and_collect.sh:1-9"
+    },
+    "735": {
+        "file_id": 124,
+        "content": "This script aims to dump Firefox memory and save it in /dev/shm, potentially using gcore. It struggles with Windows compatibility and Android issues related to /dev/shm, and suggests piping output to a Python script for analysis.",
+        "type": "comment"
+    },
+    "736": {
+        "file_id": 125,
+        "content": "/bootstrap/keller/src/dumpid.sh",
+        "type": "filepath"
+    },
+    "737": {
+        "file_id": 125,
+        "content": "This Bash script takes a process ID as input, extracts memory dump addresses using grep and sed, then uses GDB to dump the specified memory range for each address found.",
+        "type": "summary"
+    },
+    "738": {
+        "file_id": 125,
+        "content": "#!/bin/bash\nsudo grep rw-p /proc/$1/maps \\\n| sed -n 's/^\\([0-9a-f]*\\)-\\([0-9a-f]*\\) .*$/\\1 \\2/p' \\\n| while read start stop; do \\\n    sudo gdb --batch --pid $1 -ex \\\n        \"dump memory /proc/self/fd/0 0x$start 0x$stop\"; \\\ndone",
+        "type": "code",
+        "location": "/bootstrap/keller/src/dumpid.sh:1-8"
+    },
+    "739": {
+        "file_id": 125,
+        "content": "This Bash script takes a process ID as input, extracts memory dump addresses using grep and sed, then uses GDB to dump the specified memory range for each address found.",
+        "type": "comment"
+    },
+    "740": {
+        "file_id": 126,
+        "content": "/bootstrap/keller/src/elect.js",
+        "type": "filepath"
+    },
+    "741": {
+        "file_id": 126,
+        "content": "The code requires the 'electron' and 'child_process' modules. It then logs the electron module path, spawns a child process using 'child_process', which runs Electron itself.",
+        "type": "summary"
+    },
+    "742": {
+        "file_id": 126,
+        "content": "const electron = require('electron')\nconst proc = require('child_process')\n// will print something similar to /Users/maf/.../Electron\nconsole.log(electron)\n// spawn Electron\nconst child = proc.spawn(electron)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/elect.js:1-8"
+    },
+    "743": {
+        "file_id": 126,
+        "content": "The code requires the 'electron' and 'child_process' modules. It then logs the electron module path, spawns a child process using 'child_process', which runs Electron itself.",
+        "type": "comment"
+    },
+    "744": {
+        "file_id": 127,
+        "content": "/bootstrap/keller/src/election.js",
+        "type": "filepath"
+    },
+    "745": {
+        "file_id": 127,
+        "content": "Code is creating an Electron app window with a size of 800x1500 and loading Github website. The window is set to be shown initially, but can be hidden by changing the show property to false. The code also logs the contents of the window to the console.",
+        "type": "summary"
+    },
+    "746": {
+        "file_id": 127,
+        "content": "// run this under electron prefix?\nconsole.log(\"from electron\");\n// it is running just fine. but how to hide it?\nconst { app,BrowserWindow } = require(\"electron\");\nfunction createWindow(){\nconst win = new BrowserWindow({ width: 800, height: 1500 ,show:true})\n//const win = new BrowserWindow({ width: 800, height: 1500 ,show:false})\nwin.loadURL('https://github.com')\nconst contents = win.webContents\nconsole.log(contents)\n}\napp.on('ready', createWindow);\n// can we use nightmare here?\n// can we import other packages?\n// app is launched, but headless. great. Now check modules.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/election.js:1-16"
+    },
+    "747": {
+        "file_id": 127,
+        "content": "Code is creating an Electron app window with a size of 800x1500 and loading Github website. The window is set to be shown initially, but can be hidden by changing the show property to false. The code also logs the contents of the window to the console.",
+        "type": "comment"
+    },
+    "748": {
+        "file_id": 128,
+        "content": "/bootstrap/keller/src/fakegen.py",
+        "type": "filepath"
+    },
+    "749": {
+        "file_id": 128,
+        "content": "Code generates a fake string of length 250000 by randomly choosing characters from the list 'p' using SystemRandom and prints it.",
+        "type": "summary"
+    },
+    "750": {
+        "file_id": 128,
+        "content": "# here we go, fake code.\np=[chr(x) for x in range(500)]\nimport random\nk=\"\"\nfor x in range(500*500):\n    k+=random.SystemRandom().choice(p)\nprint(k)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/fakegen.py:1-7"
+    },
+    "751": {
+        "file_id": 128,
+        "content": "Code generates a fake string of length 250000 by randomly choosing characters from the list 'p' using SystemRandom and prints it.",
+        "type": "comment"
+    },
+    "752": {
+        "file_id": 129,
+        "content": "/bootstrap/keller/src/fenco.py",
+        "type": "filepath"
+    },
+    "753": {
+        "file_id": 129,
+        "content": "The code creates a WebSocket web server with Flask and Gevent, continuously sending messages until connection ends, checks for incoming messages, sends responses or prints \"no receive\" if no message received. It also sets up a Flask route returning \"Hello World!\" and starts an HTTPS server on localhost:5000.",
+        "type": "summary"
+    },
+    "754": {
+        "file_id": 129,
+        "content": "# encoding: utf-8\n\"\"\"\n@version: v1.0\n@author: W_H_J\n@license: Apache Licence\n@contact: 415900617@qq.com\n@software: PyCharm\n@file: flaskWebSocket.py\n@time: 2019/2/19 10:20\n@describe: flask_sockets 实现websocket\n\"\"\"\nimport json\nimport sys\nimport os\nfrom flask_sockets import Sockets\nimport time\nfrom gevent import monkey\nfrom flask import Flask, request\nfrom gevent import pywsgi\nfrom geventwebsocket.handler import WebSocketHandler\nsys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '..'))\nsys.path.append(\"..\")\nmonkey.patch_all()\napp = Flask(__name__)\nsockets = Sockets(app)\nnow = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))\n# when using wifi, it is damn easy to get yourself blocked. static ip. so use browser to get fresh cookies, in case of nasty shits. \n@sockets.route('/',defaults={'path': ''})  # 指定路由\n@sockets.route('/<path:path>')\ndef echo_socket(ws,path):\n    while not ws.closed:\n        print(\"WS: \",path)\n        ws.send(str(\"message test!\"))  # 回传给clicent\n        # this is just a heartbeat package. check the content first.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/fenco.py:1-36"
+    },
+    "755": {
+        "file_id": 129,
+        "content": "This Python code uses the Flask and Gevent libraries to create a web server that supports WebSocket communication. It defines a function, `echo_socket`, which will be executed for each connected client, continuously sending messages to clients until the connection is closed. The code also includes an import statement and other setup steps before defining the application and setting up the route for the WebSocket endpoint.",
+        "type": "comment"
+    },
+    "756": {
+        "file_id": 129,
+        "content": "        \"\"\" 服务端必须接收到客户端发的消息才能保持该服务运行，如果ws.receive()没有接收到客户端发送的\n         消息，那么它会关闭与客户端建立的链接\n         底层解释：Read and return a message from the stream. If `None` is returned, then\n        the socket is considered closed/errored.\n        所以客户端只建立连接，不与服务端交互通信，则无法实现自由通信状态，之后在客户端代码处会有详细内容。\n         \"\"\"\n        message = ws.receive()  # 接收到消息\n        if message is not None:\n            print(\"%s receive msg==> \" % now, str(json.dumps(message)))\n            \"\"\" 如果客户端未发送消息给服务端，就调用接收消息方法，则会导致receive()接收消息为空，关闭此次连接 \"\"\"\n#            ws.send(str(json.dumps(message)))  # 回传给clicent\n# this connection is not async. check async websocket.\n            time.sleep(1)\n# wait for a while. shall we?\n# is that keyword specific?\n            ws.send(\"https://www.baidu.com/s?wd=how+to+kill+your+brother%0A\")\n            # to disable the protocol, you might need another background script.\n            # sending string. check data type.\n            # natural clustering.\n        else:\n            print(now, \"no receive\")\n@app.route('/',defaults={'path': ''})",
+        "type": "code",
+        "location": "/bootstrap/keller/src/fenco.py:37-60"
+    },
+    "757": {
+        "file_id": 129,
+        "content": "Code receives messages from a WebSocket connection, checks if the message is not None, and either prints or sends a response. If no message is received, it prints a \"no receive\" message. This is part of a WebSocket server implementation.",
+        "type": "comment"
+    },
+    "758": {
+        "file_id": 129,
+        "content": "@app.route('/<path:path>')\ndef hello(path):\n    print(\"HTTP: \",path)\n    return 'Hello World! server start！'\nif __name__ == \"__main__\":\n    server = pywsgi.WSGIServer(('localhost', 5000), app, handler_class=WebSocketHandler,keyfile=\"certs/server.key\",certfile=\"certs/server.crt\")\n    #server = pywsgi.WSGIServer(('localhost', 5000), app, handler_class=WebSocketHandler,keyfile=\"certs/ca/ca.key\",certfile=\"certs/ca/ca.crt\")\n    print('server start')\n    server.serve_forever()",
+        "type": "code",
+        "location": "/bootstrap/keller/src/fenco.py:61-71"
+    },
+    "759": {
+        "file_id": 129,
+        "content": "This code sets up a Flask web application route that returns \"Hello World!\" message, and starts a WSGI server on localhost:5000 with HTTPS using provided certificates.",
+        "type": "comment"
+    },
+    "760": {
+        "file_id": 130,
+        "content": "/bootstrap/keller/src/firefox_memdump.py",
+        "type": "filepath"
+    },
+    "761": {
+        "file_id": 130,
+        "content": "The code imports urllib.parse and sys, reads input from stdin in byte format, prints the type and length of each byte, and mentions potential improvement using multiple registers.",
+        "type": "summary"
+    },
+    "762": {
+        "file_id": 130,
+        "content": "#import urllib.parse\nimport sys\n# binary inside.\nfor x in sys.stdin.buffer:\n    print(type(x),len(x))\n    # too slow. maybe using multi rgs?",
+        "type": "code",
+        "location": "/bootstrap/keller/src/firefox_memdump.py:1-6"
+    },
+    "763": {
+        "file_id": 130,
+        "content": "The code imports urllib.parse and sys, reads input from stdin in byte format, prints the type and length of each byte, and mentions potential improvement using multiple registers.",
+        "type": "comment"
+    },
+    "764": {
+        "file_id": 131,
+        "content": "/bootstrap/keller/src/flaskall.py",
+        "type": "filepath"
+    },
+    "765": {
+        "file_id": 131,
+        "content": "This code sets up a Flask web app, defines routes for root and catch-all paths, uses difflib's Differ method to compare request data with stored \"buff\", imports modules, and suggests alternative testing methods.",
+        "type": "summary"
+    },
+    "766": {
+        "file_id": 131,
+        "content": "from flask import Flask, request\nimport random\nfrom curl_baidu import get_url\n#from flask import Flask, render_template\n# use monkey patch\nfrom gevent import monkey\nfrom stackMe import queue\nimport threading\nimport difflib\nimport copy\nmonkey.patch_all()\napp = Flask(__name__)\nbuff=None\n#mainq=queue(3)\ndef diff(a,b):\n    return difflib.Differ().compare(a,b)\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return render_template('index.html')\n\"\"\"\nrng=random.SystemRandom()\nlst=[\"how to kill your father\",\"how to kill your mother\"]\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\n@app.route('/<path:path>',methods=['POST','GET'])\ndef catch_all(path):\n    global buff\n    print(\"path\",path)\n    if path==\"keller\":\n#        pass\n#        print(request.data)\n# do not patch.\n        #print(type(request.data)) bytes. but can be string\n        dec=request.data.decode()\n        \"\"\"\n        if buff==None:\n            pass\n        else:\n            df=diff(buff,copy.copy(dec))",
+        "type": "code",
+        "location": "/bootstrap/keller/src/flaskall.py:1-41"
+    },
+    "767": {
+        "file_id": 131,
+        "content": "This code is creating a Flask web application. It defines routes for the root URL (\"/\") that can handle both GET and POST requests. The \"catch_all\" function catches all paths, and if the path is \"keller\", it decodes the request data and compares it with the previous data stored in the \"buff\" variable using the Differ() method from difflib. If \"buff\" is None, it does nothing. The code also imports various modules and sets up a random number generator.",
+        "type": "comment"
+    },
+    "768": {
+        "file_id": 131,
+        "content": "            # too slow?\n            for gk in df:\n                print(gk)\n        buff=copy.copy(dec)\"\"\"\n        dec=dec.split()\n        # shit then. we cannot get quick diff.\n        # too slow.\n        for x in dec:\n            print(x)\n    elif path==\"url\":\n        return get_url(rng.choice(lst))\n# should you be dynamic?\n# create a heart-beat package. choose from avaliable candidates.\n# use redis.\n# so captcha over there.\n        # cannot get data here.\n    return \"PATH \"+path\n    #return render_template('index.html')\n    # are you sure it is utf-8? not concerned.\n# do not use browser. use code like js or curl to test connection.\n\"\"\"\n@app.route('/')\ndef homepage():\n    return \"Hello world!\"\n\"\"\"\napp.run(port=7777)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/flaskall.py:42-68"
+    },
+    "769": {
+        "file_id": 131,
+        "content": "This code is initializing a Flask web application, defining routes and functions for different paths. The code also includes error messages related to performance issues and suggests using alternative methods like curl or js to test the connection.",
+        "type": "comment"
+    },
+    "770": {
+        "file_id": 132,
+        "content": "/bootstrap/keller/src/flasko.py",
+        "type": "filepath"
+    },
+    "771": {
+        "file_id": 132,
+        "content": "This Flask application sets up a WebSocket server that handles messages, sends them back to clients with a delay, and uses gevent's green threads for better performance. The server runs on localhost at port 5000 and serves forever.",
+        "type": "summary"
+    },
+    "772": {
+        "file_id": 132,
+        "content": "# encoding: utf-8\n\"\"\"\n@version: v1.0\n@author: W_H_J\n@license: Apache Licence\n@contact: 415900617@qq.com\n@software: PyCharm\n@file: flaskWebSocket.py\n@time: 2019/2/19 10:20\n@describe: flask_sockets 实现websocket\n\"\"\"\nimport json\nimport sys\nimport os\nfrom flask_sockets import Sockets\nimport time\n#from threading import Thread\nfrom gevent import monkey\nfrom flask import Flask, request\nfrom gevent import pywsgi\nfrom geventwebsocket.handler import WebSocketHandler\nsys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '..'))\nsys.path.append(\"..\")\nmonkey.patch_all()\napp = Flask(__name__)\nsockets = Sockets(app)\nnow = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))\n@sockets.route('/',defaults={'path': ''})  # 指定路由\n@sockets.route('/<path:path>')\ndef echo_socket(ws,path):\n    while not ws.closed:\n        print(\"WS: \",path)\n        ws.send(\"1+250\")  # 回传给clicent\n        \"\"\" 服务端必须接收到客户端发的消息才能保持该服务运行，如果ws.receive()没有接收到客户端发送的\n         消息，那么它会关闭与客户端建立的链接\n         底层解释：Read and return a message from the stream. If `None` is returned, then",
+        "type": "code",
+        "location": "/bootstrap/keller/src/flasko.py:1-39"
+    },
+    "773": {
+        "file_id": 132,
+        "content": "The code imports necessary modules and defines the Flask application with WebSocket support. It sets up a socket route for handling incoming messages, continuously sends \"1+250\" back to the client until the WebSocket connection is closed, and patches all threading calls to use gevent's green threads for better performance.",
+        "type": "comment"
+    },
+    "774": {
+        "file_id": 132,
+        "content": "        the socket is considered closed/errored.\n        所以客户端只建立连接，不与服务端交互通信，则无法实现自由通信状态，之后在客户端代码处会有详细内容。\n         \"\"\"\n        message = ws.receive()  # 接收到消息\n        if message is not None:\n            print(\"%s receive msg==> \" % now, str(json.dumps(message)))\n            def sendmsg():\n                time.sleep(0.5)\n                ws.send(str(json.dumps(message)))  # 回传给clicent\n            sendmsg()\n            #Thread(target=sendmsg,args=()).start()\n            \"\"\" 如果客户端未发送消息给服务端，就调用接收消息方法，则会导致receive()接收消息为空，关闭此次连接 \"\"\"\n        else:\n            print(now, \"no receive\")\n@app.route('/',defaults={'path': ''})\n@app.route('/<path:path>')\ndef hello(path):\n    print(\"HTTP: \",path)\n    return 'Hello World! server start！'\nif __name__ == \"__main__\":\n    server = pywsgi.WSGIServer(('localhost', 5000), app, handler_class=WebSocketHandler)\n    print('server start')\n    server.serve_forever()",
+        "type": "code",
+        "location": "/bootstrap/keller/src/flasko.py:40-66"
+    },
+    "775": {
+        "file_id": 132,
+        "content": "Code snippet is a Flask application for WebSocket communication. It receives messages from clients, prints them, and sends the received message back to the client after a delay. If no message is received, it logs a \"no receive\" message. The server runs on localhost at port 5000 and serves forever upon execution.",
+        "type": "comment"
+    },
+    "776": {
+        "file_id": 133,
+        "content": "/bootstrap/keller/src/fscl.py",
+        "type": "filepath"
+    },
+    "777": {
+        "file_id": 133,
+        "content": "This Python script creates a Flask web socket client using websocket module. It connects to \"ws://localhost:5000/test0\", defines send_query_webSocket() function, and has an issue where it tries receiving without sending back to server. The code sends test message, receives response, prints it, closes connection, and returns True if executed as main program.",
+        "type": "summary"
+    },
+    "778": {
+        "file_id": 133,
+        "content": "# encoding: utf-8\n\"\"\"\n@version: v1.0\n@author: W_H_J\n@license: Apache Licence\n@contact: 415900617@qq.com\n@software: PyCharm\n@file: flaskclicent.py\n@time: 2019/2/19 10:34\n@describe: flask_sockets 客户端\n\"\"\"\nimport sys\nimport os\nimport datetime\nsys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '..'))\nsys.path.append(\"..\")\nfrom websocket import create_connection\n# websocket-client\n# 通过socket路由访问\nnow = datetime.datetime.now()\nprint(now)\ndef send_query_webSocket():\n    ws = create_connection(\"ws://localhost:5000/test0\")\n    result_1 = ws.recv()  # 接收服务端发送的连接成功消息\n    print(result_1)\n    \"\"\"\n    上面recv()方法接收服务端 发送的第一条消息：ws.send(str(\"message test!\"))  # 回传给clicent\n    下面再要接收消息，必须先给服务端发送一条消息，不然服务端message = ws.receive() 的receive方法\n    没有收到消息，而这里直接调用rece()方法去接收服务端消息，则会导致服务端关闭此次连接；\n    底层方法介绍：Read and return a message from the stream. If `None` is returned, then\n        the socket is considered closed/errored.\n    虽然此次连接关闭了，但是对于客户端来说并不知情，而客户端recv()方法又是一个阻塞方式运行，所以会导致\n    客户端永远阻塞在这里无法关闭，这也是flask_sockets 客户端服务端交互的一个缺点吧。\n    \"\"\"",
+        "type": "code",
+        "location": "/bootstrap/keller/src/fscl.py:1-36"
+    },
+    "779": {
+        "file_id": 133,
+        "content": "This Python script creates a Flask web socket client for connecting to \"ws://localhost:5000/test0\". It uses the websocket module and creates a WebSocket connection. The function send_query_webSocket() is defined, which establishes the connection and receives the server's first message. However, it has an issue where it tries to receive another message without sending one back to the server, potentially causing blocking behavior.",
+        "type": "comment"
+    },
+    "780": {
+        "file_id": 133,
+        "content": "    ws.send(\"I am test msg!\")\n    result = ws.recv()\n    print(result)\n    ws.close()\n    return True\n# i mean, what does this mean anyway? what should we do? \nif __name__ == '__main__':\n    send_query_webSocket()",
+        "type": "code",
+        "location": "/bootstrap/keller/src/fscl.py:37-45"
+    },
+    "781": {
+        "file_id": 133,
+        "content": "The code sends a test message, receives a response, prints it, closes the WebSocket connection, and returns True if executed as main program.",
+        "type": "comment"
+    },
+    "782": {
+        "file_id": 134,
+        "content": "/bootstrap/keller/src/fss.py",
+        "type": "filepath"
+    },
+    "783": {
+        "file_id": 134,
+        "content": "This Python code, using the Flask and websocket libraries, establishes a WebSocket connection with 'wss://localhost:5000/test0', sends a test message, receives response, prints it, closes the connection, and returns True when executed as main program.",
+        "type": "summary"
+    },
+    "784": {
+        "file_id": 134,
+        "content": "# encoding: utf-8\n\"\"\"\n@version: v1.0\n@author: W_H_J\n@license: Apache Licence\n@contact: 415900617@qq.com\n@software: PyCharm\n@file: flaskclicent.py\n@time: 2019/2/19 10:34\n@describe: flask_sockets 客户端\n\"\"\"\nimport sys\nimport os\nimport datetime\nsys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '..'))\nsys.path.append(\"..\")\nfrom websocket import create_connection\n# websocket-client\n# 通过socket路由访问\nnow = datetime.datetime.now()\nprint(now)\ndef send_query_webSocket():\n    ws = create_connection(\"wss://localhost:5000/test0\")\n    result_1 = ws.recv()  # 接收服务端发送的连接成功消息\n    print(result_1)\n    \"\"\"\n    上面recv()方法接收服务端 发送的第一条消息：ws.send(str(\"message test!\"))  # 回传给clicent\n    下面再要接收消息，必须先给服务端发送一条消息，不然服务端message = ws.receive() 的receive方法\n    没有收到消息，而这里直接调用rece()方法去接收服务端消息，则会导致服务端关闭此次连接；\n    底层方法介绍：Read and return a message from the stream. If `None` is returned, then\n        the socket is considered closed/errored.\n    虽然此次连接关闭了，但是对于客户端来说并不知情，而客户端recv()方法又是一个阻塞方式运行，所以会导致\n    客户端永远阻塞在这里无法关闭，这也是flask_sockets 客户端服务端交互的一个缺点吧。",
+        "type": "code",
+        "location": "/bootstrap/keller/src/fss.py:1-35"
+    },
+    "785": {
+        "file_id": 134,
+        "content": "The code is a Flask sockets client implementation in Python using the websocket library. It establishes a WebSocket connection to a server at 'wss://localhost:5000/test0', sends a test message, and then tries to receive messages from the server. The code includes import statements, time-stamp printing, function definition for sending a query, and documentation strings for version, author, license, contact, software, file, and describe information.",
+        "type": "comment"
+    },
+    "786": {
+        "file_id": 134,
+        "content": "    \"\"\"\n    ws.send(\"I am test msg!\")\n    result = ws.recv()\n    print(result)\n    ws.close()\n    return True\nif __name__ == '__main__':\n    send_query_webSocket()",
+        "type": "code",
+        "location": "/bootstrap/keller/src/fss.py:36-45"
+    },
+    "787": {
+        "file_id": 134,
+        "content": "This code establishes a webSocket connection, sends a test message, receives the response, prints it, closes the connection and returns True if executed as main program.",
+        "type": "comment"
+    },
+    "788": {
+        "file_id": 135,
+        "content": "/bootstrap/keller/src/gobuild.sh",
+        "type": "filepath"
+    },
+    "789": {
+        "file_id": 135,
+        "content": "This script sets up a Go development environment by creating directories, setting the GOPATH to current directory, and installing required packages. It follows a \"one-liner\" approach for each task, simplifying the setup process.",
+        "type": "summary"
+    },
+    "790": {
+        "file_id": 135,
+        "content": "#!/bin/bash\ncd ~/\nmkdir go\ncd go\nmkdir bin src pkg\nGO111MODULE=on GOPATH=$(pwd) go get github.com/buildkite/terminal-to-html\nGO111MODULE=on GOPATH=$(pwd) go get github.com/codegangsta/cli\nGO111MODULE=on GOPATH=$(pwd) go get github.com/urfave/cli",
+        "type": "code",
+        "location": "/bootstrap/keller/src/gobuild.sh:1-8"
+    },
+    "791": {
+        "file_id": 135,
+        "content": "This script sets up a Go development environment by creating directories, setting the GOPATH to current directory, and installing required packages. It follows a \"one-liner\" approach for each task, simplifying the setup process.",
+        "type": "comment"
+    },
+    "792": {
+        "file_id": 136,
+        "content": "/bootstrap/keller/src/import_sysca.sh",
+        "type": "filepath"
+    },
+    "793": {
+        "file_id": 136,
+        "content": "Creates a directory for extra certificates, copies a root certificate file to the directory, and updates the system's CA certificates.",
+        "type": "summary"
+    },
+    "794": {
+        "file_id": 136,
+        "content": "#!/bin/bash\nsudo mkdir /usr/local/share/ca-certificates/extra\nsudo cp certs/ca/ca.crt /usr/local/share/ca-certificates/extra/root.cert.crt\nsudo update-ca-certificates",
+        "type": "code",
+        "location": "/bootstrap/keller/src/import_sysca.sh:1-4"
+    },
+    "795": {
+        "file_id": 136,
+        "content": "Creates a directory for extra certificates, copies a root certificate file to the directory, and updates the system's CA certificates.",
+        "type": "comment"
+    },
+    "796": {
+        "file_id": 137,
+        "content": "/bootstrap/keller/src/justdump.sh",
+        "type": "filepath"
+    },
+    "797": {
+        "file_id": 137,
+        "content": "This script attempts to dump Firefox memory on Linux, possibly for debugging purposes. It uses GDB and creates a FIFO file for output. Windows and Android support are not addressed, and the script may cause system instability or crashes.",
+        "type": "summary"
+    },
+    "798": {
+        "file_id": 137,
+        "content": "#!/bin/bash\n# dump firefox. don't know how to do this in Windows. Maybe use Cheat Engine?\n# nowhere to hide this time.\n# and still don't know about android. why the fuck my /dev/shm won't work?\n# you can pipe the output to python script. don't worry. just print it out.\n# do a fifo stuff. maybe sandbox can read it.\nffx=$(sudo ps -A | grep android | awk '{print $1}')\n#gdb -p $ffx dump memory /dev/shm/dump\n# this will blow system off.\n#./dumpid.sh $ffx\n# not creating fifo?\nffx=$(echo $ffx | awk '{print $3}')\n#echo $ffx\n#mkfifo \"dump.$ffx\"\n#sudo gcore -a -o dump $ffx \nsudo gdb -q --pid=$ffx \n#cat \"dump.$ffx\"",
+        "type": "code",
+        "location": "/bootstrap/keller/src/justdump.sh:1-17"
+    },
+    "799": {
+        "file_id": 137,
+        "content": "This script attempts to dump Firefox memory on Linux, possibly for debugging purposes. It uses GDB and creates a FIFO file for output. Windows and Android support are not addressed, and the script may cause system instability or crashes.",
+        "type": "comment"
+    }
+}

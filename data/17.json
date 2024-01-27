@@ -1,0 +1,534 @@
+{
+    "1700": {
+        "file_id": 282,
+        "content": "<?php\n//curl的百度百科\n//$url = 'http://www.baidu.com/link?url=77I2GJqjJ4zBBpC8yDF8xDhiqDSn1JZjFWsHhEoSNd85PkV8Xil-rckpQ8_kjGKNNq';\n$fh = fopen('php://stdin', 'r'); \necho \"[php://stdin]请输入任意字符：\\n\"; \n$url = trim(fread($fh, 1000));   \n// get input \n#echo $url;\n$ch = curl_init();\ncurl_setopt($ch, CURLOPT_URL, $url);\n// 不需要页面内容\ncurl_setopt($ch, CURLOPT_NOBODY, 1);\n// 不直接输出\ncurl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);\n// 返回最后的Location\ncurl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);\ncurl_exec($ch);\n$info = curl_getinfo($ch,CURLINFO_EFFECTIVE_URL);\ncurl_close($ch);\necho $info;\n?>",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/curl_.php:1-22"
+    },
+    "1701": {
+        "file_id": 282,
+        "content": "This PHP script reads the URL from stdin, uses cURL to fetch it (following redirects), and outputs the final effective URL.",
+        "type": "comment"
+    },
+    "1702": {
+        "file_id": 283,
+        "content": "/bootstrap/legacy/concentration/new_toys/indexer.py",
+        "type": "filepath"
+    },
+    "1703": {
+        "file_id": 283,
+        "content": "This code takes a list of data from \"shredded_realcode\" and repeatedly prompts the user for input. It applies different search methods based on the user's mode selection (normal/set) to find relevant data in each key within the given data. If there is a match, it prints the corresponding file path along with a small part of the list content.",
+        "type": "summary"
+    },
+    "1704": {
+        "file_id": 283,
+        "content": "from getFromDill import returnXList\ndef getlower(a, b):\n    return [x for x in a if b.lower() in x.lower()]\ndef juicy(a, b):\n    return [x for x in a if set(b.lower()).issubset(set(x.lower()))]\ndef positive(a, x, c):\n    if c:\n        return getlower(a, x)\n    else:\n        return juicy(a, x)\nr = returnXList(\"shredded_realcode\")\nwhile True:\n    try:\n        c = input(\"mode: N/S - normal/set\\n\")\n        assert type(c) == str and c in [\"N\", \"S\"]\n        if c == \"N\":\n            c = False\n            break\n        c = True\n        break\n    except Exception as err:\n        print(\"wrong mode!\")\n        continue\na = input(\"query:\\n\")\nfor x in r.keys():\n    i = positive(r[x], a, c)\n    if i != []:\n        print(\"lazero_playground/\"+x)\n        # print(str(r)[:100])  # still working.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/indexer.py:1-37"
+    },
+    "1705": {
+        "file_id": 283,
+        "content": "This code takes a list of data from \"shredded_realcode\" and repeatedly prompts the user for input. It applies different search methods based on the user's mode selection (normal/set) to find relevant data in each key within the given data. If there is a match, it prints the corresponding file path along with a small part of the list content.",
+        "type": "comment"
+    },
+    "1706": {
+        "file_id": 284,
+        "content": "/bootstrap/legacy/concentration/new_toys/lida_x.py",
+        "type": "filepath"
+    },
+    "1707": {
+        "file_id": 284,
+        "content": "The code imports functions, creates a copy of a list, filters out false values, updates the copy and stores it as failsafe for \"rockstar\".",
+        "type": "summary"
+    },
+    "1708": {
+        "file_id": 284,
+        "content": "from been_well import main\nfrom getFromDill import returnXList\nfrom storeADill import storeXList\nimport copy\nif __name__ == \"__main__\":\n    r = returnXList(\"rockstar\")\n    # r = returnXList(\"rock\")\n    f = copy.copy(r)\n    r0 = [x for x in r.keys() if not r[x]]\n    for y in r0:\n        main(y)\n        f.update({y: True})\n        storeXList(f, \"rockstar\")\n# need for failsafe.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/lida_x.py:1-14"
+    },
+    "1709": {
+        "file_id": 284,
+        "content": "The code imports functions, creates a copy of a list, filters out false values, updates the copy and stores it as failsafe for \"rockstar\".",
+        "type": "comment"
+    },
+    "1710": {
+        "file_id": 285,
+        "content": "/bootstrap/legacy/concentration/new_toys/lida_y.py",
+        "type": "filepath"
+    },
+    "1711": {
+        "file_id": 285,
+        "content": "This code imports functions, makes a copy of a list, iterates through the keys in the original list, runs a function with each key as input, updates another list, and stores the updated list. It appears to be part of a larger program that uses batch processing and time intervals.",
+        "type": "summary"
+    },
+    "1712": {
+        "file_id": 285,
+        "content": "from batch_wheel import main\nfrom getFromDill import returnXList\nfrom storeADill import storeXList\nimport copy\nimport time\nif __name__ == \"__main__\":\n    r = returnXList(\"rockstars\")\n    # r = returnXList(\"rock\")\n    f = copy.copy(r)\n    r0 = [x for x in r.keys() if not r[x]]\n    for y in r0:\n        main(y,2)\n        f.update({y: True})\n        storeXList(f, \"rockstars\")\n        time.sleep(5)\n# need for failsafe.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/lida_y.py:1-16"
+    },
+    "1713": {
+        "file_id": 285,
+        "content": "This code imports functions, makes a copy of a list, iterates through the keys in the original list, runs a function with each key as input, updates another list, and stores the updated list. It appears to be part of a larger program that uses batch processing and time intervals.",
+        "type": "comment"
+    },
+    "1714": {
+        "file_id": 286,
+        "content": "/bootstrap/legacy/concentration/new_toys/markovgen.py",
+        "type": "filepath"
+    },
+    "1715": {
+        "file_id": 286,
+        "content": "This code imports the \"markovtextgen\" module and defines a function called \"generate\". It takes a file path and a word number as arguments. The function reads in a list of words from the specified file, limits it to 100 words if necessary, generates an n-gram count matrix using the \"markovtextgen\" library, and then uses this matrix to generate new text with the specified word count. The code also includes a demo usage example.",
+        "type": "summary"
+    },
+    "1716": {
+        "file_id": 286,
+        "content": "import markovtextgen as mt\nimport random\ndef generate(filepath,wordnum):\n    m=mt.get_word_list(filepath)\n#    print(m)\n    if len(m)>100:\n        m=random.sample(m,100)\n    y=mt.get_ngram_counts(m)\n    v=mt.generate_text(y,wordnum)\n    return v\nif __name__ ==\"__main__\":\n    #demo\n    g=generate(\"pypi_indexer.py\",4)\n    print(g)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/markovgen.py:1-15"
+    },
+    "1717": {
+        "file_id": 286,
+        "content": "This code imports the \"markovtextgen\" module and defines a function called \"generate\". It takes a file path and a word number as arguments. The function reads in a list of words from the specified file, limits it to 100 words if necessary, generates an n-gram count matrix using the \"markovtextgen\" library, and then uses this matrix to generate new text with the specified word count. The code also includes a demo usage example.",
+        "type": "comment"
+    },
+    "1718": {
+        "file_id": 287,
+        "content": "/bootstrap/legacy/concentration/new_toys/no_extra.php",
+        "type": "filepath"
+    },
+    "1719": {
+        "file_id": 287,
+        "content": "This code reads a URL from stdin, uses cURL to follow redirects and retrieve the final URL, then outputs the effective URL.",
+        "type": "summary"
+    },
+    "1720": {
+        "file_id": 287,
+        "content": "<?php\n//curl的百度百科\n//$url = 'http://www.baidu.com/link?url=77I2GJqjJ4zBBpC8yDF8xDhiqDSn1JZjFWsHhEoSNd85PkV8Xil-rckpQ8_kjGKNNq';\n$fh = fopen('php://stdin', 'r'); \n//echo \"[php://stdin]请输入任意字符：\\n\"; \n$url = trim(fread($fh, 1000));   \n// get input \n#echo $url;\n$ch = curl_init();\ncurl_setopt($ch, CURLOPT_URL, $url);\n// 不需要页面内容\ncurl_setopt($ch, CURLOPT_NOBODY, 1);\n// 不直接输出\ncurl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);\n// 返回最后的Location\ncurl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);\ncurl_exec($ch);\n$info = curl_getinfo($ch,CURLINFO_EFFECTIVE_URL);\ncurl_close($ch);\necho $info;\n?>",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/no_extra.php:1-22"
+    },
+    "1721": {
+        "file_id": 287,
+        "content": "This code reads a URL from stdin, uses cURL to follow redirects and retrieve the final URL, then outputs the effective URL.",
+        "type": "comment"
+    },
+    "1722": {
+        "file_id": 288,
+        "content": "/bootstrap/legacy/concentration/new_toys/process_dom.py",
+        "type": "filepath"
+    },
+    "1723": {
+        "file_id": 288,
+        "content": "The code uses BeautifulSoup to parse HTML, extracts specific information from elements, and processes the data using functions proc1, proc2, and proc0. It validates extracted data through assertions and exception handling before passing it to \"proc0\".",
+        "type": "summary"
+    },
+    "1724": {
+        "file_id": 288,
+        "content": "from bs4 import BeautifulSoup\n#import traceback\ndef proc1(z):\n    f=list(z.select(\"a\"))[0][\"href\"]\n    g=z.text\n    return (f,g)\ndef proc2(z):\n    return z.text\ndef proc0(x):\n    r=[]\n    for y in x:\n        try:\n            rg=(proc1(y[0]),proc2(y[1]))\n            # use negative numbers instead.\n            # really?\n            r.append({\"link\":rg[0][0],\"title\":rg[0][1],\"brief\":rg[1]})\n        except:\n            pass\n    return r\ndef bing_dom(a0):\n    global_x=0\n    entry=[]\n    # with a0 as ecological_pyramid:\n    soup = BeautifulSoup(a0, features=\"lxml\")\n    producer_entries = soup.find_all('li')\n    # print(producer_entries)\n#print(type(producer_entries))\n    for x in producer_entries:\n#        print(\">>>entry<<<\")\n        try:\n            e=int(x[\"data-bm\"])\n            #print(e,type(e))\n            f=x[\"class\"]\n#            print(f)\n            assert \"b_algo\" in f\n            assert e>global_x\n            global_x=e\n#            g=list(x.find_all(\"h2\"))\n            try:\n                g=x.select(\"h2\")\n#                print(g)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/process_dom.py:1-44"
+    },
+    "1725": {
+        "file_id": 288,
+        "content": "The code appears to be parsing HTML using BeautifulSoup library and extracting specific information from the provided data. It defines functions proc1, proc2, and proc0 for processing elements, and a function bing_dom that operates on a global variable 'a0' containing HTML data. The code finds all 'li' elements with a specific attribute and extracts relevant information such as link, title, and brief content.",
+        "type": "comment"
+    },
+    "1726": {
+        "file_id": 288,
+        "content": "                g=list(g)\n                assert len(g)==1\n                h=x.select(\"div\")\n                yh=None\n                for y in h:\n                    try:\n                        assert \"b_caption\" in y[\"class\"]\n                        yh=list(y.select(\"p\"))\n#                        print(yh)\n                        assert len(yh)==1\n                    except:\n                        pass\n                if yh is not None:\n                    entry.append((g[0],yh[0]))\n            except:\n#                print(traceback.format_exc())\n                pass\n        except:\n            pass\n    # print(entry)\n    ef=proc0(entry)\n    return ef\n    #for z in ef:\n    #    print(z)\n# string.\n# with open('brim.html', 'r') as f:\n#     f0=f.read()\n#     s=bing_dom(f0)\n#     print(s)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/process_dom.py:45-74"
+    },
+    "1727": {
+        "file_id": 288,
+        "content": "The code seems to be parsing HTML elements, extracting specific content, and storing them in a list. It uses assertions and exception handling for validation, and then passes the extracted data to a function named \"proc0\". The code also contains comments indicating potential debugging or logging functionality.",
+        "type": "comment"
+    },
+    "1728": {
+        "file_id": 289,
+        "content": "/bootstrap/legacy/concentration/new_toys/pypi_indexer.py",
+        "type": "filepath"
+    },
+    "1729": {
+        "file_id": 289,
+        "content": "Code reads user input to select between case-sensitive or insensitive search, then takes a list of shredded keywords and allows the user to query. It returns a list of packages that contain all the keywords entered by the user in either lowercase or uppercase form based on the selected mode (normal/set). The code handles incorrect inputs gracefully, allowing for multiple attempts until a valid input is provided.",
+        "type": "summary"
+    },
+    "1730": {
+        "file_id": 289,
+        "content": "from getFromDill import returnXList\ndef getlower(a, b):\n    return [x for x in a if b.lower() in x.lower()]\ndef juicy(a, b):\n    return [x for x in a if set(b.lower()).issubset(set(x.lower()))]\ndef positive(a, x, c):\n    if c:\n        return getlower(a, x)\n    else:\n        return juicy(a, x)\nr = returnXList(\"shredded_keywords_pypi\")\nwhile True:\n    try:\n        c = input(\"mode: N/S - normal/set\\n\")\n        assert type(c) == str and c in [\"N\", \"S\"]\n        if c == \"N\":\n            c = False\n            break\n        c = True\n        break\n    except Exception as err:\n        print(\"wrong mode!\")\n        continue\na = input(\"query:\\n\")\nfor x in r.keys():\n    i = positive(r[x], a, c)\n    if i != []:\n        print(\">>>PKGNAME<<< \"+x)\n        # print(str(r)[:100])  # still working.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/pypi_indexer.py:1-37"
+    },
+    "1731": {
+        "file_id": 289,
+        "content": "Code reads user input to select between case-sensitive or insensitive search, then takes a list of shredded keywords and allows the user to query. It returns a list of packages that contain all the keywords entered by the user in either lowercase or uppercase form based on the selected mode (normal/set). The code handles incorrect inputs gracefully, allowing for multiple attempts until a valid input is provided.",
+        "type": "comment"
+    },
+    "1732": {
+        "file_id": 290,
+        "content": "/bootstrap/legacy/concentration/new_toys/pythonbasics.py",
+        "type": "filepath"
+    },
+    "1733": {
+        "file_id": 290,
+        "content": "This code uses Selenium WebDriver (Firefox) to interact with a webpage, sets up headless Firefox browser, searches for \"headless firefox\", and prints page source before quitting.",
+        "type": "summary"
+    },
+    "1734": {
+        "file_id": 290,
+        "content": "# from selenium.webdriver import Firefox\nfrom selenium.webdriver.firefox.options import Options\nfrom selenium.webdriver import Firefox\n# from selenium.webdriver.common.by import By\n# it needs some native things.\n# but it is always the fuck.\n# from selenium.webdriver.common.keys import Keys\n# from selenium.webdriver.firefox.options import Options\n# from selenium.webdriver.support import expected_conditions as expected\n# from selenium.webdriver.support.wait import WebDriverWait\nimport re\nfrom process_dom import bing_dom\nimport traceback\nimport time\nimport copy\ndef parser(a):\n    return \"+\".join(re.findall(r'[^ ]+', a))\n# if __name__ == \"__main__\":\ndef getSearched(a):\n    fx = []\n    f = parser(a)\n    # d=d*10\n    # it does not supports paging.\n    # should consider javascript execution.\n    # d=str(d)\n    try:\n        fireFoxOptions = Options()\n    #    fireFoxOptions.set_headless()\n    #    print(fireFoxOptions.headless)\n    #    fireFoxOptions.headless=True\n        fireFoxOptions.add_argument(\"-headless\")\n        # not working.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/pythonbasics.py:1-37"
+    },
+    "1735": {
+        "file_id": 290,
+        "content": "This code is importing necessary libraries and setting up Firefox webdriver options for headless mode. It defines a parser function to extract keywords from a string, and a getSearched function that attempts to execute a headless Firefox browser using the provided options. However, it mentions that some functionalities are not working as expected.",
+        "type": "comment"
+    },
+    "1736": {
+        "file_id": 290,
+        "content": "    # not headless. why the fuck?\n    # nvm. we just need the dom.\n    # we will have timeout.\n        # what the heck?\n        brower = Firefox(executable_path='geckodriver', options=fireFoxOptions)\n        # shit-like.\n        # brower = Firefox(executable_path='geckodriver',firefox_options=fireFoxOptions)\n        # e='https://cn.bing.com/search?q='+f+'&qs=n&form=QBRE&sp=-1&pq='+f+'&sc=3-19&first='+d\n        # there is nothing.\n        # e=\"https://cn.bing.com/search?q=\"+f+\"&first=\"+d+\"&qs=HS&sc=8-0&form=QBRE&sp=1&FORM=PERE\"\n        # e=\"https://cn.bing.com/search?q=\"+f+\"&qs=HS&sc=8-0&sp=2&first=\"+d+\"&FORM=PERE\"\n        e = \"https://cn.bing.com/search?q=\"+f+\"&qs=HS&sc=8-0&sp=1&first=28&FORM=PERE2\"\n        # https://cn.bing.com/search?q=tensorflow+has+no+attribute+contrib&qs=HS&sc=8-0&sp=1&first=20&FORM=PERE\n        # print(e)\n        # wait = WebDriverWait(brower, timeout=10)\n    #     driver.get('https://pythonbasics.org')\n        brower.get(e)\n        # wait.until(expected.visibility_of_element_located((By.NAME, 'q'))).send_keys('headless firefox' + Keys.ENTER)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/pythonbasics.py:38-55"
+    },
+    "1737": {
+        "file_id": 290,
+        "content": "Code snippet aims to open a non-headless Firefox browser, load a specific Bing search page, and perform a search. It demonstrates various attempts at constructing the correct URL, adjusting the timeout and other options for loading the page, and finally achieving the desired result.",
+        "type": "comment"
+    },
+    "1738": {
+        "file_id": 290,
+        "content": "        # wait.until(expected.visibility_of_element_located((By.CSS_SELECTOR, '#ires a'))).click()\n        # print(brower.page_source)\n        max_try = 20\n        # really strange.\n        while max_try >= 0:\n            time.sleep(0.1)\n            fx = copy.copy(brower.page_source)\n            fx = bing_dom(fx)\n            if fx != []:\n                brower.quit()\n                return fx\n            else:\n                max_try -= 1\n        brower.quit()\n        # print(fx)\n        return fx\n        # print(type(brower.page_source))\n        # # dead code.\n        # if fx is not None:\n        #     pass\n    except:\n        print(traceback.format_exc())\n    finally:\n        try:\n            brower.quit()\n            return fx\n        except:\n            print(traceback.format_exc())\n            pass\n    return fx\n# def getLinked(a,d):\n#     g=getSearched(a,d)\n#     if g is not None:\n#         return bing_dom(g)\n#         # error is here.\n#     return\n# from selenium.webdriver import Firefox\n# from selenium.webdriver.common.by import By",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/pythonbasics.py:56-97"
+    },
+    "1739": {
+        "file_id": 290,
+        "content": "This code attempts to interact with a webpage using Selenium WebDriver (Firefox) and retrieves the page source after clicking an element. If the desired element is not found within 20 retries, it returns an empty list. The code also handles exceptions and ensures the browser window is closed at the end.",
+        "type": "comment"
+    },
+    "1740": {
+        "file_id": 290,
+        "content": "# from selenium.webdriver.common.keys import Keys\n# from selenium.webdriver.firefox.options import Options\n# from selenium.webdriver.support import expected_conditions as expected\n# from selenium.webdriver.support.wait import WebDriverWait\n# if __name__ == \"__main__\":\n#     options = Options()\n#     options.add_argument('-headless')\n#     driver = Firefox(executable_path='geckodriver', options=options)\n#     # wait = WebDriverWait(driver, timeout=10)\n#     driver.get('https://pythonbasics.org')\n#     # wait.until(expected.visibility_of_element_located((By.NAME, 'q'))).send_keys('headless firefox' + Keys.ENTER)\n#     # wait.until(expected.visibility_of_element_located((By.CSS_SELECTOR, '#ires a'))).click()\n#     print(driver.page_source)\n#     # maybe it is working.\n#     driver.quit()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/pythonbasics.py:98-113"
+    },
+    "1741": {
+        "file_id": 290,
+        "content": "This code sets up a headless Firefox browser, loads the PythonBasics website, and searches for \"headless firefox\" before printing the page source and quitting the browser.",
+        "type": "comment"
+    },
+    "1742": {
+        "file_id": 291,
+        "content": "/bootstrap/legacy/concentration/new_toys/script.php",
+        "type": "filepath"
+    },
+    "1743": {
+        "file_id": 291,
+        "content": "This code retrieves the headers of a URL and checks for HTTP 301 or 302 status codes, then echoes the location information if found. This can be used to track redirects but is slow due to network requests.",
+        "type": "summary"
+    },
+    "1744": {
+        "file_id": 291,
+        "content": "<?php\n\t$url = 'http://www.baidu.com/link?url=77I2GJqjJ4zBBpC8yDF8xDhiqDSn1JZjFWsHhEoSNd85PkV8Xil-rckpQ8_kjGKNNq';\n\t$header = get_headers($url,1);\n\tif (strpos($header[0],'301') || strpos($header[0],'302')) {\n\t    if(is_array($header['Location'])) {\n\t        $info = $header['Location'][count($header['Location'])-1];\n\t    }else{\n\t        $info = $header['Location'];\n\t    }\n\t}\n\techo $info;\n// this is slow.\n?>",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/script.php:1-14"
+    },
+    "1745": {
+        "file_id": 291,
+        "content": "This code retrieves the headers of a URL and checks for HTTP 301 or 302 status codes, then echoes the location information if found. This can be used to track redirects but is slow due to network requests.",
+        "type": "comment"
+    },
+    "1746": {
+        "file_id": 292,
+        "content": "/bootstrap/legacy/concentration/new_toys/standard_parse.py",
+        "type": "filepath"
+    },
+    "1747": {
+        "file_id": 292,
+        "content": "This code imports the subprocess module and defines three functions: getReal, getNormal, and getEncoding. The getReal function takes a string input, passes it through a PHP script using echo command, and returns the output. The getNormal function also takes a string input but directly executes it as a subprocess command and returns its status and output. Lastly, the getEncoding function uses the getNormal function to identify the encoding of a given string by executing the chardet command.",
+        "type": "summary"
+    },
+    "1748": {
+        "file_id": 292,
+        "content": "import subprocess\ndef getReal(a):\n    assert type(a)==str\n    x=\"echo \\\"{}\\\" | php no_extra.php\".format(a)\n#    return subprocess.check_output([x], stderr=subprocess.STDOUT)\n    return subprocess.getstatusoutput(x)[1]\ndef getNormal(a):\n    assert type(a)==str\n    return subprocess.getstatusoutput(a)\ndef getEncoding(a):\n    return getNormal(\"chardet {}\".format(a))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/standard_parse.py:1-13"
+    },
+    "1749": {
+        "file_id": 292,
+        "content": "This code imports the subprocess module and defines three functions: getReal, getNormal, and getEncoding. The getReal function takes a string input, passes it through a PHP script using echo command, and returns the output. The getNormal function also takes a string input but directly executes it as a subprocess command and returns its status and output. Lastly, the getEncoding function uses the getNormal function to identify the encoding of a given string by executing the chardet command.",
+        "type": "comment"
+    },
+    "1750": {
+        "file_id": 293,
+        "content": "/bootstrap/legacy/concentration/new_toys/test.py",
+        "type": "filepath"
+    },
+    "1751": {
+        "file_id": 293,
+        "content": "The code imports a function from \"process_dom\" module, reads a file named \"strange.html\", and then applies the \"bing_dom\" function to its content. The processed result is printed along with a separator for clarity.",
+        "type": "summary"
+    },
+    "1752": {
+        "file_id": 293,
+        "content": "from process_dom import bing_dom\nwith open(\"strange.html\",\"r\") as f:\n    f0=bing_dom(f.read())\n    print(\"spliter_____________________-\")\n    print(f0)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/test.py:1-6"
+    },
+    "1753": {
+        "file_id": 293,
+        "content": "The code imports a function from \"process_dom\" module, reads a file named \"strange.html\", and then applies the \"bing_dom\" function to its content. The processed result is printed along with a separator for clarity.",
+        "type": "comment"
+    },
+    "1754": {
+        "file_id": 294,
+        "content": "/bootstrap/legacy/concentration/new_toys/the_real_wheel.py",
+        "type": "filepath"
+    },
+    "1755": {
+        "file_id": 294,
+        "content": "This code uses Baidu search API to format and retrieve URLs, retrieves HTML content with specified parameters, and stores data in \"data.json\". It displays results with timestamps, handles multiple pages, and finds relative URLs.",
+        "type": "summary"
+    },
+    "1756": {
+        "file_id": 294,
+        "content": "import requests\nfrom dbM import up\nimport urllib.parse\nimport time\nfrom requests.exceptions import RequestException\nfrom urllib.parse import urljoin\nfrom lxml import etree\nimport re\nimport json\n# 百度搜索接口\ndef format_url(url, params: dict = None) -> str:\n    query_str = urllib.parse.urlencode(params)\n    return f'{ url }?{ query_str }'\ndef get_url(keyword):\n    params = {\n        'wd': str(keyword)\n    }\n    url = \"https://www.baidu.com/s\"\n    url = format_url(url, params)\n    # print(url)\n    return url\ndef get_page(url):\n    try:\n        headers = {\n            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',\n            'accept-language': 'zh-CN,zh;q=0.9',\n            'cache-control': 'max-age=0',\n            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'\n        }\n        response = requests.get(url=url, headers=headers)\n        # 更改编码方式，否则会出现乱码的情况\n        # but it is no faster than this.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/the_real_wheel.py:1-42"
+    },
+    "1757": {
+        "file_id": 294,
+        "content": "This code defines functions for formatting and retrieving URLs using Baidu search API. It imports necessary libraries, including requests and lxml. The get_url function takes a keyword, formats it into a URL with the Baidu search parameters, and returns it. The get_page function sends an HTTP GET request to the generated URL using custom headers for user-agent and accept-language, and retrieves the webpage content as response.",
+        "type": "comment"
+    },
+    "1758": {
+        "file_id": 294,
+        "content": "        response.encoding = \"utf-8\"\n        print(response.status_code)\n        # print(response.text)\n        if response.status_code == 200:\n            return response.text\n        return None\n    except RequestException:\n        return None\ndef parse_page(url, page):\n    for i in range(1, int(page)+1):\n        print(\"正在爬取第{}页....\".format(i))\n        title = \"\"\n        sub_url = \"\"\n        abstract = \"\"\n        flag = 11\n        if i == 1:\n            flag = 10\n        html = get_page(url)\n        content = etree.HTML(html)\n        for j in range(1, flag):\n            data = {}\n            res_title = content.xpath(\n                '//*[@id=\"%d\"]/h3/a' % ((i - 1) * 10 + j))\n            if res_title:\n                title = res_title[0].xpath('string(.)')\n            sub_url = content.xpath(\n                '//*[@id=\"%d\"]/h3/a/@href' % ((i - 1) * 10 + j))\n            if sub_url:\n                sub_url = sub_url[0]\n            res_abstract = content.xpath(\n                '//*[@id=\"%d\"]/div[@class=\"c-abstract\"]' % ((i-1)*10+j))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/the_real_wheel.py:43-78"
+    },
+    "1759": {
+        "file_id": 294,
+        "content": "The function `get_page` retrieves the HTML content of a URL. The variable `flag` determines how many elements are parsed from each page. For each page, it extracts titles, URLs, and abstracts from the HTML using XPath expressions. If a status code 200 is returned, the function returns the parsed data; otherwise, it returns None.",
+        "type": "comment"
+    },
+    "1760": {
+        "file_id": 294,
+        "content": "            if res_abstract:\n                abstract = res_abstract[0].xpath('string(.)')\n            else:\n                res_abstract = content.xpath(\n                    '//*[@id=\"%d\"]/div/div[2]/div[@class=\"c-abstract\"]' % ((i-1)*10+j))\n                if res_abstract:\n                    abstract = res_abstract[0].xpath('string(.)')\n                    # res_abstract = content.xpath('//*[@id=\"%d\"]/div/div[2]/p[1]'%((i-1)*10+j))\n            # if not abstract:\n            #     abstract = content.xpath('//*[@id=\"%d\"]/div/div[2]/p[1]'%((i-1)*10+j))[0].xpath('string(.)')\n            data['title'] = title\n            data['sub_url'] = sub_url\n            data['abstract'] = abstract\n            rel_url = content.xpath('//*[@id=\"page\"]/a[{}]/@href'.format(flag))\n            # what the heck? renewed the mechanism?\n            if rel_url:\n                url = urljoin(url, rel_url[0])\n            else:\n                print(\"无更多页面！～\")\n                return\n            yield data\ndef main():\n    keyword = input(\"输入关键字:\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/the_real_wheel.py:79-104"
+    },
+    "1761": {
+        "file_id": 294,
+        "content": "The code is retrieving data from a web page, specifically the title, sub_url, and abstract. It then finds the relative URL to move on to the next page. If there are no more pages, it prints \"无更多页面！～\" and returns.",
+        "type": "comment"
+    },
+    "1762": {
+        "file_id": 294,
+        "content": "    page = input(\"输入查找页数:\")\n    url = get_url(keyword)\n    results = parse_page(url, page)\n    # 写入文件\n    # file = open(\"data.json\", 'w+', encoding='utf-8')\n    file = 0\n    t = int(time.time())\n    for result in results:\n        up(t, file, keyword, result)\n        file += 1\n        # waht if we want to use the result?\n        print(result)\n    #     file.write(json.dumps(result, indent=2, ensure_ascii=False))\nif __name__ == '__main__':\n    main()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/the_real_wheel.py:105-121"
+    },
+    "1763": {
+        "file_id": 294,
+        "content": "This code prompts the user to enter a page number, retrieves and parses data from a URL based on a keyword, and then writes each result into a file named \"data.json\". The results are printed, but could potentially be used for further processing. The time is recorded with every result, and the file variable keeps track of the current result's position in the file.",
+        "type": "comment"
+    },
+    "1764": {
+        "file_id": 295,
+        "content": "/bootstrap/legacy/concentration/new_toys/tts.py",
+        "type": "filepath"
+    },
+    "1765": {
+        "file_id": 295,
+        "content": "The code defines a TurtleShell class for turtle graphics in Python's turtle module, including commands like forward, right, left, goto, home, circle, and position. It also features functions for heading, color, undo, reset, recording, playback, and exit.",
+        "type": "summary"
+    },
+    "1766": {
+        "file_id": 295,
+        "content": "import cmd, sys\nfrom turtle import *\nclass TurtleShell(cmd.Cmd):\n    intro = 'Welcome to the turtle shell.   Type help or ? to list commands.\\n'\n    prompt = '(turtle) '\n    file = None\n    # ----- basic turtle commands -----\n    def do_forward(self, arg):\n        'Move the turtle forward by the specified distance:  FORWARD 10'\n        forward(*parse(arg))\n    def do_right(self, arg):\n        'Turn turtle right by given number of degrees:  RIGHT 20'\n        right(*parse(arg))\n    def do_left(self, arg):\n        'Turn turtle left by given number of degrees:  LEFT 90'\n        left(*parse(arg))\n    def do_goto(self, arg):\n        'Move turtle to an absolute position with changing orientation.  GOTO 100 200'\n        goto(*parse(arg))\n    def do_home(self, arg):\n        'Return turtle to the home position:  HOME'\n        home()\n    def do_circle(self, arg):\n        'Draw circle with given radius an options extent and steps:  CIRCLE 50'\n        circle(*parse(arg))\n    def do_position(self, arg):\n        'Print the current turtle position:  POSITION'",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/tts.py:1-29"
+    },
+    "1767": {
+        "file_id": 295,
+        "content": "This code defines a TurtleShell class that extends cmd.Cmd and provides turtle-specific commands such as forward, right, left, goto, home, circle, and position for interacting with the turtle graphics in Python's turtle module. It allows users to control the turtle's movement and drawing actions through a command line interface.",
+        "type": "comment"
+    },
+    "1768": {
+        "file_id": 295,
+        "content": "        print('Current position is %d %d\\n' % position())\n    def do_heading(self, arg):\n        'Print the current turtle heading in degrees:  HEADING'\n        print('Current heading is %d\\n' % (heading(),))\n    def do_color(self, arg):\n        'Set the color:  COLOR BLUE'\n        color(arg.lower())\n    def do_undo(self, arg):\n        'Undo (repeatedly) the last turtle action(s):  UNDO'\n    def do_reset(self, arg):\n        'Clear the screen and return turtle to center:  RESET'\n        reset()\n    def do_bye(self, arg):\n        'Stop recording, close the turtle window, and exit:  BYE'\n        print('Thank you for using Turtle')\n        self.close()\n        bye()\n        return True\n    # ----- record and playback -----\n    def do_record(self, arg):\n        'Save future commands to filename:  RECORD rose.cmd'\n        self.file = open(arg, 'w')\n    def do_playback(self, arg):\n        'Playback commands from a file:  PLAYBACK rose.cmd'\n        self.close()\n        with open(arg) as f:\n            self.cmdqueue.extend(f.read().splitlines())",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/tts.py:30-57"
+    },
+    "1769": {
+        "file_id": 295,
+        "content": "This code contains various turtle commands and their functions. The 'do_heading' function displays the current turtle heading, while 'do_color' sets the color of the turtle. The 'do_undo' command undos the last action(s), and 'do_reset' clears the screen and returns the turtle to its center. The 'do_record' function saves future commands to a file, and 'do_playback' plays back commands from a file. Lastly, the 'do_bye' command stops recording, closes the window, and exits.",
+        "type": "comment"
+    },
+    "1770": {
+        "file_id": 295,
+        "content": "    def precmd(self, line):\n        line = line.lower()\n        if self.file and 'playback' not in line:\n            print(line, file=self.file)\n        return line\n    def close(self):\n        if self.file:\n            self.file.close()\n            self.file = None\ndef parse(arg):\n    'Convert a series of zero or more numbers to an argument tuple'\n    return tuple(map(int, arg.split()))\nif __name__ == '__main__':\n    TurtleShell().cmdloop()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/tts.py:58-73"
+    },
+    "1771": {
+        "file_id": 295,
+        "content": "The code defines a TurtleShell class with a precmd method to handle command input and a close method for closing the file. It also includes a parse function to convert numbers into a tuple argument, and a main block that creates an instance of the TurtleShell class and starts a command loop.",
+        "type": "comment"
+    },
+    "1772": {
+        "file_id": 296,
+        "content": "/bootstrap/legacy/concentration/old_toys/README",
+        "type": "filepath"
+    },
+    "1773": {
+        "file_id": 296,
+        "content": "Code suggests attempting to import binary data using CSV method, considering alternative methods like assembly code or base64 encoding for potential decoding during import.",
+        "type": "summary"
+    },
+    "1774": {
+        "file_id": 296,
+        "content": "But the csv import does not support binary data.\nYou can try some assembly code or some specific code.\nYou can try base64 encoding.\nJust do it. maybe there's chance to decode data during import?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/README:1-4"
+    },
+    "1775": {
+        "file_id": 296,
+        "content": "Code suggests attempting to import binary data using CSV method, considering alternative methods like assembly code or base64 encoding for potential decoding during import.",
+        "type": "comment"
+    },
+    "1776": {
+        "file_id": 297,
+        "content": "/bootstrap/legacy/concentration/old_toys/cd_demo.py",
+        "type": "filepath"
+    },
+    "1777": {
+        "file_id": 297,
+        "content": "The code imports a function from 'endmark' and defines two functions, 'pr' and 'chick'. It reads a file named \"random_interactive.py\", then applies the 'windowEndMarkEx' function to the file content for different values of 'r', calling the 'chick' function with each result. This process seems to be checking data types or analyzing the content, but its exact purpose remains unclear without further context.",
+        "type": "summary"
+    },
+    "1778": {
+        "file_id": 297,
+        "content": "from endmark import windowEndMarkEx\n# almost the same?\n# does it really help?\n# do we need fuzzy logic?\n# shall we group things together?\ndef pr(a, d):\n    b, c = len(a), len(set(a))\n    if b == c:\n        print(b, c, d)\n    else:\n        print(b, c)\ndef chick(a, r):\n    pr(windowEndMarkEx(a, r), r)\nwith open(\"random_interactive.py\", \"r\") as f:\n    g = f.read()\n    # check data types.\n#    g0=windowEndMarkEx(g,1)\n#    pr(g0)\n#    g1=windowEndMarkEx(g,5)\n#    pr(g1)\n    for k in range(int(len(g)**0.5)):\n        chick(g, k+1)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/cd_demo.py:1-28"
+    },
+    "1779": {
+        "file_id": 297,
+        "content": "The code imports a function from 'endmark' and defines two functions, 'pr' and 'chick'. It reads a file named \"random_interactive.py\", then applies the 'windowEndMarkEx' function to the file content for different values of 'r', calling the 'chick' function with each result. This process seems to be checking data types or analyzing the content, but its exact purpose remains unclear without further context.",
+        "type": "comment"
+    },
+    "1780": {
+        "file_id": 298,
+        "content": "/bootstrap/legacy/concentration/old_toys/core4.py",
+        "type": "filepath"
+    },
+    "1781": {
+        "file_id": 298,
+        "content": "The code imports Neo4j modules, creates indices, merges nodes from a CSV file, establishes relationships, commits changes, and utilizes functions to find, update, and search nodes and relationships in a graph.",
+        "type": "summary"
+    },
+    "1782": {
+        "file_id": 298,
+        "content": "# coding: utf-8 -*-\nfrom py2neo import Graph, Node, Relationship\n# import re\n# better have some time.\n# Node,Relationship,NodeMatcher\ngraph = Graph(\"http://localhost:7474\", username=\"neo4j\", password=\"kali\")\n# graph.run(\"create index on :key(name)\")\n# always worried about some weird things.\n# is that all? we can collect more things and be more.\ndef createIndex():\n    graph.run(\"create index on :shell_commands(name)\")\ndef createIndexII():\n    graph.run(\"create index on :shell_output(name)\")\n# must specify the directions\n# can we actually execute these things?\n# anyway, it is just a test command.\n# meta-operations are also considered to be programs.\n# all you need is some kind of abstraction?\n# it is always about copy and paste.\n#graph.run(\"USING PERIODIC COMMIT LOAD CSV FROM 'file:///root/lazer-ubuntu/metalearning/net/keyboardMap/fuck.csv' AS line WITH line MERGE (a:key{name:line[0]}) WITH a,line MATCH (b:key{name:line[1]}) WITH a,b MERGE (a)-[:nextTo]-(b);\")\n#graph.run(\"USING PERIODIC COMMIT  LOAD CSV FRO",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/core4.py:1-28"
+    },
+    "1783": {
+        "file_id": 298,
+        "content": "This code imports the necessary modules and establishes a connection to the Neo4j database. It then defines two functions for creating indices, one for shell commands and another for shell outputs. The code also attempts to run a test command using a CSV file to merge nodes and establish relationships but is incomplete.",
+        "type": "comment"
+    },
+    "1784": {
+        "file_id": 298,
+        "content": "M 'file:///root/lazer-ubuntu/metalearning/net/gamma.csv' AS line MATCH  (a:english) WHERE a.name=line[0] WITH a,line MATCH ;\")\n# a=open(\"beta.csv\",\"r\")\n# for b in a.readlines():\n#    c=re.sub(\"\\n\",\"\",b).split(\",\")\n#    graph.run(\"MATCH (a:english) where a.name=\\\"\"+c[0]+\"\\\" with a match (b:english) where b.name=\\\"\"+c[1]+\"\\\" create (a)<-[:lemma]-(b)\")\n# a.close()\n# graph.run(\"MATCH (a:lemma),(b:derived) CREATE (a)<-[:lemma]-(b)\")\n# this is slow as hell\n# graph.run(\"USING PERIODIC COMMIT  LOAD CSV FROM 'file:///root/lazer-ubuntu/metalearning/net/beta.csv' AS line MERGE (a:dictionary:english:derived {name:line[0]}) WITH line MERGE  (b:dictionary:english:lemma {name:line[1]}) ;\")\n# matcher=NodeMatcher(graph)\n#test_node_1 = Node(label = \"Person\",name = \"test_node_1\")\ndef merge_node(a):\n    assert type(a) == str\n    test_node_1 = Node(label=\"shell_commands\", name=a)\n    graph.merge(test_node_1)\n# graph.create(test_node_2)\ndef createLinks(t, row, a, k, b, y):\n    # destination_airport = row['destination']\n    # args, kwargs.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/core4.py:28-52"
+    },
+    "1785": {
+        "file_id": 298,
+        "content": "This code reads a CSV file named \"beta.csv\" and merges nodes in a graph based on their names. It first reads the CSV, then for each row, it creates a lemma relationship between two existing English nodes (a) and (b). It also creates new nodes if they don't exist yet. The code uses periodic commits to optimize loading data from the CSV file.",
+        "type": "comment"
+    },
+    "1786": {
+        "file_id": 298,
+        "content": "    source_airport_node = Node(\n        \"shell_commands\", name=a, sequence=k, timestamp=t)\n    destination_airport_node = Node(\"shell_output\", name=b, sequence=y)\n    # does not have timestamp here.\n    # source_airport_node = airport_nodes[source_airport]\n    # will we have different timestamp?\n    # strange.\n    # destination_airport_node = airport_nodes[destination_airport]\n    # node_properties = {'distance':row['distance']}\n    node_properties1 = {'duration': row, 'timestamp': t}\n    # relative duration.\n    graph.merge(source_airport_node)\n    graph.merge(destination_airport_node)\n    # graph.create(Relationship(source_airport_node, destination_airport_node,**node_properties1))\n    graph.merge(Relationship(source_airport_node, \"gets\",\n                             destination_airport_node, **node_properties1))\n# you can do some sub-command.\n# really?\ndef createLinksII(t, row, a, k, b):\n    # destination_airport = row['destination']\n    source_airport_node = Node(\n        \"shell_commands\", name=a, sequence=k, timestamp=t)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/core4.py:53-77"
+    },
+    "1787": {
+        "file_id": 298,
+        "content": "This code is creating nodes for source and destination airports, but the timestamp is missing from the destination airport node. The code then creates a relationship between the two nodes with the specified properties. It also includes a function call to createLinksII, which seems to be related to sub-commands.",
+        "type": "comment"
+    },
+    "1788": {
+        "file_id": 298,
+        "content": "    # destination_airport_node = Node(label=\"shell_output\", name=b, sequence=y)\n    destination_airport_node = Node(\n        \"shell_commands\", name=b, sequence=k+1, timestamp=t)\n    # source_airport_node = airport_nodes[source_airport]\n    # will we have different timestamp?\n    # strange.\n    # destination_airport_node = airport_nodes[destination_airport]\n    # node_properties = {'distance':row['distance']}\n    node_properties1 = {'duration': row, 'timestamp': t}\n    # relative duration.\n    # what is on the relationship?\n    graph.merge(source_airport_node)\n    graph.merge(destination_airport_node)\n    # graph.create(Relationship(source_airport_node, destination_airport_node,**node_properties1))\n    graph.merge(Relationship(source_airport_node, \"then\",\n                             destination_airport_node, **node_properties1))\n    # we need it anyway.\n\"\"\"分别建立了test_node_1指向test_node_2和test_node_2指向test_node_1两条关系，\n关系的类型为\"CALL\"，两条关系都有属性count，且值为1。\"\"\"\n#node_1_call_node_2 = Relationship(test_node_1,'CALL',test_node_2)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/core4.py:78-99"
+    },
+    "1789": {
+        "file_id": 298,
+        "content": "This code is creating a relationship between two airport nodes, 'source_airport' and 'destination_airport', in a graph. The relationship type is \"shell_commands\". The code also assigns a timestamp to the destination_airport_node and merges the nodes with their respective properties into the graph. A Relationship is then created between source_airport_node and destination_airport_node, where 'then' is the relationship type and the node property 'duration' corresponds to row data from the database.",
+        "type": "comment"
+    },
+    "1790": {
+        "file_id": 298,
+        "content": "#node_1_call_node_2['count'] = 1\n#node_2_call_node_1 = Relationship(test_node_2,'CALL',test_node_1)\n#node_2_call_node_1['count'] = 1\n# graph.create(node_1_call_node_2)\n# graph.create(node_2_call_node_1)\n\"\"\"节点和关系的属性初始赋值在前面节点和关系的建立\n的时候已经有了相应的代码，在这里主要讲述一下怎么更新一个节点/关系的属性值。\"\"\"\n# node_1_call_node_2['count']+=1\n# graph.push(node_1_call_node_2)\n\"\"\"通过find和find_one函数，可以根据类型和属性、属性值来查找节点和关系。\"\"\"\n\"\"\"find和find_one的区别在于：\nfind_one的返回结果是一个具体的节点/关系，可以直接查看它的属性和值。如果没有这个节点/关系，返回None。\nfind查找的结果是一个游标，可以通过循环取到所找到的所有节点/关系。\"\"\"\n#find_code_1 = graph.match(label=\"key\",property_key=\"name\",property_value=\"k\")\n# print(find_code_1['name'])\n# find_code_3 = graph.match_one(  label=\"Person\",  property_key=\"name\", # property_value=\"test_node_2\")\n\"\"\"如果已经确定了一个节点或者关系，想找到和它相关的关系和节点，\n就可以使用match和match_one\"\"\"\n#\n# find_relationship = graph.match_one(start_node=find_code_1,end_node=find_code_3,bidirectional=False)\n# print(find_relationship)\ndef matchNeighbor(k):\n    k0 = []\n    match_relation = graph.run(\n        \"\"\"MATCH (n:key{name:'\"\"\"+k+\"\"\"'})--(r) RETURN r;\"\"\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/core4.py:100-134"
+    },
+    "1791": {
+        "file_id": 298,
+        "content": "This code block demonstrates how to find and update the attributes of nodes and relationships in a graph. It uses functions like `match`, `match_one`, and `run` for different types of queries. The code also illustrates the use of `find` and `find_one` to search by type, property, and value. Additionally, it highlights how to find related relationships and nodes using these functions.",
+        "type": "comment"
+    },
+    "1792": {
+        "file_id": 298,
+        "content": "    # graph.run(\"\"\"MATCH (n:key{name:'\"\"\"+k+\"\"\"'})<--(r) RETURN r;\"\"\")]\n#    for m in match_relation:\n    for i in match_relation:\n        #         print(i)\n        #     print(dir(i))\n        #     print(type(i))\n        g = i.values()[0]\n#     print(g)\n#     print(type(g))\n#     print(dir(g))\n        g0 = g.values()\n#     print(g0)\n#     print(type(g0))\n        k0.append([g1 for g1 in g0][0])\n    return k0\n#     i['count']+=1\n#     graph.push(i)\n# print(\"1111111111111111\")\n# # print(graph)\n# print(test_node_1)\n# print(test_node_2)\n# print(node_2_call_node_1)\n# print(node_1_call_node_2)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/core4.py:135-159"
+    },
+    "1793": {
+        "file_id": 298,
+        "content": "This code appears to be iterating over match_relation objects, extracting values from each object, and appending the extracted values to k0 list. The code also includes some debugging print statements that display various attributes and types of the objects being processed. The purpose or usage of these extracted values in the context of the overall code is not clear from this excerpt.",
+        "type": "comment"
+    },
+    "1794": {
+        "file_id": 299,
+        "content": "/bootstrap/legacy/concentration/old_toys/dc_demo.py",
+        "type": "filepath"
+    },
+    "1795": {
+        "file_id": 299,
+        "content": "This code imports a function from endmark, defines createFrozen and pr functions for set manipulation, and includes two commented out versions of chick and pr. It then reads a file called \"random_interactive.py\", applies windowEndMarkEx to its contents at different values of 'r', and prints the results in a loop. The code seems focused on analyzing the uniqueness of elements in the file data using different parameters, possibly for efficiency purposes.",
+        "type": "summary"
+    },
+    "1796": {
+        "file_id": 299,
+        "content": "from endmark import windowEndMarkEx\ndef createFrozen(a):\n    return [frozenset([x for x in y]) for y in a]\ndef pr(a, d):\n    b, c = len(a), len(set(a))\n    if b == c:\n        print(b, c, d)\n    else:\n        print(b, c)\n# code can be simple or complex. redirect the result to somewhere else?\n# you think you might save some time over this.\ndef chick(a, r):\n    pr(windowEndMarkEx(a, r), r)\n# def pr(a):\n#     print(len(a),len(set(createFrozen(a))))\n# def chick(a,r):\n#     pr(windowEndMarkEx(a,r))\n# you are fucking nuts.\nwith open(\"random_interactive.py\", \"r\") as f:\n    g = f.read()\n    # check data types.\n#    g0=windowEndMarkEx(g,1)\n#    pr(g0)\n#    g1=windowEndMarkEx(g,5)\n#    pr(g1)\n    for k in range(int(len(g)**0.5)):\n        chick(g, k+1)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/dc_demo.py:1-35"
+    },
+    "1797": {
+        "file_id": 299,
+        "content": "This code imports a function from endmark, defines createFrozen and pr functions for set manipulation, and includes two commented out versions of chick and pr. It then reads a file called \"random_interactive.py\", applies windowEndMarkEx to its contents at different values of 'r', and prints the results in a loop. The code seems focused on analyzing the uniqueness of elements in the file data using different parameters, possibly for efficiency purposes.",
+        "type": "comment"
+    },
+    "1798": {
+        "file_id": 300,
+        "content": "/bootstrap/legacy/concentration/old_toys/endmark.py",
+        "type": "filepath"
+    },
+    "1799": {
+        "file_id": 300,
+        "content": "This code provides window conversion and pattern matching functions using regular expressions, enabling specific segment extraction. It checks input types and ranges, iterates through converted values to count occurrences within specified lengths, and returns true if count is within given limits.",
+        "type": "summary"
+    }
+}

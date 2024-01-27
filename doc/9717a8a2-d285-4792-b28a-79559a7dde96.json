@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports NumPy and prints various variables' values, and attempts to import torchvision datasets. The author expresses frustration with the process and believes some parts don't work as expected.",
+    "details": [
+        {
+            "comment": "This code imports NumPy and prints various variables' values, and attempts to import torchvision datasets. The author expresses frustration with the process and believes some parts don't work as expected.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/the_new_pack/download_dataset.py\":0-14",
+            "content": "# import torchvision\nimport numpy as np\ni=0\na=1\nprint(i,a,~i,~a) #this is shit.\n# c=True\nc=np.array([0,1,0])\nprint(c,~c,~~c,~~~c) # it works.\n# print()\n# really should read that python thing carefully. but you'd like to perform?\n# no. it does not work.\n# t=torchvision.datasets.MNIST(\"./data\",download=False)\n# i don't need shit.\n# fucking hell, you know it.\n# we can never be the best."
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports the requests library and sets a quota of 5 URLs. It prompts for each URL, sends GET request to retrieve text content, and prints it. This can be used to fetch information from multiple URLs within a limited number of iterations.",
+    "details": [
+        {
+            "comment": "The code imports the requests library and sets a quota of 5 URLs. It prompts for each URL, sends GET request to retrieve text content, and prints it. This can be used to fetch information from multiple URLs within a limited number of iterations.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/urlquota.py\":0-4",
+            "content": "import requests\nquota=5\nfor x in range(quota):\n    r=requests.get(input(\"url:\\n\"))\n    print(r.text)"
+        }
+    ]
+}

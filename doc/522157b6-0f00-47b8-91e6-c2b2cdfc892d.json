@@ -1,0 +1,10 @@
+{
+    "summary": "Imports pandas library, defines function get_writings() which reads CSV file \"mnist-demo.csv\", converts to numpy array and returns the first column as input and second column as output data for machine learning tasks. The code is a simple estimation solution for a specific problem without a bias term.",
+    "details": [
+        {
+            "comment": "Imports pandas library, defines function get_writings() which reads CSV file \"mnist-demo.csv\", converts to numpy array and returns the first column as input and second column as output data for machine learning tasks. The code is a simple estimation solution for a specific problem without a bias term.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/the_new_pack/confirm_shape.py\":0-14",
+            "content": "import pandas as pd\ndef get_writings():\n    p = pd.read_csv(\"mnist-demo.csv\")\n    # print(dir(p))\n    dp = p.to_numpy()\n    # not for label!\n    return dp[:, :1], dp[:, 1:]\n# print(dp.shape)\n# print(dp[0])\n# this solution is just for some estimation.\n# solving the equation.\n# problem is, that you do not have bias.\n# it is not complex enough."
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This script initializes a proot container with Alpine Linux, sets necessary links and bindings, and configures the environment before executing the command passed as argument. It also ensures LD_PRELOAD is unset in case termux-exec is installed.",
+    "details": [
+        {
+            "comment": "This script initializes a proot container with Alpine Linux, sets necessary links and bindings, and configures the environment before executing the command passed as argument. It also ensures LD_PRELOAD is unset in case termux-exec is installed.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/start-alpine.sh\":0-27",
+            "content": "#!/data/data/com.termux/files/usr/bin/bash\n# cd $(dirname $0)\n## unset LD_PRELOAD in case termux-exec is installed\nunset LD_PRELOAD\ncommand=\"proot\"\ncommand+=\" --link2symlink\"\ncommand+=\" -0\"\ncommand+=\" -r alpine\"\ncommand+=\" -b /dev\"\ncommand+=\" -b /proc\"\n# command+=\" -b kali-fs/root:/dev/shm\"\n## uncomment the following line to have access to the home directory of termux\n#command+=\" -b /data/data/com.termux/files/home:/root\"\n## uncomment the following line to mount /sdcard directly to /\n#command+=\" -b /sdcard\"\ncommand+=\" -w /root\"\ncommand+=\" /bin/busybox env -i\"\ncommand+=\" HOME=/root\"\ncommand+=\" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin\"\ncommand+=\" TERM=$TERM\"\ncommand+=\" LANG=C.UTF-8\"\ncommand+=\" /bin/busybox sh\"\ncom=\"$@\"\nif [ -z \"$1\" ];then\n    exec $command\nelse\n    $command -c \"$com\"\nfi"
+        }
+    ]
+}

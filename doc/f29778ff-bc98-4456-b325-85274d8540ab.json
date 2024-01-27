@@ -1,0 +1,10 @@
+{
+    "summary": "The code requires the 'electron' and 'child_process' modules. It then logs the electron module path, spawns a child process using 'child_process', which runs Electron itself.",
+    "details": [
+        {
+            "comment": "The code requires the 'electron' and 'child_process' modules. It then logs the electron module path, spawns a child process using 'child_process', which runs Electron itself.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/elect.js\":0-7",
+            "content": "const electron = require('electron')\nconst proc = require('child_process')\n// will print something similar to /Users/maf/.../Electron\nconsole.log(electron)\n// spawn Electron\nconst child = proc.spawn(electron)"
+        }
+    ]
+}

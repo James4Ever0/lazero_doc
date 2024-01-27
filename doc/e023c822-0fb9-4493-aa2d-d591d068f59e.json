@@ -1,0 +1,10 @@
+{
+    "summary": "This script attempts to dump Firefox memory on Linux, possibly for debugging purposes. It uses GDB and creates a FIFO file for output. Windows and Android support are not addressed, and the script may cause system instability or crashes.",
+    "details": [
+        {
+            "comment": "This script attempts to dump Firefox memory on Linux, possibly for debugging purposes. It uses GDB and creates a FIFO file for output. Windows and Android support are not addressed, and the script may cause system instability or crashes.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/justdump.sh\":0-16",
+            "content": "#!/bin/bash\n# dump firefox. don't know how to do this in Windows. Maybe use Cheat Engine?\n# nowhere to hide this time.\n# and still don't know about android. why the fuck my /dev/shm won't work?\n# you can pipe the output to python script. don't worry. just print it out.\n# do a fifo stuff. maybe sandbox can read it.\nffx=$(sudo ps -A | grep android | awk '{print $1}')\n#gdb -p $ffx dump memory /dev/shm/dump\n# this will blow system off.\n#./dumpid.sh $ffx\n# not creating fifo?\nffx=$(echo $ffx | awk '{print $3}')\n#echo $ffx\n#mkfifo \"dump.$ffx\"\n#sudo gcore -a -o dump $ffx \nsudo gdb -q --pid=$ffx \n#cat \"dump.$ffx\""
+        }
+    ]
+}

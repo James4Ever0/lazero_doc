@@ -1,0 +1,20 @@
+{
+    "summary": "The code sets up an HTTP server handling GET/POST requests, visiting URLs with specific search parameters, logging cookies, and responding accordingly. It listens on port 7777 and logs confirmation.",
+    "details": [
+        {
+            "comment": "The code initializes a Zombie browser and sets up a server to handle HTTP requests. It visits URLs with specific search parameters, retrieves the cookie and source of each page visited, and logs the Cookie's type and length. The server listens for GET requests on \"/random\" path and calls bvisit() function with corresponding search parameters.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/kzombie.js\":0-31",
+            "content": "var http = require('http');\nvar url = require('url');\nconst max_sess=1;\nvar sess=0;\nconst Browser = require('zombie');                         function bfunc(a){\n        return 'https://www.baidu.com/s'+a;\n}\nconst browser = new Browser();\n// will have cookie anyway?                                // does have shits. but then it will get stuck.\n// reuse the cookie once again?\nfunction bvisit(a){\n\tif (sess<max_sess){\n\t\tsess+=1;\nbrowser.visit(bfunc(a),function() {\n//  const value = browser.getCookie('session');\n        const value = browser.source;\n\ttry{\t\n  console.log('Cookie',typeof(value),value.length);   } catch(e){console.log(e);}finally{sess-=1;}\n});}\n}\n//logger=require('html-differ/lib/logger')\n//this is too slow.\nvar prev=null\n    var server = http.createServer ( function(request,response){\n    response.writeHead(200,{\"Content-Type\":\"text/plain\"});\n    if(request.method == \"GET\")\n        {\n\t\tconsole.log(request.url);\n\t\tvar u = url.parse(request.url,true);\n if (u.pathname==\"/random\"){var search = u.search;\n\t console.log(search);bvisit(search);"
+        },
+        {
+            "comment": "This code handles both GET and POST requests, reads the request method, and writes a response with a status of 200 and content type set to 'text/html'. It also logs the request data and body length.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/kzombie.js\":32-69",
+            "content": " }\n\t// Get the path\n\t/*var p = u.pathname;\n\t\tconsole.log(u);\n\t\tconsole.log(p);*/\n\t\t//what?\n\t/*var body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('GET Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('GET Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})\n            response.end(\"received GET request.\")\n    })*/\n\t\t//parse query string?\n response.writeHead(200, {'Content-Type': 'text/html'}) \n            response.end(\"received GET request.\")\n\t}\n    else if(request.method == \"POST\")\n        {//console.log(request.data);\n\t\tvar body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})"
+        },
+        {
+            "comment": "Code handles HTTP POST requests, sends \"post received\" response if request is valid, otherwise sends \"Undefined request\" message. Server runs on port 7777 and logs a confirmation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/kzombie.js\":70-80",
+            "content": "      response.end('post received')\n    })\n        }\n    else\n        {\n            response.end(\"Undefined request .\");\n        }\n});\n//arbitrary path.\nserver.listen(7777);\nconsole.log(\"Server running on port 7777\");"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Code generates a fake string of length 250000 by randomly choosing characters from the list 'p' using SystemRandom and prints it.",
+    "details": [
+        {
+            "comment": "Code generates a fake string of length 250000 by randomly choosing characters from the list 'p' using SystemRandom and prints it.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/fakegen.py\":0-6",
+            "content": "# here we go, fake code.\np=[chr(x) for x in range(500)]\nimport random\nk=\"\"\nfor x in range(500*500):\n    k+=random.SystemRandom().choice(p)\nprint(k)"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The script is preparing a RAM disk, copying necessary files to it, and then running firejail with various restrictions. It attempts to solve an issue by creating a read-only environment while keeping all files after invocation.",
+    "details": [
+        {
+            "comment": "The script is preparing a RAM disk, copying necessary files to it, and then running firejail with various restrictions. It attempts to solve an issue by creating a read-only environment while keeping all files after invocation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/advanced_jail.sh\":0-11",
+            "content": "#!/bin/bash\n# but we're still far from reach, cannot make it running on android phone!\n./unloadram.sh\nsudo mkdir ramdisk\nsudo chmod 777 ramdisk\nsudo mount -t tmpfs -o size=10m myramdisk ramdisk\ncp republica/* ramdisk/\nchmod 777 ramdisk/*\nfirejail --noprofile --read-only=/ --private=ramdisk/ --rlimit-as=50000000 --rlimit-fsize=5000 --rlimit-cpu=1 --rlimit-fsize=100 --rlimit-nproc=10 --rlimit-sigpending=3 ./jbash.sh\n#firejail --apparmor --read-only=/ --private=ramdisk/ --rlimit-as=50000000 --rlimit-fsize=5000 --rlimit-cpu=1 --rlimit-fsize=100 --rlimit-nproc=10 --rlimit-sigpending=3\n# no that won't solve the problem.\n# all files are kept after invocation."
+        }
+    ]
+}

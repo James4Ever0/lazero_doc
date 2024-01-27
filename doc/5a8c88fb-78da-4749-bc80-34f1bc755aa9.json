@@ -1,0 +1,10 @@
+{
+    "summary": "This script checks if a port is available for usage. It first determines whether the system is Unix-like and then opens a log file named \"ports.log\". The contents of this file are read, split into a list (a), and converted to integers. A list of all ports from 8000 to 65536 is generated if the system is Unix-like or from 1 to 65536 otherwise. Ports in the \"a\" list are filtered out, and if no available port remains, it prints \"no port available.\" If an available port exists, it selects a random one and prints it. The script does not use port 0 due to unspecified reasons.",
+    "details": [
+        {
+            "comment": "This script checks if a port is available for usage. It first determines whether the system is Unix-like and then opens a log file named \"ports.log\". The contents of this file are read, split into a list (a), and converted to integers. A list of all ports from 8000 to 65536 is generated if the system is Unix-like or from 1 to 65536 otherwise. Ports in the \"a\" list are filtered out, and if no available port remains, it prints \"no port available.\" If an available port exists, it selects a random one and prints it. The script does not use port 0 due to unspecified reasons.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/ports_chooser.py\":0-22",
+            "content": "UNIX_LIKE=True\n# turn this off to get touch under 8000. if root. just saying.\nimport os\nos.system(\"./check_ports.sh\")\na = open(\"ports.log\").read().split()\n#print(a)\n# this is the real network. the FS network. the RAM network. the turing machine.\na = [int(x) for x in a]\nimport random\nf=None\n# can we use port 0?\nif UNIX_LIKE:\n    f = [x for x in range(8000,65536)]\nelse:\n    f = [x for x in range(1,65536)]\nf = list(filter(lambda x: x not in a,f))\nif len(f)==0:\n    print(\"no port avaliable.\")\nelse:\n    r = random.choice(f)\n    print(\"port\", r)\n    # zero is restricted. don't know why.\n    # could use unix socket actually. but again, not CS."
+        }
+    ]
+}

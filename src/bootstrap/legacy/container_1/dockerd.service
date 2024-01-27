@@ -1,0 +1,9 @@
+[Unit]
+Description=Docker daemon Service.
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/dockerd --registry-mirror=http://hub-mirror.c.163.com
+
+[Install]
+WantedBy=multi-user.target

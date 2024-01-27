@@ -1,0 +1,10 @@
+{
+    "summary": "This code uses Nightmare, a headless browser for automating tasks in Node.js, to navigate to the Baidu website and retrieve its title. It also includes functions for sleep (pausing execution) and a placeholder for a Santa function. However, it has issues running on Linux due to sandbox restrictions.",
+    "details": [
+        {
+            "comment": "This code uses Nightmare, a headless browser for automating tasks in Node.js, to navigate to the Baidu website and retrieve its title. It also includes functions for sleep (pausing execution) and a placeholder for a Santa function. However, it has issues running on Linux due to sandbox restrictions.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/nightknight.js\":0-17",
+            "content": "//use nodejs this time.\nconst Nightmare = require('nightmare')\n//const nightmare = Nightmare({ show: true,switches:{'ignore-certificate-errors': true}})\n// shit. nightmare won't run on linux.\n// too few?\n// must be string array.\nconst nightmare = Nightmare({cli_args:[\"--no-sandbox\"],show:true});\n//const nightmare = Nightmare({width:1000,height:1000,switches: {\"sandbox\":false},show:true});\n// not running.\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}\nnightmare.goto('https://www.baidu.com').evaluate(() => {return document.title;}).end().then((title) => {console.log(title);})\nasync function santa(){await sleep(10);}\nsanta();\n// all fucked up."
+        }
+    ]
+}

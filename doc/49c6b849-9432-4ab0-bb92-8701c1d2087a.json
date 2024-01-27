@@ -1,0 +1,10 @@
+{
+    "summary": "Creates a directory for extra certificates, copies a root certificate file to the directory, and updates the system's CA certificates.",
+    "details": [
+        {
+            "comment": "Creates a directory for extra certificates, copies a root certificate file to the directory, and updates the system's CA certificates.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/import_sysca.sh\":0-3",
+            "content": "#!/bin/bash\nsudo mkdir /usr/local/share/ca-certificates/extra\nsudo cp certs/ca/ca.crt /usr/local/share/ca-certificates/extra/root.cert.crt\nsudo update-ca-certificates"
+        }
+    ]
+}

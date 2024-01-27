@@ -1,0 +1,10 @@
+{
+    "summary": "This code uses curl to send a GET request with data 'all=fuck' to the specified URL (http://localhost:7777/search) via HTTP POST method.",
+    "details": [
+        {
+            "comment": "This code uses curl to send a GET request with data 'all=fuck' to the specified URL (http://localhost:7777/search) via HTTP POST method.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/ctest.sh\":0-1",
+            "content": "#!/bin/bash\ncurl --url \"http://localhost:7777/search\" -G -d'all=fuck'"
+        }
+    ]
+}

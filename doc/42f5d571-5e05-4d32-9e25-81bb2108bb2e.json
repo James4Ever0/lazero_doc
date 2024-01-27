@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports functions from \"core4\" and \"getFromDill\", retrieves a list of commands, and applies the \"merge_node\" function to each command in the list.",
+    "details": [
+        {
+            "comment": "Code imports functions from \"core4\" and \"getFromDill\", retrieves a list of commands, and applies the \"merge_node\" function to each command in the list.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/insert_command_name.py\":0-4",
+            "content": "from core4 import merge_node\nfrom getFromDill import returnXList\nr=returnXList(\"all_commands\")\nfor x in r:\n    merge_node(x)"
+        }
+    ]
+}

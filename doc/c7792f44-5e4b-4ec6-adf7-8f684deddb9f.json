@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script counts the number of arguments passed and iterates through them, decrementing a counter with each iteration. It then displays the final counter value and the original counter value before exiting with an exit code of 2.",
+    "details": [
+        {
+            "comment": "This Bash script counts the number of arguments passed and iterates through them, decrementing a counter with each iteration. It then displays the final counter value and the original counter value before exiting with an exit code of 2.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/num_args.sh\":0-11",
+            "content": "#!/bin/bash\necho \"argument length $#\"\nnum=$#\norg=$num\nfor var in \"$@\"\ndo\n\techo \"argument $var\"\n\tnum=$(($num - 1))\ndone\necho \"final counter $num\"\necho \"original counter $org\"\nexit 2"
+        }
+    ]
+}

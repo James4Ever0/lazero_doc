@@ -1,0 +1,10 @@
+{
+    "summary": "The code is trying to create a tensor using PyTorch and numpy, but it encounters various RuntimeErrors due to mismatched dimensions. It eventually succeeds in creating a tensor with shape (100, 3) and prints its values and shape.",
+    "details": [
+        {
+            "comment": "The code is trying to create a tensor using PyTorch and numpy, but it encounters various RuntimeErrors due to mismatched dimensions. It eventually succeeds in creating a tensor with shape (100, 3) and prints its values and shape.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_package/nrav.py\":0-20",
+            "content": "import numpy as np\nimport torch\nfrom sub2 import timeout\n# n=np.array()\nxo = timeout(2)(torch.randn)\n# xo=xo((300,300,300,2))\n# xo=xo((47,48,48,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[47, 48, 48, 48] to have 3 channels, but got 48 channels instead\n# xo=xo((48,47,48,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[48, 47, 48, 48] to have 3 channels, but got 47 channels instead\n# xo=xo((48,48,47,48))\n# RuntimeError: Given groups=1, weight of size [18, 3, 3, 3], expected input[48, 48, 47, 48] to have 3 channels, but got 48 channels instead\nxo = xo((100, 3))\n# print([x for x in dir(xo) if \"numpy\" in x])\n# [\"numpy\"]\n# this is shit.\nxo=xo.numpy().ravel()\nxo=xo.ravel()\n# fuck.\nprint(xo)\nprint(xo.shape)"
+        }
+    ]
+}

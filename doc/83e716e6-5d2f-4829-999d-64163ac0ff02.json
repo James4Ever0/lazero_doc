@@ -1,0 +1,10 @@
+{
+    "summary": "This script sets up an Alpine Linux environment using proot within Termux. It handles LD_PRELOAD unset, configures command options, and mounts necessary directories like /dev, /proc, and /ramdisk. Optional home directory or /sdcard mounting is available. Finally, it initializes a busybox shell with specific environment variables for the Alpine environment.",
+    "details": [
+        {
+            "comment": "This script sets up an Alpine Linux environment using proot within Termux. It handles LD_PRELOAD unset, configures command options, and mounts necessary directories like /dev, /proc, and /ramdisk. Optional home directory or /sdcard mounting is available. Finally, it initializes a busybox shell with specific environment variables for the Alpine environment.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/start-alpine-ro.sh\":0-29",
+            "content": "#!/data/data/com.termux/files/usr/bin/bash\n# cd $(dirname $0)\n## unset LD_PRELOAD in case termux-exec is installed\n./aloadroot.sh\n./loadram.sh\nunset LD_PRELOAD\ncommand=\"sudo proot\"\ncommand+=\" --link2symlink\"\ncommand+=\" -0\"\ncommand+=\" -r alpine-ro\"\ncommand+=\" -b /dev\"\ncommand+=\" -b /proc\"\ncommand+=\" -b ramdisk:/ramdisk\"\n## uncomment the following line to have access to the home directory of termux\n#command+=\" -b /data/data/com.termux/files/home:/root\"\n## uncomment the following line to mount /sdcard directly to /\n#command+=\" -b /sdcard\"\ncommand+=\" -w /root\"\ncommand+=\" /bin/busybox env -i\"\ncommand+=\" HOME=/root\"\ncommand+=\" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin\"\ncommand+=\" TERM=$TERM\"\ncommand+=\" LANG=C.UTF-8\"\ncommand+=\" /bin/busybox sh\"\ncom=\"$@\"\nif [ -z \"$1\" ];then\n    exec $command\nelse\n    $command -c \"$com\"\nfi"
+        }
+    ]
+}

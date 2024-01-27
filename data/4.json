@@ -1,0 +1,531 @@
+{
+    "400": {
+        "file_id": 61,
+        "content": "/bootstrap/blitx/tracker_gui_linux_x86_64.py",
+        "type": "filepath"
+    },
+    "401": {
+        "file_id": 61,
+        "content": "This code reads continuous input from stdin, prints the type and value of each input, and includes a placeholder comment suggesting whether another thread might be needed. The \">>>>THE BREAK<<<<\" section indicates that if no input is detected in stdin, the loop will break.",
+        "type": "summary"
+    },
+    "402": {
+        "file_id": 61,
+        "content": "import sys\nwhile True:\n    for o in sys.stdin:\n        print(\"this is the input somehow\")\n        # do we need another thread?\n        print(type(o),o)\n    print(\">>>>>>THE BREAK<<<<<<\")\n    # it does has the loop over here. nothing detected in stdin.",
+        "type": "code",
+        "location": "/bootstrap/blitx/tracker_gui_linux_x86_64.py:1-8"
+    },
+    "403": {
+        "file_id": 61,
+        "content": "This code reads continuous input from stdin, prints the type and value of each input, and includes a placeholder comment suggesting whether another thread might be needed. The \">>>>THE BREAK<<<<\" section indicates that if no input is detected in stdin, the loop will break.",
+        "type": "comment"
+    },
+    "404": {
+        "file_id": 62,
+        "content": "/bootstrap/blitx/webXFS.py",
+        "type": "filepath"
+    },
+    "405": {
+        "file_id": 62,
+        "content": "The code creates a Twisted ProcessProtocol class, runs a process using the launcher script, connects it to the reactor and logs output, error messages, and exit status. It uses a daemon thread to write to a pipe with commands like \"ls\" and checks its functionality before exiting.",
+        "type": "summary"
+    },
+    "406": {
+        "file_id": 62,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        print(data)\n    def errReceived(self, data):\n        print(\"errReceived!\", data)\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_x86_64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS.py:1-39"
+    },
+    "407": {
+        "file_id": 62,
+        "content": "Code defines a class `MyPP` for Twisted's ProcessProtocol, spawns a process using the command ['./launcher_x86_64_linux.sh'], and connects it to the Twisted reactor. It also logs output, error messages, and process exit status.",
+        "type": "comment"
+    },
+    "408": {
+        "file_id": 62,
+        "content": "    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 5\n    pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik > 0:\n        pp.write(b\"ls\\n\")\n        print(\"[HELLO WORLD]\")\n        time.sleep(1)\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS.py:40-77"
+    },
+    "409": {
+        "file_id": 62,
+        "content": "This code sets a daemon thread, writes to a pipe, sleeps for 1 second, and repeatedly writes \"ls\" to the pipe until a counter reaches zero. It then writes \"exit\" to the pipe, sleeps again, writes \"ls\" one more time to check if it still works, and finally exits. The code also contains comments suggesting potential improvements or debugging techniques.",
+        "type": "comment"
+    },
+    "410": {
+        "file_id": 63,
+        "content": "/bootstrap/blitx/webXFS_aarch64_linux_experiment.py",
+        "type": "filepath"
+    },
+    "411": {
+        "file_id": 63,
+        "content": "Code creates a Twisted protocol process, sets up connection, spawns new processes using reactor, prints exit status and output. Main thread runs infinite loop with command PTY, performs file listing and termination in background.",
+        "type": "summary"
+    },
+    "412": {
+        "file_id": 63,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        print(data)\n    def errReceived(self, data):\n        print(\"errReceived!\", data)\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_aarch64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS_aarch64_linux_experiment.py:1-39"
+    },
+    "413": {
+        "file_id": 63,
+        "content": "Code creates a Twisted protocol (MyPP) for a process, sets up a connection and writes data to it, and spawns a new process using the reactor. When the process exits, it prints the exit status; when output is received, it prints that output. The main thread runs an infinite loop while the main process is active. A PTY (pseudo-terminal) is used for the command.",
+        "type": "comment"
+    },
+    "414": {
+        "file_id": 63,
+        "content": "    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 5\n    pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik > 0:\n        pp.write(b\"ls\\n\")\n        print(\"[HELLO WORLD]\")\n        time.sleep(1)\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS_aarch64_linux_experiment.py:40-77"
+    },
+    "415": {
+        "file_id": 63,
+        "content": "Code creates a background process, writes commands to it for file listing and termination, sleeps between actions, and ends the script. The code may have issues with thread termination, sleep timing, and communication between processes.",
+        "type": "comment"
+    },
+    "416": {
+        "file_id": 64,
+        "content": "/bootstrap/blitx/webXFS_x86_64_linux_experiment.py",
+        "type": "filepath"
+    },
+    "417": {
+        "file_id": 64,
+        "content": "The code creates a Twisted ProcessProtocol class, runs a process using the launcher script, connects it to the reactor and logs output, error messages, and exit status. It uses a daemon thread to write to a pipe with commands like \"ls\" and checks its functionality before exiting.",
+        "type": "summary"
+    },
+    "418": {
+        "file_id": 64,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        print(data)\n    def errReceived(self, data):\n        print(\"errReceived!\", data)\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_x86_64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS.py:1-39"
+    },
+    "419": {
+        "file_id": 64,
+        "content": "Code defines a class `MyPP` for Twisted's ProcessProtocol, spawns a process using the command ['./launcher_x86_64_linux.sh'], and connects it to the Twisted reactor. It also logs output, error messages, and process exit status.",
+        "type": "comment"
+    },
+    "420": {
+        "file_id": 64,
+        "content": "    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 5\n    pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik > 0:\n        pp.write(b\"ls\\n\")\n        print(\"[HELLO WORLD]\")\n        time.sleep(1)\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webXFS.py:40-77"
+    },
+    "421": {
+        "file_id": 64,
+        "content": "This code sets a daemon thread, writes to a pipe, sleeps for 1 second, and repeatedly writes \"ls\" to the pipe until a counter reaches zero. It then writes \"exit\" to the pipe, sleeps again, writes \"ls\" one more time to check if it still works, and finally exits. The code also contains comments suggesting potential improvements or debugging techniques.",
+        "type": "comment"
+    },
+    "422": {
+        "file_id": 65,
+        "content": "/bootstrap/blitx/webinit.py",
+        "type": "filepath"
+    },
+    "423": {
+        "file_id": 65,
+        "content": "This code defines a Twisted networking protocol class in PTY environment, with commands written to file and sleeps between them. Uncertain about proper thread termination or if a separate process is necessary, a certain method was successfully used to address communication issues.",
+        "type": "summary"
+    },
+    "424": {
+        "file_id": 65,
+        "content": "from twisted.internet import protocol, reactor\nimport time\nimport sys\n# import multiprocessing\nimport random\nimport threading\nfrom dbM import up\n# password is a must here. not kidding.\npid=random.choice(list(range(65535)))\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        up(time.time(),pid,data,{\"type\":\"output\"})\n    def errReceived(self, data):\n        up(time.time(),pid,data,{\"type\":\"error\"})\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_aarch64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)",
+        "type": "code",
+        "location": "/bootstrap/blitx/webinit.py:1-40"
+    },
+    "425": {
+        "file_id": 65,
+        "content": "Code imports necessary modules and defines a class MyPP, which is a protocol for the Twisted networking framework. It connects to a process and writes data, handles output and error data, and prints the process' exit status. The main function spawns a new process with a specified command using Twisted's reactor and runs it in a PTY environment.",
+        "type": "comment"
+    },
+    "426": {
+        "file_id": 65,
+        "content": "    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 50\n    #pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    print(\"len\",len(sys.argv[1:]))\n    for xl in sys.argv[1:]:\n        while ik>0:\n            inp=\"{}\\n\".format(xl).encode()\n            pp.write(inp)\n            up(time.time(),pid,inp,{\"type\":\"input\"})\n            time.sleep(.500)\n            break\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webinit.py:41-82"
+    },
+    "427": {
+        "file_id": 65,
+        "content": "Code initializes a thread, writes data to a file, and sends input. It then sleeps, writes an exit command, sleeps again, writes a \"ls\" command, and finally exits the program. The code is working with threads and files, but it's unclear how to properly terminate the thread or if a separate process would be needed.",
+        "type": "comment"
+    },
+    "428": {
+        "file_id": 65,
+        "content": "# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/webinit.py:83-84"
+    },
+    "429": {
+        "file_id": 65,
+        "content": "This code seems to be discussing a communication issue, and mentions that a certain method or solution worked despite initial uncertainty.",
+        "type": "comment"
+    },
+    "430": {
+        "file_id": 66,
+        "content": "/bootstrap/blitx/webinit.sh",
+        "type": "filepath"
+    },
+    "431": {
+        "file_id": 66,
+        "content": "Code initializes a Python script \"webinit.py\" with various commands, then runs it and sleeps for 10 seconds before killing the process.",
+        "type": "summary"
+    },
+    "432": {
+        "file_id": 66,
+        "content": "#!/bin/bash\npython3 webinit.py \"ls\" \"ls\" \"echo something\"  \"ls\" \"ls\" \"echo something\" \"ls\" \"ls\" \"echo something\"  & sleep 10 && kill $!",
+        "type": "code",
+        "location": "/bootstrap/blitx/webinit.sh:1-2"
+    },
+    "433": {
+        "file_id": 66,
+        "content": "Code initializes a Python script \"webinit.py\" with various commands, then runs it and sleeps for 10 seconds before killing the process.",
+        "type": "comment"
+    },
+    "434": {
+        "file_id": 67,
+        "content": "/bootstrap/blitx/weblogin.py",
+        "type": "filepath"
+    },
+    "435": {
+        "file_id": 67,
+        "content": "Python code utilizes Twisted library for networking, multiprocessing, and threading in a debugging attempt to properly end process 'p' and communicate with it.",
+        "type": "summary"
+    },
+    "436": {
+        "file_id": 67,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import multiprocessing\nimport threading\nfrom dbM import up\nimport re\nfrom pairserver import onceMore\n# password is a must here. not kidding.\npid=0\nclass MyPP(protocol.ProcessProtocol):\n    global pid\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        global pid\n        print(data)\n        if pid==0:\n            #print(\"received:\",data[:4])\n            if data[:4]==b\"\\x00\\xd0\\x9d\\x09\":\n                pid=int(re.findall(r'[0-9]+',data[4:].decode())[0])\n                #print(\"pid:\",pid)\n        # it is here.\n        up(time.time(),pid,data,{\"type\":\"output\"})\n    def errReceived(self, data):\n        global pid\n        print(data)\n        up(time.time(),pid,data,{\"type\":\"error\"})",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin.py:1-39"
+    },
+    "437": {
+        "file_id": 67,
+        "content": "This Python code imports necessary libraries and defines a class for the Twisted protocol. The process exits when a specific status is reached, writes output to a database, handles errors, and updates the database accordingly. This seems to be part of a larger application involving database operations and networking using Twisted library.",
+        "type": "comment"
+    },
+    "438": {
+        "file_id": 67,
+        "content": "if __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_aarch64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 10\n    #pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik>0:\n        inp=onceMore()\n        print(inp)\n        pp.write(inp)\n        up(time.time(),pid,inp,{\"type\":\"input\"})\n        time.sleep(.500)\n        ik-=1\n    pp.write(b\"exit\\n\")\n    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin.py:41-77"
+    },
+    "439": {
+        "file_id": 67,
+        "content": "The code sets up a process using the Twisted framework to execute a command in another process and waits for user input before exiting. It uses multiprocessing, threading, and time-related functions. The code also writes commands to the child process (MyPP) and prints the received user inputs while logging debug information.",
+        "type": "comment"
+    },
+    "440": {
+        "file_id": 67,
+        "content": "    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin.py:78-93"
+    },
+    "441": {
+        "file_id": 67,
+        "content": "Code snippet appears to contain debugging attempts, with various methods tested for process termination. The goal is to properly end the process 'p' and communicate with it. Despite some issues, the code seems to be running fine.",
+        "type": "comment"
+    },
+    "442": {
+        "file_id": 68,
+        "content": "/bootstrap/blitx/weblogin_x86_64.py",
+        "type": "filepath"
+    },
+    "443": {
+        "file_id": 68,
+        "content": "The code sets up a Twisted protocol process, interacts with dbM module, creates MyPP instance and uses reactor to connect. The process faces issues terminating but still functions.",
+        "type": "summary"
+    },
+    "444": {
+        "file_id": 68,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import multiprocessing\nimport threading\nfrom dbM import up, createMain\nimport re, os\nfrom pairserver import onceMore\n# password is a must here. not kidding.\nif \"Monitor.db\" not in os.listdir(\".\"):\n    createMain()\npid=0\nclass MyPP(protocol.ProcessProtocol):\n    global pid\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        global pid\n        print(data)\n        if pid==0:\n            #print(\"received:\",data[:4])\n            if data[:4]==b\"\\x00\\xd0\\x9d\\x09\":\n                pid=int(re.findall(r'[0-9]+',data[4:].decode())[0])\n                #print(\"pid:\",pid)\n        # it is here.\n        up(time.time(),pid,data,{\"type\":\"output\"})\n    def errReceived(self, data):\n        global pid",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin_x86_64.py:1-38"
+    },
+    "445": {
+        "file_id": 68,
+        "content": "Initializes a Twisted protocol process, sets up connection and process handling functions, and interacts with the \"dbM\" module to store relevant data. The code creates an instance of MyPP class and connects it to a server using reactor.",
+        "type": "comment"
+    },
+    "446": {
+        "file_id": 68,
+        "content": "        print(data)\n        up(time.time(),pid,data,{\"type\":\"error\"})\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_x86_64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 10\n    #pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik>0:\n        inp=onceMore()\n        print(inp)\n        pp.write(inp)\n        up(time.time(),pid,inp,{\"type\":\"input\"})\n        time.sleep(.500)\n        ik-=1\n    pp.write(b\"exit\\n\")",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin_x86_64.py:39-75"
+    },
+    "447": {
+        "file_id": 68,
+        "content": "The code appears to be a Python script for starting an application with the Twisted networking library. It creates a process using multiprocessing and spawns a reactor thread, which handles the execution of commands in a separate process. It also handles input and error updates with a specific up() function. The script uses time-based functionality to manage its operation and has a built-in exit command.",
+        "type": "comment"
+    },
+    "448": {
+        "file_id": 68,
+        "content": "    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin_x86_64.py:76-94"
+    },
+    "449": {
+        "file_id": 68,
+        "content": "The code is trying to terminate a process, but it's facing some issues. It first sleeps for 1 second and then writes \"ls\\n\" to the file. After another sleep, it considers killing the process but decides not to do so. It prints \"__EOL__\" and attempts to exit the program. The code then considers using p.terminate() to terminate the process, discussing the need for a separate process or thread and communication methods. Finally, it concludes that somehow the code is working fine despite the challenges.",
+        "type": "comment"
+    },
+    "450": {
+        "file_id": 69,
+        "content": "/bootstrap/keller/README",
+        "type": "filepath"
+    },
+    "451": {
+        "file_id": 69,
+        "content": "This code seems to be a personal reflection on the author's thoughts about computing and accessibility, language barriers, and the importance of understanding code at different levels. The focus is on overcoming limitations and learning from each other, even if spirits don't meet directly.",
+        "type": "summary"
+    },
+    "452": {
+        "file_id": 69,
+        "content": "what if this computer is blind and cannot see things around? maybe some mental disabilities? check project keller out.\ncollect info, and understand it by heart, so the endless darkness will not hinder our steps.\nsource code -> compile -> assembly code\nyou can play with sounds, also can play with code.\nscratch pad should be in ram. so do it in c in windows?\ngenerate fake text for great good. for internal practice, POC.\nyou cannot be perfect all the time.\nas a human, you will never be able to run the code like the machine. no\nmachine code is running under whatever architecture. and you shall not regret\nthis.\nlook at this computer too. maybe no language can understand each other\nfinally, no architecture will agree with each other, but it is still running.\nso it is not wrong to understand the superficial things. not wrong to collect\nover the internet.\neven if our spirits will not meet.",
+        "type": "code",
+        "location": "/bootstrap/keller/README:1-25"
+    },
+    "453": {
+        "file_id": 69,
+        "content": "This code seems to be a personal reflection on the author's thoughts about computing and accessibility, language barriers, and the importance of understanding code at different levels. The focus is on overcoming limitations and learning from each other, even if spirits don't meet directly.",
+        "type": "comment"
+    },
+    "454": {
+        "file_id": 70,
+        "content": "/bootstrap/keller/XListAllCommands.sh",
+        "type": "filepath"
+    },
+    "455": {
+        "file_id": 70,
+        "content": "This Bash script defines a function, ListAllCommands(), which takes the PATH as input and searches for executable files within that path. It uses xargs to find all executable files under each directory in the given PATH, excluding subdirectories, and sorts them uniquely before printing.",
+        "type": "summary"
+    },
+    "456": {
+        "file_id": 70,
+        "content": "#!/bin/bash\nfunction ListAllCommands\n{\n    echo -n $PATH | xargs -d : -I {} find {} -maxdepth 1 \\\n        -executable -type f -printf '%P\\n' | sort -u\n}\nListAllCommands",
+        "type": "code",
+        "location": "/bootstrap/blitx/XListAllCommands.sh:1-7"
+    },
+    "457": {
+        "file_id": 70,
+        "content": "This Bash script defines a function, ListAllCommands(), which takes the PATH as input and searches for executable files within that path. It uses xargs to find all executable files under each directory in the given PATH, excluding subdirectories, and sorts them uniquely before printing.",
+        "type": "comment"
+    },
+    "458": {
+        "file_id": 71,
+        "content": "/bootstrap/keller/aloof.sh",
+        "type": "filepath"
+    },
+    "459": {
+        "file_id": 71,
+        "content": "Code runs two scripts, indicator.sh and batcher.sh, in the background.",
+        "type": "summary"
+    },
+    "460": {
+        "file_id": 71,
+        "content": "#!/bin/bash\n./indicator.sh & ./batcher.sh",
+        "type": "code",
+        "location": "/bootstrap/blitx/aloof.sh:1-2"
+    },
+    "461": {
+        "file_id": 71,
+        "content": "Code runs two scripts, indicator.sh and batcher.sh, in the background.",
+        "type": "comment"
+    },
+    "462": {
+        "file_id": 72,
+        "content": "/bootstrap/keller/aloof_x86_64.sh",
+        "type": "filepath"
+    },
+    "463": {
+        "file_id": 72,
+        "content": "This code is executing two shell scripts (indicator_x86_64.sh and batcher_x86_64.sh) concurrently on an x86_64 architecture system using Bash shell. The ampersand (&) symbol allows the second command to run in the background while the first one continues execution. This could be part of a setup process where these scripts perform different tasks in parallel.",
+        "type": "summary"
+    },
+    "464": {
+        "file_id": 72,
+        "content": "#!/bin/bash\n./indicator_x86_64.sh & ./batcher_x86_64.sh",
+        "type": "code",
+        "location": "/bootstrap/blitx/aloof_x86_64.sh:1-2"
+    },
+    "465": {
+        "file_id": 72,
+        "content": "This code is executing two shell scripts (indicator_x86_64.sh and batcher_x86_64.sh) concurrently on an x86_64 architecture system using Bash shell. The ampersand (&) symbol allows the second command to run in the background while the first one continues execution. This could be part of a setup process where these scripts perform different tasks in parallel.",
+        "type": "comment"
+    },
+    "466": {
+        "file_id": 73,
+        "content": "/bootstrap/keller/aloofclient.py",
+        "type": "filepath"
+    },
+    "467": {
+        "file_id": 73,
+        "content": "This code imports necessary libraries, defines port and connection settings for a ZMQ socket, but is incomplete and contains commentary indicating issues with sending data and potential non-blocking mode implementation.",
+        "type": "summary"
+    },
+    "468": {
+        "file_id": 73,
+        "content": "import zmq\nimport random\nimport sys\nimport time\n# from sub2 import timeout\nport = \"5757\"\ncontext = zmq.Context()\nsocket = context.socket(zmq.PAIR)\nsocket.setsockopt(zmq.LINGER, 0)\n# this works. not blocking.\nsocket.connect(\"tcp://127.0.0.7:%s\" % port)\n#while True:\n#        msg = socket.recv()\n#        print msg\n# performing one-shot.\n#        socket.send(\"client message to server1\")\n# fuck.\n# for the latter.\nsend_string = socket.send_string\n# send_string = timeout(1)(socket.send_string)\n# send_string(input(\"Enter the command:\\r\\n\"))\ndef sender(a):\n    send_string(a)\n# cannot send shit.\n# will stuck if no receive. switch to non-block mode here?\n#        time.sleep(1)\n# asshole.\n# WTF?\n# just to send one single string.",
+        "type": "code",
+        "location": "/bootstrap/blitx/aloofclient.py:1-30"
+    },
+    "469": {
+        "file_id": 73,
+        "content": "This code imports necessary libraries, defines port and connection settings for a ZMQ socket, but is incomplete and contains commentary indicating issues with sending data and potential non-blocking mode implementation.",
+        "type": "comment"
+    },
+    "470": {
+        "file_id": 74,
+        "content": "/bootstrap/keller/aloofserver.py",
+        "type": "filepath"
+    },
+    "471": {
+        "file_id": 74,
+        "content": "This code imports ZMQ, random, sys, and time libraries. It sets the port to 5757 and creates a socket using ZMQ's PAIR type. The socket binds to the local IP address on the specified port. In an infinite loop, it receives messages from clients, prints them, and may pause for one second before repeating.",
+        "type": "summary"
+    },
+    "472": {
+        "file_id": 74,
+        "content": "import zmq\nimport random\nimport sys\nimport time\nport = \"5757\"\ncontext = zmq.Context()\nsocket = context.socket(zmq.PAIR)\nsocket.bind(\"tcp://127.0.0.7:%s\" % port)\nwhile True:\n#        socket.send_string(\"Server message to client3\")\n# what the fuck is this?\n    msg = (socket.recv_string()+\"\\r\\n\").encode()\n    print(msg)\n    # will it stuck?\n    # print(type(msg),msg)\n        # this is fuck.\n#        time.sleep(1)\n# we'll receive it.",
+        "type": "code",
+        "location": "/bootstrap/blitx/aloofserver.py:1-19"
+    },
+    "473": {
+        "file_id": 74,
+        "content": "This code imports ZMQ, random, sys, and time libraries. It sets the port to 5757 and creates a socket using ZMQ's PAIR type. The socket binds to the local IP address on the specified port. In an infinite loop, it receives messages from clients, prints them, and may pause for one second before repeating.",
+        "type": "comment"
+    },
+    "474": {
+        "file_id": 75,
+        "content": "/bootstrap/keller/bargs.py",
+        "type": "filepath"
+    },
+    "475": {
+        "file_id": 75,
+        "content": "This code imports the 'sys' module and iterates over 'sys.argv', which contains command-line arguments passed to the script, then prints each argument on a separate line.",
+        "type": "summary"
+    },
+    "476": {
+        "file_id": 75,
+        "content": "import sys\nfor x in sys.argv:\n    print(x)",
+        "type": "code",
+        "location": "/bootstrap/blitx/bargs.py:1-3"
+    },
+    "477": {
+        "file_id": 75,
+        "content": "This code imports the 'sys' module and iterates over 'sys.argv', which contains command-line arguments passed to the script, then prints each argument on a separate line.",
+        "type": "comment"
+    },
+    "478": {
+        "file_id": 76,
+        "content": "/bootstrap/keller/batcher.sh",
+        "type": "filepath"
+    },
+    "479": {
+        "file_id": 76,
+        "content": "This script continuously runs the weblogin.py Python script in a loop, potentially automating login or data collection processes for a website.",
+        "type": "summary"
+    },
+    "480": {
+        "file_id": 76,
+        "content": "#!/bin/bash\nwhile true\ndo\n\tpython3 weblogin.py\ndone",
+        "type": "code",
+        "location": "/bootstrap/blitx/batcher.sh:1-5"
+    },
+    "481": {
+        "file_id": 76,
+        "content": "This script continuously runs the weblogin.py Python script in a loop, potentially automating login or data collection processes for a website.",
+        "type": "comment"
+    },
+    "482": {
+        "file_id": 77,
+        "content": "/bootstrap/keller/batcher_x86_64.sh",
+        "type": "filepath"
+    },
+    "483": {
+        "file_id": 77,
+        "content": "This script continuously runs the \"weblogin_x86_64.py\" Python program in a loop.",
+        "type": "summary"
+    },
+    "484": {
+        "file_id": 77,
+        "content": "#!/bin/bash\nwhile true\ndo\n\tpython3 weblogin_x86_64.py\ndone",
+        "type": "code",
+        "location": "/bootstrap/blitx/batcher_x86_64.sh:1-5"
+    },
+    "485": {
+        "file_id": 77,
+        "content": "This script continuously runs the \"weblogin_x86_64.py\" Python program in a loop.",
+        "type": "comment"
+    },
+    "486": {
+        "file_id": 78,
+        "content": "/bootstrap/keller/check_cgroups.sh",
+        "type": "filepath"
+    },
+    "487": {
+        "file_id": 78,
+        "content": "This script retrieves and displays the current cgroup configuration from /proc/cgroups file.",
+        "type": "summary"
+    },
+    "488": {
+        "file_id": 78,
+        "content": "#!/bin/bash\ncat /proc/cgroups",
+        "type": "code",
+        "location": "/bootstrap/blitx/check_cgroups.sh:1-2"
+    },
+    "489": {
+        "file_id": 78,
+        "content": "This script retrieves and displays the current cgroup configuration from /proc/cgroups file.",
+        "type": "comment"
+    },
+    "490": {
+        "file_id": 79,
+        "content": "/bootstrap/keller/check_mount.sh",
+        "type": "filepath"
+    },
+    "491": {
+        "file_id": 79,
+        "content": "This code is a Bash script that mounts cgroup filesystem and prints its location. It uses the \"mount\" command to list all mounted devices, filters for those with \"cgroup\" in their name (ignoring case), and then uses awk to extract and print the device name, filesystem type, and mount point of each found \"cgroup\" entry.",
+        "type": "summary"
+    },
+    "492": {
+        "file_id": 79,
+        "content": "#!/bin/bash\nsudo mount | grep -i cgroup | awk '{print $1\" \" $3\" \" $6}'",
+        "type": "code",
+        "location": "/bootstrap/blitx/check_mount.sh:1-2"
+    },
+    "493": {
+        "file_id": 79,
+        "content": "This code is a Bash script that mounts cgroup filesystem and prints its location. It uses the \"mount\" command to list all mounted devices, filters for those with \"cgroup\" in their name (ignoring case), and then uses awk to extract and print the device name, filesystem type, and mount point of each found \"cgroup\" entry.",
+        "type": "comment"
+    },
+    "494": {
+        "file_id": 80,
+        "content": "/bootstrap/keller/check_mount_aarch64.sh",
+        "type": "filepath"
+    },
+    "495": {
+        "file_id": 80,
+        "content": "This code is a shell script for Linux that checks if the cgroup filesystem is mounted on the system. It uses 'sudo mount' to list all mounted file systems, 'grep -i cgroup' to filter the output for any lines containing \"cgroup\", and 'awk' to print only the device name, mount point, and target of the cgroup mount point if it exists.",
+        "type": "summary"
+    },
+    "496": {
+        "file_id": 80,
+        "content": "#!/data/data/com.termux/files/usr/bin/bash\nsudo mount | grep -i cgroup | awk '{print $1\" \" $3\" \" $6}'",
+        "type": "code",
+        "location": "/bootstrap/blitx/check_mount_aarch64.sh:1-2"
+    },
+    "497": {
+        "file_id": 80,
+        "content": "This code is a shell script for Linux that checks if the cgroup filesystem is mounted on the system. It uses 'sudo mount' to list all mounted file systems, 'grep -i cgroup' to filter the output for any lines containing \"cgroup\", and 'awk' to print only the device name, mount point, and target of the cgroup mount point if it exists.",
+        "type": "comment"
+    },
+    "498": {
+        "file_id": 81,
+        "content": "/bootstrap/keller/cruncher.py",
+        "type": "filepath"
+    },
+    "499": {
+        "file_id": 81,
+        "content": "The code defines functions to return consecutive occurrences of input strings/bytes, creating a flattened list from nested parameters with multiprocessing support.",
+        "type": "summary"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script takes a process ID as input, extracts memory dump addresses using grep and sed, then uses GDB to dump the specified memory range for each address found.",
+    "details": [
+        {
+            "comment": "This Bash script takes a process ID as input, extracts memory dump addresses using grep and sed, then uses GDB to dump the specified memory range for each address found.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/dumpid.sh\":0-7",
+            "content": "#!/bin/bash\nsudo grep rw-p /proc/$1/maps \\\n| sed -n 's/^\\([0-9a-f]*\\)-\\([0-9a-f]*\\) .*$/\\1 \\2/p' \\\n| while read start stop; do \\\n    sudo gdb --batch --pid $1 -ex \\\n        \"dump memory /proc/self/fd/0 0x$start 0x$stop\"; \\\ndone"
+        }
+    ]
+}

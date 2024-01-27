@@ -1,0 +1,10 @@
+{
+    "summary": "This code sets up a secure connection for file transfer using curl and wget. It first uses cURL to fetch a file over HTTPS without validating the certificate, then echoes some content, and finally uses wget to re-fetch the same file over HTTPS. The last line suggests doing this at a system level.",
+    "details": [
+        {
+            "comment": "This code sets up a secure connection for file transfer using curl and wget. It first uses cURL to fetch a file over HTTPS without validating the certificate, then echoes some content, and finally uses wget to re-fetch the same file over HTTPS. The last line suggests doing this at a system level.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/direct-https.sh\":0-8",
+            "content": "#!/bin/bash\n#curl -k \"https://localhost:5001/s/s\"\n#not to trust all.\ncurl \"https://localhost:5001/s/s\"\necho\necho \"___spilter___\"\necho\nwget -q -O - \"https://localhost:5001/s/s\"\n# what if do it in system level?"
+        }
+    ]
+}

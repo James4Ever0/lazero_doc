@@ -1,0 +1,10 @@
+{
+    "summary": "The code creates a list d with values 0-7, initializes variable c to 0 and then iterates through each element x in the list. If c is less than or equal to 4, it appends 1+7+c to the list d and increments c. The code prints each element x as it iterates through the list d.",
+    "details": [
+        {
+            "comment": "The code creates a list d with values 0-7, initializes variable c to 0 and then iterates through each element x in the list. If c is less than or equal to 4, it appends 1+7+c to the list d and increments c. The code prints each element x as it iterates through the list d.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/internet_maps/extend_while_iterate.py\":0-8",
+            "content": "# a running folder is a living hell.\nd=[0,1,2,3,4,5,6,7]\nc=0\n# it works. fucking hell.\nfor x in d:\n    if c<=4:\n        d+=[1+7+c]\n        c+=1\n    print(x)"
+        }
+    ]
+}

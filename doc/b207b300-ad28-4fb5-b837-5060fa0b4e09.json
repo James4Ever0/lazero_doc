@@ -1,0 +1,10 @@
+{
+    "summary": "The code sets up a container using proot, loads root filesystem and RAM, copies necessary libraries, removes or creates a tmux file, and finally runs proot with specific bindings and options.",
+    "details": [
+        {
+            "comment": "The code sets up a container using proot, loads root filesystem and RAM, copies necessary libraries, removes or creates a tmux file, and finally runs proot with specific bindings and options.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/simple_jail.sh\":0-8",
+            "content": "#!/bin/bash\n./loadroot.sh\n./loadram.sh\n#cp libjudger.so.amd64 ramdisk/libjudger.so\n#rm ramdisk/tmux\ntouch ramdisk/tmux\n# simple hack.\nproot -r root -b ramdisk:/ramdisk -b ramdisk/tmux:$(which tmux) -w /ramdisk\n#proot -r root -b ramdisk:/ramdisk -w /ramdisk /ramdisk/libjudger.so --seccomp_rule_name=\"randomfuck\" --exe_path=/bin/sh"
+        }
+    ]
+}

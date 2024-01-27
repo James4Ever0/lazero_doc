@@ -1,0 +1,10 @@
+{
+    "summary": "The code is trying to interact with a VirtualBox machine named \"TinyPlus\" using the Python virtualbox library. It launches a console session and attempts to send keyboard input but is facing issues in receiving output. The code also mentions trying to find other machines, unlocking the machine, and considering alternative methods like SSH or installation on TinyCore.",
+    "details": [
+        {
+            "comment": "The code is trying to interact with a VirtualBox machine named \"TinyPlus\" using the Python virtualbox library. It launches a console session and attempts to send keyboard input but is facing issues in receiving output. The code also mentions trying to find other machines, unlocking the machine, and considering alternative methods like SSH or installation on TinyCore.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/theMonkey/blower.py\":0-27",
+            "content": "# import vboxapi\n# you are fascinated with the ability to do fuck over computer.\nimport virtualbox\nimport time\n# how to get a running console?\nvbox = virtualbox.VirtualBox()\nsession=virtualbox.Session()\nmachine=vbox.find_machine(\"TinyPlus\")\nprogress=machine.launch_vm_process(session,\"gui\",\"\")\n# not working.\n# progress=machine.launch_vm_process(session,\"console\",\"\")\nprogress.wait_for_completion()\n# how to pass it around?\ntime.sleep(5)\n# not receiving shit.\nsession.console.keyboard.put_keys(\"Hello, world!\")\n# how to get output?\n# session.unlock_machine()\n# we do this process over and over again.\n# progress=machine.launch_vm_process(session,\"gui\",\"\")\n# fast like shit.\n# without session?\n# ['TinyPlus']\n# print([m.name for m in vbox.machines])\n# it is off.\n# print\n# what the heck? why not using ssh?\n# we have getting used to it. but how to install on tinycore?"
+        }
+    ]
+}

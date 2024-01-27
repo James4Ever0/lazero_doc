@@ -1,0 +1,10 @@
+{
+    "summary": "The code is a C program that uses the \"usleep\" function to pause for 250 milliseconds before returning 0.",
+    "details": [
+        {
+            "comment": "The code is a C program that uses the \"usleep\" function to pause for 250 milliseconds before returning 0.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/sleep25ms.cpp\":0-1",
+            "content": "#include <unistd.h>\nint main(){usleep(1000*25);return 0;}"
+        }
+    ]
+}

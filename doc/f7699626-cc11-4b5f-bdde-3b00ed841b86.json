@@ -1,0 +1,10 @@
+{
+    "summary": "This script continuously attempts to install pytesseract using pip3 and breaks the loop if installation is successful.",
+    "details": [
+        {
+            "comment": "This script continuously attempts to install pytesseract using pip3 and breaks the loop if installation is successful.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/deathride.sh\":0-7",
+            "content": "#!/bin/bash\nwhile true\ndo\n\tpip3 install pytesseract\n\tif [ $? -eq 0 ]; then\n                break\n\tfi\ndone"
+        }
+    ]
+}

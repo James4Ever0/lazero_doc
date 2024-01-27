@@ -1,0 +1,10 @@
+{
+    "summary": "This script installs and enables a service for a UUID server on Linux, allows the user to test it using Chromium on Windows, and suggests finding prankable systems like Windows, macOS, or Linux.",
+    "details": [
+        {
+            "comment": "This script installs and enables a service for a UUID server on Linux, allows the user to test it using Chromium on Windows, and suggests finding prankable systems like Windows, macOS, or Linux.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_0/config_uuid_service.sh\":0-9",
+            "content": "#!/bin/bash\nsudo chmod +x uuid_server.js\nsudo cp uuid_server.js /usr/bin/\nsudo cp uuid_service.service /etc/systemd/system/uuid_service.service\nsudo chmod 644 /etc/systemd/system/uuid_service.service\nsudo systemctl enable uuid_service\nsudo systemctl start uuid_service\n# consider using chromium on windows to test the fucking plugin. able to install it outside the shit.\n# also consider something like that on Android. Consider finding some prankable system.\n# in general, prankable. WINDOWS-HACKED. MACOS-HACKED. LINUX-HACKED."
+        }
+    ]
+}

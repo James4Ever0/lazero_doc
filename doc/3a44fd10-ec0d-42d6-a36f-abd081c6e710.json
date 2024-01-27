@@ -1,0 +1,15 @@
+{
+    "summary": "This code defines a function \"run\" that concurrently reads stdout and stderr of a command executed on Linux systems using separate threads, while providing interactive input. It prints process output upon termination and lacks error handling.",
+    "details": [
+        {
+            "comment": "This code defines a function \"run\" that executes a command and reads both stdout and stderr concurrently using separate threads. It also provides interactive input by continuously sending predefined commands to the process's stdin. The code is designed for Linux systems, as it uses subprocess and threading modules, but it lacks error handling and might cause issues with non-terminal inputs.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_0/awaitIO.py\":0-36",
+            "content": "# import asyncio\nimport threading\n# import time\n# import termios\n# import fcntl\n# import tempfile\nimport time\nimport subprocess\ndef run(cmd):\n    # await asyncio.sleep(1)\n    # stdin=tempfile.TemporaryFile(\"w+b\")\n    proc = subprocess.Popen(\n        cmd,stdin=subprocess.PIPE,\n        stdout=subprocess.PIPE,\n        stderr=subprocess.PIPE)\n    # proc.stdin.write(b\"junk\\n\")\n    def readline(a,b):\n        while True:\n            buff=a.readline()\n            print(b+buff)\n    threading.Thread(target=readline,args=(proc.stdout,b\"stdout: \")).start()\n    threading.Thread(target=readline,args=(proc.stderr,b\"stderr: \")).start()\n    # start another shit.\n    # read what?\n    # when it is dead, it goes crazy. so share the namespace please?\n    ik=5\n    # how to pretend to be a terminal?\n    x=[\"links\",\"elinks\",\"vim\",\"ps\",\"sed\"]\n    while ik>0:\n        proc.stdin.write(x[ik-1].encode()+b\"\\n\")\n        proc.stdin.flush()\n        ik-=1\n        time.sleep(1)\n    # ik=5\n    # while ik>0:\n    #     proc.stdin.write(b\"this is junk.\\n\")\n    #     proc.stdin.flush()"
+        },
+        {
+            "comment": "The code is terminating a process, printing \"_EOL_\", and then checking the stdout and stderr outputs. It's checking if there's any output from the process and printing it if there is. It's likely part of a script that runs a command in a separate process and waits for its completion.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_0/awaitIO.py\":37-50",
+            "content": "    #     ik-=1\n    #     time.sleep(1)\n    proc.kill()\n    print(\"_EOL_\")\n    # or multiprocessing works the same?\n    # stdout, stderr = await proc.communicate()\n    # print(f'[{cmd!r} exited with {proc.returncode}]')\n    # if stdout:\n    #     print(f'[stdout]\\n{stdout.decode()}')\n    # if stderr:\n    #     print(f'[stderr]\\n{stderr.decode()}')\nrun('bash')\nprint(\"AHEAD OF TIME\")"
+        }
+    ]
+}

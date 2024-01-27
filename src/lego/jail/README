@@ -1,0 +1,17 @@
+it turns out that it is very hard to prevent suicide.
+
+but can we log it? can we make that thing logged?
+
+still won't get fixed. how the heck can the problem being solved?
+
+on android, the root permission must be constrained. but for what reason that this process hangs?
+
+there's proot but that's not enough. proot won't provide context.
+
+	https://github.com/proot-me/proot/issues/123
+
+both can prevent jail evasion using tmux.
+
+however, proot is not recommended. better use mixed jail, or create bindfs without tmux binary.
+
+is it like sandboxie on linux?

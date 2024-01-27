@@ -1,0 +1,10 @@
+{
+    "summary": "This code executes the command 'c' on 'main.c', pipes the output to 'xargs c' for 'lazero.c', and redirects both error and standard output to '/dev/shm/lazero'. It contains several comments criticizing the readability, complexity, and functionality of the code, indicating frustration with the process and lack of understanding of its purpose.",
+    "details": [
+        {
+            "comment": "This code executes the command 'c' on 'main.c', pipes the output to 'xargs c' for 'lazero.c', and redirects both error and standard output to '/dev/shm/lazero'. It contains several comments criticizing the readability, complexity, and functionality of the code, indicating frustration with the process and lack of understanding of its purpose.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_0/lazero.sh\":0-16",
+            "content": "#!/usr/bin/fish\ncommand c main.c | xargs c lazero.c &> /dev/shm/lazero\n# i swear this is pure shit. nothing about grammar tree or nothing. it is something must be admitted for sure.\n# the problem is simple. it is not simple enough.\n# you really should pick up some fundamental shits to read on.\n# whatsoever. it is all due to low quota.\n# yes you push too damn hard on so-called things.\n# you are not good at them. you cannot teach them.\n# do you think this worth your while?\n# really nigga?\n# by not closing the lid?\n# whatever now. I have some deep misunderstanding over this thing. think of it. it is really not fun at all.\n# whatever the thing is, now it is just none of my business.\n# the main loop is still not on at all.\n# say it as keylogger or some windows, not my business.\n# that's because you can't think of it.\n# appium, native GUI/CLI examination, and so on."
+        }
+    ]
+}

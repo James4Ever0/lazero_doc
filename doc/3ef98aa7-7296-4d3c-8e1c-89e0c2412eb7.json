@@ -1,0 +1,10 @@
+{
+    "summary": "This code provides instructions for modifying browsers and security settings to allow running a specific code, possibly related to web sockets. It mentions alternative tools like PhantomJS or Electron, and suggests checking if the code can be run without patches.",
+    "details": [
+        {
+            "comment": "This code provides instructions for modifying browsers and security settings to allow running a specific code, possibly related to web sockets. It mentions alternative tools like PhantomJS or Electron, and suggests checking if the code can be run without patches.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/README\":0-38",
+            "content": "go ahead, solve your problem in a brand new way instead of just manual looking and pasting. that's the purpose.\ndiff rule: similar -> perform similarity test -> continue on children\nthey force me to become a hacker. they deserve this: death.\nbackground -> request, handle cookies, browser history, favourites.\ntabs -> content processing, subrequest.\nfirefox -> about:config -> websocket allow from https\nor add your root certificate. or just allow exceptions:\ncertificate manager -> server -> add exception\nchrome -> chrome://flags -> allow invalid certs from localhost\nallow insecure websockets.\nadd ca to system so normal code will be running fine.\nterm->html:\ngem install terminal\nhttps://github.com/buildkite/terminal-to-html\ndisable safety protocols. -> cors allowed -> plugin\n<RECOMPILE>\nwhat is the browser worker?\nso there are two choices: phantomjs, electron.\nor many alternatives.\ncheck if possible to run nightmare without patch?"
+        }
+    ]
+}

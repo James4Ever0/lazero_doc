@@ -1,0 +1,15 @@
+{
+    "summary": "The \"timeout\" decorator wraps a function and executes it in a new thread, raising an exception if it exceeds the specified timeout. It handles exceptions and returns the result or a wrapper function.",
+    "details": [
+        {
+            "comment": "This code defines a decorator called \"timeout\" which takes the timeout value as an argument. It wraps the decorated function and creates a new thread to execute it. If the execution exceeds the specified timeout, it raises an exception. The original exception is caught if one occurs during the function's execution.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_package/sub2.py\":0-29",
+            "content": "from threading import Thread\nimport functools\n# notice, you might need to write a browser?\n# you draw outline for us?\n# well, i can rewrite this.\ndef timeout(timeout):\n    def deco(func):\n        @functools.wraps(func)\n        def wrapper(*args, **kwargs):\n            res = [Exception('function [%s] timeout [%s seconds] exceeded!' % (\n                func.__name__, timeout))]\n                # so-called deep understanding of python func names.\n                # it is about remembering and forgetting.\n                # that's learning.\n            def newFunc():\n                try:\n                    res[0] = func(*args, **kwargs)\n                except Exception as e:\n                  # this is funny.\n                    res[0] = e\n            t = Thread(target=newFunc)\n            t.daemon = True\n            try:\n                t.start()\n                t.join(timeout)\n            except Exception as je:\n                print('error starting thread')\n                raise je\n            ret = res[0]\n            if isinstance(ret, BaseException):"
+        },
+        {
+            "comment": "Handles exceptions, returns the result, or a wrapper function.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_package/sub2.py\":30-33",
+            "content": "                raise ret\n            return ret\n        return wrapper\n    return deco"
+        }
+    ]
+}

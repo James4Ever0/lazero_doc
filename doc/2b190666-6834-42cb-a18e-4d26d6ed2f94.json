@@ -1,0 +1,10 @@
+{
+    "summary": "This code is running a Bash script named \"possible_split.sh\" which executes the following commands: it first lists all currently active processes (ps -A), then filters out any process names containing 'python' in a case-insensitive manner using grep, and finally feeds this output into another Python script called 'termsplit.py'. This could potentially be used for monitoring or managing Python processes running on the system.",
+    "details": [
+        {
+            "comment": "This code is running a Bash script named \"possible_split.sh\" which executes the following commands: it first lists all currently active processes (ps -A), then filters out any process names containing 'python' in a case-insensitive manner using grep, and finally feeds this output into another Python script called 'termsplit.py'. This could potentially be used for monitoring or managing Python processes running on the system.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/possible_split.sh\":0-2",
+            "content": "#!/bin/bash\n# feed it into a script\nps -A | grep -i python | python3 termsplit.py"
+        }
+    ]
+}

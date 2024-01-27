@@ -1,0 +1,10 @@
+{
+    "summary": "The code starts a container using Podman, but it may fail due to missing image. It runs busybox in read-only mode with limited CPU and memory allocation.",
+    "details": [
+        {
+            "comment": "The code starts a container using Podman, but it may fail due to missing image. It runs busybox in read-only mode with limited CPU and memory allocation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/start_ro.sh\":0-4",
+            "content": "#!/bin/bash\n# use podman? but we have not had the image!\npodman run --rm --read-only -ti --cpus 0.01 --memory 2m localhost/busybox\n# t -> visual\n# i -> communication"
+        }
+    ]
+}

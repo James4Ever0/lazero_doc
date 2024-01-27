@@ -1,0 +1,10 @@
+{
+    "summary": "This script loads various files and sets up directories before mounting an overlay filesystem. It executes four Bash scripts in order, then creates the fs/overlay directory and mounts the overlay filesystem with specified directories as lower, upper, and workdir.",
+    "details": [
+        {
+            "comment": "This script loads various files and sets up directories before mounting an overlay filesystem. It executes four Bash scripts in order, then creates the fs/overlay directory and mounts the overlay filesystem with specified directories as lower, upper, and workdir.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/prepare.sh\":0-6",
+            "content": "#!/bin/bash\nbash -c ./loadram_fs.sh\nbash -c ./loadroot.sh\nbash -c ./loadram.sh\nbash -c ./loadram_upper.sh\nmkdir -p fs/overlay\nmount -t overlay -o rw,lowerdir=fs/lower,upperdir=fs/upper,workdir=fs/workdir overlay fs/overlay"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads input from stdin, concatenates it into a single string, splits the string into words, converts them to a set (removing duplicates), and finally joins the words back together with spaces before printing.",
+    "details": [
+        {
+            "comment": "This code reads input from stdin, concatenates it into a single string, splits the string into words, converts them to a set (removing duplicates), and finally joins the words back together with spaces before printing.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/shrink.py\":0-7",
+            "content": "import sys\nv=\"\"\nfor x in sys.stdin:\n    v+=x\nv = v.split()\nv = set(v)\nv = \" \".join(v)\nprint(v)"
+        }
+    ]
+}

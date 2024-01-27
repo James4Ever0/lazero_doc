@@ -1,0 +1,10 @@
+{
+    "summary": "This code snippet is utilizing the libjudger.so library, setting the seccomp_rule_name to \"randomfuck\", and specifying the executable path as /sbin/shutdown with arguments \"0\". This configuration seems to be testing or demonstrating a specific functionality related to security policies and restrictive execution environments.",
+    "details": [
+        {
+            "comment": "This code snippet is utilizing the libjudger.so library, setting the seccomp_rule_name to \"randomfuck\", and specifying the executable path as /sbin/shutdown with arguments \"0\". This configuration seems to be testing or demonstrating a specific functionality related to security policies and restrictive execution environments.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/poc.sh\":0-3",
+            "content": "#!/bin/bash\n./libjudger.so --seccomp_rule_name=\"randomfuck\" --exe_path=/sbin/shutdown --args=\"0\"\n#./libjudger.so --exe_path=/sbin/shutdown --args=\"0\"\n# this cannot be run."
+        }
+    ]
+}

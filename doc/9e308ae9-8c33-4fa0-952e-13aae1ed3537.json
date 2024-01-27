@@ -1,0 +1,10 @@
+{
+    "summary": "Script to set up a strict base jail for Python3 application, using firejail for increased security. The script creates a temporary RAM disk and applies various security restrictions, such as AppArmor, read-only access to /, private ramdisk, and seccomp rules to drop certain system calls.",
+    "details": [
+        {
+            "comment": "Script to set up a strict base jail for Python3 application, using firejail for increased security. The script creates a temporary RAM disk and applies various security restrictions, such as AppArmor, read-only access to /, private ramdisk, and seccomp rules to drop certain system calls.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/strict_base_jail.sh\":0-13",
+            "content": "#!/bin/bash\n# that one is not right, which will quit and leave everything unconfigured.\n./unloadram.sh\nsudo mkdir ramdisk\nsudo chmod 777 ramdisk\nsudo mount -t tmpfs -o size=10m myramdisk ramdisk\n# what the fuck is going on?\n# wtf? try to block everything.\nfirejail --apparmor --read-only=/ --private=ramdisk/ --seccomp.drop=shutdown,@privileged python3\n# and this is useless.\n#firejail  --read-only=/ --private=ramdisk/ --seccomp=!shutdown,!restart_syscall\n#firejail --noprofile --read-only=/ --private=ramdisk/ --seccomp.drop=@reboot,@mount,@chown\n#--seccomp.print\n# this is shit."
+        }
+    ]
+}

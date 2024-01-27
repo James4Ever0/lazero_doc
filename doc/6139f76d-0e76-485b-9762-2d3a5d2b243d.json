@@ -1,0 +1,10 @@
+{
+    "summary": "This code writes \"hello world error\" to the standard error stream and \"hello world from stdout\" to the standard output stream.",
+    "details": [
+        {
+            "comment": "This code writes \"hello world error\" to the standard error stream and \"hello world from stdout\" to the standard output stream.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/demo_error_out.py\":0-2",
+            "content": "import sys\nsys.stderr.write(\"hello world error\\n\")\nsys.stdout.write(\"hello world from stdout\\n\")"
+        }
+    ]
+}

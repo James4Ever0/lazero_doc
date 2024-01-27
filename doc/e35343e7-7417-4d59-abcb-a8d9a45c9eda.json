@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script uses Nmap to scan for open ports on localhost, then filters the results using grep and outputs them into a \"ports.log\" file. The final two comments express frustration and resignation about the task's meaninglessness.",
+    "details": [
+        {
+            "comment": "This Bash script uses Nmap to scan for open ports on localhost, then filters the results using grep and outputs them into a \"ports.log\" file. The final two comments express frustration and resignation about the task's meaninglessness.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/check_ports.sh\":0-4",
+            "content": "#!/bin/bash\nnmap -p- localhost | grep open | grep -Eo \"^[0-9]+\" > ports.log\n#cat ports.log\n# whatever. it will work.\n# fuck. it is all meaningless."
+        }
+    ]
+}

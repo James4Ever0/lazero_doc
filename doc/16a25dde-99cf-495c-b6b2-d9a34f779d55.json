@@ -1,0 +1,10 @@
+{
+    "summary": "The code is a Bash script that continuously tries to install the 'canvas' package globally using 'yarn'. It runs an infinite loop and breaks out when the installation is successful.",
+    "details": [
+        {
+            "comment": "The code is a Bash script that continuously tries to install the 'canvas' package globally using 'yarn'. It runs an infinite loop and breaks out when the installation is successful.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/deathride.sh\":0-7",
+            "content": "#!/bin/bash\nwhile true\ndo\n\tsudo yarn global add canvas \n\tif [ $? -eq 0 ]; then\n                break\n\tfi\ndone"
+        }
+    ]
+}

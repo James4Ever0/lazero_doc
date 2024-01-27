@@ -1,0 +1,536 @@
+{
+    "1400": {
+        "file_id": 236,
+        "content": "type \"exit\" twice to get rid of commandline. but does it really help to get adb shell?\nyou can check if there is usb connection to the host. basically infinite usb connection. network debgging? no such option!\nRL? upside-down RL? working just fine? graph networks?\nguess what? only shit is my brain. I have to read them all? are you kidding me?\nno! this is my place and i do not need to read shit!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/README:37-45"
+    },
+    "1401": {
+        "file_id": 236,
+        "content": "This code seems to be a mix of frustration and confusion, possibly related to a command-line interface or debugging process. The author mentions needing to type \"exit\" twice for command line removal but is unsure if it helps get adb shell. They also discuss checking USB connections, network debugging options, and reading various materials. The overall tone suggests the user is struggling with understanding the process and desires a more straightforward approach without having to read excessive information.",
+        "type": "comment"
+    },
+    "1402": {
+        "file_id": 237,
+        "content": "/bootstrap/legacy/concentration/brainfuck/randomTapping/core4.py",
+        "type": "filepath"
+    },
+    "1403": {
+        "file_id": 237,
+        "content": "The code loads CSV data into a graph database, merges nodes, creates \"gets\" relationships between airport nodes based on properties, initializes nodes and attributes, updates values, queries the graph using functions, and defines a function for finding neighboring nodes/relationships.",
+        "type": "summary"
+    },
+    "1404": {
+        "file_id": 237,
+        "content": "# -*- coding: utf-8 -*-\nfrom py2neo import Graph, Node, Relationship\n# import re\n# better have some time.\n# Node,Relationship,NodeMatcher\ngraph = Graph(\"http://localhost:7474\", username=\"neo4j\", password=\"kali\")\n# graph.run(\"create index on :key(name)\")\n# always worried about some weird things.\n# is that all? we can collect more things and be more.\n# use taos instead?\ndef createIndex():\n    graph.run(\"create index on :adb_commands(name)\")\n# close to the core?\ndef createIndexII():\n    graph.run(\"create index on :adb_xml(name)\")\n# must specify the directions\n# can we actually execute these things?\n# anyway, it is just a test command.\n# meta-operations are also considered to be programs.\n# all you need is some kind of abstraction?\n# it is always about copy and paste.\n#graph.run(\"USING PERIODIC COMMIT LOAD CSV FROM 'file:///root/lazer-ubuntu/metalearning/net/keyboardMap/fuck.csv' AS line WITH line MERGE (a:key{name:line[0]}) WITH a,line MATCH (b:key{name:line[1]}) WITH a,b MERGE (a)-[:nextTo]-(b);\")\n#graph.run(",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/core4.py:1-28"
+    },
+    "1405": {
+        "file_id": 237,
+        "content": "The code imports necessary modules and defines functions to create indexes on nodes in a Neo4j graph database. It also has a commented line for loading CSV data, but it is not being executed. The purpose seems to involve creating relationships between nodes using the CSV data as references.",
+        "type": "comment"
+    },
+    "1406": {
+        "file_id": 237,
+        "content": "\"USING PERIODIC COMMIT  LOAD CSV FROM 'file:///root/lazer-ubuntu/metalearning/net/gamma.csv' AS line MATCH  (a:english) WHERE a.name=line[0] WITH a,line MATCH ;\")\n# a=open(\"beta.csv\",\"r\")\n# for b in a.readlines():\n#    c=re.sub(\"\\n\",\"\",b).split(\",\")\n#    graph.run(\"MATCH (a:english) where a.name=\\\"\"+c[0]+\"\\\" with a match (b:english) where b.name=\\\"\"+c[1]+\"\\\" create (a)<-[:lemma]-(b)\")\n# a.close()\n# graph.run(\"MATCH (a:lemma),(b:derived) CREATE (a)<-[:lemma]-(b)\")\n# this is slow as hell\n# graph.run(\"USING PERIODIC COMMIT  LOAD CSV FROM 'file:///root/lazer-ubuntu/metalearning/net/beta.csv' AS line MERGE (a:dictionary:english:derived {name:line[0]}) WITH line MERGE  (b:dictionary:english:lemma {name:line[1]}) ;\")\n# matcher=NodeMatcher(graph)\n#test_node_1 = Node(label = \"Person\",name = \"test_node_1\")\ndef merge_node(a):\n    assert type(a) == str\n    test_node_1 = Node(label=\"shell_commands\", name=a)\n    graph.merge(test_node_1)\n# graph.create(test_node_2)\ndef createLinks(t, row, a, k, b, y):\n    # destination_airport = row['destination']",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/core4.py:28-51"
+    },
+    "1407": {
+        "file_id": 237,
+        "content": "This code is loading data from a CSV file and creating nodes with their corresponding relationships in a graph database. It first reads the CSV, then iterates over each row to create the nodes and edges, using MATCH and CREATE statements. Finally, there are functions for merging nodes and creating links between them. The code is optimized by using periodic commit and loading data from file:///root/lazer-ubuntu/metalearning/net/beta.csv as a CSV file.",
+        "type": "comment"
+    },
+    "1408": {
+        "file_id": 237,
+        "content": "    # args, kwargs.\n    source_airport_node = Node(\n        \"shell_commands\", name=a, sequence=k, timestamp=t)\n    destination_airport_node = Node(\"shell_output\", name=b, sequence=y)\n    # does not have timestamp here.\n    # source_airport_node = airport_nodes[source_airport]\n    # will we have different timestamp?\n    # strange.\n    # destination_airport_node = airport_nodes[destination_airport]\n    # node_properties = {'distance':row['distance']}\n    node_properties1 = {'duration': row, 'timestamp': t}\n    # relative duration.\n    graph.merge(source_airport_node)\n    graph.merge(destination_airport_node)\n    # graph.create(Relationship(source_airport_node, destination_airport_node,**node_properties1))\n    graph.merge(Relationship(source_airport_node, \"gets\",\n                             destination_airport_node, **node_properties1))\n# you can do some sub-command.\n# really?\ndef createLinksII(t, row, a, k, b):\n    # destination_airport = row['destination']\n    source_airport_node = Node(\n        \"shell_commands\", name=a, sequence=k, timestamp=t)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/core4.py:52-77"
+    },
+    "1409": {
+        "file_id": 237,
+        "content": "This code creates two nodes, \"shell_commands\" and \"shell_output\", with properties like name, sequence, and timestamp. It then merges these nodes into the graph and creates a relationship between them using the \"gets\" type. The function is part of a larger codebase that appears to handle airport data and shell commands related to it. The code might be used for creating links between source and destination airports based on some data (row) provided. It's possible that this function is used within other sub-commands or operations in the codebase.",
+        "type": "comment"
+    },
+    "1410": {
+        "file_id": 237,
+        "content": "    # destination_airport_node = Node(label=\"shell_output\", name=b, sequence=y)\n    destination_airport_node = Node(\n        \"shell_commands\", name=b, sequence=k+1, timestamp=t)\n    # source_airport_node = airport_nodes[source_airport]\n    # will we have different timestamp?\n    # strange.\n    # destination_airport_node = airport_nodes[destination_airport]\n    # node_properties = {'distance':row['distance']}\n    node_properties1 = {'duration': row, 'timestamp': t}\n    # relative duration.\n    # what is on the relationship?\n    graph.merge(source_airport_node)\n    graph.merge(destination_airport_node)\n    # graph.create(Relationship(source_airport_node, destination_airport_node,**node_properties1))\n    graph.merge(Relationship(source_airport_node, \"then\",\n                             destination_airport_node, **node_properties1))\n    # we need it anyway.\n\"\"\"分别建立了test_node_1指向test_node_2和test_node_2指向test_node_1两条关系，\n关系的类型为\"CALL\"，两条关系都有属性count，且值为1。\"\"\"\n#node_1_call_node_2 = Relationship(test_node_1,'CALL',test_node_2)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/core4.py:78-99"
+    },
+    "1411": {
+        "file_id": 237,
+        "content": "Creates a source and destination airport node in a graph with properties, and merges them before creating a relationship between them labeled \"then\" with specified duration (timestamp) and node properties.",
+        "type": "comment"
+    },
+    "1412": {
+        "file_id": 237,
+        "content": "#node_1_call_node_2['count'] = 1\n#node_2_call_node_1 = Relationship(test_node_2,'CALL',test_node_1)\n#node_2_call_node_1['count'] = 1\n# graph.create(node_1_call_node_2)\n# graph.create(node_2_call_node_1)\n\"\"\"节点和关系的属性初始赋值在前面节点和关系的建立\n的时候已经有了相应的代码，在这里主要讲述一下怎么更新一个节点/关系的属性值。\"\"\"\n# node_1_call_node_2['count']+=1\n# graph.push(node_1_call_node_2)\n\"\"\"通过find和find_one函数，可以根据类型和属性、属性值来查找节点和关系。\"\"\"\n\"\"\"find和find_one的区别在于：\nfind_one的返回结果是一个具体的节点/关系，可以直接查看它的属性和值。如果没有这个节点/关系，返回None。\nfind查找的结果是一个游标，可以通过循环取到所找到的所有节点/关系。\"\"\"\n#find_code_1 = graph.match(label=\"key\",property_key=\"name\",property_value=\"k\")\n# print(find_code_1['name'])\n# find_code_3 = graph.match_one(  label=\"Person\",  property_key=\"name\", # property_value=\"test_node_2\")\n\"\"\"如果已经确定了一个节点或者关系，想找到和它相关的关系和节点，\n就可以使用match和match_one\"\"\"\n#\n# find_relationship = graph.match_one(start_node=find_code_1,end_node=find_code_3,bidirectional=False)\n# print(find_relationship)\ndef matchNeighbor(k):\n    k0 = []\n    match_relation = graph.run(\n        \"\"\"MATCH (n:key{name:'\"\"\"+k+\"\"\"'})--(r) RETURN r;\"\"\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/core4.py:100-134"
+    },
+    "1413": {
+        "file_id": 237,
+        "content": "This code initializes nodes and relationships, assigns initial attributes, updates attribute values, and queries the graph using various functions like 'find', 'match', and 'match_one'. It also defines a function 'matchNeighbor' for finding neighboring nodes/relationships.",
+        "type": "comment"
+    },
+    "1414": {
+        "file_id": 237,
+        "content": "    # graph.run(\"\"\"MATCH (n:key{name:'\"\"\"+k+\"\"\"'})<--(r) RETURN r;\"\"\")]\n#    for m in match_relation:\n    for i in match_relation:\n        #         print(i)\n        #     print(dir(i))\n        #     print(type(i))\n        g = i.values()[0]\n#     print(g)\n#     print(type(g))\n#     print(dir(g))\n        g0 = g.values()\n#     print(g0)\n#     print(type(g0))\n        k0.append([g1 for g1 in g0][0])\n    return k0\n#     i['count']+=1\n#     graph.push(i)\n# print(\"1111111111111111\")\n# # print(graph)\n# print(test_node_1)\n# print(test_node_2)\n# print(node_2_call_node_1)\n# print(node_1_call_node_2)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/core4.py:135-159"
+    },
+    "1415": {
+        "file_id": 237,
+        "content": "The code iterates through match_relation, extracting and appending values from the related graph nodes to k0.",
+        "type": "comment"
+    },
+    "1416": {
+        "file_id": 238,
+        "content": "/bootstrap/legacy/concentration/brainfuck/randomTapping/coret.py",
+        "type": "filepath"
+    },
+    "1417": {
+        "file_id": 238,
+        "content": "The code imports two modules, taos and datetime. It then comments that it attempts to connect to a Taos database server at 127.0.0.1 with user root and password taosdata, using the configuration file /etc/taos. However, the connection is not established yet as there are no actual connections being made in this section of code. Finally, it comments that the print function might be different compared to standard Python print.",
+        "type": "summary"
+    },
+    "1418": {
+        "file_id": 238,
+        "content": "import taos\nimport datetime\n# conn = taos.connect(host=\"127.0.0.1\", user=\"root\", password=\"taosdata\", config=\"/etc/taos\")\n# this thing sucks, and it is for pro.\n# i do not have shit.\n# the print is different.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/coret.py:1-6"
+    },
+    "1419": {
+        "file_id": 238,
+        "content": "The code imports two modules, taos and datetime. It then comments that it attempts to connect to a Taos database server at 127.0.0.1 with user root and password taosdata, using the configuration file /etc/taos. However, the connection is not established yet as there are no actual connections being made in this section of code. Finally, it comments that the print function might be different compared to standard Python print.",
+        "type": "comment"
+    },
+    "1420": {
+        "file_id": 239,
+        "content": "/bootstrap/legacy/concentration/brainfuck/randomTapping/socks2.py",
+        "type": "filepath"
+    },
+    "1421": {
+        "file_id": 239,
+        "content": "This Python 2 code captures and displays images on a mobile device using multiprocessing and randomization, with limitations due to the operating system and issues with libraries like numpy, cv2, and skimage. The author is considering logcat for data capture but faces challenges in displaying images due to the fragility of the process.",
+        "type": "summary"
+    },
+    "1422": {
+        "file_id": 239,
+        "content": "# coding: utf-8\nimport pyadb\n# import numpy as np\nfrom multiprocessing import Process, freeze_support\nfrom dbM_2 import initial\n# import cv2\n# this is fucking python2 script.\n# just can you repeat my input?\nimport random\nimport time\n# just how to get the human input?\ndef wrapper(x):\n    p=Process(target=initial, args=(\"projects\",[x]))\n    p.start()\n    # p.join()\n    return\n# you know, that their fucking brain architecture is fried.\n# define picture shot every --- moments.\n# crop the image as needed?\n# shot before doing the thing?\n# i do not want to think about these shits.\n# stop that entirely. just get me the xml dump.\n# do you want to calculate the overall success rate over different acts?\n# gui is just a beginning, but remember, only something that is attacable to human can receive human critic and training.\n# low level language, must be associated with books and resources.\nSCALE=(1080,1920)\ndef getRandomCode(a):\n    x0,y0=a\n    return random.choice(range(x0)),random.choice(range(y0))\n# shit. only for python3.\ndef getTap(a):",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/socks2.py:1-32"
+    },
+    "1423": {
+        "file_id": 239,
+        "content": "This code is written in Python 2 and appears to be a part of an image processing script. It utilizes multiprocessing, imports the pyadb library, and uses random functions for generating random numbers. The code defines a function called 'getRandomCode' which takes a range of values as input and returns a random x and y coordinate within that range. Another function, 'getTap', is mentioned but not shown in this code snippet. The code also mentions the use of a GUI and XML dumping. Overall, the script seems to be involved in image processing tasks with an emphasis on randomization and multiprocessing.",
+        "type": "comment"
+    },
+    "1424": {
+        "file_id": 239,
+        "content": "    return \"input tap {} {}\".format(*getRandomCode(a))\ndef getSwipe(a):\n    k=[]\n    for x in range(2):\n        x0,y0=getRandomCode(a)\n        k.append(x0)\n        k.append(y0)\n    return \"input swipe {} {} {} {}\".format(*k)\n# not printing shit?\n# def getImage(a):\n#     s2 = np.frombuffer(a.replace(b'\\r\\n',b'\\n'), np.uint8)\n#     # print(s2)\n#     # finally!\n#     s2 = cv2.imdecode(s2, 1)\n#     return s2\ndef getDump(d):\n    d.shell_command(\"uiautomator dump\")\n    f=d.shell_command(\"cat /sdcard/window_dump.xml\")\n    return f\ndef getRandomAct(a,d):\n    p=random.choice([getTap,getSwipe])\n    p0=p(a)\n    d.shell_command(p0)\n    return p0\n# will introduce error if with human manipulation.\ndef getTime():\n    return time.time()\n# it will be too huge, all xml dumps, and more.\ndef getLoop(a,d):\n    xv=[\"xml_dump\",\"screen_command\"]\n    buffer=getDump(d)\n    wrapper((getTime(),xv[0],buffer))\n    while True:\n        e0=getRandomAct(SCALE,d)\n        time.sleep(.5)\n        g0=getDump(d)\n        if buffer!=g0:\n            buffer=g0\n            print(\"different act!\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/socks2.py:33-74"
+    },
+    "1425": {
+        "file_id": 239,
+        "content": "This code defines several functions for interacting with a mobile device. It includes getting random taps or swipes, dumping the UI window, performing actions based on XML dumps, and looping through different acts. The code may introduce errors if manipulated by humans and could potentially become too large due to many XML dumps.",
+        "type": "comment"
+    },
+    "1426": {
+        "file_id": 239,
+        "content": "            print(e0)\n            wrapper((getTime(),xv[1],e0))\n            wrapper((getTime(),xv[0],buffer))\n        # else:\n        # get human input is important.\n        # better use logcat? monitor its output?\n        # well, that verbosity you cannot stand.\n        #     print(\"no difference!\")\n        #     print(e0)\n            # you can increase the registry, for input and output.\n# do not care about the growth of your fucking breast, cause it is flat and everything is shit.\nif __name__ == \"__main__\":\n    freeze_support()\n    d=pyadb.adb.ADB('/usr/bin/adb')\n    # not the same name. will introduce error if written in different scripts.\n    # without path?\n    # we need wireless?\n    # using screen command? share output?\n    # you can try it, if you really want to give it a try.\n    # want to store in neo4j or something else?\n    # this is a remarkable story. just what about human input? will my input counts?\n    # can it repeat my acts and therefore reinforce the learning?\n    # maybe the time will change. does that count?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/socks2.py:75-97"
+    },
+    "1427": {
+        "file_id": 239,
+        "content": "This code appears to be part of a larger script and is responsible for printing output, wrapping functions with time and coordinates as inputs, possibly related to timing or logging. It also mentions human input and the need for a flat chest, indicating it may be written by someone who identifies as female or non-binary. The code may involve working with Android Debug Bridge (adb) and could potentially store data in neo4j or another database. There are also comments suggesting the script's author is experimenting with various approaches and considering different options for input, output, and storage.",
+        "type": "comment"
+    },
+    "1428": {
+        "file_id": 239,
+        "content": "    # what about these things?\n    # just think about something equivalent to the overall shit.\n    # you need something that has overall control.\n    # never mind. you can manually override this.\n    d0=d.get_devices()\n    # print(\"show\",d0)\n    # just consider your raw output from database.\n    assert len(d0)==2\n    e=d0[1]\n    # print(e)\n    # check if it is the same?\n    # i do not know if this works the same for py2.\n    getLoop(SCALE,d)\n# print(g0)\n# print(e0)\n# fucking hell.\n# why don't you swipe?\n# k=\" input tap 1080 1920\"\n# k=\"input tap 1000 1900\" #- ok.\n# # k= \"input swipe 500 500 700 700\"\n# f=d.shell_command(k)\n# simple.\n# fuck. but can we do the image?\n# will it be large?\n# d.shell_command(\"uiautomator dump\")\n# how to record the events?\n# is it a good idea to create xml dumps along the way?\n# f=d.shell_command(\"cat /sdcard/window_dump.xml\")\n# d.shell_command(\"\")\n# print(\"this is not from the console\")\n# print(f)\n# it is working, but we need the timeout.\n# something, huh?\n# what about other buttons?\n# just fucking tap it!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/socks2.py:98-132"
+    },
+    "1429": {
+        "file_id": 239,
+        "content": "The code appears to be interacting with a device's screen, specifically performing taps and potentially swipes. The author is manually overriding certain actions and considering the use of XML dumps for recording events. There is a mention of dumping information from the console as well. However, the code seems unfinished and lacks proper documentation or clear purpose.",
+        "type": "comment"
+    },
+    "1430": {
+        "file_id": 239,
+        "content": "# finally did I realized the limitation of python, and so many other operating systems.\n# shall we use logcat?\n# i don't even know what the fuck it is talking about.\n# yes, does this mean anything?\n# f=d.get_logcat()\n# d.shell_command(\"\")\n# using local python?\n# numpy or something.\n# record it or not, just follow the schema.\n# visual difference, and always, beware of skimage.\n# f=d.shell_command(\"screencap -p\") # wtf?\n# # f=d.shell_command(\"cat /sdcard/screen.png\")\n# # print(dir(f))\n# # not working well.\n# # very bad.\n# # shit.\n# # no reign.\n# # shit!\n# # print(f[:100])\n# # not working?\n# g=getImage(f)\n# # nothing!\n# print(g.shape)\n# cv2.imshow(\" \",g)\n# cv2.waitKey(0)\n# 1920*1080?\n# it is so fucking fragile.\n# print(f)\n# print(type(f))\n# print(\"logcat\")\n# print(f)\n# not working?\n# this is crazy.\n# not working at all.\n# it doesn't differentiate!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/socks2.py:133-167"
+    },
+    "1431": {
+        "file_id": 239,
+        "content": "This code seems to be trying to capture and display an image on a mobile device using Python. The author is struggling with limitations of the operating system and encountering issues when working with screen capture commands and libraries like numpy, cv2, and skimage. They are also considering using logcat for capturing data but are unsure if it will work properly. The final code attempts to display the captured image using OpenCV but faces challenges due to the fragility of the process.",
+        "type": "comment"
+    },
+    "1432": {
+        "file_id": 240,
+        "content": "/bootstrap/legacy/concentration/brainfuck/randomTapping/theDock.py",
+        "type": "filepath"
+    },
+    "1433": {
+        "file_id": 240,
+        "content": "The code imports libraries, defines a function for image capture, initializes an ADB connection, and attempts to display the captured image using OpenCV, but faces challenges with variable types, OS limitations, and logcat interpretation.",
+        "type": "summary"
+    },
+    "1434": {
+        "file_id": 240,
+        "content": "import pyadb\nimport numpy as np\nimport cv2\nimport random\n# define picture shot every --- moments.\n# crop the image as needed?\n# shot before doing the thing?\n# i do not want to think about these shits.\n# stop that entirely. just get me the xml dump.\ndef getImage(a):\n    s2 = np.frombuffer(a.replace(b'\\r\\n',b'\\n'), np.uint8)\n    # print(s2)\n    # finally!\n    s2 = cv2.imdecode(s2, 1)\n    return s2\nd=pyadb.adb.ADB('/usr/bin/adb')\n# not the same name. will introduce error if written in different scripts.\n# without path?\nd0=d.get_devices()\n# print(\"show\",d0)\n# just consider your raw output from database.\nassert len(d0)==2\ne=d0[1]\n# print(e)\n# k=\" input tap 500 500\"\n# k= \"input swipe 500 500 700 700\"\n# f=d.run_cmd(k)\n# simp\n# fuck. but can we do the image?\n# will it be large?\n# d.shell_command(\"uiautomator dump\")\n# how to record the events?\n# is it a good idea to create xml dumps along the way?\n# f=d.shell_command(\"cat /sdcard/window_dump.xml\")\n# d.shell_command(\"\")\n# print(\"this is not from the console\")\n# print(f)\n# it is working, but we need the timeout.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/theDock.py:1-39"
+    },
+    "1435": {
+        "file_id": 240,
+        "content": "The code is importing necessary libraries, defining a function to get an image, and initializing an ADB connection. It aims to dump XML events from the device but currently doesn't have a timeout set for commands.",
+        "type": "comment"
+    },
+    "1436": {
+        "file_id": 240,
+        "content": "# something, huh?\n# what about other buttons?\n# just fucking tap it!\n# finally did I realized the limitation of python, and so many other operating systems.\n# shall we use logcat?\n# i don't even know what the fuck it is talking about.\n# yes, does this mean anything?\n# f=d.get_logcat()\n# d.shell_command(\"\")\n# using local python?\n# numpy or something.\n# visual difference, and always, beware of skimage.\nf=d.shell_command(\"screencap -p\") # wtf?\n# f=d.shell_command(\"cat /sdcard/screen.png\")\n# print(dir(f))\n# not working well.\n# very bad.\n# shit.\n# no reign.\n# shit!\n# print(f[:100])\n# not working?\ng=getImage(f)\n# nothing!\nprint(g.shape)\ncv2.imshow(\" \",g)\ncv2.waitKey(0)\n# 1920*1080?\n# it is so fucking fragile.\n# print(f)\n# print(type(f))\n# print(\"logcat\")\n# print(f)\n# not working?\n# this is crazy.\n# not working at all.\n# it doesn't differentiate!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/theDock.py:40-76"
+    },
+    "1437": {
+        "file_id": 240,
+        "content": "The code is attempting to capture a screenshot using the command \"screencap -p\" and display it using OpenCV. The author seems to be struggling with different aspects of the code, such as variable types and image processing, and expresses frustration with the limitations of Python and other operating systems. They also mention trying to use logcat but not understanding what it's for or how to interpret its output. Overall, the code is dealing with image capture and display on a mobile device while facing various challenges.",
+        "type": "comment"
+    },
+    "1438": {
+        "file_id": 241,
+        "content": "/bootstrap/legacy/concentration/brainfuck/randomTapping/theSock.py",
+        "type": "filepath"
+    },
+    "1439": {
+        "file_id": 241,
+        "content": "Code generates random input commands, compares window dumps for changes, and retrieves device info. It interacts with shell and explores actions but struggles capturing Android screen images; alternative methods being considered. Code snippet has functionality issues and fails to differentiate conditions.",
+        "type": "summary"
+    },
+    "1440": {
+        "file_id": 241,
+        "content": "# coding: utf-8\nimport pyadb\n# import numpy as np\n# from dbM_2 import \n# import cv2\n# this is fucking python2 script.\n# just can you repeat my input?\nimport random\nimport time\n# you know, that their fucking brain architecture is fried.\n# define picture shot every --- moments.\n# crop the image as needed?\n# shot before doing the thing?\n# i do not want to think about these shits.\n# stop that entirely. just get me the xml dump.\n# do you want to calculate the overall success rate over different acts?\n# gui is just a beginning, but remember, only something that is attacable to human can receive human critic and training.\n# low level language, must be associated with books and resources.\nSCALE=(1080,1920)\ndef getRandomCode(a):\n    x0,y0=a\n    return random.choice(range(x0)),random.choice(range(y0))\n# shit. only for python3.\ndef getTap(a):\n    return \"input tap {} {}\".format(*getRandomCode(a))\ndef getSwipe(a):\n    k=[]\n    for x in range(2):\n        x0,y0=getRandomCode(a)\n        k.append(x0)\n        k.append(y0)\n    return \"input swipe {} {} {} {}\".format(*k)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/theSock.py:1-34"
+    },
+    "1441": {
+        "file_id": 241,
+        "content": "The code is a Python2 script that generates random tap or swipe input commands for an interface. It defines the picture shot interval, uses getRandomCode function to generate random coordinates, and returns the input command as a string format in \"input tap\" or \"input swipe\" with the corresponding coordinates. The code seems to be associated with a low-level language and is related to training an interface that can receive human criticism and training.",
+        "type": "comment"
+    },
+    "1442": {
+        "file_id": 241,
+        "content": "# def getImage(a):\n#     s2 = np.frombuffer(a.replace(b'\\r\\n',b'\\n'), np.uint8)\n#     # print(s2)\n#     # finally!\n#     s2 = cv2.imdecode(s2, 1)\n#     return s2\ndef getDump(d):\n    d.shell_command(\"uiautomator dump\")\n    f=d.shell_command(\"cat /sdcard/window_dump.xml\")\n    return f\n# wtf?\n# your phone triggered the devmode switch, which is a kill switch.\ndef getRandomAct(a,d):\n    p=random.choice([getTap,getSwipe])\n    p0=p(a)\n    d.shell_command(p0)\n    return p0\ndef getLoop(a,d):\n    buffer=getDump(d)\n    while True:\n        e0=getRandomAct(SCALE,d)\n        time.sleep(.5)\n        g0=getDump(d)\n        if buffer!=g0:\n            buffer=g0\n            print(\"different act!\")\n            print(e0)\n            # you can increase the registry, for input and output.\n# do not care about the growth of your fucking breast, cause it is flat and everything is shit.\nd=pyadb.adb.ADB('/usr/bin/adb')\n# not the same name. will introduce error if written in different scripts.\n# without path?\n# we need wireless?\n# using screen command? share output?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/theSock.py:36-71"
+    },
+    "1443": {
+        "file_id": 241,
+        "content": "The code is implementing a function to get an image by decoding it from a buffer, a function to dump a window XML and return its content, a function to perform a random act (either tap or swipe) on the device, and a loop function that compares two window dumps to detect changes. The code uses the pyadb library for ADB operations.",
+        "type": "comment"
+    },
+    "1444": {
+        "file_id": 241,
+        "content": "# you can try it, if you really want to give it a try.\n# want to store in neo4j or something else?\n# this is a remarkable story. just what about human input? will my input counts?\n# can it repeat my acts and therefore reinforce the learning?\n# maybe the time will change. does that count?\n# what about these things?\n# just think about something equivalent to the overall shit.\n# you need something that has overall control.\n# never mind. you can manually override this.\nd0=d.get_devices()\n# print(\"show\",d0)\n# just consider your raw output from database.\nassert len(d0)==2\ne=d0[1]\n# print(e)\n# check if it is the same?\n# i do not know if this works the same for py2.\ng=getDump(d)\nprint(g)\n# getLoop(SCALE,d)\n# print(g0)\n# print(e0)\n# fucking hell.\n# why don't you swipe?\n# k=\" input tap 1080 1920\"\n# k=\"input tap 1000 1900\" #- ok.\n# # k= \"input swipe 500 500 700 700\"\n# f=d.shell_command(k)\n# simple.\n# fuck. but can we do the image?\n# will it be large?\n# d.shell_command(\"uiautomator dump\")\n# how to record the events?\n# is it a good idea to create xml dumps along the way?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/theSock.py:72-105"
+    },
+    "1445": {
+        "file_id": 241,
+        "content": "The code is setting up devices, getting device information, and interacting with the device's shell. It also mentions possible input actions like tapping or swiping, and considers dumping data as XML for recording events.",
+        "type": "comment"
+    },
+    "1446": {
+        "file_id": 241,
+        "content": "# f=d.shell_command(\"cat /sdcard/window_dump.xml\")\n# d.shell_command(\"\")\n# print(\"this is not from the console\")\n# print(f)\n# it is working, but we need the timeout.\n# something, huh?\n# what about other buttons?\n# just fucking tap it!\n# finally did I realized the limitation of python, and so many other operating systems.\n# shall we use logcat?\n# i don't even know what the fuck it is talking about.\n# yes, does this mean anything?\n# f=d.get_logcat()\n# d.shell_command(\"\")\n# using local python?\n# numpy or something.\n# record it or not, just follow the schema.\n# visual difference, and always, beware of skimage.\n# f=d.shell_command(\"screencap -p\") # wtf?\n# # f=d.shell_command(\"cat /sdcard/screen.png\")\n# # print(dir(f))\n# # not working well.\n# # very bad.\n# # shit.\n# # no reign.\n# # shit!\n# # print(f[:100])\n# # not working?\n# g=getImage(f)\n# # nothing!\n# print(g.shape)\n# cv2.imshow(\" \",g)\n# cv2.waitKey(0)\n# 1920*1080?\n# it is so fucking fragile.\n# print(f)\n# print(type(f))\n# print(\"logcat\")\n# print(f)\n# not working?\n# this is crazy.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/theSock.py:106-146"
+    },
+    "1447": {
+        "file_id": 241,
+        "content": "The code is attempting to retrieve a screen capture image from an Android device using shell commands and manipulate it in Python. However, the author faces various issues with the process and mentions considering alternative methods such as logcat or numpy for further processing.",
+        "type": "comment"
+    },
+    "1448": {
+        "file_id": 241,
+        "content": "# not working at all.\n# it doesn't differentiate!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/randomTapping/theSock.py:147-148"
+    },
+    "1449": {
+        "file_id": 241,
+        "content": "The code snippet appears to have issues as it is not functioning properly and fails to differentiate between certain conditions.",
+        "type": "comment"
+    },
+    "1450": {
+        "file_id": 242,
+        "content": "/bootstrap/legacy/concentration/brainfuck/read_shit.py",
+        "type": "filepath"
+    },
+    "1451": {
+        "file_id": 242,
+        "content": "This code opens a file in binary mode and reads its content, then prints the hexadecimal value and type of each byte. It does this for every byte in the file, ultimately converting them into integers. The function `getBin` is used to read files and returns the entire file's contents as a string.",
+        "type": "summary"
+    },
+    "1452": {
+        "file_id": 242,
+        "content": "# we're gonna open some file?\n# reversing time is important in intelligence.\ndef getBin(a):\n    with open(a,\"rb\") as f:\n        return f.read()# k=getBin(\"Monitor.db\")\n# it is so easy, you suppose?\n# must be done in a universial way.\nk=getBin(\"Monitor.db\")\nfor x in k:\n    print(hex(x),type(x))\n    # we have integers now! cannot believe it!",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/read_shit.py:1-11"
+    },
+    "1453": {
+        "file_id": 242,
+        "content": "This code opens a file in binary mode and reads its content, then prints the hexadecimal value and type of each byte. It does this for every byte in the file, ultimately converting them into integers. The function `getBin` is used to read files and returns the entire file's contents as a string.",
+        "type": "comment"
+    },
+    "1454": {
+        "file_id": 243,
+        "content": "/bootstrap/legacy/concentration/brainfuck/releas.py",
+        "type": "filepath"
+    },
+    "1455": {
+        "file_id": 243,
+        "content": "This code creates a SQLite database table and allows data insertion, with error handling for potential exceptions during execution. The purpose of the table remains unclear.",
+        "type": "summary"
+    },
+    "1456": {
+        "file_id": 243,
+        "content": "import sqlite3\n# how do you read a book? how do you execute a command?\n# def init():\nimport random, time\n# try debugging?\n# why so many shits?\n# not reading correct programs.\nimport traceback\n# what does it mean really?\n# i cannot explain.\ndef dum():\n    r = random.random()*0.1\n    time.sleep(r)\n# nothing. believe it or not, there's only one thing over there. it is always right.\ndef createMain():\n    conn = sqlite3.connect('Monitor.db', timeout=45)\n    conn.text_factory=str\n    c = conn.cursor()\n    sql = \"CREATE TABLE IF NOT EXISTS projects ( \\\n    ts float NOT NULL, \\\n    op_type text NOT NULL, \\\n    op_output text NOT NULL \\\n);\"\n    c.execute(sql)\n    conn.commit()\n    # this thing must be done after every execute.\n    conn.close()\n    # now bad guys are cops now?\n    # so your chance to die is right there?\n# i do not care about internal logic. all i need is to fuck it up.\ndef ins(_table, _t):\n    conn = sqlite3.connect('Monitor.db', timeout=45)\n    conn.text_factory=str\n    c = conn.cursor()\n    # sql = \"SELECT name FROM \"+_table+\";\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/releas.py:1-35"
+    },
+    "1457": {
+        "file_id": 243,
+        "content": "The code appears to be working with a SQLite database named \"Monitor.db\". It creates a table named \"projects\" if it doesn't already exist, and allows insertion of data into the table. The function \"dum\" introduces a delay before each operation, while \"createMain\" establishes a connection with the database and executes SQL commands. The purpose and overall functionality remain unclear, however.",
+        "type": "comment"
+    },
+    "1458": {
+        "file_id": 243,
+        "content": "    # at most two.\n    # still not fast enough.\n    def sql(t, x, y, z): return c.execute(\"INSERT INTO \" + t +\n                                          \" (ts,op_type,op_output) VALUES(?,?,?);\", (x, y, z))\n    # f = []\n    # hell is the formatter.\n    # for row in c.execute(sql):\n    #     f.append(row)\n    for x, y, z in _t:\n        # print(x, y, z)\n        # z=str(z)\n        if x is not None and y is not None and z is not None:\n            # patience = 3\n            patience = 5\n            while patience > 0:\n                try:\n                    sql(_table, x, y, z)\n                    conn.commit()\n                    print(\"INSERTED!\", y, z)\n                    break\n                except:\n                    e = traceback.format_exc()\n                    print(e)\n                    # mainly because database is locked. but might have other reasons.\n                    print(\"FAILED! CHANCE: {}\".format(patience), y, z)\n                    patience -= 1\n                    dum()\n            if patience == 0:",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/releas.py:36-63"
+    },
+    "1459": {
+        "file_id": 243,
+        "content": "This code snippet defines a function `sql` and contains a loop that attempts to insert values into a database. The function uses a parameterized SQL query and handles potential exceptions during the process, retrying up to a specified number of times if the database is locked or encounters other issues. The `_table`, `x`, `y`, and `z` variables are used for the table name and insert values.",
+        "type": "comment"
+    },
+    "1460": {
+        "file_id": 243,
+        "content": "                print(\"SERIOUS PROBLEM ENCOUNTERED\", y, z)\n        else:\n            print(\"GOT EMPTY FOR\", y, z)\n        # codec problem.\n        # # this thing must be done after every execute.\n        # # while True:\n        # try:\n        #     sql(_table, x, y, z)\n        #     # break\n        # except:\n        #     # just do this??\n        #     e= traceback.format_exc()\n        #     print(e)\n        #     # raise Exception(\"NOT AGAIN!\")\n        #         # break\n    # return f\n    conn.commit()\n    conn.close()\n# def checkTable()\n# create a graph instead?\n# they will never face the problem.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/releas.py:64-84"
+    },
+    "1461": {
+        "file_id": 243,
+        "content": "This code appears to handle database operations and includes error handling for potential connection issues. It prints a serious problem message if encountered, otherwise prints \"GOT EMPTY FOR\". The code attempts to execute SQL statements but may encounter exceptions which are caught and handled. Finally, it commits changes, closes the connection, and defines a function called checkTable().",
+        "type": "comment"
+    },
+    "1462": {
+        "file_id": 244,
+        "content": "/bootstrap/legacy/concentration/brainfuck/repeating.py",
+        "type": "filepath"
+    },
+    "1463": {
+        "file_id": 244,
+        "content": "This code analyzes data using sets, lists and dictionaries. It defines functions for handling data such as 'al', 'ak', 'akII', 'am' and 'ajam'. The 'ajam' function checks a condition and returns True or False. The product of x and y is checked in the function to determine if it is greater than or equal to 'b'.",
+        "type": "summary"
+    },
+    "1464": {
+        "file_id": 244,
+        "content": "def al(a):\n    return set(a)\ndef ak(a):\n    # print(a)\n    return [a[x]-a[x+1] for x in range(len(a)-1)]\n# all kind of things?\ndef akII(a, s=2):\n    assert type(s) == int and s >= 0\n    if s > 0:\n        return akII(ak(a), s-1)\n    else:\n        return a\n# double derivative.\n# when is the time that you do not need to learn shit?\ndef am(a):\n    i = al(a)\n    return {x: akII([y for y in range(len(a)) if a[y] == x], 2) for x in i}\ndef ajam(a, b, c, d, e):\n    j = am(a)\n    # test_val: continuously getting zero for longer than b:\n    # print(j)\n    # you should sort it.\n    s = list(sorted([(x, sum(j[x])) for x in j.keys()], key=lambda x: x[1]))\n    s = list(map(lambda x: x[0], s))\n    for x in s:\n        xj = j[x]\n        xy = 0\n        xd = 0\n        # buf=xj[0]\n        for y in xj:\n            if y != 0:\n                if xy < b*c:\n                    xy = 0\n                    if xy > b*e:\n                        xd += xy**c\n            else:\n                xy += 1\n            if xy >= b or xd >= d:\n                return True",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/repeating.py:1-46"
+    },
+    "1465": {
+        "file_id": 244,
+        "content": "The code defines functions for handling and analyzing data. It uses sets, lists, and dictionaries to store and manipulate data. The 'al' function returns a set of values from input data, while the 'ak' function calculates the difference between consecutive elements in a list. The 'akII' function recursively applies the 'ak' function on a list. The 'am' function computes the second derivative of data and stores it in a dictionary. The 'ajam' function analyzes data based on specific conditions, returning True if certain criteria are met.",
+        "type": "comment"
+    },
+    "1466": {
+        "file_id": 244,
+        "content": "            # buf = y\n        if xy >= b:\n            return True\n    return False",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/repeating.py:47-50"
+    },
+    "1467": {
+        "file_id": 244,
+        "content": "This code segment checks if the product of x and y is greater than or equal to a given value, 'b'. If it is, then it returns True; otherwise, it returns False. The variable \"buf\" is set equal to 'y', which may be used in later calculations.",
+        "type": "comment"
+    },
+    "1468": {
+        "file_id": 245,
+        "content": "/bootstrap/legacy/concentration/brainfuck/sample",
+        "type": "filepath"
+    },
+    "1469": {
+        "file_id": 245,
+        "content": "This code is a simple string \"hello\" written in the Brainfuck programming language. It does not perform any computations or interact with the operating system. This code could be used as a starting point for more complex Brainfuck programs, or to output a greeting message.",
+        "type": "summary"
+    },
+    "1470": {
+        "file_id": 245,
+        "content": "hello",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/sample:1-1"
+    },
+    "1471": {
+        "file_id": 245,
+        "content": "This code is a simple string \"hello\" written in the Brainfuck programming language. It does not perform any computations or interact with the operating system. This code could be used as a starting point for more complex Brainfuck programs, or to output a greeting message.",
+        "type": "comment"
+    },
+    "1472": {
+        "file_id": 246,
+        "content": "/bootstrap/legacy/concentration/brainfuck/simpConnect.py",
+        "type": "filepath"
+    },
+    "1473": {
+        "file_id": 246,
+        "content": "The code seems to contain unrelated thoughts and comments, possibly reflecting the developer's mindset. The main function appears to be listing files in a specific directory (\"/media/root/Seagate1000\"). It expresses discomfort with some tasks and uses various analogies but doesn't provide clear functionality or purpose.",
+        "type": "summary"
+    },
+    "1474": {
+        "file_id": 246,
+        "content": "# combination is not the answer. think about some active connections. some bad things must be released before doing greater harm.\n# how does these dataset emerge?\n# MAYBE THE ANSWER IS OBVIOUS. GOOGLE, OPENAI, BAIDU, AND SO ON.\n# THEIR BUSINESS MODEL IS CORRECT.\n# ask no why so many computational tasks.\n# remember, remodel, repeat.\n# faster reponse.\n# make it visible?\n# classify those things?\n# the target is to see it again?\nimport os\no = os.listdir(\"/media/root/Seagate1000\")\n# so you are good at this?\n# human tends to be proud of common sense. i'm not. i'm here to be humble.\n# this one makes me feel sick.\n# now i have to read and pick up my pdf?\n# you do some random translation inbetween?\n# yes, and that's how i fuck this world.\n# print(o)\n# you wanna to express something?\n# there's some tool to get you fixed.\n# you die like about 1000 times.\n# we cannot let this shit doing fine.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/simpConnect.py:1-23"
+    },
+    "1475": {
+        "file_id": 246,
+        "content": "The code seems to contain unrelated thoughts and comments, possibly reflecting the developer's mindset. The main function appears to be listing files in a specific directory (\"/media/root/Seagate1000\"). It expresses discomfort with some tasks and uses various analogies but doesn't provide clear functionality or purpose.",
+        "type": "comment"
+    },
+    "1476": {
+        "file_id": 247,
+        "content": "/bootstrap/legacy/concentration/brainfuck/sub2.py",
+        "type": "filepath"
+    },
+    "1477": {
+        "file_id": 247,
+        "content": "This code defines a decorator named \"timeout\" that allows to set a timeout for a function, raising an exception if the execution takes more than specified seconds. It achieves this by creating a separate thread where the function is executed and joining it after the timeout, raising an exception if it's still running.",
+        "type": "summary"
+    },
+    "1478": {
+        "file_id": 247,
+        "content": "from threading import Thread\nimport functools\ndef timeout(timeout):\n    def deco(func):\n        @functools.wraps(func)\n        def wrapper(*args, **kwargs):\n            res = [Exception('function [%s] timeout [%s seconds] exceeded!' % (\n                func.__name__, timeout))]\n            def newFunc():\n                try:\n                    res[0] = func(*args, **kwargs)\n                except Exception as e:\n                  # this is funny.\n                    res[0] = e\n            t = Thread(target=newFunc)\n            t.daemon = True\n            try:\n                t.start()\n                t.join(timeout)\n            except Exception as je:\n                print('error starting thread')\n                raise je\n            ret = res[0]\n            if isinstance(ret, BaseException):\n                raise ret\n            return ret\n        return wrapper\n    return deco",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/sub2.py:1-31"
+    },
+    "1479": {
+        "file_id": 247,
+        "content": "This code defines a decorator named \"timeout\" that allows to set a timeout for a function, raising an exception if the execution takes more than specified seconds. It achieves this by creating a separate thread where the function is executed and joining it after the timeout, raising an exception if it's still running.",
+        "type": "comment"
+    },
+    "1480": {
+        "file_id": 248,
+        "content": "/bootstrap/legacy/concentration/brainfuck/testFrame.py",
+        "type": "filepath"
+    },
+    "1481": {
+        "file_id": 248,
+        "content": "Code is trying to execute a command using subprocess in Python, with a timeout of 0.001 seconds. It then uses try-except block to handle any potential errors and prints the size of the output received from the process. The code seems to be stuck and may have issues on different operating systems or with different signals (SIGKILL, SIGTERM).",
+        "type": "summary"
+    },
+    "1482": {
+        "file_id": 248,
+        "content": "# computer gets stuck.\nimport subprocess\nimport sys\n# from sub2 import timeout\nx = \"timeout 0.001 yes\"\n# what the fuck?\np = subprocess.Popen\np = p(x+\"\\n\", shell=True, stdout=subprocess.PIPE,\n      stderr=subprocess.PIPE, stdin=subprocess.PIPE)\ng = None\ntry:\n    # g = p.communicate(input=b'\\n\\n\\n', timeout=1)\n    g= p.communicate(input=b'\\n\\n\\n')\nexcept:\n    print(\"error\")\nprint(sys.getsizeof(g[0]), type(g))\n# this is not right?\n# but nothing here?\n# heck man, this gets stuck in no time.\n# it is stuck.\n# great.\n# many difference here? I mean windows and more?\n# SIGKILL, SIGTERM????\n# I want to send those shits.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/testFrame.py:1-24"
+    },
+    "1483": {
+        "file_id": 248,
+        "content": "Code is trying to execute a command using subprocess in Python, with a timeout of 0.001 seconds. It then uses try-except block to handle any potential errors and prints the size of the output received from the process. The code seems to be stuck and may have issues on different operating systems or with different signals (SIGKILL, SIGTERM).",
+        "type": "comment"
+    },
+    "1484": {
+        "file_id": 249,
+        "content": "/bootstrap/legacy/concentration/brainfuck/testFreak.py",
+        "type": "filepath"
+    },
+    "1485": {
+        "file_id": 249,
+        "content": "The code imports functions from \"unicode_tensor\" module, assigns a string to variable \"s\", converts the string into an array of Unicode values using chrTens function, receives data with recv function and stores it in variable \"d\", then prints the Unicode values array \"c\" and the length of the array along with the received data \"d\".",
+        "type": "summary"
+    },
+    "1486": {
+        "file_id": 249,
+        "content": "from unicode_tensor import chrTens, recv\ns=\"give no fuck\"\nc=chrTens(s)\nd=recv(c)\nprint(c)\nprint(d,c.shape[0])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/testFreak.py:1-7"
+    },
+    "1487": {
+        "file_id": 249,
+        "content": "The code imports functions from \"unicode_tensor\" module, assigns a string to variable \"s\", converts the string into an array of Unicode values using chrTens function, receives data with recv function and stores it in variable \"d\", then prints the Unicode values array \"c\" and the length of the array along with the received data \"d\".",
+        "type": "comment"
+    },
+    "1488": {
+        "file_id": 250,
+        "content": "/bootstrap/legacy/concentration/brainfuck/theMonkey/README",
+        "type": "filepath"
+    },
+    "1489": {
+        "file_id": 250,
+        "content": "The code discusses installing an operating system with minimal console support on a device, possibly a Raspberry Pi. The author mentions considering Tesseract or SSH usage, starting the machine without GUI for network control, and testing TinyCore as the OS. They also mention a password issue that resets after reboot and plan to switch to Manjaro OS instead of TinyCore. Additionally, they encounter issues with OCR (optical character recognition) software, which may cause long-term frustration. The IP address mentioned could be the device's network address but is subject to change. Lastly, the author wonders how to send Ctrl keystrokes and cannot use the screen command without complicating matters.",
+        "type": "summary"
+    },
+    "1490": {
+        "file_id": 250,
+        "content": "adb blowed.\nuse virtualbox bindings.\nwe've installed a thing with only minimal support of console.\ndon't know how this working out.\ndo we need use of tesseract? or some ssh.\nmaybe no need for shit.\nstart the machine without gui, and we get control over network.\nlike our pi stuff.\nthe thing seems to be strong. tinycore.\nPASSWD: tinycore_root\nPWD_ROOT: root\nwhat the fuck.\npassword going void after reboot.\njust how about another os, manjaro instead of fucking hard-cored tinycore?\nalso, what the fuck is going on with your ocr shit?\nget used to it. it is going to be cronic, long-lasting pain in the ass.\n192.168.43.52 (may change, and i donno shit about it)\nhow to send ctrl keystrokes?\ncannot use screen command otherwise it will be more interesting.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/README:1-28"
+    },
+    "1491": {
+        "file_id": 250,
+        "content": "The code discusses installing an operating system with minimal console support on a device, possibly a Raspberry Pi. The author mentions considering Tesseract or SSH usage, starting the machine without GUI for network control, and testing TinyCore as the OS. They also mention a password issue that resets after reboot and plan to switch to Manjaro OS instead of TinyCore. Additionally, they encounter issues with OCR (optical character recognition) software, which may cause long-term frustration. The IP address mentioned could be the device's network address but is subject to change. Lastly, the author wonders how to send Ctrl keystrokes and cannot use the screen command without complicating matters.",
+        "type": "comment"
+    },
+    "1492": {
+        "file_id": 251,
+        "content": "/bootstrap/legacy/concentration/brainfuck/theMonkey/blower.py",
+        "type": "filepath"
+    },
+    "1493": {
+        "file_id": 251,
+        "content": "The code is trying to interact with a VirtualBox machine named \"TinyPlus\" using the Python virtualbox library. It launches a console session and attempts to send keyboard input but is facing issues in receiving output. The code also mentions trying to find other machines, unlocking the machine, and considering alternative methods like SSH or installation on TinyCore.",
+        "type": "summary"
+    },
+    "1494": {
+        "file_id": 251,
+        "content": "# import vboxapi\n# you are fascinated with the ability to do fuck over computer.\nimport virtualbox\nimport time\n# how to get a running console?\nvbox = virtualbox.VirtualBox()\nsession=virtualbox.Session()\nmachine=vbox.find_machine(\"TinyPlus\")\nprogress=machine.launch_vm_process(session,\"gui\",\"\")\n# not working.\n# progress=machine.launch_vm_process(session,\"console\",\"\")\nprogress.wait_for_completion()\n# how to pass it around?\ntime.sleep(5)\n# not receiving shit.\nsession.console.keyboard.put_keys(\"Hello, world!\")\n# how to get output?\n# session.unlock_machine()\n# we do this process over and over again.\n# progress=machine.launch_vm_process(session,\"gui\",\"\")\n# fast like shit.\n# without session?\n# ['TinyPlus']\n# print([m.name for m in vbox.machines])\n# it is off.\n# print\n# what the heck? why not using ssh?\n# we have getting used to it. but how to install on tinycore?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/blower.py:1-28"
+    },
+    "1495": {
+        "file_id": 251,
+        "content": "The code is trying to interact with a VirtualBox machine named \"TinyPlus\" using the Python virtualbox library. It launches a console session and attempts to send keyboard input but is facing issues in receiving output. The code also mentions trying to find other machines, unlocking the machine, and considering alternative methods like SSH or installation on TinyCore.",
+        "type": "comment"
+    },
+    "1496": {
+        "file_id": 252,
+        "content": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py",
+        "type": "filepath"
+    },
+    "1497": {
+        "file_id": 252,
+        "content": "This code provides window conversion and pattern matching functions using regular expressions, enabling specific segment extraction. It checks input types and ranges, iterates through converted values to count occurrences within specified lengths, and returns true if count is within given limits.",
+        "type": "summary"
+    },
+    "1498": {
+        "file_id": 252,
+        "content": "import re\ndef windowConv(a, window_size):\n    return [a[x: x + window_size] for x in range(len(a) - window_size)]\ndef windowEndMark(a, window_size):\n    return [a[x * window_size: (x + 1) * window_size] for x in range(len(a) // window_size)]\ndef windowEndMarkEx(a, window_size):\n    return [a[x * window_size: (x + 1) * window_size] for x in range(len(a) // window_size)]+[a[len(a)-len(a)%window_size:len(a)]]\ndef phraseStartMark(a, start_phrase):\n    return re.findall(r'{}.+'.format(re.escape(start_phrase)), a)\ndef phraseEndMark(a, end_phrase):\n    return re.findall(r'.+{}'.format(re.escape(end_phrase)), a)\ndef phraseSegment(a, start_phrase, end_phrase):\n    return re.findall(r'{}.+{}'.format(re.escape(start_phrase), re.escape(end_phrase)), a)\ndef setStartMark(a, start_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(start_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    start_phrase = \"\".join(set(start_phrase))\n    return re.findall(r'['+r'{}'.format(re.escape(start_phrase))+r']{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:1-33"
+    },
+    "1499": {
+        "file_id": 252,
+        "content": "This code includes various functions for window conversion and pattern matching using regular expressions. The functions are windowConv, windowEndMark, windowEndMarkEx, phraseStartMark, phraseEndMark, phraseSegment, and setStartMark. These functions can be used to extract specific segments or patterns from a given string based on window sizes, start and end phrases, and optional sigma value for randomness.",
+        "type": "comment"
+    }
+}

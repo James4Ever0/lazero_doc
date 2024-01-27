@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads a file, removes newline characters, and sends each line as a message with a one-second delay between messages.",
+    "details": [
+        {
+            "comment": "This code reads a file, removes newline characters, and sends each line as a message with a one-second delay between messages.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/indicator.py\":0-14",
+            "content": "from aloofclient import sender\nfrom cruncher import blackwhite\ndef returnAList(a):\n    with open(a,\"r\") as f:\n        s=f.read()\n        s=blackwhite(s,\"\\r\\n\",False)\n        return s\nr = returnAList(\"COMSEED_aarch64\")\n# print()\nimport time\nfor x in r:\n    sender(x)\n    time.sleep(1)\n        # print(d)"
+        }
+    ]
+}

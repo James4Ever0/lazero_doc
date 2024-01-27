@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports functions, creates a copy of a list, filters out false values, updates the copy and stores it as failsafe for \"rockstar\".",
+    "details": [
+        {
+            "comment": "The code imports functions, creates a copy of a list, filters out false values, updates the copy and stores it as failsafe for \"rockstar\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/new_toys/lida_x.py\":0-13",
+            "content": "from been_well import main\nfrom getFromDill import returnXList\nfrom storeADill import storeXList\nimport copy\nif __name__ == \"__main__\":\n    r = returnXList(\"rockstar\")\n    # r = returnXList(\"rock\")\n    f = copy.copy(r)\n    r0 = [x for x in r.keys() if not r[x]]\n    for y in r0:\n        main(y)\n        f.update({y: True})\n        storeXList(f, \"rockstar\")\n# need for failsafe."
+        }
+    ]
+}

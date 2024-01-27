@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script terminates all active Podman containers.",
+    "details": [
+        {
+            "comment": "This Bash script terminates all active Podman containers.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/killall.sh\":0-1",
+            "content": "#!/bin/bash\npodman kill -a"
+        }
+    ]
+}

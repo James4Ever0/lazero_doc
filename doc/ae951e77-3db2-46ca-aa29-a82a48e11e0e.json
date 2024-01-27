@@ -1,0 +1,10 @@
+{
+    "summary": "This Python script generates a unique UUID, prints the initialization message along with it, and then reads from stdin, printing each input line appended with the same UUID.",
+    "details": [
+        {
+            "comment": "This Python script generates a unique UUID, prints the initialization message along with it, and then reads from stdin, printing each input line appended with the same UUID.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/process_out.py\":0-5",
+            "content": "import sys\nimport uuid\nuid = str(uuid.uuid4())\nprint(\"init\",uid)\nfor x in sys.stdin:\n    print([x],uid)"
+        }
+    ]
+}

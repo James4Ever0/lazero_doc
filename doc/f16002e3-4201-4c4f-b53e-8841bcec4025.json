@@ -1,0 +1,10 @@
+{
+    "summary": "The code expresses frustration about the complexity of a project and highlights concerns over security, viability, and portability. The author suggests that custom kernels might help with certain restrictions and compares understanding different languages to exploring a country.",
+    "details": [
+        {
+            "comment": "The code expresses frustration about the complexity of a project and highlights concerns over security, viability, and portability. The author suggests that custom kernels might help with certain restrictions and compares understanding different languages to exploring a country.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/README\":0-14",
+            "content": "this will be the main construction plot. all fucking gameplay is simply over.\ncf is a toy project. i swear. it does not help one percent on my comprehension.\nbut, hey, at least we've come to the lego plot. here we go.\nthere should be some restrictions here.\nsuppose there are some offline things, such as unable to communicate to the kernel, unable to execute some code. just saying. custom kernel might help.\nsafety always comes after viability. if you cannot compute, then do not talk about security. there's no such thing.\nso does the portability. there's no such thing when you cannot understand the cryptic GUI and documentation. it is all fucked up.\nwhy you speak German when you can explore the entire Germany with only English?"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Code initializes x as an integer, checks if it is of type int using isinstance(), and prints the result. Then it assigns string \"hair\" to z and checks if it is of type int, which it is not. Finally, it runs a for loop that checks each element in range(100) if it is of type int and prints only integers (which are all the elements from 0 to 99). The comment \"i think you are shit\" has no relevance to the code functionality and can be disregarded.",
+    "details": [
+        {
+            "comment": "Code initializes x as an integer, checks if it is of type int using isinstance(), and prints the result. Then it assigns string \"hair\" to z and checks if it is of type int, which it is not. Finally, it runs a for loop that checks each element in range(100) if it is of type int and prints only integers (which are all the elements from 0 to 99). The comment \"i think you are shit\" has no relevance to the code functionality and can be disregarded.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_package/isint.py\":0-7",
+            "content": "x=int(2)\ny=isinstance(x,type(x))\nprint(y)\nz=\"hair\"\nprint(isinstance(z,type(x)))\nfor x in range(100):#  i think you are shit.\n    if isinstance(x,int):\n        print(x)"
+        }
+    ]
+}

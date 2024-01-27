@@ -1,0 +1,10 @@
+{
+    "summary": "This code sets up a Docker container with specific resource limitations and runs the Alpine image with a shell session. The --read-only flag ensures the container's filesystem is read-only, which can improve performance if using XFS file system.",
+    "details": [
+        {
+            "comment": "This code sets up a Docker container with specific resource limitations and runs the Alpine image with a shell session. The --read-only flag ensures the container's filesystem is read-only, which can improve performance if using XFS file system.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_1/dockerFriendly.sh\":0-3",
+            "content": "#!/bin/bash\ndocker run --read-only --rm --kernel-memory=\"8m\" --memory-swap=\"16m\" --cpus=\"0.05\" --memory=\"16m\" --memory-reservation=\"8m\" -it alpine sh\n# --read-only\n# if it is XFS it is way better than now."
+        }
+    ]
+}

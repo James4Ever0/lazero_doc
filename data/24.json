@@ -1,0 +1,541 @@
+{
+    "2400": {
+        "file_id": 371,
+        "content": "    # escape sequences, so we use those.\n    local _current_exe_head\n    _current_exe_head=$(head -c 5 /proc/self/exe )\n    if [ \"$_current_exe_head\" = \"$(printf '\\177ELF\\001')\" ]; then\n        echo 32\n    elif [ \"$_current_exe_head\" = \"$(printf '\\177ELF\\002')\" ]; then\n        echo 64\n    else\n        err \"unknown platform bitness\"\n    fi\n}\nget_endianness() {\n    local cputype=$1\n    local suffix_eb=$2\n    local suffix_el=$3\n    # detect endianness without od/hexdump, like get_bitness() does.\n    need_cmd head\n    need_cmd tail\n    local _current_exe_endianness\n    _current_exe_endianness=\"$(head -c 6 /proc/self/exe | tail -c 1)\"\n    if [ \"$_current_exe_endianness\" = \"$(printf '\\001')\" ]; then\n        echo \"${cputype}${suffix_el}\"\n    elif [ \"$_current_exe_endianness\" = \"$(printf '\\002')\" ]; then\n        echo \"${cputype}${suffix_eb}\"\n    else\n        err \"unknown platform endianness\"\n    fi\n}\nget_architecture() {\n    local _ostype _cputype _bitness _arch _clibtype\n    _ostype=\"$(uname -s)\"\n    _cputype=\"$(uname -m)\"\n    _clibtype=\"gnu\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:141-177"
+    },
+    "2401": {
+        "file_id": 371,
+        "content": "This code retrieves the platform bitness and endianness, as well as the operating system type and CPU architecture. It uses functions `get_bitness()`, `get_endianness()`, and `get_architecture()` to accomplish this by checking the file headers of the current executable and utilizing commands like `head`, `tail`, and `uname`. The retrieved information is then used for compatibility purposes.",
+        "type": "comment"
+    },
+    "2402": {
+        "file_id": 371,
+        "content": "    if [ \"$_ostype\" = Linux ]; then\n        if [ \"$(uname -o)\" = Android ]; then\n            _ostype=Android\n        fi\n        if ldd --version 2>&1 | grep -q 'musl'; then\n            _clibtype=\"musl\"\n        fi\n    fi\n    if [ \"$_ostype\" = Darwin ] && [ \"$_cputype\" = i386 ]; then\n        # Darwin `uname -m` lies\n        if sysctl hw.optional.x86_64 | grep -q ': 1'; then\n            _cputype=x86_64\n        fi\n    fi\n    case \"$_ostype\" in\n        Android)\n            _ostype=linux-android\n            ;;\n        Linux)\n            _ostype=unknown-linux-$_clibtype\n            _bitness=$(get_bitness)\n            ;;\n        FreeBSD)\n            _ostype=unknown-freebsd\n            ;;\n        NetBSD)\n            _ostype=unknown-netbsd\n            ;;\n        DragonFly)\n            _ostype=unknown-dragonfly\n            ;;\n        Darwin)\n            _ostype=apple-darwin\n            ;;\n        MINGW* | MSYS* | CYGWIN*)\n            _ostype=pc-windows-gnu\n            ;;\n        *)\n            err \"unrecognized OS type: $_ostype\"\n            ;;",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:179-228"
+    },
+    "2403": {
+        "file_id": 371,
+        "content": "Code checks the operating system type and CPU architecture to determine the appropriate target system for rustup installation. It sets _ostype and _cputype variables accordingly, handling special cases like Android's uname -o and Darwin's hw.optional.x86_64. If the OS type is unrecognized, it displays an error message.",
+        "type": "comment"
+    },
+    "2404": {
+        "file_id": 371,
+        "content": "    esac\n    case \"$_cputype\" in\n        i386 | i486 | i686 | i786 | x86)\n            _cputype=i686\n            ;;\n        xscale | arm)\n            _cputype=arm\n            if [ \"$_ostype\" = \"linux-android\" ]; then\n                _ostype=linux-androideabi\n            fi\n            ;;\n        armv6l)\n            _cputype=arm\n            if [ \"$_ostype\" = \"linux-android\" ]; then\n                _ostype=linux-androideabi\n            else\n                _ostype=\"${_ostype}eabihf\"\n            fi\n            ;;\n        armv7l | armv8l)\n            _cputype=armv7\n            if [ \"$_ostype\" = \"linux-android\" ]; then\n                _ostype=linux-androideabi\n            else\n                _ostype=\"${_ostype}eabihf\"\n            fi\n            ;;\n        aarch64)\n            _cputype=aarch64\n            ;;\n        x86_64 | x86-64 | x64 | amd64)\n            _cputype=x86_64\n            ;;\n        mips)\n            _cputype=$(get_endianness mips '' el)\n            ;;\n        mips64)\n            if [ \"$_bitness\" -eq 64 ]; then\n                # only n64 ABI is supported for now",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:230-277"
+    },
+    "2405": {
+        "file_id": 371,
+        "content": "This code is part of a script used in a Rust development environment. It determines the CPU architecture, OS type and updates them accordingly based on conditions for different architectures like x86, arm, aarch64, etc., and OS types like Linux-Android. The _cputype and _ostype variables are updated based on these conditions.",
+        "type": "comment"
+    },
+    "2406": {
+        "file_id": 371,
+        "content": "                _ostype=\"${_ostype}abi64\"\n                _cputype=$(get_endianness mips64 '' el)\n            fi\n            ;;\n        ppc)\n            _cputype=powerpc\n            ;;\n        ppc64)\n            _cputype=powerpc64\n            ;;\n        ppc64le)\n            _cputype=powerpc64le\n            ;;\n        s390x)\n            _cputype=s390x\n            ;;\n        riscv64)\n            _cputype=riscv64gc\n            ;;\n        *)\n            err \"unknown CPU type: $_cputype\"\n    esac\n    # Detect 64-bit linux with 32-bit userland\n    if [ \"${_ostype}\" = unknown-linux-gnu ] && [ \"${_bitness}\" -eq 32 ]; then\n        case $_cputype in\n            x86_64)\n                _cputype=i686\n                ;;\n            mips64)\n                _cputype=$(get_endianness mips '' el)\n                ;;\n            powerpc64)\n                _cputype=powerpc\n                ;;\n            aarch64)\n                _cputype=armv7\n                if [ \"$_ostype\" = \"linux-android\" ]; then\n                    _ostype=linux-androideabi",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:278-321"
+    },
+    "2407": {
+        "file_id": 371,
+        "content": "Detecting CPU type and modifying _cputype based on the system architecture. If unknown-linux-gnu with 32-bit userland, adjusts _cputype accordingly for x86_64, mips64, powerpc64, aarch64 systems.",
+        "type": "comment"
+    },
+    "2408": {
+        "file_id": 371,
+        "content": "                else\n                    _ostype=\"${_ostype}eabihf\"\n                fi\n                ;;\n            riscv64gc)\n                err \"riscv64 with 32-bit userland unsupported\"\n                ;;\n        esac\n    fi\n    # Detect armv7 but without the CPU features Rust needs in that build,\n    # and fall back to arm.\n    # See https://github.com/rust-lang/rustup.rs/issues/587.\n    if [ \"$_ostype\" = \"unknown-linux-gnueabihf\" ] && [ \"$_cputype\" = armv7 ]; then\n        if ensure grep '^Features' /proc/cpuinfo | grep -q -v neon; then\n            # At least one processor does not have NEON.\n            _cputype=arm\n        fi\n    fi\n    _arch=\"${_cputype}-${_ostype}\"\n    RETVAL=\"$_arch\"\n}\nsay() {\n    printf 'rustup: %s\\n' \"$1\"\n}\nerr() {\n    say \"$1\" >&2\n    exit 1\n}\nneed_cmd() {\n    if ! check_cmd \"$1\"; then\n        err \"need '$1' (command not found)\"\n    fi\n}\ncheck_cmd() {\n    command -v \"$1\" > /dev/null 2>&1\n}\nassert_nz() {\n    if [ -z \"$1\" ]; then err \"assert_nz $2\"; fi\n}\n# Run a command that should never fail. If the command fails execution",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:322-370"
+    },
+    "2409": {
+        "file_id": 371,
+        "content": "This code block is detecting the OS type, CPU type, and architecture to set appropriate values for variable \"_arch\". It also includes functions like \"say\", \"err\", \"need_cmd\", \"check_cmd\" and \"assert_nz\" for logging, error handling, checking command availability. The code block handles various scenarios such as armv7 with or without NEON support and unsupported riscv64 with 32-bit userland.",
+        "type": "comment"
+    },
+    "2410": {
+        "file_id": 371,
+        "content": "# will immediately terminate with an error showing the failing\n# command.\nensure() {\n    if ! \"$@\"; then err \"command failed: $*\"; fi\n}\n# This is just for indicating that commands' results are being\n# intentionally ignored. Usually, because it's being executed\n# as part of error handling.\nignore() {\n    \"$@\"\n}\n# This wraps curl or wget. Try curl first, if not installed,\n# use wget instead.\ndownloader() {\n    local _dld\n    local _ciphersuites\n    if check_cmd curl; then\n        _dld=curl\n    elif check_cmd wget; then\n        _dld=wget\n    else\n        _dld='curl or wget' # to be used in error message of need_cmd\n    fi\n    if [ \"$1\" = --check ]; then\n        need_cmd \"$_dld\"\n    elif [ \"$_dld\" = curl ]; then\n        get_ciphersuites_for_curl\n        _ciphersuites=\"$RETVAL\"\n        if [ -n \"$_ciphersuites\" ]; then\n            curl --proto '=https' --tlsv1.2 --ciphers \"$_ciphersuites\" --silent --show-error --fail --location \"$1\" --output \"$2\"\n        else\n            echo \"Warning: Not enforcing strong cipher suites for TLS, this is potentially less secure\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:371-405"
+    },
+    "2411": {
+        "file_id": 371,
+        "content": "This code snippet contains three functions: `ensure`, `ignore`, and `downloader`. The `ensure` function checks if a command succeeds, otherwise it outputs an error message. The `ignore` function executes a command without considering its result. Lastly, the `downloader` function selects between `curl` or `wget` based on availability, with optional cipher suite enforcement and supports check/download operations.",
+        "type": "comment"
+    },
+    "2412": {
+        "file_id": 371,
+        "content": "            if ! check_help_for \"$3\" curl --proto --tlsv1.2; then\n                echo \"Warning: Not enforcing TLS v1.2, this is potentially less secure\"\n                curl --silent --show-error --fail --location \"$1\" --output \"$2\"\n            else\n                curl --proto '=https' --tlsv1.2 --silent --show-error --fail --location \"$1\" --output \"$2\"\n            fi\n        fi\n    elif [ \"$_dld\" = wget ]; then\n        get_ciphersuites_for_wget\n        _ciphersuites=\"$RETVAL\"\n        if [ -n \"$_ciphersuites\" ]; then\n            wget --https-only --secure-protocol=TLSv1_2 --ciphers \"$_ciphersuites\" \"$1\" -O \"$2\"\n        else\n            echo \"Warning: Not enforcing strong cipher suites for TLS, this is potentially less secure\"\n            if ! check_help_for \"$3\" wget --https-only --secure-protocol; then\n                echo \"Warning: Not enforcing TLS v1.2, this is potentially less secure\"\n                wget \"$1\" -O \"$2\"\n            else\n                wget --https-only --secure-protocol=TLSv1_2 \"$1\" -O \"$2\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:406-424"
+    },
+    "2413": {
+        "file_id": 371,
+        "content": "This code checks if TLS v1.2 is enforced and ensures strong cipher suites are used for secure downloading using either curl or wget commands. If not, it warns about potential security issues.",
+        "type": "comment"
+    },
+    "2414": {
+        "file_id": 371,
+        "content": "            fi\n        fi\n    else\n        err \"Unknown downloader\"   # should not reach here\n    fi\n}\ncheck_help_for() {\n    local _arch\n    local _cmd\n    local _arg\n    _arch=\"$1\"\n    shift\n    _cmd=\"$1\"\n    shift\n    case \"$_arch\" in\n        # If we're running on OS-X, older than 10.13, then we always\n        # fail to find these options to force fallback\n        *darwin*)\n        if check_cmd sw_vers; then\n            if [ \"$(sw_vers -productVersion | cut -d. -f2)\" -lt 13 ]; then\n                # Older than 10.13\n                echo \"Warning: Detected OS X platform older than 10.13\"\n                return 1\n            fi\n        fi\n        ;;\n    esac\n    for _arg in \"$@\"; do\n        if ! \"$_cmd\" --help | grep -q -- \"$_arg\"; then\n            return 1\n        fi\n    done\n    true # not strictly needed\n}\n# Return cipher suite string specified by user, otherwise return strong TLS 1.2-1.3 cipher suites\n# if support by local tools is detected. Detection currently supports these curl backends: \n# GnuTLS and OpenSSL (possibly also LibreSSL and BoringSSL). Return value can be empty.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:425-468"
+    },
+    "2415": {
+        "file_id": 371,
+        "content": "This code checks if a specific argument exists in the help output of a command. If not found, it returns an error. The code also determines the cipher suite based on user input or strong TLS 1.2-1.3 suites if detected. It supports GnuTLS and OpenSSL (possibly LibreSSL and BoringSSL) for curl backends.",
+        "type": "comment"
+    },
+    "2416": {
+        "file_id": 371,
+        "content": "get_ciphersuites_for_curl() {\n    if [ -n \"${RUSTUP_TLS_CIPHERSUITES-}\" ]; then\n        # user specified custom cipher suites, assume they know what they're doing\n        RETVAL=\"$RUSTUP_TLS_CIPHERSUITES\"\n        return\n    fi\n    local _openssl_syntax=\"no\"\n    local _gnutls_syntax=\"no\"\n    local _backend_supported=\"yes\"\n    if curl -V | grep -q ' OpenSSL/'; then\n        _openssl_syntax=\"yes\"\n    elif curl -V | grep -iq ' LibreSSL/'; then\n        _openssl_syntax=\"yes\"\n    elif curl -V | grep -iq ' BoringSSL/'; then\n        _openssl_syntax=\"yes\"\n    elif curl -V | grep -iq ' GnuTLS/'; then\n        _gnutls_syntax=\"yes\"\n    else\n        _backend_supported=\"no\"\n    fi\n    local _args_supported=\"no\"\n    if [ \"$_backend_supported\" = \"yes\" ]; then\n        # \"unspecified\" is for arch, allows for possibility old OS using macports, homebrew, etc.\n        if check_help_for \"notspecified\" \"curl\" \"--tlsv1.2\" \"--ciphers\" \"--proto\"; then\n            _args_supported=\"yes\"\n        fi\n    fi\n    local _cs=\"\"\n    if [ \"$_args_supported\" = \"yes\" ]; then",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:469-500"
+    },
+    "2417": {
+        "file_id": 371,
+        "content": "Function `get_ciphersuites_for_curl` retrieves TLS cipher suites for curl. If a custom suite is specified, it's assumed the user knows what they're doing. It checks curl's backend (OpenSSL, GnuTLS) and if supported arguments are available (\"unspecified\" for old OS).",
+        "type": "comment"
+    },
+    "2418": {
+        "file_id": 371,
+        "content": "        if [ \"$_openssl_syntax\" = \"yes\" ]; then\n            _cs=$(get_strong_ciphersuites_for \"openssl\")\n        elif [ \"$_gnutls_syntax\" = \"yes\" ]; then\n            _cs=$(get_strong_ciphersuites_for \"gnutls\")\n        fi\n    fi\n    RETVAL=\"$_cs\"\n}\n# Return cipher suite string specified by user, otherwise return strong TLS 1.2-1.3 cipher suites\n# if support by local tools is detected. Detection currently supports these wget backends: \n# GnuTLS and OpenSSL (possibly also LibreSSL and BoringSSL). Return value can be empty.\nget_ciphersuites_for_wget() {\n    if [ -n \"${RUSTUP_TLS_CIPHERSUITES-}\" ]; then\n        # user specified custom cipher suites, assume they know what they're doing\n        RETVAL=\"$RUSTUP_TLS_CIPHERSUITES\"\n        return\n    fi\n    local _cs=\"\"\n    if wget -V | grep -q '\\-DHAVE_LIBSSL'; then\n        # \"unspecified\" is for arch, allows for possibility old OS using macports, homebrew, etc.\n        if check_help_for \"notspecified\" \"wget\" \"TLSv1_2\" \"--ciphers\" \"--https-only\" \"--secure-protocol\"; then",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:501-524"
+    },
+    "2419": {
+        "file_id": 371,
+        "content": "This function checks if the user has specified custom cipher suites. If not, it detects support for GnuTLS and OpenSSL backends in wget and returns strong TLS 1.2-1.3 cipher suites if found. The detected cipher suites are stored in the _cs variable and returned as RETVAL.",
+        "type": "comment"
+    },
+    "2420": {
+        "file_id": 371,
+        "content": "            _cs=$(get_strong_ciphersuites_for \"openssl\")\n        fi\n    elif wget -V | grep -q '\\-DHAVE_LIBGNUTLS'; then\n        # \"unspecified\" is for arch, allows for possibility old OS using macports, homebrew, etc.\n        if check_help_for \"notspecified\" \"wget\" \"TLSv1_2\" \"--ciphers\" \"--https-only\" \"--secure-protocol\"; then\n            _cs=$(get_strong_ciphersuites_for \"gnutls\")\n        fi\n    fi\n    RETVAL=\"$_cs\"\n}\n# Return strong TLS 1.2-1.3 cipher suites in OpenSSL or GnuTLS syntax. TLS 1.2 \n# excludes non-ECDHE and non-AEAD cipher suites. DHE is excluded due to bad \n# DH params often found on servers (see RFC 7919). Sequence matches or is\n# similar to Firefox 68 ESR with weak cipher suites disabled via about:config.  \n# $1 must be openssl or gnutls.\nget_strong_ciphersuites_for() {\n    if [ \"$1\" = \"openssl\" ]; then\n        # OpenSSL is forgiving of unknown values, no problems with TLS 1.3 values on versions that don't support it yet.\n        echo \"TLS_AES_128_GCM_SHA256:TLS_CHACHA20_POLY1305_SHA2",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:525-545"
+    },
+    "2421": {
+        "file_id": 371,
+        "content": "This code checks the version of Wget and selects strong cipher suites (TLSv1_2) with ECDHE, AEAD, and excluding DHE due to weak parameters. It retrieves cipher suites in OpenSSL or GnuTLS syntax based on the input parameter, ensuring compatibility with Firefox 68 ESR settings for secure communication.",
+        "type": "comment"
+    },
+    "2422": {
+        "file_id": 371,
+        "content": "56:TLS_AES_256_GCM_SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384\"\n    elif [ \"$1\" = \"gnutls\" ]; then\n        # GnuTLS isn't forgiving of unknown values, so this may require a GnuTLS version that supports TLS 1.3 even if wget doesn't.\n        # Begin with SECURE128 (and higher) then remove/add to build cipher suites. Produces same 9 cipher suites as OpenSSL but in slightly different order.\n        echo \"SECURE128:-VERS-SSL3.0:-VERS-TLS1.0:-VERS-TLS1.1:-VERS-DTLS-ALL:-CIPHER-ALL:-MAC-ALL:-KX-ALL:+AEAD:+ECDHE-ECDSA:+ECDHE-RSA:+AES-128-GCM:+CHACHA20-POLY1305:+AES-256-GCM\"\n    fi \n}\nmain \"$@\" || exit 1",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:545-553"
+    },
+    "2423": {
+        "file_id": 371,
+        "content": "This code checks the argument and if it is \"gnutls\", it outputs a string of cipher suites. GnuTLS does not support unknown values, so this produces a list that can be used for secure connections with GnuTLS, ensuring compatibility with TLS 1.3. The cipher suites are similar to OpenSSL but in slightly different order.",
+        "type": "comment"
+    },
+    "2424": {
+        "file_id": 372,
+        "content": "/bootstrap/legacy/container_1/webXFS.py",
+        "type": "filepath"
+    },
+    "2425": {
+        "file_id": 372,
+        "content": "This code creates a Twisted ProcessProtocol for inter-process communication, establishing connections, writing data, and handling process status. It spawns processes using reactor.spawnProcess to execute commands with threading support.",
+        "type": "summary"
+    },
+    "2426": {
+        "file_id": 372,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import sys\n# import multiprocessing\nimport threading\n# password is a must here. not kidding.\nclass MyPP(protocol.ProcessProtocol):\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        print(data)\n    def errReceived(self, data):\n        print(\"errReceived!\", data)\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['sudo','./dockerXFS.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/webXFS.py:1-39"
+    },
+    "2427": {
+        "file_id": 372,
+        "content": "This code sets up a Twisted ProcessProtocol with a custom class MyPP. It establishes a connection, writes data after a delay, and handles process exit status and received output/error data. The main function spawns a new process using reactor.spawnProcess, passing in the command to be executed ('screen -x' or 'sudo ./dockerXFS.sh'). The code also includes threading support for running the reactor.",
+        "type": "comment"
+    },
+    "2428": {
+        "file_id": 372,
+        "content": "    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 5\n    pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik > 0:\n        pp.write(b\"ls\\n\")\n        print(\"[HELLO WORLD]\")\n        time.sleep(1)\n        ik-=1\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/webXFS.py:40-71"
+    },
+    "2429": {
+        "file_id": 372,
+        "content": "Code snippet seems to create a daemon thread, write to a process's stdin, and execute commands for a certain duration. After execution, it exits the program. The code might be related to inter-process communication or executing commands in a separate process. However, the code lacks proper structure and comments making it difficult to understand the overall purpose or functionality of the script.",
+        "type": "comment"
+    },
+    "2430": {
+        "file_id": 373,
+        "content": "/bootstrap/legacy/main_pack/main_1/atspi_wrap.py",
+        "type": "filepath"
+    },
+    "2431": {
+        "file_id": 373,
+        "content": "This code seems to be importing the pyatspi library and its modules, then printing their names using pydoc3. It also mentions that the codebase is large, and suggests halting and writing C# code to dump the root node.",
+        "type": "summary"
+    },
+    "2432": {
+        "file_id": 373,
+        "content": "import pyatspi\nimport os\nos.system(\"pydoc3 pyatspi &>/proc/self/fd/0\")\nfor x in dir(pyatspi):\n    print(x)\n    os.system(\"pydoc3 pyatspi.\"+x+\" &>/proc/self/fd/0\")\n    # so the codebase is so goddamn huge and no-one can do the fucking writing anymore.\n    # let's just halt.\n    # and write C# code to dump the root node?",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/atspi_wrap.py:1-9"
+    },
+    "2433": {
+        "file_id": 373,
+        "content": "This code seems to be importing the pyatspi library and its modules, then printing their names using pydoc3. It also mentions that the codebase is large, and suggests halting and writing C# code to dump the root node.",
+        "type": "comment"
+    },
+    "2434": {
+        "file_id": 374,
+        "content": "/bootstrap/legacy/main_pack/main_1/escaper.c",
+        "type": "filepath"
+    },
+    "2435": {
+        "file_id": 374,
+        "content": "This C code defines a function to escape certain characters from user input and outputs the escaped text. It takes in a string of up to 500 characters, checks each character for inclusion in the TERM_WORD_CHARS list (escaped characters), and replaces them with a backslash (\\) before printing the string. The code demonstrates a straightforward approach to escape special characters, possibly for use in text editing or command-line interfaces.",
+        "type": "summary"
+    },
+    "2436": {
+        "file_id": 374,
+        "content": "#define TERM_WORD_CHARS \"-./?%&#_=+@~()\"\n#include <stdio.h>\n#include <string.h>\n// maybe you just want some chars.\n// does not include extra shits.\n// blanks are omitted.\n// get all things from stdin\n// just saying.\nint cmp0(char a, char b[])\n{\n    for (int i = 0; i < strlen(b); i++)\n    {\n        if (a == b[i])\n        {\n            return 1;\n        }\n    }\n    return 0;\n}\nint cmp(char a[])\n{\n    for (int i = 0; i < strlen(a); i++)\n    {\n        if (cmp0(a[i], TERM_WORD_CHARS))\n        {\n            return 1;\n        }\n    }\n    return 0;\n}\nint main()\n{\n    char a[500];\n    fgets(a, 500, stdin);\n    // printf(\"%s\", a);\n    for (int i = 0; i < strlen(a); i++)\n    {\n        if (cmp0(a[i], TERM_WORD_CHARS))\n        {\n            printf(\"\\\\\");\n        }\n        printf(\"%c\", a[i]);\n    }\n}\n// does this works?\n// damn I will try shit out. all fucking shit in one.\n// it is your learning, whatever it takes.\n// shit. man i do not know what to say.\n// just keep working. whatever shit it is going to be.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/escaper.c:1-49"
+    },
+    "2437": {
+        "file_id": 374,
+        "content": "This C code defines a function to escape certain characters from user input and outputs the escaped text. It takes in a string of up to 500 characters, checks each character for inclusion in the TERM_WORD_CHARS list (escaped characters), and replaces them with a backslash (\\) before printing the string. The code demonstrates a straightforward approach to escape special characters, possibly for use in text editing or command-line interfaces.",
+        "type": "comment"
+    },
+    "2438": {
+        "file_id": 375,
+        "content": "/bootstrap/legacy/main_pack/main_1/getMem.py",
+        "type": "filepath"
+    },
+    "2439": {
+        "file_id": 375,
+        "content": "This code is importing the \"dogtail\" library and collecting a list of variables related to it. Then, it generates pydoc3 documentation for each variable and appends it to the \"sample_diag.log\" file. The comments suggest that the script may be tracing text or configuring text in some way, potentially from Firefox-ESR to Gnome-Shell.",
+        "type": "summary"
+    },
+    "2440": {
+        "file_id": 375,
+        "content": "from dogtail import *\nimport os\ng=globals()\nf=[x for x in g]\ng=list(map(lambda x:\"dogtail.\"+x,f))\nfor x in g:\n    os.system(\"pydoc3 \"+x+\" >> sample_diag.log\")\n    os.system(\"echo '___________spliter___________' >> sample_diag.log\")\n    # cd /proc/self.\n    # it does not make sense. there is no fucking text over the place.\n    # do you want to trace along the place?\n    # do you want to change the way we configure the text?\n    # whatever you mean, it is always the same shit.\n    # you want to get the text. yes I know it exactly.\n    # you want it. always.\n    # do it for whatever reason?\n    # have not done for that shit. you have not get the core of it.\n    # here we go from firefox-esr to gnome-shell\n    # whatever it takes.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/getMem.py:1-19"
+    },
+    "2441": {
+        "file_id": 375,
+        "content": "This code is importing the \"dogtail\" library and collecting a list of variables related to it. Then, it generates pydoc3 documentation for each variable and appends it to the \"sample_diag.log\" file. The comments suggest that the script may be tracing text or configuring text in some way, potentially from Firefox-ESR to Gnome-Shell.",
+        "type": "comment"
+    },
+    "2442": {
+        "file_id": 376,
+        "content": "/bootstrap/legacy/main_pack/main_1/lazero.c",
+        "type": "filepath"
+    },
+    "2443": {
+        "file_id": 376,
+        "content": "This code is a C program that takes command-line arguments, prints them out one by one, and then terminates without executing any of them. The author seems to be experimenting with redirection and search tools but has not provided much information on the intended functionality or purpose of the code.",
+        "type": "summary"
+    },
+    "2444": {
+        "file_id": 376,
+        "content": "#include <stdio.h>\nint main(int argc, char *argv[]){\n        for (int i = 0; i < argc; i++)\n    {\n        printf(\"%s\", argv[i]);\n\t// no fucking execution please?\n//    system(argv[i]);\n    // i just want to fuck.\n        printf(\"\\n\");\n    }\n}\n// so you redirect all the shit into that file?\n// xargs allow only registered items in path.\n// you think you have read things?\n// just how does it work?\n// far not enough.\n// what is it anyway?\n// use your INSTINCT.\n// do we have source code of any search tool?",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/lazero.c:1-19"
+    },
+    "2445": {
+        "file_id": 376,
+        "content": "This code is a C program that takes command-line arguments, prints them out one by one, and then terminates without executing any of them. The author seems to be experimenting with redirection and search tools but has not provided much information on the intended functionality or purpose of the code.",
+        "type": "comment"
+    },
+    "2446": {
+        "file_id": 377,
+        "content": "/bootstrap/legacy/main_pack/main_1/locator.sh",
+        "type": "filepath"
+    },
+    "2447": {
+        "file_id": 377,
+        "content": "The code is a Bash script that creates a file named \"locate.db\" by using the \"locate\" command to search for files and directories within the root directory (\"/\"). The resulting data structure is immediately accessible for quick reference, making it a basic yet efficient way to locate files and directories on the system.",
+        "type": "summary"
+    },
+    "2448": {
+        "file_id": 377,
+        "content": "#!/bin/bash\nlocate / > locate.db\n# this is the basic shit.\n# you can just open up the file right now. it is your data structure.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/locator.sh:1-4"
+    },
+    "2449": {
+        "file_id": 377,
+        "content": "The code is a Bash script that creates a file named \"locate.db\" by using the \"locate\" command to search for files and directories within the root directory (\"/\"). The resulting data structure is immediately accessible for quick reference, making it a basic yet efficient way to locate files and directories on the system.",
+        "type": "comment"
+    },
+    "2450": {
+        "file_id": 378,
+        "content": "/bootstrap/legacy/main_pack/main_1/main.c",
+        "type": "filepath"
+    },
+    "2451": {
+        "file_id": 378,
+        "content": "The author is struggling with using various languages' headers, offline work, and learning multiple platforms while facing issues with tcc and mupdf. They seek guidance on basic tools for a Windows environment and desire to create a shell script.",
+        "type": "summary"
+    },
+    "2452": {
+        "file_id": 378,
+        "content": "#include <stdio.h>\n#include <dirent.h>\n// #include <Python.h>\n// you never know what kind of shit you will suffer when going offline.\n// shit. how does it fucking work????\n// so what the heck is terminal emulator?\n// I started typing with TERMUX. I started learning via cmd.exe, and I start to evolve by cracking terminals.\n// #include <sqlite3.h>\n// memoir.\n// just know it. how would python work it out?\n// you can do a checklist. it does not matter.\n// this is shit.\n// fucking freak.\n// it is all about creating trouble but not fixing it at all.\n// that's the fun of it!\n// whatever it takes. it is all the same shit.\n// if you want the output then fucking do it!\n// always the same. no matter it is online or offline.\n// it's shit.\n// don't you need some function selector? all you can think of is the fucking hierachy.\n// it is a matter of killing.\n// you are all dead. fucking idiots.\n// you are nuts.\n// not for shit. all for killing.\n// can check the android phone automator.\n// there is no way I can code without reading others code.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/main.c:1-26"
+    },
+    "2453": {
+        "file_id": 378,
+        "content": "The code includes various headers from different programming languages and libraries, likely for a multilingual project or compatibility purposes. The author seems to be struggling with the code, possibly due to limited offline access and frustration while learning multiple platforms. The comments express frustration and the need to read other people's code for understanding their own.",
+        "type": "comment"
+    },
+    "2454": {
+        "file_id": 378,
+        "content": "// especially python code.\n// there isn't really ness for me to write fucking diary. cause this fucking comment line is my fucking diary.\n// this is called the fucking sparse diary category.\n// this is hell. do you know the way to get it??\n// fucking offline. I've got nothing to read, nothing to think, and nothing to work with.\n// there's simply no system can do this fucking job.\n// not about creating classes, or automata.\n// not working at all. you think you can solve this shit?\n// gcc -I/usr/include/atk-1.0 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/harfbuzz -I/usr/include/pango-1.0  -I/usr/include/glib-2.0/include -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/gtk-2.0  -I/usr/include/cairo -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/vte-0.0 term.c -o term\nint main(int argc, char *argv[])\n{\n    printf(\"this is the main lazero program.\\n\");\n    system(\"rm /tmp/lazero\");\n    system(\"mkfifo /tmp/lazero\");\n    DIR *d;\n    struct dirent *dir;\n    // build a buzzler which can fix all kind of problems?",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/main.c:27-43"
+    },
+    "2455": {
+        "file_id": 378,
+        "content": "The code is creating a temporary file and FIFO in /tmp/lazero, then builds a buzzler to potentially fix various problems. The author seems frustrated and seeks a solution for offline work.",
+        "type": "comment"
+    },
+    "2456": {
+        "file_id": 378,
+        "content": "    // in order to run something like links, we shall consider using tmux.\n    // for firefox, we should use xserver.\n    d = opendir(\".\");\n    if (d)\n    {\n        while ((dir = readdir(d)) != NULL)\n        {// i guess there are many things hidden in here.\n            printf(\"%s\\n\", dir->d_name);\n        }\n        closedir(d);\n    }\n    for (int i = 0; i < argc; i++)\n    {\n        printf(\"%s\", argv[i]);\n    }\n    // so you put it all into one fucking place.\n    FILE *fp;\n    fp = fopen(\"links.log\", \"r\");\n    // char buffer[50];\n    char ch;\n    char a;\n    while((ch = fgetc(fp)) != EOF){\n      printf(\"%c\", ch);\n      int st=(a==ch);\n      printf(\"%d\",st);\n      a=ch;\n      // just hope you can understand a bit???\n      // not too bad, think you can recover from this?\n      // that python reference is terrible. i cannot get shit from it.\n    //   printf(\"%s\",\" \");\n    // you know it works like something?\n      }\n    // fread(buffer, strlen(buffer) + 1, 1, fp);\n    //    fputs(\"This is testing for fputs...\\n\", fp);\n    fclose(fp);",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/main.c:44-78"
+    },
+    "2457": {
+        "file_id": 378,
+        "content": "The code snippet is using tmux for running links and xserver for firefox, listing files in the current directory, printing their names, reading a file named \"links.log\", iterating through it character by character, and finally closing the file. The Python reference seems unhelpful, and the code's logic might be challenging to understand.",
+        "type": "comment"
+    },
+    "2458": {
+        "file_id": 378,
+        "content": "    // so python is offline here. do you need some aid?\n    // this is not creative at all. i do not think this is some sort of processing.\n    return 0;\n    // whatever it takes.\n    // all the same now. all fucking functionality.\n    // just how to locate the shell???\n    // will you explain?\n    // direct memory access?\n    // they are all bullshits. they do not understand shit.\n    // useless pricks.\n    // do you fucking realize this shit?\n    // do we really need this???\n    // what the fuck is tcc??? and why the fuck I have to enable my fucking wifi to download this freaking complier???\n    // but it is avaliable via multiple platforms. including the fucking shitty windows.\n    // what's the deal? you come to the fucking library to do some ritual shit about yourself????\n    // what the fuck is this????? what is the real deal?\n    // nothing matters till you hold to the end of the fucking day.\n    // your fucking computer will do nothing till you do something.\n    // and that's the rule.\n    // mupdf? some custom functions? custom parsers???",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/main.c:79-98"
+    },
+    "2459": {
+        "file_id": 378,
+        "content": "The code appears to contain frustration and dissatisfaction towards a possibly difficult or confusing programming task. The programmer seems to be working offline without Python, questioning the necessity of certain tools and functions, and expressing displeasure with the process. They are likely dealing with finding a shell and may be using direct memory access. The code also mentions tcc, a C compiler, and mupdf, possibly indicating their work involves these. Overall, the code reflects the programmer's struggle and dissatisfaction while working on this task.",
+        "type": "comment"
+    },
+    "2460": {
+        "file_id": 378,
+        "content": "    // well, what is the most basic shit????\n    // do you consider doing this above some source code?\n    // like chrome or something? I cannot write shit at this place!\n    // curl will also be great. wget, nc....\n    // some basic GNU tools?\n    // i'm gonna fix you.\n    // you are broken.\n    // printf(\"%d\",argc);\n    // mkfifo???? rm lazero???\n    // system(\"pwd\");\n    // ashmem. /dev/shm. what about windows???\n    // just how to write a shell???\n    // // how do you do the stuff?\n    // for(int i=0;i<argc;i++){printf(\" %s \",argv[i]);};\n    return 0;\n}\n// and here is the fun part.\n// we just want to make sure it is useful.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/main.c:99-116"
+    },
+    "2461": {
+        "file_id": 378,
+        "content": "This code snippet seems to contain comments expressing frustration and confusion about the best way to determine the most basic tools or functionality, possibly for a Windows environment. The author mentions some tools like curl, wget, nc, and GNU tools but is unsure if they can be written in this location. They mention the use of printf and for loops, and there's a desire to create a shell script. The code seems to be discussing various options but lacks clear implementation.",
+        "type": "comment"
+    },
+    "2462": {
+        "file_id": 379,
+        "content": "/bootstrap/legacy/main_pack/main_1/main.sh",
+        "type": "filepath"
+    },
+    "2463": {
+        "file_id": 379,
+        "content": "This code generates a sample C program, compiles it, and then deletes the temporary file.",
+        "type": "summary"
+    },
+    "2464": {
+        "file_id": 379,
+        "content": "#!/bin/bash\n# whatever you think. this computer must be rearranged.\n# all bullshit.\necho -e '#include <stdio.h>\\nint main(){printf(\"this is the main lazero program.\\\\\\n\");}'>/dev/shm/sample.c && command c /dev/shm/sample.c && rm /dev/shm/sample.c",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/main.sh:1-4"
+    },
+    "2465": {
+        "file_id": 379,
+        "content": "This code generates a sample C program, compiles it, and then deletes the temporary file.",
+        "type": "comment"
+    },
+    "2466": {
+        "file_id": 380,
+        "content": "/bootstrap/legacy/main_pack/main_1/pycall.py",
+        "type": "filepath"
+    },
+    "2467": {
+        "file_id": 380,
+        "content": "The code is using the subprocess module to execute a command, specifically \"echo hello world\", and then redirecting the output to a file named \"sample.log\". The code also contains comments discussing various aspects of the process, including redirection, online access, building a splitter, and temporary file locations.",
+        "type": "summary"
+    },
+    "2468": {
+        "file_id": 380,
+        "content": "from subprocess import call\nimport subprocess\n# this is redirection. but where is stdin?\n# making it online is required, but how do you make it online without basic knowledge?\n# asking for knowledge is not wise.\n# i can pass it to a file object and then just redirect it to the result!\n# how to build a spliter in this thing?\n# i mean, i can read through the whole shit, but i cannot let you fuck it up.\n# with open(\"sample.log\",\"w+\") as f:\ns=[\"echo\", \"hello\", \"world\"]\n# s=[\"yes\"]\nc=call(s,stdout=subprocess.PIPE,stderr=subprocess.PIPE,cwd=\"/\")\n# e=c.communicate()\n# print(c)\n#  not working.\n    # well, knowledge is a good thing.\n    # I mean, can we do it at some temp location???\n    # what does this shit believe? icons? strings? RA9?\n    # it does not matter. it is the process.\n    # arithmatic. reverse the sequence?",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pycall.py:1-20"
+    },
+    "2469": {
+        "file_id": 380,
+        "content": "The code is using the subprocess module to execute a command, specifically \"echo hello world\", and then redirecting the output to a file named \"sample.log\". The code also contains comments discussing various aspects of the process, including redirection, online access, building a splitter, and temporary file locations.",
+        "type": "comment"
+    },
+    "2470": {
+        "file_id": 381,
+        "content": "/bootstrap/legacy/main_pack/main_1/pywrite.py",
+        "type": "filepath"
+    },
+    "2471": {
+        "file_id": 381,
+        "content": "This code defines two functions: `checkBuffer()` and `updateBuffer()`. It creates a temporary file in \"/dev/shm/\" directory, deletes if it exceeds size limit, then writes binary data into it. The code discusses assumptions and potential issues with writing files across systems.",
+        "type": "summary"
+    },
+    "2472": {
+        "file_id": 381,
+        "content": "import os\ndef checkBuffer(a,b):\n    # assert type(a)==str and \"/\" not in a and len(a)>0\n    assert b>0 and type(b)==int\n    k=0\n    with open(\"/dev/shm/\"+a,\"r+\") as f:\n        k=len(f.read())\n    if k>b:\n        os.remove(\"/dev/shm/\"+a)\n# there is no way you can get shit.\n# all days talking about shit, and where the fuck is the fucking end?\ndef updateBuffer(a,b,c=10000):\n    # first check the size, then decide the shit.\n    # well,well, you really want to insert some binary data into it???\n    # keeping it small.\n    assert type(a)==str and \"/\" not in a and len(a)>0\n    assert type(b)==str\n    checkBuffer(a,c)\n    # always the decoding problem.\n    # sure sir, there is operate system, but there is no system on how to write OS.\n    # but we shall not fix it. at least not on our own.\n    # if type(b)==str:\n    #     with open(\"/dev/shm/\"+a,\"ab+\") as f:\n    #         f.write(b.encode())\n    # else:\n    # can we just debug the tensorflow framework?\n    # you really want to know how to get the size of the file?\n    # or you really want to understand everything?",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pywrite.py:1-28"
+    },
+    "2473": {
+        "file_id": 381,
+        "content": "The code defines two functions: `checkBuffer()` and `updateBuffer()`. `checkBuffer()` checks the size of a file located at \"/dev/shm/{a}\" and deletes it if its size exceeds the input value `b`. It also asserts that `a` is a non-empty string and `b` is an integer greater than zero. The `updateBuffer()` function checks the file size using `checkBuffer()`, then attempts to write binary data into the file, ensuring that the file path does not contain \"/\", and `a` and `b` are both strings. The code contains comments discussing various assumptions and potential issues with writing files and working with different systems.",
+        "type": "comment"
+    },
+    "2474": {
+        "file_id": 381,
+        "content": "    # bringing you to the fucking library is not for fun. it is a way to realize how fucking limited resources you've got.\n    with open(\"/dev/shm/\"+a,\"a+\") as f:\n        f.write(b[-c-1:])\ndef initBuffer(a):\n    assert type(a)==str and \"/\" not in a and len(a)>0\n    f=\"/dev/shm/\"+a\n    if os.path.exists(f):\n        os.remove(f)\n    os.system(\"touch \"+f)\n    # whatever you might want to do.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pywrite.py:29-38"
+    },
+    "2475": {
+        "file_id": 381,
+        "content": "This code creates a temporary file in \"/dev/shm/\" directory with the given name 'a'. If the file already exists, it is removed and then recreated using \"touch\" command. The content of 'b' from index (c+1) to the end is written into this file. This process aims to demonstrate resource limitations through temporary file operations.",
+        "type": "comment"
+    },
+    "2476": {
+        "file_id": 382,
+        "content": "/bootstrap/legacy/main_pack/main_1/pyxshell.py",
+        "type": "filepath"
+    },
+    "2477": {
+        "file_id": 382,
+        "content": "A Python3 terminal wrapper with GraphTerm, import management, and process execution in separate threads. Handles SSH connections, adjusts arguments, uses non-standard programs, and includes error handling using termios and tty modules for input/output management.",
+        "type": "summary"
+    },
+    "2478": {
+        "file_id": 382,
+        "content": "#!/usr/bin/env python3\n# so, what is the deal? how to get real input???\n# there is no fucking need to talk about learning.\n# learning does not exist. which means it is impossible to seek for it.\n# no such thing called learning\n# nor the so-called learning program.\n\"\"\" pyxshell.py: pseudo-tty shell wrapper for terminals\nDerived from the public-domain Ajaxterm code, v0.11 (2008-11-13).\n  https://github.com/antonylesuisse/qweb\n  http://antony.lesuisse.org/software/ajaxterm/\nand susequently modified for GraphTerm as lineterm.py, v0.57.0 (2014-07-18)\n  https://github.com/mitotic/graphterm\nThe contents of this file remain in the public-domain.\nTo test, run:\n  ./pyxshell.py\nType exactly two Control-D's to exit the shell\n\"\"\"\n# I AM THE KING OF SHIT!\nfrom __future__ import absolute_import, print_function, with_statement\n# fucking dicks.\n# Python3-friendly imports\n# you've got shit in your ass!!!!!\ntry:\n    import queue\nexcept ImportError:\n    import Queue as queue\n# i have the most irregular dataset in the fucking world!",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:1-34"
+    },
+    "2479": {
+        "file_id": 382,
+        "content": "This code is a Python3-friendly wrapper for a terminal shell, derived from the public-domain Ajaxterm code and modified for GraphTerm. It includes necessary imports and a note about how to exit the shell using two Control-D's.",
+        "type": "comment"
+    },
+    "2480": {
+        "file_id": 382,
+        "content": "import sys\nif sys.version_info[0] < 3:\n    byte_code = ord\nelse:\n    byte_code = lambda x: x\n    unicode = str\n# i mean, compliers are great, picture readers are great, and so are great about many manipulation softwares.\n# but what's not great is that they can only do limited stuff. also unrelated.\n# so you'd expressed your fucking idea. that's good. that's primarily dope shit.\nimport errno\nimport fcntl\nimport logging\nimport os\nimport pty\nimport re\nimport select\nimport shlex\nimport signal\nimport struct\nimport subprocess\nimport traceback\nimport threading\nimport time\nimport termios\nimport tty\n# can you even say this as some turing complete shit?\nimport random\ntry:\n    random = random.SystemRandom()\nexcept NotImplementedError:\n    import random\nfrom pywrite import updateBuffer, initBuffer\nENV_PREFIX = \"PYXTERM_\"       # Environment variable prefix\nNO_COPY_ENV = set([])         # Do not copy these environment variables\nEXEC_DIR = \"\"                 # If specified, this subdirectory will be prepended to the PATH\nFile_dir = os.path.dirname(__file__)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:35-72"
+    },
+    "2481": {
+        "file_id": 382,
+        "content": "The code checks the Python version and defines a function for converting bytes to integers. It then imports various modules and sets up a random number generator, defining constants and variables like ENV_PREFIX and NO_COPY_ENV. The code also specifies the execution directory and file directory.",
+        "type": "comment"
+    },
+    "2482": {
+        "file_id": 382,
+        "content": "Exec_path = os.path.join(File_dir, EXEC_DIR) if EXEC_DIR else \"\"\nDEFAULT_TERM_TYPE = \"xterm\"\nIDLE_TIMEOUT = 300            # Idle timeout in seconds\nUPDATE_INTERVAL = 0.05        # Terminal output update time interval\n#  you really have to update the fucking buffer?????\nCHUNK_BYTES = 4096            # Chunk size for receiving data in stdin\nTERM_NAME_RE = re.compile(r\"^[a-z][a-z0-9_]*$\")   # Allowed terminal names\n# well, how should you fucking name me?\n# Helper functions\ndef make_term_cookie():\n    return \"%016d\" % random.randrange(10**15, 10**16)\n# real shit will gonna disappear.\ndef command_output(command_args, **kwargs):\n    \"\"\" Executes a command and returns the string tuple (stdout, stderr)\n    keyword argument timeout can be specified to time out command (defaults to 15 sec)\n    \"\"\"\n    # putting a 17'in alienware on your fucking knee is no fucking fun.\n    timeout = kwargs.pop(\"timeout\", 15)\n    def command_output_aux():\n        try:\n            proc = subprocess.Popen(command_args, stdout=subprocess.PIPE,",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:73-96"
+    },
+    "2483": {
+        "file_id": 382,
+        "content": "The code defines variables and functions for executing commands, generating a term cookie, and handling command output. The `make_term_cookie` function generates a unique identifier for the terminal, while `command_output` executes commands with specified arguments and returns their stdout and stderr output as a tuple. It also allows for timeouts to prevent hanging processes.",
+        "type": "comment"
+    },
+    "2484": {
+        "file_id": 382,
+        "content": "                                    stderr=subprocess.PIPE)\n            return proc.communicate()\n        except Exception as excp:\n            return \"\", str(excp)\n    if not timeout:\n        return command_output_aux()\n    exec_queue = queue.Queue()\n    def execute_in_thread():\n        exec_queue.put(command_output_aux())\n    thrd = threading.Thread(target=execute_in_thread)\n    thrd.start()\n    try:\n        return exec_queue.get(block=True, timeout=timeout)\n    except queue.Empty:\n        return \"\", \"Timed out after %s seconds\" % timeout\ndef set_tty_speed(fd, baudrate=termios.B230400):\n    tem_settings = termios.tcgetattr(fd)\n    tem_settings[4:6] = (baudrate, baudrate)\n    termios.tcsetattr(fd, termios.TCSADRAIN, tem_settings)\ndef set_tty_echo(fd, enabled):\n    tem_settings = termios.tcgetattr(fd)\n    if enabled:\n        tem_settings[3] |= termios.ECHO\n    else:\n        tem_settings[3] &= ~termios.ECHO\n    termios.tcsetattr(fd, termios.TCSADRAIN, tem_settings)\n# nuts.\ndef is_executable(filepath):\n    return os.path.isfile(filepath) and os.access(filepath, os.X_OK)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:97-128"
+    },
+    "2485": {
+        "file_id": 382,
+        "content": "This code contains functions to execute commands in a process, set terminal speed and echo, and check if a file is executable. It uses subprocesses, threading, and termios for terminal operations. The `command_output_aux` function runs commands with timeout support, `execute_in_thread` function spawns command execution in a separate thread, and `set_tty_speed` & `set_tty_echo` set terminal speed and echo respectively. The `is_executable` function checks if a file is executable by checking its file type and access permissions.",
+        "type": "comment"
+    },
+    "2486": {
+        "file_id": 382,
+        "content": "# eat shit your dickheads!!!!!!!\ndef which(filepath, add_path=[]):\n    filedir, filename = os.path.split(filepath)\n    if filedir:\n        if is_executable(filepath):\n            return filepath\n    else:\n        for path in os.environ[\"PATH\"].split(os.pathsep) + add_path:\n            whichpath = os.path.join(path, filepath)\n            if is_executable(whichpath):\n                return whichpath\n    return None\ndef match_program_name(name):\n    \"\"\" Return full path to command name, if running. else null string\"\"\"\n    std_out, std_err = command_output([\"ps\", \"aux\"], timeout=1)\n    for line in std_out.split('\\n'):\n        comps = line.split(None, 10)\n        if not comps or not comps[-1].strip():\n            continue\n        cmd_comps = comps[-1].split()\n        if cmd_comps[0].endswith(\"/\"+name):\n            return cmd_comps[0]\n    return \"\"\ndef getcwd(pid):\n    \"\"\"Return working directory of running process\n    Note: This will return os.path.realpath of current directory (eliminating symbolic links),\n    which may differ from the $PWD value",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:129-157"
+    },
+    "2487": {
+        "file_id": 382,
+        "content": "This code seems to be a part of a legacy system, as indicated by the aggressive comment. The \"which\" function returns the full path to an executable if it exists in the PATH environment variable or the provided additional paths. The \"match_program_name\" function finds the running process with a specific command name and returns its full path. The \"getcwd\" function returns the realpath of the current working directory for a specified process ID, considering symbolic links.",
+        "type": "comment"
+    },
+    "2488": {
+        "file_id": 382,
+        "content": "    \"\"\"\n    if sys.platform.startswith(\"linux\"):\n        command_args = [\"pwdx\", str(pid)]\n    else:\n        command_args = [\"lsof\", \"-a\", \"-p\", str(pid), \"-d\", \"cwd\", \"-Fn\"]\n    std_out, std_err = command_output(command_args, timeout=1)\n    if std_err:\n        logging.warning(\"getcwd: ERROR %s\", std_err)\n        return \"\"\n    try:\n        if sys.platform.startswith(\"linux\"):\n            # it is nothing.\n            # i'm gonna kill them all.\n            # this shitty programs are nuts.\n            # fucking idiots.\n            # you will never get the core of it.\n            # you fucking nuts.\n            # you are dead.\n            # fucking sick shits.\n            # bullshit everywhere.\n            return std_out.split()[1]\n        else:\n            return std_out.split(\"\\n\")[1][1:]\n    except Exception as excp:\n        logging.warning(\"getcwd: ERROR %s\", excp)\n        return \"\"\ndef shlex_split_str(line):\n    # Avoid NULs introduced by shlex.split when splitting unicode\n    return shlex.split(line if isinstance(line, str) else line.encode(\"utf-8\", \"replace\"))",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:158-187"
+    },
+    "2489": {
+        "file_id": 382,
+        "content": "This code retrieves the process ID (pid) and uses it to determine the operating system. It then executes a command based on the OS, either \"pwdx\" for Linux or \"lsof -a -p pid -d cwd -Fn\" for non-Linux systems. The output is parsed to retrieve the current working directory (cwd). If any error occurs during this process, it logs a warning and returns an empty string. Additionally, the code includes a function \"shlex_split_str\" that splits a string without introducing NULs when dealing with Unicode.",
+        "type": "comment"
+    },
+    "2490": {
+        "file_id": 382,
+        "content": "def setup_logging(log_level=logging.ERROR, filename=\"\", file_level=None):\n    file_level = file_level or log_level\n    logger = logging.getLogger()\n    logger.setLevel(min(log_level, file_level))\n    formatter = logging.Formatter(\"%(levelname).1s%(asctime)s %(module).8s.%(lineno).04d %(message)s\",\n                                  \"%y%m%d/%H:%M\")\n    if logger.handlers:\n        for handler in logger.handlers:\n            handler.setLevel(log_level)\n            handler.setFormatter(formatter)\n    else:\n        # Console handler\n        chandler = logging.StreamHandler()\n        chandler.setLevel(log_level)\n        chandler.setFormatter(formatter)\n        logger.addHandler(chandler)\n    if filename:\n        # File handler\n        fhandler = logging.FileHandler(filename)\n        fhandler.setLevel(file_level)\n        fhandler.setFormatter(formatter)\n        logger.addHandler(fhandler)\n# you dickheads. you nuts. you have shit in your fucking mind.\nclass Terminal(object):\n    \"\"\"Single pseudo-tty\"\"\"\n    def __init__(self, term_name, fd, pid, manager, height=25, width=80, winheight=0, winwidth=0,",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:189-218"
+    },
+    "2491": {
+        "file_id": 382,
+        "content": "The code sets up logging for the program, configuring both console and file handlers based on provided parameters. The `Terminal` class appears to represent a single pseudo-tty with options for dimensions and other settings.",
+        "type": "comment"
+    },
+    "2492": {
+        "file_id": 382,
+        "content": "                 cookie=0, access_code=\"\", log=False):\n        self.term_name = term_name\n        self.fd = fd\n        self.pid = pid\n        self.manager = manager\n        self.width = width\n        self.height = height\n        self.winwidth = winwidth\n        self.winheight = winheight\n        self.cookie = cookie\n        self.access_code = access_code\n        self.term_encoding = manager.term_settings.get(\"encoding\", \"utf-8\")\n        self.log = log\n# just how the fuck can you get the output??\n        self.current_dir = \"\"\n        self.update_buf = \"\"\n        self.init()\n        self.reset()\n        self.rpc_set_size(height, width, winheight, winwidth)\n        self.output_time = time.time()\n    def init(self):\n        pass\n    def reset(self):\n        self.update_time = 0\n        self.update_needed = True\n        self.reply_buf = \"\"\n    def resize_buffer(self, height, width, winheight=0, winwidth=0, force=False):\n        reset_flag = force or (self.width != width or self.height != height)\n        self.winwidth = winwidth",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:219-252"
+    },
+    "2493": {
+        "file_id": 382,
+        "content": "This code initializes a Pyxshell instance with the given parameters, sets default values if none are provided, and initializes internal variables. The \"init\" method is a placeholder as it does not contain any actual initialization code. The \"reset\" method resets update-related variables. The \"resize_buffer\" method resizes the buffer based on the provided dimensions and force flag.",
+        "type": "comment"
+    },
+    "2494": {
+        "file_id": 382,
+        "content": "        self.winheight = winheight\n        if reset_flag:\n            self.width = width\n            self.height = height\n            self.reset()\n    def rpc_set_size(self, height, width, winheight=0, winwidth=0):\n        # python bug http://python.org/sf/1112949 on amd64\n        self.resize_buffer(height, width, winheight=winheight, winwidth=winwidth)\n        # Hack for buggy TIOCSWINSZ handling: treat large unsigned positive int32 values as negative (same bits)\n        winsz = termios.TIOCSWINSZ if termios.TIOCSWINSZ < 0 else struct.unpack('i',struct.pack('I',termios.TIOCSWINSZ))[0]\n        fcntl.ioctl(self.fd, winsz, struct.pack(\"HHHH\",height,width,0,0))\n    def needs_updating(self, cur_time):\n        return (self.update_needed or self.output_time > self.update_time) \\\n                and cur_time-self.update_time > UPDATE_INTERVAL\n    def update(self):\n        \"\"\" Updates terminal output display \"\"\"\n        self.update_time = time.time()\n        self.update_needed = False\n        self.update_callback()",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:253-274"
+    },
+    "2495": {
+        "file_id": 382,
+        "content": "This code snippet defines a class with methods to set size, resize buffer, check if updating is needed, and update terminal output. The `winheight` variable stores the window height, while the `reset_flag` parameter resets the width, height, and calls `reset()`. The `rpc_set_size()` method resizes the buffer and handles a bug in TIOCSWINSZ handling. The `needs_updating()` function checks if the output needs updating based on certain conditions and the current time. Finally, the `update()` method updates the terminal output, sets update time, and calls an update callback.",
+        "type": "comment"
+    },
+    "2496": {
+        "file_id": 382,
+        "content": "    def update_callback(self, response_id=\"\"):\n        if not self.update_buf:\n            return\n        self.manager.client_callback(self.term_name, response_id, \"stdout\", self.update_buf)\n        self.update_buf = \"\"\n    def clear(self):\n        self.update_buf = \"\"\n        self.update_needed = True\n    def reconnect(self, response_id=\"\"):\n        self.update_callback(response_id=response_id)\n# well, this language you can never give up, but it is still used by you.\n# that fucking c language is not even used by me.\n    def write(self, data):\n        \"\"\" Displays byte-encoded output data on terminal screen (every update interval) \"\"\"\n        # print(\"the entire buffer\",[self.update_buf])\n        # print(\"the update buffer\",[data])\n        \"\"\" THE FUCKING BUFFER!!!!!!!!!! \"\"\"\n        \"\"\" THE FUCKING BUFFER!!!!!!!!!! \"\"\"\n        \"\"\" THE FUCKING BUFFER!!!!!!!!!! \"\"\"\n        # render and send to other place???? use tmux2html????\n        self.output_time = time.time()\n        self.update_needed = True\n        self.update_buf += data",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:276-300"
+    },
+    "2497": {
+        "file_id": 382,
+        "content": "The code defines a class with methods for updating the callback, clearing the buffer, reconnecting, and writing data to be displayed on the terminal screen. It tracks the update buffer and determines when to update the display based on an update interval. The author expresses frustration with C language.",
+        "type": "comment"
+    },
+    "2498": {
+        "file_id": 382,
+        "content": "        # updateBuffer(\"terminal\",self.update_buf)\n        updateBuffer(\"terminal\",data)\n    def read(self):\n        \"\"\" Returns any reply text in response to terminal query sequences \"\"\"\n        b = self.reply_buf\n        self.reply_buf = \"\"\n        return b\n    def pty_write(self, data):\n        \"\"\" Writes to stdin of process running within terminal \"\"\"\n        # fucking hell.\n        # updateBuffer(\"terminal\",data)\n        assert isinstance(data, unicode), \"Must write unicode data\"\n        raw_data = data.encode(self.term_encoding)\n        nbytes = len(raw_data)\n        offset = 0\n        while offset < nbytes:\n            # Need to break data up into chunks; otherwise it hangs the pty\n            count = min(CHUNK_BYTES, nbytes-offset)\n            retry = 50\n            while count > 0:\n                try:\n                    sent = os.write(self.fd, raw_data[offset:offset+count])\n                    if not sent:\n                        raise Exception(\"Failed to write to terminal\")\n                    offset += sent",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:301-327"
+    },
+    "2499": {
+        "file_id": 382,
+        "content": "Writes unicode data to stdin of process in terminal using updateBuffer function. Ensures data is encoded correctly and writes in chunks to avoid hanging the pty.",
+        "type": "comment"
+    }
+}

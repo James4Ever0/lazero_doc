@@ -1,0 +1,10 @@
+{
+    "summary": "Creates two 5x5 matrices using NumPy and random values, solves linear equation ec=b for e by computing the inverse of c and then multiplies both sides with c to check if the solution is correct.",
+    "details": [
+        {
+            "comment": "Creates two 5x5 matrices using NumPy and random values, solves linear equation ec=b for e by computing the inverse of c and then multiplies both sides with c to check if the solution is correct.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/the_new_pack/simple_reverse.py\":0-17",
+            "content": "import numpy as np\nimport random\na = np.matrix([[random.random() for x in range(5)] for y in range(5)])\nc = np.matrix([[random.random() for x in range(5)] for y in range(5)])\nb = np.matrix([[random.random() for x in range(5)] for y in range(5)])\n# suppose unknown*c = b, then unknown = b/c\n# e*c=b\n# e=b*(c**-1)\n# # print(e)\n# pred=e*c\n# print(pred,b)\n# it is alright.\n# c*e=b\n# et*ct=bt\ne=(b.T*(c.T**-1)).T\npred=c*e\nprint(pred,b)\n# same shit/"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports necessary libraries, establishes a VirtualBox session, and attempts to launch a virtual machine named \"TinyPlus\". It enters startup commands and unlocks the machine before waiting for completion. Network-based methods are mentioned as a better alternative.",
+    "details": [
+        {
+            "comment": "This code imports necessary libraries, establishes a VirtualBox session, and attempts to launch a virtual machine named \"TinyPlus\". It enters startup commands and unlocks the machine before waiting for completion. Network-based methods are mentioned as a better alternative.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/theMonkey/social_learning.py\":0-20",
+            "content": "import virtualbox\nimport time\nvbox = virtualbox.VirtualBox()\nsession = virtualbox.Session()\n# session.console.keyboard.put_keys(\"Hello, world!\")\n# these keys are slow.\n# print(dir(session))\n# session.unlock_machine()\n# fucking hell?\nmachine=vbox.find_machine(\"TinyPlus\")\nprogress=machine.launch_vm_process(session,\"gui\",\"\")\nprogress.wait_for_completion()\ntime.sleep(6)\n# shit.\nsession.console.keyboard.put_keys(\"./startup.sh\\n\")\nsession.unlock_machine()\n# really need to do this?\n# locked.\n# print(dir(machine))\n# shit.\n# must use network based."
+        }
+    ]
+}

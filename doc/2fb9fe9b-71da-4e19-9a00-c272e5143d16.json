@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a function `sleep` that uses a Promise to delay execution, and an `async` function `asf` that runs an infinite loop. Every second, it logs \"happy new year\", sends a message using Chrome's runtime, and logs the tabs object. It also includes comments about potential additions such as cookie retrieval, clipboard manipulation, and the importance of structure and sequence in code execution.",
+    "details": [
+        {
+            "comment": "This code defines a function `sleep` that uses a Promise to delay execution, and an `async` function `asf` that runs an infinite loop. Every second, it logs \"happy new year\", sends a message using Chrome's runtime, and logs the tabs object. It also includes comments about potential additions such as cookie retrieval, clipboard manipulation, and the importance of structure and sequence in code execution.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/ced/lib/background.js\":0-31",
+            "content": "function sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}\nasync function asf() {\n    while (true) {\n        await sleep(1000);\n        // console.log(\"happy newYear\");\n        // sending things.\n        // what the heck?\n        // chrome.runtime.sendMessage({\n        //     msg: \"something_completed\",\n        //     data: {\n        //         subject: \"Loading\",\n        //         content: \"Just completed!\"\n        //     }\n        // });\n        // the same. so chrome is ahead of everything??\n        console.log(\"this is background page.\");\n        var tb=chrome.tabs;\n        console.log(tb);\n        // chrome.runtime.sendMessage({data:\"something\"},function(response){});\n    }\n}\nasf();\n// do it now.\n/*\nvar getting = chrome.cookies.getAll()\nconsole.log(getting)*/\n// halt this.\n// structure matters. sequence matters.\n// does this matters? when switching instances. -> maybe.\n// can you do some extra things? copy things into the clipboard?"
+        }
+    ]
+}

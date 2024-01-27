@@ -1,0 +1,10 @@
+{
+    "summary": "This script utilizes the 'watch' command to run the 'sselp' program every 0.1 seconds. It aims to retrieve source code from an unspecified target, using a Windows implementation with a \"hover to copy\" feature. The ultimate goal is to implement websocket functionality for clipboard operations. The script also seeks to understand how the clipboard works and references the \"x-special/nautilus-clipboard\" component.",
+    "details": [
+        {
+            "comment": "This script utilizes the 'watch' command to run the 'sselp' program every 0.1 seconds. It aims to retrieve source code from an unspecified target, using a Windows implementation with a \"hover to copy\" feature. The ultimate goal is to implement websocket functionality for clipboard operations. The script also seeks to understand how the clipboard works and references the \"x-special/nautilus-clipboard\" component.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_0/simple_selection_monitor.sh\":0-6",
+            "content": "#!/bin/bash\nwatch -n 0.1 \"sselp\"\n# try to get the source code of it.\n# windows implementation, and \"hover to copy\".\n# later: websocket.\n# just figure out how clipboard works?\n# what the heck is that x-special/nautilus-clipboard?"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code sets up a Flask application with secure HTTPS connection on port 5001. It includes two routes: one for the root path and another for a dynamic path. The catch-all function prints the path and returns \"PATH\" followed by the path. The homepage route simply returns \"Hello world!\". This code uses SSL certificates from the 'certs/ca' directory.",
+    "details": [
+        {
+            "comment": "This code sets up a Flask application with secure HTTPS connection on port 5001. It includes two routes: one for the root path and another for a dynamic path. The catch-all function prints the path and returns \"PATH\" followed by the path. The homepage route simply returns \"Hello world!\". This code uses SSL certificates from the 'certs/ca' directory.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/httpsall.py\":0-24",
+            "content": "from flask import Flask\n#from flask import Flask, render_template\napp = Flask(__name__)\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return render_template('index.html')\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\n@app.route('/<path:path>',methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return \"PATH \"+path\n    #return render_template('index.html')\n# do not use browser. use code like js or curl to test connection.\n\"\"\"\n@app.route('/')\ndef homepage():\n    return \"Hello world!\"\n\"\"\"\napp.run(port=5001,ssl_context=('certs/ca/ca.crt', 'certs/ca/ca.key'))\n#app.run(port=5001,ssl_context=('certs/server.crt', 'certs/server.key'))"
+        }
+    ]
+}

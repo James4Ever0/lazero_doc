@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads a file, removes specific line breaks, and sends the content to a sender function in a loop with a 1 second delay between each send.",
+    "details": [
+        {
+            "comment": "This code reads a file, removes specific line breaks, and sends the content to a sender function in a loop with a 1 second delay between each send.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/indicator_x86_64.py\":0-14",
+            "content": "from aloofclient import sender\nfrom cruncher import blackwhite\ndef returnAList(a):\n    with open(a,\"r\") as f:\n        s=f.read()\n        s=blackwhite(s,\"\\r\\n\",False)\n        return s\nr = returnAList(\"COMSEED_x86_64\")\n# print()\nimport time\nfor x in r:\n    sender(x)\n    time.sleep(1)\n        # print(d)"
+        }
+    ]
+}

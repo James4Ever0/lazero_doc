@@ -1,0 +1,10 @@
+{
+    "summary": "This code is a simple string \"hello\" written in the Brainfuck programming language. It does not perform any computations or interact with the operating system. This code could be used as a starting point for more complex Brainfuck programs, or to output a greeting message.",
+    "details": [
+        {
+            "comment": "This code is a simple string \"hello\" written in the Brainfuck programming language. It does not perform any computations or interact with the operating system. This code could be used as a starting point for more complex Brainfuck programs, or to output a greeting message.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/sample\":0-0",
+            "content": "hello"
+        }
+    ]
+}

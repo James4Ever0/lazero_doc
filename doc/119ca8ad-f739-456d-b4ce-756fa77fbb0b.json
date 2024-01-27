@@ -1,0 +1,10 @@
+{
+    "summary": "The code is setting up a firejail environment for the bash script. It limits resources, restricts permissions and access to specific directories, and applies apparmor and other security measures to enhance security and isolation.",
+    "details": [
+        {
+            "comment": "The code is setting up a firejail environment for the bash script. It limits resources, restricts permissions and access to specific directories, and applies apparmor and other security measures to enhance security and isolation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_1/friendlyShell.sh\":0-4",
+            "content": "#!/bin/bash\n# firejail --cgroup=/sys/fs/cgroup/lazero/tasks  --apparmor --disable-mnt bash\n# so what? file size and more?\nfirejail --rlimit-as=15000000 --rlimit-cpu=1 --rlimit-fsize=2000000  --private --blacklist=/ --read-only=/home --nonewprivs --noroot --apparmor --disable-mnt bash\n# what the heck is going on? why it is able to modify shits?"
+        }
+    ]
+}

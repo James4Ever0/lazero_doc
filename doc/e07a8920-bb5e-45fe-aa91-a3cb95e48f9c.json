@@ -1,0 +1,10 @@
+{
+    "summary": "Code tries to convert a string to an integer and checks if it's possible. If successful, it prints \"possible\" and breaks the loop; otherwise, it increments the counter and prints \"not working\". This process is repeated three times before exiting.",
+    "details": [
+        {
+            "comment": "Code tries to convert a string to an integer and checks if it's possible. If successful, it prints \"possible\" and breaks the loop; otherwise, it increments the counter and prints \"not working\". This process is repeated three times before exiting.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/framework_.py\":0-12",
+            "content": "# say it is possible?\n# done several times to see if it is working?\nimp=0\nwhile imp<3:\n    try:\n        int(str)\n        print(\"possible\")\n        break\n    except:\n        imp+=1\n        print(\"not working\")\n        pass\n# print()"
+        }
+    ]
+}

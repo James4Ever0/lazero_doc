@@ -1,0 +1,10 @@
+{
+    "summary": "This code executes a script, creates a \"root\" directory with full permissions, uses bindfs for file system binding, and automatically detects the root folder.",
+    "details": [
+        {
+            "comment": "This code executes a script, creates a \"root\" directory with full permissions, uses bindfs for file system binding, and automatically detects the root folder.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/tloadroot.sh\":0-6",
+            "content": "#!/bin/bash\n./tunloadroot.sh\nmkdir root\nchmod 777 root\n# there's autodetect.\n#better use bindfs as standard.\nsudo $PWD/bindfs/src/bindfs -r $PREFIX/ root/"
+        }
+    ]
+}

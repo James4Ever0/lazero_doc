@@ -1,0 +1,10 @@
+{
+    "summary": "The script attempts to execute a binary using a launcher on Aarch64 Linux. It first checks if it has the necessary permissions, and then executes the \"launcher_aarch64_linux.sh\" script. The execution is controlled by the \"libjudger.so\" library which enforces security rules, limits CPU time, memory usage, and process numbers. The input, output, and error paths are specified, and it runs with root privileges using the \"sudo\" command.",
+    "details": [
+        {
+            "comment": "The script attempts to execute a binary using a launcher on Aarch64 Linux. It first checks if it has the necessary permissions, and then executes the \"launcher_aarch64_linux.sh\" script. The execution is controlled by the \"libjudger.so\" library which enforces security rules, limits CPU time, memory usage, and process numbers. The input, output, and error paths are specified, and it runs with root privileges using the \"sudo\" command.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/launcher_aarch64_linux.sh\":0-17",
+            "content": "#!/data/data/com.termux/files/usr/bin/bash\nfile_target=$( ./on_premise_filter_aarch64.sh )\ncd bin/linux/aarch64\n#./libjudger.so --exe_path=$(which bash) --seccomp_rule_name=\"randomfuck\" --max_cpu_time=500 --max_real_time=5000 --max_memory=14213120 --max_stack=500000 --max_process_number=2 --args=\"--rcfile\" --args=\"../../../bashrc\"\n# does that work without intervention?\nwhile true\ndo\n\tsudo bash -c \"chmod 777 $file_target\"\n\tsudo bash -c \"echo $$ > $file_target\"\n\tif [ $? -eq 0 ]; then\n\t\tbreak\n\tfi\n\tcd ../../../\n\tsudo bash -c \"./launcher_aarch64_linux.sh\"\n\texit 0\ndone\nsudo ./libjudger.so --exe_path=$(which bash) --seccomp_rule_name=\"random\"  --max_cpu_time=500 --max_real_time=10000 --max_memory=14213120 --max_stack=500000 --max_process_number=2  --input_path=/proc/self/fd/0 --output_path=/proc/self/fd/1 --error_path=/proc/self/fd/2 --uid=0 --gid=0 --args=\"--rcfile\" --args=\"../../../bashrc\""
+        }
+    ]
+}

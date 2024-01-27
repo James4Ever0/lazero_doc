@@ -1,0 +1,10 @@
+{
+    "summary": "This script executes Python file \"python_return.py\" using Bash, then echoes the exit status of the last executed command (in this case, the Python script).",
+    "details": [
+        {
+            "comment": "This script executes Python file \"python_return.py\" using Bash, then echoes the exit status of the last executed command (in this case, the Python script).",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/python_return.sh\":0-2",
+            "content": "#!/bin/bash\npython3 python_return.py\necho $?"
+        }
+    ]
+}

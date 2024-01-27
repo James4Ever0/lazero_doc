@@ -1,0 +1,10 @@
+{
+    "summary": "The code sends a request to localhost:7777/random, then uses curl to fetch the response. It redirects any error messages to dev/null for silence. The fetched data is piped to python3's html2text module, which converts HTML to plain text. Finally, the plain text is processed by refine.py.",
+    "details": [
+        {
+            "comment": "The code sends a request to localhost:7777/random, then uses curl to fetch the response. It redirects any error messages to dev/null for silence. The fetched data is piped to python3's html2text module, which converts HTML to plain text. Finally, the plain text is processed by refine.py.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/recognize.sh\":0-1",
+            "content": "#!/bin/bash\ncurl http://localhost:7777/random 2>/dev/null | python3 -m html2text | python3 refine.py"
+        }
+    ]
+}

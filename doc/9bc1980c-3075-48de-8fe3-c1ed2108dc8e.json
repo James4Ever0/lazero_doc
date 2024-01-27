@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a function getPath() that splits a string by spaces and removes any parts of the string containing forward slashes or backslashes. It then checks if the remaining parts contain no such characters before returning them as a list. The main part of the script reads the file \"/dev/shm/terminal\" and passes its contents to getPath() before printing the result.",
+    "details": [
+        {
+            "comment": "This code defines a function getPath() that splits a string by spaces and removes any parts of the string containing forward slashes or backslashes. It then checks if the remaining parts contain no such characters before returning them as a list. The main part of the script reads the file \"/dev/shm/terminal\" and passes its contents to getPath() before printing the result.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/terminal_path.py\":0-16",
+            "content": "# import re\n# re.findall(r\"/+\")\ndef getPath(x):\n    # maybe it is not the time?\n    f = x.split()\n    for y in f:\n        if \"/\" not in f or \"\\\\\" not in f:\n            del y\n    return f\n# all those false shits. can you really get it right?\nif __name__ == \"__main__\":\n    with open(\"/dev/shm/terminal\", \"r\") as f:\n        g = f.read()\n        g = getPath(g)\n        print(g)"
+        }
+    ]
+}

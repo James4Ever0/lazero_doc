@@ -1,0 +1,10 @@
+{
+    "summary": "The code executes unloadroot.sh, creates a directory fs/lower with permissions 777, and bind-mounts the root filesystem at fs/lower for read-only access.",
+    "details": [
+        {
+            "comment": "The code executes unloadroot.sh, creates a directory fs/lower with permissions 777, and bind-mounts the root filesystem at fs/lower for read-only access.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/loadroot.sh\":0-4",
+            "content": "#!/bin/bash\n./unloadroot.sh\nsudo mkdir fs/lower\nsudo chmod 777 fs/lower\nsudo mount --bind -r / fs/lower/"
+        }
+    ]
+}

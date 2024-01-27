@@ -1,0 +1,10 @@
+{
+    "summary": "This script is unmounting a file system, counting the number of characters in the overlay directory, and if it's zero, deletes the overlay directory. It also mentions caution when doing chroot or symlink operations.",
+    "details": [
+        {
+            "comment": "This script is unmounting a file system, counting the number of characters in the overlay directory, and if it's zero, deletes the overlay directory. It also mentions caution when doing chroot or symlink operations.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/unloadoverlay.sh\":0-10",
+            "content": "#!/bin/bash\nsudo umount fs/overlay\npsk=$(sudo ls -1 fs/overlay/ | wc -c)\n#psk=$(sudo mount | grep $PWD/root | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf fs/overlay\nfi"
+        }
+    ]
+}

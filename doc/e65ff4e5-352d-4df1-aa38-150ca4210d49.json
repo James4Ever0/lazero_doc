@@ -1,0 +1,10 @@
+{
+    "summary": "These code lines represent URLs for various websites and a local file system path. The first three lines are the URLs of Bing, Baidu, and Bilibili respectively, while the last line is a reference to the local file system.",
+    "details": [
+        {
+            "comment": "These code lines represent URLs for various websites and a local file system path. The first three lines are the URLs of Bing, Baidu, and Bilibili respectively, while the last line is a reference to the local file system.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/SEED\":0-3",
+            "content": "https://www.bing.com\nhttps://www.baidu.com\nhttps://www.bilibili.com\nfile:///"
+        }
+    ]
+}

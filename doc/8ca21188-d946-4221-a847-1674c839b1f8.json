@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports a function from endmark, defines createFrozen and pr functions for set manipulation, and includes two commented out versions of chick and pr. It then reads a file called \"random_interactive.py\", applies windowEndMarkEx to its contents at different values of 'r', and prints the results in a loop. The code seems focused on analyzing the uniqueness of elements in the file data using different parameters, possibly for efficiency purposes.",
+    "details": [
+        {
+            "comment": "This code imports a function from endmark, defines createFrozen and pr functions for set manipulation, and includes two commented out versions of chick and pr. It then reads a file called \"random_interactive.py\", applies windowEndMarkEx to its contents at different values of 'r', and prints the results in a loop. The code seems focused on analyzing the uniqueness of elements in the file data using different parameters, possibly for efficiency purposes.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/dc_demo.py\":0-34",
+            "content": "from endmark import windowEndMarkEx\ndef createFrozen(a):\n    return [frozenset([x for x in y]) for y in a]\ndef pr(a, d):\n    b, c = len(a), len(set(a))\n    if b == c:\n        print(b, c, d)\n    else:\n        print(b, c)\n# code can be simple or complex. redirect the result to somewhere else?\n# you think you might save some time over this.\ndef chick(a, r):\n    pr(windowEndMarkEx(a, r), r)\n# def pr(a):\n#     print(len(a),len(set(createFrozen(a))))\n# def chick(a,r):\n#     pr(windowEndMarkEx(a,r))\n# you are fucking nuts.\nwith open(\"random_interactive.py\", \"r\") as f:\n    g = f.read()\n    # check data types.\n#    g0=windowEndMarkEx(g,1)\n#    pr(g0)\n#    g1=windowEndMarkEx(g,5)\n#    pr(g1)\n    for k in range(int(len(g)**0.5)):\n        chick(g, k+1)"
+        }
+    ]
+}

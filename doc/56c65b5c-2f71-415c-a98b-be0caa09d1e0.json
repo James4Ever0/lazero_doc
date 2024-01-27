@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads input from sys.stdin in pairs, appending the second item of each pair to a list y if it's not empty. It also keeps track of the length of the longest string encountered (yk). Finally, it prints the list y containing the non-empty strings.",
+    "details": [
+        {
+            "comment": "This code reads input from sys.stdin in pairs, appending the second item of each pair to a list y if it's not empty. It also keeps track of the length of the longest string encountered (yk). Finally, it prints the list y containing the non-empty strings.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/refine.py\":0-18",
+            "content": "import sys\nc=0\n# so, the missing bit.\ny=[]\nyk = 0\nfor x in sys.stdin:\n    if c%2==1:\n        pass\n    else:\n        if c == 0:\n            pass\n        else:\n#            l=len(x)\n#            if yk>l:\n#                yk=l\n            y.append(x)\n#    print([x])\n    c+=1\nprint(y)"
+        }
+    ]
+}

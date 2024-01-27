@@ -1,0 +1,10 @@
+{
+    "summary": "This script unmounts the \"fs/upper\" filesystem and deletes its directory, likely as part of a system maintenance or cleanup process.",
+    "details": [
+        {
+            "comment": "This script unmounts the \"fs/upper\" filesystem and deletes its directory, likely as part of a system maintenance or cleanup process.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/unloadram_upper.sh\":0-2",
+            "content": "#!/bin/bash\nsudo umount fs/upper\nsudo rm -rf fs/upper"
+        }
+    ]
+}

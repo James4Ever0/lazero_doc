@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports a function to return a list, then defines a choice function using SystemRandom for random selection. The choice function is applied on the returned list from \"returnXList\" and the result is printed.",
+    "details": [
+        {
+            "comment": "Code imports a function to return a list, then defines a choice function using SystemRandom for random selection. The choice function is applied on the returned list from \"returnXList\" and the result is printed.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/choice.py\":0-6",
+            "content": "from getFromDill import returnXList\nimport random\ndef choice(s):\n    rng=random.SystemRandom()\n    return rng.choice(s)\nf=returnXList(\"within\")\nprint(choice(f))"
+        }
+    ]
+}

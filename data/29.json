@@ -1,0 +1,528 @@
+{
+    "2900": {
+        "file_id": 466,
+        "content": "#!/bin/bash\nsudo umount fs/lower\npsk=$(sudo ls -1 fs/lower/ | wc -c)\n#psk=$(sudo mount | grep $PWD/root | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf fs/lower\nfi",
+        "type": "code",
+        "location": "/lego/overlay/junk/unloadroot.sh:1-11"
+    },
+    "2901": {
+        "file_id": 466,
+        "content": "This script unmounts the lower filesystem, checks if it's mounted using 'mount', removes the lower filesystem directory if not mounted, and handles potential failures.",
+        "type": "comment"
+    },
+    "2902": {
+        "file_id": 467,
+        "content": "/lego/overlay/junk/unprepare.sh",
+        "type": "filepath"
+    },
+    "2903": {
+        "file_id": 467,
+        "content": "The code is a Bash script that executes other scripts sequentially: \"unloadoverlay.sh\", \"unloadroot.sh\", \"unloadram.sh\", \"unloadram_upper.sh\", and \"unloadram_fs.sh\". It appears to be part of a larger process for unloading modules or services.",
+        "type": "summary"
+    },
+    "2904": {
+        "file_id": 467,
+        "content": "#!/bin/bash\nbash -c ./unloadoverlay.sh\nbash -c ./unloadroot.sh\nbash -c ./unloadram.sh\nbash -c ./unloadram_upper.sh\nbash -c ./unloadram_fs.sh",
+        "type": "code",
+        "location": "/lego/overlay/junk/unprepare.sh:1-6"
+    },
+    "2905": {
+        "file_id": 467,
+        "content": "The code is a Bash script that executes other scripts sequentially: \"unloadoverlay.sh\", \"unloadroot.sh\", \"unloadram.sh\", \"unloadram_upper.sh\", and \"unloadram_fs.sh\". It appears to be part of a larger process for unloading modules or services.",
+        "type": "comment"
+    },
+    "2906": {
+        "file_id": 468,
+        "content": "/lego/paste_test.sh",
+        "type": "filepath"
+    },
+    "2907": {
+        "file_id": 468,
+        "content": "This script checks available localhost ports and creates a protocol, then generates a list of things. It uses check_ports.sh to get the desired port and retrieves information from an unknown source. The script echoes the info, uses curl to access a URL with a random port, and pipes the results into server_info.log. Finally, it processes the data using multiple Python scripts before choosing a random port for comparison purposes.",
+        "type": "summary"
+    },
+    "2908": {
+        "file_id": 468,
+        "content": "#!/bin/bash\n# checking avaliable localhost ports?\n# let's just create some protocol here.\n# getting avaliable list of things.\n./check_ports.sh\n# do it one by one.\n# so this is not ideal.\n# how to get the desired port? get the info back with me.\n# some info from unknown.\ncat ports.log | xargs -I % bash -c \"echo -e '\\ninfo from %\\n' && curl --max-time 1 http://localhost:%/uuid\" &> server_info.log\ncat server_info.log | python3 server_discover.py | python3 random_chooser.py \n# you are gonna compare.\n# so getting something.\n# choose a random port.",
+        "type": "code",
+        "location": "/lego/paste_test.sh:1-14"
+    },
+    "2909": {
+        "file_id": 468,
+        "content": "This script checks available localhost ports and creates a protocol, then generates a list of things. It uses check_ports.sh to get the desired port and retrieves information from an unknown source. The script echoes the info, uses curl to access a URL with a random port, and pipes the results into server_info.log. Finally, it processes the data using multiple Python scripts before choosing a random port for comparison purposes.",
+        "type": "comment"
+    },
+    "2910": {
+        "file_id": 469,
+        "content": "/lego/pgrep.py",
+        "type": "filepath"
+    },
+    "2911": {
+        "file_id": 469,
+        "content": "This code reads input from stdin, uses regular expressions to find integer numbers in the input, and prints the first one found if there is at least one.",
+        "type": "summary"
+    },
+    "2912": {
+        "file_id": 469,
+        "content": "import re,sys\nfor x in sys.stdin:\n    rf = re.findall(r\"\\d+\",x)\n    if len(rf)>0:\n        print(rf[0])",
+        "type": "code",
+        "location": "/lego/pgrep.py:1-5"
+    },
+    "2913": {
+        "file_id": 469,
+        "content": "This code reads input from stdin, uses regular expressions to find integer numbers in the input, and prints the first one found if there is at least one.",
+        "type": "comment"
+    },
+    "2914": {
+        "file_id": 470,
+        "content": "/lego/plan9.sh",
+        "type": "filepath"
+    },
+    "2915": {
+        "file_id": 470,
+        "content": "The script is a shell script written in rc language, designed to be used with Python scripts. It prints \"hello world\" and is intended for extending with additional tools. The code includes examples of redirecting output and piping input between different processes, emphasizing the importance of stdin and stdout management. It suggests creating a prefixer that takes arguments and outputs results in JSON form.",
+        "type": "summary"
+    },
+    "2916": {
+        "file_id": 470,
+        "content": "#!/bin/rc\n# we are gonna use this script. does the hashtag help?\necho hello world\n# it is meant to be extensible. show me some juice.\n# create some specific tools.\n# the data is not fully under control. it is splited by return.\n# we shall never merge it in the first place. now consider what? a web app?\n# or simply interact with that web-pasteboard?\npython3 demo_error_out.py >[2=1] |[1] python3 process_out.py\npython3 python_exec.py python3 demo_error_out.py |[1] python3 process_out_raw.py\n# so this shell is excellent.\n# can you tell the difference?\n#python3 demo_error_out.py >[1=2] |[2] python3 process_out.py\n# there's only one stdin. so consider pipe to different process.\n# what is that?\n# so that's over. though you can run a prefixer from the command?\n# you can take arguments. then output it in json form.",
+        "type": "code",
+        "location": "/lego/plan9.sh:1-17"
+    },
+    "2917": {
+        "file_id": 470,
+        "content": "The script is a shell script written in rc language, designed to be used with Python scripts. It prints \"hello world\" and is intended for extending with additional tools. The code includes examples of redirecting output and piping input between different processes, emphasizing the importance of stdin and stdout management. It suggests creating a prefixer that takes arguments and outputs results in JSON form.",
+        "type": "comment"
+    },
+    "2918": {
+        "file_id": 471,
+        "content": "/lego/poc.sh",
+        "type": "filepath"
+    },
+    "2919": {
+        "file_id": 471,
+        "content": "This code snippet is utilizing the libjudger.so library, setting the seccomp_rule_name to \"randomfuck\", and specifying the executable path as /sbin/shutdown with arguments \"0\". This configuration seems to be testing or demonstrating a specific functionality related to security policies and restrictive execution environments.",
+        "type": "summary"
+    },
+    "2920": {
+        "file_id": 471,
+        "content": "#!/bin/bash\n./libjudger.so --seccomp_rule_name=\"randomfuck\" --exe_path=/sbin/shutdown --args=\"0\"\n#./libjudger.so --exe_path=/sbin/shutdown --args=\"0\"\n# this cannot be run.",
+        "type": "code",
+        "location": "/lego/poc.sh:1-4"
+    },
+    "2921": {
+        "file_id": 471,
+        "content": "This code snippet is utilizing the libjudger.so library, setting the seccomp_rule_name to \"randomfuck\", and specifying the executable path as /sbin/shutdown with arguments \"0\". This configuration seems to be testing or demonstrating a specific functionality related to security policies and restrictive execution environments.",
+        "type": "comment"
+    },
+    "2922": {
+        "file_id": 472,
+        "content": "/lego/ports_chooser.py",
+        "type": "filepath"
+    },
+    "2923": {
+        "file_id": 472,
+        "content": "This script checks if a port is available for usage. It first determines whether the system is Unix-like and then opens a log file named \"ports.log\". The contents of this file are read, split into a list (a), and converted to integers. A list of all ports from 8000 to 65536 is generated if the system is Unix-like or from 1 to 65536 otherwise. Ports in the \"a\" list are filtered out, and if no available port remains, it prints \"no port available.\" If an available port exists, it selects a random one and prints it. The script does not use port 0 due to unspecified reasons.",
+        "type": "summary"
+    },
+    "2924": {
+        "file_id": 472,
+        "content": "UNIX_LIKE=True\n# turn this off to get touch under 8000. if root. just saying.\nimport os\nos.system(\"./check_ports.sh\")\na = open(\"ports.log\").read().split()\n#print(a)\n# this is the real network. the FS network. the RAM network. the turing machine.\na = [int(x) for x in a]\nimport random\nf=None\n# can we use port 0?\nif UNIX_LIKE:\n    f = [x for x in range(8000,65536)]\nelse:\n    f = [x for x in range(1,65536)]\nf = list(filter(lambda x: x not in a,f))\nif len(f)==0:\n    print(\"no port avaliable.\")\nelse:\n    r = random.choice(f)\n    print(\"port\", r)\n    # zero is restricted. don't know why.\n    # could use unix socket actually. but again, not CS.",
+        "type": "code",
+        "location": "/lego/ports_chooser.py:1-23"
+    },
+    "2925": {
+        "file_id": 472,
+        "content": "This script checks if a port is available for usage. It first determines whether the system is Unix-like and then opens a log file named \"ports.log\". The contents of this file are read, split into a list (a), and converted to integers. A list of all ports from 8000 to 65536 is generated if the system is Unix-like or from 1 to 65536 otherwise. Ports in the \"a\" list are filtered out, and if no available port remains, it prints \"no port available.\" If an available port exists, it selects a random one and prints it. The script does not use port 0 due to unspecified reasons.",
+        "type": "comment"
+    },
+    "2926": {
+        "file_id": 473,
+        "content": "/lego/possible_split.sh",
+        "type": "filepath"
+    },
+    "2927": {
+        "file_id": 473,
+        "content": "This code is running a Bash script named \"possible_split.sh\" which executes the following commands: it first lists all currently active processes (ps -A), then filters out any process names containing 'python' in a case-insensitive manner using grep, and finally feeds this output into another Python script called 'termsplit.py'. This could potentially be used for monitoring or managing Python processes running on the system.",
+        "type": "summary"
+    },
+    "2928": {
+        "file_id": 473,
+        "content": "#!/bin/bash\n# feed it into a script\nps -A | grep -i python | python3 termsplit.py",
+        "type": "code",
+        "location": "/lego/possible_split.sh:1-3"
+    },
+    "2929": {
+        "file_id": 473,
+        "content": "This code is running a Bash script named \"possible_split.sh\" which executes the following commands: it first lists all currently active processes (ps -A), then filters out any process names containing 'python' in a case-insensitive manner using grep, and finally feeds this output into another Python script called 'termsplit.py'. This could potentially be used for monitoring or managing Python processes running on the system.",
+        "type": "comment"
+    },
+    "2930": {
+        "file_id": 474,
+        "content": "/lego/ppwdx.py",
+        "type": "filepath"
+    },
+    "2931": {
+        "file_id": 474,
+        "content": "Code imports os and sys modules, iterates through stdin lines, and executes \"pwdx\" command with each line's content. It may be used for process tracking or monitoring purposes.",
+        "type": "summary"
+    },
+    "2932": {
+        "file_id": 474,
+        "content": "import os,sys\nfor x in sys.stdin:\n    os.system(\"pwdx {}\".format(x))",
+        "type": "code",
+        "location": "/lego/ppwdx.py:1-3"
+    },
+    "2933": {
+        "file_id": 474,
+        "content": "Code imports os and sys modules, iterates through stdin lines, and executes \"pwdx\" command with each line's content. It may be used for process tracking or monitoring purposes.",
+        "type": "comment"
+    },
+    "2934": {
+        "file_id": 475,
+        "content": "/lego/proc_grep.py",
+        "type": "filepath"
+    },
+    "2935": {
+        "file_id": 475,
+        "content": "The code reads input from stdin, extracts path information using regular expressions and stores it in a dictionary for later use. It uses the \"path_finder\" function to extract the path component after the number, then dumps the resulting dictionary as a pickle object to stdout.",
+        "type": "summary"
+    },
+    "2936": {
+        "file_id": 475,
+        "content": "import re,sys\nimport pickle\ndef path_finder(a):\n    for x in range(len(a)):\n        if a[x] == \"/\":\n            return a[x:-1]\n    return \"\"\ndx = {}\nfor x in sys.stdin:\n    rf = re.findall(r\"\\d+\",x)\n    if len(rf)>0:\n        s = rf[0]+\":\"\n        e = x.replace(s,\"\")\n        pr = path_finder(e)\n        dx.update({rf[0]:pr})\n# or use some glue.\npickle.dump(dx,sys.stdout.buffer)\n# print(dx)\n#        print(pr)\n#        print(rf[0])",
+        "type": "code",
+        "location": "/lego/proc_grep.py:1-21"
+    },
+    "2937": {
+        "file_id": 475,
+        "content": "The code reads input from stdin, extracts path information using regular expressions and stores it in a dictionary for later use. It uses the \"path_finder\" function to extract the path component after the number, then dumps the resulting dictionary as a pickle object to stdout.",
+        "type": "comment"
+    },
+    "2938": {
+        "file_id": 476,
+        "content": "/lego/process_out.py",
+        "type": "filepath"
+    },
+    "2939": {
+        "file_id": 476,
+        "content": "This Python script generates a unique UUID, prints the initialization message along with it, and then reads from stdin, printing each input line appended with the same UUID.",
+        "type": "summary"
+    },
+    "2940": {
+        "file_id": 476,
+        "content": "import sys\nimport uuid\nuid = str(uuid.uuid4())\nprint(\"init\",uid)\nfor x in sys.stdin:\n    print([x],uid)",
+        "type": "code",
+        "location": "/lego/process_out.py:1-6"
+    },
+    "2941": {
+        "file_id": 476,
+        "content": "This Python script generates a unique UUID, prints the initialization message along with it, and then reads from stdin, printing each input line appended with the same UUID.",
+        "type": "comment"
+    },
+    "2942": {
+        "file_id": 477,
+        "content": "/lego/process_out_raw.py",
+        "type": "filepath"
+    },
+    "2943": {
+        "file_id": 477,
+        "content": "This code generates a unique ID using UUID library, prints an initial message along with the ID, and then iterates over each byte from stdin, printing it along with the ID.",
+        "type": "summary"
+    },
+    "2944": {
+        "file_id": 477,
+        "content": "import sys\nimport uuid\nuid = str(uuid.uuid4())\nprint(\"init\",uid)\nfor x in sys.stdin.buffer:\n    print([x],uid)",
+        "type": "code",
+        "location": "/lego/process_out_raw.py:1-6"
+    },
+    "2945": {
+        "file_id": 477,
+        "content": "This code generates a unique ID using UUID library, prints an initial message along with the ID, and then iterates over each byte from stdin, printing it along with the ID.",
+        "type": "comment"
+    },
+    "2946": {
+        "file_id": 478,
+        "content": "/lego/proot_ro/README",
+        "type": "filepath"
+    },
+    "2947": {
+        "file_id": 478,
+        "content": "Code snippet is a discussion on using proot with symlinks and concerns about running firejail or libjudger inside the chroot environment. It also mentions potential issues with device busy errors and pipe duplication.",
+        "type": "summary"
+    },
+    "2948": {
+        "file_id": 478,
+        "content": "you should do this carefully. do not let it confuse you.\nfirst, do not make root tools get into the root.\nsecond, is it good to use proot with symlink across ramdisk?\n\thttps://github.com/proot-me/proot/issues/123\nDevice or resource busy\n/dev/block/sda17 on /data type ext4 (rw,seclabel,nosuid,nodev,noatime,noauto_da_alloc,resgid=1065,errors=panic,data=ordered)\n/dev/block/bootdevice/by-name/userdata on /data type ext4 (rw,seclabel,nosuid,nodev,noatime,noauto_da_alloc,resgid=1065,errors=panic,data=ordered)\nit is nearly impossible to run firejail inside, but libjudger can have a try.\nno, it cannot be run inside the chroot. cause the pipe cannot be duplicated.",
+        "type": "code",
+        "location": "/lego/proot_ro/README:1-17"
+    },
+    "2949": {
+        "file_id": 478,
+        "content": "Code snippet is a discussion on using proot with symlinks and concerns about running firejail or libjudger inside the chroot environment. It also mentions potential issues with device busy errors and pipe duplication.",
+        "type": "comment"
+    },
+    "2950": {
+        "file_id": 479,
+        "content": "/lego/proot_ro/aloadroot.sh",
+        "type": "filepath"
+    },
+    "2951": {
+        "file_id": 479,
+        "content": "This script executes a unloadroot.sh, creates a directory alpine-ro with 777 permissions, and uses bindfs to bind mount an \"alpine\" folder as read-only (alpine-ro). The autodetect feature is mentioned but not utilized here.",
+        "type": "summary"
+    },
+    "2952": {
+        "file_id": 479,
+        "content": "#!/bin/bash\n./aunloadroot.sh\nmkdir alpine-ro\nchmod 777 alpine-ro\n# there's autodetect.\n#better use bindfs as standard.\nsudo $PWD/bindfs/src/bindfs -r alpine alpine-ro",
+        "type": "code",
+        "location": "/lego/proot_ro/aloadroot.sh:1-7"
+    },
+    "2953": {
+        "file_id": 479,
+        "content": "This script executes a unloadroot.sh, creates a directory alpine-ro with 777 permissions, and uses bindfs to bind mount an \"alpine\" folder as read-only (alpine-ro). The autodetect feature is mentioned but not utilized here.",
+        "type": "comment"
+    },
+    "2954": {
+        "file_id": 480,
+        "content": "/lego/proot_ro/aunloadroot.sh",
+        "type": "filepath"
+    },
+    "2955": {
+        "file_id": 480,
+        "content": "The script unmounts an Alpine Linux read-only file system, checks its size, and deletes it if empty to avoid unnecessary clutter. It serves as a safety measure for users who might have made mistakes during chroot/symlink operations.",
+        "type": "summary"
+    },
+    "2956": {
+        "file_id": 480,
+        "content": "#!/bin/bash\nsudo umount alpine-ro\npsk=$(sudo ls -1 alpine-ro | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf alpine-ro\nfi",
+        "type": "code",
+        "location": "/lego/proot_ro/aunloadroot.sh:1-10"
+    },
+    "2957": {
+        "file_id": 480,
+        "content": "The script unmounts an Alpine Linux read-only file system, checks its size, and deletes it if empty to avoid unnecessary clutter. It serves as a safety measure for users who might have made mistakes during chroot/symlink operations.",
+        "type": "comment"
+    },
+    "2958": {
+        "file_id": 481,
+        "content": "/lego/proot_ro/loadram.sh",
+        "type": "filepath"
+    },
+    "2959": {
+        "file_id": 481,
+        "content": "This script executes unloadram.sh, creates a ramdisk directory with full permissions, and mounts a 10MB tmpfs file system (myramdisk) to the ramdisk directory.",
+        "type": "summary"
+    },
+    "2960": {
+        "file_id": 481,
+        "content": "#!/bin/bash\n./unloadram.sh\nsudo mkdir ramdisk\nsudo chmod 777 ramdisk\nsudo mount -t tmpfs -o size=10m myramdisk ramdisk",
+        "type": "code",
+        "location": "/lego/jail/loadram.sh:1-5"
+    },
+    "2961": {
+        "file_id": 481,
+        "content": "This script executes unloadram.sh, creates a ramdisk directory with full permissions, and mounts a 10MB tmpfs file system (myramdisk) to the ramdisk directory.",
+        "type": "comment"
+    },
+    "2962": {
+        "file_id": 482,
+        "content": "/lego/proot_ro/loadroot.sh",
+        "type": "filepath"
+    },
+    "2963": {
+        "file_id": 482,
+        "content": "This script unloads the root filesystem, creates a new directory for it, sets appropriate permissions, and mounts the existing root filesystem onto the newly created directory.",
+        "type": "summary"
+    },
+    "2964": {
+        "file_id": 482,
+        "content": "#!/bin/bash\n./unloadroot.sh\nsudo mkdir root\nsudo chmod 777 root\nsudo mount --bind -r / root/",
+        "type": "code",
+        "location": "/lego/proot_ro/loadroot.sh:1-5"
+    },
+    "2965": {
+        "file_id": 482,
+        "content": "This script unloads the root filesystem, creates a new directory for it, sets appropriate permissions, and mounts the existing root filesystem onto the newly created directory.",
+        "type": "comment"
+    },
+    "2966": {
+        "file_id": 483,
+        "content": "/lego/proot_ro/simple_jail.sh",
+        "type": "filepath"
+    },
+    "2967": {
+        "file_id": 483,
+        "content": "The code sets up a container using proot, loads root filesystem and RAM, copies necessary libraries, removes or creates a tmux file, and finally runs proot with specific bindings and options.",
+        "type": "summary"
+    },
+    "2968": {
+        "file_id": 483,
+        "content": "#!/bin/bash\n./loadroot.sh\n./loadram.sh\n#cp libjudger.so.amd64 ramdisk/libjudger.so\n#rm ramdisk/tmux\ntouch ramdisk/tmux\n# simple hack.\nproot -r root -b ramdisk:/ramdisk -b ramdisk/tmux:$(which tmux) -w /ramdisk\n#proot -r root -b ramdisk:/ramdisk -w /ramdisk /ramdisk/libjudger.so --seccomp_rule_name=\"randomfuck\" --exe_path=/bin/sh",
+        "type": "code",
+        "location": "/lego/proot_ro/simple_jail.sh:1-9"
+    },
+    "2969": {
+        "file_id": 483,
+        "content": "The code sets up a container using proot, loads root filesystem and RAM, copies necessary libraries, removes or creates a tmux file, and finally runs proot with specific bindings and options.",
+        "type": "comment"
+    },
+    "2970": {
+        "file_id": 484,
+        "content": "/lego/proot_ro/start-alpine-ro.sh",
+        "type": "filepath"
+    },
+    "2971": {
+        "file_id": 484,
+        "content": "This script sets up an Alpine Linux environment using proot within Termux. It handles LD_PRELOAD unset, configures command options, and mounts necessary directories like /dev, /proc, and /ramdisk. Optional home directory or /sdcard mounting is available. Finally, it initializes a busybox shell with specific environment variables for the Alpine environment.",
+        "type": "summary"
+    },
+    "2972": {
+        "file_id": 484,
+        "content": "#!/data/data/com.termux/files/usr/bin/bash\n# cd $(dirname $0)\n## unset LD_PRELOAD in case termux-exec is installed\n./aloadroot.sh\n./loadram.sh\nunset LD_PRELOAD\ncommand=\"sudo proot\"\ncommand+=\" --link2symlink\"\ncommand+=\" -0\"\ncommand+=\" -r alpine-ro\"\ncommand+=\" -b /dev\"\ncommand+=\" -b /proc\"\ncommand+=\" -b ramdisk:/ramdisk\"\n## uncomment the following line to have access to the home directory of termux\n#command+=\" -b /data/data/com.termux/files/home:/root\"\n## uncomment the following line to mount /sdcard directly to /\n#command+=\" -b /sdcard\"\ncommand+=\" -w /root\"\ncommand+=\" /bin/busybox env -i\"\ncommand+=\" HOME=/root\"\ncommand+=\" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin\"\ncommand+=\" TERM=$TERM\"\ncommand+=\" LANG=C.UTF-8\"\ncommand+=\" /bin/busybox sh\"\ncom=\"$@\"\nif [ -z \"$1\" ];then\n    exec $command\nelse\n    $command -c \"$com\"\nfi",
+        "type": "code",
+        "location": "/lego/proot_ro/start-alpine-ro.sh:1-30"
+    },
+    "2973": {
+        "file_id": 484,
+        "content": "This script sets up an Alpine Linux environment using proot within Termux. It handles LD_PRELOAD unset, configures command options, and mounts necessary directories like /dev, /proc, and /ramdisk. Optional home directory or /sdcard mounting is available. Finally, it initializes a busybox shell with specific environment variables for the Alpine environment.",
+        "type": "comment"
+    },
+    "2974": {
+        "file_id": 485,
+        "content": "/lego/proot_ro/start-alpine.sh",
+        "type": "filepath"
+    },
+    "2975": {
+        "file_id": 485,
+        "content": "This script initializes a proot container with Alpine Linux, sets necessary links and bindings, and configures the environment before executing the command passed as argument. It also ensures LD_PRELOAD is unset in case termux-exec is installed.",
+        "type": "summary"
+    },
+    "2976": {
+        "file_id": 485,
+        "content": "#!/data/data/com.termux/files/usr/bin/bash\n# cd $(dirname $0)\n## unset LD_PRELOAD in case termux-exec is installed\nunset LD_PRELOAD\ncommand=\"proot\"\ncommand+=\" --link2symlink\"\ncommand+=\" -0\"\ncommand+=\" -r alpine\"\ncommand+=\" -b /dev\"\ncommand+=\" -b /proc\"\n# command+=\" -b kali-fs/root:/dev/shm\"\n## uncomment the following line to have access to the home directory of termux\n#command+=\" -b /data/data/com.termux/files/home:/root\"\n## uncomment the following line to mount /sdcard directly to /\n#command+=\" -b /sdcard\"\ncommand+=\" -w /root\"\ncommand+=\" /bin/busybox env -i\"\ncommand+=\" HOME=/root\"\ncommand+=\" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin\"\ncommand+=\" TERM=$TERM\"\ncommand+=\" LANG=C.UTF-8\"\ncommand+=\" /bin/busybox sh\"\ncom=\"$@\"\nif [ -z \"$1\" ];then\n    exec $command\nelse\n    $command -c \"$com\"\nfi",
+        "type": "code",
+        "location": "/lego/proot_ro/start-alpine.sh:1-28"
+    },
+    "2977": {
+        "file_id": 485,
+        "content": "This script initializes a proot container with Alpine Linux, sets necessary links and bindings, and configures the environment before executing the command passed as argument. It also ensures LD_PRELOAD is unset in case termux-exec is installed.",
+        "type": "comment"
+    },
+    "2978": {
+        "file_id": 486,
+        "content": "/lego/proot_ro/tloadroot.sh",
+        "type": "filepath"
+    },
+    "2979": {
+        "file_id": 486,
+        "content": "This code executes a script, creates a \"root\" directory with full permissions, uses bindfs for file system binding, and automatically detects the root folder.",
+        "type": "summary"
+    },
+    "2980": {
+        "file_id": 486,
+        "content": "#!/bin/bash\n./tunloadroot.sh\nmkdir root\nchmod 777 root\n# there's autodetect.\n#better use bindfs as standard.\nsudo $PWD/bindfs/src/bindfs -r $PREFIX/ root/",
+        "type": "code",
+        "location": "/lego/proot_ro/tloadroot.sh:1-7"
+    },
+    "2981": {
+        "file_id": 486,
+        "content": "This code executes a script, creates a \"root\" directory with full permissions, uses bindfs for file system binding, and automatically detects the root folder.",
+        "type": "comment"
+    },
+    "2982": {
+        "file_id": 487,
+        "content": "/lego/proot_ro/tsimple_jail.sh",
+        "type": "filepath"
+    },
+    "2983": {
+        "file_id": 487,
+        "content": "This script sets up a proot jail for Termux users, adjusts permissions, configures LD_PRELOAD and mounts directories before running the command \"sh\". It also checks for command-line arguments to execute or configure commands.",
+        "type": "summary"
+    },
+    "2984": {
+        "file_id": 487,
+        "content": "#!/data/data/com.termux/files/usr/bin/bash\n# cd $(dirname $0)\n## unset LD_PRELOAD in case termux-exec is installed\n./tloadroot.sh\n./aloadroot.sh\n./loadram.sh\nchmod 777 $PREFIX/bin/*\nunset LD_PRELOAD\n#set LD_PRELOAD=/lib/libtermux-exec.so\n#set LD_LIBRARY=/lib\ncommand=\"sudo proot\"\ncommand+=\" --link2symlink\"\n#command+=\" -0\"\ncommand+=\" -r alpine-ro\"\ncommand+=\" -b /dev\"\ncommand+=\" -b /proc\"\ncommand+=\" -b root:/termux\"\n#command+=\" -b /system/bin/env:/sbin/env\"\ncommand+=\" -b ramdisk:/ramdisk\"\n## uncomment the following line to have access to the home directory of termux\n#command+=\" -b /data/data/com.termux/files/home:/root\"\n## uncomment the following line to mount /sdcard directly to /\n#command+=\" -b /sdcard\"\ncommand+=\" -w /ramdisk\"\ncommand+=\" /bin/busybox env -i\"\ncommand+=\" HOME=/ramdisk\"\ncommand+=\" PREFIX=/termux\"\ncommand+=\" PATH=/termux/bin:/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin\"\ncommand+=\" TERM=$TERM\"\ncommand+=\" LD_PRELOAD=/lib/libtermux-exec.so\"\ncommand+=\" LANG=C.UTF-8\"\n#command+=\" bash\"\ncommand+=\" /bin/busybox sh\"",
+        "type": "code",
+        "location": "/lego/proot_ro/tsimple_jail.sh:1-33"
+    },
+    "2985": {
+        "file_id": 487,
+        "content": "This script is for Termux users and sets up a proot jail. It changes permissions, configures LD_PRELOAD, and mounts necessary directories before running the command \"sh\" inside the proot jail.",
+        "type": "comment"
+    },
+    "2986": {
+        "file_id": 487,
+        "content": "com=\"$@\"\nif [ -z \"$1\" ];then\n    exec $command\nelse\n    $command -c \"$com\"\nfi",
+        "type": "code",
+        "location": "/lego/proot_ro/tsimple_jail.sh:34-39"
+    },
+    "2987": {
+        "file_id": 487,
+        "content": "This code checks if a command-line argument is provided. If not, it executes the command directly; otherwise, it runs the command with the given argument as its configuration.",
+        "type": "comment"
+    },
+    "2988": {
+        "file_id": 488,
+        "content": "/lego/proot_ro/tunloadroot.sh",
+        "type": "filepath"
+    },
+    "2989": {
+        "file_id": 488,
+        "content": "The code unmounts the \"root\" directory, counts the number of characters in its contents, and if the count is 0, it removes the \"root\" directory. This script should only be executed with caution as it can lead to system failure if not handled properly.",
+        "type": "summary"
+    },
+    "2990": {
+        "file_id": 488,
+        "content": "#!/bin/bash\nsudo umount root\npsk=$(sudo ls -1 root/ | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf root\nfi",
+        "type": "code",
+        "location": "/lego/proot_ro/tunloadroot.sh:1-10"
+    },
+    "2991": {
+        "file_id": 488,
+        "content": "The code unmounts the \"root\" directory, counts the number of characters in its contents, and if the count is 0, it removes the \"root\" directory. This script should only be executed with caution as it can lead to system failure if not handled properly.",
+        "type": "comment"
+    },
+    "2992": {
+        "file_id": 489,
+        "content": "/lego/proot_ro/unloadram.sh",
+        "type": "filepath"
+    },
+    "2993": {
+        "file_id": 489,
+        "content": "This script unmounts a RAM disk and removes its contents, ensuring it's cleared from the system.",
+        "type": "summary"
+    },
+    "2994": {
+        "file_id": 489,
+        "content": "#!/bin/bash\nsudo umount ramdisk\nsudo rm -rf ramdisk",
+        "type": "code",
+        "location": "/lego/jail/unloadram.sh:1-3"
+    },
+    "2995": {
+        "file_id": 489,
+        "content": "This script unmounts a RAM disk and removes its contents, ensuring it's cleared from the system.",
+        "type": "comment"
+    },
+    "2996": {
+        "file_id": 490,
+        "content": "/lego/proot_ro/unloadroot.sh",
+        "type": "filepath"
+    },
+    "2997": {
+        "file_id": 490,
+        "content": "This script is unmounting the \"root\" directory, checking if it's empty to remove it safely, and handling potential errors with caution for both Linux and Windows systems.",
+        "type": "summary"
+    },
+    "2998": {
+        "file_id": 490,
+        "content": "#!/bin/bash\nsudo umount root\npsk=$(sudo ls -1 root/ | wc -c)\n#psk=$(sudo mount | grep $PWD/root | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf root\nfi",
+        "type": "code",
+        "location": "/lego/proot_ro/unloadroot.sh:1-11"
+    },
+    "2999": {
+        "file_id": 490,
+        "content": "This script is unmounting the \"root\" directory, checking if it's empty to remove it safely, and handling potential errors with caution for both Linux and Windows systems.",
+        "type": "comment"
+    }
+}

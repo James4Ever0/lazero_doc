@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports numpy library, defines a complex number 'n', calculates hyperbolic tangent of 'n' and assigns the result to 'n0', then prints 'n0'.",
+    "details": [
+        {
+            "comment": "The code imports numpy library, defines a complex number 'n', calculates hyperbolic tangent of 'n' and assigns the result to 'n0', then prints 'n0'.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_1/random/comp.py\":0-4",
+            "content": "import numpy as np\nn=1+1J\nn0=np.tanh(n)\nprint(n0)"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code demonstrates various ways to make HTTPS requests with certificates, using curl and wget. The first section uses `curl` to make an HTTPS request without trusting all certificates by specifying the certificate file path. The second part uses `wget` with the same configuration but in system level.",
+    "details": [
+        {
+            "comment": "This code demonstrates various ways to make HTTPS requests with certificates, using curl and wget. The first section uses `curl` to make an HTTPS request without trusting all certificates by specifying the certificate file path. The second part uses `wget` with the same configuration but in system level.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/demo-https.sh\":0-9",
+            "content": "#!/bin/bash\n#curl -k \"https://localhost:5001/s/s\"\n#not to trust all.\ncurl --cacert certs/ca/ca.crt \"https://localhost:5001/s/s\"\necho\necho \"___spilter___\"\necho\n#wget -q -O - \"https://localhost:5001/s/s\" --no-check-certificate\nwget -q -O - \"https://localhost:5001/s/s\" --ca-certificate=certs/ca/ca.crt\n# what if do it in system level?"
+        }
+    ]
+}

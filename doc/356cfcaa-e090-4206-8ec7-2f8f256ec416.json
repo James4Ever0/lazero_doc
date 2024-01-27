@@ -1,0 +1,15 @@
+{
+    "summary": "The code snippet loads the Boston dataset using sklearn, converts it to PyTorch Tensor, and demonstrates various tensor operations like printing sizes, converting from numpy arrays, and displaying data. The author plans to document this process later.",
+    "details": [
+        {
+            "comment": "Code snippet is importing necessary libraries and loading the Boston dataset from sklearn. It converts the data to a torch Tensor, prints the types of original numpy array and converted tensor, calculates the size of tensor, and prints the first two rows and first five columns of the tensor. The author mentions they will document this hack later.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/package_archive/toy_project.py\":0-29",
+            "content": "# also easy to get killed: pydoc3 -k database\n# pydoc3 is better than your fucking hell evil recursive import module.\n# i need tool to inspect one package.\n# it is accessible, via .__all__\n# really funny.\n# consider text writing as multidimentional. espec+-ially in source code composition.\n# use ipython3?\n# that is wrong. i always make the same mistake.\n# it would be problematic.\n# it only appends those with modules, but does not append those without a module.\n# i think i need to sample those modules.\n# cd /usr/lib/go-1.14/pkg/tool/linux_amd64\n# addr2line*  buildid*  cover*  fix*   objdump*  test2json*\n# api*        cgo*      dist*   link*  pack*     trace*\n# asm*        compile*  doc*    nm*    pprof*    vet*\nimport torch\nfrom sklearn import datasets\nd = datasets.load_boston().data\n# print(type(d))\ne=torch.from_numpy(d)\n# <class 'numpy.ndarray'>\n# <class 'torch.Tensor'>\n# print(type(e))\n# and that is nothing.\np=e.size()\nprint(p)\n# what the heck is that?\nprint(e[:2,:5])\n# that is my dirty hack.\n# doc that thing later."
+        },
+        {
+            "comment": "This code snippet is testing the functionality of various Tensor operations in PyTorch, such as creating tensors, printing sizes, and converting data from numpy arrays to tensor format.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/package_archive/toy_project.py\":30-40",
+            "content": "# only use a small fraction of code.\n# great. git will never store any valuable information.\n# print(d.size())\n# t = torch.FloatTensor([23, 24, 24.5])\n# p = t.size()\n# print(p)\n# x = torch.rand(10)\n# y = x.size()\n# print(y)\n# boston_tensor= torch.from_numpy(boston.data)\n# print(boston_tensor)"
+        }
+    ]
+}

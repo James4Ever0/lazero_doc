@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script runs Firefox within a sandboxed environment (firejail) and pipes its output to a Python tracker script. It seems to be used for GUI-based operations on Linux x86_64 systems.",
+    "details": [
+        {
+            "comment": "This Bash script runs Firefox within a sandboxed environment (firejail) and pipes its output to a Python tracker script. It seems to be used for GUI-based operations on Linux x86_64 systems.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/gui_linux_x86_64.sh\":0-4",
+            "content": "#!/bin/bash\n#mkfifo blitx\n# maybe we need to use some nonblocking reading.\n#firejail firefox &> /dev/null & echo $!\nfirejail firefox &>/dev/stdout | python3 tracker_gui_linux_x86_64.py"
+        }
+    ]
+}

@@ -1,0 +1,540 @@
+{
+    "3000": {
+        "file_id": 491,
+        "content": "/lego/pty_server/README",
+        "type": "filepath"
+    },
+    "3001": {
+        "file_id": 491,
+        "content": "The code discusses a limitation on the maximum number of PTY allocations in kernel compilation time, suggesting a cut-down version of pty for trivial tasks or alternative methods such as subprocess.Popen to avoid creating script kiddies.",
+        "type": "summary"
+    },
+    "3002": {
+        "file_id": 491,
+        "content": "there seems to be some limitation over the spot. maximum pty allocation limit in kernel compliation time.\nhttps://linux.die.net/man/7/pty#:~:text=The%20Linux%20kernel%20imposes%20a%20limit%20on%20the,to%202048%2C%20with%20a%20default%20setting%20of%20256.`\ni suggest you use cut-down version of pty to do trivial task, which not including the reading, or just about flushing every time.\nif not listen, the shit might not start and balls will fall off.\nor you can just try, do it in another non-terminal way. such as subprocess.Popen, which just will create script kiddies.\nor better not. let's just search.",
+        "type": "code",
+        "location": "/lego/pty_server/README:1-11"
+    },
+    "3003": {
+        "file_id": 491,
+        "content": "The code discusses a limitation on the maximum number of PTY allocations in kernel compilation time, suggesting a cut-down version of pty for trivial tasks or alternative methods such as subprocess.Popen to avoid creating script kiddies.",
+        "type": "comment"
+    },
+    "3004": {
+        "file_id": 492,
+        "content": "/lego/pty_server/junk/pty_ref.py",
+        "type": "filepath"
+    },
+    "3005": {
+        "file_id": 492,
+        "content": "The code imports modules, sets up threads for PTY management and web requests, creates a Tornado web application with event loop, manages pseudo-terminal pairs, and handles user requests.",
+        "type": "summary"
+    },
+    "3006": {
+        "file_id": 492,
+        "content": "from __future__ import unicode_literals\nimport threading\nimport pyte\nimport tornado.ioloop\nimport tornado.web\nimport requests\nimport sys\nimport errno\nimport pty\nimport base64\nimport os\nimport time\nimport subprocess\nimport traceback\nimport copy\nfrom select import select\n# still lacking basic control. not using pseudo terminal.\nLF_CRLF=b\"\\n\"\ncols, rows = 80, 25\nglobal_env = copy.deepcopy(os.environ)\nglobal_env[\"COLUMNS\"] = str(cols)\nglobal_env[\"LINES\"] = str(rows)\nended = [False]\nmaxbark = 1\nmaxbark_granual = 5\nmaxterm = 3\nmaxterm_granual = 5\nbark = 0\nterm = 0\nport=8688\ndef kill(pipe,masters):\n    global ended\n    try:\n        for fd in masters:\n            os.close(fd) # no input\n        pipe.stdin.close()\n        pipe.terminate()\n        pipe.kill()\n    except:\n        print(\"_____process kill error_____\")\n        traceback.print_exc()\n    finally:\n        ended[0]=True\n# use os.close.\n# cannot close pty. thus keep using the shit.\n# but we might need to regroup the whole thing somehow. shall we?\n# shall we delete the pty and move on?",
+        "type": "code",
+        "location": "/lego/pty_server/junk/pty_ref.py:1-51"
+    },
+    "3007": {
+        "file_id": 492,
+        "content": "This code imports various modules and defines some global variables. It creates a function, `kill`, for ending the process, and uses `os.close` to close file descriptors. The code is related to PTY (pseudo terminal) management and has functions for killing processes.",
+        "type": "comment"
+    },
+    "3008": {
+        "file_id": 492,
+        "content": "# dude, reconstruct the thing.\ndisplay = \"\"\n# this means not a single return is initiated.\nlag = 0.05\nexecutable = 'bash'\n# we should not call the wait function.\n# we can log data into vterminal.\n#watch_rate = 0.5\nscreen = pyte.Screen(cols,rows)\nstream = pyte.ByteStream(screen)\nmasters, slaves = zip(pty.openpty(), pty.openpty())\nprocess = subprocess.Popen([executable],env = global_env ,stdout=slaves[0],stderr=slaves[1],stdin=subprocess.PIPE)\n# it is not running well.\ndef read_to_term(masters,slaves,z):\n    global display, stream, screen\n    for fd in slaves:\n        os.close(fd) # no input\n    readable = {\n        masters[0]: stream, # log separately\n        masters[1]: stream\n    }\n# does that mean anything?\n    rdb = 2\n    while rdb>0:\n        for fd in select(readable, [], [])[0]:\n            try:\n                data = os.read(fd, 1024) # read available\n            except OSError as e:\n                if e.errno != errno.EIO:\n                    raise #XXX cleanup\n                rdb-=1\n                # so it is good.",
+        "type": "code",
+        "location": "/lego/pty_server/junk/pty_ref.py:52-85"
+    },
+    "3009": {
+        "file_id": 492,
+        "content": "The code sets up a pty (pseudo-terminal) pair for a subprocess. It initializes a screen and byte stream, opens the pty pairs, and starts a process with specified executable, environment variables, and stdio connections. The read_to_term function is defined to handle reading data from the pty master file descriptors and closing any input (stdin) file descriptors when needed.",
+        "type": "comment"
+    },
+    "3010": {
+        "file_id": 492,
+        "content": "                #del readable[fd] # EIO means EOF on some systems\n            else:\n                if not data: # EOF\n                    rdb-=1\n                    # it does not end properly.\n#                    del readable[fd]\n                else:\n#                    print(type(data),dir(data),\"datatype\")\n                    # no data?\n                    print(\"channel\",fd)\n                    readable[fd].feed(data)\n                    display = \"\\n\".join(screen.display)\n#    print(\"process is dead.\")\n    z[0]=True\nt0=threading.Thread(target=read_to_term,args=(masters,slaves,ended))\nt0.setDaemon(True)\nt0.start()\ndef barkdog():\n    global bark, maxbark_granual\n    while True:\n        bark = 0\n        time.sleep(maxbark_granual)\ntb=threading.Thread(target=barkdog,args=())\ntb.setDaemon(True)\ntb.start()\n# specify the env.\ndef termdog():\n    global term, maxterm_granual\n    while True:\n        term = 0\n        time.sleep(maxterm_granual)\ntx=threading.Thread(target=termdog,args=())\ntx.setDaemon(True)\ntx.start()\ndef watchdog():",
+        "type": "code",
+        "location": "/lego/pty_server/junk/pty_ref.py:86-122"
+    },
+    "3011": {
+        "file_id": 492,
+        "content": "The code creates three threads to handle barking, terminating, and monitoring events. It sets up variables for bark count, maximum bark granule, term count, and maximum term granule. The `barkdog` function increments the bark variable every maxbark_granual seconds until it reaches 10. Similarly, the `termdog` function increments the term variable every maxterm_granule seconds. The `watchdog` function monitors these variables and takes action when they reach their respective thresholds. It creates a thread for each of these functions and sets them as daemon threads, which will automatically exit when the main program ends. The code also includes comments for debugging purposes, such as displaying variable types and data contents.",
+        "type": "comment"
+    },
+    "3012": {
+        "file_id": 492,
+        "content": "    global process, port, bark, maxbark, watch_rate\n    #notdead = True\n    #while notdead:\n    #    pl = process.poll()\n    #    print(\"poll result\",pl)\n    #    time.sleep(watch_rate)\n    process.wait()\n    # print(\"bark\")\n    bark+=1\n    if bark > maxbark:\n        # print(\"max bark exceed.\",bark)\n        pass\n    else:\n        requests.get(\"http://localhost:{}/restart\".format(port),stream=False,verify=False,timeout=1)\n    # if not, call the handler. use requests.\nt1=threading.Thread(target=watchdog,args=())\nt1.setDaemon(True)\nt1.start()\n# what the heck?\n# you can set max execution time here. but is it necessary?\nclass RHandler(tornado.web.RequestHandler):\n    def get(self):\n        global process, screen, stream, t0, t1, executable, display, term, maxterm, masters, slaves, global_env \n        # print(type(process))\n        # print(dir(process))\n        term += 1\n        if term > maxterm:\n            self.write(\"exceeding max termination quota!\\n\")\n        else:\n            kill(process,masters)\n            # what if it does not exist?",
+        "type": "code",
+        "location": "/lego/pty_server/junk/pty_ref.py:123-153"
+    },
+    "3013": {
+        "file_id": 492,
+        "content": "The code defines a watchdog thread that monitors the execution of a process. If the process exceeds a maximum bark limit, it makes a request to restart the server. There is also a handler class for a web request that terminates the process if it exceeds a maximum termination quota. The code uses threads, global variables, and Tornado web framework.",
+        "type": "comment"
+    },
+    "3014": {
+        "file_id": 492,
+        "content": "            # print(\"process pid\",process.pid)\n            # print(\"killing process\")\n            # os.kill(process.pid,signal.SIGKILL)\n            # process.close()\n            for x in [process, screen, stream, t0, t1, masters, slaves]:\n                # print(\"deleting\")\n                del x\n            ended[0]=False\n            display = \"default_refreshed\"\n            screen = pyte.Screen(cols,rows)\n            stream = pyte.ByteStream(screen)\n            masters, slaves = zip(pty.openpty(), pty.openpty())\n            process = subprocess.Popen([executable],env = global_env ,stdout=slaves[0],stderr=slaves[1],stdin=subprocess.PIPE)\n            t0=threading.Thread(target=read_to_term,args=(masters,slaves,ended))\n            t0.setDaemon(True)\n            t0.start()\n            t1=threading.Thread(target=watchdog,args=())\n            t1.setDaemon(True)\n            t1.start()\n# what if it changes the terminal columns? i do not care. just show me.\n            self.write(\"terminal restart!\\n\")\nclass IHandler(tornado.web.RequestHandler):",
+        "type": "code",
+        "location": "/lego/pty_server/junk/pty_ref.py:154-175"
+    },
+    "3015": {
+        "file_id": 492,
+        "content": "This code is restarting a terminal and creating threads to read from the master and run a watchdog. It deletes previous objects, sets display to default_refreshed, creates a new screen and stream, opens two pty (pseudo-terminal) pairs for reading and writing, starts a process with specified executable, and creates two threads: one for reading input from the master terminal and another for running a watchdog. The \"terminal restart!\" message is displayed to indicate the change.",
+        "type": "comment"
+    },
+    "3016": {
+        "file_id": 492,
+        "content": "    def get(self):\n        global display, process, lag, ended\n        # print(\"type request received.\")\n        argument = self.get_argument(\"type\",None)\n        argumentx = self.get_argument(\"b64type\",None)\n        # that is for argument!\n        autoreturn = self.get_argument(\"autoreturn\",None) == \"true\"\n        # print(\"actual argument\",[argument],type(argument))\n        # string.\n# unless it is writable.\n        if ended[0]:\n            self.write(\"process is ended.\\n\")\n        elif process.stdin.closed:\n            self.write(\"stdin is closed.\\n\")\n        elif not process.stdin.writable():\n            self.write(\"stdin is not writable.\\n\")\n        elif argument is not None:\n            # unicode.\n            # may encounter error.\n            if autoreturn:\n# shall we dispatch it to a thread? therefore we do not need to wait.\n                process.stdin.write(argument.encode(\"utf8\")+LF_CRLF)\n                process.stdin.flush()\n            else:\n                process.stdin.write(argument.encode(\"utf8\"))",
+        "type": "code",
+        "location": "/lego/pty_server/junk/pty_ref.py:176-200"
+    },
+    "3017": {
+        "file_id": 492,
+        "content": "The code defines a get function that handles type request. It retrieves arguments such as \"type\", \"b64type\", and \"autoreturn\" from the client's HTTP request and writes the argument to the process' stdin if it is writable, or returns an error message if not. The autoreturn flag determines whether to write the argument with a newline or without.",
+        "type": "comment"
+    },
+    "3018": {
+        "file_id": 492,
+        "content": "                process.stdin.flush()\n            time.sleep(lag)\n# may you adjust this.\n            self.write(display)\n        elif argumentx is not None:\n            # check if correctly formed.\n            try:\n                arx = base64.b64decode(argumentx)\n                # the result is not right.\n                # cannot decode here.\n                if autoreturn:\n                    process.stdin.write(arx+LF_CRLF)\n                    process.stdin.flush()\n                else:\n                    process.stdin.write(arx)\n                    process.stdin.flush()\n                    # this is not unicode string.\n                time.sleep(lag)\n                self.write(display)\n            except:\n                self.write(\"incorrect format\\n\")\n        else:\n            self.write(\"empty input\\n\")\n            # pass\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        global display\n        self.write(display)\n    def make_app():\n        return tornado.web.Application([(r\"/display\",MainHandler),(r\"/restart\",RHandler),(r\"/input\",IHandler)])",
+        "type": "code",
+        "location": "/lego/pty_server/junk/pty_ref.py:201-230"
+    },
+    "3019": {
+        "file_id": 492,
+        "content": "This code appears to handle input from a user, decode it if necessary, and then send it to another process with appropriate formatting. If the input is incorrectly formatted or empty, an error message is displayed. The code also includes a function for creating a Tornado web application with three defined routes.",
+        "type": "comment"
+    },
+    "3020": {
+        "file_id": 492,
+        "content": "app = MainHandler.make_app()\napp.listen(port)\n# here's the shit.\ntornado.ioloop.IOLoop.current().start()\n# register handler.\nexit()",
+        "type": "code",
+        "location": "/lego/pty_server/junk/pty_ref.py:232-237"
+    },
+    "3021": {
+        "file_id": 492,
+        "content": "app is created by calling make_app() function from MainHandler. The app listens on the port specified. IOLoop.current().start() starts the event loop for handling network connections. Handler registration and exit command are placed at the end of the code block.",
+        "type": "comment"
+    },
+    "3022": {
+        "file_id": 493,
+        "content": "/lego/pty_server/ptyproc.py",
+        "type": "filepath"
+    },
+    "3023": {
+        "file_id": 493,
+        "content": "The code is a portable PTY server with Linux support, including signal handling and threaded shell execution. It uses Tornado for web app creation, handles routes and input formats, and starts the server on a specified port.",
+        "type": "summary"
+    },
+    "3024": {
+        "file_id": 493,
+        "content": "from __future__ import unicode_literals\nimport ptyprocess\n# this module is exclusive for windows. to port to linux there should be extra steps.\n# i mean, android.\n# hey! do not run this shit outside of sandbox, unless you want to get me killed.\nimport threading\nimport pyte\n# can you format things into colorful output?\n# or just raw terminal string which can be transformed into html.\nimport traceback\nimport tornado.ioloop\nimport tornado.web\nimport requests\nimport base64\nimport signal\n# no watchdog for this?\nLF_CRLF=b\"\\n\"\nmaxbark = 2\nmaxbark_granual = 5\nmaxterm = 3\nmaxterm_granual = 5\nbark = 0\nterm = 0\nport=8788\n# you can turn off the barking dog sometimes.\n# we can use a big dog every since then.\ndef kill(pipe):\n    try:\n        pipe.terminate()\n# here.\n        pipe.kill(signal.SIGKILL)\n    except:\n        print(\"_____process kill error_____\")\n        traceback.print_exc()\n# signal.signal(signal.SIGINT, signal_handler)\ndisplay = \"\"\nlag = 0.05\nexecutable ='bash'\ncols, rows = 80, 25\nimport time\nwatch_rate = 0.5\nscreen = pyte.Screen(cols,rows)",
+        "type": "code",
+        "location": "/lego/pty_server/ptyproc.py:1-42"
+    },
+    "3025": {
+        "file_id": 493,
+        "content": "This code is for a PTY server that runs exclusively on Windows, with some potential porting steps to Linux. It uses the tornado web framework and pyte library for terminal handling. The code includes signal handling for process termination, a screen object for displaying output, and variables for adjusting barking frequency and terminal size. The barking dog is controlled by a kill function that can terminate processes and the display variable holds colorful output or raw terminal strings. There's also support for turning off barking in certain situations and using a big dog afterward.",
+        "type": "comment"
+    },
+    "3026": {
+        "file_id": 493,
+        "content": "stream = pyte.ByteStream(screen)\nprocess =  ptyprocess.PtyProcess.spawn([executable],dimensions=(rows,cols))\ndef read_to_term():\n    global display, stream, screen\n    # read a global list?\n    # you can start another server. not quite like terminal. like execution shell.\n    noerr=True\n    while noerr:\n        try:\n            reading=process.read()\n# will block.\n    # will raise error if not good.\n            stream.feed(reading)\n            display = \"\\n\".join(screen.display)\n        except:\n            noerr = False\n            break\nt0=threading.Thread(target=read_to_term,args=())\nt0.setDaemon(True)\nt0.start()\ndef barkdog():\n    global bark, maxbark_granual\n    while True:\n        bark = 0\n        time.sleep(maxbark_granual)\ntb=threading.Thread(target=barkdog,args=())\ntb.setDaemon(True)\ntb.start()\ndef termdog():\n    global term, maxterm_granual\n    while True:\n        term = 0\n        time.sleep(maxterm_granual)\ntx=threading.Thread(target=termdog,args=())\ntx.setDaemon(True)\ntx.start()\ndef watchdog():\n    global process, watch_rate, port, bark, maxbark",
+        "type": "code",
+        "location": "/lego/pty_server/ptyproc.py:43-80"
+    },
+    "3027": {
+        "file_id": 493,
+        "content": "Thread \"t0\" reads data from the process and updates the display, functioning like an execution shell. Thread \"tb\" resets the bark variable periodically. Thread \"tx\" resets the term variable periodically. The watchdog function monitors the process, watching rate, port, bark, and maxbark variables.",
+        "type": "comment"
+    },
+    "3028": {
+        "file_id": 493,
+        "content": "    alive=True\n    while alive:\n        alive = process.isalive()\n#        print(\"alive?\",alive)\n        time.sleep(watch_rate)\n#    print(\"bark\")\n    bark+=1\n    if bark > maxbark:\n        print(\"max bark exceed.\",bark)\n# what the heck?\n        pass\n    else:\n#        print(\"did get to here\")\n# if server is down this will cause dead shit.\n        requests.get(\"http://localhost:{}/restart\".format(port),stream=False,verify=False,timeout=1)\n# does that work?\n    # if not, call the handler. use requests.\nt1=threading.Thread(target=watchdog,args=())\nt1.setDaemon(True)\nt1.start()\nclass RHandler(tornado.web.RequestHandler):\n    def get(self):\n        global process, screen, stream, t0, t1, executable, display, term, maxterm\n        # print(type(process))\n        # print(dir(process))\n        term += 1\n        if term > maxterm:\n            self.write(\"exceeding max termination quota!\\n\")\n        else:\n            kill(process)\n# did it stuck here?\n# nope.\n            for x in [process, screen, stream, t0, t1]:\n                # print(\"deleting\")",
+        "type": "code",
+        "location": "/lego/pty_server/ptyproc.py:81-115"
+    },
+    "3029": {
+        "file_id": 493,
+        "content": "This code is monitoring the status of a process and restarting it if needed. It uses threads, Tornado web framework, and requests module for networking. The code also handles maximum term limits, checks if the server is down before making network calls, and has error handling in place.",
+        "type": "comment"
+    },
+    "3030": {
+        "file_id": 493,
+        "content": "                del x\n            display = \"\"\n            screen = pyte.Screen(cols,rows)\n            stream = pyte.ByteStream(screen)\n            process =  ptyprocess.PtyProcess.spawn([executable],dimensions=(rows,cols))\n            t0=threading.Thread(target=read_to_term,args=())\n            t0.setDaemon(True)\n            t0.start()\n            t1=threading.Thread(target=watchdog,args=())\n            t1.setDaemon(True)\n            t1.start()\n            self.write(\"terminal restart!\\n\")\nclass IHandler(tornado.web.RequestHandler):\n    def get(self):\n        global display, process, lag\n        # print(\"type request received.\")\n        argument = self.get_argument(\"type\",None)\n        argumentx = self.get_argument(\"b64type\",None)\n        # that is for argument!\n        autoreturn = self.get_argument(\"autoreturn\",None) == \"true\"\n        # print(\"actual argument\",[argument],type(argument))\n        # string.\n        if not process.isalive():\n            self.write(\"process is dead.\\n\")\n        elif argument is not None:",
+        "type": "code",
+        "location": "/lego/pty_server/ptyproc.py:116-140"
+    },
+    "3031": {
+        "file_id": 493,
+        "content": "Code initializes a new terminal session with specified dimensions. It creates two threads - one for reading from the terminal and another for monitoring. The get() function of IHandler class handles HTTP GET requests, checks if the process is alive and processes the 'type' argument.",
+        "type": "comment"
+    },
+    "3032": {
+        "file_id": 493,
+        "content": "            # unicode.\n            # may encounter error.\n            if autoreturn:\n                process.write(argument.encode(\"utf8\")+b'\\r')\n            else:\n                process.write(argument.encode(\"utf8\"))\n            time.sleep(lag)\n            self.write(display)\n        elif argumentx is not None:\n            # check if correctly formed.\n# check if not dead.\n            try:\n                arx = base64.b64decode(argumentx)\n                # the result is not right.\n                # cannot decode here.\n                if autoreturn:\n                    process.write(arx+b'\\r')\n                else:\n                    process.write(arx)\n                    # this is not unicode string.\n                time.sleep(lag)\n                self.write(display)\n            except:\n                self.write(\"incorrect format\\n\")\n                # pass\n                # D:\\Programs\\Python\\Python36\\lib\\site-packages\\winpty\\winpty_wrapper.py\n        else:\n            self.write(\"empty input\\n\")\n            # pass",
+        "type": "code",
+        "location": "/lego/pty_server/ptyproc.py:141-169"
+    },
+    "3033": {
+        "file_id": 493,
+        "content": "This code checks the format of an input argument and either encodes it in UTF-8 or decodes it from base64. It then sends the encoded or decoded data to a process, waits for some time, and writes the display output. If the input is missing, empty, or has an incorrect format, appropriate error messages are displayed.",
+        "type": "comment"
+    },
+    "3034": {
+        "file_id": 493,
+        "content": "class MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        global display\n        self.write(display)\n    def make_app():\n        return tornado.web.Application([(r\"/display\",MainHandler),(r\"/restart\",RHandler),(r\"/input\",IHandler)])\n# get a window watcher. if want to lock the winsize better use that.\napp = MainHandler.make_app()\napp.listen(port)\n# here's the shit.\ntornado.ioloop.IOLoop.current().start()\n# register handler.\nexit()",
+        "type": "code",
+        "location": "/lego/pty_server/ptyproc.py:170-183"
+    },
+    "3035": {
+        "file_id": 493,
+        "content": "The code defines a web application using the Tornado framework, with different handlers for routes \"/display\", \"/restart\", and \"/input\". It creates an instance of the main handler and starts the server on a specified port. The IOLoop is started in a separate thread to handle incoming requests.",
+        "type": "comment"
+    },
+    "3036": {
+        "file_id": 494,
+        "content": "/lego/pty_server/pyexec.py",
+        "type": "filepath"
+    },
+    "3037": {
+        "file_id": 494,
+        "content": "This Python program sets up a pseudo terminal, manages input/output between multiple pipes, and handles errors. It creates a subprocess with pipes, handles I/O streams, and checks exit conditions.",
+        "type": "summary"
+    },
+    "3038": {
+        "file_id": 494,
+        "content": "import sys\nimport pty\nimport os\nimport threading\nimport subprocess\nimport uuid\nimport errno\nimport time\nimport traceback\nfrom select import select\nimport base64\n# shall use uuid as a separator. in case of confusion?\n# shall we?\n# check for terminal later.\nWATCH_DOG=5\nMIN_INTERVAL=0.1\n# what is this then?\n# we can solder it.\nuid = str(uuid.uuid4()).encode()\narx = sys.argv\n#print(arx)\narx = arx[1:]\nsys.stdout.buffer.write(b\"UUID\"+uid+b\"\\n\")\nsys.stdout.buffer.flush()\n# if the thing is going on right.\n# we should accept stdin.\n# does not grarantee these packages will contain the same amount of information.\nif len(arx) == 0:\n    sys.stdout.buffer.write(b\"ERROR_NOARGS\"+uid+b\"\\n\")\n    sys.stdout.buffer.flush()\n    exit(1)\nelse:\n    sys.stdout.buffer.write(b\"BEGIN_EXEC\"+uid+b\"\\n\")\n    sys.stdout.buffer.flush()\n# use the protocol?\n#os.system()\ndef wr_out(x):\n    return b\"STDOUT\"+uid+base64.encodebytes(x)\ndef wr_err(x):\n    return b\"STDERR\"+uid+base64.encodebytes(x)\ndef rout(masters,slaves,z):\n    for fd in slaves:\n        os.close(fd) # no input",
+        "type": "code",
+        "location": "/lego/pty_server/pyexec.py:1-43"
+    },
+    "3039": {
+        "file_id": 494,
+        "content": "This code appears to be part of a Python program that sets up a pseudo terminal (pty) and executes another program within it. It generates a unique UUID, checks for command-line arguments, and then writes status messages back to the parent process using the generated UUID as a separator. The code defines functions to handle standard output and error output data, and includes a function to close unnecessary file descriptors.",
+        "type": "comment"
+    },
+    "3040": {
+        "file_id": 494,
+        "content": "# why the fuck it does not work?\n    readable = {\n        masters[0]: sys.stdout.buffer, # log separately\n        masters[1]: sys.stderr.buffer,\n    }\n    translator = {masters[0]:wr_out,masters[1]:wr_err}\n    rdb = 2\n    while rdb>0:\n        for fd in select(readable, [], [])[0]:\n            try:\n                data = os.read(fd, 1024) # read available\n            except OSError as e:\n                if e.errno != errno.EIO:\n                    raise #XXX cleanup\n                rdb-=1\n                # so it is good.\n                #del readable[fd] # EIO means EOF on some systems\n            else:\n                if not data: # EOF\n                    rdb-=1\n                    # it does not end properly.\n#                    del readable[fd]\n                else:\n                    print(\"feeding back.\",fd)\n                    readable[fd].write(translator[fd](data))\n                    readable[fd].flush()\n    z[0]=True\n    # ended.\ndef dog(z):\n    time.sleep(WATCH_DOG)\n    z[0]=True\ndef rin(pipe):\n    t=5\n    while t>0 and pipe.stdin.writable() and not pipe.stdin.closed:",
+        "type": "code",
+        "location": "/lego/pty_server/pyexec.py:44-77"
+    },
+    "3041": {
+        "file_id": 494,
+        "content": "This code appears to be a part of a program that manages input/output between multiple pipes, handling EOF and EIO errors. It maintains readable, writable, and exception lists using select() function, handles reading data from file descriptors, and performs necessary actions upon encountering EOF or EIO errors. The dog() function seems to be a watchdog timer, while rin(pipe) might handle continuous input from the pipe until it is closed or becomes unwritable.",
+        "type": "comment"
+    },
+    "3042": {
+        "file_id": 494,
+        "content": "        # check if writable.\n        print(\"writable?\",pipe.stdin.writable())\n        print(\"closed?\",pipe.stdin.closed)\n        pipe.stdin.write(b\"whoami\\n\")\n        pipe.stdin.flush()\n        time.sleep(1)\n        t-=1\n    # may not succeed.\n    pipe.stdin.close()\n    pipe.terminate()\n    pipe.kill()\n#    print(dir(pipe.stdin))\n    # write and flush.\n#    print(dir(pipe),type(pipe))\nNORMAL=0\nmasters, slaves = zip(pty.openpty(), pty.openpty())\ntry:\n    ended = [False]\n    pipe = subprocess.Popen(arx,stdout=slaves[0],stderr=slaves[1],stdin=subprocess.PIPE)\n# normally we keep this error.\n    t_in = threading.Thread(target=rin,args=(pipe,))\n    # it seems that stdout is not being read.\n    t_out = threading.Thread(target=rout,args=(masters,slaves,ended))\n    t_err = threading.Thread(target=dog,args=(ended,))\n    t_in.setDaemon(True)\n    t_out.setDaemon(True)\n    t_err.setDaemon(True)\n    t_in.start()\n    t_out.start()\n    t_err.start()\n# not blocking, of course.\n    while True:\n        time.sleep(MIN_INTERVAL)\n        if ended[0]:",
+        "type": "code",
+        "location": "/lego/pty_server/pyexec.py:78-111"
+    },
+    "3043": {
+        "file_id": 494,
+        "content": "The code is creating a subprocess with input, output, and error pipes, then running two threads to handle the input, output, and error streams. It checks if the stdin is writable, writes data, closes it, and terminates or kills the process if needed. The NORMAL variable might be used for some conditions but is not defined in this code snippet.",
+        "type": "comment"
+    },
+    "3044": {
+        "file_id": 494,
+        "content": "# well, you can send the signal.\n            sys.stdout.buffer.write(b\"PROGRAM_EXIT\"+uid+b\"\\n\")\n            sys.stdout.buffer.flush()\n            break\nexcept:\n    NORMAL=1\n    fmt = traceback.format_exc()\n    sys.stdout.buffer.write(b\"INTERNAL_ERROR\"+uid+base64.encodebytes(fmt.encode()))\n    sys.stdout.buffer.flush()\nfinally:\n    for fd in masters:\n        os.close(fd)\n    for fd in slaves:\n        try:\n            os.close(fd)\n        except:\n            pass\n#    exit(1)\nexit(NORMAL)\n# so what is the main thread anyway.\n# just a watch dog?\n    # but this time we've had an agreement, right?\n    # you shall do some remote handler now. dispatch the agent on such a port.",
+        "type": "code",
+        "location": "/lego/pty_server/pyexec.py:112-134"
+    },
+    "3045": {
+        "file_id": 494,
+        "content": "Code snippet handles program exit and potential errors. It sends a \"PROGRAM_EXIT\" signal to the appropriate port, closes all open file descriptors, and exits with a status indicating whether an error occurred. The code also includes a try-except block to handle potential exceptions during execution.",
+        "type": "comment"
+    },
+    "3046": {
+        "file_id": 495,
+        "content": "/lego/pty_server/winpty_ref.py",
+        "type": "filepath"
+    },
+    "3047": {
+        "file_id": 495,
+        "content": "This Windows module controls processes and interprocess communication, utilizes threads and libraries, and includes a Tornado web handler for process control. It handles argument processing and sleeps for lag time before writing to the display and starting an IOLoop.",
+        "type": "summary"
+    },
+    "3048": {
+        "file_id": 495,
+        "content": "from __future__ import unicode_literals\nfrom winpty import PTY\n# this module is exclusive for windows. to port to linux there should be extra steps.\n# i mean, android.\n# hey! do not run this shit outside of sandbox, unless you want to get me killed.\nimport threading\n# import wmi\nimport os\nimport pyte\nimport tornado.ioloop\nimport tornado.web\nimport requests\nimport base64\nmaxbark = 1\nmaxbark_granual = 5\nmaxterm = 3\nmaxterm_granual = 5\nbark = 0\nterm = 0\n# give the maxbark.\n# interruption isn't working.\n# import signal\n# shall consider ddos prevension?\n# import sys\n# WMI = wmi.WMI()\nport=8788\ndef kill(pid):\n    # do it elsewhere.\n    # global WMI\n    os.system(\"taskkill /F /PID {}\".format(pid))\n    # better execute it in pypy or else.\n    # this is shit. check source code from reactos.\n    # or better not to use it. since it requires dll loading?\n    # for x in WMI.Win32_Process():\n    #     if x.processid == pid:\n    #         print(\"killing process\",pid)\n    #         x.Terminate()\n    # print(\"killing done\")\n    # too long.\n# def signal_handler(signal, frame):",
+        "type": "code",
+        "location": "/lego/pty_server/winpty_ref.py:1-40"
+    },
+    "3049": {
+        "file_id": 495,
+        "content": "This code snippet is for a Windows-exclusive module, likely related to process control and interprocess communication. It imports various libraries such as tornado.web, requests, and pyte. The module defines functions like kill(pid) for terminating processes, but mentions the need for porting to Linux and potential DDoS prevention measures. It also discusses signal handling and using Python's wmi library to interact with Windows Management Instrumentation.",
+        "type": "comment"
+    },
+    "3050": {
+        "file_id": 495,
+        "content": "#     print('You pressed Ctrl+C!')\n#     # sys.exit(0)\n#     exit(0)\n# signal.signal(signal.SIGINT, signal_handler)\ndisplay = \"\"\nlag = 0.05\nexecutable = u'C:\\windows\\system32\\cmd.exe'\ncols, rows = 80, 25\nimport time\nwatch_rate = 0.5\nscreen = pyte.Screen(cols,rows)\nstream = pyte.ByteStream(screen)\nprocess = PTY(cols, rows)\nprocess.spawn(executable)\ndef read_to_term():\n    global display, stream, screen\n    # read a global list?\n    # you can start another server. not quite like terminal. like execution shell.\n    noerr=True\n    while noerr:\n        try:\n            reading=process.read(blocking=True)\n    # will raise error if not good.\n            stream.feed(reading)\n            display = \"\\n\".join(screen.display)\n        except:\n            noerr = False\n            break\nt0=threading.Thread(target=read_to_term,args=())\nt0.setDaemon(True)\nt0.start()\ndef barkdog():\n    global bark, maxbark_granual\n    while True:\n        bark = 0\n        time.sleep(maxbark_granual)\ntb=threading.Thread(target=barkdog,args=())\ntb.setDaemon(True)",
+        "type": "code",
+        "location": "/lego/pty_server/winpty_ref.py:41-78"
+    },
+    "3051": {
+        "file_id": 495,
+        "content": "The code is setting up a process that acts like an execution shell rather than a terminal. It creates a thread to continuously read from the process and display the output, while another thread periodically resets the bark (output) value. The code also handles Ctrl+C signals for potential early program termination.",
+        "type": "comment"
+    },
+    "3052": {
+        "file_id": 495,
+        "content": "tb.start()\ndef termdog():\n    global term, maxterm_granual\n    while True:\n        term = 0\n        time.sleep(maxterm_granual)\ntx=threading.Thread(target=termdog,args=())\ntx.setDaemon(True)\ntx.start()\ndef watchdog():\n    global process, watch_rate, port, bark, maxbark\n    alive=True\n    while alive:\n        alive = process.isalive()\n        time.sleep(watch_rate)\n    # print(\"bark\")\n    bark+=1\n    if bark >= maxbark:\n        # print(\"max bark exceed.\",bark)\n        pass\n    else:\n        requests.get(\"http://localhost:{}/restart\".format(port),stream=False,verify=False,timeout=1)\n    # if not, call the handler. use requests.\nt1=threading.Thread(target=watchdog,args=())\nt1.setDaemon(True)\nt1.start()\nclass RHandler(tornado.web.RequestHandler):\n    def get(self):\n        global process, screen, stream, t0, t1, executable, display, term, maxterm\n        # print(type(process))\n        # print(dir(process))\n        term += 1\n        if term >= maxterm:\n            self.write(\"exceeding max termination quota!\\n\")\n        else:",
+        "type": "code",
+        "location": "/lego/pty_server/winpty_ref.py:79-114"
+    },
+    "3053": {
+        "file_id": 495,
+        "content": "This code sets up two threads for monitoring and controlling a process. One thread, `termdog`, periodically checks the process's status and resets the term counter. The other thread, `watchdog`, checks if the process is still running and sends a restart request to an endpoint if it has exceeded the maximum bark limit or if the process dies. There's also a class for a Tornado web handler that handles the GET requests, likely to control the process as well.",
+        "type": "comment"
+    },
+    "3054": {
+        "file_id": 495,
+        "content": "            kill(process.pid)\n            # print(\"process pid\",process.pid)\n            # print(\"killing process\")\n            # os.kill(process.pid,signal.SIGKILL)\n            # process.close()\n            for x in [process, screen, stream, t0, t1]:\n                # print(\"deleting\")\n                del x\n            display = \"\"\n            screen = pyte.Screen(cols,rows)\n            stream = pyte.ByteStream(screen)\n            process = PTY(cols, rows)\n            process.spawn(executable)\n            t0=threading.Thread(target=read_to_term,args=())\n            t0.setDaemon(True)\n            t0.start()\n            t1=threading.Thread(target=watchdog,args=())\n            t1.setDaemon(True)\n            t1.start()\n            self.write(\"terminal restart!\\n\")\nclass IHandler(tornado.web.RequestHandler):\n    def get(self):\n        global display, process, lag\n        # print(\"type request received.\")\n        argument = self.get_argument(\"type\",None)\n        argumentx = self.get_argument(\"b64type\",None)\n        # that is for argument!",
+        "type": "code",
+        "location": "/lego/pty_server/winpty_ref.py:115-141"
+    },
+    "3055": {
+        "file_id": 495,
+        "content": "The code represents a process restarting mechanism for a terminal within a Tornado web request handler. It kills the existing process, clears related objects, and restarts the terminal. The 'get' method handles incoming requests with \"type\" and \"b64type\" arguments.",
+        "type": "comment"
+    },
+    "3056": {
+        "file_id": 495,
+        "content": "        autoreturn = self.get_argument(\"autoreturn\",None) == \"true\"\n        # print(\"actual argument\",[argument],type(argument))\n        # string.\n        if argument is not None:\n            # unicode.\n            # may encounter error.\n            if autoreturn:\n                process.write(u'{}\\r\\n'.format(argument))\n            else:\n                process.write(u'{}'.format(argument))\n            time.sleep(lag)\n            self.write(display)\n        elif argumentx is not None:\n            # check if correctly formed.\n            try:\n                arx = base64.b64decode(argumentx)\n                # the result is not right.\n                # cannot decode here.\n                if autoreturn:\n                    process.write(arx+b'\\r\\n',raw=True)\n                else:\n                    process.write(arx,raw=True)\n                    # this is not unicode string.\n                time.sleep(lag)\n                self.write(display)\n            except:\n                self.write(\"incorrect format\")\n                # pass",
+        "type": "code",
+        "location": "/lego/pty_server/winpty_ref.py:142-169"
+    },
+    "3057": {
+        "file_id": 495,
+        "content": "This code handles the processing of an argument for a pty_server. It checks if the argument is a string or base64 encoded, and writes it to the process with or without newline characters based on the autoreturn flag. If incorrectly formatted, it returns an \"incorrect format\" message. The code also includes debug prints and sleeps for lag time before writing to the display.",
+        "type": "comment"
+    },
+    "3058": {
+        "file_id": 495,
+        "content": "                # D:\\Programs\\Python\\Python36\\lib\\site-packages\\winpty\\winpty_wrapper.py\n        else:\n            self.write(\"empty input\")\n            # pass\nclass MainHandler(tornado.web.RequestHandler):\n    def get(self):\n        global display\n        self.write(display)\n    def make_app():\n        return tornado.web.Application([(r\"/display\",MainHandler),(r\"/restart\",RHandler),(r\"/input\",IHandler)])\napp = MainHandler.make_app()\napp.listen(port)\n# here's the shit.\ntornado.ioloop.IOLoop.current().start()\n# register handler.\nexit()",
+        "type": "code",
+        "location": "/lego/pty_server/winpty_ref.py:170-186"
+    },
+    "3059": {
+        "file_id": 495,
+        "content": "This code defines a class `MainHandler` that extends `tornado.web.RequestHandler` and has two methods: `get()` and `make_app()`. The `get()` method writes the global variable `display` to the response, while `make_app()` returns an instance of `tornado.web.Application` with defined routes and URLs. The application listens on a specified port, starts an IOLoop using `tornado.ioloop.IOLoop.current().start()`, and exits the program.",
+        "type": "comment"
+    },
+    "3060": {
+        "file_id": 496,
+        "content": "/lego/py_exec.py",
+        "type": "filepath"
+    },
+    "3061": {
+        "file_id": 496,
+        "content": "The code manages command execution, separates processes using UUID, accepts arguments from stdin, monitors output in separate threads and includes a watchdog function. It may handle flushing stdout and involves remote handlers on specific ports.",
+        "type": "summary"
+    },
+    "3062": {
+        "file_id": 496,
+        "content": "import sys\nimport os\nimport threading\nimport subprocess\nimport uuid\nimport time\nimport traceback\nimport base64\nfrom select import select\n# shall use uuid as a separator. in case of confusion?\n# shall we?\nWATCH_DOG=5\nMIN_INTERVAL=0.1\nuid = str(uuid.uuid4()).encode()\narx = sys.argv\n#print(arx)\narx = arx[1:]\nsys.stdout.buffer.write(b\"UUID\"+uid+b\"\\n\")\nsys.stdout.buffer.flush()\n# if the thing is going on right.\n# we should accept stdin.\nif len(arx) == 0:\n    sys.stdout.buffer.write(b\"ERROR_NOARGS\"+uid+b\"\\n\")\n    sys.stdout.buffer.flush()\n    exit(1)\nelse:\n    sys.stdout.buffer.write(b\"BEGIN_EXEC\"+uid+b\"\\n\")\n    sys.stdout.buffer.flush()\n# use the protocol?\n#os.system()\ndef wr_out(x):\n    return b\"STDOUT\"+uid+base64.encodebytes(x)\ndef wr_err(x):\n    return b\"STDERR\"+uid+base64.encodebytes(x)\ndef rout(p,z):\n    readable = {\n        p.stdout.fileno(): sys.stdout.buffer, # log separately\n        p.stderr.fileno(): sys.stdout.buffer,\n    }\n    rm = 2\n    translator = {p.stdout.fileno():wr_out,p.stderr.fileno():wr_err}\n    while rm > 0:\n        for fd in select(readable, [], [])[0]:",
+        "type": "code",
+        "location": "/lego/py_exec.py:1-43"
+    },
+    "3063": {
+        "file_id": 496,
+        "content": "This code appears to handle command execution and log output. It uses the UUID module for separation, accepts arguments from stdin, writes a \"BEGIN_EXEC\" message with a unique UUID, defines functions for formatting STDOUT and STDERR, and sets up a select loop to read from stdout and stderr.",
+        "type": "comment"
+    },
+    "3064": {
+        "file_id": 496,
+        "content": "            data = os.read(fd, 1024) # read available\n            if not data: # EOF\n                # del what?\n                rm -= 1\n                #del readable[fd]\n            else: \n                readable[fd].write(translator[fd](data))\n                readable[fd].flush()\n    z[0]=True\n    # ended.\ndef dog(z):\n    time.sleep(WATCH_DOG)\n    z[0]=True\nNORMAL=0\ntry:\n    ended = [False]\n    # works well when without the prefix.\n    pipe = subprocess.Popen(arx,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n# normally we keep this error.\n    t_out = threading.Thread(target=rout,args=(pipe,ended))\n    t_err = threading.Thread(target=dog,args=(ended,))\n    t_out.setDaemon(True)\n    t_err.setDaemon(True)\n    t_out.start()\n    t_err.start()\n    while True:\n        time.sleep(MIN_INTERVAL)\n        if ended[0]:\n# well, you can send the signal.\n            sys.stdout.buffer.write(b\"PROGRAM_EXIT\"+uid+b\"\\n\")\n            sys.stdout.buffer.flush()\n            break\nexcept:\n    NORMAL=1\n    fmt = traceback.format_exc()\n    sys.stdout.buffer.write(b\"INTERNAL_ERROR\"+uid+base64.encodebytes(fmt.encode()))",
+        "type": "code",
+        "location": "/lego/py_exec.py:44-79"
+    },
+    "3065": {
+        "file_id": 496,
+        "content": "The code appears to be launching a subprocess and monitoring its output in separate threads. If the process completes or encounters an error, it sends a signal to exit. If there is an internal error, it encodes the traceback and sends an \"INTERNAL_ERROR\" message. The code also includes a watchdog function to check for process termination.",
+        "type": "comment"
+    },
+    "3066": {
+        "file_id": 496,
+        "content": "    sys.stdout.buffer.flush()\n#    exit(1)\n# well, if the problem is only about stdout or flushing, that's fine.\nexit(NORMAL)\n# so what is the main thread anyway.\n# just a watch dog?\n    # but this time we've had an agreement, right?\n    # you shall do some remote handler now. dispatch the agent on such a port.",
+        "type": "code",
+        "location": "/lego/py_exec.py:80-87"
+    },
+    "3067": {
+        "file_id": 496,
+        "content": "This code appears to be related to handling output in a Python program. It seems to have functionality for flushing stdout, potentially dealing with a problem related to stdout or flushing. The code also mentions something about a watchdog and an agreement to do some remote handler on a specific port, but the context is unclear without more information.",
+        "type": "comment"
+    },
+    "3068": {
+        "file_id": 497,
+        "content": "/lego/pyexec.py",
+        "type": "filepath"
+    },
+    "3069": {
+        "file_id": 497,
+        "content": "The code imports libraries, defines functions for handling output and error, creates masters and slaves using pty.openpty(), starts a subprocess with the \"arx\" command, reads from file descriptors to translate data, and handles EOF and watchdog function. The code also creates two threads for output and errors, checks if the program should exit, handles exceptions, writes error messages, closes file descriptors, and exits with status code.",
+        "type": "summary"
+    },
+    "3070": {
+        "file_id": 497,
+        "content": "import sys\nimport pty\nimport os\nimport threading\nimport subprocess\nimport uuid\nimport errno\nimport time\nimport traceback\nfrom select import select\nimport base64\n# shall use uuid as a separator. in case of confusion?\n# shall we?\nWATCH_DOG=5\nMIN_INTERVAL=0.1\nuid = str(uuid.uuid4()).encode()\narx = sys.argv\n#print(arx)\narx = arx[1:]\nsys.stdout.buffer.write(b\"UUID\"+uid+b\"\\n\")\nsys.stdout.buffer.flush()\n# if the thing is going on right.\n# we should accept stdin.\n# does not grarantee these packages will contain the same amount of information.\nif len(arx) == 0:\n    sys.stdout.buffer.write(b\"ERROR_NOARGS\"+uid+b\"\\n\")\n    sys.stdout.buffer.flush()\n    exit(1)\nelse:\n    sys.stdout.buffer.write(b\"BEGIN_EXEC\"+uid+b\"\\n\")\n    sys.stdout.buffer.flush()\n# use the protocol?\n#os.system()\ndef wr_out(x):\n    return b\"STDOUT\"+uid+base64.encodebytes(x)\ndef wr_err(x):\n    return b\"STDERR\"+uid+base64.encodebytes(x)\ndef rout(p,masters,slaves,z):\n    for fd in slaves:\n        os.close(fd) # no input\n    readable = {\n        masters[0]: sys.stdout.buffer, # log separately",
+        "type": "code",
+        "location": "/lego/pyexec.py:1-42"
+    },
+    "3071": {
+        "file_id": 497,
+        "content": "Code starts by importing necessary libraries and defines a constant value WATCH_DOG. It generates a unique UUID and checks if any command-line arguments are present. If not, it reports an error and exits. Otherwise, it logs the start of execution and defines functions for handling stdout and stderr output.",
+        "type": "comment"
+    },
+    "3072": {
+        "file_id": 497,
+        "content": "        masters[1]: sys.stderr.buffer,\n    }\n    translator = {masters[0]:wr_out,masters[1]:wr_err}\n    rdb = 2\n    while rdb>0:\n        for fd in select(readable, [], [])[0]:\n            try:\n                data = os.read(fd, 1024) # read available\n            except OSError as e:\n                if e.errno != errno.EIO:\n                    raise #XXX cleanup\n                rdb-=1\n                # so it is good.\n                #del readable[fd] # EIO means EOF on some systems\n            else:\n                if not data: # EOF\n                    rdb-=1\n                    # it does not end properly.\n#                    del readable[fd]\n                else:\n                    readable[fd].write(translator[fd](data))\n                    readable[fd].flush()\n    z[0]=True\n    # ended.\ndef dog(z):\n    time.sleep(WATCH_DOG)\n    z[0]=True\nNORMAL=0\nmasters, slaves = zip(pty.openpty(), pty.openpty())\ntry:\n    ended = [False]\n    pipe = subprocess.Popen(arx,stdout=slaves[0],stderr=slaves[1])\n# normally we keep this error.",
+        "type": "code",
+        "location": "/lego/pyexec.py:43-75"
+    },
+    "3073": {
+        "file_id": 497,
+        "content": "The code creates two masters and slaves using pty.openpty(). It then starts a subprocess with the command \"arx\" redirecting standard output to the slave master and standard error to the slave slave. The code uses select() to read from the file descriptors of the master file descriptors, translating the data to be written to either stdout or stderr based on the file descriptor. It handles EOF by decrementing a counter and cleaning up. A watchdog function is also defined to handle potential issues with the subprocess.",
+        "type": "comment"
+    },
+    "3074": {
+        "file_id": 497,
+        "content": "    t_out = threading.Thread(target=rout,args=(pipe,masters,slaves,ended))\n    t_err = threading.Thread(target=dog,args=(ended,))\n    t_out.setDaemon(True)\n    t_err.setDaemon(True)\n    t_out.start()\n    t_err.start()\n    while True:\n        time.sleep(MIN_INTERVAL)\n        if ended[0]:\n# well, you can send the signal.\n            sys.stdout.buffer.write(b\"PROGRAM_EXIT\"+uid+b\"\\n\")\n            sys.stdout.buffer.flush()\n            break\nexcept:\n    NORMAL=1\n    fmt = traceback.format_exc()\n    sys.stdout.buffer.write(b\"INTERNAL_ERROR\"+uid+base64.encodebytes(fmt.encode()))\n    sys.stdout.buffer.flush()\nfinally:\n    for fd in masters:\n        os.close(fd)\n    for fd in slaves:\n        try:\n            os.close(fd)\n        except:\n            pass\n#    exit(1)\nexit(NORMAL)\n# so what is the main thread anyway.\n# just a watch dog?\n    # but this time we've had an agreement, right?\n    # you shall do some remote handler now. dispatch the agent on such a port.",
+        "type": "code",
+        "location": "/lego/pyexec.py:76-107"
+    },
+    "3075": {
+        "file_id": 497,
+        "content": "This code creates two threads, one for output and one for errors. It checks if the program should exit and sends a signal if necessary. It handles potential exceptions and writes an error message. Finally, it closes file descriptors and exits with a status code. The main thread acts as a watchdog to monitor the execution and ensure proper termination.",
+        "type": "comment"
+    },
+    "3076": {
+        "file_id": 498,
+        "content": "/lego/python_exec.py",
+        "type": "filepath"
+    },
+    "3077": {
+        "file_id": 498,
+        "content": "The code imports libraries, sets up a select loop for reading from child processes' stdout/stderr, and manages communication and error handling using threads, possibly related to monitoring and flushing stdout in a program with exit conditions or a watchdog mechanism.",
+        "type": "summary"
+    },
+    "3078": {
+        "file_id": 498,
+        "content": "import sys\nimport os\nimport threading\nimport subprocess\nimport uuid\nimport time\nimport traceback\nimport base64\nfrom select import select\n# shall use uuid as a separator. in case of confusion?\n# shall we?\nWATCH_DOG=5\nMIN_INTERVAL=0.1\nuid = str(uuid.uuid4()).encode()\narx = sys.argv\n#print(arx)\narx = arx[1:]\nsys.stdout.buffer.write(b\"UUID\"+uid+b\"\\n\")\nsys.stdout.buffer.flush()\n# if the thing is going on right.\n# we should accept stdin.\nif len(arx) == 0:\n    sys.stdout.buffer.write(b\"ERROR_NOARGS\"+uid+b\"\\n\")\n    sys.stdout.buffer.flush()\n    exit(1)\nelse:\n    sys.stdout.buffer.write(b\"BEGIN_EXEC\"+uid+b\"\\n\")\n    sys.stdout.buffer.flush()\n# use the protocol?\n#os.system()\ndef wr_out(x):\n    return b\"STDOUT\"+uid+base64.encodebytes(x)\ndef wr_err(x):\n    return b\"STDERR\"+uid+base64.encodebytes(x)\ndef rout(p,z):\n    readable = {\n        p.stdout.fileno(): sys.stdout.buffer, # log separately\n        p.stderr.fileno(): sys.stdout.buffer,\n    }\n    rm = 2\n    translator = {p.stdout.fileno():wr_out,p.stderr.fileno():wr_err}\n    while rm > 0:\n        for fd in select(readable, [], [])[0]:",
+        "type": "code",
+        "location": "/lego/python_exec.py:1-43"
+    },
+    "3079": {
+        "file_id": 498,
+        "content": "The code imports several Python libraries and defines constants. It uses UUID to separate commands, checks for command-line arguments, writes headers based on the input, defines functions for writing output and error messages in base64 format, and sets up select loop for reading from child processes' stdout and stderr.",
+        "type": "comment"
+    },
+    "3080": {
+        "file_id": 498,
+        "content": "            data = os.read(fd, 1024) # read available\n            if not data: # EOF\n                # del what?\n                rm -= 1\n                #del readable[fd]\n            else: \n                readable[fd].write(translator[fd](data))\n                readable[fd].flush()\n    z[0]=True\n    # ended.\ndef dog(z):\n    time.sleep(WATCH_DOG)\n    z[0]=True\nNORMAL=0\ntry:\n    ended = [False]\n    pipe = subprocess.Popen([\"stdbuf\",\"-oL\",\"-e0\"]+arx,stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n# normally we keep this error.\n    t_out = threading.Thread(target=rout,args=(pipe,ended))\n    t_err = threading.Thread(target=dog,args=(ended,))\n    t_out.setDaemon(True)\n    t_err.setDaemon(True)\n    t_out.start()\n    t_err.start()\n    while True:\n        time.sleep(MIN_INTERVAL)\n        if ended[0]:\n# well, you can send the signal.\n            sys.stdout.buffer.write(b\"PROGRAM_EXIT\"+uid+b\"\\n\")\n            sys.stdout.buffer.flush()\n            break\nexcept:\n    NORMAL=1\n    fmt = traceback.format_exc()\n    sys.stdout.buffer.write(b\"INTERNAL_ERROR\"+uid+base64.encodebytes(fmt.encode()))",
+        "type": "code",
+        "location": "/lego/python_exec.py:44-78"
+    },
+    "3081": {
+        "file_id": 498,
+        "content": "This code is launching a subprocess and communicating with it using threads. It reads data from the subprocess' stdout and stderr, translates the data if necessary, and writes it to separate streams. The main thread waits for the subprocess to end by checking a flag in a loop. If an error occurs, it handles it by reporting an internal error with additional debug information.",
+        "type": "comment"
+    },
+    "3082": {
+        "file_id": 498,
+        "content": "    sys.stdout.buffer.flush()\n#    exit(1)\n# well, if the problem is only about stdout or flushing, that's fine.\nexit(NORMAL)\n# so what is the main thread anyway.\n# just a watch dog?\n    # but this time we've had an agreement, right?\n    # you shall do some remote handler now. dispatch the agent on such a port.",
+        "type": "code",
+        "location": "/lego/python_exec.py:79-86"
+    },
+    "3083": {
+        "file_id": 498,
+        "content": "This code seems to be related to a program that monitors and flushes the standard output (stdout). It may involve exit conditions or a watchdog mechanism. The program might have an agreement to dispatch an agent on a specific port for remote handling.",
+        "type": "comment"
+    },
+    "3084": {
+        "file_id": 499,
+        "content": "/lego/python_return.py",
+        "type": "filepath"
+    },
+    "3085": {
+        "file_id": 499,
+        "content": "The code is calling the exit() function with an argument of 100. This indicates an abnormal program termination or an error occurred with a specific exit code (100 in this case).",
+        "type": "summary"
+    },
+    "3086": {
+        "file_id": 499,
+        "content": "exit(100)",
+        "type": "code",
+        "location": "/lego/python_return.py:1-1"
+    },
+    "3087": {
+        "file_id": 499,
+        "content": "The code is calling the exit() function with an argument of 100. This indicates an abnormal program termination or an error occurred with a specific exit code (100 in this case).",
+        "type": "comment"
+    },
+    "3088": {
+        "file_id": 500,
+        "content": "/lego/python_return.sh",
+        "type": "filepath"
+    },
+    "3089": {
+        "file_id": 500,
+        "content": "This script executes Python file \"python_return.py\" using Bash, then echoes the exit status of the last executed command (in this case, the Python script).",
+        "type": "summary"
+    },
+    "3090": {
+        "file_id": 500,
+        "content": "#!/bin/bash\npython3 python_return.py\necho $?",
+        "type": "code",
+        "location": "/lego/python_return.sh:1-3"
+    },
+    "3091": {
+        "file_id": 500,
+        "content": "This script executes Python file \"python_return.py\" using Bash, then echoes the exit status of the last executed command (in this case, the Python script).",
+        "type": "comment"
+    },
+    "3092": {
+        "file_id": 501,
+        "content": "/lego/random_chooser.py",
+        "type": "filepath"
+    },
+    "3093": {
+        "file_id": 501,
+        "content": "The code imports random and sys modules, reads input from stdin, splits into words and stores them in a list x0. If the list is empty, it prints \"no available candidate\". Otherwise, it selects a random word from the list and prints it.",
+        "type": "summary"
+    },
+    "3094": {
+        "file_id": 501,
+        "content": "import random, sys\nx0=[]\nfor x in sys.stdin:\n    x0+=x.split()\nif len(x0)==0:\n    print(\"no avaliable candidate\")\nelse:\n    r=random.choice(x0)\n    print(r)",
+        "type": "code",
+        "location": "/lego/random_chooser.py:1-9"
+    },
+    "3095": {
+        "file_id": 501,
+        "content": "The code imports random and sys modules, reads input from stdin, splits into words and stores them in a list x0. If the list is empty, it prints \"no available candidate\". Otherwise, it selects a random word from the list and prints it.",
+        "type": "comment"
+    },
+    "3096": {
+        "file_id": 502,
+        "content": "/lego/rdb_checker.sh",
+        "type": "filepath"
+    },
+    "3097": {
+        "file_id": 502,
+        "content": "This code calculates the time difference in seconds between two files, 'dump.rdb' and the current time. It uses Bash syntax to execute the date command, subtracts the older file's timestamp from the current timestamp, and outputs the result. The comment highlights that white space is important for Bash scripting, which might be overlooked by human coders leading to errors.",
+        "type": "summary"
+    },
+    "3098": {
+        "file_id": 502,
+        "content": "#!/bin/bash\ncx=$(date +%s -r dump.rdb)\ncy=$(date +%s)\necho $(($cy - $cx))\n# so white space is still some great element here, at least used by bash.\n# what do you mean by that? human can make mistakes.",
+        "type": "code",
+        "location": "/lego/rdb_checker.sh:1-6"
+    },
+    "3099": {
+        "file_id": 502,
+        "content": "This code calculates the time difference in seconds between two files, 'dump.rdb' and the current time. It uses Bash syntax to execute the date command, subtracts the older file's timestamp from the current timestamp, and outputs the result. The comment highlights that white space is important for Bash scripting, which might be overlooked by human coders leading to errors.",
+        "type": "comment"
+    }
+}

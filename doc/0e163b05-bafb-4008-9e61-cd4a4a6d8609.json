@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports a function from \"process_dom\" module, reads a file named \"strange.html\", and then applies the \"bing_dom\" function to its content. The processed result is printed along with a separator for clarity.",
+    "details": [
+        {
+            "comment": "The code imports a function from \"process_dom\" module, reads a file named \"strange.html\", and then applies the \"bing_dom\" function to its content. The processed result is printed along with a separator for clarity.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/new_toys/test.py\":0-5",
+            "content": "from process_dom import bing_dom\nwith open(\"strange.html\",\"r\") as f:\n    f0=bing_dom(f.read())\n    print(\"spliter_____________________-\")\n    print(f0)"
+        }
+    ]
+}

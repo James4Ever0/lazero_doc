@@ -1,0 +1,540 @@
+{
+    "600": {
+        "file_id": 103,
+        "content": "# Derived Project\nThis repo is the demo for Dan Shultz's tutorial [\"Creating A Basic Chrome Extension\"](https://www.thepolyglotdeveloper.com/2018/09/creating-basic-chrome-extension/). I fixed some typos in his code.\n# Chrome is different\nMight because there needs different js code to do websocket.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/README.md:1-7"
+    },
+    "601": {
+        "file_id": 103,
+        "content": "This repository serves as a demo for Dan Shultz's tutorial on creating a basic Chrome extension. It also includes fixes for some typographical errors in the original code. The JavaScript code might need to be adapted due to differences between Chrome and other browsers, specifically when working with WebSockets.",
+        "type": "comment"
+    },
+    "602": {
+        "file_id": 104,
+        "content": "/bootstrap/keller/src/ced/borderify.js",
+        "type": "filepath"
+    },
+    "603": {
+        "file_id": 104,
+        "content": "Code establishes a WebSocket connection, handles errors and messages, fetches content across document states, and is specific to Firefox browser.",
+        "type": "summary"
+    },
+    "604": {
+        "file_id": 104,
+        "content": "/*\nJust draw a border round the document.body.\n*/\n// yes. man. ahead of shit.\n// console.log(\"\");\n// add all fucking permissions here!\n// this shit is executable somehow?\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}\n/**\n * inits a websocket by a given url, returned promise resolves with initialized websocket, rejects after failure/timeout.\n *\n * @param url the websocket url to init\n * @param existingWebsocket if passed and this passed websocket is already open, this existingWebsocket is resolved, no additional websocket is opened\n * @param timeoutMs the timeout in milliseconds for opening the websocket\n * @param numberOfRetries the number of times initializing the socket should be retried, if not specified or 0, no retries are made\n *        and a failure/timeout causes rejection of the returned promise\n * @return {Promise}\n */\nfunction initWebsocket(url, existingWebsocket, timeoutMs, numberOfRetries) {\n    timeoutMs = timeoutMs ? timeoutMs : 1500;\n    numberOfRetries = numberOfRetries ? numberOfRetries : 0;",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/borderify.js:1-25"
+    },
+    "605": {
+        "file_id": 104,
+        "content": "This code defines a function `initWebsocket` that initializes a WebSocket connection with the given URL. The function takes optional parameters for an existing WebSocket, timeout duration, and number of retries on failure or timeout. If no existing WebSocket is provided, it uses the `sleep` function to wait before retrying or rejecting the promise after the specified timeout or number of retries.",
+        "type": "comment"
+    },
+    "606": {
+        "file_id": 104,
+        "content": "    var hasReturned = false;\n    var promise = new Promise((resolve, reject) => {\n        setTimeout(function () {\n            if(!hasReturned) {\n                console.info('opening websocket timed out: ' + url);\n                rejectInternal();\n            }\n        }, timeoutMs);\n        if (!existingWebsocket || existingWebsocket.readyState != existingWebsocket.OPEN) {\n            if (existingWebsocket) {\n                existingWebsocket.close();\n            }\n            var websocket = new WebSocket(url);\n            websocket.onopen = function () {\n                if(hasReturned) {\n                    websocket.close();\n                } else {\n                    console.info('websocket to opened! url: ' + url);\n                    resolve(websocket);\n                }\n            };\n            websocket.onclose = function () {\n                console.info('websocket closed! url: ' + url);\n                rejectInternal();\n            };\n            websocket.onerror = function () {\n                console.info('websocket error! url: ' + url);",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/borderify.js:26-52"
+    },
+    "607": {
+        "file_id": 104,
+        "content": "The code attempts to establish a WebSocket connection with the given URL, and handles various events such as open, close, and error. If the connection is successfully established within the specified timeout, it resolves with the WebSocket object; otherwise, it rejects with an internal error.",
+        "type": "comment"
+    },
+    "608": {
+        "file_id": 104,
+        "content": "                rejectInternal();\n            };\n        } else {\n            resolve(existingWebsocket);\n        }\n        function rejectInternal() {\n            if(numberOfRetries <= 0) {\n                reject();\n            } else if(!hasReturned) {\n                hasReturned = true;\n                console.info('retrying connection to websocket! url: ' + url + ', remaining retries: ' + (numberOfRetries-1));\n                initWebsocket(url, null, timeoutMs, numberOfRetries-1).then(resolve, reject);\n            }\n        }\n    });\n    promise.then(function () {hasReturned = true;}, function () {hasReturned = true;});\n    return promise;\n};\n// do not do it twice.\nasync function dfunc() {\n    while (true) {\n        await sleep(500);\n        // no fucking border.\n        try { document.body.style.border = \"5px solid red\"; break }\n        catch (e) { console.log(e); }\n    }\n}\nconsole.log(\"LAZERO PLUGIN\\n    -\\n   |               ___  __  __\\n  / \\\\  |    /|  /  ___ |   |  |\\n \\\\  _\\\\ |__ / | /__ ___ |   |__|\\n\\nTo make everything\\nexecutable, analyzable, controllable.\");",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/borderify.js:53-82"
+    },
+    "609": {
+        "file_id": 104,
+        "content": "Code initializes a WebSocket connection with retry mechanism. If the connection is successful, it resolves the promise; otherwise, it retries based on the number of remaining retries. The 'dfunc' function continuously checks for a border and attempts to set it if none exists. The console message is an announcement about the LAzero plugin.",
+        "type": "comment"
+    },
+    "610": {
+        "file_id": 104,
+        "content": "dfunc();\n// it is async.\nasync function func() {\n    while (true) {\n        await sleep(1000);\n        // no fucking border.\n        try { fetch(\"https://localhost:5000/nothing\",{credentials:'include'}).then(function(response){console.log(response)}).catch(function(ex){console.log(\"Exception: \",ex)}) }\n        catch (e) { console.log(e); }\n    }\n}\nfunc();\nvar socket_0;\nasync function sfunc(init){\n\tawait sleep(init);\nwhile (true){\n\ttry{\n\t\t//socket = new WebSocket(\"wss://localhost:5000/random\");\ninitWebsocket(\"wss://localhost:5000/random\",null,3000,0).then(function (socket){\nsocket_0=socket;\nvar timerId = 0;\n\tconsole.log(\"ws init succeed\");\nfunction keepAlive(webSocket) {\n var timeout = 15000;\n if (webSocket.readyState == webSocket.OPEN) {\n  webSocket.send('');\n }\n timerId = setTimeout(keepAlive(webSocket), timeout);\n}\nfunction cancelKeepAlive() {\n if (timerId) {\n  cancelTimeout(timerId);\n }\n}\nsocket.onopen = function(e) {\n\tkeepAlive(socket_0);\n  console.log(\"[open] Connection established\");\n  console.log(\"Sending to server\");",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/borderify.js:83-119"
+    },
+    "611": {
+        "file_id": 104,
+        "content": "This code initiates an async function, `func()`, which continuously checks for a response from \"https://localhost:5000/nothing\". It also includes error logging. Additionally, another async function, `sfunc(init)`, is responsible for setting up a WebSocket connection to \"wss://localhost:5000/random\" using the `initWebsocket()` method. The function keeps the WebSocket connection alive with regular keep-alive messages and handles cancellation when needed.",
+        "type": "comment"
+    },
+    "612": {
+        "file_id": 104,
+        "content": "  socket.send(\"My name is John\");\n};\n// what is this anyway?\nsocket.onmessage = function(event) {\n\tvar edata = event.data;\n  console.log(`[message] Data received from server: `)\n\t  console.log(edata,typeof(edata),edata.includes(\"baidu\"));\n\tif (typeof(edata)===typeof(\"string\")){\n\t\tif (edata.includes(\"https://\")){\n\t\t\tvar random=\"fetch failed\";\n\t\t\tfetch(edata,{method:\"GET\",credentials:\"include\"}).then(function(resp){\n\t\t\t\tconsole.log(\"CONTENT: \",resp);\n//\t\t\t\tconsole.log(\"CONTENT: \",e.body);\n\t\t\t\t//\tit is not with cookies.\n//\t\t\t\tconst ebody=e.body.getReader();\n\t\t\t\t//get your fuck binary.\n//\t\t\t\tconst ebody=resp.blob();\n\t\t\t\tresp.text().then(function(txt){try{\n\t\t\t\t\tconsole.log(\"CTEXT: \",txt.length);\n\t\t\t\tsocket.send(txt);\n\t\t\t\t}catch(err){console.log(\"EMPTY RESPONSE:\",err);\n\t\tsocket.send(random);\n\t\t\t\t\t}},function(err){console.log(\"ERR PROMISE:\",err);\n\t\tsocket.send(random);\n\t\t\t\t\t})\n\t\t\t\t// what is that thing?\n\t\t\t\t// get the content please?\n\t\t\t}).catch(function(e){\n\t\t\t\tconsole.log(\"ERROR: \",e);\n\t\t\t\tsocket.send(random);\n\t\t\t})\n\t\t}else{",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/borderify.js:120-151"
+    },
+    "613": {
+        "file_id": 104,
+        "content": "This code is setting up a WebSocket connection, sending a message to the server with the name \"John\", and handling incoming messages from the server. It checks if the received data is a string containing a URL starting with \"https://\". If it is, the code uses fetch to retrieve the content at that URL and sends it back over the WebSocket connection. If the request fails or the response is empty, it sends a default message instead. The purpose seems to be receiving and sending data through a WebSocket connection while handling potential errors.",
+        "type": "comment"
+    },
+    "614": {
+        "file_id": 104,
+        "content": "  socket.send(\"NOT BAIDU URL\");\n  console.log(\"NOT BAIDU URL\");\n\t\t}\n\t}else{\n  socket.send(\"NOT STRING\");\n  console.log(\"NOT STRING\");\n\t}\n\t// what data?\n};\nsocket.onclose = function(event) {\n\tsfunc(3000);\n  if (event.wasClean) {\n    console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);\n  } else {\n    // e.g. server process killed or network down\n    // event.code is usually 1006 in this case\n\t  // get uuid from elsewhere? check it logically.\n    console.log('[close] Connection died');\n  }\n\tcancelKeepAlive();\n\t// keep calling.\n};\nsocket.onerror = function(error) {\n\tsfunc(3000);\n  console.log(`[error] ${error.message}`);\n}},function(){\nsfunc(3000);\n\tconsole.log(\"ws init failed\");\n})\n\t\t// not usable? do it some time later?\nawait sleep(3000);\n\tbreak;\t\t// wss://\n\t}catch(e){console.log(e);}\n}\n}\nsfunc(0);\n// how to dump the full shit?\n// so there are three states.\n// switch (document.readyState) {\n//     case \"loading\":\n//       // The document is still loading.\n//       break;\n//     case \"interactive\":",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/borderify.js:152-197"
+    },
+    "615": {
+        "file_id": 104,
+        "content": "Code handles WebSocket events and actions, sending messages if the input is not a URL or not a string. It also logs connection close events with error codes and reasons, handles connection errors, and attempts to establish a WebSocket connection after a delay in case of failure. The code uses a sleep function and a document readiness check in a try-catch block. There are three states the document can be in: loading, interactive, and complete.",
+        "type": "comment"
+    },
+    "616": {
+        "file_id": 104,
+        "content": "//       // The document has finished loading. We can now access the DOM elements.\n//       // But sub-resources such as images, stylesheets and frames are still loading.\n//       var span = document.createElement(\"span\");\n//       span.textContent = \"A <span> element.\";\n//       document.body.appendChild(span);\n//       break;\n//     case \"complete\":\n//       // The page is fully loaded.\n//       console.log(\"The first CSS rule is: \" + document.styleSheets[0].cssRules[0].cssText);\n//       break;\n//   }\n// onreadystatechange, readystate.\n// crap man.\n// do the chrome extension? get out and see?\n// configure the run-time.\n// hey! we do not have the same font.\n// // is it HTML?\n// \"*://*\",\n// \"http://*\",\n// \"https://*\",\n// \"ws://*\",\n// \"wss://*\",\n// \"ftp://*\",\n// \"ftps://*\",\n// \"data://*\",\n// \"file://*\",\n// must either: must either [must either [be one of [\"clipboardRead\", \"clipboardWrite\", \"geolocation\", \"idle\", \"notifications\"], be one of [\"bookmarks\"], be one of [\"find\"], be one of [\"history\"], be one of [\"me",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/borderify.js:198-224"
+    },
+    "617": {
+        "file_id": 104,
+        "content": "The code checks the document's ready state and performs different actions depending on it. When the document is loaded, a span element is appended to the body. When fully loaded, it logs the first CSS rule from the first style sheet. The code also handles URL schemes for different types of data access.",
+        "type": "comment"
+    },
+    "618": {
+        "file_id": 104,
+        "content": "nus.overrideContext\"], be one of [\"search\"], be one of [\"activeTab\", \"tabs\", \"tabHide\"], be one of [\"browserSettings\"], be one of [\"cookies\"], be one of [\"downloads\", \"downloads.open\"], be one of [\"topSites\"], be one of [\"webNavigation\"], or be one of [\"webRequest\", \"webRequestBlocking\"]], be one of [\"alarms\", \"mozillaAddons\", \"storage\", \"unlimitedStorage\"], be one of [\"browsingData\"], be one of [\"captivePortal\"], be one of [\"devtools\"], be one of [\"identity\"], be one of [\"menus\", \"contextMenus\"], be one of [\"pkcs11\"], be one of [\"geckoProfiler\"], be one of [\"sessions\"], be one of [\"contextualIdentities\"], be one of [\"dns\"], be one of [\"management\"], be one of [\"privacy\"], be one of [\"proxy\"], be one of [\"nativeMessaging\"], be one of [\"telemetry\"], be one of [\"theme\"], or match the pattern /^experiments(\\.\\w+)+$/], or must either [be one of [\"<all_urls>\"], must either [match the pattern /^(https?|wss?|file|ftp|\\*):\\/\\/(\\*|\\*\\.[^*/]+|[^*/]+)\\/.*$/, or match the pattern /^file:\\/\\/\\/.*$/], or match the pattern /^resource:\\/\\/(\\*|\\*\\.[^*/]+|[^*/]+)\\/.*$|^about:/]",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/borderify.js:224-224"
+    },
+    "619": {
+        "file_id": 104,
+        "content": "This code is checking if the given APIs or URL patterns match any of the specified categories. It ensures that the provided API or URL matches one of the allowed options, including specific APIs like \"search\", \"activeTab\", \"downloads\", etc., or general URL patterns like \"<all_urls>\", \"file://\", \"resource://\", and others.",
+        "type": "comment"
+    },
+    "620": {
+        "file_id": 104,
+        "content": "// this is specific to FIREFOX.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/borderify.js:225-225"
+    },
+    "621": {
+        "file_id": 104,
+        "content": "This code snippet is likely specific to Firefox browser, indicating that it contains platform-specific functionality or may have issues on other browsers.",
+        "type": "comment"
+    },
+    "622": {
+        "file_id": 105,
+        "content": "/bootstrap/keller/src/ced/content.js",
+        "type": "filepath"
+    },
+    "623": {
+        "file_id": 105,
+        "content": "The code is a Lazero plugin that listens for checkForWord requests, changes document border color if allowed, and checks if jQuery library is loaded on the page. It considers limitations such as slow websites and unofficial Chrome kernel installations.",
+        "type": "summary"
+    },
+    "624": {
+        "file_id": 105,
+        "content": "// // listen for checkForWord request, call getTags which includes callback to sendResponse.\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));}\nconsole.log(\"LAZERO PLUGIN\\n    -\\n   |               ___  __  __\\n  / \\\\  |    /|  /  ___ |   |  |\\n \\\\  _\\\\ |__ / | /__ ___ |   |__|\\n\\nTo make everything\\nexecutable, analyzable, controllable.\");\n// do not do it twice.\nasync function dfunc(){\nwhile(true){await sleep(500);\ntry { document.body.style.border = \"5px solid red\"; break}\ncatch (e) { console.log(e); }}}\ndfunc();\n// chrome.runtime.onMessage.addListener(\n//   function (request, sender, sendResponse) {\n//     if (request.action === 'checkForWord') {\n//       checkForWord(request, sender, sendResponse);\n//       // this is required to use sendResponse asynchronously\n//       return true;\n//     }\n//   }\n// );\n// think about it.\n// not able to run on super slow websites.\n// for unofficial chrome kernel, we can install with .crx\n// // Returns the index of the first instance of the desired word on the page.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/content.js:1-23"
+    },
+    "625": {
+        "file_id": 105,
+        "content": "The code is a Lazero plugin that listens for checkForWord requests and tries to change the document body's border color when the condition allows. It also includes functions and comments about potential limitations and considerations, such as running on slow websites and installation methods for unofficial Chrome kernel.",
+        "type": "comment"
+    },
+    "626": {
+        "file_id": 105,
+        "content": "// // send what?\n// // hardware-level -> bios-level -> system-level -> browser-level\n// function checkForWord(request, sender, sendResponse) {\n//   var scripts = document.getElementsByTagName('script');\n//   for (var i = 0; i < scripts.length; i++) {\n//     if (scripts[i].src.toLowerCase().indexOf('jquery') > -1) {\n//       return sendResponse({ results: i + 1 });\n//     }\n//   }\n//   return sendResponse({ results: 0 });\n// }\n// fucking hell. there's no need to see anyone.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/content.js:24-35"
+    },
+    "627": {
+        "file_id": 105,
+        "content": "This code checks if the jQuery library is loaded on the page by iterating through script tags and searching for 'jquery' in their src attribute. If found, it sends a response with the script index; otherwise, it returns 0.",
+        "type": "comment"
+    },
+    "628": {
+        "file_id": 106,
+        "content": "/bootstrap/keller/src/ced/data/options/options.js",
+        "type": "filepath"
+    },
+    "629": {
+        "file_id": 106,
+        "content": "The code initializes a background script, defines functions for handling incoming and outgoing messages, sets up event listeners for elements on the webpage, updates their values based on received data, handles whitelist input field changes, and triggers load function when page finishes loading.",
+        "type": "summary"
+    },
+    "630": {
+        "file_id": 106,
+        "content": "var background = (function () {\n  var tmp = {};\n  chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {\n    for (var id in tmp) {\n      if (tmp[id] && (typeof tmp[id] === \"function\")) {\n        if (request.path === \"background-to-options\") {\n          if (request.method === id) tmp[id](request.data);\n        }\n      }\n    }\n  });\n  /*  */\n  return {\n    \"receive\": function (id, callback) {tmp[id] = callback},\n    \"send\": function (id, data) {chrome.runtime.sendMessage({\"path\": \"options-to-background\", \"method\": id, \"data\": data})}\n  }\n})();\nbackground.receive(\"storage\", function (e) {\n  var origin = {};\n  var methods = document.getElementById(\"methods\");\n  var headers = document.getElementById(\"headers\");\n  origin.all = document.getElementById(\"origin-all\");\n  origin.top = document.getElementById(\"origin-top\");\n  var whitelist = document.getElementById(\"whitelist\");\n  var credentials = document.getElementById(\"credentials\");\n  /*  */\n  origin.top.checked = true;\n  methods.value = e.methods;",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/options/options.js:1-29"
+    },
+    "631": {
+        "file_id": 106,
+        "content": "This code initializes a background script that listens for messages from other parts of the extension. It defines two functions, \"receive\" and \"send\", to handle incoming and outgoing messages respectively. The code also sets up event listeners for various elements on the webpage and updates their values based on the received data.",
+        "type": "comment"
+    },
+    "632": {
+        "file_id": 106,
+        "content": "  headers.checked = e.headers;\n  origin.all.checked = e.origin;\n  credentials.checked = e.credentials;\n  whitelist.value = e.whitelist.join(', ');\n});\nvar load = function () {\n  var origin = {};\n  var methods = document.getElementById(\"methods\");\n  var headers = document.getElementById(\"headers\");\n  origin.top = document.getElementById(\"origin-top\");\n  origin.all = document.getElementById(\"origin-all\");\n  var whitelist = document.getElementById(\"whitelist\");\n  var credentials = document.getElementById(\"credentials\");\n  /*  */\n  headers.addEventListener(\"change\", function (e) {background.send(\"headers\", e.target.checked)});\n  origin.top.addEventListener(\"change\", function () {background.send(\"origin\", origin.all.checked)});\n  origin.all.addEventListener(\"change\", function () {background.send(\"origin\", origin.all.checked)});\n  credentials.addEventListener(\"change\", function (e) {background.send(\"credentials\", e.target.checked)});\n  methods.addEventListener(\"change\", function (e) {\n    var value = \"GET, PUT, POST, DELETE, HEAD, OPTIONS\";",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/options/options.js:30-50"
+    },
+    "633": {
+        "file_id": 106,
+        "content": "This code sets up event listeners for various elements (headers, origin, methods, credentials) and sends their checked status to the background script when they change. It also handles a whitelist input field by joining its values with commas when changed.",
+        "type": "comment"
+    },
+    "634": {
+        "file_id": 106,
+        "content": "    if (e.target.value) value = e.target.value.split(',').map(e => e.trim().toLocaleUpperCase()).join(', ');\n    background.send(\"methods\", value);\n    e.target.value = value;\n  });\n  /*  */\n  whitelist.addEventListener(\"change\", function (e) {\n    var domains = [];\n    if (e.target.value) {\n      var tmp = e.target.value;\n      domains = tmp.split(',').map(e => e.trim());\n      e.target.value = domains.join(', ');\n    }\n    /*  */\n    background.send(\"whitelist\", domains);\n  });\n  /*  */\n  background.send(\"load\");\n  window.removeEventListener(\"load\", load, false);\n};\nwindow.addEventListener(\"load\", load, false);",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/options/options.js:51-71"
+    },
+    "635": {
+        "file_id": 106,
+        "content": "This code handles event listeners for two elements: \"methods\" and \"whitelist\". When their values change, it splits the comma-separated strings into an array, trims extra spaces, converts to uppercase, joins them back with commas and sends the data to the background script. Finally, it attaches a load event listener for window, triggering the load function when the page finishes loading.",
+        "type": "comment"
+    },
+    "636": {
+        "file_id": 107,
+        "content": "/bootstrap/keller/src/ced/data/popup/explore/explore.js",
+        "type": "filepath"
+    },
+    "637": {
+        "file_id": 107,
+        "content": "The function loads API data, handles sorting and pagination, generates random colors, shuffles data, adds a clickable button, sets local storage values, initializes UI elements, creates table rows with close buttons, resets content and local storage, appends items to table, and calls explore() function based on count.",
+        "type": "summary"
+    },
+    "638": {
+        "file_id": 107,
+        "content": "window.setTimeout(function () {\n  const INC = 50;\n  const SORT = localStorage.getItem('explore-sort') ? Number(localStorage.getItem('explore-sort')) : 1;\n  const COUNT = localStorage.getItem('explore-count') ? Number(localStorage.getItem('explore-count')) : (INC - 5);\n  var randcolor = function () {\n    var color = [\n      \"#D92121\", \"#E77200\", \"#5E8C31\", \"#00755E\", \"#C7A00F\",\n      \"#0066FF\", \"#3F26BF\", \"#733380\", \"#BB3385\", \"#E30B5C\",\n      \"#CA3435\", \"#87421F\", \"#299617\", \"#E936A7\", \"#DB91EF\",\n      \"#214FC6\", \"#B56917\", \"#BB3385\", \"#652DC1\", \"#02A4D3\"\n    ];\n    /*  */\n    return color[Math.floor(Math.random() * color.length)];\n  };\n  const cload = () => fetch(\"explore/explore.json\").then(r => r.json()).then(build);\n  const shuffle = function (a) {\n    for (let i = a.length - 1; i > 0; i--) {\n      const j = Math.floor(Math.random() * (i + 1));\n      [a[i], a[j]] = [a[j], a[i]];\n    }\n    /*  */\n    return a;\n  };\n  const explore = () => {\n    const root = document.getElementById('explore');\n    const span = document.createElement('span');",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/popup/explore/explore.js:1-30"
+    },
+    "639": {
+        "file_id": 107,
+        "content": "This code defines a function that loads and displays data from an API endpoint, handles sorting and pagination based on user preferences stored in localStorage. The function also generates random colors for visual elements and shuffles the data before displaying it.",
+        "type": "comment"
+    },
+    "640": {
+        "file_id": 107,
+        "content": "    span.textContent = '◱';\n    span.title = 'Explore more';\n    span.classList.add('explore');\n    root.appendChild(span);\n    span.onclick = () => {\n      root.textContent = '';\n      localStorage.setItem('explore-count', INC);\n      cload();\n    };\n  };\n  const build = json => {\n    if (json.length === 0) return;\n    /*  */\n    if (SORT % 4 === 0) {\n      json = shuffle(json);\n      localStorage.setItem('explore-sort', 1);\n      localStorage.setItem('explore-json', JSON.stringify(json));\n    } else {\n      localStorage.setItem('explore-sort', SORT + 1);\n      json = localStorage.getItem('explore-json') ? JSON.parse(localStorage.getItem('explore-json')) : json;\n    }\n    /*  */\n    const root = document.getElementById('explore');\n    root.textContent = 'Explore more';\n    root.dataset.loaded = true;\n    /*  */\n    const table = document.createElement('table');\n    const span = document.createElement('span');\n    const tr = document.createElement('tr');\n    /*  */\n    table.setAttribute(\"class\", \"container\");\n    span.classList.add('close');",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/popup/explore/explore.js:31-63"
+    },
+    "641": {
+        "file_id": 107,
+        "content": "Adds a clickable \"Explore more\" button with associated functionality, sets local storage values for sorting and count, and initializes UI elements.",
+        "type": "comment"
+    },
+    "642": {
+        "file_id": 107,
+        "content": "    span.textContent = '✕';\n    /*  */\n    span.onclick = () => {\n      root.textContent = '';\n      root.dataset.loaded = false;\n      localStorage.setItem(\"explore-count\", 0);\n      explore();\n    };\n    /*  */\n    root.appendChild(span);\n    table.appendChild(tr);\n    root.appendChild(table);\n    /*  */\n    json.slice(0, 4).forEach(({id, title}, index) => {\n      if (id && title) {\n        const a = document.createElement('a');\n        const td = document.createElement('td');\n        const short = chrome.runtime.getManifest().short_name;\n        const homepage = chrome.runtime.getManifest().homepage_url;\n        const url = homepage.split('/').slice(0, -1).join('/') + '/';\n        a.href = url + id + \".html?context=explore&from=\" + short;\n        a.setAttribute(\"title\", title);\n        a.target = '_blank';\n        /*  */\n        const icon = document.createElement('span');\n        icon.textContent = title.replace(' -', '').split(' ').map(e => e[0]).slice(0, 2).join('').toUpperCase();\n        icon.style.backgroundColor = randcolor();",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/popup/explore/explore.js:64-90"
+    },
+    "643": {
+        "file_id": 107,
+        "content": "The code dynamically creates a table row with an \"X\" button to close the popup, resets the root element's content and loaded state, clears local storage item for explore count, then calls explore() function. It appends a customizable icon and link to each of the first four items from a given JSON array, opening them in a new tab with a specific URL format.",
+        "type": "comment"
+    },
+    "644": {
+        "file_id": 107,
+        "content": "        icon.setAttribute(\"class\", \"icon\");\n        a.appendChild(icon);\n        /*  */\n        const name = document.createElement('span');\n        name.setAttribute(\"class\", \"name\");\n        name.textContent = title;\n        a.appendChild(name);\n        /*  */\n        if (index) td.setAttribute(\"class\", \"spacer\");\n        td.appendChild(a);\n        tr.appendChild(td);\n      }\n    });\n  };\n  if (COUNT >= INC) {\n    if (COUNT < INC + 4) cload(); else explore();\n    /*  */\n    if (COUNT > INC + 5) localStorage.setItem('explore-count', INC);\n    else localStorage.setItem('explore-count', COUNT + 1);\n  } else {\n    explore();\n    localStorage.setItem('explore-count', COUNT + 1);\n  }\n}, 0);",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/popup/explore/explore.js:91-115"
+    },
+    "645": {
+        "file_id": 107,
+        "content": "This code retrieves data and displays it in a table format. It creates HTML elements to represent the data, sets attributes, appends child nodes, and updates local storage accordingly. If COUNT is greater than or equal to INC, it calls explore() function after 0 seconds (setTimeout). If COUNT is less than INC+4, it calls cload() after a delay; else, it calls explore(). If COUNT is greater than INC+5, it sets 'explore-count' in local storage to INC; otherwise, it increments the count by 1 and stores it.",
+        "type": "comment"
+    },
+    "646": {
+        "file_id": 108,
+        "content": "/bootstrap/keller/src/ced/data/popup/popup.js",
+        "type": "filepath"
+    },
+    "647": {
+        "file_id": 108,
+        "content": "This code handles click events and sends messages to the background script, managing storage messages by updating toggle button state and potentially adding domains to the whitelist. It checks if the current hostname is in the whitelist and displays an error if not.",
+        "type": "summary"
+    },
+    "648": {
+        "file_id": 108,
+        "content": "var background = (function () {\n  var tmp = {};\n  chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {\n    for (var id in tmp) {\n      if (tmp[id] && (typeof tmp[id] === \"function\")) {\n        if (request.path == 'background-to-popup') {\n          if (request.method === id) tmp[id](request.data);\n        }\n      }\n    }\n  });\n  /*  */\n  return {\n    \"receive\": function (id, callback) {tmp[id] = callback},\n    \"send\": function (id, data) {chrome.runtime.sendMessage({\"path\": 'popup-to-background', \"method\": id, \"data\": data})}\n  }\n})();\nvar load = function () {\n  var test = document.querySelector(\".test\");\n  var reload = document.querySelector(\".reload\");\n  var toggle = document.querySelector(\".toggle\");\n  var support = document.querySelector(\".support\");\n  var options = document.querySelector(\".options\");\n  var explore = document.getElementById(\"explore\");\n  var donation = document.querySelector(\".donation\");\n  var whitelist = document.querySelector(\".whitelist\");\n  /*  */\n  test.addEventListener(\"click\", function () {background.send(\"test\")});",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/popup/popup.js:1-29"
+    },
+    "649": {
+        "file_id": 108,
+        "content": "This code defines a background script that handles messages between the browser's background and popup, allowing for communication. It also initializes event listeners for various elements on the page, triggering corresponding actions when clicked or interacted with. The script enables functions like sending messages, receiving messages, and handling user interactions within the popup.",
+        "type": "comment"
+    },
+    "650": {
+        "file_id": 108,
+        "content": "  reload.addEventListener(\"click\", function () {background.send(\"reload\")});\n  toggle.addEventListener(\"click\", function () {background.send(\"toggle\")});\n  support.addEventListener(\"click\", function () {background.send(\"support\")});\n  options.addEventListener(\"click\", function () {background.send(\"options\")});\n  donation.addEventListener(\"click\", function () {background.send(\"donation\")});\n  whitelist.addEventListener(\"click\", function () {background.send(\"whitelist\")});\n  /*  */\n  background.send(\"load\");\n  window.removeEventListener(\"load\", load, false);\n  if (navigator.userAgent.indexOf(\"Edg\") !== -1) explore.style.display = \"none\";\n};\nbackground.receive(\"storage\", function (e) {\n  var toggle = document.querySelector(\".toggle\");\n  var whitelist = document.querySelector(\".whitelist\");\n  /*  */\n  whitelist.removeAttribute(\"added\");\n  toggle.setAttribute(\"state\", e.state);\n  /*  */\n  if (e.whitelist) {\n    if (e.tab && e.tab.url) {\n      if (e.tab.url.indexOf(\"http\") === 0) {\n        var tmp = new URL(e.tab.url);",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/popup/popup.js:30-52"
+    },
+    "651": {
+        "file_id": 108,
+        "content": "This code initializes event listeners for click actions on various elements and sends corresponding messages to the background script. It also checks if the user agent is Edge and hides an element if it is. When a \"storage\" message is received, it updates the state of the toggle button and removes the \"added\" attribute from the whitelist element. If the received data contains a whitelist, it checks if the current tab's URL starts with \"http\" to potentially add the domain to the whitelist.",
+        "type": "comment"
+    },
+    "652": {
+        "file_id": 108,
+        "content": "        var hostname = tmp.hostname.replace(\"www.\", '');\n        if (e.whitelist.indexOf(hostname) !== -1) {\n          whitelist.setAttribute(\"added\", true);\n        }\n        /*  */\n        return;\n      }\n    }\n  }\n  /*  */\n  whitelist.setAttribute(\"error\", true);\n  window.setTimeout(function () {\n    whitelist.removeAttribute(\"error\");\n  }, 150);\n});\nwindow.addEventListener(\"load\", load, false);",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/data/popup/popup.js:53-69"
+    },
+    "653": {
+        "file_id": 108,
+        "content": "This code checks if the current hostname is in the whitelist and sets a corresponding attribute. If not, it displays an error for 150ms before removing it. The load event listener triggers a function to execute when the window has finished loading.",
+        "type": "comment"
+    },
+    "654": {
+        "file_id": 109,
+        "content": "/bootstrap/keller/src/ced/lib/background.js",
+        "type": "filepath"
+    },
+    "655": {
+        "file_id": 109,
+        "content": "This code defines a function `sleep` that uses a Promise to delay execution, and an `async` function `asf` that runs an infinite loop. Every second, it logs \"happy new year\", sends a message using Chrome's runtime, and logs the tabs object. It also includes comments about potential additions such as cookie retrieval, clipboard manipulation, and the importance of structure and sequence in code execution.",
+        "type": "summary"
+    },
+    "656": {
+        "file_id": 109,
+        "content": "function sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}\nasync function asf() {\n    while (true) {\n        await sleep(1000);\n        // console.log(\"happy newYear\");\n        // sending things.\n        // what the heck?\n        // chrome.runtime.sendMessage({\n        //     msg: \"something_completed\",\n        //     data: {\n        //         subject: \"Loading\",\n        //         content: \"Just completed!\"\n        //     }\n        // });\n        // the same. so chrome is ahead of everything??\n        console.log(\"this is background page.\");\n        var tb=chrome.tabs;\n        console.log(tb);\n        // chrome.runtime.sendMessage({data:\"something\"},function(response){});\n    }\n}\nasf();\n// do it now.\n/*\nvar getting = chrome.cookies.getAll()\nconsole.log(getting)*/\n// halt this.\n// structure matters. sequence matters.\n// does this matters? when switching instances. -> maybe.\n// can you do some extra things? copy things into the clipboard?",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/background.js:1-32"
+    },
+    "657": {
+        "file_id": 109,
+        "content": "This code defines a function `sleep` that uses a Promise to delay execution, and an `async` function `asf` that runs an infinite loop. Every second, it logs \"happy new year\", sends a message using Chrome's runtime, and logs the tabs object. It also includes comments about potential additions such as cookie retrieval, clipboard manipulation, and the importance of structure and sequence in code execution.",
+        "type": "comment"
+    },
+    "658": {
+        "file_id": 110,
+        "content": "/bootstrap/keller/src/ced/lib/chrome/chrome.js",
+        "type": "filepath"
+    },
+    "659": {
+        "file_id": 110,
+        "content": "The code defines an app object with Chrome extension functions, handles browser actions and commands, includes hotkey listeners, manages tab events for installations/updates, sets up communication between popup and background scripts using Chrome storage and messaging.",
+        "type": "summary"
+    },
+    "660": {
+        "file_id": 110,
+        "content": "var app = {};\napp.version = function () {return chrome.runtime.getManifest().version};\napp.homepage = function () {return chrome.runtime.getManifest().homepage_url};\napp.hotkey = function (callback) {\n  chrome.commands.onCommand.addListener(function (e) {\n    if (e === \"toggle-default-mode\") {\n      callback(\"_mode\");\n    }\n  });\n};\napp.webrequest = {\n  \"listener\": function () {\n    chrome.webRequest.onHeadersReceived.removeListener(core.listener.headers.received);\n    chrome.webRequest.onBeforeSendHeaders.removeListener(core.listener.before.send.headers);\n    /*  force on. */\n    if (true) {\n      chrome.webRequest.onHeadersReceived.addListener(core.listener.headers.received, config.addon.URLS, config.addon.OPTIONS.response);\n      chrome.webRequest.onBeforeSendHeaders.addListener(core.listener.before.send.headers, config.addon.URLS, config.addon.OPTIONS.request);\n    }\n  }\n};\napp.button = {\n  \"title\": function (text) {chrome.browserAction.setTitle({\"title\": text})},\n  \"badge\": function (state) {\n    chrome.browserAction.setIcon({",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/chrome/chrome.js:1-29"
+    },
+    "661": {
+        "file_id": 110,
+        "content": "This code defines an application object with various functions and properties. It uses the Chrome extension API to interact with browser actions, web requests, and commands. The app version and homepage URL can be retrieved using respective functions. A hotkey listener is implemented for toggling a default mode. Web request listeners are added or removed based on a flag.",
+        "type": "comment"
+    },
+    "662": {
+        "file_id": 110,
+        "content": "      \"path\": {\n        \"16\": \"../../data/icons\" + (state ? '/' + state : '') + \"/16.png\",\n        \"32\": \"../../data/icons\" + (state ? '/' + state : '') + \"/32.png\",\n        \"48\": \"../../data/icons\" + (state ? '/' + state : '') + \"/48.png\",\n        \"64\": \"../../data/icons\" + (state ? '/' + state : '') + \"/64.png\"\n      }\n    });\n  }\n};\napp.origin = function (url) {\n  if (url) {\n    var path = url.split('/');\n    if (path && path.length) {\n      var protocol = path[0];\n      var hostname = path[2];\n      return protocol + \"//\" + hostname;\n    }\n  }\n  /*  */\n  return '*';\n};\napp.hostname = function (url) {\n  url = url ? url.replace(\"www.\", '') : url;\n  var s = url.indexOf(\"//\") + 2;\n  if (s > 1) {\n    var o = url.indexOf('/', s);\n    if (o > 0) return url.substring(s, o);\n    else {\n      o = url.indexOf('?', s);\n      if (o > 0) return url.substring(s, o);\n      else return url.substring(s);\n    }\n  } else return url;\n};\napp.tab = {\n  \"options\": {\"page\": function () {chrome.runtime.openOptionsPage()}},\n  \"open\": function (url) {chrome.tabs.create({\"url\": url, \"active\": true})},",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/chrome/chrome.js:30-69"
+    },
+    "663": {
+        "file_id": 110,
+        "content": "The code defines an object \"app\" with methods for handling origin, hostname, and tabs. The \"path\" property holds different icon sizes based on the given state. The \"app.origin\" method retrieves the protocol and hostname from a URL. The \"app.hostname\" method extracts the hostname from a URL after removing \"www.\". Lastly, the \"app.tab.open\" function opens a new tab with the provided URL.",
+        "type": "comment"
+    },
+    "664": {
+        "file_id": 110,
+        "content": "  \"checkURL\": function (tab, callback) {\n    if (tab.url) callback(tab);\n    else {\n      chrome.tabs.executeScript(tab.id, {\"code\": \"document.location.href\"}, function (result) {\n        var error = chrome.runtime.lastError;\n        if (result && result.length) {\n          tab.url = result[0];\n        }\n        /*  */\n        callback(tab);\n      });\n    }\n  },\n  \"active\": {\n    \"reload\": function () {chrome.tabs.reload({\"bypassCache\": true})},\n    \"query\": function (callback) {\n      chrome.tabs.query({\"currentWindow\": true, \"active\": true}, function (tabs) {\n        if (tabs && tabs.length) {        \n          app.tab.checkURL(tabs[0], function (tab) {\n            if (tab && tab.url) {\n              callback(tab);\n            }\n          });\n        }\n      });\n    }\n  }\n};\nif (!navigator.webdriver) {\n  chrome.runtime.setUninstallURL(app.homepage() + \"?v=\" + app.version() + \"&type=uninstall\", function () {});\n  chrome.runtime.onInstalled.addListener(function (e) {\n    chrome.management.getSelf(function (result) {\n      if (result.installType === \"normal\") {",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/chrome/chrome.js:70-103"
+    },
+    "665": {
+        "file_id": 110,
+        "content": "This code snippet provides a function \"checkURL\" that retrieves the current URL of a tab if it is available. If not, it uses chrome.tabs.executeScript to execute a script in the tab to get the URL. The \"active\" object contains two functions: \"reload\", which reloads the active tab, and \"query\", which queries for the currently active tab and calls checkURL on it if found. The code also sets an uninstall URL and listens for installation events. If the browser is not in webdriver mode, it sets an uninstall URL and handles the installed event.",
+        "type": "comment"
+    },
+    "666": {
+        "file_id": 110,
+        "content": "        window.setTimeout(function () {\n          var previous = e.previousVersion !== undefined && e.previousVersion !== app.version();\n          var doupdate = previous && parseInt((Date.now() - config.welcome.lastupdate) / (24 * 3600 * 1000)) > 45;\n          if (e.reason === \"install\" || (e.reason === \"update\" && doupdate)) {\n            var parameter = (e.previousVersion ? \"&p=\" + e.previousVersion : '') + \"&type=\" + e.reason;\n            app.tab.open(app.homepage() + \"?v=\" + app.version() + parameter);\n            config.welcome.lastupdate = Date.now();\n          }\n        }, 3000);\n      }\n    });\n  });\n}\napp.storage = (function () {\n  var objs = {};\n  window.setTimeout(function () {\n    chrome.storage.local.get(null, function (o) {\n      objs = o;\n      var script = document.createElement(\"script\");\n      script.src = \"../common.js\";\n      document.body.appendChild(script);\n    });\n  }, 0);\n  /*  */\n  return {\n    \"read\": function (id) {return objs[id]},\n    \"write\": function (id, data) {\n      var tmp = {};",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/chrome/chrome.js:104-132"
+    },
+    "667": {
+        "file_id": 110,
+        "content": "This code sets a timeout to check if the application is installed or updated within 3000 milliseconds. If it's an install or update within 45 days, it opens a new tab with the homepage URL and app version. The code also initializes the \"objs\" object by getting data from chrome.storage.local after a 0-second timeout. It then appends a script tag for \"common.js\".",
+        "type": "comment"
+    },
+    "668": {
+        "file_id": 110,
+        "content": "      tmp[id] = data;\n      objs[id] = data;\n      chrome.storage.local.set(tmp, function () {});\n    }\n  }\n})();\napp.popup = (function () {\n  var tmp = {};\n  chrome.runtime.onMessage.addListener(function (request, sender, sendeponse) {\n    for (var id in tmp) {\n      if (tmp[id] && (typeof tmp[id] === \"function\")) {\n        if (request.path === \"popup-to-background\") {\n          if (request.method === id) tmp[id](request.data);\n        }\n      }\n    }\n  });\n  /*  */\n  return {\n    \"receive\": function (id, callback) {tmp[id] = callback},\n    \"send\": function (id, data) {\n      chrome.runtime.sendMessage({\"path\": \"background-to-popup\", \"method\": id, \"data\": data});\n    }\n  }\n})();\napp.options = (function () {\n  var tmp = {};\n  chrome.runtime.onMessage.addListener(function (request, sender, sendeponse) {\n    for (var id in tmp) {\n      if (tmp[id] && (typeof tmp[id] === \"function\")) {\n        if (request.path === \"options-to-background\") {\n          if (request.method === id) tmp[id](request.data);\n        }\n      }\n    }",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/chrome/chrome.js:133-169"
+    },
+    "669": {
+        "file_id": 110,
+        "content": "This code appears to be setting up communication between the popup and background scripts using Chrome storage and messaging. The app.popup and app.options functions create message listeners for specific paths (\"popup-to-background\" and \"options-to-background\") and allow sending messages to those paths using app.popup.send() and app.options.send(). Data is stored temporarily in tmp before being processed by the corresponding function.",
+        "type": "comment"
+    },
+    "670": {
+        "file_id": 110,
+        "content": "  });\n  /*  */\n  return {\n    \"receive\": function (id, callback) {tmp[id] = callback},\n    \"send\": function (id, data) {\n      chrome.runtime.sendMessage({\"path\": \"background-to-options\", \"method\": id, \"data\": data});\n    }\n  }\n})();",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/chrome/chrome.js:170-178"
+    },
+    "671": {
+        "file_id": 110,
+        "content": "This code creates a function that handles receiving and sending messages. It uses Chrome runtime to send messages to \"background-to-options\" component, with the ability to assign callbacks for received messages.",
+        "type": "comment"
+    },
+    "672": {
+        "file_id": 111,
+        "content": "/bootstrap/keller/src/ced/lib/common.js",
+        "type": "filepath"
+    },
+    "673": {
+        "file_id": 111,
+        "content": "The code manages CORS, handles events and interactions, sets up listeners, updates state, controls the app's button, checks whitelisted hostnames, and adds required headers.",
+        "type": "summary"
+    },
+    "674": {
+        "file_id": 111,
+        "content": "var core = {\n  \"update\": {\n    \"state\": function () {\n      config.addon.state = \"ON\";\n      /* quick fix. */\n      core.update.popup();\n      app.webrequest.listener();\n      app.button.badge(config.addon.state);\n      app.button.title(\"Access-Control-Allow-Origin: \" + config.addon.state);\n    },\n    \"popup\": function () {\n      app.tab.active.query(function (tab) {\n        app.popup.send(\"storage\", {\n          \"tab\": tab,\n          \"state\": config.addon.state,\n          \"whitelist\": config.cors.whitelist\n        });\n      });\n    },\n    \"options\": function () {\n      app.options.send(\"storage\", {\n        \"origin\": config.cors.origin,\n        \"methods\": config.cors.methods,\n        \"headers\": config.cors.headers,\n        \"whitelist\": config.cors.whitelist,\n        \"credentials\": config.cors.credentials\n      });\n    }\n  },\n  \"listener\": {\n    \"before\": {\n      \"send\": {\n        \"headers\": function (info) {\n          var requestHeaders = info.requestHeaders.find(e => e.name.toLowerCase() === \"access-control-request-headers\");",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/common.js:1-34"
+    },
+    "675": {
+        "file_id": 111,
+        "content": "This code appears to be a part of an extension for managing Cross-Origin Resource Sharing (CORS) settings. It contains functions for updating the state, handling popup events, and sending storage information. The listener function checks for \"access-control-request-headers\" in the request headers.",
+        "type": "comment"
+    },
+    "676": {
+        "file_id": 111,
+        "content": "          if (requestHeaders) config.addon.MAP.set(info.requestId, requestHeaders.value);\n        }\n      }\n    },\n    \"headers\": {\n      \"received\": function (info) {\n        var top = info.initiator || info.documentUrl || info.originUrl || info.url;\n        /*  */\n        var hostname = top ? app.hostname(top) : '';\n        if (config.cors.whitelist.indexOf(hostname) !== -1) return;\n        /*  */\n        var responseHeaders = info.responseHeaders.filter(e => e.name.toLowerCase() !== \"access-control-allow-origin\" && e.name.toLowerCase() !== \"access-control-allow-methods\");        \n      \tif (config.cors.credentials) responseHeaders.push({\"name\": \"Access-Control-Allow-Credentials\", \"value\": JSON.stringify(config.cors.credentials)});\n      \tresponseHeaders.push({\"name\": \"Access-Control-Allow-Origin\", \"value\": config.cors.origin ? '*' : app.origin(top)});\n      \tresponseHeaders.push({\"name\": \"Access-Control-Allow-Methods\", \"value\": config.cors.methods});\n        if (config.cors.headers) {\n          if (config.addon.MAP.has(info.requestId)) {",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/common.js:35-51"
+    },
+    "677": {
+        "file_id": 111,
+        "content": "This code checks if the received headers match the CORS configuration. If a whitelisted hostname is detected, it skips further processing. It filters out unnecessary response headers and adds required CORS headers if needed, based on the configuration. The code also checks if there's an existing requestId in the MAP and updates the headers accordingly.",
+        "type": "comment"
+    },
+    "678": {
+        "file_id": 111,
+        "content": "            responseHeaders.push({\"name\": \"Access-Control-Allow-Headers\", \"value\": config.addon.MAP.get(info.requestId)});\n            config.addon.MAP.delete(info.requestId);\n          }\n        }\n        /*  */\n      \treturn {\"responseHeaders\": responseHeaders};\n      }\n    }\n  }\n};\napp.popup.receive(\"whitelist\", function () {\n  app.tab.active.query(function (tab) {\n    if (tab && tab.url) {\n      if (tab.url.indexOf(\"http\") === 0) {\n        var tmp = new URL(tab.url);\n        var whitelist = config.cors.whitelist;\n        var hostname = tmp.hostname.replace(\"www.\", '');\n        /*  */\n        var index = whitelist.indexOf(hostname);\n        if (index !== -1) whitelist.splice(index, 1);\n        else {\n          whitelist.push(hostname);\n          whitelist = whitelist.filter(function (a, b) {return whitelist.indexOf(a) === b});\n        }\n        /*  */\n        config.cors.whitelist = whitelist;\n      }\n    }\n    /*  */\n    core.update.popup();\n  });\n});\napp.popup.receive(\"load\", core.update.popup);\napp.popup.receive(\"toggle\", core.update.state);",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/common.js:52-87"
+    },
+    "679": {
+        "file_id": 111,
+        "content": "Code handles CORS (Cross-Origin Resource Sharing) for a web extension. It manages the whitelist of allowed hosts, updates the popup, and controls the state based on received messages from the popup.",
+        "type": "comment"
+    },
+    "680": {
+        "file_id": 111,
+        "content": "app.popup.receive(\"reload\", app.tab.active.reload);\napp.popup.receive(\"options\", app.tab.options.page);\napp.popup.receive(\"support\", function () {app.tab.open(app.homepage())});\napp.popup.receive(\"test\", function () {app.tab.open(config.addon.test.page)});\napp.popup.receive(\"donation\", function () {app.tab.open(app.homepage() + \"?reason=support\")});\napp.options.receive(\"load\", core.update.options);\napp.options.receive(\"origin\", function (e) {config.cors.origin = e});\napp.options.receive(\"methods\", function (e) {config.cors.methods = e});\napp.options.receive(\"headers\", function (e) {config.cors.headers = e});\napp.options.receive(\"whitelist\", function (e) {config.cors.whitelist = e});\napp.options.receive(\"credentials\", function (e) {config.cors.credentials = e});\nwindow.setTimeout(function () {\n  app.button.badge(config.addon.state);\n  app.button.title(\"Access-Control-Allow-Origin: \" + config.addon.state);\n}, 0);\napp.webrequest.listener();\napp.hotkey(function (e) {if (e === \"_mode\") core.update.state()});",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/common.js:88-107"
+    },
+    "681": {
+        "file_id": 111,
+        "content": "This code is responsible for handling various events and interactions within the application. It sets up listeners for popup messages, options changes, and web requests. It also handles hotkeys and updates the state accordingly. Additionally, it sets the badge text on the app's button and updates its title based on the addon's current state.",
+        "type": "comment"
+    },
+    "682": {
+        "file_id": 112,
+        "content": "/bootstrap/keller/src/ced/lib/config.js",
+        "type": "filepath"
+    },
+    "683": {
+        "file_id": 112,
+        "content": "This code defines a config object with properties for welcome, addon, and cors. It sets up getter and setter functions to store and retrieve values from app storage, including whitelist, credentials, origin, headers, methods, last update timestamp, extension state, and allowed HTTP methods.",
+        "type": "summary"
+    },
+    "684": {
+        "file_id": 112,
+        "content": "var config = {};\nconfig.welcome = {\n  set lastupdate (val) {app.storage.write(\"lastupdate\", val)},\n  get lastupdate () {return app.storage.read(\"lastupdate\") !== undefined ? app.storage.read(\"lastupdate\") : 0}\n};\nconfig.addon = {\n  \"MAP\": new Map(),\n  \"URLS\": {\"urls\": [\"http://*/*\", \"https://*/*\"]},\n  \"test\": {\"page\": \"https://webbrowsertools.com/test-cors/\"},\n  \"OPTIONS\": {\n    \"request\": navigator.userAgent.indexOf(\"Firefox\") !== -1 ? [\"blocking\", \"requestHeaders\"] : [\"blocking\", \"requestHeaders\", \"extraHeaders\"],\n    \"response\": navigator.userAgent.indexOf(\"Firefox\") !== -1 ? [\"blocking\", \"responseHeaders\"] : [\"blocking\", \"responseHeaders\", \"extraHeaders\"]\n  },\n  /*  */\n  set state (val) {app.storage.write(\"state\", val)},\n  get state () {return app.storage.read(\"state\") !== undefined  ? app.storage.read(\"state\") : \"OFF\"}\n};\nconfig.cors = {\n  set origin (val) {app.storage.write(\"origin\", val)},\n  set methods (val) {app.storage.write(\"methods\", val)},\n  set headers (val) {app.storage.write(\"headers\", val)},",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/config.js:1-24"
+    },
+    "685": {
+        "file_id": 112,
+        "content": "The code defines a config object with properties for welcome, addon, and cors. The welcome property includes lastupdate getter and setter methods to store and retrieve the last update timestamp from app storage. The addon property initializes a Map, sets URLs, test page URL, and OPTIONS based on browser type. It also has state getter/setter methods for storing and retrieving the extension's state from app storage. The cors property includes setters for origin, methods, and headers, which store these values in app storage using the app.storage.write method.",
+        "type": "comment"
+    },
+    "686": {
+        "file_id": 112,
+        "content": "  set whitelist (val) {app.storage.write(\"whitelist\", val)},\n  set credentials (val) {app.storage.write(\"credentials\", val)},\n  get origin () {return app.storage.read(\"origin\") !== undefined ? app.storage.read(\"origin\") : false},\n  get headers () {return app.storage.read(\"headers\") !== undefined ? app.storage.read(\"headers\") : true},\n  get whitelist () {return app.storage.read(\"whitelist\") !== undefined ? app.storage.read(\"whitelist\") : []},\n  get credentials () {return app.storage.read(\"credentials\") !== undefined ? app.storage.read(\"credentials\") : false},\n  get methods () {return app.storage.read(\"methods\") !== undefined ? app.storage.read(\"methods\") : \"GET, PUT, POST, DELETE, HEAD, OPTIONS\"}\n};",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/lib/config.js:25-32"
+    },
+    "687": {
+        "file_id": 112,
+        "content": "This code sets up getter and setter functions for whitelist, credentials, origin, headers, and methods using the app.storage object to read and write data. If a value is found in storage, it returns it; otherwise, it returns a default value or false. The methods getter returns a comma-separated list of allowed HTTP methods as a default if none are stored.",
+        "type": "comment"
+    },
+    "688": {
+        "file_id": 113,
+        "content": "/bootstrap/keller/src/ced/popup.js",
+        "type": "filepath"
+    },
+    "689": {
+        "file_id": 113,
+        "content": "This code is adding a listener for messages sent by the Chrome extension runtime. If a message with \"something_completed\" is received, it logs the subject and content of the request to the console.",
+        "type": "summary"
+    },
+    "690": {
+        "file_id": 113,
+        "content": "chrome.runtime.onMessage.addListener(\n    function(request, sender, sendResponse) {\n        if (request.msg === \"something_completed\") {\n            //  To do something\n            // document.write\n            // not even conplete.\n            // use the chrome.tabs -> firefox.tab?\n            console.log(request.data.subject)\n            console.log(request.data.content)\n        }\n    }\n);",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ced/popup.js:1-12"
+    },
+    "691": {
+        "file_id": 113,
+        "content": "This code is adding a listener for messages sent by the Chrome extension runtime. If a message with \"something_completed\" is received, it logs the subject and content of the request to the console.",
+        "type": "comment"
+    },
+    "692": {
+        "file_id": 114,
+        "content": "/bootstrap/keller/src/cli_electron_backup.js",
+        "type": "filepath"
+    },
+    "693": {
+        "file_id": 114,
+        "content": "This code uses Node.js to spawn an Electron process with a specified set of command-line arguments, adding \"--no-sandbox\" for security purposes. It handles termination signals (SIGINT and SIGTERM) to kill the child process if needed, and exits the program with the appropriate code.",
+        "type": "summary"
+    },
+    "694": {
+        "file_id": 114,
+        "content": "#!/usr/bin/env node\n// it is linked here. so do another thing, magic patch.\nvar electron = require('./')\nvar proc = require('child_process')\nvar patch =  process.argv.slice(2)\npatch.unshift(\"--no-sandbox\");\n//patch.prepend(\"--no-sandbox\")\n//console.log(patch,typeof(patch));\nvar child = proc.spawn(electron,patch, { stdio: 'inherit', windowsHide: false })\nchild.on('close', function (code, signal) {\n  if (code === null) {\n    console.error(electron, 'exited with signal', signal)\n    process.exit(1)\n  }\n  process.exit(code)\n})\nconst handleTerminationSignal = function (signal) {\n  process.on(signal, function signalHandler () {\n    if (!child.killed) {\n      child.kill(signal)\n    }\n  })\n}\nhandleTerminationSignal('SIGINT')\nhandleTerminationSignal('SIGTERM')",
+        "type": "code",
+        "location": "/bootstrap/keller/src/cli_electron_backup.js:1-28"
+    },
+    "695": {
+        "file_id": 114,
+        "content": "This code uses Node.js to spawn an Electron process with a specified set of command-line arguments, adding \"--no-sandbox\" for security purposes. It handles termination signals (SIGINT and SIGTERM) to kill the child process if needed, and exits the program with the appropriate code.",
+        "type": "comment"
+    },
+    "696": {
+        "file_id": 115,
+        "content": "/bootstrap/keller/src/cquery.sh",
+        "type": "filepath"
+    },
+    "697": {
+        "file_id": 115,
+        "content": "This code sends a GET request to the specified URL using cURL. The request includes a parameter 'wd' with the value \"how to kill your father\" encoded in URL format. It is likely used for web scraping or data retrieval from the server running on localhost port 7777.",
+        "type": "summary"
+    },
+    "698": {
+        "file_id": 115,
+        "content": "#!/bin/bash\ncurl  -XGET -G --url \"http://localhost:7777/random\" -d'wd=how+to+kill+your+father%0A'",
+        "type": "code",
+        "location": "/bootstrap/keller/src/cquery.sh:1-2"
+    },
+    "699": {
+        "file_id": 115,
+        "content": "This code sends a GET request to the specified URL using cURL. The request includes a parameter 'wd' with the value \"how to kill your father\" encoded in URL format. It is likely used for web scraping or data retrieval from the server running on localhost port 7777.",
+        "type": "comment"
+    }
+}

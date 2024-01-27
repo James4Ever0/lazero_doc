@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports a function from 'endmark' and defines two functions, 'pr' and 'chick'. It reads a file named \"random_interactive.py\", then applies the 'windowEndMarkEx' function to the file content for different values of 'r', calling the 'chick' function with each result. This process seems to be checking data types or analyzing the content, but its exact purpose remains unclear without further context.",
+    "details": [
+        {
+            "comment": "The code imports a function from 'endmark' and defines two functions, 'pr' and 'chick'. It reads a file named \"random_interactive.py\", then applies the 'windowEndMarkEx' function to the file content for different values of 'r', calling the 'chick' function with each result. This process seems to be checking data types or analyzing the content, but its exact purpose remains unclear without further context.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/cd_demo.py\":0-27",
+            "content": "from endmark import windowEndMarkEx\n# almost the same?\n# does it really help?\n# do we need fuzzy logic?\n# shall we group things together?\ndef pr(a, d):\n    b, c = len(a), len(set(a))\n    if b == c:\n        print(b, c, d)\n    else:\n        print(b, c)\ndef chick(a, r):\n    pr(windowEndMarkEx(a, r), r)\nwith open(\"random_interactive.py\", \"r\") as f:\n    g = f.read()\n    # check data types.\n#    g0=windowEndMarkEx(g,1)\n#    pr(g0)\n#    g1=windowEndMarkEx(g,5)\n#    pr(g1)\n    for k in range(int(len(g)**0.5)):\n        chick(g, k+1)"
+        }
+    ]
+}

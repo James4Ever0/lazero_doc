@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports necessary libraries, defines port and connection settings for a ZMQ socket, but is incomplete and contains commentary indicating issues with sending data and potential non-blocking mode implementation.",
+    "details": [
+        {
+            "comment": "This code imports necessary libraries, defines port and connection settings for a ZMQ socket, but is incomplete and contains commentary indicating issues with sending data and potential non-blocking mode implementation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/aloofclient.py\":0-29",
+            "content": "import zmq\nimport random\nimport sys\nimport time\n# from sub2 import timeout\nport = \"5757\"\ncontext = zmq.Context()\nsocket = context.socket(zmq.PAIR)\nsocket.setsockopt(zmq.LINGER, 0)\n# this works. not blocking.\nsocket.connect(\"tcp://127.0.0.7:%s\" % port)\n#while True:\n#        msg = socket.recv()\n#        print msg\n# performing one-shot.\n#        socket.send(\"client message to server1\")\n# fuck.\n# for the latter.\nsend_string = socket.send_string\n# send_string = timeout(1)(socket.send_string)\n# send_string(input(\"Enter the command:\\r\\n\"))\ndef sender(a):\n    send_string(a)\n# cannot send shit.\n# will stuck if no receive. switch to non-block mode here?\n#        time.sleep(1)\n# asshole.\n# WTF?\n# just to send one single string."
+        }
+    ]
+}

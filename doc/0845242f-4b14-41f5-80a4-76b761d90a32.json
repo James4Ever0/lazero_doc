@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports random and sys modules, reads input from stdin, splits into words and stores them in a list x0. If the list is empty, it prints \"no available candidate\". Otherwise, it selects a random word from the list and prints it.",
+    "details": [
+        {
+            "comment": "The code imports random and sys modules, reads input from stdin, splits into words and stores them in a list x0. If the list is empty, it prints \"no available candidate\". Otherwise, it selects a random word from the list and prints it.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/random_chooser.py\":0-8",
+            "content": "import random, sys\nx0=[]\nfor x in sys.stdin:\n    x0+=x.split()\nif len(x0)==0:\n    print(\"no avaliable candidate\")\nelse:\n    r=random.choice(x0)\n    print(r)"
+        }
+    ]
+}

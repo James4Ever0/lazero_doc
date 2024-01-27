@@ -1,0 +1,10 @@
+{
+    "summary": "This code seems to be importing the pyatspi library and its modules, then printing their names using pydoc3. It also mentions that the codebase is large, and suggests halting and writing C# code to dump the root node.",
+    "details": [
+        {
+            "comment": "This code seems to be importing the pyatspi library and its modules, then printing their names using pydoc3. It also mentions that the codebase is large, and suggests halting and writing C# code to dump the root node.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/atspi_wrap.py\":0-8",
+            "content": "import pyatspi\nimport os\nos.system(\"pydoc3 pyatspi &>/proc/self/fd/0\")\nfor x in dir(pyatspi):\n    print(x)\n    os.system(\"pydoc3 pyatspi.\"+x+\" &>/proc/self/fd/0\")\n    # so the codebase is so goddamn huge and no-one can do the fucking writing anymore.\n    # let's just halt.\n    # and write C# code to dump the root node?"
+        }
+    ]
+}

@@ -1,0 +1,537 @@
+{
+    "2000": {
+        "file_id": 327,
+        "content": "# why you have to wait\n# sleep for a while?\n# timeall=10\n# it is just moving around the shell.\n# remote_conn.send(\":help\\n\")\n# getOutput(remote_conn)\n# do we really know it is repl?\n# never mind. we can do manual debugging from now on.\n#    result = stderr.read()\nssh.close()\n# print(result.decode())",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_shell.py:99-110"
+    },
+    "2001": {
+        "file_id": 327,
+        "content": "The code is sending a help command to the shell, waiting for output using getOutput function, and then closing the ssh connection. It seems that the author was trying to determine if it was dealing with a REPL (Read-Eval-Print Loop), but decided to do manual debugging instead. The code also logs the stderr output before closing the connection.",
+        "type": "comment"
+    },
+    "2002": {
+        "file_id": 328,
+        "content": "/bootstrap/legacy/concentration/old_toys/repeating.py",
+        "type": "filepath"
+    },
+    "2003": {
+        "file_id": 328,
+        "content": "This code defines functions for processing lists with double derivatives, applying operations recursively and checking conditions on the values. The function returns False if the condition is not met or an error occurs.",
+        "type": "summary"
+    },
+    "2004": {
+        "file_id": 328,
+        "content": "def al(a):\n    return set(a)\ndef ak(a):\n    # print(a)\n    return [a[x]-a[x+1] for x in range(len(a)-1)]\n# all kind of things?\ndef akII(a, s=2):\n    assert type(s) == int and s >= 0\n    if s > 0:\n        return akII(ak(a), s-1)\n    else:\n        return a\n# double derivative.\ndef am(a):\n    i = al(a)\n    return {x: akII([y for y in range(len(a)) if a[y] == x], 2) for x in i}\ndef ajam(a, b, c, d, e):\n    j = am(a)\n    # test_val: continuously getting zero for longer than b:\n    # print(j)\n    # you should sort it.\n    s = list(sorted([(x, sum(j[x])) for x in j.keys()], key=lambda x: x[1]))\n    s = list(map(lambda x: x[0], s))\n    for x in s:\n        xj = j[x]\n        xy = 0\n        xd = 0\n        # buf=xj[0]\n        for y in xj:\n            if y != 0:\n                if xy < b*c:\n                    xy = 0\n                    if xy > b*e:\n                        xd += xy**c\n            else:\n                xy += 1\n            if xy >= b or xd >= d:\n                return True\n            # buf = y\n        if xy >= b:\n            return True",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/repeating.py:1-49"
+    },
+    "2005": {
+        "file_id": 328,
+        "content": "The code defines several functions: `al`, `ak`, `akII`, `am`, and `ajam`. \n\n`al(a)` returns a set of values from list `a`. \n\n`ak(a)` prints a list with the difference between each element in the input list `a` and the next one, excluding the last element. \n\n`akII(a, s=2)` recursively applies `ak` to the list until the given `s` is reached or exceeded. \n\n`am(a)` creates a dictionary with double derivatives of elements in `a`, using `al` and `akII`. \n\n`ajam(a, b, c, d, e)` takes a list `a`, among other inputs, sorts the double derivative values into a list, and iterates through each value. If any value meets certain conditions (related to `b`, `c`, `d`, and `e`), it returns True; otherwise, it continues until the end of the list before returning False. \n\nThe code seems to be related to processing lists with double derivatives and checking for specific conditions on those values.",
+        "type": "comment"
+    },
+    "2006": {
+        "file_id": 328,
+        "content": "    return False",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/repeating.py:50-50"
+    },
+    "2007": {
+        "file_id": 328,
+        "content": "The code returns False, indicating the condition is not met or the function has failed.",
+        "type": "comment"
+    },
+    "2008": {
+        "file_id": 329,
+        "content": "/bootstrap/legacy/concentration/old_toys/ssh_interactive.py",
+        "type": "filepath"
+    },
+    "2009": {
+        "file_id": 329,
+        "content": "The code connects to an SSH server, sends commands with a 2-second delay, and retrieves output, but has unfinished or unclear parts. It handles timeouts, exceptions, debugging, and interacts with a shell while possibly facing unicode support issues.",
+        "type": "summary"
+    },
+    "2010": {
+        "file_id": 329,
+        "content": "import paramiko\nimport time\nfrom core4 import createLinks\nfrom sub2 import timeout\nimport traceback\ndef autoreturn(a):\n    return a.replace(\"\\n\", \"\")+\"\\n\"\nprivate_key = paramiko.RSAKey.from_private_key_file(\n    '/root/.ssh/id_rsa')  # 使用目标的私钥来登录\nssh = paramiko.SSHClient()\nssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())\n# ssh.connect(hostname='127.0.0.1',port=22,username='root',pkey=private_key)\n# we will do recording later.\n# ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())\n# 连接服务器\nssh.connect(hostname='127.0.0.1', port=22, username='test', password='test')\n# it is my system password after all.\n#cmd = 'yes'\n#stdin, stdout, stderr = ssh.exec_command(cmd)\ntimestamp = time.time()\n# accept float?\nremote_conn = ssh.invoke_shell()\n# nothing is like this.\n# remote_conn.send(\"python\\n\")\n# what about errors?\ntime.sleep(2)\n# you even have that shell thing!\n# remote_conn.send(\"yes\\n\")\n# yes! it does matters.\n# by the way, I fucking hate shell command typing. It is awful.\n# what about networking and GUI clicking?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/ssh_interactive.py:1-38"
+    },
+    "2011": {
+        "file_id": 329,
+        "content": "Code imports necessary modules, defines a function for string manipulation, creates an SSH client, sets missing host key policy, and connects to a remote server using the specified username and password. It then invokes the remote shell and sends commands, followed by waiting for 2 seconds before sending another command.",
+        "type": "comment"
+    },
+    "2012": {
+        "file_id": 329,
+        "content": "# same to me! ok?\noutput = remote_conn.recv(1000)\n# remote_conn.send(\"happybirthday\\n\")\na = \"msfconsole\"\nremote_conn.send(autoreturn(a))\ncommand_init = [a, 0]\noutput_init = []\n# time.sleep(20)\n# what is going on?\n# just to check.\n# it is working, after all.\n# may miss a bit?\n# you should get that thing!\n# no error! strange thing!\n# there should be error.\n# no respond! how about python?\n# why you have to wait\n# sleep for a while?\ntimeall = 50\ncounter = 0\npatience = 5\n# is it too much?\nwhile timeall >= 0 and patience > 0:\n    # i want to see some web repl.\n    #result = stdout.read()\n    # while not stdout.channel.exit_status_ready():\n    #    # Only print data if there is data to read in the channel\n    #    if stdout.channel.recv_ready():\n    #        rl, wl, xl = select.select([stdout.channel], [], [], 0.0)\n    #        if len(rl) > 0:\n    # Print data from stdout\n    #            print(stdout.channel.recv(1024),)\n    # this is not good.\n    # if not result:\n    # search for possible errors!\n    # errors are sweet?\n    # it is all connected.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/ssh_interactive.py:39-75"
+    },
+    "2013": {
+        "file_id": 329,
+        "content": "This code appears to be attempting to interact with an SSH connection, sending commands and receiving output. It includes a time delay to allow for web repl responses and checks for possible errors. However, some parts of the code are commented out, indicating unfinished or potentially abandoned functionality. The code also seems to contain unnecessary or unclear instructions, making it difficult to understand its exact purpose.",
+        "type": "comment"
+    },
+    "2014": {
+        "file_id": 329,
+        "content": "    # does the order matters?\n    # print(output.decode())\n    try:\n        # p = timeout(0.1)(output.decode)\n        p = timeout(1)(remote_conn.recv)\n        # we are missing things.\n        x = p(1000).decode()\n        output_init.append([x, counter, time.time()])\n        print(x)\n        counter += 1\n        # it is shit.\n        # but then we get stuck.\n    except:\n        # print(traceback.format_exc())\n        patience -= 1\n        # there is no error.\n        pass\n    # well, for those non-ending.\n    # code is intepretable for shell but no unicode support?\n#    print(output)\n    # what is the color?\n    # check it?\n    # time.sleep(0.1)\n    # print(timeall, time.time()-timestamp)\n    # it is likely to fail.\n    timeall -= 1\n# do we really know it is repl?\n# never mind. we can do manual debugging from now on.\n#    result = stderr.read()\nssh.close()\nfor x in output_init:\n    row = x[2]-timestamp\n    createLinks(timestamp, row, command_init[0], command_init[1], x[0], x[1])\n# print(result.decode())\n# let's check.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/ssh_interactive.py:76-110"
+    },
+    "2015": {
+        "file_id": 329,
+        "content": "This code appears to handle SSH connection and retrieves data from it. It decodes the output, appends it to a list along with other details, and closes the connection. The code also handles timeouts, exceptions, and includes some debugging operations such as printing messages and manipulating timestamps. It seems to be interacting with a shell but may have unicode support issues.",
+        "type": "comment"
+    },
+    "2016": {
+        "file_id": 330,
+        "content": "/bootstrap/legacy/concentration/old_toys/ssh_manual_shell.py",
+        "type": "filepath"
+    },
+    "2017": {
+        "file_id": 330,
+        "content": "Code uses Paramiko to connect, retrieve data continuously with error handling and print output from server at 127.0.0.1 with 'test' username/password, performs manual debugging. Experiences network and potential errors, waits for responses.",
+        "type": "summary"
+    },
+    "2018": {
+        "file_id": 330,
+        "content": "import paramiko\nimport time\nfrom sub2 import timeout\nimport traceback\n#private_key = paramiko.RSAKey.from_private_key_file('/root/.ssh/id_rsa')#使用目标的私钥来登录\ndef getOutput(remote_conn):\n    timeall=10\n    while timeall>=0:\n        try:\n            output = timeout(0.1)(remote_conn.recv)\n            output = output(1000)\n            print(output)\n            print(type(output))\n        except:\n            e=traceback.format_exc()\n            print(e)\n        # it was stuck. once again. we should use that timer.\n# i want to see some web repl.\n#result = stdout.read()\n#while not stdout.channel.exit_status_ready():\n#    # Only print data if there is data to read in the channel\n#    if stdout.channel.recv_ready():\n#        rl, wl, xl = select.select([stdout.channel], [], [], 0.0)\n#        if len(rl) > 0:\n            # Print data from stdout\n#            print(stdout.channel.recv(1024),)\n            # this is not good.\n#if not result:\n# search for possible errors!\n# errors are sweet?\n# it is all connected.\n# does the order matters?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/ssh_manual_shell.py:1-32"
+    },
+    "2019": {
+        "file_id": 330,
+        "content": "This code is using Paramiko to establish an SSH connection and receive data from the remote server. The `getOutput` function attempts to continuously retrieve output from the remote connection until a timeout occurs or any potential errors are encountered. It also uses traceback for error handling and printing.",
+        "type": "comment"
+    },
+    "2020": {
+        "file_id": 330,
+        "content": "#        print(output.decode())\n        #print(output)\n        #print(type(output))\n    # code is intepretable for shell but no unicode support?\n#    print(output)\n    # what is the color?\n    # check it?\n#        time.sleep(0.1)\n        timeall-=1\n        if timeall<=0:\n            break\n    print(\"next_session\")\n    # there could be things going around.\n    # how about writing a shell in python? which will be a lot easier than anything?\n    # really? not for me?\n        # what the heck?\nssh = paramiko.SSHClient()\nssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())\n#ssh.connect(hostname='127.0.0.1',port=22,username='root',pkey=private_key)\n# vim should be not working.\n#ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())\n#连接服务器\nssh.connect(hostname='127.0.0.1', port=22, username='test', password='test')\n# it is my system password after all.\n# cannot let you do no harm.\n# create user on windows as well!\n# i do not know things. can these commands being sent to neo4j?\n# they are raw data. it might fail.\n#cmd = 'yes'",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/ssh_manual_shell.py:33-66"
+    },
+    "2021": {
+        "file_id": 330,
+        "content": "The code is trying to establish a connection with a server using Paramiko library in Python. It sets missing host key policy to automatically add unknown hosts and connects to the specified host (127.0.0.1) with username 'test' and password 'test'. The code also mentions creating a user on Windows, sending commands that might fail if sent to Neo4j due to their raw data nature.",
+        "type": "comment"
+    },
+    "2022": {
+        "file_id": 330,
+        "content": "#stdin, stdout, stderr = ssh.exec_command(cmd)\nremote_conn = ssh.invoke_shell()\n# nothing is like this.\n#remote_conn.send(\"python\\n\")\n# what about errors?\ntime.sleep(2)\n# you even have that shell thing!\n#remote_conn.send(\"yes\\n\")\n# yes! it does matters.\n# by the way, I fucking hate shell command typing. It is awful.\n# what about networking and GUI clicking?\n# same to me! ok?\noutput=remote_conn.recv(1000)\n#remote_conn.send(\"happybirthday\\n\")\nremote_conn.send(\"vim\\n\")\ngetOutput(remote_conn)\n# time.sleep(20)\n# what is going on?\n# just to check.\n# it is working, after all.\n# may miss a bit?\n# you should get that thing!\n# no error! strange thing!\n# there should be error.\n# no respond! how about python?\n# why you have to wait\n# sleep for a while?\n#timeall=10\n# it is just moving around the shell.\nremote_conn.send(\":help\\n\")\ngetOutput(remote_conn)\n# do we really know it is repl?\n# never mind. we can do manual debugging from now on.\n#    result = stderr.read()\nssh.close()\n#print(result.decode())",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/ssh_manual_shell.py:67-103"
+    },
+    "2023": {
+        "file_id": 330,
+        "content": "This code establishes an SSH connection, opens a shell, sends commands to the remote terminal (e.g., \"python\", \"vim\"), retrieves output, and performs manual debugging by sending help command before closing the connection. It also experiences issues related to network connectivity, potential errors, and waiting for responses.",
+        "type": "comment"
+    },
+    "2024": {
+        "file_id": 331,
+        "content": "/bootstrap/legacy/concentration/old_toys/sub2.py",
+        "type": "filepath"
+    },
+    "2025": {
+        "file_id": 331,
+        "content": "This code defines a decorator named \"timeout\" that allows to set a timeout for a function, raising an exception if the execution takes more than specified seconds. It achieves this by creating a separate thread where the function is executed and joining it after the timeout, raising an exception if it's still running.",
+        "type": "summary"
+    },
+    "2026": {
+        "file_id": 331,
+        "content": "from threading import Thread\nimport functools\ndef timeout(timeout):\n    def deco(func):\n        @functools.wraps(func)\n        def wrapper(*args, **kwargs):\n            res = [Exception('function [%s] timeout [%s seconds] exceeded!' % (\n                func.__name__, timeout))]\n            def newFunc():\n                try:\n                    res[0] = func(*args, **kwargs)\n                except Exception as e:\n                  # this is funny.\n                    res[0] = e\n            t = Thread(target=newFunc)\n            t.daemon = True\n            try:\n                t.start()\n                t.join(timeout)\n            except Exception as je:\n                print('error starting thread')\n                raise je\n            ret = res[0]\n            if isinstance(ret, BaseException):\n                raise ret\n            return ret\n        return wrapper\n    return deco",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/sub2.py:1-31"
+    },
+    "2027": {
+        "file_id": 331,
+        "content": "This code defines a decorator named \"timeout\" that allows to set a timeout for a function, raising an exception if the execution takes more than specified seconds. It achieves this by creating a separate thread where the function is executed and joining it after the timeout, raising an exception if it's still running.",
+        "type": "comment"
+    },
+    "2028": {
+        "file_id": 332,
+        "content": "/bootstrap/legacy/concentration/special_parser.py",
+        "type": "filepath"
+    },
+    "2029": {
+        "file_id": 332,
+        "content": "The code reads a file named \"trench.log\", filters out English words, and stores the non-English words in a separate file called \"rockstar\". The function used for filtering is called \"scanner\" which takes two parameters: a string (the content of \"trench.log\") and another list containing English words. It returns a list of non-English words found in the input string. The code also uses functions \"returnXList\" and \"storeXList\" from the getFromDill and storeADill modules respectively, but their functionalities are not mentioned.",
+        "type": "summary"
+    },
+    "2030": {
+        "file_id": 332,
+        "content": "from getFromDill import returnXList\nfrom storeADill import storeXList\n# virtual keyboard?\ndef scanner(a, x0):\n    # type theory is all about law works.\n    # trust me. just some lawyers' theory, easy to learn.\n    b = \"\"\n    c = []\n    for x in a:\n        if x not in x0:\n            b += x\n        else:\n            if b != \"\":\n                c.append(b)\n                b = \"\"\n    if b != \"\":\n        c.append(b)\n        b = \"\"\n    return c\nr = returnXList(\"invisible_0\")\nf = \"\"\nwith open(\"trench.log\", \"r\") as f0:\n    f = f0.read()\nf = scanner(f, r)\n# with open(\"trencher.log\",\"w+\") as f0:\n#     # f=f0.read()\n#     for x in f:\n#         f0.write(x+\"\\n\")\nstoreXList({x: False for x in f}, \"rockstar\")\n# immortal internet?\n# now, get to it!\n# there are non-english word inside.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/special_parser.py:1-36"
+    },
+    "2031": {
+        "file_id": 332,
+        "content": "The code reads a file named \"trench.log\", filters out English words, and stores the non-English words in a separate file called \"rockstar\". The function used for filtering is called \"scanner\" which takes two parameters: a string (the content of \"trench.log\") and another list containing English words. It returns a list of non-English words found in the input string. The code also uses functions \"returnXList\" and \"storeXList\" from the getFromDill and storeADill modules respectively, but their functionalities are not mentioned.",
+        "type": "comment"
+    },
+    "2032": {
+        "file_id": 333,
+        "content": "/bootstrap/legacy/concentration/trench_exam.py",
+        "type": "filepath"
+    },
+    "2033": {
+        "file_id": 333,
+        "content": "The code imports functions to define a virtual function that takes two arguments, applies it to each value in a dictionary, filters out certain values, and stores the result for later use. The author discusses removing a specific element due to compatibility issues with 'xrange' and finding alternative solutions before deciding to remove it.",
+        "type": "summary"
+    },
+    "2034": {
+        "file_id": 333,
+        "content": "from getFromDill import returnXList\n# import pywalk\n# check if these things are visible?\n# we can determine the shape of these chars?\nfrom storeADill import storeXList\nfrom klean import klean\ndef virtual(r1,v):\n    assert type(v)==int and v>=0\n    k = klean(r1)\n    # print(k)\n    k=list(map(lambda x: x[0],k))\n    # print(k)\n    # all shit.\n    k=list(filter(lambda x: x in [True,False],k))\n    # k=list(filter(lambda x: type(x) is bool,k))\n    # all shit.\n    k=list(map(int,k))\n    k=sum(k)\n    return k>v\n    # what the heck?\n# def sumOne(a):\n#     if type(a)==dict:\n#         return\n# # get all values?\nr = returnXList(\"trench\")\n# r0 = [x for x in r.keys()][0]\nr={x:virtual(r[x],0) for x in r.keys()}\np=[x for x in r.keys() if r[x]==False]\nstoreXList(p,\"invisible_0\")\n# it would be great measurement if used to all unicode chars.\n# ok! now use it to do our task!\n# r1 = r[r0]\n# # print(r1)\n# r1 = (1, 2, 3, 4, {\"json\": [1, 2, 3, 4, [2, 2, 3, 4, [3, 2, 3, 4]]], \"nothing\":(1, 2, 3, 4, (2, 2, 3, 4))}, (2, 2, 3, 4))\n# really strange.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/trench_exam.py:1-35"
+    },
+    "2035": {
+        "file_id": 333,
+        "content": "Code imports functions returnXList and storeXList, klean function from the klean library, and defines a virtual function that takes two arguments: r1 (a variable) and v (an integer). The code then creates a dictionary r using the returned list from returnXList and applies the virtual function to each value in the dictionary. It filters out certain values, stores the result in p, and finally calls storeXList with p as an argument. The code also contains a commented section that seems unfinished or not used.",
+        "type": "comment"
+    },
+    "2036": {
+        "file_id": 333,
+        "content": "# ca we just preserve the path?\n# xrange not defined. modify it!\n    # ak(pywalk.walk(node))?\n    # iterator?\n    # what if we have the list?\n    # what the heck?\n# alright. problem solved.\n# we are removing it.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/trench_exam.py:36-43"
+    },
+    "2037": {
+        "file_id": 333,
+        "content": "The code snippet is discussing the process of modifying a function to remove a specific element, possibly due to a compatibility issue with 'xrange' and considering alternative solutions such as using a list or an iterator. The author eventually finds a solution to the problem and decides to remove the element.",
+        "type": "comment"
+    },
+    "2038": {
+        "file_id": 334,
+        "content": "/bootstrap/legacy/container_0/Terminal.java",
+        "type": "filepath"
+    },
+    "2039": {
+        "file_id": 334,
+        "content": "The code defines two classes, Terminal and WrittenConsole, to handle console input/output. The Terminal class reads and prints using InputStreamReader and BufferedReader, while the WrittenConsole class continuously reads and writes, handling exceptions with stack traces. The code executes commands using Runtime.getRuntime().exec() in separate threads but faces issues in Terminal class execution.",
+        "type": "summary"
+    },
+    "2040": {
+        "file_id": 334,
+        "content": "import java.io.*;\n// time to find a sandbox to execute something like rm -rf /*.\n// so get closer to the bloody truth.\npublic class Terminal {\n    class ReaderConsole implements Runnable {\n        private InputStream is;\n\tprivate String x;\n        public ReaderConsole(InputStream is,String x) {\n            this.is = is;\n\t    this.x=x;\n        }\n        public void run() {\n            InputStreamReader isr = null;\n\t             try {\n                isr = new InputStreamReader(is);\n                // hey! how about a byte reader?\n\t\t// this does not allow input. consider a process instead.\n            } catch (Exception e1) {\n                e1.printStackTrace();\n\t\t}\n            BufferedReader br = new BufferedReader(isr);\n\t    // the heck! must be able to write into the stream.\n            int c = -1;\n            try {\n                while ((c = br.read()) != -1) {\n                    System.out.println(\"WELCOME_Y: \"+this.x);\n                    System.out.print((byte) c);\n                }\n            } catch (Exception e) {",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/Terminal.java:1-31"
+    },
+    "2041": {
+        "file_id": 334,
+        "content": "This code defines a class called \"Terminal\" with an inner class \"ReaderConsole\", which implements Runnable and reads input from a specified InputStream, printing it to the console. The implementation uses an InputStreamReader and BufferedReader for reading the input stream byte by byte. However, the code seems to have issues with writing into the stream and handling exceptions effectively.",
+        "type": "comment"
+    },
+    "2042": {
+        "file_id": 334,
+        "content": "                e.printStackTrace();\n            }\n        }\n    }\n    // always the same thing.\n    // can we try that now?\n    class WrittenConsole implements Runnable {\n        private OutputStream os;\n\tprivate String x;\n        public WrittenConsole(OutputStream os,String x) {\n            this.os = os;\n\t    this.x=x;\n        }\n        public void run() {\n            try {\n                while (true) {\n                    String line = this.getConsoleLine();\n                    line += \"\\n\";\n                    System.out.println(\"WELCOME_X: \"+this.x);\n                    byte[] bts = line.getBytes();\n                    os.write(bts);\n                    System.out.println(bts);\n                    os.flush();\n\t\t    Thread.sleep(1000);\n                }\n            } catch (Exception e) {\n                e.printStackTrace();\n            }\n        }\n        private String getConsoleLine() throws IOException {\n            String line = \"whoami\";\n\t    //            InputStreamReader input = new InputStreamReader(System.in);",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/Terminal.java:32-65"
+    },
+    "2043": {
+        "file_id": 334,
+        "content": "This code defines a class called WrittenConsole, which implements the Runnable interface. It has an output stream and a string variable x as parameters in its constructor. The run method of this class continuously reads console input, adds a newline character, converts it to bytes, writes it to the output stream, prints it to the console, flushes the output stream, and then waits for 1 second before repeating the process. If an exception occurs during execution, it will print the stack trace.",
+        "type": "comment"
+    },
+    "2044": {
+        "file_id": 334,
+        "content": "            //BufferedReader br = new BufferedReader(input);\n            //line = br.readLine();\n            return line;\n        }\n    }\n    // can you find the stderr?\n    // whoami?\n    public void execute() throws Exception {\n\t//        String[] cmds = { \"su\",\"-\",\"test\" };\n\tString[] cmds = {\"sshpass\",\"-p\",\"test\",\"mosh\",\"test@localhost\"};\n\t// same error????\n        Process process = Runtime.getRuntime().exec(cmds);\n        InputStream os = process.getInputStream();\n        OutputStream is = process.getOutputStream();\n        InputStream es = process.getErrorStream();// this one is correct.\n\t// somehow mistaken.\n\t// write to outputStream?\n        Thread t1 = new Thread(new WrittenConsole(is,\"input\"));\n        Thread t0 = new Thread(new ReaderConsole(es,\"error\"));\n        Thread t2 = new Thread(new ReaderConsole(os,\"output\"));\n        t1.start();\n        t0.start();\n        t2.start();\n        // great then. whatever.\n\t// need to detach?\n    }\n    public static void main(String[] args) {\n        System.out.println(\"WELCOME\");",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/Terminal.java:66-95"
+    },
+    "2045": {
+        "file_id": 334,
+        "content": "This code snippet executes a command using the Runtime.getRuntime().exec() method, redirects the input and output streams to separate threads, and reads the output and error streams in separate threads. The main method simply prints \"WELCOME\".",
+        "type": "comment"
+    },
+    "2046": {
+        "file_id": 334,
+        "content": "        // not as effective as I expected.\n        Terminal t = new Terminal();\n        try {\n            System.out.println(\"AGAIN\");\n            t.execute();\n        } catch (Exception e) {\n            e.printStackTrace();\n        }\n    }\n}",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/Terminal.java:96-105"
+    },
+    "2047": {
+        "file_id": 334,
+        "content": "The code creates a new instance of the Terminal class and attempts to execute it. However, it mentions that it is not as effective as expected. The code prints \"AGAIN\" to the console before executing the terminal, and if an exception occurs during execution, it prints the stack trace.",
+        "type": "comment"
+    },
+    "2048": {
+        "file_id": 335,
+        "content": "/bootstrap/legacy/container_0/advanced_selection_monitor.sh",
+        "type": "filepath"
+    },
+    "2049": {
+        "file_id": 335,
+        "content": "This code manages clipboard operations in an event-driven system using X11 and Wayland protocols on Unix-like systems. It coordinates with UUID or global object manager, handles KDE compatibility issues, fetches data from localhost:7000, and displays clipboard contents every 0.1 seconds using watch command with xsel utility.",
+        "type": "summary"
+    },
+    "2050": {
+        "file_id": 335,
+        "content": "#!/bin/bash\n# EVENT DRIVEN.\n# session might be dead. so do it in systemd.\n# you check SECURITY FIRST.\n# there's your monitor over these applications.\n# source code of xterm, and xclipboard.\n# able to check system level things!\n# generate some spliter? UUID?\n# you want to use javascript listener or something alike.\n# still something.\n# wayland: freedesktop.\n# xclipboard -> x11-apps.\n# can't quit that shit. copyq.\n# copyq-plugins?\n# the secondary thing is used when swapping.\n# no wayland thing running!\n# can you share UUID among different scripts?\n# anyway. GLOBAL DOCUMENT ELEMENT MARK?\n# set it into the header file? immutable, unable to delete?\n# just use the uuid to do the job?\n# you will never get the real uuid.\n# different thing?\n# KDE on WINDOWS or MACOS or ANDROID?\n# ARCHITECTURE: [random forget] <-> [partial safe] <-> [crystal clear]\n# or more than that. a global counter. global object manager.\n# based on the speed of input.\n# NVM. do it now. the clipboard manager.\n# interesting log.\n# there is no such thing IN MOZILLA to allow script to paste.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/advanced_selection_monitor.sh:1-31"
+    },
+    "2051": {
+        "file_id": 335,
+        "content": "This code seems to be a script for managing clipboard operations, possibly in an event-driven system. It mentions X11 and Wayland protocols, suggesting it's designed to work on Unix-like systems. The author discusses using UUID or global object manager for coordination between scripts and handles compatibility issues for KDE on different platforms. Some features are still under consideration and the script interacts with a clipboard manager.",
+        "type": "comment"
+    },
+    "2052": {
+        "file_id": 335,
+        "content": "# only fucking extensions can do that.\n# MORE CLIPBOARDS! I REALLY MEAN IT.\n# hold up. let me fuck it up.\n# one thing interesting about mathematics: it only requires you to do it once more.\ns=$(curl localhost:7000)\n# echo $s\n# xsel -x -> to access the 2nd.\n# it is all about one single cell. automata.\n# AUTOMATA!\n# not necessarily full of shit.\nwatch -n 0.1 \"echo -e '\\n______PRIMARY[$s]______\\n' && (xsel -p | head --bytes 200) &&  echo -e '\\n______SECONDARY[$s]______\\n' && (xsel -s | head --bytes 200)  && echo -e '\\n______CLIPBOARD[$s]______\\n' && (xsel -b | head --bytes 200)\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/advanced_selection_monitor.sh:32-42"
+    },
+    "2053": {
+        "file_id": 335,
+        "content": "The code fetches data from localhost:7000 and displays the clipboard contents of PRIMARY, SECONDARY, and CLIPBOARD in separate lines every 0.1 seconds using watch command with xsel utility for accessing clipboards.",
+        "type": "comment"
+    },
+    "2054": {
+        "file_id": 336,
+        "content": "/bootstrap/legacy/container_0/awaitIO.py",
+        "type": "filepath"
+    },
+    "2055": {
+        "file_id": 336,
+        "content": "This code defines a function \"run\" that concurrently reads stdout and stderr of a command executed on Linux systems using separate threads, while providing interactive input. It prints process output upon termination and lacks error handling.",
+        "type": "summary"
+    },
+    "2056": {
+        "file_id": 336,
+        "content": "# import asyncio\nimport threading\n# import time\n# import termios\n# import fcntl\n# import tempfile\nimport time\nimport subprocess\ndef run(cmd):\n    # await asyncio.sleep(1)\n    # stdin=tempfile.TemporaryFile(\"w+b\")\n    proc = subprocess.Popen(\n        cmd,stdin=subprocess.PIPE,\n        stdout=subprocess.PIPE,\n        stderr=subprocess.PIPE)\n    # proc.stdin.write(b\"junk\\n\")\n    def readline(a,b):\n        while True:\n            buff=a.readline()\n            print(b+buff)\n    threading.Thread(target=readline,args=(proc.stdout,b\"stdout: \")).start()\n    threading.Thread(target=readline,args=(proc.stderr,b\"stderr: \")).start()\n    # start another shit.\n    # read what?\n    # when it is dead, it goes crazy. so share the namespace please?\n    ik=5\n    # how to pretend to be a terminal?\n    x=[\"links\",\"elinks\",\"vim\",\"ps\",\"sed\"]\n    while ik>0:\n        proc.stdin.write(x[ik-1].encode()+b\"\\n\")\n        proc.stdin.flush()\n        ik-=1\n        time.sleep(1)\n    # ik=5\n    # while ik>0:\n    #     proc.stdin.write(b\"this is junk.\\n\")\n    #     proc.stdin.flush()",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/awaitIO.py:1-37"
+    },
+    "2057": {
+        "file_id": 336,
+        "content": "This code defines a function \"run\" that executes a command and reads both stdout and stderr concurrently using separate threads. It also provides interactive input by continuously sending predefined commands to the process's stdin. The code is designed for Linux systems, as it uses subprocess and threading modules, but it lacks error handling and might cause issues with non-terminal inputs.",
+        "type": "comment"
+    },
+    "2058": {
+        "file_id": 336,
+        "content": "    #     ik-=1\n    #     time.sleep(1)\n    proc.kill()\n    print(\"_EOL_\")\n    # or multiprocessing works the same?\n    # stdout, stderr = await proc.communicate()\n    # print(f'[{cmd!r} exited with {proc.returncode}]')\n    # if stdout:\n    #     print(f'[stdout]\\n{stdout.decode()}')\n    # if stderr:\n    #     print(f'[stderr]\\n{stderr.decode()}')\nrun('bash')\nprint(\"AHEAD OF TIME\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/awaitIO.py:38-51"
+    },
+    "2059": {
+        "file_id": 336,
+        "content": "The code is terminating a process, printing \"_EOL_\", and then checking the stdout and stderr outputs. It's checking if there's any output from the process and printing it if there is. It's likely part of a script that runs a command in a separate process and waits for its completion.",
+        "type": "comment"
+    },
+    "2060": {
+        "file_id": 337,
+        "content": "/bootstrap/legacy/container_0/command_server.js",
+        "type": "filepath"
+    },
+    "2061": {
+        "file_id": 337,
+        "content": "The code creates an HTTP server for remote command execution, with the author facing issues in error handling and finding optimal command execution methods. It parses JSON data and listens on port 7001 for incoming connections.",
+        "type": "summary"
+    },
+    "2062": {
+        "file_id": 337,
+        "content": "// #!/usr/bin/nodejs\n// undefined\n// var \nvar http=require('http');\n// var crypto = require('crypto');\n// the heck.\n// it would be hard if browsing the fucking thing.\n// i mean PDF.\n// cannot be done. document.body is null.\n// skip all errors?\n// and still don't know how to get it right.\n// but we can do this, by remote access.\n// the shell! yeah!\n// var crypto = require('crypto'); \n// return it via web or clipboard.\n// whatever.\nvar demo=\"7bba4519-f413-4975-b0b6-8ebf98b5ccdf\";\n// you can set the command, without using mouse at all.\n// without taking risk there's no meaning at all.\nvar server = http.createServer((function (request, response) {// never read the request?\n    response.writeHead(200,\n        { \"Content-Type\": \"text/plain\" });\n    // var k = uuidv4();\n    var k = {\"uuid\":demo,\"command\":\"document.all\"};\n    // you should invoke another program.\n    // better print it out.\n    // not responding.\n    // what the heck?\n    // or put it into the clipboard.\n    // maybe? maybe not.\n    response.end(JSON.stringify(k));",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/command_server.js:1-31"
+    },
+    "2063": {
+        "file_id": 337,
+        "content": "This code creates an HTTP server that sends a command to be executed remotely via web or clipboard, using the provided UUID. The author seems to be struggling with error handling and finding the best way to execute the commands.",
+        "type": "comment"
+    },
+    "2064": {
+        "file_id": 337,
+        "content": "    // JSON.parse(k);\n    // get it parsed, or report error.\n}));\nserver.listen(7001);",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/command_server.js:32-35"
+    },
+    "2065": {
+        "file_id": 337,
+        "content": "Parses the JSON data from variable 'k' and handles any errors or reports them. Listens on port 7001 for incoming connections.",
+        "type": "comment"
+    },
+    "2066": {
+        "file_id": 338,
+        "content": "/bootstrap/legacy/container_0/config_uuid_service.sh",
+        "type": "filepath"
+    },
+    "2067": {
+        "file_id": 338,
+        "content": "This script installs and enables a service for a UUID server on Linux, allows the user to test it using Chromium on Windows, and suggests finding prankable systems like Windows, macOS, or Linux.",
+        "type": "summary"
+    },
+    "2068": {
+        "file_id": 338,
+        "content": "#!/bin/bash\nsudo chmod +x uuid_server.js\nsudo cp uuid_server.js /usr/bin/\nsudo cp uuid_service.service /etc/systemd/system/uuid_service.service\nsudo chmod 644 /etc/systemd/system/uuid_service.service\nsudo systemctl enable uuid_service\nsudo systemctl start uuid_service\n# consider using chromium on windows to test the fucking plugin. able to install it outside the shit.\n# also consider something like that on Android. Consider finding some prankable system.\n# in general, prankable. WINDOWS-HACKED. MACOS-HACKED. LINUX-HACKED.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/config_uuid_service.sh:1-10"
+    },
+    "2069": {
+        "file_id": 338,
+        "content": "This script installs and enables a service for a UUID server on Linux, allows the user to test it using Chromium on Windows, and suggests finding prankable systems like Windows, macOS, or Linux.",
+        "type": "comment"
+    },
+    "2070": {
+        "file_id": 339,
+        "content": "/bootstrap/legacy/container_0/flushy.py",
+        "type": "filepath"
+    },
+    "2071": {
+        "file_id": 339,
+        "content": "The code utilizes threading and the subprocess module to interact with a console, but it lacks efficient I/O handling, has potential race conditions, and faces issues in peeking, reading, and executing commands. The goal is to print messages and command line interaction.",
+        "type": "summary"
+    },
+    "2072": {
+        "file_id": 339,
+        "content": "import subprocess\n# import tempfile\nfrom subprocess import PIPE\nimport threading\nimport time\ndef runnable(console):\n    # console.stdin.write(b\"samejunkhere\\n\")\n    # not running shit.\n    while True:\n        console.stdin.write(b\"ls\\n\")\n        console.stdin.flush()\n        time.sleep(1)\n        print(\"FROM STDIN.\")\n    # cannot write again.\n# give up on this total utter crap.\ndef readable(console):\n    # cannot read shit.\n    # able to peek, but unable to read.\n    while True:\n        print(console.stdout.peek())\n        print(\"_STDOUT_\")\n        time.sleep(1)\n# stdout=tempfile.TemporaryFile(\"w+b\")\n# stderr=tempfile.TemporaryFile(\"w+b\")\n# so this is the hackish way to do the job.\nconsole=subprocess.Popen([\"bash\"],stdin=PIPE,stderr=PIPE,stdout=PIPE)\n# console.stdin.write(b\"ls\\n\")\n# console.stdin.flush()\nthread = threading.Thread(target=runnable,args=(console,))\n# console.wait()\nthread.start()\nthread0 = threading.Thread(target=readable,args=(console,))\n# console.wait()\n# does not share same shit?\nthread0.start()\nprint(\"remainder\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/flushy.py:1-38"
+    },
+    "2073": {
+        "file_id": 339,
+        "content": "This code spawns a subprocess using 'bash' and sets up two separate threads. One thread repeatedly executes 'ls' command through the subprocess' stdin, while printing \"FROM STDIN.\" every second. The other thread tries to read from the subprocess' stdout, printing \"_STDOUT_\" each second. It uses threading for parallel execution and subprocess module to interact with the subprocess. However, the code is not efficient, as it lacks proper handling of input/output and has potential race conditions.",
+        "type": "comment"
+    },
+    "2074": {
+        "file_id": 339,
+        "content": "# try java instead.\n# # print(console.stdout.peek())\n# # cannot even peek shit.\n# print(console.stdout.peek())\n# print(\"__________________SPLITER__________________\")\n# console.stdin.write(b\"junkfilewhatever\\n\")\n# console.stdin.flush()\n# # cannot read lines.\n# # cannot use other shits?\n# # maybe EOF found.\n# print(dir(console.stderr.raw))\n# print(console.stderr.raw.readall())\n# do it in another thread?\n# you can try it.\n# print(console.stderr.peek())\n# # print(dir(console.stderr))\n# console.stdout.seek(len(console.stdout.peek()))\n# # here we go again.\n# # can only peek once?\n# # # cannot read shit.\n# # console.stdout.read()\n# # print(\"reach there\")\n# # console.stderr.read()\n# # # cannot do again?\n# print(\"reach here\")\n# console.stdin.write(b\"echo hello world\\n\")\n# console.stdin.flush()\n# # console.wait()\n# # print(console.stdout.peek())\n# print(console.stdout.peek())\n# console.stdin.write(b\"junkfilewherever\\n\")\n# console.stdin.flush()\n# print(console.stderr.peek())",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/flushy.py:39-71"
+    },
+    "2075": {
+        "file_id": 339,
+        "content": "Code attempts to interact with a console by using various methods like `peek()`, `write()`, and `flush()`. It faces issues with peeking, reading, and executing commands. The code also considers using another thread for some operations. The ultimate goal seems to be printing messages and interacting with the command line, but it encounters multiple problems along the way.",
+        "type": "comment"
+    },
+    "2076": {
+        "file_id": 340,
+        "content": "/bootstrap/legacy/container_0/lazero.js",
+        "type": "filepath"
+    },
+    "2077": {
+        "file_id": 340,
+        "content": "The Lazero Helper script enables monitoring and control of web elements, using clipboard functions and accessing inaccessible pages. It collects document elements as JSON before copying, with potential GM.setClipboard issue.",
+        "type": "summary"
+    },
+    "2078": {
+        "file_id": 340,
+        "content": "// ==UserScript==\n// @name     Lazero Helper Script\n// @version  1\n// @grant    none\n// @run-at   document-start\n// ==/UserScript==\n// everytime having a different value.\n// create a cronjob then.\n// on copy command, you get the idea of it.\n// or register a service.\n//  so this time we only use clipboard, or something alike?\n// what do you expect? on_clipboard_change?\n// uuid can be used here.\n// might be useful.\n// some pages such as extension config are not accessiblt.\n// yes you can monitor it by yourself.\n// but anyway, it is getting close to the truth.\n// wait till fully loaded?\nconsole.log(\"LAZERO HELPER SCRIPT\\n    -\\n   |               ___  __  __\\n  / \\\\  |    /|  /  ___ |   |  |\\n \\\\  _\\\\ |__ / | /__ ___ |   |__|\\n\\nTo make everything\\nexecutable, analyzable, controllable.\");\n// back again. doing random stuff here.\n// not too goddamn bad?\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}// fucking absent.\nfunction deselect() {\n    if (window.getSelection) { window.getSelection().removeAllRanges(); }",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero.js:1-27"
+    },
+    "2079": {
+        "file_id": 340,
+        "content": "This code is a user script for Lazero Helper. It logs a welcome message, includes functions like sleep and deselect, and seems to be focused on monitoring, control, and interaction with various elements on web pages. The script may involve clipboard usage, cronjobs, and potentially accessing inaccessible pages for analysis and control purposes.",
+        "type": "comment"
+    },
+    "2080": {
+        "file_id": 340,
+        "content": "    else if (document.selection) { document.selection.empty(); }\n}\n// even set imagedata?\n// better get a inputbox.\n// not called inside a event handler.\n// which is weird.\n// so we will do this when the document is ready!\n// or not?\n// do it in another platform.\n// maybe?\nconst copyToClipboard = str => {\n    const el = document.createElement('textarea');  // Create a <textarea> element\n    el.value = str;                                 // Set its value to the string that you want copied\n    el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof\n    el.style.position = 'absolute';\n    el.style.left = '-9999px';                      // Move outside the screen to make it invisible\n    document.body.appendChild(el);\n    // Append the <textarea> element to the HTML document\n    const selected =\n        document.getSelection().rangeCount > 0        // Check if there is any content selected previously\n            ? document.getSelection().getRangeAt(0)     // Store selection if found",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero.js:28-48"
+    },
+    "2081": {
+        "file_id": 340,
+        "content": "This code snippet aims to create a textarea element, set its value to the provided string, make it readonly and invisible by positioning it outside the screen, and append it to the HTML document. This is done in an attempt to copy the given string to the clipboard. The code also checks if there's any previously selected content and stores it if found.",
+        "type": "comment"
+    },
+    "2082": {
+        "file_id": 340,
+        "content": "            : false;                                    // Mark as false to know no selection existed before\n    // do not check the selection.\n    // do not store the fucking selection.\n    // only if you want to.\n    deselect();\n    el.select();                                    // Select the <textarea> content\n    document.execCommand('copy');                   // Copy - only works as a result of a user action (e.g. click events)\n    document.body.removeChild(el);                  // Remove the <textarea> element\n    if (selected) {                                 // If a selection existed before copying\n        document.getSelection().removeAllRanges();    // Unselect everything on the HTML document\n        document.getSelection().addRange(selected);   // Restore the original selection\n    }\n};\nvar uuid = null;\nconst Http = new XMLHttpRequest();\nconst url = 'http://localhost:7000';\nHttp.open(\"GET\", url);\nHttp.send();\n// making it portable?\nHttp.onreadystatechange = (e) => {\n    var xk = Http.responseText;",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero.js:49-70"
+    },
+    "2083": {
+        "file_id": 340,
+        "content": "Code snippet retrieves textarea content, copies it to clipboard, removes the textarea element, and restores the previous selection if one existed before copying. It also sends a GET request to 'http://localhost:7000'.",
+        "type": "comment"
+    },
+    "2084": {
+        "file_id": 340,
+        "content": "    // doing it twice?\n    if (!uuid) {\n        if (xk) {\n            console.log(\"Session UUID: \" + xk);\n            uuid = xk;\n            async function Tutor() {\n                // console.log(\"posting document data\");\n                // whatever. it is great.\n                await sleep(2000);\n                var d = document.all;\n                var ki = d.length;\n                var json = [{ \"LAZERO_HELPER_PROGRAM\": uuid }];\n                for (var i = 0; i < ki; i++) {\n                    var p = d[i];\n                    var j = { \"innerHtml\": p.innerHTML, \"outerHTML\": p.outerHTML };\n                    json.push(j);\n                }\n                //d=JSON.stringify(d);\n                copyToClipboard(JSON.stringify(json));\n                // do it later?\n                // or do it again?\n                // not fucking working.\n                // GM.setClipboard(JSON.stringify(json));\n            };\n            Tutor();\n        }\n    }\n}\n// what is that anyway?\n// if request failed?\n// without network card?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero.js:71-101"
+    },
+    "2085": {
+        "file_id": 340,
+        "content": "This code seems to check if a UUID is not present, and if an 'xk' value exists, it logs the session UUID and creates a function named 'Tutor'. The Tutor function collects all document elements using 'document.all', converts them into JSON format including their innerHTML and outerHTML, then copies the JSON string to the clipboard. It also attempts to use GM.setClipboard but comments suggest it's not working.",
+        "type": "comment"
+    },
+    "2086": {
+        "file_id": 340,
+        "content": "// that implementation is about the ADD-ON.\n// AGAIN. DEVELOPING EXTENSIONS.\n// you can simply post the first one please???\n// don't be silly.\n// we shall also have access to the clipboard somehow.\n// check notation?\n// get uuid?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero.js:102-109"
+    },
+    "2087": {
+        "file_id": 340,
+        "content": "This code snippet appears to discuss the development of add-ons and extensions, mentioning a possible first post, clipboard access, and obtaining a UUID. The context seems to involve working with legacy code and potentially integrating new features or functionalities.",
+        "type": "comment"
+    },
+    "2088": {
+        "file_id": 341,
+        "content": "/bootstrap/legacy/container_0/lazero.sh",
+        "type": "filepath"
+    },
+    "2089": {
+        "file_id": 341,
+        "content": "This code executes the command 'c' on 'main.c', pipes the output to 'xargs c' for 'lazero.c', and redirects both error and standard output to '/dev/shm/lazero'. It contains several comments criticizing the readability, complexity, and functionality of the code, indicating frustration with the process and lack of understanding of its purpose.",
+        "type": "summary"
+    },
+    "2090": {
+        "file_id": 341,
+        "content": "#!/usr/bin/fish\ncommand c main.c | xargs c lazero.c &> /dev/shm/lazero\n# i swear this is pure shit. nothing about grammar tree or nothing. it is something must be admitted for sure.\n# the problem is simple. it is not simple enough.\n# you really should pick up some fundamental shits to read on.\n# whatsoever. it is all due to low quota.\n# yes you push too damn hard on so-called things.\n# you are not good at them. you cannot teach them.\n# do you think this worth your while?\n# really nigga?\n# by not closing the lid?\n# whatever now. I have some deep misunderstanding over this thing. think of it. it is really not fun at all.\n# whatever the thing is, now it is just none of my business.\n# the main loop is still not on at all.\n# say it as keylogger or some windows, not my business.\n# that's because you can't think of it.\n# appium, native GUI/CLI examination, and so on.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero.sh:1-17"
+    },
+    "2091": {
+        "file_id": 341,
+        "content": "This code executes the command 'c' on 'main.c', pipes the output to 'xargs c' for 'lazero.c', and redirects both error and standard output to '/dev/shm/lazero'. It contains several comments criticizing the readability, complexity, and functionality of the code, indicating frustration with the process and lack of understanding of its purpose.",
+        "type": "comment"
+    },
+    "2092": {
+        "file_id": 342,
+        "content": "/bootstrap/legacy/container_0/lazero_exec.js",
+        "type": "filepath"
+    },
+    "2093": {
+        "file_id": 342,
+        "content": "The code is a limited-functionality user script that utilizes JavaScript, UUIDs, and Http to fetch data. It faces errors while executing commands and experiences issues with clipboard operations and debugging variables.",
+        "type": "summary"
+    },
+    "2094": {
+        "file_id": 342,
+        "content": "// ==UserScript==\n// @name     Lazero Exec Demo\n// @version  1\n// @grant    none\n// @run-at   document-start\n// ==/UserScript==\n// check on that require thing.\n// does not share the same uuid.\n// thus not official implementation.\n// disable another script first.\n// use that script instead?\n// get the uuid somehow.\n// it is gonna slow you down.\n// do me a favor: online clipboard.\n// please. this is for good.\n// that function is not right.\n// or not?\n// do it in another platform.\n// maybe?\n// fucking absent.\n// finally?\n// whatever.\n// do the clipboard manager then.\n// try-catch in js?\nfunction deselect() {\n    if (window.getSelection) { window.getSelection().removeAllRanges(); }\n    else if (document.selection) { document.selection.empty(); }\n}\nconst copyToClipboard = str => {\n    const el = document.createElement('textarea');  // Create a <textarea> element\n    el.value = str;                                 // Set its value to the string that you want copied\n    el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_exec.js:1-33"
+    },
+    "2095": {
+        "file_id": 342,
+        "content": "This code is for a user script that allows copying text to the clipboard. It disables another script, checks if it's using the correct UUID, and uses a try-catch block in JavaScript. The code also includes a function to deselect text and creates a textarea element to store the string before copying it to the clipboard.",
+        "type": "comment"
+    },
+    "2096": {
+        "file_id": 342,
+        "content": "    el.style.position = 'absolute';\n    el.style.left = '-9999px';                      // Move outside the screen to make it invisible\n    document.body.appendChild(el);\n    // Append the <textarea> element to the HTML document\n    const selected =\n        document.getSelection().rangeCount > 0        // Check if there is any content selected previously\n            ? document.getSelection().getRangeAt(0)     // Store selection if found\n            : false;                                    // Mark as false to know no selection existed before\n    // do not check the selection.\n    // do not store the fucking selection.\n    // only if you want to.\n    deselect();\n    el.select();                                    // Select the <textarea> content\n    document.execCommand('copy');                   // Copy - only works as a result of a user action (e.g. click events)\n    document.body.removeChild(el);                  // Remove the <textarea> element\n    if (selected) {                                 // If a selection existed before copying",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_exec.js:34-49"
+    },
+    "2097": {
+        "file_id": 342,
+        "content": "Moves the element out of screen to hide, appends textarea to document, checks if selection existed before, deselects, selects and copies textarea content using execCommand, removes textarea from document.",
+        "type": "comment"
+    },
+    "2098": {
+        "file_id": 342,
+        "content": "        document.getSelection().removeAllRanges();    // Unselect everything on the HTML document\n        document.getSelection().addRange(selected);   // Restore the original selection\n    }\n};\n// not gonna restore the original state.\n// so you'd better write a plugin instead.\n// firefox and chrome.\n// come on.\n// you should clone the termux thing.\n// do the terminal emulator thing!\n// terminal emulator -> file expolrer -> browser ...\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}\n// that sleep function is fucked.\n// this is not really the case.\n// also not good at all when doing this.\nconst Http = new XMLHttpRequest();\nconst url = 'http://localhost:7000';\nHttp.open(\"GET\", url);\nHttp.send();\n// making it portable?\n// can't wait for the long duration.\n// before the document is ready, that script won't run.\n// you probably need to visit another site over and over again.\nvar uuid = null;\n// eventually replace all kinds of shit.\nHttp.onreadystatechange = (e) => {\n    var xk = Http.responseText;",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_exec.js:50-82"
+    },
+    "2099": {
+        "file_id": 342,
+        "content": "The code aims to restore the original selection in a browser, but it's not fully functional and suggests creating a plugin. It contains a broken sleep function and is making the script portable. The Http object fetches data from 'http://localhost:7000'.",
+        "type": "comment"
+    }
+}

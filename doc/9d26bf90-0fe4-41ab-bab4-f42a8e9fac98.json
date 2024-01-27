@@ -1,0 +1,10 @@
+{
+    "summary": "The code defines a function \"get_url\" that takes a keyword, creates parameters for a Baidu search URL, formats the URL using the \"format_url\" function, and returns the formatted URL. The main loop prints the formatted URLs for each line of input from stdin.",
+    "details": [
+        {
+            "comment": "The code defines a function \"get_url\" that takes a keyword, creates parameters for a Baidu search URL, formats the URL using the \"format_url\" function, and returns the formatted URL. The main loop prints the formatted URLs for each line of input from stdin.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/curl_baidu.py\":0-19",
+            "content": "import urllib.parse\nimport sys\ndef format_url(url, params: dict = None) -> str:\n    query_str = urllib.parse.urlencode(params)\n    return f'{ url }?{ query_str }'\ndef get_url(keyword):\n    params = {\n        'wd': str(keyword)\n    }\n    url = \"http://www.baidu.com/s\"\n    url = format_url(url, params)\n    # print(url)\n    return url\nif __name__ == \"__main__\":\n    for x in sys.stdin:\n        print(get_url(x))"
+        }
+    ]
+}

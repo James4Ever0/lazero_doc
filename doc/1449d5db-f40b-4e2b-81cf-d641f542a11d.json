@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the random module, defines four lambda functions for basic arithmetic operations, uses a SystemRandom instance for secure random choices, and creates an infinite loop that prompts the user for input, chooses a random function from the list, applies it to the user's input, and prints the result.",
+    "details": [
+        {
+            "comment": "This code imports the random module, defines four lambda functions for basic arithmetic operations, uses a SystemRandom instance for secure random choices, and creates an infinite loop that prompts the user for input, chooses a random function from the list, applies it to the user's input, and prints the result.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/demo.py\":0-12",
+            "content": "import random\n#demo=[]\n# no right or wrong? five/five?\na=lambda x: x+1\nb=lambda x: x-1\nc=lambda x: x*2\nd=lambda x: x/2\nrng=random.SystemRandom()\ndemo=[a,b,c,d]\nwhile True:\n    get=input(\"enter a number, we'll output some result for you.\\n\")\n    r=rng.choice(demo)(int(get))\n    print(\"reselt:\",r)"
+        }
+    ]
+}

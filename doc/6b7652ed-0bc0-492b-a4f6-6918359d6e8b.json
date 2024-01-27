@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports necessary libraries, creates a 3D array of symbols for matrix elements, and prints the result of exponentiating matrix b with base e (the Euler's number). The results might not always be perfect due to limitations of the method used.",
+    "details": [
+        {
+            "comment": "The code imports necessary libraries, creates a 3D array of symbols for matrix elements, and prints the result of exponentiating matrix b with base e (the Euler's number). The results might not always be perfect due to limitations of the method used.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/the_new_pack/exp_sym.py\":0-11",
+            "content": "from sympy import *\nimport numpy as np\nimport random\n# d=np.exp(1)\n# x=symbols(\"x\")\n# works. but not for matrix.\nb=np.array([[symbols('d{}{}'.format(x,y)) for x in range(6)] for y in range(5)])# <\ne=np.e\nprint(e**b)\n# what the fuck?\n# this is shit.\n# whatever. it is not always perfect."
+        }
+    ]
+}

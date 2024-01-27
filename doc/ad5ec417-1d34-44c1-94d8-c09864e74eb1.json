@@ -1,0 +1,15 @@
+{
+    "summary": "This script sets a limit for monitoring processes and allows reconfiguration of servers. It uses various commands to find running Python webpaste.py processes, kills non-running ones, and checks the exit status of watchdog command. If no reconfiguration is needed, it exits gracefully.",
+    "details": [
+        {
+            "comment": "The script sets a limit for the number of processes to monitor and then checks if there is an argument provided. It echoes the process limit, increases it by 1 (commented out), asks for the directory, mentions return values, and killing non-running locally processes while launching the auto saving daemon if needed. The script uses various commands like \"pgrep\", \"ppwdx\", and \"proc_grep\" to find and examine running Python webpaste.py processes, storing the result in pwy variable. It then calls another script with the process list to kill all non-daemon things before checking the exit status of the watchdog command and returning its status.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/kill_webpaste.sh\":0-32",
+            "content": "#!/bin/bash\nlimit=5\nif [ $# -eq 1 ]\nthen\n\tif [ $1 -gt 0 ]\n\tthen\n\t\tlimit=$1\n\tfi\nfi\necho \"limit of process: $limit\"\n#limit=$(($limit + 1))\n# you do not know the directory. where is the PWD of a process?\n# there will be some return values.\n# kill all not running locally, and launch the auto saving daemon if not launched.\n# what's next? onward to redis relocation.\n# we need to break here. there are no findings here.\n# the naming problem. there's the thing.\ngoodbye_world () {\n\tps aux | grep \" python3 \" | grep -E \" webpaste.py\\$\" | python3 pgrep.py | python3 ppwdx.py | python3 proc_grep.py | python3 exam_and_run_webpaste.py $limit\n}\n# that's merging multiple arguments.\n# shall kill those that running elsewhere.\ngoodbye_world\npwy=$(ps aux | grep python3 | grep webpaste.py | python3 pgrep.py | xargs)\n#echo $pwy\n# what is that thing above?\n./check_daemon_multiargs.sh $pwy\n# you kill all non-daemon things and return the status.\npwx=$?\n# there shall be multiple elements. so what to do?\n#echo \"watchdog $pwx\"\nif [ $pwx -eq 0 ]\nthen"
+        },
+        {
+            "comment": "This code is used to reconfigure a server, and if no reconfiguration is needed, it exits gracefully. It defines the maximum server number and allows running the script while already running. After killing the process, it checks for a special crafted thing and suggests using a better tool.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/kill_webpaste.sh\":33-45",
+            "content": "\techo \"need reconfiguration\"\n\tgoodbye_world\t\n\texit 0\nfi\necho \"no need to reconfigure\"\nexit 0\n# define the maximum server number. such as 5.\n# you can run this script after it is running.\n# after killing this, we must check the special crafted thing is running.\n# you are getting the trimmed thing.\n# pwdx.\n# finding not within the directory.\n# can't you use a better tool?"
+        }
+    ]
+}

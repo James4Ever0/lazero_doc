@@ -1,0 +1,15 @@
+{
+    "summary": "The code reads files, splits them into lines, compares the content with custom strings, classifies lines as present or absent, groups them, and identifies differences between two grouped lists.",
+    "details": [
+        {
+            "comment": "The code reads a file, splits it into lines, and compares the content with custom strings. It then classifies each line as either present or absent, and finally groups them as \"True\" (present) or \"False\" (absent). The main function 'compare' takes two such grouped lists and checks the difference between them.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_1/random/compare_loader.py\":0-47",
+            "content": "import re\n# /sys/fs/cgroup to find it.\ndef readFile(a):\n    with open(a,\"r\") as f:\n        return f.read()\ndef splitlines(a):\n    return a.split(\"\\n\")\ndef verifier(a,b):\n    for c in b:\n        if c in a:\n            return a\n    return\ndef checker(a,b):\n    return list(filter(lambda x: x!=None,[verifier(c,b) for c in a]))\ndef reader(a):\n    custom=[\"is not set\",\"=y\",\"=m\"]\n    return checker(splitlines(readFile(a)),custom)\ndef classifier(a):\n    custom=[\"=y\",\"=m\"]\n    for c in custom:\n        if c in a:\n            return(a.replace(c,\"\"),True)\n    return (a.replace(\"is not set\",\"\")[2:-1],False)\ndef batcher(a):\n    return [classifier(b) for b in a]\ndef unifier(a):\n    u={\"True\":[],\"False\":[]}\n    for b in a:\n        if b[1]:\n            u[\"True\"].append(b[0])\n        else:\n            u[\"False\"].append(b[0])\n    u[\"True\"]=list(set(u[\"True\"]))\n    u[\"False\"]=list(set(u[\"False\"]))\n    return u\ndef compare(a,b):\n    a0,a1=a[\"True\"],a[\"False\"]\n    b0,b1=b[\"True\"],b[\"False\"] # b is the standard.\n    # check the difference?\n#    u={\"Possible\":[],\"Missing\"[]}"
+        },
+        {
+            "comment": "Code reads files \"android\" and \"kali\", batches them, unifies the data from both, compares the unified data, and prints a list of elements that are present in one but not the other.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_1/random/compare_loader.py\":48-84",
+            "content": "    u=[]\n    for c0 in b0:\n        if c0 not in a0:\n#            u[\"Missing\"].append(c0)\n            if c0 in a1:\n                u.append((c0,True)) # possible.\n            else:\n                u.append((c0,False))\n    return u\nfileSet={\"android\":\"config\",\"kali\":\"config-5.6.0-kali1-amd64\"}\nf0=reader(fileSet[\"android\"])\nf1=reader(fileSet[\"kali\"])\nb0=batcher(f0)\nb1=batcher(f1) # kali\nu0=unifier(b0)\nu1=unifier(b1)\nc=compare(u0,u1)\nprint(\"++++++++++++++++++++++\")\nprint()\nprint(\"_____BRIEF REPORT_____\")\nprint()\nprint(\"++++++++++++++++++++++\")\nprint()\nfor u in c:\n    x=u[1]\n#    if x:\n#        print(\">> \"+u[0]+\" << [POSSIBLE]\")\n#    else:\n    print(u[0])\n    # too much."
+        }
+    ]
+}

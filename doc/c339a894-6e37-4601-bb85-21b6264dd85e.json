@@ -1,0 +1,10 @@
+{
+    "summary": "The code records audio in chunks of 1024 samples, with 16 bits per sample, and two channels at a frequency of 44100 samples per second for three seconds. It then stops the stream, terminates PortAudio interface, and saves the recorded data as a WAV file named \"output.wav\".",
+    "details": [
+        {
+            "comment": "The code records audio in chunks of 1024 samples, with 16 bits per sample, and two channels at a frequency of 44100 samples per second for three seconds. It then stops the stream, terminates PortAudio interface, and saves the recorded data as a WAV file named \"output.wav\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/audio_record/rec_nosound.py\":0-41",
+            "content": "import pyaudio\nimport wave\nchunk = 1024  # Record in chunks of 1024 samples\nsample_format = pyaudio.paInt16  # 16 bits per sample\nchannels = 2\nfs = 44100  # Record at 44100 samples per second\nseconds = 5\nfilename = \"output.wav\"\np = pyaudio.PyAudio()  # Create an interface to PortAudio\nprint('Recording')\nstream = p.open(format=sample_format,\n                channels=channels,\n                rate=fs,\n                frames_per_buffer=chunk,\n                input=True)\nframes = []  # Initialize array to store frames\n# Store data in chunks for 3 seconds\nfor i in range(0, int(fs / chunk * seconds)):\n    data = stream.read(chunk)\n    frames.append(data)\n# Stop and close the stream \nstream.stop_stream()\nstream.close()\n# Terminate the PortAudio interface\np.terminate()\nprint('Finished recording')\n# Save the recorded data as a WAV file\nwf = wave.open(filename, 'wb')\nwf.setnchannels(channels)\nwf.setsampwidth(p.get_sample_size(sample_format))\nwf.setframerate(fs)\nwf.writeframes(b''.join(frames))\nwf.close()"
+        }
+    ]
+}

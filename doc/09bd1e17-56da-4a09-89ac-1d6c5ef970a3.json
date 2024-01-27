@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a decorator named \"timeout\" that allows to set a timeout for a function, raising an exception if the execution takes more than specified seconds. It achieves this by creating a separate thread where the function is executed and joining it after the timeout, raising an exception if it's still running.",
+    "details": [
+        {
+            "comment": "This code defines a decorator named \"timeout\" that allows to set a timeout for a function, raising an exception if the execution takes more than specified seconds. It achieves this by creating a separate thread where the function is executed and joining it after the timeout, raising an exception if it's still running.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/sub2.py\":0-30",
+            "content": "from threading import Thread\nimport functools\ndef timeout(timeout):\n    def deco(func):\n        @functools.wraps(func)\n        def wrapper(*args, **kwargs):\n            res = [Exception('function [%s] timeout [%s seconds] exceeded!' % (\n                func.__name__, timeout))]\n            def newFunc():\n                try:\n                    res[0] = func(*args, **kwargs)\n                except Exception as e:\n                  # this is funny.\n                    res[0] = e\n            t = Thread(target=newFunc)\n            t.daemon = True\n            try:\n                t.start()\n                t.join(timeout)\n            except Exception as je:\n                print('error starting thread')\n                raise je\n            ret = res[0]\n            if isinstance(ret, BaseException):\n                raise ret\n            return ret\n        return wrapper\n    return deco"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+there seems to be some limitation over the spot. maximum pty allocation limit in kernel compliation time.
+
+https://linux.die.net/man/7/pty#:~:text=The%20Linux%20kernel%20imposes%20a%20limit%20on%20the,to%202048%2C%20with%20a%20default%20setting%20of%20256.`
+
+i suggest you use cut-down version of pty to do trivial task, which not including the reading, or just about flushing every time.
+
+if not listen, the shit might not start and balls will fall off.
+
+or you can just try, do it in another non-terminal way. such as subprocess.Popen, which just will create script kiddies.
+
+or better not. let's just search.

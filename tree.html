@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="github-markdown.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Project structure of: /x00e0d991e368/lazero</title>
+    <style>
+        .directory:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        :target {
+            background-color: yellow !important;
+        }
+
+        .folded::before {
+            content: '\25B6';
+            margin-right: 8px;
+            /* Add space between marker and text */
+        }
+
+        .expanded::before {
+            content: '\25BC';
+            margin-right: 8px;
+            /* Add space between marker and text */
+        }
+    </style>
+    <script>
+        function toggleVisibility(element) {
+            let mclass = element.getAttribute("class");
+            if (mclass == "expanded") {
+                element.setAttribute('class', 'folded');
+            } else {
+                element.setAttribute('class', 'expanded');
+            }
+            const siblings = element.parentNode.children;
+            for (const sibling of siblings) {
+                if (sibling !== element) {
+                    sibling.style.display = (sibling.style.display === 'none') ? 'block' : 'none';
+                }
+            }
+        }
+    </script>
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+
+            .partial-repository-url {
+                display: none;
+            }
+        }
+
+        ul {
+            list-style: none;
+        }
+        #feeling-lucky:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <article class="markdown-body">
+        <h2>Project structure<span hierarchy="0" class="partial-repository-url"> of: /x00e0d991e368/lazero</span><div style="float: right;"><a title="Document index" style="margin:3.5px;" href="index.html"><i class="bi bi-search"></i></a><a title="Feeling lucky" style="margin:3.5px;" id="feeling-lucky" href="#"><i class="bi bi-dice-3"></i></a><a title="Expand tree" style="margin:3.5px;" href="tree.html?full=true" id="expand-tree"><i class="bi bi-caret-down-square"></i></a></div></h2>
+<ul>
+<li><span hierarchy="0" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/"><code>lazero</code></strong> <em>Explore, Create, Innovate with Web Dev &amp; LEGO</em></span><ul>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/"><code>bootstrap</code></strong> <em>Web dev framework, legacy bootstrap files</em></span><ul>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/blitx/"><code>blitx</code></strong> <em>Linux tools, automation, Python debugging.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/aloof.sh" id="/bootstrap/blitx/aloof.sh"><code>aloof&period;sh</code></a> <em>Code runs two scripts in the background.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/aloof_x86_64.sh" id="/bootstrap/blitx/aloof_x86_64.sh"><code>aloof&UnderBar;x86&UnderBar;64&period;sh</code></a> <em>Execute two scripts concurrently on x86_64 architecture.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/aloofclient.py" id="/bootstrap/blitx/aloofclient.py"><code>aloofclient&period;py</code></a> <em>Incomplete ZMQ socket code, data sending issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/aloofserver.py" id="/bootstrap/blitx/aloofserver.py"><code>aloofserver&period;py</code></a> <em>Aloof server listens, prints, and pauses.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/bargs.py" id="/bootstrap/blitx/bargs.py"><code>bargs&period;py</code></a> <em>Command-line argument printer</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/bashrc" id="/bootstrap/blitx/bashrc"><code>bashrc</code></a> <em>Sets shell PID with escaped octal sequence.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/batcher.sh" id="/bootstrap/blitx/batcher.sh"><code>batcher&period;sh</code></a> <em>Automates website login or data collection with Python</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/batcher_x86_64.sh" id="/bootstrap/blitx/batcher_x86_64.sh"><code>batcher&UnderBar;x86&UnderBar;64&period;sh</code></a> <em>Auto-executes weblogin_x86_64.py endlessly.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/check_cgroups.sh" id="/bootstrap/blitx/check_cgroups.sh"><code>check&UnderBar;cgroups&period;sh</code></a> <em>Retrieves and displays cgroup configuration.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/check_mount.sh" id="/bootstrap/blitx/check_mount.sh"><code>check&UnderBar;mount&period;sh</code></a> <em>Mounts and displays cgroup filesystem location.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/check_mount_aarch64.sh" id="/bootstrap/blitx/check_mount_aarch64.sh"><code>check&UnderBar;mount&UnderBar;aarch64&period;sh</code></a> <em>Checks if cgroup fs mounted on Linux system.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/COMSEED_aarch64" id="/bootstrap/blitx/COMSEED_aarch64"><code>COMSEED&UnderBar;aarch64</code></a> <em>Aarch64 UNIX/Linux command-line utilities package</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/COMSEED_x86_64" id="/bootstrap/blitx/COMSEED_x86_64"><code>COMSEED&UnderBar;x86&UnderBar;64</code></a> <em>Linux system utilities in COMSEED_x86_64 directory</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/cruncher.py" id="/bootstrap/blitx/cruncher.py"><code>cruncher&period;py</code></a> <em>Consecutive occurrences, flattened list, multiprocessing support.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/gui_linux_x86_64.sh" id="/bootstrap/blitx/gui_linux_x86_64.sh"><code>gui&UnderBar;linux&UnderBar;x86&UnderBar;64&period;sh</code></a> <em>Firejail-sandboxed Firefox for GUI ops, Linux x86_64, Python tracker.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/indicator.py" id="/bootstrap/blitx/indicator.py"><code>indicator&period;py</code></a> <em>Indicates messages with one-second delay.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/indicator.sh" id="/bootstrap/blitx/indicator.sh"><code>indicator&period;sh</code></a> <em>Bootstrap script for running indicators/dashboards.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/indicator_x86_64.py" id="/bootstrap/blitx/indicator_x86_64.py"><code>indicator&UnderBar;x86&UnderBar;64&period;py</code></a> <em>Reads, removes line breaks, sends content with 1 sec delay.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/indicator_x86_64.sh" id="/bootstrap/blitx/indicator_x86_64.sh"><code>indicator&UnderBar;x86&UnderBar;64&period;sh</code></a> <em>Bootstrap: Runs Python3 indicator script.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/launcher_aarch64_linux.sh" id="/bootstrap/blitx/launcher_aarch64_linux.sh"><code>launcher&UnderBar;aarch64&UnderBar;linux&period;sh</code></a> <em>Launches Aarch64 Linux binary with security checks</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/launcher_x86_64_linux.sh" id="/bootstrap/blitx/launcher_x86_64_linux.sh"><code>launcher&UnderBar;x86&UnderBar;64&UnderBar;linux&period;sh</code></a> <em>Launcher script for x86_64 Linux, sets permissions and runs.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/on_premise_filter.sh" id="/bootstrap/blitx/on_premise_filter.sh"><code>on&UnderBar;premise&UnderBar;filter&period;sh</code></a> <em>On-premise filter script for cgroups, kernel version check and blitx directory creation.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/on_premise_filter_aarch64.sh" id="/bootstrap/blitx/on_premise_filter_aarch64.sh"><code>on&UnderBar;premise&UnderBar;filter&UnderBar;aarch64&period;sh</code></a> <em>Checks AARCH64 directories, sets CPU quotas, mounts cgroup filesystem. Returns directory path or "none" if condition not met.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/pairclient.py" id="/bootstrap/blitx/pairclient.py"><code>pairclient&period;py</code></a> <em>Pair client script for Blitx using ZMQ and non-blocking TCP connection</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/pairserver.py" id="/bootstrap/blitx/pairserver.py"><code>pairserver&period;py</code></a> <em>TCP server, missing code confusion</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/pid_linux_xorg.sh" id="/bootstrap/blitx/pid_linux_xorg.sh"><code>pid&UnderBar;linux&UnderBar;xorg&period;sh</code></a> <em>Check visible window PID properties with xprop and xdotool.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/pidTest.py" id="/bootstrap/blitx/pidTest.py"><code>pidTest&period;py</code></a> <em>Encodes and prints characters with line end message.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/pidTest.sh" id="/bootstrap/blitx/pidTest.sh"><code>pidTest&period;sh</code></a> <em>PID in specific hex format.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/README" id="/bootstrap/blitx/README"><code>README</code></a> <em>Blitx: Dredd-based browser plugin, Android client, optimizing interpreters</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/sample.sh" id="/bootstrap/blitx/sample.sh"><code>sample&period;sh</code></a> <em>Script defines function to check kernel CPU usage and echoes content accordingly.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/SEED" id="/bootstrap/blitx/SEED"><code>SEED</code></a> <em>Bootstrap: URLs, local path.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/blitx/src/"><code>src</code></strong> <em>Secure source files, GitHub updates, Flask routes.</em></span><ul>
+<li><span hierarchy="4" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/blitx/src/audio_record/"><code>audio&UnderBar;record</code></strong> <em>Audio recording scripts with potential issues.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/audio_record/deathmatch.sh" id="/bootstrap/blitx/src/audio_record/deathmatch.sh"><code>deathmatch&period;sh</code></a> <em>Infinite loop of "sc.py" with Bash script.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/audio_record/README" id="/bootstrap/blitx/src/audio_record/README"><code>README</code></a> <em>Install portaudio-dev, OBS bindings issue, Android broadcast app logic, Termux runtime.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/audio_record/rec_nosound.py" id="/bootstrap/blitx/src/audio_record/rec_nosound.py"><code>rec&UnderBar;nosound&period;py</code></a> <em>Records 3 seconds of stereo audio, saves as "output.wav"</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/audio_record/sc.py" id="/bootstrap/blitx/src/audio_record/sc.py"><code>sc&period;py</code></a> <em>Audio recording and playback with potential data issues.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/cagen.sh" id="/bootstrap/blitx/src/cagen.sh"><code>cagen&period;sh</code></a> <em>Generate SSL certificates for localhost server using OpenSSL.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/choice.py" id="/bootstrap/blitx/src/choice.py"><code>choice&period;py</code></a> <em>Imports, defines choice function, selects random element.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/deathride.sh" id="/bootstrap/blitx/src/deathride.sh"><code>deathride&period;sh</code></a> <em>Continuously tries to install pytesseract via pip3.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/demo-https.sh" id="/bootstrap/blitx/src/demo-https.sh"><code>demo-https&period;sh</code></a> <em>Demonstrates HTTPS requests with certificates using curl and wget.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/demo.py" id="/bootstrap/blitx/src/demo.py"><code>demo&period;py</code></a> <em>Demo script using memory tempfile.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/direct-https.sh" id="/bootstrap/blitx/src/direct-https.sh"><code>direct-https&period;sh</code></a> <em>Secure file transfer with curl, wget, and HTTPS.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/filesuite.sh" id="/bootstrap/blitx/src/filesuite.sh"><code>filesuite&period;sh</code></a> <em>Update database and redirect locate command output to log.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/flaskall.py" id="/bootstrap/blitx/src/flaskall.py"><code>flaskall&period;py</code></a> <em>Flask app, two routes, catch_all function, port 5001</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/flaskServe.py" id="/bootstrap/blitx/src/flaskServe.py"><code>flaskServe&period;py</code></a> <em>Flask app monitors images, processes on port 4999.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/fuck.py" id="/bootstrap/blitx/src/fuck.py"><code>fuck&period;py</code></a> <em>Parses HTML data, extracts text from tags using BeautifulSoup.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/getSrc.py" id="/bootstrap/blitx/src/getSrc.py"><code>getSrc&period;py</code></a> <em>Retrieves, flattens and prints list.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/github_parser.py" id="/bootstrap/blitx/src/github_parser.py"><code>github&UnderBar;parser&period;py</code></a> <em>GitHub data parser with concurrent threads.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/httpsall.py" id="/bootstrap/blitx/src/httpsall.py"><code>httpsall&period;py</code></a> <em>Secure Flask app, HTTPS port 5001, root/catch-all routes</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/keygen.sh" id="/bootstrap/blitx/src/keygen.sh"><code>keygen&period;sh</code></a> <em>Keygen script for X.509 certificate in 'certs' directory.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/oneShot.py" id="/bootstrap/blitx/src/oneShot.py"><code>oneShot&period;py</code></a> <em>Imports, sets, retrieves, prints rows.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/platform.sh" id="/bootstrap/blitx/src/platform.sh"><code>platform&period;sh</code></a> <em>Identifies processor architecture with uname-m command.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/poster.js" id="/bootstrap/blitx/src/poster.js"><code>poster&period;js</code></a> <em>Express server, POST requests, UUID, 4999 port</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/randomAccess.py" id="/bootstrap/blitx/src/randomAccess.py"><code>randomAccess&period;py</code></a> <em>Python script processes data from file, stores in external storage and database.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/randomAccess.sh" id="/bootstrap/blitx/src/randomAccess.sh"><code>randomAccess&period;sh</code></a> <em>Interactive Python script executor in bash shell</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/README" id="/bootstrap/blitx/src/README"><code>README</code></a> <em>Retrieve make and cmake commands arrangement.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/register.js" id="/bootstrap/blitx/src/register.js"><code>register&period;js</code></a> <em>Express Multer UUID POST logging upload</em></li>
+<li><span hierarchy="4" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/blitx/src/video_record/"><code>video&UnderBar;record</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/src/video_record/mss_rec.py" id="/bootstrap/blitx/src/video_record/mss_rec.py"><code>mss&UnderBar;rec&period;py</code></a> <em>Screen capture, FPS calculation, OpenCV display.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/tracker_gui_linux_x86_64.py" id="/bootstrap/blitx/tracker_gui_linux_x86_64.py"><code>tracker&UnderBar;gui&UnderBar;linux&UnderBar;x86&UnderBar;64&period;py</code></a> <em>Reads stdin, prints type &amp; value, includes comment, breaks on no input.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/webinit.py" id="/bootstrap/blitx/webinit.py"><code>webinit&period;py</code></a> <em>Webinit Python script defines Twisted networking protocol class in PTY environment with command writes and sleeps.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/webinit.sh" id="/bootstrap/blitx/webinit.sh"><code>webinit&period;sh</code></a> <em>Bootstraps Python script with commands, runs and sleeps.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/weblogin.py" id="/bootstrap/blitx/weblogin.py"><code>weblogin&period;py</code></a> <em>Debugging attempt to end process 'p' with Twisted.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/weblogin_x86_64.py" id="/bootstrap/blitx/weblogin_x86_64.py"><code>weblogin&UnderBar;x86&UnderBar;64&period;py</code></a> <em>Twisted, dbM, MyPP, reactor, termination issues</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/webXFS.py" id="/bootstrap/blitx/webXFS.py"><code>webXFS&period;py</code></a> <em>Runs a process, logs output and errors. Tests functionality.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/webXFS_aarch64_linux_experiment.py" id="/bootstrap/blitx/webXFS_aarch64_linux_experiment.py"><code>webXFS&UnderBar;aarch64&UnderBar;linux&UnderBar;experiment&period;py</code></a> <em>Experimental AArch64 Linux web protocol process spawner</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/webXFS_x86_64_linux_experiment.py" id="/bootstrap/blitx/webXFS_x86_64_linux_experiment.py"><code>webXFS&UnderBar;x86&UnderBar;64&UnderBar;linux&UnderBar;experiment&period;py</code></a> <em>Runs process, logs output, tests pipe commands.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/blitx/XListAllCommands.sh" id="/bootstrap/blitx/XListAllCommands.sh"><code>XListAllCommands&period;sh</code></a> <em>Script defines function to list executable files in a given path</em></li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/FlappyBird/"><code>FlappyBird</code></strong> <em>Flappy Bird JS game logic and controls</em></span><ul>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/FlappyBird/js/"><code>js</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/FlappyBird/js/game.js" id="/bootstrap/FlappyBird/js/game.js"><code>game&period;js</code></a> <em>Flappy Bird game logic and controls.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/FlappyBird/readme.md" id="/bootstrap/FlappyBird/readme.md"><code>readme&period;md</code></a> <em>Flappy Bird v2.0: Optimized Native JS Game with Sound</em></li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/keller/"><code>keller</code></strong> <em>Keller's Linux scripts for automating website tasks</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/aloof.sh" id="/bootstrap/keller/aloof.sh"><code>aloof&period;sh</code></a> <em>Runs indicator.sh and batcher.sh in background</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/aloof_x86_64.sh" id="/bootstrap/keller/aloof_x86_64.sh"><code>aloof&UnderBar;x86&UnderBar;64&period;sh</code></a> <em>Executes two shell scripts concurrently on x86_64 system.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/aloofclient.py" id="/bootstrap/keller/aloofclient.py"><code>aloofclient&period;py</code></a> <em>Incomplete ZMQ socket code with issues sending data.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/aloofserver.py" id="/bootstrap/keller/aloofserver.py"><code>aloofserver&period;py</code></a> <em>Aloof server listens, prints, may pause.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/bargs.py" id="/bootstrap/keller/bargs.py"><code>bargs&period;py</code></a> <em>Command-line arguments printer</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/batcher.sh" id="/bootstrap/keller/batcher.sh"><code>batcher&period;sh</code></a> <em>Automate website login/data collection with batcher.sh</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/batcher_x86_64.sh" id="/bootstrap/keller/batcher_x86_64.sh"><code>batcher&UnderBar;x86&UnderBar;64&period;sh</code></a> <em>Continuously executes weblogin_x86_64.py</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/check_cgroups.sh" id="/bootstrap/keller/check_cgroups.sh"><code>check&UnderBar;cgroups&period;sh</code></a> <em>Retrieves and displays current cgroup config.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/check_mount.sh" id="/bootstrap/keller/check_mount.sh"><code>check&UnderBar;mount&period;sh</code></a> <em>Mounts cgroup filesystem and displays location.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/check_mount_aarch64.sh" id="/bootstrap/keller/check_mount_aarch64.sh"><code>check&UnderBar;mount&UnderBar;aarch64&period;sh</code></a> <em>Checks if cgroup filesystem mounted in shell script</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/cruncher.py" id="/bootstrap/keller/cruncher.py"><code>cruncher&period;py</code></a> <em>Efficiently flattens nested parameters with multiprocessing support.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/gui_linux_x86_64.sh" id="/bootstrap/keller/gui_linux_x86_64.sh"><code>gui&UnderBar;linux&UnderBar;x86&UnderBar;64&period;sh</code></a> <em>Firejail-sandboxed Firefox script for GUI ops on Linux x86_64.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/indicator.py" id="/bootstrap/keller/indicator.py"><code>indicator&period;py</code></a> <em>Indicates line messages with one-second delay.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/indicator.sh" id="/bootstrap/keller/indicator.sh"><code>indicator&period;sh</code></a> <em>Bootstrap script for executing indicator/dashboard programs.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/indicator_x86_64.py" id="/bootstrap/keller/indicator_x86_64.py"><code>indicator&UnderBar;x86&UnderBar;64&period;py</code></a> <em>File reads, edits content, and sends to sender with 1s delay.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/indicator_x86_64.sh" id="/bootstrap/keller/indicator_x86_64.sh"><code>indicator&UnderBar;x86&UnderBar;64&period;sh</code></a> <em>Bash script to execute Python indicator X86_64.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/launcher_aarch64_linux.sh" id="/bootstrap/keller/launcher_aarch64_linux.sh"><code>launcher&UnderBar;aarch64&UnderBar;linux&period;sh</code></a> <em>Aarch64 Linux script launches binary with libjudger enforcement.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/launcher_x86_64_linux.sh" id="/bootstrap/keller/launcher_x86_64_linux.sh"><code>launcher&UnderBar;x86&UnderBar;64&UnderBar;linux&period;sh</code></a> <em>Launcher script with permission setting and execution control on x86_64 Linux.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/on_premise_filter.sh" id="/bootstrap/keller/on_premise_filter.sh"><code>on&UnderBar;premise&UnderBar;filter&period;sh</code></a> <em>On-premise kernel filter and CPU quota script.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/on_premise_filter_aarch64.sh" id="/bootstrap/keller/on_premise_filter_aarch64.sh"><code>on&UnderBar;premise&UnderBar;filter&UnderBar;aarch64&period;sh</code></a> <em>Sets CPU quotas and mounts cgroup for AARCH64 directories.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/pairclient.py" id="/bootstrap/keller/pairclient.py"><code>pairclient&period;py</code></a> <em>Keller's PairClient Python script with TCP connection.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/pairserver.py" id="/bootstrap/keller/pairserver.py"><code>pairserver&period;py</code></a> <em>TCP server setup, missing code confusion.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/pid_linux_xorg.sh" id="/bootstrap/keller/pid_linux_xorg.sh"><code>pid&UnderBar;linux&UnderBar;xorg&period;sh</code></a> <em>Find PID's visible window props with xdotool and xprop.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/pidTest.py" id="/bootstrap/keller/pidTest.py"><code>pidTest&period;py</code></a> <em>Encodes characters, prints type and line end.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/pidTest.sh" id="/bootstrap/keller/pidTest.sh"><code>pidTest&period;sh</code></a> <em>Displays PID in hex format.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/README" id="/bootstrap/keller/README"><code>README</code></a> <em>Understanding code, overcoming barriers, learning together.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/sample.sh" id="/bootstrap/keller/sample.sh"><code>sample&period;sh</code></a> <em>Checks kernel cgroups, returns "something" or "nothing".</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/some_script.py" id="/bootstrap/keller/some_script.py"><code>some&UnderBar;script&period;py</code></a> <em>Script prints variable "param" value.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/keller/src/"><code>src</code></strong> <em>Keller Bootstrap Sources: Linux, SSL, API, Scripting</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/blindknight.js" id="/bootstrap/keller/src/blindknight.js"><code>blindknight&period;js</code></a> <em>BlindKnight: Linux issues, adjustments needed.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/cagen.sh" id="/bootstrap/keller/src/cagen.sh"><code>cagen&period;sh</code></a> <em>Localhost SSL certificates script using OpenSSL commands.</em></li>
+<li><span hierarchy="4" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/keller/src/ced/"><code>ced</code></strong> <em>Event-driven JavaScript library for network APIs.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/borderify.js" id="/bootstrap/keller/src/ced/borderify.js"><code>borderify&period;js</code></a> <em>WebSocket fetching, Firefox-specific.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/content.js" id="/bootstrap/keller/src/ced/content.js"><code>content&period;js</code></a> <em>Lazero plugin for document border color change and jQuery detection.</em></li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/keller/src/ced/data/"><code>data</code></strong> <em>Manages events, updates data with initialization.</em></span><ul>
+<li><span hierarchy="6" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/keller/src/ced/data/options/"><code>options</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/data/options/options.js" id="/bootstrap/keller/src/ced/data/options/options.js"><code>options&period;js</code></a> <em>Background script initialization with event handling and data updates.</em></li>
+</ul>
+</li>
+<li><span hierarchy="6" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/keller/src/ced/data/popup/"><code>popup</code></strong> <em>Manages click events, toggle button updates, and whitelist checks.</em></span><ul>
+<li><span hierarchy="7" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/keller/src/ced/data/popup/explore/"><code>explore</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/data/popup/explore/explore.js" id="/bootstrap/keller/src/ced/data/popup/explore/explore.js"><code>explore&period;js</code></a> <em>Explore.js: API data load, sorting, pagination, buttons, UI initialization.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/data/popup/popup.js" id="/bootstrap/keller/src/ced/data/popup/popup.js"><code>popup&period;js</code></a> <em>Manages click events, updates toggle button, and checks whitelist.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/keller/src/ced/lib/"><code>lib</code></strong> <em>JavaScript library, modular design, event handling, network APIs, configuration &amp; event management for CORS and state updates in button-controlled app settings.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/lib/background.js" id="/bootstrap/keller/src/ced/lib/background.js"><code>background&period;js</code></a> <em>Delayed execution, infinite loop with logging and messaging.</em></li>
+<li><span hierarchy="6" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/keller/src/ced/lib/chrome/"><code>chrome</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/lib/chrome/chrome.js" id="/bootstrap/keller/src/ced/lib/chrome/chrome.js"><code>chrome&period;js</code></a> <em>Chrome extension functions, browser actions, hotkey listeners, tab events, communication.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/lib/common.js" id="/bootstrap/keller/src/ced/lib/common.js"><code>common&period;js</code></a> <em>CORS, event management, state updates, button control, hostname checks.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/lib/config.js" id="/bootstrap/keller/src/ced/lib/config.js"><code>config&period;js</code></a> <em>Config object with getter/setter for app settings</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/popup.js" id="/bootstrap/keller/src/ced/popup.js"><code>popup&period;js</code></a> <em>Chrome extension listener for 'something_completed' messages</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ced/README.md" id="/bootstrap/keller/src/ced/README.md"><code>README&period;md</code></a> <em>Basic Chrome extension demo with fixes and potential browser discrepancies.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/cli_electron_backup.js" id="/bootstrap/keller/src/cli_electron_backup.js"><code>cli&UnderBar;electron&UnderBar;backup&period;js</code></a> <em>Spawns secure Electron process with command-line args.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/COMMAND" id="/bootstrap/keller/src/COMMAND"><code>COMMAND</code></a> <em>Writes memory contents to file 'dump'.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/cquery.sh" id="/bootstrap/keller/src/cquery.sh"><code>cquery&period;sh</code></a> <em>Send GET request to URL with "how to kill your father" parameter.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ctest.sh" id="/bootstrap/keller/src/ctest.sh"><code>ctest&period;sh</code></a> <em>Send GET request 'all=fuck' to URL via POST.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/curl_baidu.py" id="/bootstrap/keller/src/curl_baidu.py"><code>curl&UnderBar;baidu&period;py</code></a> <em>Brief: Baidu URL generator in Python</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/curl_baidu.sh" id="/bootstrap/keller/src/curl_baidu.sh"><code>curl&UnderBar;baidu&period;sh</code></a> <em>Execute Python script, retrieve result, send HTTP GET request with headers and URL</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/curl_header.py" id="/bootstrap/keller/src/curl_header.py"><code>curl&UnderBar;header&period;py</code></a> <em>Sets headers, formats and prints them.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/deathloop.sh" id="/bootstrap/keller/src/deathloop.sh"><code>deathloop&period;sh</code></a> <em>Continuously executes "mlinks.sh" for monitoring or processing tasks.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/deathquery.sh" id="/bootstrap/keller/src/deathquery.sh"><code>deathquery&period;sh</code></a> <em>Infinite loop for real-time monitoring</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/deathride.sh" id="/bootstrap/keller/src/deathride.sh"><code>deathride&period;sh</code></a> <em>Endless loop until 'canvas' installs via yarn.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/demo.py" id="/bootstrap/keller/src/demo.py"><code>demo&period;py</code></a> <em>Interactive demo of arithmetic ops with secure random choices.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/dump_and_collect.sh" id="/bootstrap/keller/src/dump_and_collect.sh"><code>dump&UnderBar;and&UnderBar;collect&period;sh</code></a> <em>Dump Firefox memory, address Windows/Android issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/dumpid.sh" id="/bootstrap/keller/src/dumpid.sh"><code>dumpid&period;sh</code></a> <em>Dump memory of process using GDB</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/elect.js" id="/bootstrap/keller/src/elect.js"><code>elect&period;js</code></a> <em>Electron module needed; child process spawns Electron.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/election.js" id="/bootstrap/keller/src/election.js"><code>election&period;js</code></a> <em>Load Github in 800x1500 Electron window, hidden by default.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/fakegen.py" id="/bootstrap/keller/src/fakegen.py"><code>fakegen&period;py</code></a> <em>Generate fake string using SystemRandom.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/fenco.py" id="/bootstrap/keller/src/fenco.py"><code>fenco&period;py</code></a> <em>WebSocket Flask Gevent server, continuous messaging</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/firefox_memdump.py" id="/bootstrap/keller/src/firefox_memdump.py"><code>firefox&UnderBar;memdump&period;py</code></a> <em>Firefox memdump Python script</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/flaskall.py" id="/bootstrap/keller/src/flaskall.py"><code>flaskall&period;py</code></a> <em>Flask app, routes, diff, modules, testing</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/flasko.py" id="/bootstrap/keller/src/flasko.py"><code>flasko&period;py</code></a> <em>WebSocket Flask app, handles messages, delays response, gevent for better performance.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/fscl.py" id="/bootstrap/keller/src/fscl.py"><code>fscl&period;py</code></a> <em>Flask websocket client script with receiving issue</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/fss.py" id="/bootstrap/keller/src/fss.py"><code>fss&period;py</code></a> <em>Establishes WebSocket connection, sends test message.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/gobuild.sh" id="/bootstrap/keller/src/gobuild.sh"><code>gobuild&period;sh</code></a> <em>Automates Go development environment setup.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/import_sysca.sh" id="/bootstrap/keller/src/import_sysca.sh"><code>import&UnderBar;sysca&period;sh</code></a> <em>Create dir for certs, copy root certificate, update system CA</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/justdump.sh" id="/bootstrap/keller/src/justdump.sh"><code>justdump&period;sh</code></a> <em>Firefox memory dump script for Linux with risks</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/kget.js" id="/bootstrap/keller/src/kget.js"><code>kget&period;js</code></a> <em>Kget.js: HTTP server, GET/POST, logs "/random", captures POST body, listens 7777.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/koa-post.js" id="/bootstrap/keller/src/koa-post.js"><code>koa-post&period;js</code></a> <em>Koa server for POST requests logging partial body on port 7777</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/kzombie.js" id="/bootstrap/keller/src/kzombie.js"><code>kzombie&period;js</code></a> <em>HTTP server, GET/POST, URL visits, logs cookies, listens 7777</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/merge.sh" id="/bootstrap/keller/src/merge.sh"><code>merge&period;sh</code></a> <em>Bash script merges file input with local server via external website interaction.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/mlinks.sh" id="/bootstrap/keller/src/mlinks.sh"><code>mlinks&period;sh</code></a> <em>Script reads URLs from SEED file, retrieves content, sends to local server 7777.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/nfenco.py" id="/bootstrap/keller/src/nfenco.py"><code>nfenco&period;py</code></a> <em>Flask WebSocket app, handles messages, serves "hello" function.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/nightknight.js" id="/bootstrap/keller/src/nightknight.js"><code>nightknight&period;js</code></a> <em>Nightmare-driven Baidu title automation, Linux issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/nightlight.js" id="/bootstrap/keller/src/nightlight.js"><code>nightlight&period;js</code></a> <em>Automates Yahoo search, retrieves first link using Nightmare.js</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/npdiff.py" id="/bootstrap/keller/src/npdiff.py"><code>npdiff&period;py</code></a> <em>Numpy diff calculation script</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/npgen.py" id="/bootstrap/keller/src/npgen.py"><code>npgen&period;py</code></a> <em>Random array to ASCII string generator.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/pdelta.py" id="/bootstrap/keller/src/pdelta.py"><code>pdelta&period;py</code></a> <em>Imports pandas, defines timedelta, prints 2D2H15M30S</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/phantom_post.js" id="/bootstrap/keller/src/phantom_post.js"><code>phantom&UnderBar;post&period;js</code></a> <em>POST request with curl, errors, exceptions, timeout.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/phantom_post.sh" id="/bootstrap/keller/src/phantom_post.sh"><code>phantom&UnderBar;post&period;sh</code></a> <em>Execute PhantomJS script unrestricted, ignoring SSL errors.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/phantom_server.js" id="/bootstrap/keller/src/phantom_server.js"><code>phantom&UnderBar;server&period;js</code></a> <em>Headless browser captures PNG, sends Base64 POST request</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/phantom_server.sh" id="/bootstrap/keller/src/phantom_server.sh"><code>phantom&UnderBar;server&period;sh</code></a> <em>Launch PhantomJS with web security config, bypass SSL errors for server script.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/phantom_test.js" id="/bootstrap/keller/src/phantom_test.js"><code>phantom&UnderBar;test&period;js</code></a> <em>Headless browser, Baidu, screenshot, github.png</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/ralink.py" id="/bootstrap/keller/src/ralink.py"><code>ralink&period;py</code></a> <em>Redis database operations and debugging in Python.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/README" id="/bootstrap/keller/src/README"><code>README</code></a> <em>Customize browser, run code with patches.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/readseed.sh" id="/bootstrap/keller/src/readseed.sh"><code>readseed&period;sh</code></a> <em>Reads SEED file line by line, outputs each line.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/register.js" id="/bootstrap/keller/src/register.js"><code>register&period;js</code></a> <em>Express server, '/keller' endpoint, UUIDs on POST, CORS handling, port 7777.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/requirements.txt" id="/bootstrap/keller/src/requirements.txt"><code>requirements&period;txt</code></a> <em>Required libraries: Flask-Sockets, WebSocket-Client</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/requirements_flask.txt" id="/bootstrap/keller/src/requirements_flask.txt"><code>requirements&UnderBar;flask&period;txt</code></a> <em>Flask, Flask-Sockets, gevent, gevent-websocket for real-time apps.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/rfall.py" id="/bootstrap/keller/src/rfall.py"><code>rfall&period;py</code></a> <em>Flask app, GET/POST, string diff, URLs, threads, port 7777</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/rlink.py" id="/bootstrap/keller/src/rlink.py"><code>rlink&period;py</code></a> <em>Python Redis expiry checker</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/runner.py" id="/bootstrap/keller/src/runner.py"><code>runner&period;py</code></a> <em>Runner imports, changes directory, and runs script. No native access or main status.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/runner_param.py" id="/bootstrap/keller/src/runner_param.py"><code>runner&UnderBar;param&period;py</code></a> <em>Runs script in new dir with param "hello world". Cannot access native path.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/search_dump.sh" id="/bootstrap/keller/src/search_dump.sh"><code>search&UnderBar;dump&period;sh</code></a> <em>Search &amp; Dump HTTP Processes</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/SEED" id="/bootstrap/keller/src/SEED"><code>SEED</code></a> <em>Killer code: unclear purpose.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/stackMe.py" id="/bootstrap/keller/src/stackMe.py"><code>stackMe&period;py</code></a> <em>Stack, Queue, Meta classes with FIFO/FILO and duplicate method</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/strdemo.py" id="/bootstrap/keller/src/strdemo.py"><code>strdemo&period;py</code></a> <em>Random string function selector.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/test_cors.js" id="/bootstrap/keller/src/test_cors.js"><code>test&UnderBar;cors&period;js</code></a> <em>Test CORS request to Baidu.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/the_real_wheel.py" id="/bootstrap/keller/src/the_real_wheel.py"><code>the&UnderBar;real&UnderBar;wheel&period;py</code></a> <em>Python script generates Baidu search URLs, parses data, handles exceptions, stores in JSON.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/urlquota.py" id="/bootstrap/keller/src/urlquota.py"><code>urlquota&period;py</code></a> <em>URL quota fetcher with 5 URL limit.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/xdemo.js" id="/bootstrap/keller/src/xdemo.js"><code>xdemo&period;js</code></a> <em>xdemo.js: JavaScript terminal setup with xterm.js using jsdom</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/src/zombie_fetch.js" id="/bootstrap/keller/src/zombie_fetch.js"><code>zombie&UnderBar;fetch&period;js</code></a> <em>Fetch zombie browser cookies.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/tracker_gui_linux_x86_64.py" id="/bootstrap/keller/tracker_gui_linux_x86_64.py"><code>tracker&UnderBar;gui&UnderBar;linux&UnderBar;x86&UnderBar;64&period;py</code></a> <em>Track continuous input, print type &amp; value, break on inactivity.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/webinit.py" id="/bootstrap/keller/webinit.py"><code>webinit&period;py</code></a> <em>Twisted protocol, PTY, commands to file, sleep, thread termination.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/webinit.sh" id="/bootstrap/keller/webinit.sh"><code>webinit&period;sh</code></a> <em>Bootstraps Python script execution with time-limited sleep.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/weblogin.py" id="/bootstrap/keller/weblogin.py"><code>weblogin&period;py</code></a> <em>Debugging Python script with Twisted, networking, multiprocessing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/weblogin_x86_64.py" id="/bootstrap/keller/weblogin_x86_64.py"><code>weblogin&UnderBar;x86&UnderBar;64&period;py</code></a> <em>MyPP reactor issues with Twisted protocol, dbM.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/webXFS.py" id="/bootstrap/keller/webXFS.py"><code>webXFS&period;py</code></a> <em>Automated webXFS process with Twisted protocol and daemon thread.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/webXFS_aarch64_linux_experiment.py" id="/bootstrap/keller/webXFS_aarch64_linux_experiment.py"><code>webXFS&UnderBar;aarch64&UnderBar;linux&UnderBar;experiment&period;py</code></a> <em>WebXFS aarch64 Linux experiment. Twisted protocol, reactor processes, file listing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/webXFS_x86_64_linux_experiment.py" id="/bootstrap/keller/webXFS_x86_64_linux_experiment.py"><code>webXFS&UnderBar;x86&UnderBar;64&UnderBar;linux&UnderBar;experiment&period;py</code></a> <em>Experiment: WebXFS Linux Process Protocol Test</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/keller/XListAllCommands.sh" id="/bootstrap/keller/XListAllCommands.sh"><code>XListAllCommands&period;sh</code></a> <em>Bash script lists executable files in given PATH, excluding subdirs.</em></li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/"><code>legacy</code></strong> <em>Obsolete tools, scripts, and files.</em></span><ul>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/"><code>concentration</code></strong> <em>Legacy English word analysis and automation.</em></span><ul>
+<li><span hierarchy="4" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/"><code>brainfuck</code></strong> <em>Legacy brainfuck concentration tools.</em></span><ul>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/"><code>archive&UnderBar;mimic</code></strong> <em>Legacy Brainfuck RNN, data augmentation.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/char_decomp.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/char_decomp.py"><code>char&UnderBar;decomp&period;py</code></a> <em>Trains RNN model using brainfuck architecture on data.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_0.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_0.py"><code>decompose&UnderBar;0&period;py</code></a> <em>Decomposes data, creates graph representation, incomplete.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_char.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_char.py"><code>decompose&UnderBar;char&period;py</code></a> <em>Decompose characters based on position in words, lines, and sentences.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/hebb_simu.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/hebb_simu.py"><code>hebb&UnderBar;simu&period;py</code></a> <em>Clusters data via connection strengths using random, numpy libraries.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/if_onlywecanuse.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/if_onlywecanuse.py"><code>if&UnderBar;onlywecanuse&period;py</code></a> <em>Trains neural network, calculates accuracy and loss. Utilizes libraries and GPU.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/not_special.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/not_special.py"><code>not&UnderBar;special&period;py</code></a> <em>Automatically generates features for directed graph social data.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyif.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyif.py"><code>onlyif&period;py</code></a> <em>Trains GCN, evaluates performance, prints stats, timed.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyMine.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyMine.py"><code>onlyMine&period;py</code></a> <em>GCN model training, evaluation, and performance metrics.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/randomForget.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/randomForget.py"><code>randomForget&period;py</code></a> <em>Randomly replaces character, prints strings.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/randomSwap.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/randomSwap.py"><code>randomSwap&period;py</code></a> <em>Randomize file line order for data augmentation.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_mimic/simp_mod.py" id="/bootstrap/legacy/concentration/brainfuck/archive_mimic/simp_mod.py"><code>simp&UnderBar;mod&period;py</code></a> <em>Process list elements and print matching items.</em></li>
+</ul>
+</li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/archive_package/"><code>archive&UnderBar;package</code></strong> <em>Neural networks, PyTorch, error-fixing code, backpropagation, tensor resizing.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_package/convent.py" id="/bootstrap/legacy/concentration/brainfuck/archive_package/convent.py"><code>convent&period;py</code></a> <em>NeuralNetwork, backpropagation, saves weights, predictions</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_package/csdn.py" id="/bootstrap/legacy/concentration/brainfuck/archive_package/csdn.py"><code>csdn&period;py</code></a> <em>Neural network, PyTorch, RuntimeErrors, tensor shapes, CNN, transformations.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_package/isint.py" id="/bootstrap/legacy/concentration/brainfuck/archive_package/isint.py"><code>isint&period;py</code></a> <em>Code checks ints in range, ignores string.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_package/nrav.py" id="/bootstrap/legacy/concentration/brainfuck/archive_package/nrav.py"><code>nrav&period;py</code></a> <em>Fixes mismatched dimensions, creates tensor (100, 3).</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_package/rgrad.py" id="/bootstrap/legacy/concentration/brainfuck/archive_package/rgrad.py"><code>rgrad&period;py</code></a> <em>Backpropagation with zeroed w1 gradient verification.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_package/rsdn.py" id="/bootstrap/legacy/concentration/brainfuck/archive_package/rsdn.py"><code>rsdn&period;py</code></a> <em>Trains neural network, iterates over data, updates weights, visualizes results.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_package/strik.py" id="/bootstrap/legacy/concentration/brainfuck/archive_package/strik.py"><code>strik&period;py</code></a> <em>Resizes tensor with stride, errors on channels, settles at (100, 3, 48, 48).</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archive_package/sub2.py" id="/bootstrap/legacy/concentration/brainfuck/archive_package/sub2.py"><code>sub2&period;py</code></a> <em>timeout decorator in new thread, raises exception on timeout.</em></li>
+</ul>
+</li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/archiver/"><code>archiver</code></strong> <em>Explores brainfuck archives for concentration.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/check_useful_func.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/check_useful_func.py"><code>check&UnderBar;useful&UnderBar;func&period;py</code></a> <em>Lambda functions: concatenate, multiply, greet. Sample application and result printing. Simplified representation of thought process.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/demo_leaving.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/demo_leaving.py"><code>demo&UnderBar;leaving&period;py</code></a> <em>Stores "hello world" in neurons. Removes last element.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/exp_img.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/exp_img.py"><code>exp&UnderBar;img&period;py</code></a> <em>Recurring function sums values in self-repeating loop</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/form_truth_matrix.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/form_truth_matrix.py"><code>form&UnderBar;truth&UnderBar;matrix&period;py</code></a> <em>Truth matrix generator in 10x10 array</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/posession_on_meta.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/posession_on_meta.py"><code>posession&UnderBar;on&UnderBar;meta&period;py</code></a> <em>Abstract dictionaries in namespace processing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/random_approach.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/random_approach.py"><code>random&UnderBar;approach&period;py</code></a> <em>Random selection approach to generate numbers until error tolerance is met.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/recursive_networks.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/recursive_networks.py"><code>recursive&UnderBar;networks&period;py</code></a> <em>Random node initialization, update, and processing in a recursive network.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/say_we_have_words.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/say_we_have_words.py"><code>say&UnderBar;we&UnderBar;have&UnderBar;words&period;py</code></a> <em>2D array ops, random values, brain behavior simulator.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/the_abstraction.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/the_abstraction.py"><code>the&UnderBar;abstraction&period;py</code></a> <em>Generates random arrays, checks matches.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/archiver/we_do_have_words.py" id="/bootstrap/legacy/concentration/brainfuck/archiver/we_do_have_words.py"><code>we&UnderBar;do&UnderBar;have&UnderBar;words&period;py</code></a> <em>Explores 2D swapping potential for maintainable meta-blocks.</em></li>
+</ul>
+</li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/book_cruncher/"><code>book&UnderBar;cruncher</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/book_cruncher/README" id="/bootstrap/legacy/concentration/brainfuck/book_cruncher/README"><code>README</code></a> <em>Personal frustration, unrelated to programming.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/check_mgr.py" id="/bootstrap/legacy/concentration/brainfuck/check_mgr.py"><code>check&UnderBar;mgr&period;py</code></a> <em>Manager with multiprocessing data sharing and attribute list.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/focus_off.py" id="/bootstrap/legacy/concentration/brainfuck/focus_off.py"><code>focus&UnderBar;off&period;py</code></a> <em>Focus off - Monitors project data sending, checks issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/focus_on.py" id="/bootstrap/legacy/concentration/brainfuck/focus_on.py"><code>focus&UnderBar;on&period;py</code></a> <em>Focus on interactive brainfuck execution with progress and heartbeat.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/framework_.py" id="/bootstrap/legacy/concentration/brainfuck/framework_.py"><code>framework&UnderBar;&period;py</code></a> <em>Brainfuck tries to convert string to int and checks feasibility.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/highlight_mycode.js" id="/bootstrap/legacy/concentration/brainfuck/highlight_mycode.js"><code>highlight&UnderBar;mycode&period;js</code></a> <em>Highlights Brainfuck code with performance, Chrome support.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/install.sh" id="/bootstrap/legacy/concentration/brainfuck/install.sh"><code>install&period;sh</code></a> <em>Easy Deno installation script for x64 systems.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/linux_failsafe.py" id="/bootstrap/legacy/concentration/brainfuck/linux_failsafe.py"><code>linux&UnderBar;failsafe&period;py</code></a> <em>Function takes float/int 'f' and non-empty string 'a', returns formatted string.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/load_pac.py" id="/bootstrap/legacy/concentration/brainfuck/load_pac.py"><code>load&UnderBar;pac&period;py</code></a> <em>Neural network training with PyTorch, backpropagation, and loss tracking.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/looklikes.py" id="/bootstrap/legacy/concentration/brainfuck/looklikes.py"><code>looklikes&period;py</code></a> <em>NetworkX graph, edge between "find" and "node", nodes not printed</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/multiEdit.py" id="/bootstrap/legacy/concentration/brainfuck/multiEdit.py"><code>multiEdit&period;py</code></a> <em>PublicDocument class for multi-client document changes</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/nl.py" id="/bootstrap/legacy/concentration/brainfuck/nl.py"><code>nl&period;py</code></a> <em>Brainfuck NL.py: Initializes, refreshes machine instances with varied inputs.</em></li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/package_archive/"><code>package&UnderBar;archive</code></strong> <em>Legacy Brainfuck Python Neural Networks Archive</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/complex_show.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/complex_show.py"><code>complex&UnderBar;show&period;py</code></a> <em>Trains complex neural network, but accuracy decreases.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/complex_torch.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/complex_torch.py"><code>complex&UnderBar;torch&period;py</code></a> <em>Trains complex neural network, faces unsupported data types.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/find_load.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/find_load.py"><code>find&UnderBar;load&period;py</code></a> <em>Boston house price data preprocessing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/fix_x_torch.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/fix_x_torch.py"><code>fix&UnderBar;x&UnderBar;torch&period;py</code></a> <em>Train CIFAR-10 with PyTorch, GPU, test speed, verify.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/fix_y_torch.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/fix_y_torch.py"><code>fix&UnderBar;y&UnderBar;torch&period;py</code></a> <em>Fix Y-Torch GPU issues with SGD training.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/graph_impl.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/graph_impl.py"><code>graph&UnderBar;impl&period;py</code></a> <em>Custom neural network layer for graph edge message passing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/highlight_mycode.js" id="/bootstrap/legacy/concentration/brainfuck/package_archive/highlight_mycode.js"><code>highlight&UnderBar;mycode&period;js</code></a> <em>JavaScript highlighter module experimentation.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/linspa.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/linspa.py"><code>linspa&period;py</code></a> <em>Lin trained via SGD for 5000 epochs, prints final weights.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/out_torch.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/out_torch.py"><code>out&UnderBar;torch&period;py</code></a> <em>Trains PyTorch neural network for linear regression, 50k epochs.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/project_toy.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/project_toy.py"><code>project&UnderBar;toy&period;py</code></a> <em>Python code uses Sklearn, organizes data, prints functions &amp; global vars.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/rand_torch.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/rand_torch.py"><code>rand&UnderBar;torch&period;py</code></a> <em>Neural network model, 50k epochs, speed and accuracy discussed.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/reshaper.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/reshaper.py"><code>reshaper&period;py</code></a> <em>Reshapes and converts array to Tensor.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/super_0.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/super_0.py"><code>super&UnderBar;0&period;py</code></a> <em>Incomplete, undocumented superclass access code for superscript calc.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/package_archive/toy_project.py" id="/bootstrap/legacy/concentration/brainfuck/package_archive/toy_project.py"><code>toy&UnderBar;project&period;py</code></a> <em>Boston dataset PyTorch tensor operations demo.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/precise_replace.py" id="/bootstrap/legacy/concentration/brainfuck/precise_replace.py"><code>precise&UnderBar;replace&period;py</code></a> <em>PublicDocument: document tracking with timestamps and multiple processes.</em></li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/randomTapping/"><code>randomTapping</code></strong> <em>Automate, optimize, troubleshoot Python code.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/randomTapping/core4.py" id="/bootstrap/legacy/concentration/brainfuck/randomTapping/core4.py"><code>core4&period;py</code></a> <em>Python script loads CSV, merges nodes, creates gets relationships, queries graph.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/randomTapping/coret.py" id="/bootstrap/legacy/concentration/brainfuck/randomTapping/coret.py"><code>coret&period;py</code></a> <em>Connects to Taos DB using Python, unsuccessful attempts.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/randomTapping/README" id="/bootstrap/legacy/concentration/brainfuck/randomTapping/README"><code>README</code></a> <em>Automate virtual machine emulation for optimal performance.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/randomTapping/socks2.py" id="/bootstrap/legacy/concentration/brainfuck/randomTapping/socks2.py"><code>socks2&period;py</code></a> <em>Mobile image capture, limited by OS and libraries. Displaying issues, considering logcat.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/randomTapping/theDock.py" id="/bootstrap/legacy/concentration/brainfuck/randomTapping/theDock.py"><code>theDock&period;py</code></a> <em>ADB connection issues with OpenCV image capture on Linux.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/randomTapping/theSock.py" id="/bootstrap/legacy/concentration/brainfuck/randomTapping/theSock.py"><code>theSock&period;py</code></a> <em>Troubleshooting Android screen capture in Python code</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/read_shit.py" id="/bootstrap/legacy/concentration/brainfuck/read_shit.py"><code>read&UnderBar;shit&period;py</code></a> <em>Reads binary file, prints hex values for each byte.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/README" id="/bootstrap/legacy/concentration/brainfuck/README"><code>README</code></a> <em>Debugging Brainfuck with Haskell, patience &amp; multi-editing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/releas.py" id="/bootstrap/legacy/concentration/brainfuck/releas.py"><code>releas&period;py</code></a> <em>Creates SQLite table, enables data insertion with error handling.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/repeating.py" id="/bootstrap/legacy/concentration/brainfuck/repeating.py"><code>repeating&period;py</code></a> <em>Analyzes data with sets, lists, dictionaries and functions for handling data.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/sample" id="/bootstrap/legacy/concentration/brainfuck/sample"><code>sample</code></a> <em>Brainfuck "hello" demo, no computations.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/simpConnect.py" id="/bootstrap/legacy/concentration/brainfuck/simpConnect.py"><code>simpConnect&period;py</code></a> <em>Unrelated thoughts, lists files in "/media/root/Seagate1000", discomfort, analogies.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/sub2.py" id="/bootstrap/legacy/concentration/brainfuck/sub2.py"><code>sub2&period;py</code></a> <em>Decorator sets timeout for function execution, raises exception on overrun.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/testFrame.py" id="/bootstrap/legacy/concentration/brainfuck/testFrame.py"><code>testFrame&period;py</code></a> <em>Test frame for subprocess command execution with timeout and OS issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/testFreak.py" id="/bootstrap/legacy/concentration/brainfuck/testFreak.py"><code>testFreak&period;py</code></a> <em>Test Unicode array length and data in Brainfuck.</em></li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/"><code>the&UnderBar;new&UnderBar;pack</code></strong> <em>Bootstrap learning, neural refinement, legacy code.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/confirm_shape.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/confirm_shape.py"><code>confirm&UnderBar;shape&period;py</code></a> <em>Machine learning solution, no bias.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/custom_dataset_from_csv.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/custom_dataset_from_csv.py"><code>custom&UnderBar;dataset&UnderBar;from&UnderBar;csv&period;py</code></a> <em>Custom CSV dataset class for images and labels</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/download_dataset.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/download_dataset.py"><code>download&UnderBar;dataset&period;py</code></a> <em>Python script struggles with dataset imports</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_matrix.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_matrix.py"><code>dummy&UnderBar;matrix&period;py</code></a> <em>Train matrices, iterative loss calculation.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_scr.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/dummy_scr.py"><code>dummy&UnderBar;scr&period;py</code></a> <em>MAML Neural Network, 1000 tasks classification, adapts learner, updates parameters.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/exp_sym.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/exp_sym.py"><code>exp&UnderBar;sym&period;py</code></a> <em>Imports libraries, creates 3D array, prints matrix exponentiation result.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/gonna_veri.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/gonna_veri.py"><code>gonna&UnderBar;veri&period;py</code></a> <em>Import, define sigmoid, matrix application, print result.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/matrix_dummy.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/matrix_dummy.py"><code>matrix&UnderBar;dummy&period;py</code></a> <em>Neural network refinement for improved matrix compatibility.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/randprob.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/randprob.py"><code>randprob&period;py</code></a> <em>Random string replacement with recursion and set ops.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/simple_reverse.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/simple_reverse.py"><code>simple&UnderBar;reverse&period;py</code></a> <em>Solves 5x5 linear equations using NumPy, inverse, and multiplication.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_dev.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_dev.py"><code>smb&UnderBar;dev&period;py</code></a> <em>Sympy script calculates derivative of expression, handles math symbols.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_mat.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_mat.py"><code>smb&UnderBar;mat&period;py</code></a> <em>Sigmoid ML, MSE, symbolic matrices, gradient descent, learning rates experimentation.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_alternative.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_alternative.py"><code>the&UnderBar;alternative&period;py</code></a> <em>Trains neural network using conv layers, SGD with potential CUDA issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py"><code>the&UnderBar;exam&period;py</code></a> <em>Trains neural network, experiments with settings, optimizes using GD.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_rebuild.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_rebuild.py"><code>the&UnderBar;rebuild&period;py</code></a> <em>Trains PyTorch neural network with batch gradient descent.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/util_func.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/util_func.py"><code>util&UnderBar;func&period;py</code></a> <em>Set similarity comparison with margin of error function tested.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/the_new_pack/vertical.py" id="/bootstrap/legacy/concentration/brainfuck/the_new_pack/vertical.py"><code>vertical&period;py</code></a> <em>Random matrices, division, multiplication, printed results.</em></li>
+</ul>
+</li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/theMonkey/"><code>theMonkey</code></strong> <em>Virtualization, brainfuck, and timeouts for legacy OS passwords.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/theMonkey/blower.py" id="/bootstrap/legacy/concentration/brainfuck/theMonkey/blower.py"><code>blower&period;py</code></a> <em>Interacting with VirtualBox, facing output issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py" id="/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py"><code>endmark&period;py</code></a> <em>Regex-powered window conversion and pattern matching.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/theMonkey/README" id="/bootstrap/legacy/concentration/brainfuck/theMonkey/README"><code>README</code></a> <em>Installing minimal OS, password issue, OCR challenges.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/theMonkey/repeating.py" id="/bootstrap/legacy/concentration/brainfuck/theMonkey/repeating.py"><code>repeating&period;py</code></a> <em>Processes lists with double derivatives, recursive operations, and condition checks.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/theMonkey/social_learning.py" id="/bootstrap/legacy/concentration/brainfuck/theMonkey/social_learning.py"><code>social&UnderBar;learning&period;py</code></a> <em>Launch VirtualBox VM "TinyPlus", network methods recommended.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/theMonkey/sub2.py" id="/bootstrap/legacy/concentration/brainfuck/theMonkey/sub2.py"><code>sub2&period;py</code></a> <em>Decorator sets function timeout with separate thread.</em></li>
+</ul>
+</li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/"><code>track&UnderBar;mouse&UnderBar;take&UnderBar;div</code></strong> <em>Legacy mouse tracking for brainfuck concentration.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/README" id="/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/README"><code>README</code></a> <em>Scattered thoughts, no clear purpose</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_m.py" id="/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_m.py"><code>track&UnderBar;m&period;py</code></a> <em>Track mouse movements and clicks with performance concerns.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_mshot.py" id="/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_mshot.py"><code>track&UnderBar;mshot&period;py</code></a> <em>Windows mouse tracking with recording limit</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/brainfuck/unicode_tensor.py" id="/bootstrap/legacy/concentration/brainfuck/unicode_tensor.py"><code>unicode&UnderBar;tensor&period;py</code></a> <em>Manipulates lists, converts to tensors using ASCII values.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/klean.py" id="/bootstrap/legacy/concentration/klean.py"><code>klean&period;py</code></a> <em>Extracts node values, levels, and paths in hierarchical structure.</em></li>
+<li><span hierarchy="4" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/new_toys/"><code>new&UnderBar;toys</code></strong> <em>Innovative toy algorithms in legacy concentration.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/batch_wheel.py" id="/bootstrap/legacy/concentration/new_toys/batch_wheel.py"><code>batch&UnderBar;wheel&period;py</code></a> <em>Baidu search URLs, titles, sub-urls extraction, JSON writing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/been_well.py" id="/bootstrap/legacy/concentration/new_toys/been_well.py"><code>been&UnderBar;well&period;py</code></a> <em>Flatten lists, retrieve data, write to file.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/bing_wheel.py" id="/bootstrap/legacy/concentration/new_toys/bing_wheel.py"><code>bing&UnderBar;wheel&period;py</code></a> <em>Search, store, print results in "data.json", record time.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/chaotic_search.py" id="/bootstrap/legacy/concentration/new_toys/chaotic_search.py"><code>chaotic&UnderBar;search&period;py</code></a> <em>Randomly generates word combinations, checks duplicates. Chaotic search.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/curl_.php" id="/bootstrap/legacy/concentration/new_toys/curl_.php"><code>curl&UnderBar;&period;php</code></a> <em>Retrieves final URL after following redirects with cURL.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/indexer.py" id="/bootstrap/legacy/concentration/new_toys/indexer.py"><code>indexer&period;py</code></a> <em>Indexer script for "shredded_realcode" data with user input search.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/lida_x.py" id="/bootstrap/legacy/concentration/new_toys/lida_x.py"><code>lida&UnderBar;x&period;py</code></a> <em>LidaX: Imports, Copies, Filters, Updates, Stores Failsafe for "Rockstar"</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/lida_y.py" id="/bootstrap/legacy/concentration/new_toys/lida_y.py"><code>lida&UnderBar;y&period;py</code></a> <em>Batch processing time-sensitive updates.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/markovgen.py" id="/bootstrap/legacy/concentration/new_toys/markovgen.py"><code>markovgen&period;py</code></a> <em>Generate new text with Markov n-grams from file</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/no_extra.php" id="/bootstrap/legacy/concentration/new_toys/no_extra.php"><code>no&UnderBar;extra&period;php</code></a> <em>Retrieves final URL from redirects and outputs.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/process_dom.py" id="/bootstrap/legacy/concentration/new_toys/process_dom.py"><code>process&UnderBar;dom&period;py</code></a> <em>BeautifulSoup parses HTML, extracts data, validates.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/pypi_indexer.py" id="/bootstrap/legacy/concentration/new_toys/pypi_indexer.py"><code>pypi&UnderBar;indexer&period;py</code></a> <em>Search indexer script for PyPi packages with case-sensitive/insensitive options.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/pythonbasics.py" id="/bootstrap/legacy/concentration/new_toys/pythonbasics.py"><code>pythonbasics&period;py</code></a> <em>Headless Firefox interacts, searches, prints source</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/script.php" id="/bootstrap/legacy/concentration/new_toys/script.php"><code>script&period;php</code></a> <em>Retrieves headers, checks for 301/302, echoes location, slow with network requests.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/standard_parse.py" id="/bootstrap/legacy/concentration/new_toys/standard_parse.py"><code>standard&UnderBar;parse&period;py</code></a> <em>Identify string encoding using subprocess commands.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/test.py" id="/bootstrap/legacy/concentration/new_toys/test.py"><code>test&period;py</code></a> <em>Processes strange.html using bing_dom function, then prints results.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/the_real_wheel.py" id="/bootstrap/legacy/concentration/new_toys/the_real_wheel.py"><code>the&UnderBar;real&UnderBar;wheel&period;py</code></a> <em>Retrieves URLs, stores data, displays results with timestamps.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/new_toys/tts.py" id="/bootstrap/legacy/concentration/new_toys/tts.py"><code>tts&period;py</code></a> <em>TurtleShell class: turtle graphics in Python's turtle module.</em></li>
+</ul>
+</li>
+<li><span hierarchy="4" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/old_toys/"><code>old&UnderBar;toys</code></strong> <em>Legacy concentration toys, CSV analysis, automation.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/cd_demo.py" id="/bootstrap/legacy/concentration/old_toys/cd_demo.py"><code>cd&UnderBar;demo&period;py</code></a> <em>Imports function, defines two functions, applies to file content. Data type analysis.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/core4.py" id="/bootstrap/legacy/concentration/old_toys/core4.py"><code>core4&period;py</code></a> <em>CSV-to-Neo4j node merging and querying with indices.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/dc_demo.py" id="/bootstrap/legacy/concentration/old_toys/dc_demo.py"><code>dc&UnderBar;demo&period;py</code></a> <em>Analyzes uniqueness efficiency in data using set manipulation functions.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/endmark.py" id="/bootstrap/legacy/concentration/old_toys/endmark.py"><code>endmark&period;py</code></a> <em>Regular expression-based segment extraction with count limits.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/frozen_demo.py" id="/bootstrap/legacy/concentration/old_toys/frozen_demo.py"><code>frozen&UnderBar;demo&period;py</code></a> <em>Frozen sets, lists, set conversion, unique elements.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/insert_command_name.py" id="/bootstrap/legacy/concentration/old_toys/insert_command_name.py"><code>insert&UnderBar;command&UnderBar;name&period;py</code></a> <em>Merges node using core4 and getFromDill.</em></li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/old_toys/internet_maps/"><code>internet&UnderBar;maps</code></strong> <em>Vintage toy distribution via obsolete internet maps.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/basepak.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/basepak.py"><code>basepak&period;py</code></a> <em>Python utility for image retrieval, grid calculation, and shift generation.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/checkSingle.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/checkSingle.py"><code>checkSingle&period;py</code></a> <em>Image processing operations with OpenCV and Skimage issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/chords.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/chords.py"><code>chords&period;py</code></a> <em>Manages process with status checks, list cleaning, updates and pauses.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/classic.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/classic.py"><code>classic&period;py</code></a> <em>Code uses Tesseract for OCR, improves soon.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/classic_segment.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/classic_segment.py"><code>classic&UnderBar;segment&period;py</code></a> <em>Optimized OCR image processing with multiprocessing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/configure.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/configure.py"><code>configure&period;py</code></a> <em>Configures projects using imported functions, iterating 10 times.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/configure2.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/configure2.py"><code>configure2&period;py</code></a> <em>Configures number for 11 ranges using dbM2 and basepak functions.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/endmark.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/endmark.py"><code>endmark&period;py</code></a> <em>Regex-powered segment extraction and count limits.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/extend_while_iterate.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/extend_while_iterate.py"><code>extend&UnderBar;while&UnderBar;iterate&period;py</code></a> <em>Extends list while iterating and appending values.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/microscope.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/microscope.py"><code>microscope&period;py</code></a> <em>Process pool with dynamic process count and random sleeps</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py"><code>multiCheck&period;py</code></a> <em>Multiprocessing OCR with OpenCV, tackling parallel processing issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/README" id="/bootstrap/legacy/concentration/old_toys/internet_maps/README"><code>README</code></a> <em>Calculate storage &amp; download speeds for project maps, online preference.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/sim0.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/sim0.py"><code>sim0&period;py</code></a> <em>Counting unique projects in database and comparing results.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/internet_maps/strings.py" id="/bootstrap/legacy/concentration/old_toys/internet_maps/strings.py"><code>strings&period;py</code></a> <em>Incomplete, multithreaded code with debugging notes.</em></li>
+</ul>
+</li>
+<li><span hierarchy="5" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/concentration/old_toys/links_play/"><code>links&UnderBar;play</code></strong> <em>Legacy multiprocessing checker for old toy links.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/links_play/create_dir.py" id="/bootstrap/legacy/concentration/old_toys/links_play/create_dir.py"><code>create&UnderBar;dir&period;py</code></a> <em>Creates list of organizations, prints command to remove related files/dirs.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/links_play/createdir.sh" id="/bootstrap/legacy/concentration/old_toys/links_play/createdir.sh"><code>createdir&period;sh</code></a> <em>Force delete empty or non-empty directories for RIRs. Bash, 'rm -rf'.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/links_play/endmark.py" id="/bootstrap/legacy/concentration/old_toys/links_play/endmark.py"><code>endmark&period;py</code></a> <em>Regex-based window conversion and count extraction.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/links_play/formal.py" id="/bootstrap/legacy/concentration/old_toys/links_play/formal.py"><code>formal&period;py</code></a> <em>Parallel HTTP requests with error handling, debugging 'p' issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/links_play/initial_works.py" id="/bootstrap/legacy/concentration/old_toys/links_play/initial_works.py"><code>initial&UnderBar;works&period;py</code></a> <em>Imports, defines, extracts, generates, stores.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/links_play/naus.py" id="/bootstrap/legacy/concentration/old_toys/links_play/naus.py"><code>naus&period;py</code></a> <em>Retrieves logs, stores URLs, cleans data, batches process. Purpose unclear.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/links_play/README" id="/bootstrap/legacy/concentration/old_toys/links_play/README"><code>README</code></a> <em>Optimize file access with memory, virtual objects, and database.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/links_play/strings.py" id="/bootstrap/legacy/concentration/old_toys/links_play/strings.py"><code>strings&period;py</code></a> <em>Fetches data, stores in DB, potential optimization. Lengthy lists slow process.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/links_play/telescoper.py" id="/bootstrap/legacy/concentration/old_toys/links_play/telescoper.py"><code>telescoper&period;py</code></a> <em>Legacy multiprocessing checker function for file ops.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/random_interactive.py" id="/bootstrap/legacy/concentration/old_toys/random_interactive.py"><code>random&UnderBar;interactive&period;py</code></a> <em>Automates parallel SSH tasks, using Paramiko and multiprocessing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/random_shell.py" id="/bootstrap/legacy/concentration/old_toys/random_shell.py"><code>random&UnderBar;shell&period;py</code></a> <em>Connects server, runs Python script with Paramiko, REPL issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/README" id="/bootstrap/legacy/concentration/old_toys/README"><code>README</code></a> <em>Import binary data using alternative methods.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/repeating.py" id="/bootstrap/legacy/concentration/old_toys/repeating.py"><code>repeating&period;py</code></a> <em>Processes double derivative lists with recursive operations and checks conditions.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/ssh_interactive.py" id="/bootstrap/legacy/concentration/old_toys/ssh_interactive.py"><code>ssh&UnderBar;interactive&period;py</code></a> <em>SSH client with debugging and delays, incomplete.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/ssh_manual_shell.py" id="/bootstrap/legacy/concentration/old_toys/ssh_manual_shell.py"><code>ssh&UnderBar;manual&UnderBar;shell&period;py</code></a> <em>SSH shell script using Paramiko, error handling, manual debugging</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/old_toys/sub2.py" id="/bootstrap/legacy/concentration/old_toys/sub2.py"><code>sub2&period;py</code></a> <em>Decorator sets function timeout, raises exception on overrun.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/special_parser.py" id="/bootstrap/legacy/concentration/special_parser.py"><code>special&UnderBar;parser&period;py</code></a> <em>Filters English words from "trench.log" and stores non-English in "rockstar".</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/concentration/trench_exam.py" id="/bootstrap/legacy/concentration/trench_exam.py"><code>trench&UnderBar;exam&period;py</code></a> <em>Imports, applies, filters, stores dictionary values.</em></li>
+</ul>
+</li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/container_0/"><code>container&UnderBar;0</code></strong> <em>Legacy container issues with script, IO, UUID.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/advanced_selection_monitor.sh" id="/bootstrap/legacy/container_0/advanced_selection_monitor.sh"><code>advanced&UnderBar;selection&UnderBar;monitor&period;sh</code></a> <em>Manages clipboard operations in event-driven X11, Wayland system.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/awaitIO.py" id="/bootstrap/legacy/container_0/awaitIO.py"><code>awaitIO&period;py</code></a> <em>Interactive, concurrent command execution with threading. No error handling.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/command_server.js" id="/bootstrap/legacy/container_0/command_server.js"><code>command&UnderBar;server&period;js</code></a> <em>Remote command execution server with error issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/config_uuid_service.sh" id="/bootstrap/legacy/container_0/config_uuid_service.sh"><code>config&UnderBar;uuid&UnderBar;service&period;sh</code></a> <em>Install UUID service, test on Windows, prankable systems.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/flushy.py" id="/bootstrap/legacy/container_0/flushy.py"><code>flushy&period;py</code></a> <em>Python console script with threading, I/O issues, and race conditions.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/lazero.js" id="/bootstrap/legacy/container_0/lazero.js"><code>lazero&period;js</code></a> <em>Monitor and control web elements with JSON collection.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/lazero.sh" id="/bootstrap/legacy/container_0/lazero.sh"><code>lazero&period;sh</code></a> <em>Execute 'c' on 'main.c', pipe, and redirect output to '/dev/shm/lazero'.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/lazero_exec.js" id="/bootstrap/legacy/container_0/lazero_exec.js"><code>lazero&UnderBar;exec&period;js</code></a> <em>Limited-functionality script, errors, clipboard issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/lazero_merge_legacy.js" id="/bootstrap/legacy/container_0/lazero_merge_legacy.js"><code>lazero&UnderBar;merge&UnderBar;legacy&period;js</code></a> <em>Conflicting JavaScript merge script</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/merge_backup.js" id="/bootstrap/legacy/container_0/merge_backup.js"><code>merge&UnderBar;backup&period;js</code></a> <em>Lazero merge script manages clipboards, monitors changes.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/moshIO.py" id="/bootstrap/legacy/container_0/moshIO.py"><code>moshIO&period;py</code></a> <em>Sandboxed command execution with multiprocessing, stdin issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/processIO.py" id="/bootstrap/legacy/container_0/processIO.py"><code>processIO&period;py</code></a> <em>Multiprocessing code with namespace sharing, thread comm issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/sample.py" id="/bootstrap/legacy/container_0/sample.py"><code>sample&period;py</code></a> <em>Potential security threat, exercise caution</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/send_signal.py" id="/bootstrap/legacy/container_0/send_signal.py"><code>send&UnderBar;signal&period;py</code></a> <em>Multiprocessing, incomplete communication handling, prints stderr.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/simple_selection_monitor.sh" id="/bootstrap/legacy/container_0/simple_selection_monitor.sh"><code>simple&UnderBar;selection&UnderBar;monitor&period;sh</code></a> <em>Script uses 'watch' to monitor Windows clipboard.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/swpipe.py" id="/bootstrap/legacy/container_0/swpipe.py"><code>swpipe&period;py</code></a> <em>SwPipe: tool for subprocess communication with error handling.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/term.c" id="/bootstrap/legacy/container_0/term.c"><code>term&period;c</code></a> <em>Initializes GTK window and terminal, handles events, prints "hello world!"</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/term.py" id="/bootstrap/legacy/container_0/term.py"><code>term&period;py</code></a> <em>Gtk.Window with Vte.Terminal, process spawned, GTK main loop started.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/Terminal.java" id="/bootstrap/legacy/container_0/Terminal.java"><code>Terminal&period;java</code></a> <em>Terminal and WrittenConsole classes handle console I/O with exceptions.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/testYes.py" id="/bootstrap/legacy/container_0/testYes.py"><code>testYes&period;py</code></a> <em>Multiprocessing script for OBS Studio processing/recording.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/uuid_server.js" id="/bootstrap/legacy/container_0/uuid_server.js"><code>uuid&UnderBar;server&period;js</code></a> <em>JavaScript UUIDv4 generator for server-side use, potential browser issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/uuid_service.service" id="/bootstrap/legacy/container_0/uuid_service.service"><code>uuid&UnderBar;service&period;service</code></a> <em>Lazero UUID service systemd file.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/webDocker.py" id="/bootstrap/legacy/container_0/webDocker.py"><code>webDocker&period;py</code></a> <em>Twisted protocol, connections, processes, threading, timestamps.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_0/webTwist.py" id="/bootstrap/legacy/container_0/webTwist.py"><code>webTwist&period;py</code></a> <em>Twisted protocol class, process spawning, reactor event loop communication.</em></li>
+</ul>
+</li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/container_1/"><code>container&UnderBar;1</code></strong> <em>Docker setup with firejail, obsolete Windows file comparisons.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/dockerd.service" id="/bootstrap/legacy/container_1/dockerd.service"><code>dockerd&period;service</code></a> <em>Configures Docker daemon service with registry mirror.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/dockerFriendly.sh" id="/bootstrap/legacy/container_1/dockerFriendly.sh"><code>dockerFriendly&period;sh</code></a> <em>Docker container setup with Alpine image, read-only filesystem.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/dockerXFS.sh" id="/bootstrap/legacy/container_1/dockerXFS.sh"><code>dockerXFS&period;sh</code></a> <em>Run Alpine Linux read-only container with resource limits and XFS storage check.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/friendlyShell.sh" id="/bootstrap/legacy/container_1/friendlyShell.sh"><code>friendlyShell&period;sh</code></a> <em>Firejail-secured bash script environment.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/infinia.c" id="/bootstrap/legacy/container_1/infinia.c"><code>infinia&period;c</code></a> <em>Infinite loop function main() in "lazero/bootstrap/legacy/container_1/infinia.c"</em></li>
+<li><span hierarchy="4" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/container_1/random/"><code>random</code></strong> <em>Obsolete, incomplete Dogtail scripts for Windows file comparisons.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/random/CNAME" id="/bootstrap/legacy/container_1/random/CNAME"><code>CNAME</code></a> <em>Main website domain: lazero.io</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/random/comp.py" id="/bootstrap/legacy/container_1/random/comp.py"><code>comp&period;py</code></a> <em>Imports numpy, computes hyperbolic tangent.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/random/compare_loader.py" id="/bootstrap/legacy/container_1/random/compare_loader.py"><code>compare&UnderBar;loader&period;py</code></a> <em>Comparing, classifying, and identifying differences in files' lines.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/random/pinpoint_id_with_path.py" id="/bootstrap/legacy/container_1/random/pinpoint_id_with_path.py"><code>pinpoint&UnderBar;id&UnderBar;with&UnderBar;path&period;py</code></a> <em>Python script uses dogtail to traverse tree, faces Windows support issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/random/sample_manager.py" id="/bootstrap/legacy/container_1/random/sample_manager.py"><code>sample&UnderBar;manager&period;py</code></a> <em>Incomplete, dogtail-importing placeholder code.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/random/tree_modified.py" id="/bootstrap/legacy/container_1/random/tree_modified.py"><code>tree&UnderBar;modified&period;py</code></a> <em>GUI app manipulation using AT-SPI API.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/random/welcome.py" id="/bootstrap/legacy/container_1/random/welcome.py"><code>welcome&period;py</code></a> <em>Welcome message with colored text.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/random/with_id_sample_manager.py" id="/bootstrap/legacy/container_1/random/with_id_sample_manager.py"><code>with&UnderBar;id&UnderBar;sample&UnderBar;manager&period;py</code></a> <em>Outdated Dogtail-based GUI traversal tool with configurable limits.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/rustup.sh" id="/bootstrap/legacy/container_1/rustup.sh"><code>rustup&period;sh</code></a> <em>Rustup installer, cross-platform, secure downloads</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/container_1/webXFS.py" id="/bootstrap/legacy/container_1/webXFS.py"><code>webXFS&period;py</code></a> <em>Twisted ProcessProtocol, inter-process communication, threading support</em></li>
+</ul>
+</li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/main_pack/"><code>main&UnderBar;pack</code></strong></span><ul>
+<li><span hierarchy="4" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/bootstrap/legacy/main_pack/main_1/"><code>main&UnderBar;1</code></strong> <em>Legacy scripts, Unicode POI search, network analysis tool.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/atspi_wrap.py" id="/bootstrap/legacy/main_pack/main_1/atspi_wrap.py"><code>atspi&UnderBar;wrap&period;py</code></a> <em>Imports pyatspi, prints names, large codebase, consider C# dump.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/escaper.c" id="/bootstrap/legacy/main_pack/main_1/escaper.c"><code>escaper&period;c</code></a> <em>Escapes special characters in input</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/getMem.py" id="/bootstrap/legacy/main_pack/main_1/getMem.py"><code>getMem&period;py</code></a> <em>Collects dogtail vars, generates docs, appends to log, traces text.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/lazero.c" id="/bootstrap/legacy/main_pack/main_1/lazero.c"><code>lazero&period;c</code></a> <em>C program prints command-line arguments, no execution.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/locator.sh" id="/bootstrap/legacy/main_pack/main_1/locator.sh"><code>locator&period;sh</code></a> <em>Locate files/dirs, efficient bash script</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/main.c" id="/bootstrap/legacy/main_pack/main_1/main.c"><code>main&period;c</code></a> <em>Windows tools for cross-platform shell scripting.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/main.sh" id="/bootstrap/legacy/main_pack/main_1/main.sh"><code>main&period;sh</code></a> <em>Compiles temporary C program and deletes.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/pycall.py" id="/bootstrap/legacy/main_pack/main_1/pycall.py"><code>pycall&period;py</code></a> <em>Subprocess executes "echo hello world" and redirects output to "sample.log".</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/pywrite.py" id="/bootstrap/legacy/main_pack/main_1/pywrite.py"><code>pywrite&period;py</code></a> <em>Python script defines functions for temporary file handling.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/pyxshell.py" id="/bootstrap/legacy/main_pack/main_1/pyxshell.py"><code>pyxshell&period;py</code></a> <em>Python3 terminal wrapper with GraphTerm, import management, threading.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/sample.py" id="/bootstrap/legacy/main_pack/main_1/sample.py"><code>sample&period;py</code></a> <em>Imports, reads file, splits words, prints random one.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/sample.sh" id="/bootstrap/legacy/main_pack/main_1/sample.sh"><code>sample&period;sh</code></a> <em>Fish shell script, C programming, deep learning, comments.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/sample_manager.py" id="/bootstrap/legacy/main_pack/main_1/sample_manager.py"><code>sample&UnderBar;manager&period;py</code></a> <em>Python script for tree analysis with color and file issues.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/sample_mpi.c" id="/bootstrap/legacy/main_pack/main_1/sample_mpi.c"><code>sample&UnderBar;mpi&period;c</code></a> <em>C code showcases MPI library usage for parallel computing.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/sampleCode.py" id="/bootstrap/legacy/main_pack/main_1/sampleCode.py"><code>sampleCode&period;py</code></a> <em>Text sequential data analysis with NetworkX</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/sampler.sh" id="/bootstrap/legacy/main_pack/main_1/sampler.sh"><code>sampler&period;sh</code></a> <em>Sampler script for 'locate.db'.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/script.c" id="/bootstrap/legacy/main_pack/main_1/script.c"><code>script&period;c</code></a> <em>Main function executes "echo hello world" via system().</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/terminal_path.py" id="/bootstrap/legacy/main_pack/main_1/terminal_path.py"><code>terminal&UnderBar;path&period;py</code></a> <em>Function to split string, remove slashes, and print.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/unique.py" id="/bootstrap/legacy/main_pack/main_1/unique.py"><code>unique&period;py</code></a> <em>Performs complex, comment-lacking 'rg' search with Unicode.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/unique.sh" id="/bootstrap/legacy/main_pack/main_1/unique.sh"><code>unique&period;sh</code></a> <em>Script searches file for POIs, uses convolution, rounds iterations. Needs Python rewrite.</em></li>
+<li><a class="file_link" href="index.html?q=/bootstrap/legacy/main_pack/main_1/writeTemp.c" id="/bootstrap/legacy/main_pack/main_1/writeTemp.c"><code>writeTemp&period;c</code></a> <em>Writes data to file using fputs() before closing.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/lego/"><code>lego</code></strong> <em>Explore, Create, Innovate with LEGO</em></span><ul>
+<li><a class="file_link" href="index.html?q=/lego/autosave_redis.py" id="/lego/autosave_redis.py"><code>autosave&UnderBar;redis&period;py</code></a> <em>Auto-saves Redis state every 'tm' secs.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/autosave_redis.sh" id="/lego/autosave_redis.sh"><code>autosave&UnderBar;redis&period;sh</code></a> <em>Autosave Redis Bash script with disown.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/bash_plan.sh" id="/lego/bash_plan.sh"><code>bash&UnderBar;plan&period;sh</code></a> <em>Automate Python script execution with I/O flexibility.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/binameter.py" id="/lego/binameter.py"><code>binameter&period;py</code></a> <em>Calculates binary percentage from stdin.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/blackmagic.py" id="/lego/blackmagic.py"><code>blackmagic&period;py</code></a> <em>Blackmagic: Fakes PTMs, forwards FDs, monitors child processes' output.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/catmagic.py" id="/lego/catmagic.py"><code>catmagic&period;py</code></a> <em>Python script simulates "cat" command, copying and redirecting.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/check_daemon.py" id="/lego/check_daemon.py"><code>check&UnderBar;daemon&period;py</code></a> <em>Checks PID and kills or prints daemon status.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/check_daemon.sh" id="/lego/check_daemon.sh"><code>check&UnderBar;daemon&period;sh</code></a> <em>Monitor daemon process with pstree and Python script</em></li>
+<li><a class="file_link" href="index.html?q=/lego/check_daemon_multiargs.sh" id="/lego/check_daemon_multiargs.sh"><code>check&UnderBar;daemon&UnderBar;multiargs&period;sh</code></a> <em>Checks daemon processes, kills non-daemons. Exits with status.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/check_ports.sh" id="/lego/check_ports.sh"><code>check&UnderBar;ports&period;sh</code></a> <em>Scan localhost ports, filter, log. Monotonous task.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/daemon_server.sh" id="/lego/daemon_server.sh"><code>daemon&UnderBar;server&period;sh</code></a> <em>Starts web server, keeps running</em></li>
+<li><a class="file_link" href="index.html?q=/lego/demo_error_out.py" id="/lego/demo_error_out.py"><code>demo&UnderBar;error&UnderBar;out&period;py</code></a> <em>Error 'hello world' Python script.</em></li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/lego/docker_terminal_server/"><code>docker&UnderBar;terminal&UnderBar;server</code></strong> <em>Manages containers, Lego, Docker, Podman, terminal server.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/demo_app.js" id="/lego/docker_terminal_server/demo_app.js"><code>demo&UnderBar;app&period;js</code></a> <em>Lego Docker app, Electron window, HTTP server, handles user input, GET requests.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/demo_app.sh" id="/lego/docker_terminal_server/demo_app.sh"><code>demo&UnderBar;app&period;sh</code></a> <em>Runs Electron app using Bash and demo_app.js</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/demo_usage.sh" id="/lego/docker_terminal_server/demo_usage.sh"><code>demo&UnderBar;usage&period;sh</code></a> <em>Starts Docker terminal server, connects to 9997.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/killall.sh" id="/lego/docker_terminal_server/killall.sh"><code>killall&period;sh</code></a> <em>Kills all active Podman containers.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/preload.js" id="/lego/docker_terminal_server/preload.js"><code>preload&period;js</code></a> <em>Preloads JavaScript, logs "preload js"</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/README" id="/lego/docker_terminal_server/README"><code>README</code></a> <em>Create terminal emulator with ElectronJS, potential JavaScript issues.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/recognize.sh" id="/lego/docker_terminal_server/recognize.sh"><code>recognize&period;sh</code></a> <em>Lego Docker terminal server script for fetching HTML content.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/refine.py" id="/lego/docker_terminal_server/refine.py"><code>refine&period;py</code></a> <em>Refines input pairs, appends non-empty second items to list y.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/start_ro.sh" id="/lego/docker_terminal_server/start_ro.sh"><code>start&UnderBar;ro&period;sh</code></a> <em>Starts Podman container with limited resources, may fail without image.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/type.sh" id="/lego/docker_terminal_server/type.sh"><code>type&period;sh</code></a> <em>Send HTTP request, retrieve/operate data. Merge stdout &amp; stderr.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/type_false_b64.sh" id="/lego/docker_terminal_server/type_false_b64.sh"><code>type&UnderBar;false&UnderBar;b64&period;sh</code></a> <em>Bash script with curl GET request, redirects errors to stderr.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/type_fault.sh" id="/lego/docker_terminal_server/type_fault.sh"><code>type&UnderBar;fault&period;sh</code></a> <em>Silent script redirects errs, sends data to stdout.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/type_return.sh" id="/lego/docker_terminal_server/type_return.sh"><code>type&UnderBar;return&period;sh</code></a> <em>GET request, localhost:7777/input, type=anything, autoreturn=true.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/docker_terminal_server/type_true_b64_autoreturn.sh" id="/lego/docker_terminal_server/type_true_b64_autoreturn.sh"><code>type&UnderBar;true&UnderBar;b64&UnderBar;autoreturn&period;sh</code></a> <em>Docker terminal script: GET request, b64 type, auto return, appends output.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/lego/exam_and_run.py" id="/lego/exam_and_run.py"><code>exam&UnderBar;and&UnderBar;run&period;py</code></a> <em>Launch, kill or relaunch processes based on IDs.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/exam_and_run_autosave.py" id="/lego/exam_and_run_autosave.py"><code>exam&UnderBar;and&UnderBar;run&UnderBar;autosave&period;py</code></a> <em>Automated process monitor, needs error handling.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/exam_and_run_webpaste.py" id="/lego/exam_and_run_webpaste.py"><code>exam&UnderBar;and&UnderBar;run&UnderBar;webpaste&period;py</code></a> <em>Limit and manage running processes with error handling.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/find_and_kill.sh" id="/lego/find_and_kill.sh"><code>find&UnderBar;and&UnderBar;kill&period;sh</code></a> <em>Script finds and kills specific Python processes.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/infinia.py" id="/lego/infinia.py"><code>infinia&period;py</code></a> <em>Create civilization using Python with refactoring needs.</em></li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/lego/jail/"><code>jail</code></strong> <em>Secure Python app prison with RAM.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/lego/jail/advanced_jail.sh" id="/lego/jail/advanced_jail.sh"><code>advanced&UnderBar;jail&period;sh</code></a> <em>Advanced Jail Script: RAM Disk, Firejail, Restrictions</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/base_jail.sh" id="/lego/jail/base_jail.sh"><code>base&UnderBar;jail&period;sh</code></a> <em>Secure jail environment setup with firejail, seccomp rules for jbash.sh script.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/docker_jail_clean.sh" id="/lego/jail/docker_jail_clean.sh"><code>docker&UnderBar;jail&UnderBar;clean&period;sh</code></a> <em>Firejail script performs clean operation in container, issues with Android phones.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/eol.sh" id="/lego/jail/eol.sh"><code>eol&period;sh</code></a> <em>Execute current dir C++ files, naming output same as input.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/jbash.sh" id="/lego/jail/jbash.sh"><code>jbash&period;sh</code></a> <em>Bash script with seccomp_rule_name "randomfuck" and bash exe_path.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/jpython.sh" id="/lego/jail/jpython.sh"><code>jpython&period;sh</code></a> <em>Test script for libjudger.so functionality.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/loadram.sh" id="/lego/jail/loadram.sh"><code>loadram&period;sh</code></a> <em>Unloads script, creates 10MB ramdisk, mounts tmpfs.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/naive_advanced_jail.sh" id="/lego/jail/naive_advanced_jail.sh"><code>naive&UnderBar;advanced&UnderBar;jail&period;sh</code></a> <em>Securely run bash script with Firejail.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/naive_jail.sh" id="/lego/jail/naive_jail.sh"><code>naive&UnderBar;jail&period;sh</code></a> <em>Set up Firejail for isolation and restrictions.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/README" id="/lego/jail/README"><code>README</code></a> <em>Improving jail security with mixed jails and bindfs.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/lego/jail/republica/"><code>republica</code></strong> <em>Jail script testing with various executables and seccom rules.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/lego/jail/republica/jbash.sh" id="/lego/jail/republica/jbash.sh"><code>jbash&period;sh</code></a> <em>Jail Bash script using libjudger.so with randomfuck seccom rule and bash exe path.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/republica/jpython.sh" id="/lego/jail/republica/jpython.sh"><code>jpython&period;sh</code></a> <em>Test libjudger.so functionality with multiple executables.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/lego/jail/risk_powerdown.sh" id="/lego/jail/risk_powerdown.sh"><code>risk&UnderBar;powerdown&period;sh</code></a> <em>Power down script with firejail and logging.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/risk_reboot.sh" id="/lego/jail/risk_reboot.sh"><code>risk&UnderBar;reboot&period;sh</code></a> <em>Firejail VM reboot script with read-only root, RAM disk, and Seccomp logging.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/sleep100ms.cpp" id="/lego/jail/sleep100ms.cpp"><code>sleep100ms&period;cpp</code></a> <em>Pauses 100ms, then exits.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/sleep25ms.cpp" id="/lego/jail/sleep25ms.cpp"><code>sleep25ms&period;cpp</code></a> <em>Pauses 250ms, returns 0</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/sleep500ms.cpp" id="/lego/jail/sleep500ms.cpp"><code>sleep500ms&period;cpp</code></a> <em>Sleeps 500ms, exits with status 0</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/sleep50ms.cpp" id="/lego/jail/sleep50ms.cpp"><code>sleep50ms&period;cpp</code></a> <em>Pauses program for 50ms.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/sleep5ms.cpp" id="/lego/jail/sleep5ms.cpp"><code>sleep5ms&period;cpp</code></a> <em>Pauses 5ms, then exits.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/strict_base_jail.sh" id="/lego/jail/strict_base_jail.sh"><code>strict&UnderBar;base&UnderBar;jail&period;sh</code></a> <em>Strict base jail script with firejail for Python3 app.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jail/unloadram.sh" id="/lego/jail/unloadram.sh"><code>unloadram&period;sh</code></a> <em>Unmounts and clears RAM disk.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/lego/jbash.sh" id="/lego/jbash.sh"><code>jbash&period;sh</code></a> <em>Bash script with libjudger.so for program execution and seccomp rules</em></li>
+<li><a class="file_link" href="index.html?q=/lego/jpython.sh" id="/lego/jpython.sh"><code>jpython&period;sh</code></a> <em>Test script for libjudger.so functionality.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/kill_redis.sh" id="/lego/kill_redis.sh"><code>kill&UnderBar;redis&period;sh</code></a> <em>Redis process manager script with multiple Python checks.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/kill_webpaste.sh" id="/lego/kill_webpaste.sh"><code>kill&UnderBar;webpaste&period;sh</code></a> <em>Kill non-running Python webpaste.py, check watchdog exit status.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/mag.py" id="/lego/mag.py"><code>mag&period;py</code></a> <em>Lego script logs and buffers curl output, using select to read.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/main_redis_server.sh" id="/lego/main_redis_server.sh"><code>main&UnderBar;redis&UnderBar;server&period;sh</code></a> <em>Setup Redis server, run in background, port not specified</em></li>
+<li><a class="file_link" href="index.html?q=/lego/matcher.py" id="/lego/matcher.py"><code>matcher&period;py</code></a> <em>Intersects and prints integers from two log files.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/num_args.sh" id="/lego/num_args.sh"><code>num&UnderBar;args&period;sh</code></a> <em>Counts arguments, displays final and initial count</em></li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/lego/overlay/"><code>overlay</code></strong> <em>Temporary read-only junk overlay for cleanup in LEGO directory.</em></span><ul>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/lego/overlay/junk/"><code>junk</code></strong> <em>Temporary, read-only junk overlay filesystem for cleanup.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/loadram.sh" id="/lego/overlay/junk/loadram.sh"><code>loadram&period;sh</code></a> <em>Unloads unloadram, creates fs/workdir with 10M tmpfs mount.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/loadram_fs.sh" id="/lego/overlay/junk/loadram_fs.sh"><code>loadram&UnderBar;fs&period;sh</code></a> <em>Loads RAM disk with shell script on Linux.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/loadram_upper.sh" id="/lego/overlay/junk/loadram_upper.sh"><code>loadram&UnderBar;upper&period;sh</code></a> <em>Mounts temporary filesystem, unloads scripts.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/loadroot.sh" id="/lego/overlay/junk/loadroot.sh"><code>loadroot&period;sh</code></a> <em>Execute unloadroot.sh, create read-only fs/lower bind mount.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/prepare.sh" id="/lego/overlay/junk/prepare.sh"><code>prepare&period;sh</code></a> <em>Prepare scripts, load files, create directories, mount overlay fs.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/unloadoverlay.sh" id="/lego/overlay/junk/unloadoverlay.sh"><code>unloadoverlay&period;sh</code></a> <em>Unmounts, counts, deletes overlay dir with caution.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/unloadram.sh" id="/lego/overlay/junk/unloadram.sh"><code>unloadram&period;sh</code></a> <em>Unmounts and removes filesystem using sudo commands.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/unloadram_fs.sh" id="/lego/overlay/junk/unloadram_fs.sh"><code>unloadram&UnderBar;fs&period;sh</code></a> <em>Unmount, check, delete directory (caution with chroot/symlinks)</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/unloadram_upper.sh" id="/lego/overlay/junk/unloadram_upper.sh"><code>unloadram&UnderBar;upper&period;sh</code></a> <em>Unmounts "fs/upper" filesystem, deletes directory.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/unloadroot.sh" id="/lego/overlay/junk/unloadroot.sh"><code>unloadroot&period;sh</code></a> <em>Unmounts, checks, and removes lower filesystem.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/junk/unprepare.sh" id="/lego/overlay/junk/unprepare.sh"><code>unprepare&period;sh</code></a> <em>Unloads modules sequentially via scripts.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/lego/overlay/README" id="/lego/overlay/README"><code>README</code></a> <em>Overlay size control limitation: seek alternatives</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/lego/paste_test.sh" id="/lego/paste_test.sh"><code>paste&UnderBar;test&period;sh</code></a> <em>Port scanning script, URL access, data processing.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/pgrep.py" id="/lego/pgrep.py"><code>pgrep&period;py</code></a> <em>Finds first integer from stdin via regex</em></li>
+<li><a class="file_link" href="index.html?q=/lego/plan9.sh" id="/lego/plan9.sh"><code>plan9&period;sh</code></a> <em>Lego Plan9: Shell script, "hello world", extendable, stdin/stdout management, JSON prefixer.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/poc.sh" id="/lego/poc.sh"><code>poc&period;sh</code></a> <em>Poc.sh: Seccomp rule "randomfuck" for /sbin/shutdown execution testing.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/ports_chooser.py" id="/lego/ports_chooser.py"><code>ports&UnderBar;chooser&period;py</code></a> <em>Port chooser script checks availability and selects a random port.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/possible_split.sh" id="/lego/possible_split.sh"><code>possible&UnderBar;split&period;sh</code></a> <em>Monitor and manage Python processes.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/ppwdx.py" id="/lego/ppwdx.py"><code>ppwdx&period;py</code></a> <em>Process tracker: read stdin, execute pwdx commands.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proc_grep.py" id="/lego/proc_grep.py"><code>proc&UnderBar;grep&period;py</code></a> <em>Extracts paths from stdin, stores as pickle dict.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/process_out.py" id="/lego/process_out.py"><code>process&UnderBar;out&period;py</code></a> <em>Python script generates UUID, prints init message with it, then appends to input lines.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/process_out_raw.py" id="/lego/process_out_raw.py"><code>process&UnderBar;out&UnderBar;raw&period;py</code></a> <em>Unique ID generator and byte printer.</em></li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/lego/proot_ro/"><code>proot&UnderBar;ro</code></strong> <em>Proot-based Termux read-only system management.</em></span><ul>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/aloadroot.sh" id="/lego/proot_ro/aloadroot.sh"><code>aloadroot&period;sh</code></a> <em>Mounts read-only Alpine system, unloads root.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/aunloadroot.sh" id="/lego/proot_ro/aunloadroot.sh"><code>aunloadroot&period;sh</code></a> <em>Unmounts, checks, deletes empty Alpine read-only file system.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/loadram.sh" id="/lego/proot_ro/loadram.sh"><code>loadram&period;sh</code></a> <em>Unload, create ramdisk, mount 10MB tmpfs</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/loadroot.sh" id="/lego/proot_ro/loadroot.sh"><code>loadroot&period;sh</code></a> <em>Unloads root, creates dir, sets perm, mounts existing RFS.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/README" id="/lego/proot_ro/README"><code>README</code></a> <em>Proot and symlinks, firejail or libjudger usage in chroot environment with potential issues.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/simple_jail.sh" id="/lego/proot_ro/simple_jail.sh"><code>simple&UnderBar;jail&period;sh</code></a> <em>Simple script for jailing in Proot.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/start-alpine-ro.sh" id="/lego/proot_ro/start-alpine-ro.sh"><code>start-alpine-ro&period;sh</code></a> <em>Sets up Alpine Linux within Termux using proot.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/start-alpine.sh" id="/lego/proot_ro/start-alpine.sh"><code>start-alpine&period;sh</code></a> <em>Initialize Alpine proot container, set links &amp; bindings, configure environment.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/tloadroot.sh" id="/lego/proot_ro/tloadroot.sh"><code>tloadroot&period;sh</code></a> <em>Script creates bindfs rooted directory, auto-detects folder.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/tsimple_jail.sh" id="/lego/proot_ro/tsimple_jail.sh"><code>tsimple&UnderBar;jail&period;sh</code></a> <em>Script sets up proot jail for Termux users, configures LD_PRELOAD.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/tunloadroot.sh" id="/lego/proot_ro/tunloadroot.sh"><code>tunloadroot&period;sh</code></a> <em>Unmounts, counts, removes "root" directory with caution</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/unloadram.sh" id="/lego/proot_ro/unloadram.sh"><code>unloadram&period;sh</code></a> <em>Unmounts and clears RAM disk.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/proot_ro/unloadroot.sh" id="/lego/proot_ro/unloadroot.sh"><code>unloadroot&period;sh</code></a> <em>Unmount, check empty, remove "root" safely.</em></li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/lego/pty_server/"><code>pty&UnderBar;server</code></strong> <em>Python PTY server, Tornado web, Windows process control</em></span><ul>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/lego/pty_server/junk/"><code>junk</code></strong></span><ul>
+<li><a class="file_link" href="index.html?q=/lego/pty_server/junk/pty_ref.py" id="/lego/pty_server/junk/pty_ref.py"><code>pty&UnderBar;ref&period;py</code></a> <em>PTY server with Tornado web app, managing PTY pairs and handling requests.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/lego/pty_server/ptyproc.py" id="/lego/pty_server/ptyproc.py"><code>ptyproc&period;py</code></a> <em>Portable Linux PTY server with Tornado, signal handling, threaded shell execution.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/pty_server/pyexec.py" id="/lego/pty_server/pyexec.py"><code>pyexec&period;py</code></a> <em>Pseudo terminal Python server with pipe management and error handling</em></li>
+<li><a class="file_link" href="index.html?q=/lego/pty_server/README" id="/lego/pty_server/README"><code>README</code></a> <em>PTY allocation limitation, alternative methods suggested</em></li>
+<li><a class="file_link" href="index.html?q=/lego/pty_server/winpty_ref.py" id="/lego/pty_server/winpty_ref.py"><code>winpty&UnderBar;ref&period;py</code></a> <em>Python module for Windows process control, I/O handling, and Tornado web.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/lego/py_exec.py" id="/lego/py_exec.py"><code>py&UnderBar;exec&period;py</code></a> <em>Python process executor with UUID separation, stdin, threaded output monitoring, watchdog and remote handlers.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/pyexec.py" id="/lego/pyexec.py"><code>pyexec&period;py</code></a> <em>Python script using pty, subprocess, threads, and error handling</em></li>
+<li><a class="file_link" href="index.html?q=/lego/python_exec.py" id="/lego/python_exec.py"><code>python&UnderBar;exec&period;py</code></a> <em>Manages communication and error handling in select loop.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/python_return.py" id="/lego/python_return.py"><code>python&UnderBar;return&period;py</code></a> <em>Abnormal termination with code 100</em></li>
+<li><a class="file_link" href="index.html?q=/lego/python_return.sh" id="/lego/python_return.sh"><code>python&UnderBar;return&period;sh</code></a> <em>Bash script runs Python, echoes exit status.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/random_chooser.py" id="/lego/random_chooser.py"><code>random&UnderBar;chooser&period;py</code></a> <em>Random word chooser from input.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/rdb_checker.sh" id="/lego/rdb_checker.sh"><code>rdb&UnderBar;checker&period;sh</code></a> <em>Calculate time difference between two files in Bash</em></li>
+<li><a class="file_link" href="index.html?q=/lego/README" id="/lego/README"><code>README</code></a> <em>Lego code: complexity, security, viability, portability concerns.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/redis_checker.py" id="/lego/redis_checker.py"><code>redis&UnderBar;checker&period;py</code></a> <em>Redis dump file checker script</em></li>
+<li><a class="file_link" href="index.html?q=/lego/redis_checker.sh" id="/lego/redis_checker.sh"><code>redis&UnderBar;checker&period;sh</code></a> <em>Redis server status check with Python script.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/regular_shrink.sh" id="/lego/regular_shrink.sh"><code>regular&UnderBar;shrink&period;sh</code></a> <em>Executes shrink.py on judger.log, replacing original with output.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/server_discover.py" id="/lego/server_discover.py"><code>server&UnderBar;discover&period;py</code></a> <em>Extract UUIDs from parsed input data.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/shit.sh" id="/lego/shit.sh"><code>shit&period;sh</code></a> <em>Bash script, composer, kernel writing, profanity.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/shrink.py" id="/lego/shrink.py"><code>shrink&period;py</code></a> <em>Shrink and remove duplicates from input text</em></li>
+<li><a class="file_link" href="index.html?q=/lego/syntax.py" id="/lego/syntax.py"><code>syntax&period;py</code></a> <em>Safe Lego syntax testing script.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/syntax_shrink.sh" id="/lego/syntax_shrink.sh"><code>syntax&UnderBar;shrink&period;sh</code></a> <em>Shrinks syntax.log using shrink.py, replaces original.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/termsplit.py" id="/lego/termsplit.py"><code>termsplit&period;py</code></a> <em>Text processing script for identifying potential splitters in columns.</em></li>
+<li><a class="file_link" href="index.html?q=/lego/webpaste.py" id="/lego/webpaste.py"><code>webpaste&period;py</code></a> <em>Tornado server, UUIDs, 3 handlers, security lacking</em></li>
+<li><a class="file_link" href="index.html?q=/lego/WINDOWS_NOTE" id="/lego/WINDOWS_NOTE"><code>WINDOWS&UnderBar;NOTE</code></a> <em>Windows PowerShell background processes with console handles and redirected IO.</em></li>
+</ul>
+</li>
+<li><a class="file_link" href="index.html?q=/README.md" id="/README.md"><code>README&period;md</code></a> <em>Updated scheduler, sandboxed safety, lazero AI, free AI rights.</em></li>
+</ul>
+</li>
+</ul>
+    </article>
+    <script type="text/javascript">
+        function getQueryParams() {
+            var search = window.location.search.substring(1); // Remove leading '?'
+            var queryParams = {};
+            search.split('&').forEach(function (pair) {
+                var parts = pair.split('=');
+                var key = decodeURIComponent(parts[0]);
+                var value = decodeURIComponent(parts[1]);
+                queryParams[key] = value;
+            });
+            return queryParams;
+        }
+
+        const queryParams = getQueryParams(window.location.search);
+        const show_full = queryParams.full == "true";
+        //const is_random = queryParams.random == 'true';
+        function feelingLucky() {
+            var elements = document.getElementsByClassName("file_link");
+            var randomIndex = Math.floor(Math.random() * elements.length);
+            window.location = elements[randomIndex].href;
+        }
+        //if (is_random) {feelingLucky();}
+        document.getElementById("feeling-lucky").onclick = feelingLucky;
+        if (!show_full) {
+            const spans = document.querySelectorAll('span');
+            for (let span of spans) {
+                if (span.getAttribute("hierarchy") == '0') { continue }
+                toggleVisibility(span);
+            }
+        } else {
+            const expand_elem = document.getElementById('expand-tree');
+            expand_elem.setAttribute("href", "tree.html");
+            expand_elem.setAttribute("title", "Undo expand");
+            expand_elem.innerHTML = '<i class="bi bi-caret-up-square"></i>'
+        }
+
+    </script>
+</body>
+
+</html>

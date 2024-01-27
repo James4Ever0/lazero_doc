@@ -1,0 +1,10 @@
+{
+    "summary": "This script is designed to be a flexible and extendable tool for executing Python scripts and processing their outputs. The code includes multiple examples of piping and redirection, suggesting various ways to handle input/output streams. It also hints at the possibility of developing additional tools or a web app to interact with the output data. However, the overall purpose and functionality are not entirely clear without further context or documentation.",
+    "details": [
+        {
+            "comment": "This script is designed to be a flexible and extendable tool for executing Python scripts and processing their outputs. The code includes multiple examples of piping and redirection, suggesting various ways to handle input/output streams. It also hints at the possibility of developing additional tools or a web app to interact with the output data. However, the overall purpose and functionality are not entirely clear without further context or documentation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/bash_plan.sh\":0-16",
+            "content": "#!/bin/bash\n# we are gonna use this script. does the hashtag help?\necho hello world\n# it is meant to be extensible. show me some juice.\n# create some specific tools.\n# the data is not fully under control. it is splited by return.\n# we shall never merge it in the first place. now consider what? a web app?\n# or simply interact with that web-pasteboard?\npython3 demo_error_out.py 2>&1 | python3 process_out.py\npython3 python_exec.py python3 demo_error_out.py | python3 process_out_raw.py\n# so this shell is excellent.\n# can you tell the difference?\n#python3 demo_error_out.py >[1=2] |[2] python3 process_out.py\n# there's only one stdin. so consider pipe to different process.\n# what is that?\n# so that's over. though you can run a prefixer from the command?\n# you can take arguments. then output it in json form."
+        }
+    ]
+}

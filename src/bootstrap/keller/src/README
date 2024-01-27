@@ -1,0 +1,39 @@
+go ahead, solve your problem in a brand new way instead of just manual looking and pasting. that's the purpose.
+
+diff rule: similar -> perform similarity test -> continue on children
+
+they force me to become a hacker. they deserve this: death.
+
+background -> request, handle cookies, browser history, favourites.
+
+tabs -> content processing, subrequest.
+
+firefox -> about:config -> websocket allow from https
+
+or add your root certificate. or just allow exceptions:
+
+certificate manager -> server -> add exception
+
+chrome -> chrome://flags -> allow invalid certs from localhost
+
+allow insecure websockets.
+
+add ca to system so normal code will be running fine.
+
+term->html:
+
+gem install terminal
+
+https://github.com/buildkite/terminal-to-html
+
+disable safety protocols. -> cors allowed -> plugin
+
+<RECOMPILE>
+
+what is the browser worker?
+
+so there are two choices: phantomjs, electron.
+
+or many alternatives.
+
+check if possible to run nightmare without patch?

@@ -1,0 +1,10 @@
+{
+    "summary": "The code is making an HTTP GET request to 'http://localhost:7777/input' with the parameters b64type=SGVsbG8g8J+Yig== and autoreturn=true. It is using curl command line tool, redirecting stderr to stdout and appending output to the same file.",
+    "details": [
+        {
+            "comment": "The code is making an HTTP GET request to 'http://localhost:7777/input' with the parameters b64type=SGVsbG8g8J+Yig== and autoreturn=true. It is using curl command line tool, redirecting stderr to stdout and appending output to the same file.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/type_true_b64_autoreturn.sh\":0-1",
+            "content": "#!/bin/bash\ncurl 'http://localhost:7777/input?b64type=SGVsbG8g8J+Yig==&autoreturn=true' 2>/dev/null  1>&2 "
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "summary": "The code imports libraries and defines functions for handling parallel HTTP requests with error handling and logging. It faces issues running as expected, possibly designed for a cellphone, and deals with debugging details related to a variable 'p' and slow process speed.",
+    "details": [
+        {
+            "comment": "This code is importing various libraries and defining functions to handle requests and processes. It then tries to perform parallel HTTP requests using a session-based approach, with error handling and logging the status of each request. The main execution part checks for a project list, processes it in parallel, and updates some information. However, it seems to have issues running as expected and might be designed to run on a cellphone.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/links_play/formal.py\":0-47",
+            "content": "from dbM import regcheck, inf\nimport requests\nimport requests_ftp\nfrom endmark import windowEndMarkEx\nfrom multiprocessing import Pool, freeze_support\ndef parallel(v, z):\n    with Pool(processes=len(z)) as pool:\n        return pool.map(v, z)\ndef scars(r0):\n    try:\n        requests_ftp.monkeypatch_session()\n        s = requests.Session()\n        # really fucking slow?\n        r1 = s.get(r0)\n        s.close()\n        return r1.content\n    except:\n        return\n    return\ndef wrapper(a):\n    b = scars(a)\n    print(\"DONE\", a)\n    return (b, a)\n    # dead code?\n# i do not know. maybe it is for http only.\nif __name__ == \"__main__\":\n    r = regcheck(\"projects\")\n    # print(r)\n    r = list(map(lambda x: x[0], r))\n    r = windowEndMarkEx(r, 10) # strange\n    # do it on cellphone. pack it up.\n    # maybe the .gz file really helps.\n    for x in r:\n        p = parallel(wrapper, x)\n        try:\n            inf(\"projects\", p)\n        except:\n            print(\"___FAILURE___\")\n        # really no issue?\n    # alright. problem occurs.\n    # maybe run this on cellphone?"
+        },
+        {
+            "comment": "The code appears to be debugging and printing various details about a variable 'p'. The programmer mentions a pickle issue, which seems to be causing some concern. They also note that the process is slow, but it's unclear why or what the ultimate goal of this code might be.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/links_play/formal.py\":48-58",
+            "content": "    # pickle issue.\n    # print(p)\n    # print(type(p))\n    # this is really slow as hell.\n    # print(len(p))\n    # ok now i can prepare for the stuff?\n    # just try once.\n    # for x in r:\n        # do it.\n        # r0=r[0]\n        # print(r0)"
+        }
+    ]
+}

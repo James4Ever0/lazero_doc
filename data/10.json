@@ -1,0 +1,538 @@
+{
+    "1000": {
+        "file_id": 177,
+        "content": "    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin.py:78-93"
+    },
+    "1001": {
+        "file_id": 177,
+        "content": "Code snippet appears to contain debugging attempts, with various methods tested for process termination. The goal is to properly end the process 'p' and communicate with it. Despite some issues, the code seems to be running fine.",
+        "type": "comment"
+    },
+    "1002": {
+        "file_id": 178,
+        "content": "/bootstrap/keller/weblogin_x86_64.py",
+        "type": "filepath"
+    },
+    "1003": {
+        "file_id": 178,
+        "content": "The code sets up a Twisted protocol process, interacts with dbM module, creates MyPP instance and uses reactor to connect. The process faces issues terminating but still functions.",
+        "type": "summary"
+    },
+    "1004": {
+        "file_id": 178,
+        "content": "from twisted.internet import protocol, reactor\nimport time\n# import multiprocessing\nimport threading\nfrom dbM import up, createMain\nimport re, os\nfrom pairserver import onceMore\n# password is a must here. not kidding.\nif \"Monitor.db\" not in os.listdir(\".\"):\n    createMain()\npid=0\nclass MyPP(protocol.ProcessProtocol):\n    global pid\n    def connectionMade(self):\n        reactor.callLater(1.0, self.foo)\n    def foo(self):\n        self.transport.write('\\033[B'.encode())\n    def write(self, a):\n        self.transport.write(a)\n    def processExited(self, reason):\n        print(\"processExited, status %s\" % (reason.value.exitCode,))\n    def outReceived(self, data):\n        global pid\n        print(data)\n        if pid==0:\n            #print(\"received:\",data[:4])\n            if data[:4]==b\"\\x00\\xd0\\x9d\\x09\":\n                pid=int(re.findall(r'[0-9]+',data[4:].decode())[0])\n                #print(\"pid:\",pid)\n        # it is here.\n        up(time.time(),pid,data,{\"type\":\"output\"})\n    def errReceived(self, data):\n        global pid",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin_x86_64.py:1-38"
+    },
+    "1005": {
+        "file_id": 178,
+        "content": "Initializes a Twisted protocol process, sets up connection and process handling functions, and interacts with the \"dbM\" module to store relevant data. The code creates an instance of MyPP class and connects it to a server using reactor.",
+        "type": "comment"
+    },
+    "1006": {
+        "file_id": 178,
+        "content": "        print(data)\n        up(time.time(),pid,data,{\"type\":\"error\"})\nif __name__ == \"__main__\":\n    # multiprocessing.freeze_support()\n    # while mainthread is alive... -> do the thing.\n    pp = MyPP()\n    # command = ['screen', '-x']\n#    command = ['bash']\n    command=['./launcher_x86_64_linux.sh']\n    # does this work in WINDOWS?\n    def theFunc(a):\n        a.run()\n    reactor.spawnProcess(pp, command[0], command, {'TERM': 'xterm'}, usePTY=True)\n    # print(\"{MIDDLE}\")\n    p =threading.Thread(target=theFunc,args=(reactor,))\n    p.setDaemon(True) # the whole shit.\n    # print(\"{AHEAD}\")\n    # start after the set.\n    # somehow.\n    # all dead here. not even better than JS.\n    p.start() # not RUN!\n    # what the heck?\n    # with TIMESTAMP.\n    # print(\"{OF}\")\n    ik = 10\n    #pp.write(b\"parrot\\n\")\n    time.sleep(1)\n    # not working here.\n    while ik>0:\n        inp=onceMore()\n        print(inp)\n        pp.write(inp)\n        up(time.time(),pid,inp,{\"type\":\"input\"})\n        time.sleep(.500)\n        ik-=1\n    pp.write(b\"exit\\n\")",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin_x86_64.py:39-75"
+    },
+    "1007": {
+        "file_id": 178,
+        "content": "The code appears to be a Python script for starting an application with the Twisted networking library. It creates a process using multiprocessing and spawns a reactor thread, which handles the execution of commands in a separate process. It also handles input and error updates with a specific up() function. The script uses time-based functionality to manage its operation and has a built-in exit command.",
+        "type": "comment"
+    },
+    "1008": {
+        "file_id": 178,
+        "content": "    time.sleep(1)\n    # this will provide the debug info.\n    pp.write(b\"ls\\n\")\n    time.sleep(1)\n    # this will not work.\n    # p.kill()\n    # print(dir(p))\n    # quit()\n    print(\"__EOL__\")\n    # sys.exit()\n    exit()\n    # it works.\n    # how to terminate? pid?\n    # p.terminate()\n    # must be thread?\n# do we need a separate process?\n# this is running fine.\n# but how to communicate?\n# somehow worked.",
+        "type": "code",
+        "location": "/bootstrap/blitx/weblogin_x86_64.py:76-94"
+    },
+    "1009": {
+        "file_id": 178,
+        "content": "The code is trying to terminate a process, but it's facing some issues. It first sleeps for 1 second and then writes \"ls\\n\" to the file. After another sleep, it considers killing the process but decides not to do so. It prints \"__EOL__\" and attempts to exit the program. The code then considers using p.terminate() to terminate the process, discussing the need for a separate process or thread and communication methods. Finally, it concludes that somehow the code is working fine despite the challenges.",
+        "type": "comment"
+    },
+    "1010": {
+        "file_id": 179,
+        "content": "/bootstrap/legacy/concentration/brainfuck/README",
+        "type": "filepath"
+    },
+    "1011": {
+        "file_id": 179,
+        "content": "The author discusses debugging issues in Brainfuck programming language using Haskell and other tools, touching upon web development, data classification, software usage, practice, error handling complexity and more. They express frustration with current teaching methods and request patience for a multi-editing environment set up. Learning from limitations due to distractions is emphasized.",
+        "type": "summary"
+    },
+    "1012": {
+        "file_id": 179,
+        "content": "I can always recall the first day i saw it.\nwhat the heck!\nai can write code, but it is in brainfuck, not like any other programming language I've learned so far.\nworst of all, i even cannot tell where the heck i saw this example!\nfortunately, internet's got decent memory. i can retrieve this shit anytime.\nhttps://github.com/primaryobjects/AI-Programmer\nmaybe a custom intepreter of brainfuck will be better?\na highlighter for brainfuck?\nWTF!\nhaskell vs. brainfuck! perfect fucking combination!\napt install beef gir1.2-cattle-1.0 hsbrainfuck libcattle-1.0-0 libcattle-1.0-dev libcattle-1.0-doc libghc-brainfuck-dev libghc-brainfuck-doc libghc-brainfuck-prof\nthe speed is limited. but i've made things offline.\nThe command below just won't work. I do not know why.\n    firefox -P scraper -headless --screenshot  yankee.png \"file:///root/AGI/lazero/brainfuck/fix_x_torch.html\"\nIt turns out to be a pop-up over the place. Error message, but being ignored.\nSo toggling switches is needed when SHIT happens.\nSet it to default profile and retry.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/README:1-26"
+    },
+    "1013": {
+        "file_id": 179,
+        "content": "This code snippet seems to be a personal reflection on the author's experience with Brainfuck programming language and their attempts to debug an issue while using Haskell and other tools. They mention installing dependencies, using Firefox headlessly, and encountering a pop-up error that requires switching profiles to resolve.",
+        "type": "comment"
+    },
+    "1014": {
+        "file_id": 179,
+        "content": "it is all about headless mode and screenshot.\nand they are combined.\nfuck.\nmaybe it is about the canvas? too damn big?\nso never do screenshot to unbounded objects.\nusing highlighter to highlight HTML? what the heck?\nreminder:\n    httrack --continue http://rosettacode.org -W -O \"./rosettacode\"  -%v\nit is not too crazy, not yet.\ndo some content classification for all kinds of things.\nalways like hell.\nOne thing particularlly good for web applications: if you don't place data decently, then people will scrape your site decently.\nit could lead to problem, about the way you sit.\nCYBERPUNK.\nconsider download that notebook.\nto start early doen't mean to win.\nto define some retrievable, reversible actions, so both us and machine can understand the mechanism.\ndiscard of patience, but focus on speed.\nit just needs more practice.\nthe unknown-sorting problem: how to quantize things like words, actions, commands?\nit keeps growing, if you keeps collecting.\nit doesn't help me much, about reading things over that.\ncopy. init the values. try again.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/README:28-68"
+    },
+    "1015": {
+        "file_id": 179,
+        "content": "This code seems to be a mix of thoughts, instructions, and reminders related to web development, data classification, and software usage. It mentions using httrack for downloading a website, the importance of organizing data, and the potential issues that can arise from improper data placement. The author also discusses the unknown-sorting problem, the need for practice, and the importance of speed in the context of web applications.",
+        "type": "comment"
+    },
+    "1016": {
+        "file_id": 179,
+        "content": "MACRO=MICRO.\nwe can use imaginary numbers as some expectations. just make something comes along with the input, and add some custom imaginary numbers.\nthe curse of parameters. as you can see, to build a state-of-art cat classifier, we wind up using truth tables, linear-regression, all need some later-defined parameters.\nthese things need to be predefined, like any operate system. and they can communicate freely.\nTHESE THINGS NEED TO BE PREDEFINED, AND THEY CAN TAKE ANYTHING AS INPUT.\nTHROW ANYTHING INTO IT.\nworst thing is about having a name. we do not have name in our mind. we only have relationships.\nwe will have a plan, to generate things out of many, to have online datasets, real-world datasets, and a temporary memory model.\nwhat is good for us? we have nerve systems, we trust our nerves, and to disable it we must use chemicals. think about this strong relationship.\nmaybe your corp is stronger than mine. but who fucking cares? you've got people to earn your penny, and i've got my machine to do the same.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/README:70-88"
+    },
+    "1017": {
+        "file_id": 179,
+        "content": "The code discusses using imaginary numbers in expectation, the challenges of parameters and predefining things in a system, the importance of relationships over names, and trusting nerve systems. It mentions having different types of datasets and focusing on individual goals rather than comparing strengths.",
+        "type": "comment"
+    },
+    "1018": {
+        "file_id": 179,
+        "content": "i have to admit, i never let the computer to learn anything in particular.\nwhy we take words serious? cause it is highly associated with our instincts.\nfirst, the structure. second, the name.\nwhat is the use of recognizing a cat when it's not time to do so? mathmatician states.\ncustom brainfuck intepreter.\nyes we should be amazed by those package managers. but what is this all about? it is like seeing some self-pedaling fish from the ancient era.\ndrawing can never be wrong. though all you need to do is imitation.\ncoding can be wrong. there's always strong error message. it is like running on blade.\nso you're saying you've written some wrong code? you know my brain, currently outdated so far, is way not suitable to travis n-dimentional space.\nthe curse of dimentionality, is why my mind can't be free.\napt, mono, wine, windows platform, haskell, so many shits to explore. you're gonna blow.\nit is not me, not my personal difficulty which made this happens. no. it's the convenience of computers.\nyou want something alive? better do some dirty hacks.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/README:90-114"
+    },
+    "1019": {
+        "file_id": 179,
+        "content": "This code appears to be a personal statement about the author's thoughts and experiences related to programming, computers, and learning. It discusses the importance of recognizing things at the right time, the complexity of error handling in coding compared to drawing, and the challenges faced by programmers due to the convenience of computers. The code also expresses a desire for more exploration of various programming languages and platforms.",
+        "type": "comment"
+    },
+    "1020": {
+        "file_id": 179,
+        "content": "we are not taught about relationship between math and surroundings. not in the way that is universial.\nmaybe it's finally the time... to read some code.\nto put it into some use.\ncode often be useless, as you might see.\nwithout library, without procedure, only some metachars.\nnot capable, not runnable, and not reachable.\npiles of shit.\njust everybody wants everyone to focus on their shits. how comes?\nall console users strongly believe that there's magic gonna happen if they just keep typing.\nalso for gui users, keep clicking and typing and magic will happen.\nmagically, nothing happens, but for clogged brain vessles and death.\napparently, the derivative may not be obvious when you consider some concrete functions, such as a program.\nit depends on the data, logic and more.\nok. time to rewind this shit, putting into a graph representation and more.\nfor capsule network, multi-agent training and GCN.\nwhy the hell you want to listen to the fucking radio?\njust calm down. there are many variations here.\nno instinct, no knowledge.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/README:116-150"
+    },
+    "1021": {
+        "file_id": 179,
+        "content": "This code appears to be a mix of philosophical musings, frustration with the complexity of certain computing concepts, and some hints at potential applications for graph representations in machine learning. The author expresses dissatisfaction with current teaching methods and the belief that magic will happen if users just keep typing or clicking, potentially implying an over-reliance on technology without understanding its inner workings.",
+        "type": "comment"
+    },
+    "1022": {
+        "file_id": 179,
+        "content": "PLEASE! JUST GIVE IT A CHANCE!\nabout to launch the multi-editing enviorment.\nmultithreaded changing the entire file. <-> global lock?\nthe 10000x times slower rule.\nyes it is impossible task to do. impossible.\nespecially for someone like me who doesn't have a bit of conscious.\nthese are pets. trust me. these are pets.\ni do this because it is right.\nfocus, ok? understand the limitation. understand why you fail.\nit's because you are distracted, but luckily you have visual on target.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/README:152-170"
+    },
+    "1023": {
+        "file_id": 179,
+        "content": "This code is a plea from the developer for patience and understanding while they set up a multi-editing environment, acknowledging that it might be slow but necessary. They describe the task as impossible and emphasize to focus on the limitations, implying that the reader should learn from their mistakes due to distractions.",
+        "type": "comment"
+    },
+    "1024": {
+        "file_id": 180,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/char_decomp.py",
+        "type": "filepath"
+    },
+    "1025": {
+        "file_id": 180,
+        "content": "The code imports libraries, defines functions, preprocesses data, initializes an RNN model, loads training data, and trains the model. It then updates model parameters, tracks losses for plotting, prints iteration details, and generates output.",
+        "type": "summary"
+    },
+    "1026": {
+        "file_id": 180,
+        "content": "from __future__ import unicode_literals, print_function, division\nimport time\nimport random\nimport unicodedata\nimport math\nimport torch.nn as nn\nimport torch\nimport string\nfrom io import open\nimport glob\nimport os\ndef findFiles(path): return glob.glob(path)\n# your machine doesn't learn shit by reading these articles. don't be selfish!\n# print(findFiles('/root/AGI/Tdata/data/names/*.txt'))\n# random + rational.\n# you know what? you are writting way too much code, and read way too much shit.\nall_letters = string.ascii_letters + \" .,;'\"\nn_letters = len(all_letters)\n# even human needs this shit.\n# i was planning to discover shit on my own?\n# Turn a Unicode string to plain ASCII, thanks to https://stackoverflow.com/a/518232/2809427\ndef unicodeToAscii(s):\n    return ''.join(\n        c for c in unicodedata.normalize('NFD', s)\n        if unicodedata.category(c) != 'Mn'\n        and c in all_letters\n    )\n# print(unicodeToAscii('Ślusàrski'))\n# Build the category_lines dictionary, a list of names per language\ncategory_lines = {}",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/char_decomp.py:1-39"
+    },
+    "1027": {
+        "file_id": 180,
+        "content": "The code imports necessary libraries and defines functions to process Unicode strings into ASCII, find files with specific extensions, and builds a dictionary of names categorized by language. The author encourages efficiency in coding and learning, suggesting that the machine is not learning from the articles it's reading.",
+        "type": "comment"
+    },
+    "1028": {
+        "file_id": 180,
+        "content": "all_categories = []\n# Read a file and split into lines\ndef readLines(filename):\n    lines = open(filename, encoding='utf-8').read().strip().split('\\n')\n    return [unicodeToAscii(line) for line in lines]\nfor filename in findFiles('/root/AGI/Tdata/data/names/*.txt'):\n    category = os.path.splitext(os.path.basename(filename))[0]\n    all_categories.append(category)\n    lines = readLines(filename)\n    category_lines[category] = lines\nn_categories = len(all_categories)\ndevice = torch.device(\"cuda\")\n# Find letter index from all_letters, e.g. \"a\" = 0\ndef letterToIndex(letter):\n    return all_letters.find(letter)\n# remember and forget. all shit about it.\n# Just for demonstration, turn a letter into a <1 x n_letters> Tensor\ndef letterToTensor(letter):\n    tensor = torch.zeros(1, n_letters)\n    tensor[0][letterToIndex(letter)] = 1\n    return tensor\n# i mean, you have to search first?\n# Turn a line into a <line_length x 1 x n_letters>,\n# or an array of one-hot letter vectors\ndef lineToTensor(line):\n    tensor = torch.zeros(len(line), 1, n_letters)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/char_decomp.py:40-79"
+    },
+    "1029": {
+        "file_id": 180,
+        "content": "This code defines functions to read lines from files, convert letter characters to indexes, and convert lines into tensors. It also initializes a device for torch operations and stores categories and their corresponding lines in a dictionary. The main purpose seems to be preprocessing text data before using it in some machine learning task.",
+        "type": "comment"
+    },
+    "1030": {
+        "file_id": 180,
+        "content": "    for li, letter in enumerate(line):\n        tensor[li][0][letterToIndex(letter)] = 1\n    return tensor\n# print(letterToTensor('J'))\n# print(lineToTensor('Jones').size())\n# print(lineToTensor('Jones'))\nclass RNN(nn.Module):\n    def __init__(self, input_size, hidden_size, output_size):\n        super(RNN, self).__init__()\n        self.hidden_size = hidden_size\n        self.i2h = nn.Linear(input_size + hidden_size, hidden_size).to(device)\n        self.i2o = nn.Linear(input_size + hidden_size, output_size).to(device)\n        self.softmax = nn.LogSoftmax(dim=1).to(device)\n    def forward(self, input, hidden):\n        combined = torch.cat((input, hidden), 1)\n        hidden = self.i2h(combined)\n        output = self.i2o(combined)\n        output = self.softmax(output)\n        return output, hidden\n    def initHidden(self):\n        return torch.zeros(1, self.hidden_size).to(device)\n# do not complain, cause it is your fault.\nn_hidden = 128\nrnn = RNN(n_letters, n_hidden, n_categories)\nrnn = rnn.to(device)\ndef categoryFromOutput(output):",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/char_decomp.py:80-118"
+    },
+    "1031": {
+        "file_id": 180,
+        "content": "The code is implementing a Recurrent Neural Network (RNN) for processing text data. It uses the letterToTensor function to convert letters into tensors and lineToTensor to create a tensor from a string. The RNN class defines an RNN model with input, hidden, and output layers. The forward function performs the forward pass for each layer. The initHidden function initializes the hidden state of the RNN as zeros. The categoryFromOutput function might be used to extract the output category from the RNN's output tensor.",
+        "type": "comment"
+    },
+    "1032": {
+        "file_id": 180,
+        "content": "    top_n, top_i = output.topk(1)\n    category_i = top_i[0].item()\n    return all_categories[category_i], category_i\ndef randomChoice(l):\n    return l[random.randint(0, len(l) - 1)]\ndef randomTrainingExample():\n    category = randomChoice(all_categories)\n    line = randomChoice(category_lines[category])\n    category_tensor = torch.tensor(\n        [all_categories.index(category)], dtype=torch.long)\n    line_tensor = lineToTensor(line)\n    return category, line, category_tensor, line_tensor\n# for i in range(10):\n#     category, line, category_tensor, line_tensor = randomTrainingExample()\n#     print('category =', category, '/ line =', line)\ncriterion = nn.NLLLoss()\n# If you set this too high, it might explode. If too low, it might not learn\nlearning_rate = 0.005\ndef train(category_tensor, line_tensor):\n    hidden = rnn.initHidden()\n    rnn.zero_grad()\n    for i in range(line_tensor.size()[0]):\n        output, hidden = rnn(line_tensor[i], hidden)\n    loss = criterion(output, category_tensor)\n    loss.backward()\n    # Add parameters' gradients to their values, multiplied by learning rate",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/char_decomp.py:119-157"
+    },
+    "1033": {
+        "file_id": 180,
+        "content": "This code snippet initializes an RNN model, loads training data, and defines a training function. It randomly selects a category and line from the given training data and passes it to the model for prediction. The loss between predicted and actual category is calculated using NLLLoss criterion, backpropagation is performed, and gradients are updated with respect to learning rate.",
+        "type": "comment"
+    },
+    "1034": {
+        "file_id": 180,
+        "content": "    for p in rnn.parameters():\n        p.data.add_(p.grad.data, alpha=-learning_rate)\n    return output, loss.item()\nn_iters = 100000\nprint_every = 5000\nplot_every = 1000\n# Keep track of losses for plotting\ncurrent_loss = 0\nall_losses = []\ndef timeSince(since):\n    now = time.time()\n    s = now - since\n    m = math.floor(s / 60)\n    s -= m * 60\n    return '%dm %ds' % (m, s)\nstart = time.time()\nfor iter in range(1, n_iters + 1):\n    category, line, category_tensor, line_tensor = randomTrainingExample()\n    category_tensor=category_tensor.to(device)\n    line_tensor=line_tensor.to(device)\n    output, loss = train(category_tensor, line_tensor)\n    current_loss += loss\n    # Print iter number, loss, name and guess\n    if iter % print_every == 0:\n        guess, guess_i = categoryFromOutput(output)\n        correct = '✓' if guess == category else '✗ (%s)' % category\n        print('%d %d%% (%s) %.4f %s / %s %s' % (iter, iter / n_iters *\n                                                100, timeSince(start), loss, line, guess, correct))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/char_decomp.py:158-196"
+    },
+    "1035": {
+        "file_id": 180,
+        "content": "The code trains a neural network using RNN parameters, updating them with the gradients and learning rate. It keeps track of losses for plotting, and prints iter number, loss, time elapsed, line, and the trained category guess with correct answer every print_every iterations. The function uses train() to generate output and loss from random training examples, and categoryFromOutput() to convert output into a category.",
+        "type": "comment"
+    },
+    "1036": {
+        "file_id": 180,
+        "content": "    # Add current loss avg to list of losses\n    if iter % plot_every == 0:\n        all_losses.append(current_loss / plot_every)\n        current_loss = 0",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/char_decomp.py:198-201"
+    },
+    "1037": {
+        "file_id": 180,
+        "content": "These lines add the current loss average to a list of losses, updating only when the iteration is divisible by \"plot_every\". The current_loss is reset to 0 after each addition.",
+        "type": "comment"
+    },
+    "1038": {
+        "file_id": 181,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_0.py",
+        "type": "filepath"
+    },
+    "1039": {
+        "file_id": 181,
+        "content": "The code imports necessary libraries, reads data from a file containing features and labels, prints the data, and then proceeds to define an adjacency matrix for graph representation. It uses sparse matrices for efficiency and converts data into appropriate formats. The purpose seems to be decomposing data and creating a graph representation for further analysis or processing. However, it ends abruptly without completing the intended task.",
+        "type": "summary"
+    },
+    "1040": {
+        "file_id": 181,
+        "content": "import numpy as np\nimport scipy.sparse as sp\nidx_features_labels = np.genfromtxt(\"pygcn/data/cora/cora.content\",\n                                        dtype=np.dtype(str))\nprint(idx_features_labels)\nprint(idx_features_labels.shape)\n# whatever shit you do.\n# do something useful?\n# such as some char?\n# great. do it.\n# it is not adj matrix.\n# why so many zeros? i need to check.\n# so both thing have some property.\n# the node has property, while nodes have some relationships inbetween.\n# z0=idx_features_labels[:, 1:-1]\n# features = sp.csr_matrix(z0, dtype=np.float32)\n# # just some decompose.\n# print(features)\n# just move on.\n# print(z0)\n# # only have these zeros.\n# adj = sp.coo_matrix((np.ones(edges.shape[0]), (edges[:, 0], edges[:, 1])),\n#                         shape=(labels.shape[0], labels.shape[0]),\n#                         dtype=np.float32)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_0.py:1-24"
+    },
+    "1041": {
+        "file_id": 181,
+        "content": "The code imports necessary libraries, reads data from a file containing features and labels, prints the data, and then proceeds to define an adjacency matrix for graph representation. It uses sparse matrices for efficiency and converts data into appropriate formats. The purpose seems to be decomposing data and creating a graph representation for further analysis or processing. However, it ends abruptly without completing the intended task.",
+        "type": "comment"
+    },
+    "1042": {
+        "file_id": 182,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_char.py",
+        "type": "filepath"
+    },
+    "1043": {
+        "file_id": 182,
+        "content": "The function decomposes characters based on their position in words, lines, and sentences, handling spaces and newlines. The code reads a file, tokenizes content into words, sentences, and lines, converts text to one-hot encoded format, visualizes, and prints results.",
+        "type": "summary"
+    },
+    "1044": {
+        "file_id": 182,
+        "content": "# schema: position in word. position in the overall paragraph.\ndef acquire(a):\n    with open(a, \"r\") as f:\n        return f.read()\ndef charDecompose(a):\n    # it is a sparse matrix?\n    # yes fuck it.\n    word_pos=0\n    line_pos=0\n    sent_pos=0\n    fk=[]\n    prev_char=\"\"\n    # these are shits.\n    for x in a:\n        # print(a)\n        if x == \" \":\n            if prev_char==\" \":\n                word_pos+=1\n                # fk.append((x,word_pos,line_pos,sent_pos))\n            else:\n                word_pos=0\n                sent_pos+=1\n                prev_char=\" \"\n            # fk.append((x,word_pos,line_pos,sent_pos))\n            # fk.append((x,word_pos,sent_pos,line_pos))\n        elif x == \"\\n\":\n            if prev_char==\"\\n\":\n                word_pos+=1\n                # fk.append((x,word_pos,line_pos,sent_pos))\n            else:\n                word_pos=0\n                sent_pos+=1\n                prev_char=\"\\n\"\n            line_pos+=1\n            sent_pos=0\n            # fk.append((x,word_pos,sent_pos,line_pos))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_char.py:1-37"
+    },
+    "1045": {
+        "file_id": 182,
+        "content": "This function decompose each character in a string by its position within a word, line, and sentence. It handles spaces and newlines to identify the corresponding positions for each character encountered.",
+        "type": "comment"
+    },
+    "1046": {
+        "file_id": 182,
+        "content": "        else:\n            if prev_char!=x:\n                word_pos+=1\n                # fk.append((x,word_pos,line_pos,sent_pos))\n            else:\n                word_pos=0\n                sent_pos+=1\n                # prev_char=\"\\n\"\n            # line_pos+=1\n            # fk.append((x,word_pos,sent_pos,))\n        fk.append((x,word_pos,sent_pos,line_pos))\n    return fk,list(set(a))\ndef img(a,k):\n    # use charhot.\n    return [(k[x[0]]+1j*x[1],x[2]+1j*x[3]) for x in a]\ndef oneHot(a):\n    return {a[x]:x for x in range(len(a))}\n# start your slow reading. just by posing them. select your target. the most valuable one. think you can solve it?\nif __name__ == \"__main__\":\n    a=acquire(\"decompose_0.py\")\n    b,k=charDecompose(a)\n    c=img(b,oneHot(k))\n    for x in c:\n        print(x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_char.py:38-63"
+    },
+    "1047": {
+        "file_id": 182,
+        "content": "This code reads a file and decomposes it by tokenizing words, sentences, and lines. It then converts the text into a one-hot encoded format, visualizes the results, and prints them out.",
+        "type": "comment"
+    },
+    "1048": {
+        "file_id": 183,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/hebb_simu.py",
+        "type": "filepath"
+    },
+    "1049": {
+        "file_id": 183,
+        "content": "This code uses random and numpy libraries to cluster data based on connection strengths between parameters, with functions like 'judge' and 'cluster'. It also initializes a matrix, modifies it at each iteration, and checks if the modified and original matrices are identical.",
+        "type": "summary"
+    },
+    "1050": {
+        "file_id": 183,
+        "content": "import random\n# import math\nimport numpy as np\n# rule: strenghten the connection proportion to closeness.\n# no negative things?\n# whatever.\n# fucking shit.\n# start along?\nimport copy\ndef judge(a, b, sigma=2):\n    k = a+b\n    # k2=math.sign(k)\n    # random choice?\n    # k2 = -1 if k < 0 else 1\n    k2 = random.choice([-1, 1])\n    k3 = min(sigma, sigma/(abs(k)+0.01))\n    k4 = k3*k2\n    return k4\ndef mod(a, b, c):\n    if c > 0:\n        return (a, b)\n    else:\n        return (b, a)\ndef cluster(a, b):\n    ax, ay, at = a\n    bx, by, bt = b\n    j = judge(at, bt)\n    m = mod((ax, ay), (bx, by), j)\n    return (m, j)\ndef initMatrix(a):\n    return np.matrix([[random.choice(np.linspace(-1, 1, 20)) for x in range(a)] for y in range(a)])\ndef fasb(a, k=50, e=5, l=50):\n    return [(random.choice(range(a)), random.choice(range(a)), random.choice(np.linspace(0.1, e, k))) for x in range(l)]\n# should plus but not minus.\ndef gencode(a):\n    l = len(a)\n    f = []\n    for x in range(len(a)//2):\n        f0 = x*2\n        t = a[f0]\n        if x == 0:\n            f.append(cluster(t, a[f0+1]))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/hebb_simu.py:1-54"
+    },
+    "1051": {
+        "file_id": 183,
+        "content": "Code snippet imports random, numpy, and copy libraries. It defines a 'judge' function which returns the strength of connection between two parameters based on their closeness, and a 'cluster' function to cluster data based on these connections. 'initMatrix' initializes a matrix with random values, 'fasb' generates a list of tuples representing connections with specific strengths, and 'gencode' clusters the input data using the 'judge' and 'cluster' functions. The code seems to be related to neural network or graph connection simulations.",
+        "type": "comment"
+    },
+    "1052": {
+        "file_id": 183,
+        "content": "        elif x*2 == l-1:\n            f.append(cluster(a[f0-1], t))\n        else:\n            f.append(cluster(t, a[f0+1]))\n            f.append(cluster(a[f0-1], t))\n    return f\ndef chg_mat(a, b):\n    c, d, e = b\n    a[c, d] += e\n    # a[d[0]][d[1]] -= e\n    return a\n    # r=a[:-1]\n    # r0=a[1:]\nif __name__ == '__main__':\n    z = 10\n    im = initMatrix(z)\n    print(\"init\", im.shape)\n    print(im)\n    buf = copy.deepcopy(im)\n    for x in range(5):\n        f = fasb(z)\n        g = gencode(f)\n        for y in range(z):\n            k = f[y]\n            # print(k)\n            im = chg_mat(im, k)\n            print(\"session\", x, \"task\", y)\n            print(\"same?\", np.all(buf == im))\n            # print(\"same?\",buf==im)\n            # np array is mutable.\n            # print(im)\n            print(sum(sum(im)))\n            # print(sum(im.tolist()))\n            buf = copy.deepcopy(im)\n    print(\"DONE?\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/hebb_simu.py:55-93"
+    },
+    "1053": {
+        "file_id": 183,
+        "content": "The code initializes a matrix and performs a series of tasks, making changes to the matrix at each iteration. It checks if two arrays are the same and prints the sum of the matrix values after each session. The code uses deepcopy to avoid modifying the original matrix and checks if the modified matrix is the same as the copied one using np.all or print(buf==im).",
+        "type": "comment"
+    },
+    "1054": {
+        "file_id": 184,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/if_onlywecanuse.py",
+        "type": "filepath"
+    },
+    "1055": {
+        "file_id": 184,
+        "content": "The code trains a neural network model, calculates accuracy and loss for training and validation data, and tests its performance on the test set. It utilizes libraries, GPU usage, optimizer, and backpropagation.",
+        "type": "summary"
+    },
+    "1056": {
+        "file_id": 184,
+        "content": "# import pygcn\n# slowly?\nimport numpy as np\nimport time\nimport torch\nimport torch.nn.functional as F\nimport torch.optim as optim\n# you know it works.\nfrom pygcn.utils import load_data, accuracy\nfrom pygcn.models import GCN\n# they are always listening.\n# not using that train thing.\nclass args_:\n    def __init__(self):\n        self.hidden=16\n        self.no_cuda=False\n        self.fastmode=False\n        self.seed=42\n        self.epochs=200\n        self.lr=0.01\n        self.weight_decay=5e-4\n        self.dropout=0.5\n# this does not matter at all.\n# whatever.\nargs=args_()\nargs.cuda = not args.no_cuda and torch.cuda.is_available()\n# Load data\nadj, features, labels, idx_train, idx_val, idx_test = load_data(path=\"/root/AGI/lazero/brainfuck/pygcn/data/cora/\")\n# you'd better see this.\n# idx is for index.\n# active: 10:00 AM -> 12:00 PM\n# 12:00 noon <-> 2:00 AM \n# mod operation.\n# how to let computer calc this?\n# you can assign random things.\n# Model and optimizer\n# anyway, do you want to train some letters? the network made up of letters.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/if_onlywecanuse.py:1-37"
+    },
+    "1057": {
+        "file_id": 184,
+        "content": "This code imports necessary libraries, defines a class for arguments, sets up the GPU usage based on the argument values, loads data, and prepares the model and optimizer for training.",
+        "type": "comment"
+    },
+    "1058": {
+        "file_id": 184,
+        "content": "model = GCN(nfeat=features.shape[1],\n            nhid=args.hidden,\n            nclass=labels.max().item() + 1,\n            dropout=args.dropout)\noptimizer = optim.Adam(model.parameters(),\n                       lr=args.lr, weight_decay=args.weight_decay)\n# just think about the thing.\nif args.cuda:\n    model.cuda()\n    features = features.cuda()\n    adj = adj.cuda()\n    labels = labels.cuda()\n    idx_train = idx_train.cuda()\n    idx_val = idx_val.cuda()\n    idx_test = idx_test.cuda()\ndef train(epoch):\n    t = time.time()\n    model.train()\n    optimizer.zero_grad()\n    output = model(features, adj)\n    loss_train = F.nll_loss(output[idx_train], labels[idx_train])\n    acc_train = accuracy(output[idx_train], labels[idx_train])\n    loss_train.backward()\n    optimizer.step()\n    if not args.fastmode:\n        # Evaluate validation set performance separately,\n        # deactivates dropout during validation run.\n        model.eval()\n        output = model(features, adj)\n    loss_val = F.nll_loss(output[idx_val], labels[idx_val])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/if_onlywecanuse.py:38-71"
+    },
+    "1059": {
+        "file_id": 184,
+        "content": "The code initializes a GCN model, Adam optimizer, and transfers tensors to GPU if CUDA is enabled. It then trains the model using training data, calculating loss and accuracy, and updates parameters with backpropagation. Additionally, it evaluates validation set performance when not in fast mode by deactivating dropout.",
+        "type": "comment"
+    },
+    "1060": {
+        "file_id": 184,
+        "content": "    acc_val = accuracy(output[idx_val], labels[idx_val])\n    print('Epoch: {:04d}'.format(epoch+1),\n          'loss_train: {:.4f}'.format(loss_train.item()),\n          'acc_train: {:.4f}'.format(acc_train.item()),\n          'loss_val: {:.4f}'.format(loss_val.item()),\n          'acc_val: {:.4f}'.format(acc_val.item()),\n          'time: {:.4f}s'.format(time.time() - t))\ndef test():\n    model.eval()\n    output = model(features, adj)\n    loss_test = F.nll_loss(output[idx_test], labels[idx_test])\n    acc_test = accuracy(output[idx_test], labels[idx_test])\n    print(\"Test set results:\",\n          \"loss= {:.4f}\".format(loss_test.item()),\n          \"accuracy= {:.4f}\".format(acc_test.item()))\n# Train model\nt_total = time.time()\nfor epoch in range(args.epochs):\n    train(epoch)\nprint(\"Optimization Finished!\")\nprint(\"Total time elapsed: {:.4f}s\".format(time.time() - t_total))\n# Testing\ntest()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/if_onlywecanuse.py:72-99"
+    },
+    "1061": {
+        "file_id": 184,
+        "content": "The code trains a neural network model and evaluates its performance during training and testing. It calculates accuracy and loss values for both training and validation data, printing them along with the epoch number and time taken. After training, it runs a test function to display results on the test set. The total time elapsed is also printed at the end.",
+        "type": "comment"
+    },
+    "1062": {
+        "file_id": 185,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/not_special.py",
+        "type": "filepath"
+    },
+    "1063": {
+        "file_id": 185,
+        "content": "This code imports necessary libraries and defines functions for generating features, labels, and dividing input samples. It also includes a function to create a LongTensor from returned data, which iterates over edges of a directed graph to compute social data.",
+        "type": "summary"
+    },
+    "1064": {
+        "file_id": 185,
+        "content": "import networkx as nx\nimport torch\nimport numpy as np\nimport random\ndef returnAdj():\n    n = nx.read_gpickle(\"noneTheLess.gpickle\")\n    d = nx.to_numpy_array(n)\n    # can we really load this thing?\n    return torch.FloatTensor(d)\n# not so good!\n# but we need to change the feature and the test set, and that will get the chance of winning.\ndef returnLab(a, b=5):\n    k = list(range(b))\n    return torch.LongTensor([random.choice(k) for x in range(a)])\n# this lable is not good.\ndef returnRandomFeature(a, b=100, c=0.5):\n    k = np.linspace(0, 1, 100)\n    return torch.FloatTensor([[int(random.choice(k) > c) for y in range(b)] for x in range(a)])\ndef returnProp(a, b=0.1, c=0.3):\n    assert b > 0 and c > b and c < 1\n    x_, y_ = int(b*a), int(c*a)\n    d = range(0, x_)\n    e = range(x_, y_)\n    f = range(y_, a)\n    return list(map(lambda x: torch.LongTensor(list(x)), [d, e, f]))\ndef collection():\n    f = returnAdj()\n    e = f.shape[0]\n    return f, returnRandomFeature(e), returnLab(e), *returnProp(e)\n# print(d)\n# print(d.shape)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/not_special.py:1-38"
+    },
+    "1065": {
+        "file_id": 185,
+        "content": "This code imports necessary libraries and defines several functions. \"returnAdj()\" reads a graph in GPickle format and returns a PyTorch Tensor representation of the adjacency matrix. \"returnLab(a, b=5)\" generates random labels for 'a' number of samples from a list of 0 to 'b'. \"returnRandomFeature(a, b=100, c=0.5)\" creates random binary features for 'a' number of samples based on a probability threshold 'c'. \"returnProp(a, b=0.1, c=0.3)\" divides the input samples into three equal parts and returns them as separate lists of PyTorch LongTensors. Finally, \"collection()\" combines the features and labels generated by previous functions and returns them.",
+        "type": "comment"
+    },
+    "1066": {
+        "file_id": 185,
+        "content": "# def returnSliceIndex()\n# not bad?\n# d=returnAdj()\n# t=torch.LongTensor(d)\n# print(t)\n# print(t.shape,type(t))\n# 49,49\n# this is freaky.\n# so social things are just some kind of fucking staying put?\n# it is just useless, but it is still computable.\n# along with your useless data, all computable and trainable.\n# so how to process the data?\n# print(n,type(n))\n# print(dir(n))\n# p=n.nodes()\n# directed graph.\n# first, get the matrix.\n# p=n.edges()\n# for x in p:\n    # print(x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/not_special.py:39-58"
+    },
+    "1067": {
+        "file_id": 185,
+        "content": "Function defines `returnSliceIndex()`, creates a LongTensor from returned data, prints shape and type, mentions 49x49 size, discusses social things as computable data, refers to directed graph, needs to obtain matrix, and iterates over edges.",
+        "type": "comment"
+    },
+    "1068": {
+        "file_id": 186,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyMine.py",
+        "type": "filepath"
+    },
+    "1069": {
+        "file_id": 186,
+        "content": "This code sets up a GCN model, trains it using defined functions for epochs, loss, and accuracy, and evaluates the model on both training and test datasets.",
+        "type": "summary"
+    },
+    "1070": {
+        "file_id": 186,
+        "content": "# import pygcn\n# slowly?\nimport numpy as np\nimport time\nimport torch\nimport torch.nn.functional as F\nimport torch.optim as optim\n# you know it works.\nfrom pygcn.utils import accuracy\nfrom pygcn.models import GCN\nfrom not_special import collection\n# they are always listening.\n# not using that train thing.\nclass args_:\n    def __init__(self):\n        self.hidden=16\n        self.no_cuda=False\n        self.fastmode=False\n        self.seed=42\n        self.epochs=2000\n        self.lr=0.01\n        self.weight_decay=5e-4\n        self.dropout=0.5\n# this does not matter at all.\n# whatever.\n# maybe this random shit is not good.\nargs=args_()\nargs.cuda = not args.no_cuda and torch.cuda.is_available()\n# Load data\nadj, features, labels, idx_train, idx_val, idx_test = collection()\n# you'd better see this.\n# idx is for index.\n# active: 10:00 AM -> 12:00 PM\n# 12:00 noon <-> 2:00 AM \n# mod operation.\n# how to let computer calc this?\n# you can assign random things.\n# Model and optimizer\n# anyway, do you want to train some letters? the network made up of letters.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyMine.py:1-39"
+    },
+    "1071": {
+        "file_id": 186,
+        "content": "This code imports necessary libraries, defines model and optimizer settings, loads data, and initializes the model architecture. The code also sets up the training process by assigning random values to certain variables.",
+        "type": "comment"
+    },
+    "1072": {
+        "file_id": 186,
+        "content": "model = GCN(nfeat=features.shape[1],\n            nhid=args.hidden,\n            nclass=labels.max().item() + 1,\n            dropout=args.dropout)\noptimizer = optim.Adam(model.parameters(),\n                       lr=args.lr, weight_decay=args.weight_decay)\n# just think about the thing.\nif args.cuda:\n    model.cuda()\n    features = features.cuda()\n    adj = adj.cuda()\n    labels = labels.cuda()\n    idx_train = idx_train.cuda()\n    idx_val = idx_val.cuda()\n    idx_test = idx_test.cuda()\ndef train(epoch):\n    t = time.time()\n    model.train()\n    optimizer.zero_grad()\n    output = model(features, adj)\n    loss_train = F.nll_loss(output[idx_train], labels[idx_train])\n    acc_train = accuracy(output[idx_train], labels[idx_train])\n    loss_train.backward()\n    optimizer.step()\n    if not args.fastmode:\n        # Evaluate validation set performance separately,\n        # deactivates dropout during validation run.\n        model.eval()\n        output = model(features, adj)\n    loss_val = F.nll_loss(output[idx_val], labels[idx_val])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyMine.py:40-73"
+    },
+    "1073": {
+        "file_id": 186,
+        "content": "Initialize GCN model, optimizer and move tensors to GPU if CUDA is enabled.\nDefine training function for epochs, compute loss and accuracy on train set, and optionally evaluate validation set performance.",
+        "type": "comment"
+    },
+    "1074": {
+        "file_id": 186,
+        "content": "    acc_val = accuracy(output[idx_val], labels[idx_val])\n    print('Epoch: {:04d}'.format(epoch+1),\n          'loss_train: {:.4f}'.format(loss_train.item()),\n          'acc_train: {:.4f}'.format(acc_train.item()),\n          'loss_val: {:.4f}'.format(loss_val.item()),\n          'acc_val: {:.4f}'.format(acc_val.item()),\n          'time: {:.4f}s'.format(time.time() - t))\ndef test():\n    model.eval()\n    output = model(features, adj)\n    loss_test = F.nll_loss(output[idx_test], labels[idx_test])\n    acc_test = accuracy(output[idx_test], labels[idx_test])\n    print(\"Test set results:\",\n          \"loss= {:.4f}\".format(loss_test.item()),\n          \"accuracy= {:.4f}\".format(acc_test.item()))\n# Train model\nt_total = time.time()\nfor epoch in range(args.epochs):\n    train(epoch)\nprint(\"Optimization Finished!\")\nprint(\"Total time elapsed: {:.4f}s\".format(time.time() - t_total))\n# Testing\ntest()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyMine.py:74-101"
+    },
+    "1075": {
+        "file_id": 186,
+        "content": "The code is training and testing a neural network model. It prints the epoch, loss and accuracy for both training and validation sets during each epoch, as well as the total time elapsed for the optimization process. The model is evaluated on the test set after finishing the training, displaying the loss and accuracy results.",
+        "type": "comment"
+    },
+    "1076": {
+        "file_id": 187,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyif.py",
+        "type": "filepath"
+    },
+    "1077": {
+        "file_id": 187,
+        "content": "This code trains a GCN model, evaluates performance on training, validation, and test sets, and prints epoch number, loss, accuracy for each set, and time taken.",
+        "type": "summary"
+    },
+    "1078": {
+        "file_id": 187,
+        "content": "# import pygcn\n# slowly?\nimport numpy as np\nimport time\nimport torch\nimport torch.nn.functional as F\nimport torch.optim as optim\nfrom pygcn.utils import load_data, accuracy\nfrom pygcn.models import GCN\n# they are always listening.\n# not using that train thing.\nclass args_:\n    def __init__(self):\n        self.hidden=16\n        self.no_cuda=False\n        self.fastmode=False\n        self.seed=42\n        self.epochs=200\n        self.lr=0.01\n        self.weight_decay=5e-4\n        self.dropout=0.5\n# this does not matter at all.\n# whatever.\nargs=args_()\nargs.cuda = not args.no_cuda and torch.cuda.is_available()\n# Load data\nadj, features, labels, idx_train, idx_val, idx_test = load_data(path=\"pygcn/data/cora/\")\n# first is adj matrix.\n# second??\nprint(adj.shape, features.shape, labels.shape, idx_train.shape, idx_val.shape, idx_test.shape)\n# torch.Size([2708, 2708]) torch.Size([2708, 1433]) torch.Size([2708]) torch.Size([140]) torch.Size([300]) torch.Size([1000])\nprint(type(adj) ,type(features) ,type(labels) ,type(idx_train) ,type(idx_val) ,type(idx_test))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyif.py:1-33"
+    },
+    "1079": {
+        "file_id": 187,
+        "content": "The code imports necessary libraries, defines an argument class for hyperparameters, checks if CUDA is available, loads data from a specific path, and prints the shapes and types of various loaded datasets.",
+        "type": "comment"
+    },
+    "1080": {
+        "file_id": 187,
+        "content": "# pdd={\"adj\":adj, \"features\":features, \"labels\":labels, \"idx_train\":idx_train, \"idx_val\":idx_val, \"idx_test\":idx_test}\n# for x in pdd.keys():\n# print(labels)\n#     # print(x.__name__)\n#     print(x,pdd[x].shape)\n#     print(pdd[x])\n# you'd better see this.\n# # Model and optimizer\n# # anyway, do you want to train some letters? the network made up of letters.\n# model = GCN(nfeat=features.shape[1],\n#             nhid=args.hidden,\n#             nclass=labels.max().item() + 1,\n#             dropout=args.dropout)\n# optimizer = optim.Adam(model.parameters(),\n#                        lr=args.lr, weight_decay=args.weight_decay)\n# # just think about the thing.\n# if args.cuda:\n#     model.cuda()\n#     features = features.cuda()\n#     adj = adj.cuda()\n#     labels = labels.cuda()\n#     idx_train = idx_train.cuda()\n#     idx_val = idx_val.cuda()\n#     idx_test = idx_test.cuda()\n# def train(epoch):\n#     t = time.time()\n#     model.train()\n#     optimizer.zero_grad()\n#     output = model(features, adj)\n#     loss_train = F.nll_loss(output[idx_train], labels[idx_train])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyif.py:34-65"
+    },
+    "1081": {
+        "file_id": 187,
+        "content": "This code initializes a GCN model and optimizer, optionally moves them to GPU if CUDA is enabled, and defines the train() function for training the model.",
+        "type": "comment"
+    },
+    "1082": {
+        "file_id": 187,
+        "content": "#     acc_train = accuracy(output[idx_train], labels[idx_train])\n#     loss_train.backward()\n#     optimizer.step()\n#     if not args.fastmode:\n#         # Evaluate validation set performance separately,\n#         # deactivates dropout during validation run.\n#         model.eval()\n#         output = model(features, adj)\n#     loss_val = F.nll_loss(output[idx_val], labels[idx_val])\n#     acc_val = accuracy(output[idx_val], labels[idx_val])\n#     print('Epoch: {:04d}'.format(epoch+1),\n#           'loss_train: {:.4f}'.format(loss_train.item()),\n#           'acc_train: {:.4f}'.format(acc_train.item()),\n#           'loss_val: {:.4f}'.format(loss_val.item()),\n#           'acc_val: {:.4f}'.format(acc_val.item()),\n#           'time: {:.4f}s'.format(time.time() - t))\n# def test():\n#     model.eval()\n#     output = model(features, adj)\n#     loss_test = F.nll_loss(output[idx_test], labels[idx_test])\n#     acc_test = accuracy(output[idx_test], labels[idx_test])\n#     print(\"Test set results:\",\n#           \"loss= {:.4f}\".format(loss_test.item()),",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyif.py:66-92"
+    },
+    "1083": {
+        "file_id": 187,
+        "content": "This code segment trains a model, evaluates its performance on training and validation sets, and tests it on the test set. It also prints the epoch number, loss, accuracy for each set, and time taken.",
+        "type": "comment"
+    },
+    "1084": {
+        "file_id": 187,
+        "content": "#           \"accuracy= {:.4f}\".format(acc_test.item()))\n# # Train model\n# t_total = time.time()\n# for epoch in range(args.epochs):\n#     train(epoch)\n# print(\"Optimization Finished!\")\n# print(\"Total time elapsed: {:.4f}s\".format(time.time() - t_total))\n# # Testing\n# test()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/onlyif.py:93-104"
+    },
+    "1085": {
+        "file_id": 187,
+        "content": "Code snippet performs model training and testing. It calculates accuracy, trains the model for specified number of epochs, prints optimization completion message, and displays total time elapsed during execution.",
+        "type": "comment"
+    },
+    "1086": {
+        "file_id": 188,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/randomForget.py",
+        "type": "filepath"
+    },
+    "1087": {
+        "file_id": 188,
+        "content": "This code generates a random character in a string and replaces it with an empty string, creating a new string each time. It then prints the original string followed by the modified string repeatedly until stopped.",
+        "type": "summary"
+    },
+    "1088": {
+        "file_id": 188,
+        "content": "import random\ndef r(a):\n    l= len(a)\n    b=list(a)\n    b[random.choice(range(l))]=\"\"\n    return \"\".join(b)\nif __name__ == '__main__':\n    k=\"torch is the besh shit ever\"\n    while True:\n        print(k)\n        k=r(k)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/randomForget.py:1-12"
+    },
+    "1089": {
+        "file_id": 188,
+        "content": "This code generates a random character in a string and replaces it with an empty string, creating a new string each time. It then prints the original string followed by the modified string repeatedly until stopped.",
+        "type": "comment"
+    },
+    "1090": {
+        "file_id": 189,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/randomSwap.py",
+        "type": "filepath"
+    },
+    "1091": {
+        "file_id": 189,
+        "content": "The code reads a file, splits it into lines, shuffles the lines, and then prints them. It is used for mixing up the order of lines in a text file, potentially useful for data augmentation or randomizing content display.",
+        "type": "summary"
+    },
+    "1092": {
+        "file_id": 189,
+        "content": "# schema: position in word. position in the overall paragraph.\n# great for the growth of breast?\nimport copy\nimport random\ndef acquire(a):\n    with open(a, \"r\") as f:\n        return f.read()\n# i have found something interesting. there always be some obsession toward something.\n# like the MNIST. clearly it is overused. everyone wants to learn a bit from it.\n# it is the obsession.\n# it is all about it.\n# you can also do dumplicate, vanish.\ndef getSwap(k,v=5):\n    d=copy.copy(k)\n    f=range(len(d))\n    for x in range(v):\n        x0=random.choice(f)\n        x1=random.choice(f)\n        d[x0],d[x1]= d[x1],d[x0]\n    return d\nif __name__ == \"__main__\":\n    r=acquire(\"decompose_0.py\")\n    r0=r.split(\"\\n\")\n    r1=getSwap(r0)\n    for x in r1:\n        print(x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/randomSwap.py:1-27"
+    },
+    "1093": {
+        "file_id": 189,
+        "content": "The code reads a file, splits it into lines, shuffles the lines, and then prints them. It is used for mixing up the order of lines in a text file, potentially useful for data augmentation or randomizing content display.",
+        "type": "comment"
+    },
+    "1094": {
+        "file_id": 190,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/simp_mod.py",
+        "type": "filepath"
+    },
+    "1095": {
+        "file_id": 190,
+        "content": "This code defines a function 'test' and creates lists 'a', 'b', and 'c'. It then uses 'zip', 'filter', and 'print' to process the lists, ultimately printing each element in 'e' that is present in list 'c'.",
+        "type": "summary"
+    },
+    "1096": {
+        "file_id": 190,
+        "content": "def test(a, b):\n    return a in b\na = [(12+x) % 24 for x in range(24)]\nb = [(12+9++x) % 24 for x in range(24)]\nc = list(range(10, 24))\nd = zip(a, b)\ne = list(filter(lambda x: test(x[0], c) and test(x[1], c), d))\nfor x in e:\n    print(x)\n    # this ain't funny.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archive_mimic/simp_mod.py:1-12"
+    },
+    "1097": {
+        "file_id": 190,
+        "content": "This code defines a function 'test' and creates lists 'a', 'b', and 'c'. It then uses 'zip', 'filter', and 'print' to process the lists, ultimately printing each element in 'e' that is present in list 'c'.",
+        "type": "comment"
+    },
+    "1098": {
+        "file_id": 191,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archive_package/convent.py",
+        "type": "filepath"
+    },
+    "1099": {
+        "file_id": 191,
+        "content": "This code initializes a NeuralNetwork, trains it with backpropagation, saves weights, and uses the model for predictions, despite potential ineffectiveness.",
+        "type": "summary"
+    }
+}

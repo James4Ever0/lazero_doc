@@ -1,0 +1,10 @@
+{
+    "summary": "The code defines a function \"klean\" that uses the \"pywalk\" module to iterate over a given node. It appends node values, levels, and paths to list \"am\". If any exception occurs, it returns the current state of \"am\". The purpose seems to extract information from nodes in some hierarchical structure.",
+    "details": [
+        {
+            "comment": "The code defines a function \"klean\" that uses the \"pywalk\" module to iterate over a given node. It appends node values, levels, and paths to list \"am\". If any exception occurs, it returns the current state of \"am\". The purpose seems to extract information from nodes in some hierarchical structure.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/klean.py\":0-35",
+            "content": "import pywalk\ndef klean(node):\n    am = []\n    # real shit to make things work.\n    @pywalk.walk(node)\n    # what the fuck?\n    # what if it is about some big, huge nodes?\n    # we do not talk about it.\n    def ak(node):\n        # dir(node),\n        # what is that is_leaf func?\n        # use yleid?\n        try:\n            am.append((node.value, node.level, node.path))\n            # print\n            return True\n        except:\n            return None\n        # print(\">>>report\", node.value, node.is_leaf,\n            # node.is_root, node.key, node.level, node.path)\n    # am=[]\n    try:\n        for x in ak(node):\n            try:\n                if x is not None:\n                    # am.append(x)\n                    pass\n                else:\n                    return am\n                    # break\n            except:\n                return am\n                # break\n    except:\n        return am\n    return am"
+        }
+    ]
+}

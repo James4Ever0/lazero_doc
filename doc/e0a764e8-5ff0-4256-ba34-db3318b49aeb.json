@@ -1,0 +1,10 @@
+{
+    "summary": "The code discusses a limitation on the maximum number of PTY allocations in kernel compilation time, suggesting a cut-down version of pty for trivial tasks or alternative methods such as subprocess.Popen to avoid creating script kiddies.",
+    "details": [
+        {
+            "comment": "The code discusses a limitation on the maximum number of PTY allocations in kernel compilation time, suggesting a cut-down version of pty for trivial tasks or alternative methods such as subprocess.Popen to avoid creating script kiddies.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/pty_server/README\":0-10",
+            "content": "there seems to be some limitation over the spot. maximum pty allocation limit in kernel compliation time.\nhttps://linux.die.net/man/7/pty#:~:text=The%20Linux%20kernel%20imposes%20a%20limit%20on%20the,to%202048%2C%20with%20a%20default%20setting%20of%20256.`\ni suggest you use cut-down version of pty to do trivial task, which not including the reading, or just about flushing every time.\nif not listen, the shit might not start and balls will fall off.\nor you can just try, do it in another non-terminal way. such as subprocess.Popen, which just will create script kiddies.\nor better not. let's just search."
+        }
+    ]
+}

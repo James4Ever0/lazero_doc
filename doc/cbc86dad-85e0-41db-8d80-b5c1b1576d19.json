@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the \"markovtextgen\" module and defines a function called \"generate\". It takes a file path and a word number as arguments. The function reads in a list of words from the specified file, limits it to 100 words if necessary, generates an n-gram count matrix using the \"markovtextgen\" library, and then uses this matrix to generate new text with the specified word count. The code also includes a demo usage example.",
+    "details": [
+        {
+            "comment": "This code imports the \"markovtextgen\" module and defines a function called \"generate\". It takes a file path and a word number as arguments. The function reads in a list of words from the specified file, limits it to 100 words if necessary, generates an n-gram count matrix using the \"markovtextgen\" library, and then uses this matrix to generate new text with the specified word count. The code also includes a demo usage example.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/new_toys/markovgen.py\":0-14",
+            "content": "import markovtextgen as mt\nimport random\ndef generate(filepath,wordnum):\n    m=mt.get_word_list(filepath)\n#    print(m)\n    if len(m)>100:\n        m=random.sample(m,100)\n    y=mt.get_ngram_counts(m)\n    v=mt.generate_text(y,wordnum)\n    return v\nif __name__ ==\"__main__\":\n    #demo\n    g=generate(\"pypi_indexer.py\",4)\n    print(g)"
+        }
+    ]
+}

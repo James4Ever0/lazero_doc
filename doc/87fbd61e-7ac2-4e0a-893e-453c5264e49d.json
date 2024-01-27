@@ -1,0 +1,10 @@
+{
+    "summary": "Code runs two scripts, indicator.sh and batcher.sh, in the background.",
+    "details": [
+        {
+            "comment": "Code runs two scripts, indicator.sh and batcher.sh, in the background.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/aloof.sh\":0-1",
+            "content": "#!/bin/bash\n./indicator.sh & ./batcher.sh"
+        }
+    ]
+}

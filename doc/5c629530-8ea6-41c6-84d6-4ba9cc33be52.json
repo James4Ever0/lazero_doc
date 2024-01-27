@@ -1,0 +1,10 @@
+{
+    "summary": "This script continuously runs the \"weblogin_x86_64.py\" Python program in a loop.",
+    "details": [
+        {
+            "comment": "This script continuously runs the \"weblogin_x86_64.py\" Python program in a loop.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/batcher_x86_64.sh\":0-4",
+            "content": "#!/bin/bash\nwhile true\ndo\n\tpython3 weblogin_x86_64.py\ndone"
+        }
+    ]
+}

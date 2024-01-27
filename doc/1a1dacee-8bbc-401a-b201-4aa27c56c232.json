@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script launches the autosave_redis.py Python program with arguments and redirects its output to /dev/null, using disown for process management.",
+    "details": [
+        {
+            "comment": "This Bash script launches the autosave_redis.py Python program with arguments and redirects its output to /dev/null, using disown for process management.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/autosave_redis.sh\":0-2",
+            "content": "#!/bin/bash\npython3 autosave_redis.py 20 </dev/null &>/dev/null &\ndisown"
+        }
+    ]
+}

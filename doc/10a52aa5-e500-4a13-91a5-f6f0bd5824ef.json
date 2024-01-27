@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports the 'zombie' library, defines a function to create URLs with parameters, and initializes a new instance of Browser. It also includes a function bvisit() that uses the browser instance to visit URLs and retrieves the source code of the page. The cookie value is extracted from the source using getCookie function and printed on console.",
+    "details": [
+        {
+            "comment": "The code imports the 'zombie' library, defines a function to create URLs with parameters, and initializes a new instance of Browser. It also includes a function bvisit() that uses the browser instance to visit URLs and retrieves the source code of the page. The cookie value is extracted from the source using getCookie function and printed on console.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/zombie_fetch.js\":0-15",
+            "content": "const Browser = require('zombie');\nfunction bfunc(a){\n\treturn 'http://www.baidu.com/s'+a;\n}\nconst browser = new Browser();\n// will have cookie anyway?\n// does have shits. but then it will get stuck.\n// reuse the cookie once again?\nfunction bvisit(a){\nbrowser.visit(bfunc(a),function() {\n//  const value = browser.getCookie('session');\n\t//  shall set cookie here. otherwise not being trusted.\n\tconst value = browser.source;\n  console.log('Cookie', value);\n});\n}"
+        }
+    ]
+}

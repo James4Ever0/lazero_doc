@@ -1,0 +1,28 @@
+adb blowed.
+use virtualbox bindings.
+we've installed a thing with only minimal support of console.
+don't know how this working out.
+do we need use of tesseract? or some ssh.
+maybe no need for shit.
+start the machine without gui, and we get control over network.
+like our pi stuff.
+the thing seems to be strong. tinycore.
+
+PASSWD: tinycore_root
+PWD_ROOT: root
+
+what the fuck.
+
+password going void after reboot.
+
+just how about another os, manjaro instead of fucking hard-cored tinycore?
+
+also, what the fuck is going on with your ocr shit?
+
+get used to it. it is going to be cronic, long-lasting pain in the ass.
+
+192.168.43.52 (may change, and i donno shit about it)
+
+how to send ctrl keystrokes?
+
+cannot use screen command otherwise it will be more interesting.

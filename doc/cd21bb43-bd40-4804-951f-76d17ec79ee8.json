@@ -1,0 +1,10 @@
+{
+    "summary": "This PHP script reads the URL from stdin, uses cURL to fetch it (following redirects), and outputs the final effective URL.",
+    "details": [
+        {
+            "comment": "This PHP script reads the URL from stdin, uses cURL to fetch it (following redirects), and outputs the final effective URL.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/new_toys/curl_.php\":0-21",
+            "content": "<?php\n//curl\u7684\u767e\u5ea6\u767e\u79d1\n//$url = 'http://www.baidu.com/link?url=77I2GJqjJ4zBBpC8yDF8xDhiqDSn1JZjFWsHhEoSNd85PkV8Xil-rckpQ8_kjGKNNq';\n$fh = fopen('php://stdin', 'r'); \necho \"[php://stdin]\u8bf7\u8f93\u5165\u4efb\u610f\u5b57\u7b26\uff1a\\n\"; \n$url = trim(fread($fh, 1000));   \n// get input \n#echo $url;\n$ch = curl_init();\ncurl_setopt($ch, CURLOPT_URL, $url);\n// \u4e0d\u9700\u8981\u9875\u9762\u5185\u5bb9\ncurl_setopt($ch, CURLOPT_NOBODY, 1);\n// \u4e0d\u76f4\u63a5\u8f93\u51fa\ncurl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);\n// \u8fd4\u56de\u6700\u540e\u7684Location\ncurl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);\ncurl_exec($ch);\n$info = curl_getinfo($ch,CURLINFO_EFFECTIVE_URL);\ncurl_close($ch);\necho $info;\n?>"
+        }
+    ]
+}

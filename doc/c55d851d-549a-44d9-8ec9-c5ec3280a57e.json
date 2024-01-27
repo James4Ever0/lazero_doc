@@ -1,0 +1,10 @@
+{
+    "summary": "This script is a bash file that executes python3 script \"shrink.py\" on judger.log, replacing original judger.log with the shrunken version.",
+    "details": [
+        {
+            "comment": "This script is a bash file that executes python3 script \"shrink.py\" on judger.log, replacing original judger.log with the shrunken version.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/regular_shrink.sh\":0-4",
+            "content": "#!/bin/bash\n# fuck! store it later.\n# will you store working script somewhere?\ncat judger.log | python3 shrink.py > judger_shrink.log\nmv judger_shrink.log judger.log"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code sends a GET request to the specified URL using cURL. The request includes a parameter 'wd' with the value \"how to kill your father\" encoded in URL format. It is likely used for web scraping or data retrieval from the server running on localhost port 7777.",
+    "details": [
+        {
+            "comment": "This code sends a GET request to the specified URL using cURL. The request includes a parameter 'wd' with the value \"how to kill your father\" encoded in URL format. It is likely used for web scraping or data retrieval from the server running on localhost port 7777.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/cquery.sh\":0-1",
+            "content": "#!/bin/bash\ncurl  -XGET -G --url \"http://localhost:7777/random\" -d'wd=how+to+kill+your+father%0A'"
+        }
+    ]
+}

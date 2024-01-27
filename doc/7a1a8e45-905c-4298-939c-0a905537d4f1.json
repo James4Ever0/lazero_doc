@@ -1,0 +1,15 @@
+{
+    "summary": "The code uses pynput library to track mouse movements and clicks, calculating differences between points and logging events indefinitely. It's part of a larger program that may have concerns about performance and efficiency.",
+    "details": [
+        {
+            "comment": "The code imports the pynput library to track mouse movements and clicks. It defines a function \"der\" for calculating differences between successive points, a function \"calc\" to process those differences, and another function \"a\" that logs mouse events over time if there are less than 10 in memory or processes and prints the calculated differences when 10 are reached. The code uses a mouse listener from pynput to track events (movement, scrolling, and clicks) and log them indefinitely.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_m.py\":0-37",
+            "content": "import pynput\nimport time\n# while True:\n# fuck.\n# is this how you fucking live?\n# you can do this for many shits.\n# use background mouse input? come on.\n# on windows there's a different story, for mouse.\n# do not take it seriously. they are all experiments.\n# scale those shits?\n# rotate, and more.\nglob=[]\ndef der(a):\n    return [(a[x][0]-a[x+1][0],a[x][1]-a[x+1][1]) for x in range(len(a)-1)]\ndef calc(a):\n    r=list(map(lambda x: x[:2],a))\n    print(der(r))\ndef a(*b):\n    global glob\n    print(time.time(),*b)\n    if len(glob)<10:\n        glob.append(b)\n    else:\n        # print(glob)\n        print(calc(glob))\n        glob=[]\n# def a(p,*b):\n# without cursor? fine.\n#     print(time.time(),*b)\n    # how to pass to another function?\n    # send via network.\n# try to specify the process.\n# p= Process(target=)\n    # send via process??\n    # use pipe???\n    # how to write these shits?\n# with pynput.mouse.Listener(on_move=lambda x:a(p,x),on_scroll=lambda x:a(p,x),on_click=lambda x:a(p,x)) as l:\nwith pynput.mouse.Listener(on_move=a,on_scroll=a,on_click=a) as l:"
+        },
+        {
+            "comment": "This code appears to be part of a larger program that involves using the pynput library for handling input events, specifically related to mouse tracking. The author seems impressed by the functionality but also expresses concerns about its performance and efficiency.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_m.py\":38-50",
+            "content": "    try:\n        l.join()\n    except:\n        pass\n    # fucking cool shit.\n    # print(e)\n# print(dir(pynput))\n# great shit.\n# but this is a huge shit.\n# it takes too many shits.\n# you even have scrolling!\n# now you've got the data! raw data waiting for processing.\n# and you can do it yourself."
+        }
+    ]
+}

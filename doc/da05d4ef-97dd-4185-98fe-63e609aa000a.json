@@ -1,0 +1,10 @@
+{
+    "summary": "This script generates SSL certificates for a localhost server. It creates directories, generates and signs key and certificate files using OpenSSL commands, and follows specific configuration steps for the server and CA certificates.",
+    "details": [
+        {
+            "comment": "This script generates SSL certificates for a localhost server. It creates directories, generates and signs key and certificate files using OpenSSL commands, and follows specific configuration steps for the server and CA certificates.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/cagen.sh\":0-37",
+            "content": "#!/bin/bash\nrm -rf certs\nmkdir -p certs/ca\ncd certs/ca\nopenssl genrsa -out ca.key 2048\nopenssl req -x509 -new -nodes \\\n      -key ca.key -subj \"/CN=localhost/C=US/L=CALIFORNIA\" \\\n      -days 1825 -out ca.crt\ncd ..\nopenssl genrsa -out server.key 2048\ncat > csr.conf <<EOF\n[ req ]\ndefault_bits = 2048\nprompt = no\ndefault_md = sha256\nreq_extensions = req_ext\ndistinguished_name = dn\n[ dn ]\nC = US\nST = California\nL = San Fransisco\nO = Scriptcrunch\nOU = Scriptcrunch Dev\nCN = localhost\n[ req_ext ]\nsubjectAltName = @alt_names\n[ alt_names ]\nDNS.1 = localhost\nIP.1 = 127.0.0.1\nEOF\nopenssl req -new -key server.key -out server.csr -config csr.conf\nopenssl x509 -req -in server.csr -CA ca/ca.crt -CAkey ca/ca.key \\\n-CAcreateserial -out server.crt -days 10000 \\\n-extfile csr.conf"
+        }
+    ]
+}

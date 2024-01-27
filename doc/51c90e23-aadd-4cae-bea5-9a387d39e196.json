@@ -1,0 +1,10 @@
+{
+    "summary": "This script is setting necessary permissions and running a launcher on x86_64 Linux. It first changes the file's permission, writes its process ID into the file, then runs the launcher. Afterwards, it executes a libjudger with specific parameters for execution time, memory limits, security rules, and arguments.",
+    "details": [
+        {
+            "comment": "This script is setting necessary permissions and running a launcher on x86_64 Linux. It first changes the file's permission, writes its process ID into the file, then runs the launcher. Afterwards, it executes a libjudger with specific parameters for execution time, memory limits, security rules, and arguments.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/launcher_x86_64_linux.sh\":0-16",
+            "content": "#!/bin/bash\nfile_target=$( ./on_premise_filter.sh )\ncd bin/linux/x86_64\n#./libjudger.so --exe_path=$(which bash) --seccomp_rule_name=\"randomfuck\" --max_cpu_time=500 --max_real_time=5000 --max_memory=14213120 --max_stack=500000 --max_process_number=2 --args=\"--rcfile\" --args=\"../../../bashrc\"\n# does that work without intervention?\nwhile true\ndo\n        sudo bash -c \"chmod 777 $file_target\"\n        sudo bash -c \"echo $$ > $file_target\"\n        if [ $? -eq 0 ]; then\n                break\n        fi\n\tcd ../../../\n\tsudo bash -c \"./launcher_x86_64_linux.sh\"\n\texit 0\t\ndone\nsudo ./libjudger.so --exe_path=$(which bash) --seccomp_rule_name=\"randomfuck\"  --max_cpu_time=500 --max_real_time=10000 --max_memory=14213120 --max_stack=500000 --max_process_number=2 --args=\"--rcfile\" --args=\"../../../bashrc\""
+        }
+    ]
+}

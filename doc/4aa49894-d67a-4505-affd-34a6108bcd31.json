@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a class \"initMachine\" with an initializer and a method \"refresh\". It creates an instance of the class, tests different scenarios of calling the refresh method with various arguments, and prints the result. The purpose is unclear.",
+    "details": [
+        {
+            "comment": "This code defines a class \"initMachine\" with an initializer and a method \"refresh\". It creates an instance of the class, tests different scenarios of calling the refresh method with various arguments, and prints the result. The purpose is unclear.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/nl.py\":0-23",
+            "content": "# all the imports. it turns out computer does not need to speak correctly?\n# the need to repeat?\nclass initMachine(object):\n    def __init__(self, a=None):\n        self.a = a\n# do we need to start from basic things?\n# what is this for?\n    def refresh(self, a=None, k=False):\n        if a != None:\n            if k:\n                self.a = a\n            return a\n        else:\n            return self.a\ni = initMachine(\"something\")\nprint(i.refresh())\nprint(i.a)\nprint(i.refresh(\"nothing\"))\nprint(i.a)\nprint(i.refresh(\"everything\", True))\nprint(i.a)"
+        }
+    ]
+}

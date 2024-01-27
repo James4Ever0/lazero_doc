@@ -1,0 +1,10 @@
+{
+    "summary": "This script deletes directories for various regional internet registries (RIRs). It uses Bash and the 'rm -rf' command to forcefully remove empty or non-empty directories, irrespective of any potential error messages. The comment expresses frustration with German language settings, possibly referring to XDM display manager.",
+    "details": [
+        {
+            "comment": "This script deletes directories for various regional internet registries (RIRs). It uses Bash and the 'rm -rf' command to forcefully remove empty or non-empty directories, irrespective of any potential error messages. The comment expresses frustration with German language settings, possibly referring to XDM display manager.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/links_play/createdir.sh\":0-7",
+            "content": "#!/bin/bash\n# without shebang it will not be executable.\n# i hate german. especially to the fucking xdm.\nrm -rf  afrinic\nrm -rf  apnic\nrm -rf  lacnic\nrm -rf  arin\nrm -rf  ripe"
+        }
+    ]
+}

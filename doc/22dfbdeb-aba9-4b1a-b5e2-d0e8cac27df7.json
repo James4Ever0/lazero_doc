@@ -1,0 +1,10 @@
+{
+    "summary": "This Python code reads input from stdin, parses it, and stores the data in a dictionary. It expects lines in a specific format and extracts UUID values from the parsed data to be printed out.",
+    "details": [
+        {
+            "comment": "This Python code reads input from stdin, parses it, and stores the data in a dictionary. It expects lines in a specific format and extracts UUID values from the parsed data to be printed out.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/server_discover.py\":0-42",
+            "content": "import sys\nfrom parse import *\npx = None\nps = {}\nfor x in sys.stdin:\n#    print(\"original\",x)\n    pr = parse(\"info from {}\",x)\n    try:\n        if pr is not None:\n#            print(type(pr),dir(pr))\n            pr = [x for x in pr]\n#            print(pr)\n            if len(pr)==1:\n                pr = int(pr[0])\n#            print(pr)\n        # nope.\n                px = pr\n                ps.update({px:[]})\n        else:\n            if px is not None:\n                ps[px].append(x)\n    except:\n#        if px is not None:\n#            ps[px].append(x)\n        pass\n#print(ps)\n# so this is a dict.\n#py = {}\n# check the uuid format?\nfor x in ps.keys():\n    xn = ps[x]\n    for y in xn:\n        p = parse(\"hello from server! UUID:{}\",y)\n        if p is not None:\n            p = [x for x in p]\n            if len(p)==1:\n#                print(p[0])\n                print(x)\n#                py.update({x:p[0]})\n#print(py)\n# you are gonna print the thing out.\n    # this is the working area.\n#    print(pr)"
+        }
+    ]
+}

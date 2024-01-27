@@ -1,0 +1,10 @@
+{
+    "summary": "This script executes a unloadroot.sh, creates a directory alpine-ro with 777 permissions, and uses bindfs to bind mount an \"alpine\" folder as read-only (alpine-ro). The autodetect feature is mentioned but not utilized here.",
+    "details": [
+        {
+            "comment": "This script executes a unloadroot.sh, creates a directory alpine-ro with 777 permissions, and uses bindfs to bind mount an \"alpine\" folder as read-only (alpine-ro). The autodetect feature is mentioned but not utilized here.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/aloadroot.sh\":0-6",
+            "content": "#!/bin/bash\n./aunloadroot.sh\nmkdir alpine-ro\nchmod 777 alpine-ro\n# there's autodetect.\n#better use bindfs as standard.\nsudo $PWD/bindfs/src/bindfs -r alpine alpine-ro"
+        }
+    ]
+}

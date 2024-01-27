@@ -1,0 +1,10 @@
+{
+    "summary": "The code is using curl to send an HTTP request to a server at http://localhost:7777 with the query parameter \"type\" set to \"anything\". This request could be for data retrieval or any other operation specified by the server. The output of the command is redirected to stderr (2) and then merged with stdout (1).",
+    "details": [
+        {
+            "comment": "The code is using curl to send an HTTP request to a server at http://localhost:7777 with the query parameter \"type\" set to \"anything\". This request could be for data retrieval or any other operation specified by the server. The output of the command is redirected to stderr (2) and then merged with stdout (1).",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/type.sh\":0-1",
+            "content": "#!/bin/bash\ncurl http://localhost:7777/input?type=anything 2>/dev/null  1>&2 "
+        }
+    ]
+}

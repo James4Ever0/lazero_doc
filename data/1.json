@@ -1,0 +1,540 @@
+{
+    "100": {
+        "file_id": 4,
+        "content": "killall5\nkioclient5\nkismet\nkismet_cap_freaklabs_zigbee\nkismet_cap_kismetdb\nkismet_cap_linux_bluetooth\nkismet_cap_linux_wifi\nkismet_cap_nrf_51822\nkismet_cap_nrf_mousejack\nkismet_cap_nxp_kw41z\nkismet_cap_pcapfile\nkismet_cap_sdr_rtl433\nkismet_cap_sdr_rtladsb\nkismet_cap_sdr_rtlamr\nkismet_cap_ti_cc_2531\nkismet_cap_ti_cc_2540\nkismetdb_clean\nkismetdb_dump_devices\nkismetdb_statistics\nkismetdb_strip_packets\nkismetdb_to_gpx\nkismetdb_to_kml\nkismetdb_to_wiglecsv\nkismet_server\nkitty\nkmimetypefinder5\nkmod\nkoi8rxterm\nkpackagelauncherqml\nkpackagetool5\nkpseaccess\nkpsereadlink\nkpsestat\nkpsewhich\nkquitapp5\nkreadconfig5\nkshell5\nkstart5\nkstats\nksvgtopng5\nktelnetservice5\nktraderclient5\nktrash5\nkwalletd5\nkwallet-query\nkwrapper5\nkwriteconfig5\nl2ping\nl2test\nlame\nlast\nlastlog\nlbd\nlc\nlcalc\nlcf\nldapcompare\nldapdelete\nldapexop\nldapmodify\nldapmodrdn\nldappasswd\nldapsearch\nldapurl\nldapwhoami\nldattach\nldconfig\nldd\nldrdf\nleafpad\nleaftoppm\nledit\nlefty\nless\nlessecho\nlesskey\nlesspipe\nlexgrog\nlft.db\nlfxtype.py\nlibgvc6-config-update\nlibnetcfg\nlibpng16-config\nlibpracmln-build\nlibtoolize\nlibwacom-list-local-devices",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1808-1893"
+    },
+    "101": {
+        "file_id": 4,
+        "content": "The code consists of various utility commands and applications, including network monitoring tools like kismet_cap, database management utilities such as kismetdb_dump, and graphical user interface tools like kpackagelauncherqml. These utilities appear to be part of a larger software suite with diverse functionalities for system administration and network analysis.",
+        "type": "comment"
+    },
+    "102": {
+        "file_id": 4,
+        "content": "line_send_tcp\nlink\nlinks\nlinux-boot-prober\nlinux-check-removal\nlinux-update-symlinks\nlinux-version\nlispmtopgm\nlistres\nln\nlneato\nlnstat\nload_kernel_test\nloadkeys\nloadunimap\nlocale\nlocalectl\nlocaledef\nlocale-gen\nlocate.findutils\nlock_jars\nlogger\nlogin\nloginall.py\nloginctl\nlogname\nlogresolve\nlogrotate\nlogsave\nlook\nlorder\nlosetup\nlowntfs-3g\nlp\nlpadmin\nlpass\nlpc\nlpinfo\nlpmove\nlpoptions\nlpq\nlpr\nlprm\nlpstat\nls\nlsadump\nlsattr\nlsblk\nlsb_release\nlscpu\nlsinitramfs\nlsipc\nlslocks\nlslogins\nlsm2bin\nlsmem\nlsmtd\nlsns\nlsof\nlspci\nlspgpot\nlspst\nlstmeval\nlstmtraining\nlstopo\nlstopo-no-graphics\nlsusb\nlsw\nlua\nluac\nluahbtex\nluajithbtex\nluajittex\nluarocks\nluarocks-admin\nluatex\nluit\nluksformat\nlvm\nlvmdump\nlvmpolld\nlwp-download\nlwp-dump\nlwp-mirror\nlwp-request\nlxterm\nlynis\nlynx\nlzmainfo\nm17n-db\nm4\nmacchanger\nmacof\nmacpack\nmacptopbm\nmactime\nmag\nmagicrescue\nmagicsort\nmagictree\nmaidag\nmailer\nmailmail\nmailmail3\nmail.mailutils\nmailsnarf\nmaim\nmake\nmake-cadir\nmakecert\nmakeconv\nmake-first-existing-target\nmakeindex\nmakeivs-ng\nmakejvf\nmake-ssl-cert\nmako-render\nmaltego\nman\nmandb\nmanpath\nman-recode\nmapscrn\nmariadb-service-convert\nmarkdown_py\nmaskgen",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:1894-2019"
+    },
+    "103": {
+        "file_id": 4,
+        "content": "Code snippets from \"lazero/bootstrap/blitx/COMSEED_x86_64\":1893-2018 represent various command-line utilities and tools typically found in Unix-like operating systems. These commands can be used for system administration, data manipulation, file management, network operations, text processing, etc. Each command serves a specific purpose, such as listing files (ls), setting up user accounts (login), managing printer settings (lpadmin), or working with virtual machines (lvm).",
+        "type": "comment"
+    },
+    "104": {
+        "file_id": 4,
+        "content": "massagevendor\nmasscan\nmausezahn\nmawk\nmaxima-sage\nmc\nmconfig\nmcookie\nmcs\nmd5deep\nmd5sum\nmdassembler\nmdatopbm\nmdb-array\nmdb-export\nmdb-header\nmdb-hexdump\nmdb-parsecsv\nmdb-prop\nmdbrebase\nmdb-schema\nmdb-sql\nmdb-tables\nmdb-ver\nmdig\nmdk3\nmdoc\nmdoc-assemble\nmdoc-export-html\nmdoc-export-msxdoc\nmdoc-update\nmdoc-validate\nmdvalidater\nmech-dump\nmedia-ctl\nmedusa\nmemdump\nmendex\nmergecap\nmerge-router-config.pl\nmerge_unicharsets\nmesg\nmessages.mailutils\nmetaflac\nmetamath\nmf\nmfcuk\nmflua\nmfluajit\nmf-nowin\nmfoc\nmft\nmfterm\nmftraining\nmgrtopbm\nmibdump\nmifare-classic-format\nmifare-classic-read-ndef\nmifare-classic-write-ndef\nmifare-desfire-access\nmifare-desfire-create-ndef\nmifare-desfire-ev1-configure-ats\nmifare-desfire-ev1-configure-default-key\nmifare-desfire-ev1-configure-random-uid\nmifare-desfire-format\nmifare-desfire-info\nmifare-desfire-read-ndef\nmifare-desfire-write-ndef\nmifarekeys.py\nmifare-ultralight-info\nmigrate-pubring-from-classic-gpg\nmii-tool\nmimeopen\nmimetype\nmimeview\nmimikatz\nmingle\nminicom\nminiterm\nmiranda\nmiredo\nmiredo-checkconf\nmissidentify\nmitmdump\nmitmproxy\nmitmweb\nmkbundle\nmkcamlp4",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2020-2107"
+    },
+    "105": {
+        "file_id": 4,
+        "content": "The code consists of various tool and script names, which are likely components of larger software projects or standalone utilities. These tools serve different purposes such as network scanning, file handling, database operations, and more.",
+        "type": "comment"
+    },
+    "106": {
+        "file_id": 4,
+        "content": "mkdir\nmke2fs\nmkexfatfs\nmkfifo\nmkfontdir\nmkfontscale\nmkfs\nmkfs.bfs\nmkfs.cramfs\nmkfs.fat\nmkfs.jffs2\nmkfs.minix\nmkfs.ubifs\nmkfs.xfs\nmkhomedir_helper\nmkindex\nmkinitramfs\nmklost+found\nmk_modmap\nmknod\nmkntfs\nmkocp\nmkofm\nmkpasswd\nmksmbpasswd\nmksquashfs\nmkswap\nmktemp\nmkvcalcproba\nmkzftree\nmlnlearn\nmlnquery\nmlocate\nmm2gv\nmmcat\nmmcli\nmmdb-benchmark.rb\nmmdbresolve\nmmls\nmmstat\nmod\nModemManager\nmogrify-im6.q16\nmongod\nmonitor-sensor\nmono-api-check\nmono-api-html\nmono-api-info\nmono-boehm\nmono-cil-strip\nmono-configuration-crypto\nmonodis\nmonodocer\nmonodoc-http\nmonodocs2html\nmonodocs2slashdoc\nmono-find-provides\nmono-find-requires\nmono-hang-watchdog\nmono-heapviz\nmonop\nmonop2\nmono-service\nmono-sgen\nmono-shlib-cop\nmono-symbolicate\nmono-test-install\nmono-xmltool\nmono-xsp4-admin\nmono-xsp4-update\nmontage-im6.q16\nmore\nmori-11d.x\nmori-4d.x\nmori-5d.x\nmori-6d.x\nmosh\nmosh-client\nmosh-server\nmount\nmount.exfat-fuse\nmount.fuse3\nmountpoint\nmousetweaks\nmovemail.mailutils\nmozroots\nmp64\nmpg123-alsa\nmpg123.bin\nmpg123-id3dump\nmpg123-jack\nmpg123-nas\nmpg123-openal\nmpg123-oss\nmpg123-portaudio\nmpg123-pulse\nmpg123-strip\nmpost",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2108-2205"
+    },
+    "107": {
+        "file_id": 4,
+        "content": "This code consists of a list of various command-line utilities and programs, each with their own purpose. These include file system management tools like `mkfs` for creating file systems, text processing commands such as `more`, and specialized software like `mosh-client` and `mosh-server` for secure remote connections. The code also includes tools for audio processing (e.g., `mpg123-pulse`), image manipulation (e.g., `montage-im6.q16`), database management (e.g., `mongod`), and system monitoring (e.g., `mmstat`). The wide range of applications demonstrates the versatility of the command line interface and its use cases across various domains.",
+        "type": "comment"
+    },
+    "108": {
+        "file_id": 4,
+        "content": "mpris-proxy\nmprof-report\nmpstat\nmred\nmred-text\nmrpkey.py\nmsfpc\nmsgattrib\nmsgcat\nmsgcmp\nmsgcomm\nmsgconv\nmsgen\nmsgexec\nmsgfilter\nmsgfmt\nmsggrep\nmsginit\nmsgmerge\nmsgsnarf\nmsgunfmt\nmsguniq\nmsql2mysql\nmsrpcfuzz\nmsrpcfuzz_udp\nmsxlint\nmtd_debug\nmtdinfo\nmtdpart\nmt-gnu\nmtrace\nmtvtoppm\nmultimac\nmultiselect.py\nmupdf\nmutool\nmutter\nmv\nmvxattr\nmwrank\nmyisamchk\nmyisam_ftdump\nmyisamlog\nmyisampack\nmy_print_defaults\nmysql\nmysqlaccess\nmysqladmin\nmysqlbinlog\nmysqlcheck\nmysql_convert_table_format\nmysqld\nmysqld_multi\nmysqld_safe\nmysqld_safe_helper\nmysqldump\nmysqldumpslow\nmysql_embedded\nmysql_find_rows\nmysql_fix_extensions\nmysqlhotcopy\nmysqlimport\nmysql_install_db\nmysql_plugin\nmysqlreport\nmysql_secure_installation\nmysql_setpermission\nmysqlshow\nmysqlslap\nmysql_tzinfo_to_sql\nmysql_upgrade\nmysql_waitpid\nmytop\nmzc\nmzpp\nmzscheme\nmztext\nnamei\nnameif\nnanddump\nnandtest\nnandwrite\nnano\nnasm\nnautilus\nnautilus-autorun-software\nnauty-addedgeg\nnauty-amtog\nnauty-biplabg\nnauty-blisstog\nnauty-catg\nnauty-checks6\nnauty-complg\nnauty-converseg\nnauty-copyg\nnauty-countg\nnauty-cubhamg\nnauty-deledgeg\nnauty-delptg\nnauty-directg\nnauty-dretodot",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2206-2306"
+    },
+    "109": {
+        "file_id": 4,
+        "content": "This code includes a list of various utilities, tools and applications for different purposes such as file management, system monitoring, database management, graphics, networking, and more. Each line represents an individual command-line tool or script.",
+        "type": "comment"
+    },
+    "110": {
+        "file_id": 4,
+        "content": "nauty-dretog\nnauty-genbg\nnauty-genbgL\nnauty-geng\nnauty-genquarticg\nnauty-genrang\nnauty-genspecialg\nnauty-gentourng\nnauty-gentreeg\nnauty-hamheuristic\nnauty-labelg\nnauty-linegraphg\nnauty-listg\nnauty-multig\nnauty-newedgeg\nnauty-NRswitchg\nnauty-pickg\nnauty-planarg\nnauty-ranlabg\nnauty-shortg\nnauty-showg\nnauty-subdivideg\nnauty-sumlines\nnauty-twohamg\nnauty-vcolg\nnauty-watercluster2\nnbtscan\nncal\nncrack\nnc.traditional\nncurses6-config\nncursesw6-config\nndiff\nndisasm\nnef-11d.x\nnef-4d.x\nnef-5d.x\nnef-6d.x\nneo4j\nneokit\nneotoppm\nneqn\nnet\nnetaddr\nnetdiscover\nnetenum\nnetkey-tool\nnetmask\nnetplex-admin\nnetsed\nnet-server\nnetsniff-ng\nnetstat\nnetwag\nnetworkctl\nNetworkManager\nnetwox\nnewgidmap\nnewgrp\nnewuidmap\nnewusers\nnfc-emulate-forum-tag4\nnfc-list\nnfc-mfclassic\nnfc-mfultralight\nnfc-read-forum-tag3\nnfc-relay-picc\nnfc-scan-device\nnfnl_osf\nnfspy\nnfspysh\nnft\nnftldump\nnftl_format\nngettext\nnginx\nng-nailgun\nngrep\nnice\nnick2ldif\nnikto\nnipper\nnl\nnltk\nnmap\nnm-applet\nnmbd\nnmblookup\nnmcli\nnm-connection-editor\nnm-online\nnmtui\nnode\nnohup\nnokogiri\nnologin\nnop\nnormaliz\nnosetests3\nnpa-tool\nnping\nnproc\nnroff\nnsenter\nnslookup\nnstat",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2307-2412"
+    },
+    "111": {
+        "file_id": 4,
+        "content": "This code appears to be a list of various software tools and utilities, likely used for different purposes such as network management, data analysis, and system operations. The specific functionality of each tool would require further investigation.",
+        "type": "comment"
+    },
+    "112": {
+        "file_id": 4,
+        "content": "nsupdate\nntfs-3g\nntfs-3g.probe\nntfscat\nntfsclone\nntfscluster\nntfscmp\nntfscp\nntfsdecrypt\nntfsfallocate\nntfsfix\nntfsinfo\nntfslabel\nntfsls\nntfsmove\nntfsrecover\nntfsresize\nntfssecaudit\nntfstruncate\nntfsundelete\nntfsusermap\nntfswipe\nntlm2\nntlm_brute\nntpd\nntpdc\nntp-keygen\nntpq\nntpsweep\nntptime\nntptrace\nntp-wait\nnum2words\nnumba\nnumfmt\nnvcc\nnvdisasm\nnvidia-modprobe\nnvidia-persistenced\nnvlink\nnvprof\nnvprune\nnvvp\nobexctl\nocaml\nocamlc.byte\nocamlcmt\nocamlc.opt\nocamlcp.byte\nocamlcp.opt\nocamldebug\nocamldep.byte\nocamldep.opt\nocamldoc\nocamldoc.opt\nocamldumpobj\nocamlfind\nocaml-instr-graph\nocaml-instr-report\nocamllex.byte\nocamllex.opt\nocamlmklib.byte\nocamlmklib.opt\nocamlmktop.byte\nocamlmktop.opt\nocamlobjinfo.byte\nocamlobjinfo.opt\nocamlopt.byte\nocamlopt.opt\nocamloptp.byte\nocamloptp.opt\nocamlprof.byte\nocamlprof.opt\nocamlrpcgen\nocamlrun\nocamlrund\nocamlruni\nocamlyacc\noclock\nocs\noctave\noctave-cli\nod\nodbcinst\nodvicopy\nodvitype\nofs2rva\nohrwurm\nokular\nollydbg\noLschema2ldif\nomfonts\nompi_info\non_ac_power\nonesixtyone\nopal_wrapper\nopenpgp-tool\nopensc-asn1\nopensc-explorer\nopensc-notify\nopensc-tool\nopenssl\nopenvpn\nopenvt",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2413-2516"
+    },
+    "113": {
+        "file_id": 4,
+        "content": "Code contains a list of various software tools and utilities, including file system utilities, programming language compilers and debuggers, networking tools, and more.",
+        "type": "comment"
+    },
+    "114": {
+        "file_id": 4,
+        "content": "ophcrack\nophcrack-cli\norca\norca-dm-wrapper\norc-bugreport\norcc\norte-clean\norted\norterun\norte-server\noscanner\nos-prober\nosslsigncode\notangle\notp2ocp\nout123\noutocp\nowasp-zap\nownership\np0f\np11-kit\np7zip\npacat\npacketforge-ng\npackets.tcl\npacmd\npactl\npadbuster\npad_digest_utility\npaddle\npadsp\npa-info\npalmtopnm\npam-auth-update\npamcut\npamdeinterlace\npamdice\npamfile\npam_getenv\npamoil\npamstack\npamstretch\npamstretch-gen\npam_tally\npam_tally2\npam_timestamp_check\npandoc\npango-list\npango-view\npaperconf\npaperconfig\nparos\nparse-edid\nparted\npartprobe\npartx\npasco\npasswd\npaste\npaster3\npasteurize\npasuspender\npatator\npatch\npatgen\npathchk\npathoc\npathod\npax11publish\npbibtex\npbmclean\npbmlife\npbmmake\npbmmask\npbmpage\npbmpscale\npbmreduce\npbmtext\npbmtextps\npbmto10x\npbmtoascii\npbmtoatk\npbmtobbnbg\npbmtocmuwm\npbmtoepsi\npbmtoepson\npbmtog3\npbmtogem\npbmtogo\npbmtoicon\npbmtolj\npbmtomacp\npbmtomda\npbmtomgr\npbmtonokia\npbmtopgm\npbmtopi3\npbmtoplot\npbmtoppa\npbmtopsg3\npbmtoptx\npbmtowbmp\npbmtox10bm\npbmtoxbm\npbmtoybm\npbmtozinc\npbmupc\npcapfile_info\npcapinfo\npcf2vpnc\npcre2-config\npcreate3\npcre-config\npcscd\npcsc_scan\npcxtoppm\npdata_tools\npdb2mdb\npdbedit",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2517-2635"
+    },
+    "115": {
+        "file_id": 4,
+        "content": "ophcrack: A password recovery tool for Windows LM and NTLM hashes.\nophcrack-cli: Command-line interface version of ophcrack.\norca: Orbital Rendering Algorithm (ORA) viewer.\norca-dm-wrapper: ORCA Digital Mammography wrapper.\norc-bugreport: Bug reporting tool for ORC.\norcc: Compiler for the Object Constraint Language.\norte-clean: Cleanup script for Open RTE middleware.\norted: Daemon process of Open RTE middleware.\norterun: Executable runner for Open RTE middleware.\norte-server: Server component of Open RTE middleware.\noscanner: A tool to scan a network for open Oracle Net services.\nos-prober: Operating system detection utility for GRUB and other bootloaders.\nosslsigncode: Code signing tool from OpenSSL Software Security Library.\notangle: Network topology visualization tool.\notp2ocp: Tool to convert One Time Passwords (OTP) to OTP Challenge/Response passwords.\nout123: A tool for managing Outlook profiles.\noutocp: Tool to extract Outlook configuration from the registry.\nowasp-zap: A web application security scanner by Open Web Application Security Project (OWASP).\nownership: File ownership management tool.\np0f: Network protocol identification tool.\np11-kit: PKCS #11 module implementation.\npacat: Packet capture utility.\npacketforge-ng: Next-generation network packet forgery tool.\npackets.tcl: Tcl script for creating TCP/IP network packet traces.\npacmd: PulseAudio command-line utility.\npactl: PulseAudio control-line utility.",
+        "type": "comment"
+    },
+    "116": {
+        "file_id": 4,
+        "content": "pdf2dsc\npdf2ps\npdfclose\npdfdetach\npdffonts\npdfid\npdfimages\npdfinfo\npdfopen\npdf-parser\npdfseparate\npdfsig\npdf-slatex\npdftex\npdftexi2dvi\npdftocairo\npdftohtml\npdftoppm\npdftops\npdftosrc\npdftotext\npdfunite\npdgmail\npdistreport3\npdvitype\npedis\npedump\npeekfd\npeepdf\npehash\npepack\nperes\nperf\nperl\nperl5.30.0\nperl5.30-i386-linux-gnu\nperl5.30-x86_64-linux-gnu\nperlbug\nperldoc\nperli11ndoc\nperlivp\nperlsh\nperlthanks\npermview\nperror\npescan\npesec\npestr\npeverify\npf2afm\npfb2pfa\npfbtopfa\npg_buildext\npg_config\npg_conftool\npg_createcluster\npg_ctlcluster\npg_dropcluster\npgiac\npglr\npg_lsclusters\npgmbentley\npgmcrater\npgmedge\npgmenhance\npgmhist\npgmkernel\npgmnoise\npgmramp\npgmslice\npgmtexture\npgmtofs\npgmtolispm\npgmtopbm\npgmtoppm\npg_renamecluster\npgrep\npg_updatedicts\npg_upgradecluster\npg_virtualenv\nphantomjs\nphar.phar7.2\nphar.phar7.3\nphotorec\nphp7.2\nphp7.3\nphpenmod\nphpquery\npi1toppm\npi3topbm\npic\npic2tpic\npiconv\npidstat\npigz\npinentry-curses\npinentry-gnome3\nping\npinky\npip\npip2\npip2.7\npip3\npip3.8\npipal\npivot_root\npiv-tool\npixiewps\npjtoppm\npk2bm\npkaction\npkcheck\npkcon\npkcs11-register\npkcs11-tool\npkcs15-crypt\npkcs15-init\npkcs15-tool\npkexec",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2636-2754"
+    },
+    "117": {
+        "file_id": 4,
+        "content": "pdf2dsc: Converts PDF to PostScript Type 3 format\npdf2ps: Converts PDF to PostScript format (Level 1, 2 or 3)\npdfclose: Closes a PDF file without saving changes\npdfdetach: Separates a document from its attachments\npdffonts: Lists the fonts in a PDF file\npdfid: Identifies the structure of a PDF file\npdfimages: Displays the embedded images in a PDF\npdfinfo: Prints information about a PDF file\npdfopen: Opens a PDF file without creating a document object\npdftk: A tool for working with PDF files, including merging and splitting\npdfunite: Combines multiple PDF files into one\npdffonts: Displays the fonts used in a PDF file\npdfseparate: Extracts pages from a PDF file as individual files\npdfsig: Verifies or signs PDF documents with digital signatures\npdf-slatex: Converts LaTeX to PDF using Slatex compiler\npdftex: Compiles a TeX document into PDF format\npdftexi2dvi: Converts TeX input files to DVI and then to PDF\npdftocairo: Converts PDF files to Cairo graphics library format\npdftoppm: Converts PDF pages to Portable Pixmap image files\npdftops: Converts PDF pages to PostScript file format\npdftosrc: Extracts source code from a PDF document\npdftotext: Extracts text content from a PDF document\npescan: Scans an EPS file and produces a PostScript file\npesec: Securely deletes files or data in Linux\npestr: Replaces string patterns in files or output\npeverify: Verifies the integrity of a packfile\npf2afm: Converts Adobe Type 1 fonts to AFM format\npfb2pfa: Converts Type 1 font files to PFA format\npfbtopfa: Converts Type 1 font files to PFA format\npg_buildext: Builds a custom PostgreSQL extension for a given architecture\npg_config: Generates a PostgreSQL configuration file\npg_conftool: Manages cluster configuration in PostgreSQL\npgmbentley: A fractal-generating program\npglr: Runs multiple shell commands sequentially in PostgreSQL\n```",
+        "type": "comment"
+    },
+    "118": {
+        "file_id": 4,
+        "content": "pkg-config\npkgdata\npkmon\npktogf\npkttyagent\npktype\npl2pm\nplac_runner.py\nplasmapkg2\npldd\nplecost\nplipconfig\nplog\nplt-games\nplt-help\npltotf\nplt-r5rs\nplt-r6rs\nplt-web-server\nplugin_test\nplymouth\nplymouthd\nplymouth-set-default-theme\npmap\npmpost\npmspike\npmxab\npn532emulate.py\npn532mitm.py\npngfix\npng-fix-itxt\npngtopnm\npnmalias\npnmarith\npnmcat\npnmcolormap\npnmcomp\npnmconvol\npnmcrop\npnmcut\npnmdepth\npnmenlarge\npnmfile\npnmflip\npnmgamma\npnmhisteq\npnmhistmap\npnmindex\npnminvert\npnmmargin\npnmmontage\npnmnlfilt\npnmnorm\npnmpad\npnmpaste\npnmpsnr\npnmquant\npnmremap\npnmrotate\npnmscale\npnmscalefixed\npnmshear\npnmsmooth\npnmsplit\npnmtile\npnmtoddif\npnmtofiasco\npnmtofits\npnmtojpeg\npnmtopalm\npnmtoplainpnm\npnmtopng\npnmtops\npnmtorast\npnmtorle\npnmtosgi\npnmtosir\npnmtotiff\npnmtotiffcmyk\npnmtoxwd\npo2debconf\npod2html\npod2man\npod2texi\npod2text\npod2usage\npodchecker\npodebconf-display-po\npodebconf-report-po\npodman\npodselect\npoff\npolenum\npolicygen\npoly-11d.x\npoly-4d.x\npoly-5d.x\npoly-6d.x\npon\npooltype\npost_fuzz\npost_spike\npowerfuzzer\npowersploit\npphs\nppltotf\nppm3d\nppmbrighten\nppmchange\nppmcie\nppmcolormask\nppmcolors\nppmdim\nppmdist\nppmdither\nppmfade",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2755-2870"
+    },
+    "119": {
+        "file_id": 4,
+        "content": "The code is a list of various packages and utilities, each with their specific functions. They are used for different purposes such as configuration, testing, data manipulation, networking, image processing, game development, server management, etc. Some are related to programming languages while others are general tools.",
+        "type": "comment"
+    },
+    "120": {
+        "file_id": 4,
+        "content": "ppmflash\nppmforge\nppmhist\nppmlabel\nppmmake\nppmmix\nppmntsc\nppmpat\nppmquant\nppmquantall\nppmqvga\nppmrainbow\nppmrelief\nppmshadow\nppmshift\nppmspread\nppmtoacad\nppmtobmp\nppmtoeyuv\nppmtogif\nppmtoicr\nppmtoilbm\nppmtoleaf\nppmtolj\nppmtomap\nppmtomitsu\nppmtompeg\nppmtoneo\nppmtopcx\nppmtopgm\nppmtopi1\nppmtopict\nppmtopj\nppmtopuzz\nppmtorgb3\nppmtosixel\nppmtotga\nppmtouil\nppmtowinicon\nppmtoxpm\nppmtoyuv\nppmtoyuvsplit\nppmtv\npppd\npppdump\npppoe-discovery\npppstats\npr\npracmlntest\nprecat\npreconv\npreparetips5\nprepmx\nprequest3\npresage_demo\npresage_demo_text\npresage_simulator\nprettypacket\npreunzip\nprezip\nprezip-bin\nprintafm\nprintenv\nprinterbanner\nprintf\nprlimit\nprocan\nprofiles\nproj\nprojinfo\nprojsync\nproot\nprotoc\nprotocoltojson\nprotos\nprotos-sip\nproutes3\nprove\nproxy\nproxychains3\nproxytunnel\nprtstat\nprune\nps\nps2ascii\nps2epsi\nps2pdf\nps2pdf12\nps2pdf13\nps2pdf14\nps2pdfwr\nps2pk\nps2ps\nps2ps2\npserve3\npsfxtable\npshell3\npsidtopgm\npsk-crack\npslog\npst2dii\npst2ldif\npstoedit\npstopnm\npstree\nptar\nptardiff\nptargrep\nptex\nptftopl\npth-curl\npth-net\npth-rpcclient\npth-smbclient\npth-smbget\npth-sqsh\npth-winexe\npth-wmic\npth-wmis\nptked\nptksh\nptunnel\nptweens3\nptx\nptxas",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2871-2995"
+    },
+    "121": {
+        "file_id": 4,
+        "content": "This code consists of various command-line utilities and tools, each with different functionalities. These tools are used for tasks such as image processing (ppmflash, ppmquantall), network proxying (proxychains3, proxytunnel), file conversions (ps2pdf, ptxas), and more. Some of these utilities are specific to certain software or formats, while others are general-purpose tools for a wide range of tasks.",
+        "type": "comment"
+    },
+    "122": {
+        "file_id": 4,
+        "content": "pulseaudio\nputty2john\npviews3\npwck\npwconv\npwd\npwdump\npwdx\npwgen\npw-inspector\npwnat\npwunconv\npy2neo\npy3clean\npy3compile\npyalacarte\npyalamode\npybabel\npybabel-python3\npycc\npyclean\npycompile\npycrust\npydisasm\npydisassemble\npydoc2.7\npydoc3.7\npydoc3.8\npydocstyle\npyflakes\npygettext2.7\npygettext3.7\npygettext3.8\npygmentize\npyhtmlizer\npyhtmlizer3\npyi-archive_viewer\npyi-bindepend\npyidm\npyi-grab_version\npyi-makespec\npyinstaller\npyi-set_version\npyls\npyrit\npyro4-check-config\npyro4-flameserver\npyro4-httpgateway\npyro4-ns\npyro4-nsc\npyro4-test-echoserver\npyrouge_convert_plain_text_to_rouge_format\npyrouge_convert_rouge_format_to_plain_text\npyrouge_evaluate_plain_text_files\npyrouge_evaluate_rouge_format_files\npyrouge_set_rouge_path\npyrouge_write_config_file\npyrsa-decrypt\npyrsa-encrypt\npyrsa-keygen\npyrsa-priv2pub\npyrsa-sign\npyrsa-verify\npyshell\npytesseract\npytest\npytest-3\npython2.7\npython2-futurize\npython2-pasteurize\npython3.7\npython3.7m\npython3.8\npython3-futurize\npython3-pasteurize\npython3-qr\npython3-wsdump\npython-argcomplete-check-easy-install-script\npython-argcomplete-tcsh\npywrap\npywxrc",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:2996-3076"
+    },
+    "123": {
+        "file_id": 4,
+        "content": "This code lists various Python and other utilities, such as pulseaudio, putty2john, pviews3, etc., which are used for different purposes like network analysis, data encryption/decryption, text processing, automation, etc. Some of these tools might be outdated or replaced by more modern versions, but they still serve the purpose they were intended for.",
+        "type": "comment"
+    },
+    "124": {
+        "file_id": 4,
+        "content": "q5reset.py\nqemu-img\nqemu-io\nqemu-make-debian-root\nqemu-nbd\nqrttoppm\nqtchooser\nqt-faststart\nQuadraticSieve\nquake\nquakeserver\nquerybts\nr\nR\nr2agent\nr2pm\nrabin2\nracc2.7\nracc2y2.7\nracf2john\nracket\nrackup\nraco\nradare2\nradiff2\nrafind2\nragg2\nrahash2\nrake\nrandpkt\nrarp\nrarun2\nrasm2\nrasttopnm\nraw\nraw2dyna\nrawshark\nrawtopgm\nrawtoppm\nrax2\nrb\nrcrack\nrcracki_mt\nrctest\nrdesktop\nrdesktop-vrdp\nrdf2bin\nrdf2dot\nrdfdump\nrdfgraphisomorphism\nrdflib\nrdfpipe\nrdfs2dot\nrdjpgcom\nrdma\nrdoc2.7\nrds-ctl\nrdx\nreadlfx.py\nreadlink\nreadmifare1k.py\nreadmifaresimple.py\nreadmifareultra.py\nreadmsg.mailutils\nreadpe\nreadprofile\nreadpst\nreadtag.py\nrealm\nrealpath\nrearj\nreaver\nrecode-sr-latin\nrecon-cli\nrecon-ng\nrecon-web\nrecordmydesktop\nrecoverjpeg\nrecovermov\nrecv_image\nredis-benchmark\nredis-check-aof\nredis-check-rdb\nredis-cli\nredsocks\nregdbdump\nreged\nregexp-assemble\nregister-python-argcomplete\nreglookup\nreglookup-recover\nreglookup-timeline\nregripper\nrelink\nremove-default-ispell\nremove-default-wordlist\nremove-duplicates\nremove-shell\nrename.ul\nrendercheck\nrenice\nreordercap\nreplace\nreplay.pl\nreportbug\nreredirect\nresgen\nresgen2\nresize\nresize2fs",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:3077-3186"
+    },
+    "125": {
+        "file_id": 4,
+        "content": "This code consists of various utility scripts and applications. They are related to virtualization, networking, file operations, database management, programming languages, and more.",
+        "type": "comment"
+    },
+    "126": {
+        "file_id": 4,
+        "content": "resizecons\nresizepart\nresolvectl\nresolveip\nresolve_stack_dump\nresponder\nresponder-DHCP_Auto\nrestclient\nrev\nrfcomm\nrfddump\nrfdformat\nrfidiot-cli.py\nrfkill\nrg\nrgb3toppm\nrgrep\nri2.7\nrifiuti\nrifiuti2\nrifiuti-vista\nrletopnm\nrls\nrlwrap\nrm\nrmdir\nrmt-tar\nrondo\nrotatelogs\nroute\nroutef\nroutel\nrpcclient\nrpcgen\nrq\nrqinfo\nrqworker\nrr\nrr-collect-symbols\nRscript\nrsmangler\nrspec\nrsync\nrsyslogd\nrt2rtc\nrtacct\nrtc2rt\nrtcwake\nrtgen\nrtkitctl\nrtmerge\nrtmon\nrtpbreak\nrtpflood\nrtpinsertsound\nrtpmixsound\nrtsort\nrubiks_cubex\nrubiks_dikcube\nrubiks_optimal\nruby2.7\nrubydns-check\nrulegen\nrunantlr\nrunc\nruncon\nrunghc-8.6.5\nrun-mailcap\nrun-parts\nrunscript\nrunuser\nrun-with-aspell\nrush\nrushlast\nrushwho\nrustc\nrustc-stable\nrustdoc\nrustdoc-stable\nrustfmt\nrust-gdb\nrust-gdb-stable\nrust-lldb\nrustup\nrva2ofs\nrx\nrygel\nrz\ns9\ns9advgen\ns9c2html\ns9cols\ns9dupes\ns9edoc\ns9help\ns9htmlify\ns9hts\ns9resolve\ns9scm2html\ns9scmpp\ns9soccat\nsadf\nsafecopy\nsage\nsagenb-export-python3\nsakis3g\nsamba\nsamba_dnsupdate\nsamba_downgrade_db\nsamba-gpupdate\nsamba_kcc\nsamba-regedit\nsamba_spnupdate\nsamba-tool\nsamba_upgradedns\nsamdump2\nsampasswd\nsamusrgrp\nsaned\nsane-find-scanner\nsar.sysstat",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:3187-3307"
+    },
+    "127": {
+        "file_id": 4,
+        "content": "The code contains a list of program names, each potentially associated with a specific software package or utility. These programs are likely used for various tasks such as file management, network configuration, scripting languages, debugging tools, and more. The list seems to represent the contents of a directory in this codebase, where each filename corresponds to a unique program.",
+        "type": "comment"
+    },
+    "128": {
+        "file_id": 4,
+        "content": "saved_model_cli\nsavelog\nsb\nsbd\nsbigtopgm\nsbiload\nscalpel\nscanimage\nscapy\nscapy2\nsccmap\nsc-hsm-tool\nscm\nscor2prt\nscp\nscp-dbus-service\nscreen\nscreendump\nscribble\nscript\nscriptlive\nscriptor\nscriptreplay\nscrot\nscrounge-ntfs\nsctpscan\nsdiff\nsdl2-config\nsdl-config\nsdptool\nsearchsploit\nsecutil\nsed\nselect-default-ispell\nselect-default-iwrap\nselect-default-wordlist\nselect-editor\nsend_apdu.py\nsendEmail\nsendiso\nsendmsrpc\nsendprobe\nsensible-browser\nsensible-editor\nsensible-pager\nseq\nserve_image\nservice\nsessreg\nsetarch\nsetcap\nsetfacl\nsetfattr\nsetfont\nsetkeycodes\nsetleds\nsetlogcons\nsetmetamode\nse-toolkit\nsetoolkit\nsetpci\nsetpriv\nsetreg\nsetsid\nsetterm\nset_unicharset_properties\nsetupcon\nsetup-plt\nsetvesablank\nsetvtrgb\nsetxkbmap\nsexsend\nsfdisk\nsfo\nsftp\nsfuzz\nsgdisk\nsgen\nsgitopnm\nsha1deep\nsha1sum\nsha224sum\nsha256deep\nsha256sum\nsha384sum\nsha512sum\nshadowconfig\nshapeclustering\nsharesec\nsharkd\nshasum\nshellnoob\nshodan\nshowconsolefont\nshowkey\nshowrgb\nshred\nshuf\nsidguess\nsiege\nsiege2csv\nsiege.config\nsieve\nsigfind\nsignal-rr-recording\nsignature_digest_utility\nsigncode\nsigtool\nSingular\nsiparmyknife\nsipcrack\nsipdump\nSIPdump\nsipp",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:3308-3421"
+    },
+    "129": {
+        "file_id": 4,
+        "content": "Code list of various programs and tools, each serving a specific purpose in areas such as storage management, network utilities, image processing, text manipulation, and more.",
+        "type": "comment"
+    },
+    "130": {
+        "file_id": 4,
+        "content": "sirtopnm\nsj-commit-results\nsj-iptcpopt-probe\nskill\nskipfish\nskivi\nskopeo\nslabtop\nslatex\nslattach\nsldtoppm\nsleep\nslib\nslideshow\nslirp4netns\nslock\nslop\nsmali\nsmartctl\nsmartd\nsmbcacls\nsmbclient\nsmbcontrol\nsmbcquotas\nsmbd\nsmbget\nsmbmap\nsmbpasswd\nsmbspool\nsmbstatus\nsmbtar\nsmbtree\nsmtp-user-enum\nsn\nsnap\nsniff\nsniffjoke\nsniffjoke-autotest\nsniffjokectl\nsnmp-bridge-mib\nsnmpbulkget\nsnmpbulkwalk\nsnmp-check\nsnmpcheck\nsnmpconf\nsnmpd\nsnmpdelta\nsnmpdf\nsnmpget\nsnmpgetnext\nsnmpkey\nsnmpnetstat\nsnmpping\nsnmpps\nsnmpset\nsnmpstatus\nsnmptable\nsnmptest\nsnmptranslate\nsnmptrap\nsnmpusm\nsnmpvacm\nsnmpwalk\nsntp\nsoapsuds\nsocat\nsod.py\nsoelim\nsoftware-properties-gtk\nsort\nsorter\nsort-pictures\nsotruss\nsp64\nspacy\nspark-parser-coverage\nspctoppm\nspd-conf\nspd-say\nspectool_curses\nspectool_gtk\nspectool_net\nspectool_raw\nspeech-dispatcher\nsplain\nsplit\nsplitfont\nsplit-logfile\nspooftooph\nsprof\nsprop\nsputoppm\nsqldict\nsqldiff\nsqlite3\nsqlitebrowser\nsqlmetal\nsqlninja\nsqlsharp\nsqlsus\nsqsh\nsrch_strings\nss\nsselp\nssh\nssh-add\nssh-agent\nssh-argv0\nssh-copy-id\nsshd\nsshfs\nssh-keygen\nssh-keyscan\nsshmitm\nsshow\nsshpass\nssid\nsslcaudit\nssldump\nsslh\nsslh-select\nsslscan",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:3422-3543"
+    },
+    "131": {
+        "file_id": 4,
+        "content": "The code contains a list of programs and utilities, each program serves different purposes such as network protocols, data analysis, system administration tasks, image processing, text manipulation etc.",
+        "type": "comment"
+    },
+    "132": {
+        "file_id": 4,
+        "content": "sslsniff\nsslsplit\nsslyze\nss_spike\nst4topgm\nstart-pulseaudio-x11\nstart-stop-daemon\nstat\nstatd_spike\nstatsgen\nstdbuf\nstest\nstl2gts\nstrace\nstrace-log-merge\nstream-im6.q16\nstty\nstunnel3\nstunnel4\nsu\nsucrack\nsudo\nsudoreplay\nsulogin\nsum\nsumtool\nsunrpcfuzz\nsurf-alggeo-nox\nsushi\nsu-to-root\nsvcutil\nsvn\nsvnadmin\nsvnauthz\nsvnauthz-validate\nsvnbench\nsvndumpfilter\nsvnfsfs\nsvnlook\nsvnmucc\nsvnrdump\nsvnserve\nsvnsync\nsvnversion\nswaks\nswaplabel\nswapoff\nswapon\nswarp\nswfparser\nswindle\nswitch_root\nsx\nsymcryptrun\nsympow\nsync\nsynctex\nsysctl\nsyslog2eximlog\nsystem-config-printer\nsystem-config-printer-applet\nsystemctl\nsystemd-analyze\nsystemd-ask-password\nsystemd-cat\nsystemd-cgls\nsystemd-cgtop\nsystemd-delta\nsystemd-detect-virt\nsystemd-escape\nsystemd-hwdb\nsystemd-id128\nsystemd-inhibit\nsystemd-machine-id-setup\nsystemd-mount\nsystemd-notify\nsystemd-path\nsystemd-run\nsystemd-socket-activate\nsystemd-stdio-bridge\nsystemd-sysusers\nsystemd-tmpfiles\nsystemd-tty-ask-password-agent\nsz\nt1ascii\nt1asm\nt1binary\nt1disasm\nt1mac\nt1unmac\nt4ht\nt50\ntabbed.default\ntabbed.meta\ntabs\ntabulate\ntac\ntachyon-nox\ntail\ntangle\ntapestat\ntar\ntarcat\ntasksel",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:3544-3647"
+    },
+    "133": {
+        "file_id": 4,
+        "content": "lsniff: Tool for man-in-the-middle attacks on SSL connections.\nsslsplit: Splits an SSL connection into separate client and server halves.\nsslyze: Audits OpenSSL configuration files.\nss_spike: Load test tool for web services.\nst4topgm: Converts image from ST4 format to Portable GrayMap (PGM).\nstart-pulseaudio-x11: Starts PulseAudio session for X11.\nstart-stop-daemon: Manages processes as daemons.\nstat: Reports file status.\nstatd_spike: Load test tool for NFS services.\nstatsgen: Generates performance statistics.\nstdbuf: Modifies standard I/O buffer settings.\nstest: Tool for testing a TCP network service.\nstl2gts: Converts stl to gts file format.\nstrace: Traces system calls and signal dispositions.\nstrace-log-merge: Merges strace logs from different processes.\nstream-im6.q16: Streams image in im6 format with 16 bit quantized pixels.\nstty: Sets or displays terminal special characters.\nstunnel3, stunnel4: Secure socket tunnel tool (versions 3 and 4).\nsu, sucrack, sudoreplay, sulogin, sum, sumtool, sunrpcfuzz, surf-alggeo-nox: System utilities.\nsvcutil: Utility for generating proxy code from WSDL documents.\nsvn, svnadmin, svnauthz, svnauthz-validate, svnbench, svndumpfilter, svnfsfs, svnlook, svnmucc, svnrdump, svnserve, svnsync, svnversion: Subversion utilities.\nswaks: SMTP client for sending email and diagnostics.\nswaplabel, swapoff, swapon, swarp: Utilities to manage swap partitions or files.\nswfparser: Parses SWF binary format.\nswindle: Sends emails with forged sender addresses.\nswitch_root: Switches root file system for a process and its descendants.\nsx: Command-line interface to SX client libraries.\nsymcryptrun, sympow: Symmetric encryption and decryption utilities.\nsync, synctex: Synchronizes file system buffers.\nsyslog2eximlog: Converts syslog format to eximlog format.\nsystem-config-printer, system-config-printer-applet: Configuration tools for printers.\nsystemctl, systemd-analyze, systemd-ask-password, systemd-cat, systemd-cgls, systemd-cgtop, systemd-delta, systemd-detect-virt, systemd-escape, systemd-hwdb, systemd-id128, systemd-inhibit, systemd-machine-id-setup, systemd-mount, systemd-notify, systemd-path, systemd-run, systemd-socket-activate, systemd-stdio-bridge, systemd-sysusers, systemd-tmpfiles, systemd-tty-ask-password-agent: SystemD utilities.\nsz: Tool to compress or expand files using LZ77/LZ78 compression algorithm.\nt1ascii, t1asm, t1binary, t1disasm, t1mac, t1unmac, t50: PostScript and TrueType font conversion utilities.\ntabbed.default, tabbed.meta, tabs, tabulate, tac: Text manipulation utilities.\ntail: Outputs last part of a file.\ntangle: Converts an Emacs org-mode file to a plain text file.\ntapestat: Analyzes and visualizes disk usage.\ntar, tarcat: Archive and manage files using the tar format.",
+        "type": "comment"
+    },
+    "134": {
+        "file_id": 4,
+        "content": "taskset\ntbl\ntc\ntcc\ntclsh8.6\ntcltk-depends\ntcpbridge\ntcpcapinfo\ntcpdump\ntcpflow\ntcpick\ntcpkill\ntcpliveplay\ntcpnice\ntcpprep\ntcpreplay\ntcpreplay-edit\ntcprewrite\ntcptraceroute.db\ntcpwatch-httpproxy\ntctrace\ntdbbackup.tdbtools\ntdbdump\ntdbrestore\ntdbtool\nteamserver\ntee\ntelnet.netkit\ntempfile\ntensorboard\nteredo-mire\ntermineter\ntesseract\ntest\ntestacg.sh\ntestdisk\ntestlahf.sh\ntestlibraw\ntestparm\ntex\ntex2aspc\ntex2mail\ntex4ht\ntexi2any\ntexi2dvi\ntexi2pdf\ntexindex\ntext2image\ntext2ngram\ntext2pcap\ntflite_convert\ntftopl\ntftp\ntftpd32\ntf_upgrade_v2\ntgatoppm\ntgtsnarf\nthc-pptp-bruter\nthc-ssl-dos\ntheharvester\ntheHarvester\nthin\nthinkjettopbm\nthor\ntic\ntie\ntifffile\ntifftopnm\ntigerdeep\ntightvncconnect\ntightvncpasswd\ntightvncserver\ntilt\ntimedatectl\ntimeout\ntimestamp\ntini\ntini-static\ntipc\ntjbench\ntkconch\ntkconch3\ntkiptun-ng\ntkjpeg\ntload\ntl-paper\ntlssled\ntmux\ntmux2html\ntnscmd10g\ntoco\ntoco_from_protos\ntoe\ntop\ntor\ntor-gencert\ntorify\ntor-instance-create\ntor-print-ed-signing-cert\ntor-resolve\ntorsocks\ntotem\ntotem-video-thumbnailer\ntouch\ntpic2pdftex\ntpmc\ntpm-nvsize\ntput\ntqdm\ntr\ntraceproto.db\ntraceroute.db\ntraceroute-nanog\ntracker\ntrafgen",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:3648-3762"
+    },
+    "135": {
+        "file_id": 4,
+        "content": "The code contains a list of various commands and utilities typically found in Unix-like operating systems, used for network management, file operations, text processing, graphical user interfaces, and more. These commands are commonly used by developers and system administrators to manage, monitor, and troubleshoot their systems efficiently.",
+        "type": "comment"
+    },
+    "136": {
+        "file_id": 4,
+        "content": "transfig\ntransform\ntransit.py\ntransset\ntred\ntrial\ntrial3\ntroff\ntrue\ntruecrack\ntruncate\ntrust\ntset\ntshark\ntsk_comparedir\ntsk_gettimes\ntsk_loaddb\ntsk_recover\ntsort\nttf2afm\nttf2pk\nttf2tfm\nttfdump\ntty\ntune2fs\ntwist\ntwist3\ntwistd\ntwistd3\ntwofi\ntxixml2texi\ntzconfig\ntzselect\nu3-pwn\nu3-tool\nuaf2john\nua-tester\nubiattach\nubiblock\nubicrc32\nubidetach\nubiformat\nubimkvol\nubinfo\nubinize\nubirename\nubirmvol\nubirsvol\nubiupdatevol\nucf\nucfq\nucfr\nuconv\nucs2any\nudevadm\nudisksctl\nudp_server\nudptunnel\nul\numax_pp\numount\numount.udisks2\nuname\nunattended-upgrade\nuncompress\nuncompyle6\nundill\nunexpand\nunflatten\nunibrow\nunicfgtst\nunicharset_extractor\nunicode_start\nunicode_stop\nunicornscan\nuniq\nunique.py\nuniscan\nuniscan-gui\nunix2dos\nunix_chkpwd\nunix-privesc-check\nunix_update\nunlink\nunmkinitramfs\nunpigz\nunrar-nonfree\nunshare\nunsquashfs\nunzip\nunzipsfx\nupbibtex\nupdate-alternatives\nupdate-binfmts\nupdate-ca-certificates\nupdate-catalog\nupdate-cracklib\nupdatedb.findutils\nupdatedb.mlocate\nupdate-default-ispell\nupdate-default-wordlist\nupdate-desktop-database\nupdate-dictcommon-aspell\nupdate-dictcommon-hunspell\nupdate-exim4.conf\nupdate-exim4.conf.template",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:3763-3868"
+    },
+    "137": {
+        "file_id": 4,
+        "content": "\"lazero/bootstrap/blitx/COMSEED_x86_64\":3762-3867 appears to contain a list of command line utilities and scripts, each representing a different function or operation. These might be used for various tasks such as data manipulation, file management, system configuration, networking, etc.",
+        "type": "comment"
+    },
+    "138": {
+        "file_id": 4,
+        "content": "update-exim4defaults\nupdate-fonts-alias\nupdate-fonts-dir\nupdate-fonts-scale\nupdate-gap-workspace\nupdate-glx\nupdate-grub\nupdate-gsfontmap\nupdate-icon-caches\nupdate-ieee-data\nupdate-inetd\nupdate-info-dir\nupdate-initramfs\nupdate-java-alternatives\nupdate-language\nupdate-leap\nupdate-locale\nupdate-menus\nupdate-mime\nupdate-mime-database\nupdate-passwd\nupdate-pciids\nupdate-perl-sax-parsers\nupdate-rc.d\nupdate-smart-drivedb\nupdate-texmf\nupdate-texmf-config\nupdate-tl-stacked-conffile\nupdate-xmlcatalog\nupdvitype\nupgrade-from-grub-legacy\nupmendex\nupmpost\nupower\nuppltotf\nuptex\nuptftopl\nuptime\nupx-ucl\nurlcrazy\nurlsnarf\nus428control\nusb-devices\nusbhid-dump\nusb_modeswitch\nusb_modeswitch_dispatcher\nusbmuxd\nusbreset\nuseradd\nuserdel\nusermod\nusers\nusleep\nusnjls\nutmpdump\nuuidd\nuuidgen\nuuidparse\nuuid_server.js\nuxterm\nv2ctl\nv2ray\nv4l2-compliance\nv4l2-ctl\nv4l2-dbg\nv4l2-sysfs-path\nvalidlocale\nvbutil_what_keys\nvconfig\nvcstime\nvdir\nverify_data\nveritysetup\nvftovp\nviewres\nvim.basic\nvimdot\nvim.gtk3\nvim.tiny\nvimtutor\nvinetto\nvipw\nvirtualenv\nvisudo\nvlna\nvmstat\nvmwarectrl\nvncpcap2john\nvoiphopper\nvolafox\nvolname",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:3869-3959"
+    },
+    "139": {
+        "file_id": 4,
+        "content": "This code seems to be a list of various update commands for different software or system configurations, such as `update-exim4defaults`, `update-fonts-alias`, and so on. These updates likely aim to improve the functionality or security of the corresponding software or system settings.",
+        "type": "comment"
+    },
+    "140": {
+        "file_id": 4,
+        "content": "votour\nvpddecode\nvpnc\nvpnc-disconnect\nvptovf\nw3m\nw3mman\nwafw00f\nwaitress-serve\nwall\nwapiti\nwapiti-getcookie\nwash\nwatch\nwatchgnupg\nwayland-scanner\nwbmptopbm\nwc\nwce\nwdctl\nweave\nwebacoo\nwebfuzz\nwebmitm\nwebscarab\nwebshells\nwebspy\nwesside-ng\nwestcos-tool\nwfuzz\nwget\nwhatis\nwhatweb\nwhereis\nwhich\nwhiptail\nwhirlpooldeep\nwho\nwhoami\nwhois\nwidget\nwifiarp\nwifidns\nwifi-honey\nwifiping\nwifitap\nwifite\nwindows-binaries\nwindows-resources\nwine-development\nwine-stable\nwinexe\nwinicontoppm\nwipefs\nwireshark\nwish8.6\nwl-copy\nwl-paste\nwmf2eps\nwmf2fig\nwmf2gd\nwmf2svg\nwmf2x\nwmname\nwofm2opl\nwopl2ofm\nword2phrase\nword2vec\nword2vec-compute-accuracy\nword2vec-distance\nword2vec-doc2vec\nword2vec-word-analogy\nwordlist2dawg\nword-list-compress\nwordlists\nwovf2ovp\nwovp2ovf\nwpa_action\nwpaclean\nwpa_cli\nwpa_passphrase\nwpapcap2john\nwpa_supplicant\nw.procps\nwpscan\nwritelfx.py\nwritemifare1k.py\nwrjpgcom\nwsdl\nwsdl2\nwsrep_sst_common\nwsrep_sst_mariabackup\nwsrep_sst_mysqldump\nwsrep_sst_rsync\nx11perf\nx11perfcomp\nx11_spike\nx264\nx86_64-linux-gnu-addr2line\nx86_64-linux-gnu-ar\nx86_64-linux-gnu-as\nx86_64-linux-gnu-c++filt\nx86_64-linux-gnu-cpp-8\nx86_64-linux-gnu-cpp-9",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:3960-4063"
+    },
+    "141": {
+        "file_id": 4,
+        "content": "This code includes various utilities and tools, such as wifi-related tools (wifitap, wifite), network tools (wget, wpa_supplicant), programming languages (python, perl) scripts for file manipulation or conversion (writemifare1k.py, wrjpgcom), and libraries/programming interfaces (x264, x86_64-linux-gnu-addr2line). It seems to be a combination of network security tools, programming language scripts, and system utilities for Linux systems.",
+        "type": "comment"
+    },
+    "142": {
+        "file_id": 4,
+        "content": "x86_64-linux-gnu-dwp\nx86_64-linux-gnu-elfedit\nx86_64-linux-gnu-g++-8\nx86_64-linux-gnu-g++-9\nx86_64-linux-gnu-gcc-8\nx86_64-linux-gnu-gcc-9\nx86_64-linux-gnu-gcc-ar-8\nx86_64-linux-gnu-gcc-ar-9\nx86_64-linux-gnu-gcc-nm-8\nx86_64-linux-gnu-gcc-nm-9\nx86_64-linux-gnu-gcc-ranlib-8\nx86_64-linux-gnu-gcc-ranlib-9\nx86_64-linux-gnu-gcov-8\nx86_64-linux-gnu-gcov-9\nx86_64-linux-gnu-gcov-dump-8\nx86_64-linux-gnu-gcov-dump-9\nx86_64-linux-gnu-gcov-tool-8\nx86_64-linux-gnu-gcov-tool-9\nx86_64-linux-gnu-gfortran-9\nx86_64-linux-gnu-gprof\nx86_64-linux-gnu-ld.bfd\nx86_64-linux-gnu-ld.gold\nx86_64-linux-gnu-nm\nx86_64-linux-gnu-objcopy\nx86_64-linux-gnu-objdump\nx86_64-linux-gnu-python2.7-config\nx86_64-linux-gnu-python3.8-config\nx86_64-linux-gnu-qmake\nx86_64-linux-gnu-ranlib\nx86_64-linux-gnu-readelf\nx86_64-linux-gnu-size\nx86_64-linux-gnu-strings\nx86_64-linux-gnu-strip\nx86_64-pc-linux-gnu-pkg-config\nxargs\nxauth\nxbiff\nxbmtopbm\nxbrlapi\nxbuild\nxcalc\nxcas\nxclip\nxclipboard\nxclip-copyfile\nxclip-cutfile\nxclip-pastefile\nxclock\nxcmsdb\nxconsole\nxconv.pl\nxcursorgen\nxcutsel\nxdg-dbus-proxy",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:4064-4117"
+    },
+    "143": {
+        "file_id": 4,
+        "content": "List of installed software and tools on x86_64 Linux system.",
+        "type": "comment"
+    },
+    "144": {
+        "file_id": 4,
+        "content": "xdg-desktop-icon\nxdg-desktop-menu\nxdg-email\nxdg-icon-resource\nxdg-mime\nxdg-open\nxdg-screensaver\nxdg-settings\nxdg-user-dir\nxdg-user-dirs-update\nxditview\nxdman\nxdotool\nxdpyinfo\nxdriinfo\nxdvi\nxdvipdfmx\nxdvi-xaw\nxedit\nXephyr\nxetex\nxev\nxeyes\nxfd\nxfontsel\nxfreerdp\nxfs_admin\nxfs_bmap\nxfs_copy\nxfs_db\nxfs_estimate\nxfs_freeze\nxfs_fsr\nxfs_growfs\nxfs_info\nxfs_io\nxfs_logprint\nxfs_mdrestore\nxfs_metadump\nxfs_mkfile\nxfs_ncheck\nxfs_quota\nxfs_repair\nxfs_rtcp\nxfs_scrub\nxfs_scrub_all\nxfs_spaceman\nxgamma\nxgc\nxgettext\nxhost\nxhydra\nximtoppm\nxine-list-1.2\nxinetd\nxinput\nxkbbell\nxkbcomp\nxkbevd\nxkbprint\nxkbvleds\nxkbwatch\nxkeystone\nxkill\nxload\nxlogo\nxlsatoms\nxlsclients\nxlsfonts\nxmag\nxman\nxmessage\nxminicom\nxml2ag\nxml2-config\nxmlcatalog\nxmllint\nxmodmap\nxmore\nXorg\nxpdf\nxpdf.real\nxpmtoppm\nxprobe2\nxprop\nxrandr\nxrced\nxrdb\nxrefresh\nxscreensaver\nxscreensaver-command\nxscreensaver-demo\nxscreensaver-getimage\nxscreensaver-getimage-file\nxscreensaver-getimage-video\nxscreensaver-text\nxsd\nxsel\nxset\nxsetmode\nxsetpointer\nxsetroot\nxsetwacom\nxslt-config\nxsp4\nxspy\nxsser\nxssstate\nxstdcmap\nxsubpp\nxtables-legacy-multi\nxtables-nft-multi\nxterm\nXtightvnc",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:4118-4231"
+    },
+    "145": {
+        "file_id": 4,
+        "content": "This code snippet lists various command-line tools and utilities for Linux, including desktop tools, graphical applications, X Window System servers, and file format converters. These commands provide functionality for tasks like managing desktop icons and menus, working with files, modifying system settings, and more.",
+        "type": "comment"
+    },
+    "146": {
+        "file_id": 4,
+        "content": "xtightvncviewer\nxtrace\nxvidtune\nxvinfo\nxvminitoppm\nXwayland\nxwd\nxwdtopnm\nxwininfo\nxwud\nxxd\nxz\nxzdiff\nxzgrep\nxzless\nxzmore\ny2racc2.7\nyapf\nyasm\nybmtopbm\nyelp\nyersinia\nyes\nyoutube-dl\nytasm\nyuvsplittoppm\nyuvtoppm\nzaproxy\nzbassocflood\nzbconvert\nzbdsniff\nzbdump\nzbfind\nzbgoodfind\nzbid\nzblacklist\nzbreplay\nzbstumbler\nzcat\nzcmp\nzdiff\nzdump\nzegrep\nzeisstopnm\nzenity\nzenmap\nzerofree\nzfgrep\nzforce\nzgrep",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:4232-4281"
+    },
+    "147": {
+        "file_id": 4,
+        "content": "This code snippet contains the names of various command-line utilities and tools, often used in software development or system administration tasks. These programs cover a wide range of functionalities, such as image manipulation, file compression/decompression, network diagnostics, and more.",
+        "type": "comment"
+    },
+    "148": {
+        "file_id": 4,
+        "content": "zic\nzim\nzip\nzipcloak\nzipdetails\nzipgrep\nzipinfo\nzipnote\nzipsplit\nzl\nzless\nzmap\nzmore\nznew\nzramctl\nzsh\nzsh5\nztee\nzz",
+        "type": "code",
+        "location": "/bootstrap/blitx/COMSEED_x86_64:4282-4300"
+    },
+    "149": {
+        "file_id": 4,
+        "content": "These are filenames of various utilities and commands in the \"lazero/bootstrap/blitx/COMSEED_x86_64\" directory. These commands seem to be related to compression, text manipulation, and system management tasks in a Unix-like operating system.",
+        "type": "comment"
+    },
+    "150": {
+        "file_id": 5,
+        "content": "/bootstrap/blitx/README",
+        "type": "filepath"
+    },
+    "151": {
+        "file_id": 5,
+        "content": "Blitx is a project derived from browser plugins and Android clients, using Dredd as its backend for compatibility. It faces issues with cgroup v2 support and system encryption can be improved with LastPass. Optimizing interpreters and source files are needed. Online references and internal simulations help save time.",
+        "type": "summary"
+    },
+    "152": {
+        "file_id": 5,
+        "content": "It is the derived project Blitx.\nThere used to be browser plugins, android clients.\nFor compatibility reasons, we use Dredd as the backend of sandbox, though other things like proot might help but have not yet been fully understood.\ncgroup v2 might be enabled.\nit seems to be caused by docker, which only supports v1. (no it's systemd)\nso differ.\nthe control is maintained by init file. but can we write it to the place? we can do the parametric things.\ncurrently not knowing cpu things under DOS. it was slow as hell and nightmare maybe. consider bring lastpass here. might help for system encryption. it is both a password generator and mananger.\nSo for GUI stuff, sandboxie and firejail will help, while locking to the target is also critical to safety.\nIt's about the relation between pid and GUI handles.\nImminent target is about understanding of these strings and bytes, and then feed it back to the system.\nMust look down on every source file and intepreter. Their implementation is wasteful.\nIn order to ",
+        "type": "code",
+        "location": "/bootstrap/blitx/README:1-20"
+    },
+    "153": {
+        "file_id": 5,
+        "content": "This project, Blitx, was derived from browser plugins and Android clients. It uses Dredd as the backend of sandbox for compatibility reasons, although other options like proot may be helpful. Cgroup v2 might be enabled, but docker only supports v1 (systemd is causing issues). The control is maintained by an init file, and system encryption can be improved with tools like LastPass. Sandboxie and Firejail are useful for GUI tasks, while understanding the relation between pid and GUI handles is critical to safety. Interpreters and source files need optimization as they are currently wasteful.",
+        "type": "comment"
+    },
+    "154": {
+        "file_id": 5,
+        "content": "save time, online reference and internal simulation is needed, filling the gap between reality and imagination.",
+        "type": "code",
+        "location": "/bootstrap/blitx/README:20-20"
+    },
+    "155": {
+        "file_id": 5,
+        "content": "The code mentions the importance of having online references and internal simulations to save time, bridging the gap between reality and imagination.",
+        "type": "comment"
+    },
+    "156": {
+        "file_id": 6,
+        "content": "/bootstrap/blitx/SEED",
+        "type": "filepath"
+    },
+    "157": {
+        "file_id": 6,
+        "content": "These code lines represent URLs for various websites and a local file system path. The first three lines are the URLs of Bing, Baidu, and Bilibili respectively, while the last line is a reference to the local file system.",
+        "type": "summary"
+    },
+    "158": {
+        "file_id": 6,
+        "content": "https://www.bing.com\nhttps://www.baidu.com\nhttps://www.bilibili.com\nfile:///",
+        "type": "code",
+        "location": "/bootstrap/blitx/SEED:1-4"
+    },
+    "159": {
+        "file_id": 6,
+        "content": "These code lines represent URLs for various websites and a local file system path. The first three lines are the URLs of Bing, Baidu, and Bilibili respectively, while the last line is a reference to the local file system.",
+        "type": "comment"
+    },
+    "160": {
+        "file_id": 7,
+        "content": "/bootstrap/blitx/XListAllCommands.sh",
+        "type": "filepath"
+    },
+    "161": {
+        "file_id": 7,
+        "content": "This Bash script defines a function, ListAllCommands(), which takes the PATH as input and searches for executable files within that path. It uses xargs to find all executable files under each directory in the given PATH, excluding subdirectories, and sorts them uniquely before printing.",
+        "type": "summary"
+    },
+    "162": {
+        "file_id": 7,
+        "content": "#!/bin/bash\nfunction ListAllCommands\n{\n    echo -n $PATH | xargs -d : -I {} find {} -maxdepth 1 \\\n        -executable -type f -printf '%P\\n' | sort -u\n}\nListAllCommands",
+        "type": "code",
+        "location": "/bootstrap/blitx/XListAllCommands.sh:1-7"
+    },
+    "163": {
+        "file_id": 7,
+        "content": "This Bash script defines a function, ListAllCommands(), which takes the PATH as input and searches for executable files within that path. It uses xargs to find all executable files under each directory in the given PATH, excluding subdirectories, and sorts them uniquely before printing.",
+        "type": "comment"
+    },
+    "164": {
+        "file_id": 8,
+        "content": "/bootstrap/blitx/aloof.sh",
+        "type": "filepath"
+    },
+    "165": {
+        "file_id": 8,
+        "content": "Code runs two scripts, indicator.sh and batcher.sh, in the background.",
+        "type": "summary"
+    },
+    "166": {
+        "file_id": 8,
+        "content": "#!/bin/bash\n./indicator.sh & ./batcher.sh",
+        "type": "code",
+        "location": "/bootstrap/blitx/aloof.sh:1-2"
+    },
+    "167": {
+        "file_id": 8,
+        "content": "Code runs two scripts, indicator.sh and batcher.sh, in the background.",
+        "type": "comment"
+    },
+    "168": {
+        "file_id": 9,
+        "content": "/bootstrap/blitx/aloof_x86_64.sh",
+        "type": "filepath"
+    },
+    "169": {
+        "file_id": 9,
+        "content": "This code is executing two shell scripts (indicator_x86_64.sh and batcher_x86_64.sh) concurrently on an x86_64 architecture system using Bash shell. The ampersand (&) symbol allows the second command to run in the background while the first one continues execution. This could be part of a setup process where these scripts perform different tasks in parallel.",
+        "type": "summary"
+    },
+    "170": {
+        "file_id": 9,
+        "content": "#!/bin/bash\n./indicator_x86_64.sh & ./batcher_x86_64.sh",
+        "type": "code",
+        "location": "/bootstrap/blitx/aloof_x86_64.sh:1-2"
+    },
+    "171": {
+        "file_id": 9,
+        "content": "This code is executing two shell scripts (indicator_x86_64.sh and batcher_x86_64.sh) concurrently on an x86_64 architecture system using Bash shell. The ampersand (&) symbol allows the second command to run in the background while the first one continues execution. This could be part of a setup process where these scripts perform different tasks in parallel.",
+        "type": "comment"
+    },
+    "172": {
+        "file_id": 10,
+        "content": "/bootstrap/blitx/aloofclient.py",
+        "type": "filepath"
+    },
+    "173": {
+        "file_id": 10,
+        "content": "This code imports necessary libraries, defines port and connection settings for a ZMQ socket, but is incomplete and contains commentary indicating issues with sending data and potential non-blocking mode implementation.",
+        "type": "summary"
+    },
+    "174": {
+        "file_id": 10,
+        "content": "import zmq\nimport random\nimport sys\nimport time\n# from sub2 import timeout\nport = \"5757\"\ncontext = zmq.Context()\nsocket = context.socket(zmq.PAIR)\nsocket.setsockopt(zmq.LINGER, 0)\n# this works. not blocking.\nsocket.connect(\"tcp://127.0.0.7:%s\" % port)\n#while True:\n#        msg = socket.recv()\n#        print msg\n# performing one-shot.\n#        socket.send(\"client message to server1\")\n# fuck.\n# for the latter.\nsend_string = socket.send_string\n# send_string = timeout(1)(socket.send_string)\n# send_string(input(\"Enter the command:\\r\\n\"))\ndef sender(a):\n    send_string(a)\n# cannot send shit.\n# will stuck if no receive. switch to non-block mode here?\n#        time.sleep(1)\n# asshole.\n# WTF?\n# just to send one single string.",
+        "type": "code",
+        "location": "/bootstrap/blitx/aloofclient.py:1-30"
+    },
+    "175": {
+        "file_id": 10,
+        "content": "This code imports necessary libraries, defines port and connection settings for a ZMQ socket, but is incomplete and contains commentary indicating issues with sending data and potential non-blocking mode implementation.",
+        "type": "comment"
+    },
+    "176": {
+        "file_id": 11,
+        "content": "/bootstrap/blitx/aloofserver.py",
+        "type": "filepath"
+    },
+    "177": {
+        "file_id": 11,
+        "content": "This code imports ZMQ, random, sys, and time libraries. It sets the port to 5757 and creates a socket using ZMQ's PAIR type. The socket binds to the local IP address on the specified port. In an infinite loop, it receives messages from clients, prints them, and may pause for one second before repeating.",
+        "type": "summary"
+    },
+    "178": {
+        "file_id": 11,
+        "content": "import zmq\nimport random\nimport sys\nimport time\nport = \"5757\"\ncontext = zmq.Context()\nsocket = context.socket(zmq.PAIR)\nsocket.bind(\"tcp://127.0.0.7:%s\" % port)\nwhile True:\n#        socket.send_string(\"Server message to client3\")\n# what the fuck is this?\n    msg = (socket.recv_string()+\"\\r\\n\").encode()\n    print(msg)\n    # will it stuck?\n    # print(type(msg),msg)\n        # this is fuck.\n#        time.sleep(1)\n# we'll receive it.",
+        "type": "code",
+        "location": "/bootstrap/blitx/aloofserver.py:1-19"
+    },
+    "179": {
+        "file_id": 11,
+        "content": "This code imports ZMQ, random, sys, and time libraries. It sets the port to 5757 and creates a socket using ZMQ's PAIR type. The socket binds to the local IP address on the specified port. In an infinite loop, it receives messages from clients, prints them, and may pause for one second before repeating.",
+        "type": "comment"
+    },
+    "180": {
+        "file_id": 12,
+        "content": "/bootstrap/blitx/bargs.py",
+        "type": "filepath"
+    },
+    "181": {
+        "file_id": 12,
+        "content": "This code imports the 'sys' module and iterates over 'sys.argv', which contains command-line arguments passed to the script, then prints each argument on a separate line.",
+        "type": "summary"
+    },
+    "182": {
+        "file_id": 12,
+        "content": "import sys\nfor x in sys.argv:\n    print(x)",
+        "type": "code",
+        "location": "/bootstrap/blitx/bargs.py:1-3"
+    },
+    "183": {
+        "file_id": 12,
+        "content": "This code imports the 'sys' module and iterates over 'sys.argv', which contains command-line arguments passed to the script, then prints each argument on a separate line.",
+        "type": "comment"
+    },
+    "184": {
+        "file_id": 13,
+        "content": "/bootstrap/blitx/bashrc",
+        "type": "filepath"
+    },
+    "185": {
+        "file_id": 13,
+        "content": "This code is executing an echo command with escaped characters. The \"\\x00\\xd0\\x9d\\x09\" sequence sets the current shell PID as environment variable $$ using octal notation.",
+        "type": "summary"
+    },
+    "186": {
+        "file_id": 13,
+        "content": "echo -e \"\\x00\\xd0\\x9d\\x09$$\"",
+        "type": "code",
+        "location": "/bootstrap/blitx/bashrc:1-1"
+    },
+    "187": {
+        "file_id": 13,
+        "content": "This code is executing an echo command with escaped characters. The \"\\x00\\xd0\\x9d\\x09\" sequence sets the current shell PID as environment variable $$ using octal notation.",
+        "type": "comment"
+    },
+    "188": {
+        "file_id": 14,
+        "content": "/bootstrap/blitx/batcher.sh",
+        "type": "filepath"
+    },
+    "189": {
+        "file_id": 14,
+        "content": "This script continuously runs the weblogin.py Python script in a loop, potentially automating login or data collection processes for a website.",
+        "type": "summary"
+    },
+    "190": {
+        "file_id": 14,
+        "content": "#!/bin/bash\nwhile true\ndo\n\tpython3 weblogin.py\ndone",
+        "type": "code",
+        "location": "/bootstrap/blitx/batcher.sh:1-5"
+    },
+    "191": {
+        "file_id": 14,
+        "content": "This script continuously runs the weblogin.py Python script in a loop, potentially automating login or data collection processes for a website.",
+        "type": "comment"
+    },
+    "192": {
+        "file_id": 15,
+        "content": "/bootstrap/blitx/batcher_x86_64.sh",
+        "type": "filepath"
+    },
+    "193": {
+        "file_id": 15,
+        "content": "This script continuously runs the \"weblogin_x86_64.py\" Python program in a loop.",
+        "type": "summary"
+    },
+    "194": {
+        "file_id": 15,
+        "content": "#!/bin/bash\nwhile true\ndo\n\tpython3 weblogin_x86_64.py\ndone",
+        "type": "code",
+        "location": "/bootstrap/blitx/batcher_x86_64.sh:1-5"
+    },
+    "195": {
+        "file_id": 15,
+        "content": "This script continuously runs the \"weblogin_x86_64.py\" Python program in a loop.",
+        "type": "comment"
+    },
+    "196": {
+        "file_id": 16,
+        "content": "/bootstrap/blitx/check_cgroups.sh",
+        "type": "filepath"
+    },
+    "197": {
+        "file_id": 16,
+        "content": "This script retrieves and displays the current cgroup configuration from /proc/cgroups file.",
+        "type": "summary"
+    },
+    "198": {
+        "file_id": 16,
+        "content": "#!/bin/bash\ncat /proc/cgroups",
+        "type": "code",
+        "location": "/bootstrap/blitx/check_cgroups.sh:1-2"
+    },
+    "199": {
+        "file_id": 16,
+        "content": "This script retrieves and displays the current cgroup configuration from /proc/cgroups file.",
+        "type": "comment"
+    }
+}

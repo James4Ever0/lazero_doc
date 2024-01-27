@@ -1,0 +1,10 @@
+{
+    "summary": "This script sets up a Go development environment by creating directories, setting the GOPATH to current directory, and installing required packages. It follows a \"one-liner\" approach for each task, simplifying the setup process.",
+    "details": [
+        {
+            "comment": "This script sets up a Go development environment by creating directories, setting the GOPATH to current directory, and installing required packages. It follows a \"one-liner\" approach for each task, simplifying the setup process.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/gobuild.sh\":0-7",
+            "content": "#!/bin/bash\ncd ~/\nmkdir go\ncd go\nmkdir bin src pkg\nGO111MODULE=on GOPATH=$(pwd) go get github.com/buildkite/terminal-to-html\nGO111MODULE=on GOPATH=$(pwd) go get github.com/codegangsta/cli\nGO111MODULE=on GOPATH=$(pwd) go get github.com/urfave/cli"
+        }
+    ]
+}

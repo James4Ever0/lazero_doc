@@ -1,0 +1,537 @@
+{
+    "1200": {
+        "file_id": 206,
+        "content": "#  [ True  True  True  True  True  True  True  True  True  True]]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/say_we_have_words.py:121-121"
+    },
+    "1201": {
+        "file_id": 206,
+        "content": "The code is defining a list of boolean values, where each value represents a True state. This could be used in a conditional or looping statement to check for specific conditions within the program's logic.",
+        "type": "comment"
+    },
+    "1202": {
+        "file_id": 207,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/the_abstraction.py",
+        "type": "filepath"
+    },
+    "1203": {
+        "file_id": 207,
+        "content": "The code generates random arrays and then checks for matches between the generated arrays and a given set of values. It starts by importing necessary libraries, creating functions to create random arrays, and defining lists to hold the arrays. The code then combines the random arrays, reverses a list, and checks for matches between the new array and a provided list. Finally, it prints out the generated arrays and their respective matches.",
+        "type": "summary"
+    },
+    "1204": {
+        "file_id": 207,
+        "content": "# it is all ahout directing some input toward some same outout.\n# purposefully\nimport numpy as np\nimport random\n# all disqualified shit. which is great.\ndef nonsense(a):\n    return [np.array([[random.choice([True, False]) for y in range(10)] for x in range(10)]) for x in range(a)]\ndef same_nonsense(x, a):\n    return [x for y in range(a)]\ndef flat(a):\n    return [x for y in a for x in y]\na = [5, 4, 3, 2, 1]\nd = list(reversed(a))\nnons = [np.array([[random.choice([True, False]) for y in range(10)]\n                  for x in range(10)]) for z in range(len(a))]\nnons = [same_nonsense(nons[x], d[x]) for x in range(len(a))]\nnd=[nonsense(x) for x in a]\nnons,nd=flat(nons),flat(nd)\nnx=zip(nons,nd)\nfor z,f in nx:\n    print(z)\n    print(\"match\")\n    print(f)\n    print(\"######################################################################\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/the_abstraction.py:1-29"
+    },
+    "1205": {
+        "file_id": 207,
+        "content": "The code generates random arrays and then checks for matches between the generated arrays and a given set of values. It starts by importing necessary libraries, creating functions to create random arrays, and defining lists to hold the arrays. The code then combines the random arrays, reverses a list, and checks for matches between the new array and a provided list. Finally, it prints out the generated arrays and their respective matches.",
+        "type": "comment"
+    },
+    "1206": {
+        "file_id": 208,
+        "content": "/bootstrap/legacy/concentration/brainfuck/archiver/we_do_have_words.py",
+        "type": "filepath"
+    },
+    "1207": {
+        "file_id": 208,
+        "content": "This code initializes a 2D boolean array for potential swapping, explores alternatives and investigates meta-block interactions while calculating maintainable state duration.",
+        "type": "summary"
+    },
+    "1208": {
+        "file_id": 208,
+        "content": "# we have a list of parameters!\n# they have work to do!\n# to emulate the brain? no need. we just need a cyber brain!\n# swap the values when you want to.\n# keep, swap, eliminate\n# random actions, not taking account.\nimport random\nimport copy\nimport numpy as np\nimport time\nfrom numba import jit\n# what is that?\n# from cython import jit\n# find it yourself? recursive pydoc?\n# really strange artifact.\n# so we does not need random swapping.\n# it is not random at all.\n# we can even create value specific rules!\n# REMEMBER: SPARSE IS BETTER THAN DENSE.\n@jit\ndef still(a, b):\n    return a, b\n@jit\ndef keep(a, b):\n    return a, a\n@jit\ndef swap(a, b):\n    return b, a\n@jit\ndef eliminate(a, b):\n    return b, b\n# zmq, mpi.\ndef init(a):\n    b = np.array([[random.choice([True, False])\n                   for y in range(10)] for x in range(10)])\n    return b\n@jit # illusion.\ndef train(a):  # you can print the difference.\n    # time.sleep(0.1)\n    # print(dir(a))\n    # b = np.array(a.tolist()) # this is wrong.\n    # b=np.array([[x for x in y] for y in a])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/we_do_have_words.py:1-47"
+    },
+    "1209": {
+        "file_id": 208,
+        "content": "The code appears to be defining functions for list manipulation (keep, swap, eliminate) and initializing a 2D array with random boolean values. The code uses Numba's just-in-time compilation for performance optimization. It also mentions ZeroMQ and MPI, suggesting potential communication between processes or distributed computing. The 'train' function seems to involve some form of update or iteration over the input array and may print the differences before/after each iteration, but this functionality is commented out. The code's purpose and relationships between functions are unclear without further context.",
+        "type": "comment"
+    },
+    "1210": {
+        "file_id": 208,
+        "content": "    b=copy.copy(a)\n    for x in range(len(a)**2):\n        xa = random.choice(list(range(len(a))))\n        # for y in range(len(a)):\n        # nonsense = x+y\n        xb = random.choice(list(range(len(a))))\n        ax = random.choice(list(range(len(a))))\n        # for y in range(len(a)):\n        # nonsense = x+y\n        bx = random.choice(list(range(len(a))))\n        # f = random.choice([keep, swap, eliminate, still])\n        # f = random.choice([keep, swap])\n        f = random.choice([still, swap])\n        # in this way we will not have same shit.\n        # and we will not going to perform any task.\n        # f = random.choice([swap, eliminate])\n        # f = random.choice([keep, eliminate])\n        # why it is the same?\n        # it is about swapping column.\n        # you will get the same column.\n        # print(b[xa], b[xb], f.__name__)\n        b[xa][ax], b[xb][bx] = f(b[xa][ax], b[xb][bx])\n        # print(b[xa], b[xb])\n    if np.all(a == b):\n        print(\"same\")\n    else:\n        print(\"not same\")\n    return b",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/we_do_have_words.py:48-75"
+    },
+    "1211": {
+        "file_id": 208,
+        "content": "This code copies a list 'a', creates another list 'b' from a copy of 'a', then randomly selects elements and swaps them using a random function 'f'. If 'a' and 'b' are not the same after performing the swaps, it prints \"not same\"; otherwise, it prints \"same\". The goal is to prevent repeating the same operation.",
+        "type": "comment"
+    },
+    "1212": {
+        "file_id": 208,
+        "content": "# always remains Equilibrium.\n# i need to check it. what the heck is going on.\n    # a0=list(range(len(a)))\n    # a1=copy.copy(a0)\n    # for x in a0:\n    #     xa=random.choice(list(range(len(a1))))\n    #     a2=copy.copy(a0)\n    #     for\n# that is another alternative.\nepoch = 2\ndim = 10\ni = init(dim)\nfor x in range(epoch):\n    # print(i.sum())\n    print(i)\n    i = train(i)\nprint(\"final\")\nprint(i)\n# stack the whole thing into a meta-block?\n# but it can only interact with meta-blocks.\n# so what the heck? must need outside stimulation?\n# we can calculagte how long we can maintain the state.\n# this is for one-dimension.\n# [[False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/we_do_have_words.py:78-107"
+    },
+    "1213": {
+        "file_id": 208,
+        "content": "The code initializes a one-dimensional array and trains it for a specified number of epochs. The final trained array is then printed. The comments suggest exploring alternative methods, potential meta-block interactions, and calculating the maintainable state duration.",
+        "type": "comment"
+    },
+    "1214": {
+        "file_id": 208,
+        "content": "#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]\n#  [False  True False False  True False  True False False  True]]\n# [[False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]\n#  [False  True  True False  True False  True  True  True False]]\n# for two-dimentional swap.\n# [[ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/we_do_have_words.py:108-124"
+    },
+    "1215": {
+        "file_id": 208,
+        "content": "This code snippet appears to represent a two-dimensional array with boolean values. It seems to be used for swapping purposes, as indicated by the comments. However, without further context or understanding of the programming language, it's difficult to determine its specific functionality within the larger codebase.",
+        "type": "comment"
+    },
+    "1216": {
+        "file_id": 208,
+        "content": "#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]\n#  [ True  True  True  True  True  True  True  True  True  True]]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/archiver/we_do_have_words.py:125-131"
+    },
+    "1217": {
+        "file_id": 208,
+        "content": "This code represents a 2D boolean matrix, likely used for tracking or filtering purposes in the program. Each `True` indicates an active state or condition, while `False` would imply the opposite. The structure of the matrix suggests a grid-like layout with each row and column having the same number of elements.",
+        "type": "comment"
+    },
+    "1218": {
+        "file_id": 209,
+        "content": "/bootstrap/legacy/concentration/brainfuck/book_cruncher/README",
+        "type": "filepath"
+    },
+    "1219": {
+        "file_id": 209,
+        "content": "This code seems to be a personal statement expressing frustration and lack of interest in engaging with more advanced concepts or people. It does not appear to relate to any specific programming task or function, and therefore, it cannot be properly commented on as code.",
+        "type": "summary"
+    },
+    "1220": {
+        "file_id": 209,
+        "content": "there's no time for bullshit. my capability of learning is reduced to limited level. i do not want to play no game on those high-level freaks.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/book_cruncher/README:1-1"
+    },
+    "1221": {
+        "file_id": 209,
+        "content": "This code seems to be a personal statement expressing frustration and lack of interest in engaging with more advanced concepts or people. It does not appear to relate to any specific programming task or function, and therefore, it cannot be properly commented on as code.",
+        "type": "comment"
+    },
+    "1222": {
+        "file_id": 210,
+        "content": "/bootstrap/legacy/concentration/brainfuck/check_mgr.py",
+        "type": "filepath"
+    },
+    "1223": {
+        "file_id": 210,
+        "content": "This code is importing the multiprocessing module and creating a Manager object, which allows for sharing of data between multiple processes. The dir() function is then used to list all attributes and methods available in the Manager object.",
+        "type": "summary"
+    },
+    "1224": {
+        "file_id": 210,
+        "content": "import multiprocessing\nmgr=multiprocessing.Manager()\nprint(dir(mgr))\n# ['Array', 'Barrier', 'BoundedSemaphore', 'Condition', 'Event', 'JoinableQueue', 'Lock', 'Namespace', 'Pool', 'Queue', 'RLock', 'Semaphore', 'Value', '_Client', '_Listener', '_Server', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__enter__', '__eq__', '__exit__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_address', '_authkey', '_create', '_ctx', '_debug_info', '_finalize_manager', '_number_of_objects', '_process', '_registry', '_run_server', '_serializer', '_state', 'address', 'connect', 'dict', 'get_server', 'join', 'list', 'register', 'shutdown', 'start']",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/check_mgr.py:1-4"
+    },
+    "1225": {
+        "file_id": 210,
+        "content": "This code is importing the multiprocessing module and creating a Manager object, which allows for sharing of data between multiple processes. The dir() function is then used to list all attributes and methods available in the Manager object.",
+        "type": "comment"
+    },
+    "1226": {
+        "file_id": 211,
+        "content": "/bootstrap/legacy/concentration/brainfuck/focus_off.py",
+        "type": "filepath"
+    },
+    "1227": {
+        "file_id": 211,
+        "content": "The code imports libraries, processes a \"commands.log\" file, and interacts with servers. It attempts to send project data via a ZMQ pair socket with a 1-second timeout. It checks if all data is sent and monitors for execution issues.",
+        "type": "summary"
+    },
+    "1228": {
+        "file_id": 211,
+        "content": "# import os\n# os.exec()\n# import zmq\nimport time\n# from sub2 import timeout\n# import sys\nimport subprocess\n# import commands\n# import io\n# from io import StringIO\n# from releas import ins\n# consider packing up things?\ndef think(a):\n    return a.split()\n# how about write code first?\n# pass raw data to the machine?\n# you mean 101?\n# def findout(a):\n#     return subprocess.call((\"/usr/bin/which \"+a).split(),timeout=1)\n# construct possible commands. think it is valid.\n# believe it or not, just use normal things.\no = \"\"\nwith open(\"commands.log\", \"r\") as f:\n    o = f.read()\n# print(o)\no = think(o)\n# print(o)\n# all splitable things.\n# while True:\n#        msg = socket.recv()\n#        print msg\n# performing one-shot.\n#        socket.send(\"client message to server1\")\n# socket.send_string(\"client message to server2\")\n#        time.sleep(1)\n# asshole.\nok = [\" \".join([\"mutool\", x]) for x in o]\n# f=findout(\"mutool\")\n# print(f,\"out\")\n# you just won't try?\n# there's nothing deep. nothing arbitrary.\n# all lies.\n# remember, to focus.\n# negative learning?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/focus_off.py:1-49"
+    },
+    "1229": {
+        "file_id": 211,
+        "content": "This code imports necessary libraries and functions, reads a file named \"commands.log\", splits the contents of the file into a list, potentially executes a command using subprocess, and sends messages to servers. The code is possibly part of a communication or processing script for handling commands and server interactions.",
+        "type": "comment"
+    },
+    "1230": {
+        "file_id": 211,
+        "content": "# xok=[]\nfor x in ok:\n    # with open(\"sample\", \"r\") as f:\n    # print(x)\n    # sys.stdin=StringIO(\"hello\\n\")\n    # there is nothing there?\n    p = subprocess.Popen(\"timeout 1 \"+x+\"\\n\", shell=True, stdout=subprocess.PIPE,\n                         stderr=subprocess.PIPE, stdin=subprocess.PIPE)  # no timeout?\n    g = p.communicate(input=b\"\\n\\n\\n\")\n    # this is the first practice.\n    # print(g)\n    # xok.append((time.time(),x,str(g)))\n    # k.write(\"anything\\n\")\n    # sys.stdin.read()\n    # something?\n    # p.stdin.read()\n    # p=subprocess.Popen(x+\"\\n\",shell=True,stderr=subprocess.PIPE,stdin=io.BytesIO(b\"stream\"))\n    # g = p.communicate(input=b\"\\nnothing\\n\")\n    # what the heck?\n    # print(p.communicate())\n    # it needs input. how to get it?\n    # how to catch that stdin?\n    # print(g, type(g))\n    # print(g)\n    # while True:\n    #     out = p.stderr.read(1)\n    #     if out == '' and p.poll() != None:\n    #         break\n    #     if out != '':\n    #         sys.stdout.write(str(out))\n    #         sys.stdout.flush()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/focus_off.py:50-80"
+    },
+    "1231": {
+        "file_id": 211,
+        "content": "This code appears to be working with subprocesses and timeouts, attempting to communicate with them via input and capturing their output. It seems to have issues handling the input for the subprocesses and might require further refinement.",
+        "type": "comment"
+    },
+    "1232": {
+        "file_id": 211,
+        "content": "    # y=subprocess.call(x,timeout=1)\n    # print(y)\n# ins(\"projects\",xok)\n# print(\"done\")\n# not working.\n# port = \"5599\"\n# context = zmq.Context()\n# socket = context.socket(zmq.PAIR)\n# socket.connect(\"tcp://127.0.0.17:%s\" % port)\n# while True:\n#     try:\n#         o = timeout(1)(socket.recv_string)()\n#         assert o == \"heartbeat\"\n#         for x in ok:\n#             socket.send_pyobj(x)\n#             time.sleep(0.2)\n#     except:\n#         print(\"not sent\")\n#     print(x) # execute and display?\n#     # make sure it is not stuck.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/focus_off.py:81-100"
+    },
+    "1233": {
+        "file_id": 211,
+        "content": "Code attempts to connect to a ZMQ pair socket, receive heartbeat messages and send project data over the socket with a timeout of 1 second. If not all project data is sent within a certain timeframe, it prints \"not sent\". The code also monitors whether it gets stuck in execution.",
+        "type": "comment"
+    },
+    "1234": {
+        "file_id": 212,
+        "content": "/bootstrap/legacy/concentration/brainfuck/focus_on.py",
+        "type": "filepath"
+    },
+    "1235": {
+        "file_id": 212,
+        "content": "This code executes commands from \"commands.log\", interacts with stdin, catches stderr, and logs outputs; another part connects to a socket for continuous heartbeat messages, handling exceptions and displaying progress.",
+        "type": "summary"
+    },
+    "1236": {
+        "file_id": 212,
+        "content": "# import os\n# os.exec()\n# import zmq\nimport time\n# from sub2 import timeout\n# import sys\nimport subprocess\n# import commands\n# import io\n# from io import StringIO\nfrom releas import ins\ndef think(a):\n    return a.split()\n# def findout(a):\n#     return subprocess.call((\"/usr/bin/which \"+a).split(),timeout=1)\n# construct possible commands. think it is valid.\n# believe it or not, just use normal things.\no = \"\"\nwith open(\"commands.log\", \"r\") as f:\n    o = f.read()\n# print(o)\no = think(o)\n# print(o)\n# all splitable things.\n# while True:\n#        msg = socket.recv()\n#        print msg\n# performing one-shot.\n#        socket.send(\"client message to server1\")\n# socket.send_string(\"client message to server2\")\n#        time.sleep(1)\n# asshole.\nok = [\" \".join([\"mutool\", x]) for x in o]\n# f=findout(\"mutool\")\n# print(f,\"out\")\n# you just won't try?\n# there's nothing deep. nothing arbitrary.\n# all lies.\n# remember, to focus.\nxok=[]\nfor x in ok:\n    with open(\"sample\", \"r\") as f:\n        # print(x)\n        # sys.stdin=StringIO(\"hello\\n\")\n        # there is nothing there?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/focus_on.py:1-50"
+    },
+    "1237": {
+        "file_id": 212,
+        "content": "Imports os, zmq, time, and subprocess.\nReads commands from \"commands.log\" and splits them into a list using the think() function.\nCreates a list of commands using mutool for each command in the list.\nOpens \"sample\" file and iterates through the list of commands, possibly executing them one at a time.",
+        "type": "comment"
+    },
+    "1238": {
+        "file_id": 212,
+        "content": "        p = subprocess.Popen(x+\"\\n\", shell=True, stdout=subprocess.PIPE,\n                             stderr=subprocess.PIPE, stdin=subprocess.PIPE) # no timeout?\n        g = p.communicate(input=b\"\\n\\n\\n\")\n        xok.append((time.time(),x,str(g)))\n        # k.write(\"anything\\n\")\n        # sys.stdin.read()\n        # something?\n        # p.stdin.read()\n        # p=subprocess.Popen(x+\"\\n\",shell=True,stderr=subprocess.PIPE,stdin=io.BytesIO(b\"stream\"))\n        # g = p.communicate(input=b\"\\nnothing\\n\")\n        # what the heck?\n        # print(p.communicate())\n        # it needs input. how to get it?\n        # how to catch that stdin?\n        # print(g, type(g))\n        # print(g)\n    # while True:\n    #     out = p.stderr.read(1)\n    #     if out == '' and p.poll() != None:\n    #         break\n    #     if out != '':\n    #         sys.stdout.write(str(out))\n    #         sys.stdout.flush()\n    # y=subprocess.call(x,timeout=1)\n    # print(y)\nins(\"projects\",xok)\nprint(\"done\")\n# not working.\n# port = \"5599\"\n# context = zmq.Context()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/focus_on.py:51-80"
+    },
+    "1239": {
+        "file_id": 212,
+        "content": "This code is executing a subprocess with shell command, storing its communication output, and appending the time, command, and output to a list. The code then attempts to interact with the subprocess's stdin but seems to be having difficulties doing so, possibly due to a lack of input or a timeout issue. It also tries to catch the stderr output and print it in real-time. Lastly, it saves the list of command outputs and prints \"done\".",
+        "type": "comment"
+    },
+    "1240": {
+        "file_id": 212,
+        "content": "# socket = context.socket(zmq.PAIR)\n# socket.connect(\"tcp://127.0.0.17:%s\" % port)\n# while True:\n#     try:\n#         o = timeout(1)(socket.recv_string)()\n#         assert o == \"heartbeat\"\n#         for x in ok:\n#             socket.send_pyobj(x)\n#             time.sleep(0.2)\n#     except:\n#         print(\"not sent\")\n#     print(x) # execute and display?\n#     # make sure it is not stuck.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/focus_on.py:81-93"
+    },
+    "1241": {
+        "file_id": 212,
+        "content": "This code connects to a socket and continuously receives \"heartbeat\" messages, sending appropriate responses. It handles exceptions and displays progress, ensuring the connection is not stuck.",
+        "type": "comment"
+    },
+    "1242": {
+        "file_id": 213,
+        "content": "/bootstrap/legacy/concentration/brainfuck/framework_.py",
+        "type": "filepath"
+    },
+    "1243": {
+        "file_id": 213,
+        "content": "Code tries to convert a string to an integer and checks if it's possible. If successful, it prints \"possible\" and breaks the loop; otherwise, it increments the counter and prints \"not working\". This process is repeated three times before exiting.",
+        "type": "summary"
+    },
+    "1244": {
+        "file_id": 213,
+        "content": "# say it is possible?\n# done several times to see if it is working?\nimp=0\nwhile imp<3:\n    try:\n        int(str)\n        print(\"possible\")\n        break\n    except:\n        imp+=1\n        print(\"not working\")\n        pass\n# print()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/framework_.py:1-13"
+    },
+    "1245": {
+        "file_id": 213,
+        "content": "Code tries to convert a string to an integer and checks if it's possible. If successful, it prints \"possible\" and breaks the loop; otherwise, it increments the counter and prints \"not working\". This process is repeated three times before exiting.",
+        "type": "comment"
+    },
+    "1246": {
+        "file_id": 214,
+        "content": "/bootstrap/legacy/concentration/brainfuck/highlight_mycode.js",
+        "type": "filepath"
+    },
+    "1247": {
+        "file_id": 214,
+        "content": "The code imports modules, highlights Brainfuck language using Highlight function, applies HTML and JS highlighting, initializes Highlight object, uses `use` method, and addresses potential disk performance issues, Chrome functionality, and package management.",
+        "type": "summary"
+    },
+    "1248": {
+        "file_id": 214,
+        "content": "var Highlight = require('highlighter')();\n// var marked = require('marked');//just test.\n// no module.\n// var style =\n// it even got brainfuck.\n// it does have the output. but never render it to image. or you have to use chrome.\n// can we use highlighter publicly avaliable on vscode? just saying.\nvar fs = require('fs');\n// //does this work?\n// did not applied the style.\n// it is getting altered by cnpm.\n// var html = require('highlight-xml');\n// var js = require('highlight-javascript');\n// it is always about the <pre></pre>\n// i can do it. i can let my computer to shredder.\nvar data = fs.readFileSync('bf.bf', 'utf8'); // it works.\n// var data = fs.readFileSync('./fix_x_torch.py', 'utf8');\nvar a = Highlight(data, \"brainfuck\");// does this work?\nconsole.log('<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"androidstudio.css\" ></head><body><pre><code>' + a + \"</code></pre></body></html>\");\n// when it is about ai training, no one ever mentions about the highlighter.\n// cause you do not even care about it. you do not read it line by line.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/highlight_mycode.js:1-21"
+    },
+    "1249": {
+        "file_id": 214,
+        "content": "Code is importing required modules for highlighting, reading brainfuck code from file 'bf.bf', using Highlight function to highlight the code in brainfuck language, and then logging the highlighted code with a specific stylesheet linked to HTML output.",
+        "type": "comment"
+    },
+    "1250": {
+        "file_id": 214,
+        "content": "// then there will be problems. deeply rooted inside.\n// it got shit for every shit.\n// what about other languages?\n// var highlight = new Highlight()\n//   .use(html)\n//   .use(js);\n// html=data\n// // var el = document.querySelector('.code-sample');\n// // highlight.element(el);\n// highlight.all();\n// console.log(html);\n// this is not a package.\n// i have to admit javascript has some advantages here.\n// and it just fucking works.\n// we always got a lot of fucks.\n// broken code, and more.\n// the guesslang might be good but we need to have conda or something that can switch to cuda.\n// nvm. move forward.\n// is my disk getting slow? that could be serious problem.\n// chrome is not working.\n// fuck it. it sucks.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/highlight_mycode.js:22-42"
+    },
+    "1251": {
+        "file_id": 214,
+        "content": "The code initializes a Highlight object, applies HTML and JS language highlighting using the `use` method, and then applies the highlighting to all elements on the page with `highlight.all()`. The developer acknowledges JavaScript advantages and mentions potential issues with disk performance, Chrome functionality, and a desire for better package management.",
+        "type": "comment"
+    },
+    "1252": {
+        "file_id": 215,
+        "content": "/bootstrap/legacy/concentration/brainfuck/install.sh",
+        "type": "filepath"
+    },
+    "1253": {
+        "file_id": 215,
+        "content": "This code installs Deno, a JavaScript/TypeScript runtime, on x64 systems by checking compatibility and providing an easy installation process.",
+        "type": "summary"
+    },
+    "1254": {
+        "file_id": 215,
+        "content": "#!/bin/sh\n# Copyright 2019 the Deno authors. All rights reserved. MIT license.\n# TODO(everyone): Keep this script simple and easily auditable.\n# i do computer because it is right.\n# like my plan before. it is simlpy right and just.\nset -e\nif [ \"$(uname -m)\" != \"x86_64\" ]; then\n\techo \"Error: Unsupported architecture $(uname -m). Only x64 binaries are available.\" 1>&2\n\texit 1\nfi\nif ! command -v unzip >/dev/null; then\n\techo \"Error: unzip is required to install Deno (see: https://github.com/denoland/deno_install#unzip-is-required).\" 1>&2\n\texit 1\nfi\ncase $(uname -s) in\nDarwin) target=\"x86_64-apple-darwin\" ;;\n*) target=\"x86_64-unknown-linux-gnu\" ;;\nesac\nif [ \"$(uname -m)\" != \"x86_64\" ]; then\n\techo \"Unsupported architecture $(uname -m). Only x64 binaries are available.\"\n\texit\nfi\nif [ $# -eq 0 ]; then\n\tdeno_asset_path=$(\n\t\tcurl -sSf https://github.com/denoland/deno/releases |\n\t\t\tgrep -o \"/denoland/deno/releases/download/.*/deno-${target}\\\\.zip\" |\n\t\t\thead -n 1\n\t)\n\tif [ ! \"$deno_asset_path\" ]; then\n\t\techo \"Error: Unable to find latest Deno release on GitHub.\" 1>&2",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/install.sh:1-36"
+    },
+    "1255": {
+        "file_id": 215,
+        "content": "Checks if system architecture and dependencies are compatible before downloading the latest Deno release from GitHub's releases page. Sets up a simple installation process for Deno, ensuring it is supported on x64 systems.",
+        "type": "comment"
+    },
+    "1256": {
+        "file_id": 215,
+        "content": "\t\texit 1\n\tfi\n\tdeno_uri=\"https://github.com${deno_asset_path}\"\nelse\n\tdeno_uri=\"https://github.com/denoland/deno/releases/download/${1}/deno-${target}.zip\"\nfi\ndeno_install=\"${DENO_INSTALL:-$HOME/.deno}\"\nbin_dir=\"$deno_install/bin\"\nexe=\"$bin_dir/deno\"\nif [ ! -d \"$bin_dir\" ]; then\n\tmkdir -p \"$bin_dir\"\nfi\ncurl --fail --location --progress-bar --output \"$exe.zip\" \"$deno_uri\"\ncd \"$bin_dir\"\nunzip -o \"$exe.zip\"\nchmod +x \"$exe\"\nrm \"$exe.zip\"\necho \"Deno was installed successfully to $exe\"\nif command -v deno >/dev/null; then\n\techo \"Run 'deno --help' to get started\"\nelse\n\techo \"Manually add the directory to your \\$HOME/.bash_profile (or similar)\"\n\techo \"  export DENO_INSTALL=\\\"$deno_install\\\"\"\n\techo \"  export PATH=\\\"\\$DENO_INSTALL/bin:\\$PATH\\\"\"\n\techo \"Run '$exe --help' to get started\"\nfi",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/install.sh:37-66"
+    },
+    "1257": {
+        "file_id": 215,
+        "content": "This code downloads Deno, a JavaScript/TypeScript runtime, and installs it on the user's system. It checks if Deno is already installed, then retrieves and extracts the required file, sets necessary environment variables, and provides instructions for running the installation.",
+        "type": "comment"
+    },
+    "1258": {
+        "file_id": 216,
+        "content": "/bootstrap/legacy/concentration/brainfuck/linux_failsafe.py",
+        "type": "filepath"
+    },
+    "1259": {
+        "file_id": 216,
+        "content": "Function `commandFuse` takes a string argument 'a' and an optional float/int argument 'f'. Asserts that 'f' is of type float or int, greater than 0, and 'a' is non-empty string. Returns the formatted string \"timeout {f} {a}\".",
+        "type": "summary"
+    },
+    "1260": {
+        "file_id": 216,
+        "content": "def commandFuse(a, f=1):\n    assert type(f) in [float, int] and f > 0\n    assert type(a) == str and len(a) > 0\n    return \"timeout {} {}\".format(f, a)\n# now, time to check if you can read shit?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/linux_failsafe.py:1-5"
+    },
+    "1261": {
+        "file_id": 216,
+        "content": "Function `commandFuse` takes a string argument 'a' and an optional float/int argument 'f'. Asserts that 'f' is of type float or int, greater than 0, and 'a' is non-empty string. Returns the formatted string \"timeout {f} {a}\".",
+        "type": "comment"
+    },
+    "1262": {
+        "file_id": 217,
+        "content": "/bootstrap/legacy/concentration/brainfuck/load_pac.py",
+        "type": "filepath"
+    },
+    "1263": {
+        "file_id": 217,
+        "content": "The code initializes a neural network model in PyTorch and transfers data for training. It iterates through input-target pairs, performs backpropagation to adjust weights, prints epoch number, loss value, and type of loss while providing data processing, prediction, and visualization creation with potential naming and comment issues. The numpy.ndarray.ravel function is imported to flatten an array, and numpy.ravel is referenced for further documentation.",
+        "type": "summary"
+    },
+    "1264": {
+        "file_id": 217,
+        "content": "from unicode_tensor import chrTens, recv, sayless\nimport torch\n# red-lang?\nfrom torch.autograd import Variable\n# import numpy as np\n# import pylab as pl\nimport torch.nn.init as init\ndef getBin(a):\n    with open(a, \"r\") as f:\n        return f.read()  # k=getBin(\"Monitor.db\")\n# you have to read this?\ndevice = torch.device(\"cuda\")\n# it is so easy, you suppose?\n# must be done in a universial way.\n# usually utf-8\n# different type def? just a joke. man do not be too damn serious to this shit.\n# is it a brute-force program?\n# you try to predict this?\nindex = getBin(\"/media/root/Seagate1000/adobe_references/after_effects.txt\")\ndata = chrTens(index[:400])\nprint(\"length of this context:\", data.shape[0])\n# not even working to this step.\n# does this model supports unicode?\n# for x in i\n# all kinds of bullshit.\ndtype = torch.FloatTensor\ninput_size = data.shape[1]\nhidden_size, output_size = int(input_size**0.7), input_size\ninput_size += hidden_size\nepochs = 100\n# what is that?\n# seq_length = 20  # what the fuck?\nlr = 0.01\n# nothing learned.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/load_pac.py:1-37"
+    },
+    "1265": {
+        "file_id": 217,
+        "content": "This code imports necessary libraries and functions, reads a file as binary, creates a tensor with the data, prints the length of the context, sets variable types and sizes for a neural network model, and defines learning rate for training.",
+        "type": "comment"
+    },
+    "1266": {
+        "file_id": 217,
+        "content": "# data_time_steps = np.linspace(2, 10, seq_length+1)\n# print(data_time_steps)\n# not a rng.\n# strange conversion.\n# # u use sin!\n# data = np.sin(data_time_steps)\n# data.resize((seq_length+1, 1))\n# print(data.shape)\nx = Variable(torch.Tensor(data[:-1]).type(dtype), requires_grad=False)\ny = Variable(torch.Tensor(data[1:]).type(dtype), requires_grad=False)\n# # you can make it true.\n# print(x.shape)\n# print(y.shape)\nx.to(device)\ny.to(device)\n# mismatched thing.\nw1 = torch.FloatTensor(input_size, hidden_size).type(dtype)\ninit.normal_(w1, 0.0, 0.4)\n# standard_deviation for second.\nw1 = torch.autograd.Variable(w1, requires_grad=True)\n# w2=torch.\nw2 = torch.FloatTensor(hidden_size, output_size).type(dtype)\n# fucking stat.\ninit.normal_(w2, 0.0, 0.3)\nw2 = torch.autograd.Variable(w2, requires_grad=True)\nw1.to(device)\nw2.to(device)\n# shit. man what the heck?\ndef forward(input, context_state, w1, w2):\n    # same as my process.\n    # i do the same.\n    xh = torch.cat((input, context_state), 1)\n    context_state = torch.tanh(xh.mm(w1))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/load_pac.py:38-73"
+    },
+    "1267": {
+        "file_id": 217,
+        "content": "1. Loads data from numpy array and converts it to PyTorch tensors.\n2. Transfers the tensors to device (GPU or CPU).\n3. Initializes two weight matrices w1 and w2 with normal distribution, moves them to device, and sets them as variables requiring gradients for backpropagation.\n4. Defines forward function to process input and context state using tanh activation and matrix multiplication.",
+        "type": "comment"
+    },
+    "1268": {
+        "file_id": 217,
+        "content": "    out = context_state.mm(w2)\n    return (out, context_state)\nfor i in range(epochs):\n    total_loss = 0\n    context_state = Variable(torch.zeros(\n        (1, hidden_size)).type(dtype), requires_grad=True)\n    # cleared at first.\n    for j in range(x.size(0)):\n        input_ = x[j:(j+1)]\n        target = y[j:(j+1)]\n        (pred, context_state) = forward(input_, context_state, w1, w2)\n        # loss = (pred-target).pow(2+0.1j).sum()\n        # not working.\n        # consider some complex tensors?\n        loss = (pred-target).pow(2).sum()\n        # loss of context?\n        # we alter this.\n        total_loss += loss\n        loss.backward()  # add gradient to it?\n        w1.data -= lr*w1.grad.data  # would you print it?\n        w2.data -= lr*w2.grad.data\n        w1.grad.data.zero_()\n        w2.grad.data.zero_()\n        context_state = Variable(context_state.data)\n    if i % 10 == 0:\n        print(\"epoch\", i, \"loss\", loss, type(loss))\ncontext_state = Variable(torch.zeros(\n    (1, hidden_size)).type(dtype), requires_grad=False)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/load_pac.py:74-104"
+    },
+    "1269": {
+        "file_id": 217,
+        "content": "This code initializes a context state, iterates through each input-target pair, calculates the loss between predicted and target values, backpropagates gradients to adjust weights w1 and w2, and periodically prints the epoch number, loss value, and type of loss. The context state is updated after each iteration and cleared at the start of each epoch.",
+        "type": "comment"
+    },
+    "1270": {
+        "file_id": 217,
+        "content": "predictions = []\nfor i in range(x.size(0)):\n    input = x[i:i+1]\n    (pred, context_state) = forward(input, context_state, w1, w2)\n    # not moving?\n    context_state = context_state  # what the heck?\n    predictions.append(pred.data.numpy().reshape(-1).tolist())  # what is this fuck?\n# heck?\n# print(torch.Tensor(predictions).shape)\n# pl.scatter(data_time_steps[:-1],)\n# # what is this s?\n# pl.scatter(y.data.numpy(),x.data.numpy(),s=90,label=\"Actual\")\n# # fucking shit.\n# pl.scatter(predictions,x.data.numpy(),label=\"Predicted\")\n# data_time_steps = list(range(400))\n# print(len(data_time_steps),x.shape)\nprint(\"original:\",recv(x))\nprint(\"fos:\",recv(y))\nprint(\"sayless:\",sayless(predictions))\n# print()\n# we can return the shape.\n# pl.scatter(data_time_steps[:-1], x.data.numpy(), s=90, label=\"Actual_P\")\n# pl.scatter(data_time_steps[1:], y.data.numpy(), s=45, label=\"Actual_F\")\n# # fucking shit.\n# pl.scatter(data_time_steps[1:], predictions, label=\"Predicted\")\n# # all fucking twisted code.\n# pl.legend()\n# pl.show()\n# fucking hell.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/load_pac.py:105-134"
+    },
+    "1271": {
+        "file_id": 217,
+        "content": "This code is used for processing input data, making predictions using a model, and creating visualizations. It seems to have some confusion in variable naming and unnecessary comments. The code appends predictions to a list, then creates visualizations using matplotlib.",
+        "type": "comment"
+    },
+    "1272": {
+        "file_id": 217,
+        "content": "# numpy.ndarray.ravel = ravel(...)\n# a.ravel([order])\n# Return a flattened array.\n# Refer to `numpy.ravel` for full documentation.\n# See Also\n# --------\n# numpy.ravel : equivalent function\n# holy shit.\n# chain rule.\n# don't you need to discover more shits?\n# what the heck is this?\n# remember, imitate, repeat.\n# what is this?\n# print(w1)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/load_pac.py:135-148"
+    },
+    "1273": {
+        "file_id": 217,
+        "content": "The code imports the numpy.ndarray.ravel function to flatten an array and returns a single flat array. It also references the equivalent function, numpy.ravel, for further documentation.",
+        "type": "comment"
+    },
+    "1274": {
+        "file_id": 218,
+        "content": "/bootstrap/legacy/concentration/brainfuck/looklikes.py",
+        "type": "filepath"
+    },
+    "1275": {
+        "file_id": 218,
+        "content": "The code imports the NetworkX library, creates a graph object G, adds an edge between \"find\" and \"node\", gets the nodes in the graph, but does not print them. It suggests there is only one way to infinite loops, which might be related to the graph structure or algorithmic approach.",
+        "type": "summary"
+    },
+    "1276": {
+        "file_id": 218,
+        "content": "import networkx\nG=networkx.Graph()\nG.add_edge(\"find\",\"node\")\np=G.nodes()\n# print(p)\n# there is only way to infinity, and this is the only way.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/looklikes.py:1-6"
+    },
+    "1277": {
+        "file_id": 218,
+        "content": "The code imports the NetworkX library, creates a graph object G, adds an edge between \"find\" and \"node\", gets the nodes in the graph, but does not print them. It suggests there is only one way to infinite loops, which might be related to the graph structure or algorithmic approach.",
+        "type": "comment"
+    },
+    "1278": {
+        "file_id": 219,
+        "content": "/bootstrap/legacy/concentration/brainfuck/multiEdit.py",
+        "type": "filepath"
+    },
+    "1279": {
+        "file_id": 219,
+        "content": "PublicDocument is a class for handling document changes in multi-client environments, offering data storage, timestamping commits, multiple viewing support, and change time checking. The code initializes an object, creates multiprocessing tasks, and prints variables, using Processes for each element in the list x while waiting for all processes to complete.",
+        "type": "summary"
+    },
+    "1280": {
+        "file_id": 219,
+        "content": "# unlike human, computer will not type word by word.\n# check the multi-editing enviorment?\n# that's how we get the elephant and cooperation!\nimport time\nimport copy\n# passing to multiple clients or threads?\nfrom multiprocessing import Process, freeze_support\nimport multiprocessing\n# stop thinking about real-time ML or any other real-time stuff. just focus on the basics.\n# or, more likely, the 10000x times slower rule.\nclass PublicDocument:\n    def __init__(self, a):\n        self.a = a\n        self.t = time.time()\n    def commit(self, d):\n        self.a = d\n        t = time.time()\n        self.t = t\n        return t\n    def changeSingle(self, b, c):\n        a = self.a\n        # a for string. immutable.\n        # b for range.\n        # c for replaced things.\n        return a[:b[0]]+c+a[b[1]:]\n    def viewSingle(self, b):\n        a = self.a\n        return a[b[0]:b[1]], self.t\n    def viewMultiple(self, b):\n        # a = self.a\n        return {x: self.viewSingle(x) for x in b}\n    def checkChange(self, t):\n        return t == self.t",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/multiEdit.py:1-40"
+    },
+    "1281": {
+        "file_id": 219,
+        "content": "PublicDocument is a multi-edit class for managing document changes in a multi-client environment. It stores data, timestamps commits, allows single and multiple viewings, and checks change times.",
+        "type": "comment"
+    },
+    "1282": {
+        "file_id": 219,
+        "content": "    def dumpAll(self):\n        return self.a, self.t\n    # def dumpTime(self):\n    #     return self.t\n    def atomicChange(self, b, c, t):\n        if t == self.t:\n            a = copy.deepcopy(self.a)\n            # print(\"deepcopy\", a)\n            # print(\"parameter\", b, c)\n            d = self.changeSingle(b, c)\n            # print(\"what is this?\", d)\n            v = self.commit(d)\n            if v == self.t:\n                # print(\"here\")\n                return True\n            else:\n                self.commit(a)\n                # print(\"there\")\n                return False\n        else:\n            return False\n        # must have the view.\n        # def changeMultiple(a,b):\n        #     # who is first?\n        #     # might introduce error?\n        #     # check last change date. important.\n        #     # but can we resolve this?\n        #     for c,d in b:\n        # run two threads at a time?\n# shit?\ndef generalQuest(e, n):\n    # working again.\n    namespace, b, c = e\n    sample = namespace.sample\n    assert type(sample) == PublicDocument",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/multiEdit.py:42-83"
+    },
+    "1283": {
+        "file_id": 219,
+        "content": "This code defines a class with methods to perform atomic changes on an object, check the last change date, and sample a PublicDocument from a namespace. It also mentions running two threads simultaneously and using deepcopy for object manipulation.",
+        "type": "comment"
+    },
+    "1284": {
+        "file_id": 219,
+        "content": "    g = sample.t\n    d = sample.viewSingle(b)\n    smp = sample.changeSingle(b, c)\n    # shit.\n    print(\"sample\", smp)\n    print(g, n)\n    print(c, d, n)\n    s = sample.atomicChange(b, c, g)\n    print(s, sample.a, n)\n    print(sample.a, n)\n    # q.put(sample)\n    namespace.sample=sample\n    # return\n# anyway.\nif __name__ == \"__main__\":\n    # not sharing document.\n    # let them share the same object.\n    # but it usually needs some logic? network? check how database works?\n    # that's different.\n    # have fun in math. just like that.\n    freeze_support()\n    sample = PublicDocument(\"5556, 5557, 5558\")\n    # v = (sample, (2, 4), \"\")\n    mgr = multiprocessing.Manager()\n    namespace = mgr.Namespace()\n    # print(namespace,dir(namespace))\n    namespace.sample=sample\n    # print(namespace.sample)\n    # great?\n    v = (namespace, (-2, -4), \"hello\")\n    g = Process(target=generalQuest, args=(v, 0))\n    g0 = Process(target=generalQuest, args=(v, 1))\n    g01 = Process(target=generalQuest, args=(v, 2))\n    g02 = Process(target=generalQuest, args=(v, 3))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/multiEdit.py:84-118"
+    },
+    "1285": {
+        "file_id": 219,
+        "content": "The code initializes a sample object, creates multiple processes to work on it, and prints various variables. It seems to be part of a multiprocessing task with shared objects, possibly for solving mathematical problems.",
+        "type": "comment"
+    },
+    "1286": {
+        "file_id": 219,
+        "content": "    g03 = Process(target=generalQuest, args=(v, 4))\n    x = [g, g0, g01, g02, g03]\n    for f in x:\n        f.start()\n    while True:\n        if sum([int(y.is_alive()) for y in x]) == 0:\n            print(\"final:\", sample.a)\n            break\n        else:\n            time.sleep(1)\n            print(\"await\")\n            # not working.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/multiEdit.py:119-130"
+    },
+    "1287": {
+        "file_id": 219,
+        "content": "This code creates a Process for each element in the list x, which then calls generalQuest function with different arguments. It starts all processes and waits until they are done by checking if any process is alive using is_alive() method. Once all processes are complete, it prints \"final:\" followed by the value of sample.a and terminates.",
+        "type": "comment"
+    },
+    "1288": {
+        "file_id": 220,
+        "content": "/bootstrap/legacy/concentration/brainfuck/nl.py",
+        "type": "filepath"
+    },
+    "1289": {
+        "file_id": 220,
+        "content": "This code defines a class \"initMachine\" with an initializer and a method \"refresh\". It creates an instance of the class, tests different scenarios of calling the refresh method with various arguments, and prints the result. The purpose is unclear.",
+        "type": "summary"
+    },
+    "1290": {
+        "file_id": 220,
+        "content": "# all the imports. it turns out computer does not need to speak correctly?\n# the need to repeat?\nclass initMachine(object):\n    def __init__(self, a=None):\n        self.a = a\n# do we need to start from basic things?\n# what is this for?\n    def refresh(self, a=None, k=False):\n        if a != None:\n            if k:\n                self.a = a\n            return a\n        else:\n            return self.a\ni = initMachine(\"something\")\nprint(i.refresh())\nprint(i.a)\nprint(i.refresh(\"nothing\"))\nprint(i.a)\nprint(i.refresh(\"everything\", True))\nprint(i.a)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/nl.py:1-24"
+    },
+    "1291": {
+        "file_id": 220,
+        "content": "This code defines a class \"initMachine\" with an initializer and a method \"refresh\". It creates an instance of the class, tests different scenarios of calling the refresh method with various arguments, and prints the result. The purpose is unclear.",
+        "type": "comment"
+    },
+    "1292": {
+        "file_id": 221,
+        "content": "/bootstrap/legacy/concentration/brainfuck/package_archive/complex_show.py",
+        "type": "filepath"
+    },
+    "1293": {
+        "file_id": 221,
+        "content": "The code initializes a ComplexTensor and creates a neural network model with two linear layers. It trains the model for 50,000 epochs, using Mean Squared Error as the loss criterion and Stochastic Gradient Descent as the optimizer, but accuracy seems to have decreased.",
+        "type": "summary"
+    },
+    "1294": {
+        "file_id": 221,
+        "content": "import torch\n# import torch.nn as nn\n# import time\nfrom pytorch_complex_tensor import ComplexTensor\n# import numpy as np\n# it is not getting any better.\n# strange.\n# we will check cpu later.\n# device = torch.device(\"cuda\")\n# total time 113.9896514415741\n# ideep, hip, msnpu, mkldnn\n# opengl, opencl\n# upper case!\n# there's thing called language server!\n# also shell server, database server, and finally, nerual network server!\ndevice = torch.device(\"cpu\")\n# total time 42.38628387451172\n# you know, it is not significantly faster.\n# middle is for hiddern layer dimension.\nn_in, n_h, n_out, batch_size = 10, 5, 1, 10\nx0 = torch.randn(batch_size, n_in).tolist()\nx1 = torch.randn(batch_size, n_in).tolist()\n# print(dir(x1))\n# print(x1)\nx = ComplexTensor([x0, x1])\n# wrong.\n# this can still fucking work. i do not know why.\n# to list first.\n# is this for verification?\n# what if the result is defined in matrix form or some imaginary form?\n# just calm down.\n# fucking hell.\n# wahtever. do it later. always got time to fuck over.\n# test the speed first.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/complex_show.py:1-35"
+    },
+    "1295": {
+        "file_id": 221,
+        "content": "The code imports necessary libraries and sets the device to CPU, defines the dimensions for input, output, and batch size, creates random tensors for inputs x0 and x1, and initializes a ComplexTensor object named 'x' with these inputs. The code also includes comments about potential issues and possible improvements, but does not perform any operations on the tensor or provide further details on its purpose.",
+        "type": "comment"
+    },
+    "1296": {
+        "file_id": 221,
+        "content": "# it will be flatterned somehow.\n# y = ComplexTensor([[[1.0], [0.0], [0.0], [1.0], [1.0],\n#                   [1.0], [0.0], [0.0], [1.0], [1.0]],[[0.5], [-0.2], [-0.5], [-0.3], [1.0],\n#                   [-0.2], [0.8], [0.5], [-0.1], [0.1]]])\n# the first pair is not for fun. it introduces an error.\n# tensor([ 1. +1.j ,  0. +0.j ,  0. +0.j ,  1. +1.j ,  1. +1.j ,  0.5-0.2j,\n    #    -0.2+0.8j, -0.5+0.5j, -0.3-0.1j,  1. +0.1j], dtype=complex64)\ny = ComplexTensor([[1.0, 0.0, 0.0, 1.0, 1.0,\n                  1.0, 0.0, 0.0, 1.0, 1.0],[0.5, -0.2, -0.5, -0.3, 1.0,\n                  -0.2, 0.8, 0.5, -0.1, 0.1]])\n# # the model, is it changeable?\n# # not working though.\n# model = nn.Sequential(nn.Linear(n_in, n_h), nn.ReLU(),\n#                       nn.Linear(n_h, n_out), nn.Sigmoid())\n# criterion = torch.nn.MSELoss()\n# optimizer = torch.optim.SGD(model.parameters(), lr=0.01)  # learning rate\n# # you always got something to say.\n# # can we reload it?\n# # can we use cuda?\n# # print(model,type(model))\n# # # you can check it, just for sure.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/complex_show.py:36-56"
+    },
+    "1297": {
+        "file_id": 221,
+        "content": "Code snippet initializes a ComplexTensor and defines a neural network model with two linear layers and activation functions. It also sets the loss criterion as Mean Squared Error and optimizer as Stochastic Gradient Descent with learning rate 0.01. The code does not indicate if the model is changeable, if it can be reloaded or used on CUDA.",
+        "type": "comment"
+    },
+    "1298": {
+        "file_id": 221,
+        "content": "# # always got doc.\n# # does not support complex datatype.\n# # we will check it later. \n# model = model.to(device)\nx = x.to(device)\ny = y.to(device)\nprint(x)\nprint(\"#######################################################\")\nprint(y)\n# does not change.\n# t = time.time()\n# for epoch in range(50000):\n#     y_pred = model(x)\n#     print(\"prediction\", y_pred)\n#     loss = criterion(y_pred, y)\n#     print(\"epoch\", epoch, \"loss\", loss, type(loss))\n#     optimizer.zero_grad()\n#     loss.backward()\n#     optimizer.step()\n# print(\"total time\", time.time()-t)\n# it is like a function estimator.\n# can we change it dynamically?\n# you are fucking with me.\n# this time we have less accuracy.\n# maybe we can speed it up by reducing it?\n# it is just not so accurate.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/package_archive/complex_show.py:57-82"
+    },
+    "1299": {
+        "file_id": 221,
+        "content": "This code is moving tensors to the device for a model, and then printing them. It trains a model for 50,000 epochs, calculating predictions and loss, but it seems to have less accuracy compared to before, leading to questions about dynamically changing the estimator and potentially speeding up the process by reducing something.",
+        "type": "comment"
+    }
+}

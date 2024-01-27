@@ -1,0 +1,10 @@
+{
+    "summary": "Code creates a process pool, repeatedly checks the count of alive processes and dispatches new ones if less than 10 are alive. It also prints the current number of alive processes, waits for 1 second, and sleeps for 10 seconds before printing \"I AM DEAD\" and calling the 'dum' function. The 'dum' function generates a random sleep time between 0 and 0.1 seconds.",
+    "details": [
+        {
+            "comment": "Code creates a process pool, repeatedly checks the count of alive processes and dispatches new ones if less than 10 are alive. It also prints the current number of alive processes, waits for 1 second, and sleeps for 10 seconds before printing \"I AM DEAD\" and calling the 'dum' function. The 'dum' function generates a random sleep time between 0 and 0.1 seconds.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/internet_maps/microscope.py\":0-36",
+            "content": "from multiprocessing import Process, freeze_support\nimport time\nimport random\ndef dum():\n    r = random.random()*0.1\n    time.sleep(r)\ndef f(a):\n    time.sleep(10)\n    print(\"I AM DEAD\", a)\n    dum()\ndef check(a):\n    return sum([int(x.is_alive()) for x in a]+[0])\ndef clean(a):\n    return [x for x in a if x.is_alive()]\nif __name__ == \"__main__\":\n    a = []\n    # m = 0\n    while True:\n        a=clean(a)\n        m=check(a)\n        if m<10:\n            print(\"dispached\",m)\n            p = Process(target=f, args=(m,))\n            p.start()\n            a.append(p)\n            # break\n        else:\n            print(\"waiting\",m)\n            time.sleep(1)"
+        }
+    ]
+}

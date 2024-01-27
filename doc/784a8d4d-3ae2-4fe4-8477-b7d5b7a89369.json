@@ -1,0 +1,15 @@
+{
+    "summary": "This code uses jsdom library to set up a JavaScript environment and create an HTML document with a terminal div, initializing xterm.js instance and ensuring compatibility with different browser settings. It sets font size to 15, uses DOM renderer, opens term in 'terminal' element, writes \"Hello from xterm.js\", and checks for inline HTML content display.",
+    "details": [
+        {
+            "comment": "This code sets up a JavaScript environment using jsdom library, creates an HTML document with a div for the terminal, and initializes an xterm.js Terminal instance. The code also ensures compatibility with different browser window settings and animation frame support.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/xdemo.js\":0-35",
+            "content": "const jsdom = require (\"jsdom\");\nconst html = `<!doctype html>\n  <html>\n    <head>\n      <link rel=\"stylesheet\" href=\"xterm.css\" />\n    </head>\n    <body>\n      <div id=\"terminal\" width=\"500px\" height=\"500px\"></div>\n    </body>\n  </html>`;\nconst { JSDOM } = jsdom;\nconst dom = new JSDOM (html,{runScripts:\"dangerously\",resources:\"usable\"});\nwindow = dom.window;\nwindow.matchMedia=window.matchMedia || function (){\n\treturn {\n\t\tmatches:false,\n\t\taddListener :function (){},\n\t\tremoveListener : function (){}\n\t};\n};\nif (!window.requestAnimationFrame){\n\tlet targetTime =0;\n\twindow.requestAnimationFrame = function(c){\n\t\tconst currentTime= +new Date();\n\t\tconst timeoutCb= function(){c(+new Date())}\n\t\treturn window.setTimeout(timeoutCb,Math.max(targetTime +16, currentTime) - currentTime)\n\t}\n}\nrequestAnimationFrame = window.requestAnimationFrame;\ndocument = window.document;\n//document.outerHTML=html;\n/* Keep source code the same */\nvar xterm = require(\"xterm\");\nvar term = new xterm.Terminal({\n\tconvertEol:true,\n\tfontFamily:`'Droid Sans Mono', monospace`,"
+        },
+        {
+            "comment": "Sets font size to 15, uses DOM renderer, opens term in 'terminal' element, writes \"Hello from xterm.js\", checks if inline HTML content is displayed.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/xdemo.js\":36-48",
+            "content": "\tfontSize:15,\n\trendererType:'dom',\n});\n//term.open(document.getElementById('terminal'));\n//var elem=document.getElementById('terminal');\n//console.log(elem);\nterm.open(document.getElementById('terminal'));\n//console.log(term.element);\n//console.log(term.element.parentElement);\n//term.fit();\nterm.write('Hello from \\x1B[1;3;31mxterm.js\\x1B[0m $ ');\n//DOES THIS WORKS?\nconsole.log(term.element.innerHTML);"
+        }
+    ]
+}

@@ -1,0 +1,538 @@
+{
+    "2500": {
+        "file_id": 382,
+        "content": "                    count -= sent\n                except OSError as excp:\n                    if excp.errno != errno.EAGAIN:\n                        raise excp\n                    retry -= 1\n                    if retry > 0:\n                        time.sleep(0.01)\n                    else:\n                        raise excp\n    def pty_read(self, data):\n        \"\"\" Reads from stdout/stderr of process running within terminal \"\"\"\n        # get the fucking data??????\n        # print(\"this is the raw data???\",[data])\n        assert isinstance(data, bytes), \"Must read byte-encoded data\"\n        # Decode data (raw binary data transmitted via terminal must use base64 encoding)\n        self.write(data.decode(self.term_encoding))\n        reply = self.read()   # Read any immediate reply to escape-sequence terminal queries\n        if reply:\n            # Send terminal response\n            # print(\"this is reply data???\"[reply])\n            # where the hell is the fucking data????\n            assert isinstance(reply, unicode), \"Must write unicode data\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:328-352"
+    },
+    "2501": {
+        "file_id": 382,
+        "content": "This code reads data from stdout/stderr of a process running within a terminal. It first checks that the received data is byte-encoded, then decodes it using the specified term_encoding. Afterwards, it reads any immediate reply to escape-sequence terminal queries and ensures the reply is unicode data before returning. The code also includes error handling for OSError with retry mechanism in case of EAGAIN error.",
+        "type": "comment"
+    },
+    "2502": {
+        "file_id": 382,
+        "content": "            os.write(self.fd, reply.encode(self.term_encoding))\nclass TermManager(object):\n    def __init__(self, client_callback, shell_command=[], ssh_host=\"\", server_url=\"\",\n                 term_settings={}, log_file=\"\", log_level=logging.ERROR):\n        \"\"\" Manages multiple terminals (create, communicate, destroy)\n        \"\"\"\n        ##signal.signal(signal.SIGCHLD, signal.SIG_IGN)\n        self.client_callback = client_callback  # Signature client_callback(term_name, client_id, method, *args)\n        self.shell_command = shell_command\n        self.ssh_host = ssh_host\n        self.server_url = server_url\n        self.term_settings = term_settings\n        self.log_file = log_file\n        self.term_options = term_settings.get(\"options\", {})\n        if log_file:\n            setup_logging(logging.WARNING, log_file, logging.INFO)\n            print(\"Logging to file\", log_file, file=sys.stderr)\n        self.terminals = {}\n        self.lock = threading.RLock()\n        self.thread = threading.Thread(target=self.loop)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:353-377"
+    },
+    "2503": {
+        "file_id": 382,
+        "content": "This code defines a TermManager class that manages multiple terminals, allowing creation, communication, and destruction. It takes parameters such as client_callback, shell_command, ssh_host, server_url, term_settings, log_file, and log_level. If a log_file is provided, logging is set up, and the user is notified about the logging to file. The class also initializes a lock for synchronization, creates a thread targeting the loop method, and sets up a logging level if needed.",
+        "type": "comment"
+    },
+    "2504": {
+        "file_id": 382,
+        "content": "        self.alive = 1\n        self.check_kill_idle = False\n        self.name_count = 0\n        self.thread.start()\n    def terminal(self, term_name=None, height=25, width=80, winheight=0, winwidth=0, parent=\"\",\n                 access_code=\"\", shell_command=[], ssh_host=\"\"):\n        \"\"\"Return (tty_name, cookie, alert_msg) for existing or newly created terminal\"\"\"\n        shell_command = shell_command or self.shell_command\n        ssh_host = ssh_host or self.ssh_host\n        with self.lock:\n            if term_name:\n                term = self.terminals.get(term_name)\n                if term:\n                    # Existing terminal; resize and return it\n                    if term.access_code and term.access_code != access_code:\n                        return (term_name, \"\", \"Invalid terminal access code\")\n                    term.rpc_set_size(height, width, winheight, winwidth)\n                    return (term_name, term.cookie, \"\")\n            else:\n                # New default terminal name\n                while True:",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:378-400"
+    },
+    "2505": {
+        "file_id": 382,
+        "content": "This code initializes the terminal and returns its details. The method takes parameters for terminal name, height, width, parent window name, access code, shell commands, and SSH host. It creates or gets an existing terminal based on the given name, checks the access code if specified, resizes the terminal if it exists, and then returns its name, cookie, and an alert message (if applicable). The lock is used for synchronization when working with terminals.",
+        "type": "comment"
+    },
+    "2506": {
+        "file_id": 382,
+        "content": "                    self.name_count += 1\n                    term_name = \"tty%s\" % self.name_count\n                    if term_name not in self.terminals:\n                        break\n            # Create new terminal\n            max_terminals = self.term_settings.get(\"max_terminals\",0)\n            if max_terminals and len(self.terminals) >= max_terminals:\n                return (\"\", \"\", \"Cannot create more than %d terminals\" % max_terminals)\n            cookie = make_term_cookie()\n            logging.info(\"New terminal %s: %s\", term_name, shell_command)\n            term_dir = \"\"\n            if parent:\n                parent_term = self.terminals.get(parent)\n                if parent_term:\n                    term_dir = parent_term.current_dir or \"\"\n# must use a custom terminal emulator???\n# fork shit???\n            pid, fd = pty.fork()\n            if pid == 0:\n                # Slave pty\n                ##logging.info(\"Forked pid=0 %s: %s\", term_name, shell_command)\n                env = {}\n                for var in os.environ.keys():",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:401-425"
+    },
+    "2507": {
+        "file_id": 382,
+        "content": "This code is creating and managing terminal instances within a shell environment. It keeps track of the number of terminals, prevents exceeding a specified maximum, creates new terminal instances using pty.fork(), and sets up an environment for each instance based on the existing environment variables.",
+        "type": "comment"
+    },
+    "2508": {
+        "file_id": 382,
+        "content": "                    if var not in NO_COPY_ENV:\n                        val = os.getenv(var)\n                        env[var] = val\n                        if var == \"PATH\" and Exec_path and Exec_path not in env[var]:\n                            # Prepend app bin directory to path\n                            env[var] = Exec_path + \":\" + env[var]\n                env[\"COLUMNS\"] = str(width)\n                env[\"LINES\"] = str(height)\n                env.update( dict(self.term_env(term_name, cookie, height, width, winheight, winwidth)) )\n                # print(\"shell command:\",shell_command,env,term_dir)\n                self.start_shell(shell_command, env, term_dir=term_dir)\n            else:\n                # Master pty\n                logging.info(\"Forked pid=%d %s\", pid, term_name)\n                # print(\"master-slave:\",pid)\n                # can you start some process without the thing????\n                # this shell sucks.\n                fcntl.fcntl(fd, fcntl.F_SETFL, fcntl.fcntl(fd,fcntl.F_GETFL)|os.O_NONBLOCK)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:426-443"
+    },
+    "2509": {
+        "file_id": 382,
+        "content": "This code sets environment variables, updates terminal environment based on given parameters, and either starts a shell command or forks a process for a master-slave setup.",
+        "type": "comment"
+    },
+    "2510": {
+        "file_id": 382,
+        "content": "                # print(\"debugger flag\")\n                self.terminals[term_name] = Terminal(term_name, fd, pid, self,\n                                                     height=height, width=width,\n                                                     winheight=winheight, winwidth=winwidth,\n                                                     cookie=cookie, access_code=access_code,\n                                                     log=bool(self.log_file))\n                return term_name, cookie, \"\"\n    def start_shell(self, shell_command, env, term_dir=\"\"):\n        \"\"\" Start shell command for terminal \"\"\"\n        if len(shell_command) == 1 and not os.path.isabs(shell_command[0]):\n            # Relative path shell command with no arguments\n            if shell_command[0] in (\"bash\", \"csh\", \"ksh\", \"sh\", \"tcsh\", \"zsh\"):\n                # Standard shell\n                cmd_args = shell_command[:]\n            elif shell_command[0] == \"login\":\n                # Login access\n                time.sleep(0.3)      # Needed for PTY output to appear",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:444-461"
+    },
+    "2511": {
+        "file_id": 382,
+        "content": "This code snippet initializes a Terminal object for the given terminal name, file descriptor, process ID, and other parameters. If the shell command is a relative path with no arguments and matches one of the supported shells, it sets up the standard shell environment. A brief sleep is added to ensure PTY output appears before proceeding.",
+        "type": "comment"
+    },
+    "2512": {
+        "file_id": 382,
+        "content": "                if os.getuid() != 0:\n                    logging.error(\"Must be root to run login\")\n                    os._exit(1)\n                if os.path.exists(\"/bin/login\"):\n                    cmd_args = ['/bin/login']\n                elif os.path.exists(\"/usr/bin/login\"):\n                    cmd_args = ['/usr/bin/login']\n                else:\n                    logging.error(\"/bin/login or /usr/bin/login not found\")\n                    os._exit(1)\n            elif shell_command[0] == \"ssh\":\n                # SSH access\n                time.sleep(0.3)      # Needed for PTY output to appear\n                sys.stderr.write(\"SSH Authentication\\n\")\n                hostname = ssh_host or \"localhost\"\n                if hostname != \"localhost\":\n                    sys.stdout.write(\"Hostname: %s\\n\" % hostname)\n                sys.stdout.write(\"Username: \")\n                username = sys.stdin.readline().strip()\n                if re.match('^[0-9A-Za-z-_. ]+$', username):\n                    cmd_args = ['ssh']",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:462-482"
+    },
+    "2513": {
+        "file_id": 382,
+        "content": "The code checks if the user is root, then determines the location of the \"login\" command. If not found, it logs an error and exits. If root, it proceeds to check if the first word of the command is \"ssh\". If so, it waits for the user to input a hostname, then prompts for a username. It constructs the ssh command based on the inputs.",
+        "type": "comment"
+    },
+    "2514": {
+        "file_id": 382,
+        "content": "                    cmd_args += ['-oPreferredAuthentications=keyboard-interactive,password']\n                    cmd_args += ['-oNoHostAuthenticationForLocalhost=yes']\n                    cmd_args += ['-oLogLevel=FATAL']\n                    cmd_args += ['-F/dev/null', '-l', username, ssh_host]\n                else:\n                    logging.error(\"Invalid username %s\", username)\n                    os._exit(1)\n            else:\n                # Non-standard program; run via shell\n                cmd_args = ['/bin/sh', '-c', shell_command[0]]\n        elif shell_command and os.path.isabs(shell_command[0]):\n            # Absolute path shell command\n            cmd_args = shell_command[:]\n        else:\n            logging.error(\"Invalid shell command: %s\", shell_command)\n            os._exit(1)\n        if term_dir:\n            try:\n                os.chdir(term_dir)\n            except Exception:\n                term_dir = \"\"\n        if not term_dir:\n            # cd to HOME\n            os.chdir(os.path.expanduser(\"~\"))",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:483-508"
+    },
+    "2515": {
+        "file_id": 382,
+        "content": "This code is validating and setting up SSH connections. It checks for invalid usernames, adjusts command arguments, handles non-standard programs via shell execution, and changes the working directory accordingly to handle terminal processes.",
+        "type": "comment"
+    },
+    "2516": {
+        "file_id": 382,
+        "content": "        ##logging.info(\"start_shell %s: %s\", cmd_args, env)\n        # Close all open fd (except stdin, stdout, stderr)\n        try:\n            fdl = [int(i) for i in os.listdir('/proc/self/fd')]\n        except OSError:\n            fdl = range(256)\n        for i in [i for i in fdl if i>2]:\n            try:\n                os.close(i)\n            except OSError:\n                pass\n        # Exec shell\n        os.execvpe(cmd_args[0], cmd_args, env)\n    def term_env(self, term_name, cookie, height, width, winheight, winwidth, export=False):\n        \"\"\" Returns environment variables for terminal \"\"\"\n        env = []\n        env.append( (\"TERM\", self.term_settings.get(\"type\",DEFAULT_TERM_TYPE)) )\n        env.append( (ENV_PREFIX+\"COOKIE\", str(cookie)) )\n        dimensions = \"%dx%d\" % (width, height)\n        if winwidth and winheight:\n            dimensions += \";%dx%d\" % (winwidth, winheight)\n        env.append( (ENV_PREFIX+\"DIMENSIONS\", dimensions) )\n        if self.server_url:\n            env.append( (ENV_PREFIX+\"URL\", self.server_url) )",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:510-537"
+    },
+    "2517": {
+        "file_id": 382,
+        "content": "The code appears to be a part of a larger script that deals with shell execution and terminal settings. It closes all open file descriptors except stdin, stdout, and stderr, then executes the shell specified by `cmd_args[0]`. The `term_env` function sets environment variables for a terminal, including terminal type, cookie, dimensions, and server URL if available.",
+        "type": "comment"
+    },
+    "2518": {
+        "file_id": 382,
+        "content": "        env.append( (ENV_PREFIX+\"DIR\", File_dir) )\n        return env\n    def get_terminal(self, term_name):\n        return self.terminals.get(term_name)\n    def remote_term_call(self, term_name, method, *args, **kwargs):\n        terminal = self.get_terminal(term_name)\n        if not terminal:\n            raise Exception(\"Invalid terminal name \"+term_name)\n        bound_method = getattr(terminal, \"rpc_\"+method, None)\n        if not bound_method:\n            raise Exception(\"Invalid remote method \"+method)\n        logging.info(\"Remote term call %s\", method)\n        with self.lock:\n            return bound_method(*args, **kwargs)\n    def term_names(self):\n        with self.lock:\n            return list(self.terminals.keys())\n    def running(self):\n        with self.lock:\n            return self.alive\n    def shutdown(self):\n        with self.lock:\n            if not self.alive:\n                return\n            self.alive = 0\n            self.kill_all()\n    def kill_term(self, term_name):\n        with self.lock:\n            term = self.terminals.get(term_name)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:539-575"
+    },
+    "2519": {
+        "file_id": 382,
+        "content": "This code defines a class with methods for managing terminals. The `env` method adds an environment variable, while `get_terminal` retrieves a terminal by name. `remote_term_call` executes a remote method on a terminal, raising exceptions if the terminal or method is invalid. `term_names` returns a list of terminal names, and `running` checks whether the instance is still alive. Finally, `shutdown` stops the instance, killing all terminals if it's running.",
+        "type": "comment"
+    },
+    "2520": {
+        "file_id": 382,
+        "content": "            if term:\n                # \"Idle\" terminal\n                term.output_time = 0\n            self.check_kill_idle = True\n    def kill_all(self):\n        with self.lock:\n            for term in self.terminals.values():\n                # \"Idle\" terminal\n                term.output_time = 0\n            self.check_kill_idle = True\n    def kill_idle(self):\n        # Kill all \"idle\" terminals\n        with self.lock:\n            cur_time = time.time()\n            for term_name in self.term_names():\n                term = self.terminals.get(term_name)\n                if term:\n                    if (cur_time-term.output_time) > IDLE_TIMEOUT:\n                        logging.warning(\"kill_idle: %s\", term_name)\n                        try:\n                            os.close(term.fd)\n                            os.kill(term.pid, signal.SIGTERM)\n                        except (IOError, OSError):\n                            pass\n                        try:\n                            del self.terminals[term_name]",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:576-603"
+    },
+    "2521": {
+        "file_id": 382,
+        "content": "This code manages \"idle\" terminals in a program. It sets the output time to 0 for active and idle terminals, kills all idle terminals after a certain timeout, and logs information when doing so. The code uses locks, time calculations, and signal handling to achieve this functionality.",
+        "type": "comment"
+    },
+    "2522": {
+        "file_id": 382,
+        "content": "                        except Exception:\n                            pass\n                        self.client_callback(term_name, \"\", \"disconnect\", 1)\n    def term_read(self, term_name):\n        with self.lock:\n            term = self.terminals.get(term_name)\n            if not term:\n                return\n            try:\n                data = os.read(term.fd, 65536)\n                if not data:\n                    logging.error(\"pyxshell: EOF in reading from %s; closing it\" % term_name)\n                    self.term_update(term_name)\n                    self.kill_term(term_name)\n                    return\n                term.pty_read(data)\n            except (KeyError, IOError, OSError):\n                logging.err(\"pyxshell: Error in reading from %s; closing it\" % term_name)\n                self.kill_term(term_name)\n    def term_write(self, term_name, data):\n        ##logging.info(\"term_write: %s '%s'\", term_name, data[:80])\n        with self.lock:\n            term = self.terminals.get(term_name)\n            if not term:",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:604-629"
+    },
+    "2523": {
+        "file_id": 382,
+        "content": "This code handles reading and writing from terminal sessions. It catches exceptions when reading, logs errors, and closes the terminal session if needed. The term_read function reads data from a terminal's file descriptor (fd) and passes it to the pty_read function. If an error occurs during reading or writing, it logs the error and closes the terminal session.",
+        "type": "comment"
+    },
+    "2524": {
+        "file_id": 382,
+        "content": "                return\n            try:\n                term.pty_write(data)\n            except (IOError, OSError) as excp:\n                logging.error(\"pyxshell: Error in writing to %s (%s %s); closing it\", term_name, excp.__class__, excp)\n                self.kill_term(term_name)\n    def term_update(self, term_name):\n        with self.lock:\n            term = self.terminals.get(term_name)\n            if term:\n                term.update()\n    def reconnect(self, term_name, response_id=\"\"):\n        with self.lock:\n            term = self.terminals.get(term_name)\n            if not term:\n                return\n            term.reconnect(response_id=response_id)\n    def loop(self):\n        \"\"\" Multi-terminal I/O loop\"\"\"\n        while self.running():\n            try:\n                fd_dict = dict((term.fd, name) for name, term in self.terminals.items())\n                if not fd_dict:\n                    time.sleep(0.02)\n                    continue\n                inputs, outputs, errors = select.select(fd_dict.keys(), [], [], 0.02)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:630-658"
+    },
+    "2525": {
+        "file_id": 382,
+        "content": "This code contains multiple functions, including `pyxshell: Error`, `term_update`, `reconnect`, and `loop`. The loop function creates a multi-terminal I/O loop where the program continuously checks for input from connected terminals. It uses select.select to monitor inputs, outputs, and errors on specified file descriptors every 0.02 seconds. If no valid input is detected within this timeframe, it sleeps for 0.02 seconds before checking again. The code also handles errors in writing to the terminal by logging an error message and closing the affected terminal.",
+        "type": "comment"
+    },
+    "2526": {
+        "file_id": 382,
+        "content": "                for fd in inputs:\n                    try:\n                        self.term_read(fd_dict[fd])\n                    except Exception as excp:\n                        traceback.print_exc()\n                        term_name = fd_dict[fd]\n                        logging.warning(\"TermManager.loop: INTERNAL READ ERROR (%s) %s\", term_name, excp)\n                        self.kill_term(term_name)\n                cur_time = time.time()\n                for term_name in fd_dict.values():\n                    term = self.terminals.get(term_name)\n                    if term:\n                        if term.needs_updating(cur_time):\n                            try:\n                                self.term_update(term_name)\n                            except Exception as excp:\n                                traceback.print_exc()\n                                logging.warning(\"TermManager.loop: INTERNAL UPDATE ERROR (%s) %s\", term_name, excp)\n                                self.kill_term(term_name)\n                if self.check_kill_idle:",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:659-678"
+    },
+    "2527": {
+        "file_id": 382,
+        "content": "This code appears to be part of a program managing terminal windows. It reads from input file descriptors, handles any internal read errors by logging and killing the corresponding terminal, updates terminals if needed (also handling internal update errors and killing the terminal), and checks for idle time to potentially kill inactive terminals.",
+        "type": "comment"
+    },
+    "2528": {
+        "file_id": 382,
+        "content": "                    self.check_kill_idle = False\n                    self.kill_idle()\n                if len(inputs):\n                    time.sleep(0.002)\n            except Exception as excp:\n                traceback.print_exc()\n                logging.warning(\"TermManager.loop: ERROR %s\", excp)\n                break\n        self.kill_all()\n# some control sequences are inside.\nif __name__ == \"__main__\":\n    ## Code to test shell wrapper\n    initBuffer(\"terminal\")\n    from optparse import OptionParser\n    usage = \"usage: %prog [<shell_command>]\"\n    parser = OptionParser(usage=usage)\n    parser.add_option(\"-l\", \"--logging\",\n                  action=\"store_true\", dest=\"logging\", default=False,\n                  help=\"Enable logging\")\n    (options, args) = parser.parse_args()\n    shell_cmd = args[:] if args else [\"bash\"]\n# well, only for UNIX, but quite good though.\n    # Determine terminal width, height\n    height, width = struct.unpack(\"hh\", fcntl.ioctl(pty.STDOUT_FILENO, termios.TIOCGWINSZ, \"1234\"))\n    if not width or not height:",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:679-707"
+    },
+    "2529": {
+        "file_id": 382,
+        "content": "The code is from a terminal manager module in a Python program. It initializes the terminal, reads command-line options, determines the terminal size, and enters an event loop to handle user input and execute commands. If an error occurs during the execution of the loop, it prints the exception traceback and exits the program.",
+        "type": "comment"
+    },
+    "2530": {
+        "file_id": 382,
+        "content": "        try:\n            height, width = [int(os.getenv(var)) for var in (\"LINES\", \"COLUMNS\")]\n        except Exception:\n            height, width = 25, 80\n    Prompt = \"> \"\n    Log_file = \"pyxshell.log\" if options.logging else \"\"\n    def client_callback(term_name, response_id, command, *args):\n        if command == \"stdout\":\n            output = args[0]\n            sys.stdout.write(output)\n            sys.stdout.flush()\n    Term_manager = TermManager(client_callback, shell_cmd, log_file=Log_file, log_level=logging.INFO)\n    Term_name, term_cookie, alert_msg = Term_manager.terminal(height=height, width=width)\n    if alert_msg:\n        print(alert_msg, file=sys.stderr)\n    print(\"**Type Control-D Control-D to exit**\", file=sys.stderr)\n# oh shit this is the main sequence.\n# this is a different tty.\n# if it is windows... worse still.\n    # test_str = b'\\xe2\\x94\\x80 \\xe2\\x94\\x82 \\xe2\\x94\\x8c \\xe2\\x94\\x98 \\xe2\\x94\\x90 \\xe2\\x94\\x94 \\xe2\\x94\\x9c \\xe2\\x94\\xa4 \\xe2\\x94\\xac \\xe2\\x94\\xb4 \\xe2\\x94\\xbc \\xe2\\x95\\x90 \\",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:708-730"
+    },
+    "2531": {
+        "file_id": 382,
+        "content": "This code initializes a terminal session by setting up the dimensions of the window, creating a callback function for handling output, and establishing a TermManager object. The callback function writes the output to stdout and flushes it. The code then creates a terminal instance with the provided height and width, handles any alert messages, and informs the user to type Control-D twice to exit.",
+        "type": "comment"
+    },
+    "2532": {
+        "file_id": 382,
+        "content": "xe2\\x95\\x91 \\xe2\\x95\\x94 \\xe2\\x95\\x9d \\xe2\\x95\\x97 \\xe2\\x95\\x9a \\xe2\\x95\\xa0 \\xe2\\x95\\xa3 \\xe2\\x95\\xa6 \\xe2\\x95\\xa9 \\xe2\\x95\\xac'.decode(\"utf-8\")\n# well, now we are talking about some kind of program architecture.\n# about keeping something intact.\n# you want to make thousands of programs waiting for inputs?\n# and another something waiting for income????\n    Term_attr = termios.tcgetattr(pty.STDIN_FILENO)\n    try:\n        tty.setraw(pty.STDIN_FILENO)\n        expectEOF = False\n        Term_manager.term_write(Term_name, \"tty\\n\")\n        # term-write?\n        while True:\n            ##data = raw_input(Prompt)\n            ##Term_manager.write(data+\"\\n\")\n            data = os.read(pty.STDIN_FILENO, 1024)\n            if byte_code(data[0]) == 4:\n                if expectEOF: raise EOFError\n                expectEOF = True\n            else:\n                expectEOF = False\n            if not data:\n                raise EOFError\n            str_data = data.decode(\"utf-8\") if isinstance(data, bytes) else data\n            # print(\"str_data received.\",[str_data])",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:730-753"
+    },
+    "2533": {
+        "file_id": 382,
+        "content": "This code is using Python to interact with a terminal, reading input data from the user and handling end-of-file (EOF) signals. The code sets up raw input mode, uses termios module to get terminal attributes, and utilizes tty module to interact with the terminal. It continuously reads input from the user, decoding it from bytes to string if necessary, and handles EOF signals appropriately.",
+        "type": "comment"
+    },
+    "2534": {
+        "file_id": 382,
+        "content": "            # this is not for process execution.\n            Term_manager.term_write(Term_name, str_data)\n    except EOFError:\n        Term_manager.shutdown()\n    finally:\n        # Restore terminal attributes\n        termios.tcsetattr(pty.STDIN_FILENO, termios.TCSANOW, Term_attr)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/pyxshell.py:754-760"
+    },
+    "2535": {
+        "file_id": 382,
+        "content": "This code snippet seems to handle writing data to the terminal, and it includes an exception handling block for EOFError. If an EOFError is encountered, it calls Term_manager.shutdown(). The finally block ensures that terminal attributes are restored after execution completes or an error occurs.",
+        "type": "comment"
+    },
+    "2536": {
+        "file_id": 383,
+        "content": "/bootstrap/legacy/main_pack/main_1/sample.py",
+        "type": "filepath"
+    },
+    "2537": {
+        "file_id": 383,
+        "content": "The code imports the 'random' module and initializes an empty string. It reads a file named \"links.log\" and stores its content in the variable 'a'. The code then splits the string 'a' into a list of words and prints one random word from that list using the 'random.choice()' function.",
+        "type": "summary"
+    },
+    "2538": {
+        "file_id": 383,
+        "content": "import random\na=\"\"\n# non-standard. but we've got bytes.\n# you mean char-level? pix-level?\nwith open(\"links.log\",\"r\") as f:\n    a=f.read()\n# for x in a:\n#     print(x)\n# and that's learning.\n# FAIL: stdin waiting; stdout nothing (when expecting something); stderr something.\n# RULE: time, space.\n# that's how you comprehend things?\n# what is the fucking work here?\n# how to do the work? finding the way to crack the parameter?\n# assemble them together? making some concept nodes?\n# well, you say that.\n# print(a.split())\n# i did found some universial function works for every shit.\n# s=a.split()\n# f=[lambda x: x==b for b in s]\n# z=[list(map(k,s)) for k in f]\n# print(z)\nprint(random.choice(a.split()))",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/sample.py:1-23"
+    },
+    "2539": {
+        "file_id": 383,
+        "content": "The code imports the 'random' module and initializes an empty string. It reads a file named \"links.log\" and stores its content in the variable 'a'. The code then splits the string 'a' into a list of words and prints one random word from that list using the 'random.choice()' function.",
+        "type": "comment"
+    },
+    "2540": {
+        "file_id": 384,
+        "content": "/bootstrap/legacy/main_pack/main_1/sample.sh",
+        "type": "filepath"
+    },
+    "2541": {
+        "file_id": 384,
+        "content": "This code appears to be written in the Fish shell and is intended for use with the C programming language. It seems to involve compiling and running a C program, possibly involving Python includes and deep learning. However, the code contains several comments expressing frustration and suggesting it may require further improvements or adjustments.",
+        "type": "summary"
+    },
+    "2542": {
+        "file_id": 384,
+        "content": "#!/usr/bin/fish\n# only work for fish shell.\n# command c main.c &| xargs c lazero.c\n# tell you how to cut strings.\n# this requires deeplearning.\n# tell you how to find important things.\n# getting offline, enjoy the fucking show???\n# how about setting the lnclude variable?\n# you know nothing about the fucking file? and what do you want then?\n# c is the worst lang I've ever used.\n# your process should be making more sense, make the process easier to go.\ncommand c \"-I/usr/include/python2.7 main.c\" &| cat\n# do you accept new input from some brand new system?",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/sample.sh:1-13"
+    },
+    "2543": {
+        "file_id": 384,
+        "content": "This code appears to be written in the Fish shell and is intended for use with the C programming language. It seems to involve compiling and running a C program, possibly involving Python includes and deep learning. However, the code contains several comments expressing frustration and suggesting it may require further improvements or adjustments.",
+        "type": "comment"
+    },
+    "2544": {
+        "file_id": 385,
+        "content": "/bootstrap/legacy/main_pack/main_1/sampleCode.py",
+        "type": "filepath"
+    },
+    "2545": {
+        "file_id": 385,
+        "content": "The code imports the NetworkX library, reads a log file called \"links.log\", splits its content into individual words, creates a graph where each word is connected to the next one, and saves the graph as a .gpickle file. The purpose of this code appears to be related to text processing or analyzing sequential data.",
+        "type": "summary"
+    },
+    "2546": {
+        "file_id": 385,
+        "content": "import networkx as nx\n# import random\na=\"\"\nG=nx.Graph()\n# non-standard. but we've got bytes.\n# you mean char-level? pix-level?\nwith open(\"links.log\",\"r\") as f:\n    a=f.read()\n# for x in a:\n#     print(x)\n# FAIL: stdin waiting; stdout nothing (when expecting something); stderr something.\n# RULE: time, space.\n# that's how you comprehend things?\n# what is the fucking work here?\n# how to do the work? finding the way to crack the parameter?\n# assemble them together? making some concept nodes?\n# well, you say that.\n# print(a.split())\n# i did found some universial function works for every shit.\n# s=a.split()\n# f=[lambda x: x==b for b in s]\n# z=[list(map(k,s)) for k in f]\n# print(z)\n# print(random.choice(a.split()))\ns=a.split()\nfor x in range(len(s)-1):\n    G.add_edge(a[x],a[x+1])\nnx.write_gpickle(G,\"/dev/shm/randomFuck.gpickle\")\n# i read shit and I write shit.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/sampleCode.py:1-29"
+    },
+    "2547": {
+        "file_id": 385,
+        "content": "The code imports the NetworkX library, reads a log file called \"links.log\", splits its content into individual words, creates a graph where each word is connected to the next one, and saves the graph as a .gpickle file. The purpose of this code appears to be related to text processing or analyzing sequential data.",
+        "type": "comment"
+    },
+    "2548": {
+        "file_id": 386,
+        "content": "/bootstrap/legacy/main_pack/main_1/sample_manager.py",
+        "type": "filepath"
+    },
+    "2549": {
+        "file_id": 386,
+        "content": "The code imports necessary libraries and defines functions for analyzing tree elements, but seems incomplete and faces difficulties due to image color issues and unrelated file dependencies. It also discusses creating temporary files using FIFOs and mentions an unimplemented PyATSPI feature.",
+        "type": "summary"
+    },
+    "2550": {
+        "file_id": 386,
+        "content": "from dogtail import *\n# for x in dir(util):\n#     print(x)\n# x,y w,h.\n# import dogtail\nimport pyautogui\nimport numpy as np\nimport cv2\ndef getXray(t, s):\n    f = t.extents\n    print(t, type(t), f)\n    if f != None:\n        s.append(f)\n    # this is the core thing. pass something to here?\ndef getExam(t, s):\n    y = t.children\n    print(y)\n    for x in y:\n        getXray(x, s)\n    return y\ndef getBuff(a, s, sample=[]):\n    def l(x): return [z for y in x for z in y]\n    if a != None:\n        return getBuff(None, s, getExam(a, s))\n    elif a == None and sample != []:\n        return getBuff(None, s, l(list(map(lambda a: getExam(a, s), sample))))\n    elif sample == []:\n        print(\"_______end___of____conv_______\")\n        return s\n# f=util.isA11yEnabled()\n# print(f)\n# # get the node first??\n# how was the dump func enabled?\n# how does it work?\nt = tree.root\ns = []\ngetBuff(t, s)\nk = pyautogui.screenshot()\nprint(k, type(k))\nky = np.array(k)\n# finally?\n# always fake shit.\n# but what is the deal? how to get deep?\nky=cv2.cvtColor(ky,cv2.COLOR_RGB2BGR)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/sample_manager.py:1-51"
+    },
+    "2551": {
+        "file_id": 386,
+        "content": "This code imports necessary libraries and defines functions for getting X-ray information, examining tree elements, and buffering results. The main function utilizes these operations to get deep analysis of a tree element using pyautogui and OpenCV. However, it seems incomplete and lacking context for a full understanding.",
+        "type": "comment"
+    },
+    "2552": {
+        "file_id": 386,
+        "content": "print(ky, type(ky))\n# still, the tree and nothing else.\nfor x in s:\n    print(x)\n    x1, y1, x2, y2 = x\n    x2, y2 = x1+x2, y2+y1\n    cv2.rectangle(ky, (x1, y1), (x2, y2), (255, 0, 0), 2)\n    print(\"______RECTANGLE-SPILTER______\")\ncv2.imshow(\"sample\",ky)\n# the color is really strange.\n# and I cannot debug this thing.\n# it is weird stuff.\n# all javascript, HTML and so on.\n# we have all the stuff here.\ncv2.waitKey(0)\n# you are gonna draw rectangles?\n# you need to find duplicates?\n# write till this computer bricks?\n# i think we have a tempfile here.\n# you can make it outside the directory.\n# such as /etc/lazero or /tmp/lazero, /dev/shm/lazero\n# make some FIFO?\n# not really the root node?\n# does not have position????\n# it is not great at all.\n# whatever.\n# x.point(mouseDelay=1)\n# not implemented.\n# what is this pyatspi?\n# for x in dir(t):\n#     print(x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/sample_manager.py:52-83"
+    },
+    "2553": {
+        "file_id": 386,
+        "content": "This code snippet prints the type of a variable, iterates through a list to draw rectangles on an image using OpenCV, and displays the image. It mentions issues with the image's color and difficulty debugging, suggesting that it involves JavaScript, HTML, and other unrelated files in an odd manner. The code also discusses creating temporary files outside of the current directory, using FIFOs, and mentions PyATSPI, which seems to be an unimplemented feature.",
+        "type": "comment"
+    },
+    "2554": {
+        "file_id": 387,
+        "content": "/bootstrap/legacy/main_pack/main_1/sample_mpi.c",
+        "type": "filepath"
+    },
+    "2555": {
+        "file_id": 387,
+        "content": "This code demonstrates the usage of MPI library for parallel computing in C. It initializes the MPI environment, gets information about the process and other processes, retrieves processor name, prints a hello world message, and finally finalizes the MPI environment.",
+        "type": "summary"
+    },
+    "2556": {
+        "file_id": 387,
+        "content": "#include <mpi.h>\n#include <stdio.h>\n// there is a complier for this.\n// and also separate executables.\nint main(int argc, char** argv) {\n    // Initialize the MPI environment\n    MPI_Init(NULL, NULL);\n    // Get the number of processes\n    int world_size;\n    MPI_Comm_size(MPI_COMM_WORLD, &world_size);\n    // Get the rank of the process\n    int world_rank;\n    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);\n    // Get the name of the processor\n    char processor_name[MPI_MAX_PROCESSOR_NAME];\n    int name_len;\n    MPI_Get_processor_name(processor_name, &name_len);\n    // Print off a hello world message\n    printf(\"Hello world from processor %s, rank %d out of %d processors\\n\",\n           processor_name, world_rank, world_size);\n    // Finalize the MPI environment.\n    MPI_Finalize();\n}",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/sample_mpi.c:1-28"
+    },
+    "2557": {
+        "file_id": 387,
+        "content": "This code demonstrates the usage of MPI library for parallel computing in C. It initializes the MPI environment, gets information about the process and other processes, retrieves processor name, prints a hello world message, and finally finalizes the MPI environment.",
+        "type": "comment"
+    },
+    "2558": {
+        "file_id": 388,
+        "content": "/bootstrap/legacy/main_pack/main_1/sampler.sh",
+        "type": "filepath"
+    },
+    "2559": {
+        "file_id": 388,
+        "content": "This script retrieves the first line from \"locate.db\", counts its characters, calculates the size of the file, and then truncates the file to remove the first line.",
+        "type": "summary"
+    },
+    "2560": {
+        "file_id": 388,
+        "content": "#!/bin/bash\ndata=$(tail locate.db --lines 1)\necho $data\ncount=$(echo $data | wc -c)\nsize=$(wc -c locate.db | awk '{print $1}')\ntruncate -c -s $[$size-$count] locate.db",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/sampler.sh:1-6"
+    },
+    "2561": {
+        "file_id": 388,
+        "content": "This script retrieves the first line from \"locate.db\", counts its characters, calculates the size of the file, and then truncates the file to remove the first line.",
+        "type": "comment"
+    },
+    "2562": {
+        "file_id": 389,
+        "content": "/bootstrap/legacy/main_pack/main_1/script.c",
+        "type": "filepath"
+    },
+    "2563": {
+        "file_id": 389,
+        "content": "This code defines a main function that executes the command \"echo hello world\" using the system() function. The author seems frustrated with the code and its dependencies but believes it works fine. They also mention the possibility of running the code in RAM and refer to an unspecified graph sample.",
+        "type": "summary"
+    },
+    "2564": {
+        "file_id": 389,
+        "content": "#include <stdio.h>\n// #include <os.h>\n// so you mean that you are fucked and desperate, waiting for shit to come????\n// that doesn't make sense.\n// i can redirect the output.\n// but it works just fine.\n// i can rewrite the shit and make it bounce.\n// cannot even believe this.\n// what is this tool used for?\n// shit. I just want to use the feature. what's wrong about this?\n// it is faster than shit.\n// here is the end of everything.\nint main(int argc, char *argv[]){\n    system(\"echo hello world\");\n    return 0;\n}\n// where the hell should we report this shit?\n// having found the fuck?\n// yes you can do it in the ram.\n// sample graph.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/script.c:1-20"
+    },
+    "2565": {
+        "file_id": 389,
+        "content": "This code defines a main function that executes the command \"echo hello world\" using the system() function. The author seems frustrated with the code and its dependencies but believes it works fine. They also mention the possibility of running the code in RAM and refer to an unspecified graph sample.",
+        "type": "comment"
+    },
+    "2566": {
+        "file_id": 390,
+        "content": "/bootstrap/legacy/main_pack/main_1/terminal_path.py",
+        "type": "filepath"
+    },
+    "2567": {
+        "file_id": 390,
+        "content": "This code defines a function getPath() that splits a string by spaces and removes any parts of the string containing forward slashes or backslashes. It then checks if the remaining parts contain no such characters before returning them as a list. The main part of the script reads the file \"/dev/shm/terminal\" and passes its contents to getPath() before printing the result.",
+        "type": "summary"
+    },
+    "2568": {
+        "file_id": 390,
+        "content": "# import re\n# re.findall(r\"/+\")\ndef getPath(x):\n    # maybe it is not the time?\n    f = x.split()\n    for y in f:\n        if \"/\" not in f or \"\\\\\" not in f:\n            del y\n    return f\n# all those false shits. can you really get it right?\nif __name__ == \"__main__\":\n    with open(\"/dev/shm/terminal\", \"r\") as f:\n        g = f.read()\n        g = getPath(g)\n        print(g)",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/terminal_path.py:1-17"
+    },
+    "2569": {
+        "file_id": 390,
+        "content": "This code defines a function getPath() that splits a string by spaces and removes any parts of the string containing forward slashes or backslashes. It then checks if the remaining parts contain no such characters before returning them as a list. The main part of the script reads the file \"/dev/shm/terminal\" and passes its contents to getPath() before printing the result.",
+        "type": "comment"
+    },
+    "2570": {
+        "file_id": 391,
+        "content": "/bootstrap/legacy/main_pack/main_1/unique.py",
+        "type": "filepath"
+    },
+    "2571": {
+        "file_id": 391,
+        "content": "The code performs a search and applies convolutional filtering using 'rg' command, but is complex and lacks clear comments. It retrieves values potentially from a database/API call, involving Unicode processing.",
+        "type": "summary"
+    },
+    "2572": {
+        "file_id": 391,
+        "content": "import subprocess\n# matter of calculation?\n# this is shit. I cannot tell what the fuck is going on.\n# what is the mother fucking pattern??\n# ant what about the fucking crunching machine?\ndef searcher(y):\n    assert type(y)==str\n    s=subprocess.Popen([\"rg\",\"--multiline\",\"'{}'\".format(y),\"/dev/shm/lazero\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    v=s.communicate()\n    return v\n    # making it hard to redirect the output.\n# what the heck? this cannot be done in this way.\ndef convolutional(a,b):\n    return [a[c:c+b] for c in range(len(a)-b)]\ndef getSearched():\n    s=subprocess.Popen([\"cat\",\"/dev/shm/lazero\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    v=s.communicate()\n    v=v[0]\n    for r in range(2,20):\n        s=convolutional(v,r)\n        for s0 in s:\n            # print(s0)\n            k=searcher(s0.decode())\n            print(k)\n            print(\"_____________________spliter_____________________\")\n        print(\"_______end___of____conv_______\")\n# you want this computer to read shit for you?\nif __name__ == '__main__':",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/unique.py:1-29"
+    },
+    "2573": {
+        "file_id": 391,
+        "content": "The code performs a search operation using the 'rg' command for pattern matching and then applies convolutional filtering to the results. It is unclear why the author chose this complex approach, as there are more straightforward ways to achieve the same result. The code also prints the results and includes unnecessary comments.",
+        "type": "comment"
+    },
+    "2574": {
+        "file_id": 391,
+        "content": "    getSearched()\n    # this is crazy. I cannot tell what the heck is going on.\n    # shall we consider the unicode shit?\n# i can hardly tell where to start.\n# but this is not going to end anyway. all the fucking code I've wrote, all the fucking books, all the fucking man pages.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/unique.py:30-34"
+    },
+    "2575": {
+        "file_id": 391,
+        "content": "This code snippet appears to be retrieving a searched value, potentially from a database or API call. It seems to involve Unicode processing and may require decoding or encoding for certain operations. However, the code is difficult to understand due to its complexity and lack of clear comments.",
+        "type": "comment"
+    },
+    "2576": {
+        "file_id": 392,
+        "content": "/bootstrap/legacy/main_pack/main_1/unique.sh",
+        "type": "filepath"
+    },
+    "2577": {
+        "file_id": 392,
+        "content": "This script searches for all point of interest in a file, using convolution and rounds. It calculates the number of characters in the file and then performs rounds of iterations to extract substrings based on the length of each iteration. It uses head, tail, grep commands to find samples in the file and outputs the results. The author expresses frustration with the code's grammar and wishes it could be written in Python.",
+        "type": "summary"
+    },
+    "2578": {
+        "file_id": 392,
+        "content": "#!/bin/bash\n# find all point of interest.\n# len 1, len 2, convolution.\nnumber=$(cat /dev/shm/lazero | wc -c)\n# echo $number\nrounds=1\n# formula -> [x:y] head -c y | tail -c y-x\n# what the fuck?\n# shit code.\n# k=10\nwhile [ $rounds -le 10 ]\ndo\ny=0\nf=$[$number-$rounds]\necho $f\nwhile [ $y -le $f ]\ndo\nsample=$(cat /dev/shm/lazero | head -c $y | tail -c $rounds)\ncat /dev/shm/lazero | rg \"$sample\"\necho \"___________spliter___________\"\ny=$[y+1]\ndone\nrounds=$[rounds+1]\ndone\n# no one will keep good grammar. if people talk shit, i don't have to.\n# man i want to do this in python script. this sucks.\n# read something and automatically get the collections right.\n# guess this is the right place to do the thing.\n# i want secondary order logic!",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/unique.sh:1-29"
+    },
+    "2579": {
+        "file_id": 392,
+        "content": "This script searches for all point of interest in a file, using convolution and rounds. It calculates the number of characters in the file and then performs rounds of iterations to extract substrings based on the length of each iteration. It uses head, tail, grep commands to find samples in the file and outputs the results. The author expresses frustration with the code's grammar and wishes it could be written in Python.",
+        "type": "comment"
+    },
+    "2580": {
+        "file_id": 393,
+        "content": "/bootstrap/legacy/main_pack/main_1/writeTemp.c",
+        "type": "filepath"
+    },
+    "2581": {
+        "file_id": 393,
+        "content": "Code contains a string concatenation function and attempts to write data to a file using fputs() before closing it. Shell scripting or GUI development knowledge is necessary for understanding the code's full functionality, and the author expresses confusion and frustration with unclear purpose of file writing.",
+        "type": "summary"
+    },
+    "2582": {
+        "file_id": 393,
+        "content": "#include <stdio.h>\n#include <string.h>\n// is it all about shell? I mean, you can do shits, but cannot do it with shell.\n// or some sort of GUI???\n// so you fucking explain this to me, what is the point of learning cooking, without digging into the learning itself?\n// and you wanna talk about doing this without the aid of me>\n// void concatenate(char p[], char q[]) {\n//    int c, d;\n//    c = 0;\n//    while (p[c] != '\\0') {\n//       c++;      \n//    }\n//    d = 0;\n//    while (q[d] != '\\0') {\n//       p[c] = q[d];\n// you know the fifo just won't exist permanently in /tmp.\n//       d++;\n//       c++;    \n//    }\n//    p[c] = '\\0';\n// }\n// we can only keep things inside the bitstreams.\n// we've got fucking progress here! to comprehend all shits on this fucking drive.\n// and that's the basic task. cause the internet is nearly infinite.\n// the local drive is huge, but not yet fucked up.\n// you might want to set up some goals on understanding the fucking apt shit, but that is not good at all. you cannot do that.\n// and that is not good.",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/writeTemp.c:1-27"
+    },
+    "2583": {
+        "file_id": 393,
+        "content": "This code contains a function for string concatenation, \"concatenate\", which takes two character arrays and combines them. It uses a while loop to iterate through the strings and copy characters into the destination array. The purpose of this function may be related to shell scripting or GUI development. The comment suggests that understanding these tasks is crucial for comprehending the entire functionality of the codebase, especially with the mention of \"apt shit\" which refers to package management system used in Linux distributions.",
+        "type": "comment"
+    },
+    "2584": {
+        "file_id": 393,
+        "content": "// only shit I feel good is the fucking directory.\n// can do this by sending it multiple times?\n// is it safe to do truncate?\n// here's the thing. I cannot get info about how to find fucking string inside the fucking shit.\n// well, you do not have to store shit inside your fucking mind.\n// here brings the change.\nint writeTemp(char *filename,char *data){\n   FILE *fp;\n   char a[50];\n//    must declare length??? so matrix can be formed?\n// I have to choose lucky numbers?\n// you have to make it small, or exact.\n// printf(\"hello world\");\n// concatenate(a,\"./\");\n// nvm. it is always fucked up.\n   strcpy(a,\"/dev/shm/\");\n   // use it here???\n   // well ,very delicate shit. but will never gonna work without some global shell emulator.\n   // check about 100 running process??\n   // timeout will not gonna work?\n// //    printf(\"hello world\");\n   strcat(a,filename);\n// concatenate(a,filename);\n// this is all bullshit.\n// they will all gonna die.\n// fucking nuts.\n//    printf(\"hello world\");\n//    printf(\"%s\",a);\n   fp = fopen(a, \"w+\");",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/writeTemp.c:28-56"
+    },
+    "2585": {
+        "file_id": 393,
+        "content": "This code attempts to open a file for writing using the fopen function. The file path is created by concatenating \"/dev/shm/\" with the provided filename. However, the code contains numerous comments expressing frustration and doubts about the correctness of the approach being used.",
+        "type": "comment"
+    },
+    "2586": {
+        "file_id": 393,
+        "content": "//    fprintf(fp, \"This is testing for fprintf...\\n\");\n   fputs(data, fp);\n   fclose(fp);\n   // I AM NOT GOOD WITH IT!\n   //what the fuck?\n   // say what is the deal? you want to remember things, calculate things, prank things.\n}\n// all fucked up.\n// there better be some virtualization over the place.\n// so do not execute random shits?????\n// ok, random shit sucks, okay?\n// int main(){\n//     // printf(\"hello world\");\n//     char *filename=\"lazero_console_buffer\";\n//     char *data=\"sample console data\";\n//     // printf(\"%s %s\", filename, data);\n//     writeTemp(filename,data);\n//     return 0;}\n// don't you fucking worry. just think that you have secret shits, or this computer has secret shits, and you are the one who's gonna to dig it out.\n// yes surely you can randomly picking up things. but that does not mean you have knowledge.\n// a exhaustive web, list or matrix?",
+        "type": "code",
+        "location": "/bootstrap/legacy/main_pack/main_1/writeTemp.c:57-77"
+    },
+    "2587": {
+        "file_id": 393,
+        "content": "The code writes data to a file using the fputs() function and then closes the file. The author appears confused and frustrated with the code, mentioning \"random shits\" and suggesting there might be virtualization involved. The purpose of the file writing is not clear, but it may be related to logging or storing data. The main function calls writeTemp(), passing a filename and data to write.",
+        "type": "comment"
+    },
+    "2588": {
+        "file_id": 394,
+        "content": "/lego/README",
+        "type": "filepath"
+    },
+    "2589": {
+        "file_id": 394,
+        "content": "The code expresses frustration about the complexity of a project and highlights concerns over security, viability, and portability. The author suggests that custom kernels might help with certain restrictions and compares understanding different languages to exploring a country.",
+        "type": "summary"
+    },
+    "2590": {
+        "file_id": 394,
+        "content": "this will be the main construction plot. all fucking gameplay is simply over.\ncf is a toy project. i swear. it does not help one percent on my comprehension.\nbut, hey, at least we've come to the lego plot. here we go.\nthere should be some restrictions here.\nsuppose there are some offline things, such as unable to communicate to the kernel, unable to execute some code. just saying. custom kernel might help.\nsafety always comes after viability. if you cannot compute, then do not talk about security. there's no such thing.\nso does the portability. there's no such thing when you cannot understand the cryptic GUI and documentation. it is all fucked up.\nwhy you speak German when you can explore the entire Germany with only English?",
+        "type": "code",
+        "location": "/lego/README:1-15"
+    },
+    "2591": {
+        "file_id": 394,
+        "content": "The code expresses frustration about the complexity of a project and highlights concerns over security, viability, and portability. The author suggests that custom kernels might help with certain restrictions and compares understanding different languages to exploring a country.",
+        "type": "comment"
+    },
+    "2592": {
+        "file_id": 395,
+        "content": "/lego/WINDOWS_NOTE",
+        "type": "filepath"
+    },
+    "2593": {
+        "file_id": 395,
+        "content": "Links provide information on creating detached processes with redirected input and output, using console handles in Windows, and starting a background process in PowerShell.",
+        "type": "summary"
+    },
+    "2594": {
+        "file_id": 395,
+        "content": "https://cn.bing.com/search?q=windows+start+detached+process&qs=n&form=QBRE&sp=-1&ghc=1&pq=windows+start+detached&sc=0-22&sk=&cvid=19FCE05323354661B2DC4D04DC5A0493\nhttps://docs.microsoft.com/en-us/windows/win32/procthread/creating-a-child-process-with-redirected-input-and-output\nhttps://docs.microsoft.com/en-us/windows/console/console-handles\nhttps://stackoverflow.com/questions/25023458/start-a-detached-background-process-in-powershell",
+        "type": "code",
+        "location": "/lego/WINDOWS_NOTE:1-4"
+    },
+    "2595": {
+        "file_id": 395,
+        "content": "Links provide information on creating detached processes with redirected input and output, using console handles in Windows, and starting a background process in PowerShell.",
+        "type": "comment"
+    },
+    "2596": {
+        "file_id": 396,
+        "content": "/lego/autosave_redis.py",
+        "type": "filepath"
+    },
+    "2597": {
+        "file_id": 396,
+        "content": "This code imports necessary libraries and continuously executes a redis-cli command every 'tm' seconds to save the program's state in Redis.",
+        "type": "summary"
+    },
+    "2598": {
+        "file_id": 396,
+        "content": "import time,os,sys\nsv = sys.argv\n#print(sv)\ntm = 2\nif len(sv) == 2:\n    tm = int(sv[1])\nwhile True:\n    time.sleep(tm)\n    os.system(\"redis-cli bgsave\")",
+        "type": "code",
+        "location": "/lego/autosave_redis.py:1-9"
+    },
+    "2599": {
+        "file_id": 396,
+        "content": "This code imports necessary libraries and continuously executes a redis-cli command every 'tm' seconds to save the program's state in Redis.",
+        "type": "comment"
+    }
+}

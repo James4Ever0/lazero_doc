@@ -1,0 +1,10 @@
+{
+    "summary": "This code generates a unique ID using UUID library, prints an initial message along with the ID, and then iterates over each byte from stdin, printing it along with the ID.",
+    "details": [
+        {
+            "comment": "This code generates a unique ID using UUID library, prints an initial message along with the ID, and then iterates over each byte from stdin, printing it along with the ID.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/process_out_raw.py\":0-5",
+            "content": "import sys\nimport uuid\nuid = str(uuid.uuid4())\nprint(\"init\",uid)\nfor x in sys.stdin.buffer:\n    print([x],uid)"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code retrieves the headers of a URL and checks for HTTP 301 or 302 status codes, then echoes the location information if found. This can be used to track redirects but is slow due to network requests.",
+    "details": [
+        {
+            "comment": "This code retrieves the headers of a URL and checks for HTTP 301 or 302 status codes, then echoes the location information if found. This can be used to track redirects but is slow due to network requests.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/new_toys/script.php\":0-13",
+            "content": "<?php\n\t$url = 'http://www.baidu.com/link?url=77I2GJqjJ4zBBpC8yDF8xDhiqDSn1JZjFWsHhEoSNd85PkV8Xil-rckpQ8_kjGKNNq';\n\t$header = get_headers($url,1);\n\tif (strpos($header[0],'301') || strpos($header[0],'302')) {\n\t    if(is_array($header['Location'])) {\n\t        $info = $header['Location'][count($header['Location'])-1];\n\t    }else{\n\t        $info = $header['Location'];\n\t    }\n\t}\n\techo $info;\n// this is slow.\n?>"
+        }
+    ]
+}

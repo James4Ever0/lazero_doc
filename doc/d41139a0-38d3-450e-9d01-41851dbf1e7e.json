@@ -1,0 +1,10 @@
+{
+    "summary": "This script defines a function called \"get_kernel\" that checks if the kernel has any non-cpu cgroups. If it does, it returns 0 (indicating no CPU usage), otherwise it returns 1. The script then calls this function and conditionally echoes either \"something\" or \"nothing\".",
+    "details": [
+        {
+            "comment": "This script defines a function called \"get_kernel\" that checks if the kernel has any non-cpu cgroups. If it does, it returns 0 (indicating no CPU usage), otherwise it returns 1. The script then calls this function and conditionally echoes either \"something\" or \"nothing\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/sample.sh\":0-27",
+            "content": "#!/bin/bash\nget_kernel(){\n\tkern=$( echo $(./check_cgroups.sh | awk '{print $1}'))\n\t#kern=$()\n\tread -ra ADDR <<<\"$kern\"\n\tv=0\n\tfor i in \"${ADDR[@]}\";\n\tdo\n\t\tif [ \"$i\" == \"cpu\" ]; then\n\t\t\tv+=1\n\t\telse\n\t\t\t:\n\t\tfi\n#\t\techo $i\n\tdone\n\techo $v\n\tif [ $v -ne 0 ] ; then\n\t\treturn 0\n\telse\n\t\treturn 1\n\tfi\n}\n#echo $( retval get_kernel )\nif get_kernel; then\n\techo \"something\"\nelse\n\techo \"nothing\"\nfi"
+        }
+    ]
+}

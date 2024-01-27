@@ -1,0 +1,10 @@
+{
+    "summary": "The code defines a list 'a' with three lambda functions: one to concatenate a string, another to multiply a number by 2, and the last to greet with a specific message. It then applies each function to a sample value and prints the result along with its type. The comments suggest that this is a simplified representation of the author's thought process.",
+    "details": [
+        {
+            "comment": "The code defines a list 'a' with three lambda functions: one to concatenate a string, another to multiply a number by 2, and the last to greet with a specific message. It then applies each function to a sample value and prints the result along with its type. The comments suggest that this is a simplified representation of the author's thought process.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archiver/check_useful_func.py\":0-19",
+            "content": "import traceback\na=[]\nb=lambda x: \"\".join(x)\na.append(b)\nc=lambda x: x*2\na.append(c)\nd=lambda x:\"hello \"+x+\" world\"\na.append(d)\nsample=1\nfor x in a:\n    try:\n        z=x(sample)\n        print(\"result:\",z,type(z))\n    except:\n        e= traceback.format_exc()\n        print(e)\n# it is not always aboout numbers.\n# this emulates my fucking brain.\n# only a fraction of it.\n# ONLY A FUCKING FRACTION!"
+        }
+    ]
+}

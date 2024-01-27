@@ -1,0 +1,537 @@
+{
+    "1600": {
+        "file_id": 267,
+        "content": "# # so, how do you evaluate this shit?\n# # is it possible without symbols?\n# # no?\n# # not the same.\n# i will take another.\n# print(e.shape, f.shape)\n# print(g)\n# yesterday you've talked about some glue matricies, glue functions. which are not covered under this category.\n# print(\"derivative with respect of d:{}\".format(e.doit()))\n# this is horrible.\n# is that really the function?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_mat.py:68-78"
+    },
+    "1601": {
+        "file_id": 267,
+        "content": "The code is expressing frustration about evaluating a mathematical expression, and is experimenting with printing shapes of variables e and f, as well as the content of variable g. It mentions talking about glue matrices and functions in the previous day. The author is unsure if this is the correct function being evaluated.",
+        "type": "comment"
+    },
+    "1602": {
+        "file_id": 268,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_alternative.py",
+        "type": "filepath"
+    },
+    "1603": {
+        "file_id": 268,
+        "content": "This PyTorch code trains a neural network, using convolutional layers and SGD optimizer with potential CUDA implementation issues. It modifies gradients, resets variables, and discusses variable dependencies while warning about accessing non-leaf Tensor's .grad attribute. It prints epoch and total loss every 10 iterations.",
+        "type": "summary"
+    },
+    "1604": {
+        "file_id": 268,
+        "content": "import torch.nn.init as init\nimport torch\nfrom confirm_shape import get_writings\n# import\n# red-lang?\n# we just want the machine to feel the difference.\nimport random\nfrom torch.autograd import Variable\n# no neural network.\nactual, o = get_writings()\n# one-hot.\n# device = torch.device(\"cuda\")\n# all the same.\n# cannot use cuda this time, don't know why.\ndef one_hotter_R(bm):\n    r = [0 for x in range(len(bm))]\n    # r[bm.index(am)] = 1\n    r[random.choice(range(len(r)))] = 1\n    return r\n# holy shit! infinite neural networks!\n# we have even changed the input!\nepochs = 500\nhotter = list(sorted(set(actual.reshape(-1).tolist())))\ndtype = torch.FloatTensor\n# just take 100 inputs.\n# gonna first change the output.\n# input_size, hidden_size, output_size = 7, 6, 1\nn_in, n_h, n_out, batch_size = o.shape[1], 25, 10, o.shape[0]\nlr = 0.01\n# _lr = 0.01\nlry = 0.1\n# lrx = 0.001\n# we're gonna change this. using alternative thing?\n# x = Variable(torch.Tensor(o.tolist()).type(dtype), requires_grad=True)\n# faster when this is on.\nx = Variable(torch.Tensor(o.tolist()).type(dtype), requires_grad=False)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_alternative.py:1-40"
+    },
+    "1605": {
+        "file_id": 268,
+        "content": "This code imports necessary libraries and functions, defines a one-hot encoding function, sets the number of epochs for training, creates the input and output sizes for a neural network, initializes variables, and then creates an input tensor using Variable. The purpose seems to involve using a neural network with one-hot encoded inputs and potentially alternative methods for training or data processing.",
+        "type": "comment"
+    },
+    "1606": {
+        "file_id": 268,
+        "content": "# primary problem: too damn many grads.\n# what about some chained net? suppose some long evil shitty chained conv nets, need for concrete GPU cards to perform the task.\ny = torch.autograd.Variable(torch.Tensor(\n    [one_hotter_R(hotter) for x0 in actual.tolist()]).type(dtype), requires_grad=True)\n# x = Variable(torch.Tensor(o.tolist())[\n#              :100, :].type(dtype), requires_grad=False)\n# y = torch.autograd.Variable(torch.Tensor([one_hotter_R(hotter) for x0 in actual.tolist()])[\n#                             :100, :], requires_grad=True)  # this one is dummy data\n# it is getting shit.\nw1 = torch.FloatTensor(n_h, n_in).type(dtype)\ninit.normal_(w1, 0.0, 0.4)\n# standard_deviation for second.\n# do not know the range.\nw1 = torch.autograd.Variable(w1, requires_grad=True)\nw2 = torch.FloatTensor(n_out, n_h).type(dtype)\n# fucking stat.\n# never mind, just train it.\n# LOAD THEM ALL.\n# cuda has higher error rate.\ninit.normal_(w2, 0.0, 0.3)\nw2 = torch.autograd.Variable(w2, requires_grad=True)\n# optimizer_x = torch.optim.SGD([x], lr=lrx) # this is very slow.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_alternative.py:41-62"
+    },
+    "1607": {
+        "file_id": 268,
+        "content": "This code initializes variables for a neural network with convolutional layers, uses the SGD optimizer for training, and sets up some one-hot encoded inputs. The author mentions that they are dealing with a large number of grads and considers using chained convolutional networks. They also note that the CUDA implementation may have higher error rates.",
+        "type": "comment"
+    },
+    "1608": {
+        "file_id": 268,
+        "content": "# optimizer_y = torch.optim.SGD([y], lr=lry)\n# # we should not use optim.\n# # just how the fuck does it work?\n# # it is about 10000 samples.\n# optimizer_w = torch.optim.SGD([w1, w2], lr=_lr)\n# not working at all.\n# optimizer_w2 = torch.optim.SGD(w2, lr=_lr)\n# you can create another thing.\n# learning rate\n# x = x.to(device)\n# y = y.to(device)\n# w1 = w1.to(device)\n# w2 = w2.to(device)\n# # different tricks.\n# you are making your net into nuts.\ndef forward(input, w1m, w2m):\n    # same as my process.\n    # i do the same.\n    # xh = torch.cat((input, context_state), 1)\n    # input not right.\n    # print(input.shape,w1.shape,w2.shape)\n    i = w1m.mm(input)\n    # print(i)\n    context_state = torch.tanh(i)\n    out = w2m.mm(context_state)\n    return out\nfor i in range(epochs):\n    total_loss = 0\n    # context_state = Variable(torch.zeros(\n    #     (1, hidden_size)).type(dtype), requires_grad=True)\n    # # cleared at first.\n    for j in range(x.size(0)):\n        input_ = x[j, :].reshape(-1, 1)\n        target = y[j, :].reshape(-1, 1)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_alternative.py:63-100"
+    },
+    "1609": {
+        "file_id": 268,
+        "content": "This code is defining an optimizer for model parameters, converting tensors to the device specified, and implementing a forward function. It then initializes a loop to iterate through data samples, calculates losses, and likely updates model parameters with the defined optimizers. The code seems to be related to training a neural network using SGD optimizer in PyTorch.",
+        "type": "comment"
+    },
+    "1610": {
+        "file_id": 268,
+        "content": "        # print(input_.shape,target.shape)\n        pred = forward(input_, w1, w2)\n        # loss = (pred-target).pow(2+0.1j).sum()\n        # not working.\n        # consider some complex tensors?\n        loss = (pred-target).pow(2).sum()\n        # loss of context?\n        # we alter this.\n        # i know that minus sign.\n        # it is going down, but not very fast.\n        total_loss += loss  # overall thing.\n        # optimizer_x.zero_grad()\n        # optimizer_y.zero_grad()\n        # optimizer_w.zero_grad()\n        # optimizer_w2.zero_grad()\n        loss.backward()  # add gradient to it?\n        # optimizer_w.step()\n        # gonna check.\n        # if j%100 == 0:\n        #     print(\"sample\",j)\n        # # optimizer_w2.step()\n    # # loss.backward()\n    # optimizer_x.step()\n    # optimizer_y.step()\n    # optimizer_x.zero_grad()\n    # optimizer_y.zero_grad()\n    # # not changing?\n        # # this is crazy.\n        w1.data -= lr*w1.grad.data  # would you print it?\n        w2.data -= lr*w2.grad.data\n        # working?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_alternative.py:101-131"
+    },
+    "1611": {
+        "file_id": 268,
+        "content": "The code is performing gradient descent on a neural network with weights w1 and w2 to minimize the loss function. It calculates the loss by subtracting the predicted values from target values, squaring them, and summing across all elements. The gradients are computed using backpropagation, and the weights are updated by subtracting the learning rate multiplied by the gradient. The total loss is accumulated and printed to track progress.",
+        "type": "comment"
+    },
+    "1612": {
+        "file_id": 268,
+        "content": "        # you are like some crazy mathematician, cannot limit the form of the thing.\n        # is this transformer? or likely be?\n        w1.grad.data.zero_()\n        w2.grad.data.zero_()\n    y.data -= lry*y.grad.data\n    # better use some method to change this thing, instead of just adding things up.\n    y.grad.data.zero_()\n        # does that count?\n    # y.data -= lry*y.grad.data\n    # y.grad.data.zero_()\n    # sometimes, i think i need to take a look at it, see if it is independent gradient.\n        # it is been reduced, much better than that fucking optimizer.\n        # x.grad.data.zero_()  # is this going to work anyway?\n        # x.data -= lrx*x.grad.data\n        # # cannot using cuda?\n        # # not going to work. it is going to be killed.\n        # using cuda instead?\n        # we'll use optim.\n        # let me suppose, it is because the variable dependency chain is too damn long.\n        # not even once.\n        # /usr/local/lib/python3.8/dist-packages/torch/tensor.py:746: UserWarning: The .gra",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_alternative.py:132-152"
+    },
+    "1613": {
+        "file_id": 268,
+        "content": "This code is modifying the gradients of variables `y` and `x`, resetting them to zero, adjusting data based on gradient information, and discussing potential issues related to variable dependencies and CUDA usage.",
+        "type": "comment"
+    },
+    "1614": {
+        "file_id": 268,
+        "content": "d attribute of a Tensor that is not a leaf Tensor is being accessed. Its .grad attribute won't be populated during autograd.backward(). If you indeed want the gradient for a non-leaf Tensor, use .retain_grad() on the non-leaf Tensor. If you access the non-leaf Tensor by mistake, make sure you access the leaf Tensor instead. See github.com/pytorch/pytorch/pull/30531 for more informations.\n#   warnings.warn(\"The .grad attribute of a Tensor that is not a leaf Tensor is being accessed. Its .grad \"\n        # what the heck?\n        # context_state = Variable(context_state.data)\n        # how about not printing?\n    # if i % 10 == 0:\n    print(\"epoch\", i, \"total_loss\", total_loss)\n# can we try them all?\n# i do not know whether this is the correct answer.\n# maybe we just established some sort of agreement.\n# this is crazy.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_alternative.py:152-162"
+    },
+    "1615": {
+        "file_id": 268,
+        "content": "Code snippet warns about accessing .grad attribute of a non-leaf Tensor, advises using .retain_grad() for non-leaf Tensors and not to access them by mistake. It also mentions a pull request (PR) on github.com/pytorch/pytorch/pull/30531 for more information. The code snippet prints epoch and total loss, possibly every 10 iterations, and contains comments expressing confusion or disbelief about the situation.",
+        "type": "comment"
+    },
+    "1616": {
+        "file_id": 269,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py",
+        "type": "filepath"
+    },
+    "1617": {
+        "file_id": 269,
+        "content": "The code trains a feedforward neural network using one-hot encoding and experiments with various settings, initializing a model, setting up an optimizer, iterating through training samples, and optimizing using gradient descent. The developer monitors epochs and total loss for debugging.",
+        "type": "summary"
+    },
+    "1618": {
+        "file_id": 269,
+        "content": "import torch.nn.init as init\nimport torch\nfrom confirm_shape import get_writings\nimport copy\n# red-lang?\n# we just want the machine to feel the difference.\nimport random\nfrom torch.autograd import Variable\n# no neural network.\nactual, o = get_writings()\n# one-hot.\n# device = torch.device(\"cuda\")\n# all the same.\n# cannot use cuda this time, don't know why.\n# yes there's some sort of modification that is not done. anyway, it does not matter that much.\ndef one_hotter_R(bm):\n    r = [0 for x in range(len(bm))]\n    # r[bm.index(am)] = 1\n    r[random.choice(range(len(r)))] = 1\n    return r\n# holy shit! infinite neural networks!\n# we have even changed the input!\nepochs = 500\nhotter = list(sorted(set(actual.reshape(-1).tolist())))\ndtype = torch.FloatTensor\n# just take 100 inputs.\n# gonna first change the output.\n# input_size, hidden_size, output_size = 7, 6, 1\nn_in, n_h, n_out, batch_size = o.shape[1], 25, 10, o.shape[0]\nlr = 0.01\n# _lr = 0.01\nlry = 0.1\n# lrx = 0.001\n# we're gonna change this. using alternative thing?\n# x = torch.autograd.Variable(torch.Tensor(o.tolist()).type(dtype), requires_grad=True)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py:1-38"
+    },
+    "1619": {
+        "file_id": 269,
+        "content": "The code imports necessary libraries, uses one-hot encoding for inputs, defines a function to randomly select an element from a list, and sets up neural network parameters. The main purpose seems to be training a simple feedforward neural network with 2 hidden layers using input data and changing the output. It also mentions using alternative methods but doesn't specify what they are.",
+        "type": "comment"
+    },
+    "1620": {
+        "file_id": 269,
+        "content": "# faster when this is on.\n# should we use autograd?\n# use device here?\nx = Variable(torch.Tensor(o.tolist()).type(dtype), requires_grad=False)\n# primary problem: too damn many grads.\n# what about some chained net? suppose some long evil shitty chained conv nets, need for concrete GPU cards to perform the task.\ny = torch.autograd.Variable(torch.Tensor(\n    [one_hotter_R(hotter) for x0 in actual.tolist()]).type(dtype), requires_grad=True)\n# y = Variable(torch.Tensor(\n    # [one_hotter_R(hotter) for x0 in actual.tolist()]).type(dtype), requires_grad=False)\n# x = Variable(torch.Tensor(o.tolist())[\n#              :100, :].type(dtype), requires_grad=False)\n# y = torch.autograd.Variable(torch.Tensor([one_hotter_R(hotter) for x0 in actual.tolist()])[\n#                             :100, :], requires_grad=True)  # this one is dummy data\n# it is getting shit.\nw1 = torch.FloatTensor(n_in, n_h).type(dtype)\ninit.normal_(w1, 0.0, 0.4)\n# standard_deviation for second.\n# do not know the range.\nw1 = torch.autograd.Variable(w1, requires_grad=True)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py:39-58"
+    },
+    "1621": {
+        "file_id": 269,
+        "content": "Code is defining variables for a deep learning model with some experimentation on variable types and gradients. It's also initializing weights using the normal distribution and setting standard deviation.",
+        "type": "comment"
+    },
+    "1622": {
+        "file_id": 269,
+        "content": "# it does not have grad.\nw2 = torch.FloatTensor(n_h,n_out).type(dtype)\n# fucking stat.\n# never mind, just train it.\n# LOAD THEM ALL.\n# cuda has higher error rate.\ninit.normal_(w2, 0.0, 0.3)\nw2 = torch.autograd.Variable(w2, requires_grad=True)\n# optimizer_x = torch.optim.SGD([x], lr=lrx) # this is very slow.\n# optimizer_y = torch.optim.SGD([y], lr=lry)\n# # we should not use optim.\n# # just how the fuck does it work?\n# # it is about 10000 samples.\n# optimizer_w = torch.optim.SGD([w1, w2], lr=_lr)\n# not working at all.\n# optimizer_w2 = torch.optim.SGD(w2, lr=_lr)\n# you can create another thing.\n# learning rate\n# x = x.to(device)\n# y = y.to(device)\n# w1 = w1.to(device)\n# w2 = w2.to(device)\n# # different tricks.\n# you are making your net into nuts.\ndef forward(input, w1, w2):\n    # same as my process.\n    # i do the same.\n    # xh = torch.cat((input, context_state), 1)\n    # input not right.\n    # print(input.shape,w1.shape,w2.shape)\n    i = input.mm(w1)\n    # print(i)\n    context_state = torch.tanh(i)\n    # shit.\n    out = context_state.mm(w2)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py:59-95"
+    },
+    "1623": {
+        "file_id": 269,
+        "content": "The code initializes weights for a neural network, sets up an optimizer, and defines a forward function. It has some issues with input shape, prints intermediate results, and uses tanh activation function. The code also mentions different tricks to improve the model's performance but does not specify what they are.",
+        "type": "comment"
+    },
+    "1624": {
+        "file_id": 269,
+        "content": "    # out = i.mm(w2)\n    return out\n# for i in range(epochs):\n#     total_loss = 0\n    # context_state = Variable(torch.zeros(\n    #     (1, hidden_size)).type(dtype), requires_grad=True)\n# # cleared at first.\nchecker_grad=[]\ncw_grad=[]\nfor j in range(5):\n    input_ = x[j, :].reshape(1, -1)\n    target = y[j, :].reshape(1, -1)\n    # print(input_.shape,target.shape)\n    pred = forward(input_, w1, w2)\n    # loss = (pred-target).pow(2+0.1j).sum()\n    # not working.\n    # consider some complex tensors?\n    loss = (pred-target).pow(2).sum()\n    # loss of context?\n    # we alter this.\n    # i know that minus sign.\n    # it is going down, but not very fast.\n    # total_loss += loss  # overall thing.\n    # optimizer_x.zero_grad()\n    # optimizer_y.zero_grad()\n    # optimizer_w.zero_grad()\n    # optimizer_w2.zero_grad()\n    loss.backward()  # add gradient to it?\n    # optimizer_w.step()\n    # gonna check.\n    # if j%100 == 0:\n    #     print(\"sample\",j)\n    # # optimizer_w2.step()\n# # loss.backward()\n# optimizer_x.step()\n# optimizer_y.step()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py:96-133"
+    },
+    "1625": {
+        "file_id": 269,
+        "content": "This code is performing a forward pass, calculating the loss, and then backpropagating the gradients in a neural network. It iterates over 5 samples, adjusting weights using an optimizer, and checks the results at intervals. The loss is calculated as the squared difference between predicted outputs and targets. This appears to be part of a training loop for a neural network model.",
+        "type": "comment"
+    },
+    "1626": {
+        "file_id": 269,
+        "content": "# optimizer_x.zero_grad()\n# optimizer_y.zero_grad()\n# # not changing?\n    # # this is crazy.\n    # still got nothing.\n    # what the heck?\n    checker_grad.append(copy.deepcopy(y.grad.data))\n    # there is something.\n    w1.data -= lr*w1.grad.data  # would you print it?\n    # what about we jus do this step?\n    # cw_grad.append(copy.deepcopy(w1.grad.data.tolist()))\n    w2.data -= lr*w2.grad.data\n    # why there is nothing inside?\n    # y.data -= lry*y.grad.data\n    # what if we just get the thing?\n    w1.grad.data.zero_()\n    # why nothing for this one?\n    w2.grad.data.zero_()\n    # y.grad.data.zero_()\n    # does that count?\n    # it is accumulating.\nfor x in checker_grad:\n    # nothing inside!\n    # i have to say, that sometime we'll get non-zero grad.\n    print(x.shape)\n    print(x)\n    print(x[0])\n    print(x[1])\n    print(x[2])\n    print(x[3])\nprint(\"#########    #########\")\n# for x in cw_grad:\n#     # nothing inside!\n#     # print(x.shape)\n#     print(x)\n#     print(x[0])\n#     print(x[1])\n#     print(x[2])\n#     print(x[3])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py:134-172"
+    },
+    "1627": {
+        "file_id": 269,
+        "content": "This code appears to be performing a gradient descent optimization process. It is updating the weights (w1 and w2) by subtracting the product of the learning rate and gradients, then zeroing out the gradients afterwards. The code also checks the gradients for variable y and possibly another variable, but it seems like there's some missing context or logic as to why these specific actions are being taken.",
+        "type": "comment"
+    },
+    "1628": {
+        "file_id": 269,
+        "content": "# y.data -= lry*y.grad.data\n# y.grad.data.zero_()\n# sometimes, i think i need to take a look at it, see if it is independent gradient.\n    # it is been reduced, much better than that fucking optimizer.\n    # x.grad.data.zero_()  # is this going to work anyway?\n    # x.data -= lrx*x.grad.data\n    # # cannot using cuda?\n    # # not going to work. it is going to be killed.\n    # using cuda instead?\n    # we'll use optim.\n    # let me suppose, it is because the variable dependency chain is too damn long.\n    # not even once.\n    # /usr/local/lib/python3.8/dist-packages/torch/tensor.py:746: UserWarning: The .grad attribute of a Tensor that is not a leaf Tensor is being accessed. Its .grad attribute won't be populated during autograd.backward(). If you indeed want the gradient for a non-leaf Tensor, use .retain_grad() on the non-leaf Tensor. If you access the non-leaf Tensor by mistake, make sure you access the leaf Tensor instead. See github.com/pytorch/pytorch/pull/30531 for more informations.\n#   warnings.warn(\"The .grad attribute of a Tensor that is not a leaf Tensor is being accessed. Its .grad \"",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py:173-186"
+    },
+    "1629": {
+        "file_id": 269,
+        "content": "The code is updating the data and gradients of two tensors, 'y' and 'x', based on learning rates 'lry' and 'lrx'. It warns about accessing .grad attribute of a non-leaf tensor and suggests using .retain_grad() if it's intentional. The code seems to be part of an optimization process involving tensors and their gradients.",
+        "type": "comment"
+    },
+    "1630": {
+        "file_id": 269,
+        "content": "    # what the heck?\n    # context_state = Variable(context_state.data)\n    # how about not printing?\n# if i % 10 == 0:\n    # print(\"epoch\", i, \"total_loss\", total_loss)\n# can we try them all?\n# i do not know whether this is the correct answer.\n# maybe we just established some sort of agreement.\n# this is crazy.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_exam.py:187-195"
+    },
+    "1631": {
+        "file_id": 269,
+        "content": "The code snippet seems to contain comments from a developer expressing confusion and frustration, suggesting they're trying different approaches to see if any work correctly. It appears the developer is testing and potentially debugging their model by monitoring epochs and total loss, but they are unsure of the correct approach.",
+        "type": "comment"
+    },
+    "1632": {
+        "file_id": 270,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_rebuild.py",
+        "type": "filepath"
+    },
+    "1633": {
+        "file_id": 270,
+        "content": "The code trains a PyTorch neural network using batch gradient descent, handling import issues and data shape while monitoring loss during training.",
+        "type": "summary"
+    },
+    "1634": {
+        "file_id": 270,
+        "content": "# i do not know shit about bradient descent.\nimport torch\nimport torch.nn as nn\nimport numpy as np\nfrom confirm_shape import get_writings\nimport time\nimport random\ndevice = torch.device(\"cuda\")\n# total time 42.38628387451172\n# you know, it is not significantly faster.\n# middle is for hiddern layer dimension.\nactual, o = get_writings()\n# one-hot.\nhotter = list(sorted(set(actual.reshape(-1).tolist())))\nn_in, n_h, n_out, batch_size = o.shape[1], 25, 10, o.shape[0]\ndef one_hotter(am, bm):\n    r = [0 for x in range(len(bm))]\n    r[bm.index(am)] = 1\n    return r\ndef one_hotter_R(bm):\n    r = [0 for x in range(len(bm))]\n    # r[bm.index(am)] = 1\n    r[random.choice(range(len(r)))]=1\n    return r\n# one extra recommendation: when not importable, release this thing to another category: unknown.\n# and when shape problem occurs, raise the exception.\ndef dec_one(cm, bm):\n    return bm[cm.index(1)]\n# i know the principles. i just hate to manually check all the shits.\n# how about some free-grad?\nmodel = nn.Sequential(nn.Linear(n_in, n_h), nn.ReLU(),",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_rebuild.py:1-35"
+    },
+    "1635": {
+        "file_id": 270,
+        "content": "The code is implementing a simple neural network using PyTorch. It's loading data and defining layers, including a linear layer with ReLU activation function. The author mentions they don't know about batch gradient descent, which indicates this may be their first time working with deep learning models. They also suggest a potential category for import issues and mention the need to check shapes carefully and handle exceptions when necessary.",
+        "type": "comment"
+    },
+    "1636": {
+        "file_id": 270,
+        "content": "                      nn.Linear(n_h, n_out), nn.Sigmoid())\ncriterion = torch.nn.MSELoss()\noptimizer = torch.optim.SGD(model.parameters(), lr=0.01)  # learning rate\nx = torch.Tensor(o.tolist())[:100,:]\n# y = torch.Tensor([one_hotter(x0[0],hotter) for x0 in actual.tolist()])[:100,:]\ny = torch.Tensor([one_hotter_R(hotter) for x0 in actual.tolist()])[:100,:] # this one is dummy data\nprint(x.shape,y.shape)\n# we cannot set parameter here.\n# print(y)\n# but no avaliable optimizer.\n# can we use the same thing?\n# at least the sample has to be 20.\n# contain all 20 categories.\n# teaching the wrong thing?\n# this random thing is not as good as previous thing.\n# still got high error rate.\n# there tends to be a difference here.\n# i think one should also consider taking the derivative of the target, to reduce the overall loss rate.\n# cause it is only the source material that is immutable.\n# but do you really think the source is immutable? well, we can change the source too.\n# and that's how the magic happens. all we need is some kind of agreement.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_rebuild.py:36-56"
+    },
+    "1637": {
+        "file_id": 270,
+        "content": "Code snippet contains a neural network model definition, loss function, and optimizer. It also generates dummy data for training and discusses the potential issues with the current approach.",
+        "type": "comment"
+    },
+    "1638": {
+        "file_id": 270,
+        "content": "y = y.to(device)\nx = x.to(device)\nmodel = model.to(device)\nt = time.time()\nfor epoch in range(500):\n    # y = baseIV()  # very strange.\n    y_pred = model(x)\n    # print(\"prediction\", y_pred)\n    loss = criterion(y_pred, y)\n    print(\"loss\",loss)\n    # print(\"epoch\", epoch, \"loss\", loss, type(loss))\n    optimizer.zero_grad() # what are those two?\n    loss.backward() # to initialize the state. clear all grad.\n    optimizer.step() # what are those two?\n    # to add some grad to the thing. alright. nothing new.\n    # the callback function: check whether the optimization is useful.\nprint(\"total time\", time.time()-t)\n# 0.07 versus 0.03, and that's the difference.\n# false answers tends to have shitty loss rate.\n# trying to get the answer?\n# use some metalearning models?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/the_rebuild.py:57-77"
+    },
+    "1639": {
+        "file_id": 270,
+        "content": "The code loads tensors y and x to a device, moves the model to the device, starts a timer, then trains the model for 500 epochs. It calculates the loss at each step, prints the loss value, zeroes gradients with optimizer.zero_grad(), updates weights with optimizer.step(). Finally, it prints the total time taken. The code seems to be focused on training a model and monitoring the loss during training.",
+        "type": "comment"
+    },
+    "1640": {
+        "file_id": 271,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/util_func.py",
+        "type": "filepath"
+    },
+    "1641": {
+        "file_id": 271,
+        "content": "This function compares the similarity between two sets, allowing for a margin of error based on set lengths and sigma value. It returns True if the intersection of the sets is greater than or equal to the average length minus the difference in lengths multiplied by sigma. The main section of the code tests the function with different sets.",
+        "type": "summary"
+    },
+    "1642": {
+        "file_id": 271,
+        "content": "def checkFuzzy(a, b, sigma=0.4):\n    c = abs(len(a)-len(b))\n    r = a.intersection(b)\n    d = int((len(a)+len(b))/2)\n    return len(r) >= (d-c*sigma)\n# already useful.\nif __name__ == \"__main__\":\n    a = set(\"remainder\")\n    b = set(\"reminder\")\n    # c = set(\"remin\")  # what the fuck?\n    c = set(\"s\")\n    print(checkFuzzy(a, b), checkFuzzy(a, c), checkFuzzy(b, c))",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/util_func.py:1-14"
+    },
+    "1643": {
+        "file_id": 271,
+        "content": "This function compares the similarity between two sets, allowing for a margin of error based on set lengths and sigma value. It returns True if the intersection of the sets is greater than or equal to the average length minus the difference in lengths multiplied by sigma. The main section of the code tests the function with different sets.",
+        "type": "comment"
+    },
+    "1644": {
+        "file_id": 272,
+        "content": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/vertical.py",
+        "type": "filepath"
+    },
+    "1645": {
+        "file_id": 272,
+        "content": "Code generates two 5x5 random matrices, divides one by the other and prints the result. Then it calculates matrix multiplication between transposed first matrix and second matrix, and prints the result.",
+        "type": "summary"
+    },
+    "1646": {
+        "file_id": 272,
+        "content": "import numpy as np\nimport random\na= np.matrix([[random.random() for x in range(5)] for y in range(5)])\nb= np.matrix([[random.random() for x in range(5)] for y in range(5)])\nprint(b/a)\nprint(\"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\")\nprint(a.T*b)\n# what the heck?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/the_new_pack/vertical.py:1-8"
+    },
+    "1647": {
+        "file_id": 272,
+        "content": "Code generates two 5x5 random matrices, divides one by the other and prints the result. Then it calculates matrix multiplication between transposed first matrix and second matrix, and prints the result.",
+        "type": "comment"
+    },
+    "1648": {
+        "file_id": 273,
+        "content": "/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/README",
+        "type": "filepath"
+    },
+    "1649": {
+        "file_id": 273,
+        "content": "This code appears to contain a mix of personal statements and unrelated programming comments. The author seems to be discussing various concepts, such as backpropagation, concentration mechanisms, and data reduction techniques, but there is no clear connection between these thoughts and the codebase itself. It's difficult to determine if this code snippet serves any practical purpose or is just a collection of disjointed ideas.",
+        "type": "summary"
+    },
+    "1650": {
+        "file_id": 273,
+        "content": "this is your first, and your only girlfriend.\nbackpropagation is a compensation. the meta-backpropagation is how to restore initial state, regardless the way to do it.\nit is not going to work, your silly function. too high connections.\nanything that can reduce the size of data that we read, can be considered as some concentration mechanism.\npictures and databases will be removed from repo.\nand yet you've got things to do, reading books and tinkering others repo.\ncreate some db. use that blob thing.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/README:1-13"
+    },
+    "1651": {
+        "file_id": 273,
+        "content": "This code appears to contain a mix of personal statements and unrelated programming comments. The author seems to be discussing various concepts, such as backpropagation, concentration mechanisms, and data reduction techniques, but there is no clear connection between these thoughts and the codebase itself. It's difficult to determine if this code snippet serves any practical purpose or is just a collection of disjointed ideas.",
+        "type": "comment"
+    },
+    "1652": {
+        "file_id": 274,
+        "content": "/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_m.py",
+        "type": "filepath"
+    },
+    "1653": {
+        "file_id": 274,
+        "content": "The code uses pynput library to track mouse movements and clicks, calculating differences between points and logging events indefinitely. It's part of a larger program that may have concerns about performance and efficiency.",
+        "type": "summary"
+    },
+    "1654": {
+        "file_id": 274,
+        "content": "import pynput\nimport time\n# while True:\n# fuck.\n# is this how you fucking live?\n# you can do this for many shits.\n# use background mouse input? come on.\n# on windows there's a different story, for mouse.\n# do not take it seriously. they are all experiments.\n# scale those shits?\n# rotate, and more.\nglob=[]\ndef der(a):\n    return [(a[x][0]-a[x+1][0],a[x][1]-a[x+1][1]) for x in range(len(a)-1)]\ndef calc(a):\n    r=list(map(lambda x: x[:2],a))\n    print(der(r))\ndef a(*b):\n    global glob\n    print(time.time(),*b)\n    if len(glob)<10:\n        glob.append(b)\n    else:\n        # print(glob)\n        print(calc(glob))\n        glob=[]\n# def a(p,*b):\n# without cursor? fine.\n#     print(time.time(),*b)\n    # how to pass to another function?\n    # send via network.\n# try to specify the process.\n# p= Process(target=)\n    # send via process??\n    # use pipe???\n    # how to write these shits?\n# with pynput.mouse.Listener(on_move=lambda x:a(p,x),on_scroll=lambda x:a(p,x),on_click=lambda x:a(p,x)) as l:\nwith pynput.mouse.Listener(on_move=a,on_scroll=a,on_click=a) as l:",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_m.py:1-38"
+    },
+    "1655": {
+        "file_id": 274,
+        "content": "The code imports the pynput library to track mouse movements and clicks. It defines a function \"der\" for calculating differences between successive points, a function \"calc\" to process those differences, and another function \"a\" that logs mouse events over time if there are less than 10 in memory or processes and prints the calculated differences when 10 are reached. The code uses a mouse listener from pynput to track events (movement, scrolling, and clicks) and log them indefinitely.",
+        "type": "comment"
+    },
+    "1656": {
+        "file_id": 274,
+        "content": "    try:\n        l.join()\n    except:\n        pass\n    # fucking cool shit.\n    # print(e)\n# print(dir(pynput))\n# great shit.\n# but this is a huge shit.\n# it takes too many shits.\n# you even have scrolling!\n# now you've got the data! raw data waiting for processing.\n# and you can do it yourself.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_m.py:39-51"
+    },
+    "1657": {
+        "file_id": 274,
+        "content": "This code appears to be part of a larger program that involves using the pynput library for handling input events, specifically related to mouse tracking. The author seems impressed by the functionality but also expresses concerns about its performance and efficiency.",
+        "type": "comment"
+    },
+    "1658": {
+        "file_id": 275,
+        "content": "/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_mshot.py",
+        "type": "filepath"
+    },
+    "1659": {
+        "file_id": 275,
+        "content": "This code snippet is part of an experimental Windows mouse tracking program using the pynput library, capturing and analyzing mouse positions with a recording limit. It saves screenshots as raw strings and prints imported snapshot coordinates but lacks a clear purpose or outcome.",
+        "type": "summary"
+    },
+    "1660": {
+        "file_id": 275,
+        "content": "import pynput\nimport time\nimport pyautogui\nfrom dbM2 import initial\n# import cv2\n# while True:\n# fuck.\n# is this how you fucking live?\n# you can do this for many shits.\n# use background mouse input? come on.\n# on windows there's a different story, for mouse.\n# do not take it seriously. they are all experiments.\n# scale those shits?\n# rotate, and more.\n# glob=[]\n# def der(a):\n#     return [(a[x][0]-a[x+1][0],a[x][1]-a[x+1][1]) for x in range(len(a)-1)]\n# def calc(a):\n#     r=list(map(lambda x: x[:2],a))\n#     print(der(r))\ncons_int=0.0\nLIMIT_INTERVAL=3\ndef a(*b):\n    # global glob\n    # only record the thing?\n    # not the button?\n    global cons_int\n    # print([type(x) for x in b])\n    # print(time.time(), *b)\n    interval = time.time()\n    if len(b) > 2:\n        if type(b[3]) == bool:\n            if interval-cons_int>LIMIT_INTERVAL:\n                akx = b[0]-25\n                aky = b[1]-25\n                akx = akx if akx >= 0 else 0\n                akx = akx if akx <= 1920-25 else 1920-25\n                aky = aky if aky >= 0 else 0",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_mshot.py:1-39"
+    },
+    "1661": {
+        "file_id": 275,
+        "content": "The code seems to be part of an experiment related to mouse movements on Windows. It tracks and calculates the difference between consecutive mouse positions, potentially for further processing or analysis. The `LIMIT_INTERVAL` variable is likely used to limit the recording interval, and there are mentions of other functions like `calc`, `der`, and `initial`. However, the code appears incomplete as it ends abruptly without a clear purpose or outcome.",
+        "type": "comment"
+    },
+    "1662": {
+        "file_id": 275,
+        "content": "                aky = aky if aky <= 1080-25 else 1080-25\n                aka = [akx, aky, 25, 25]\n                p = pyautogui.screenshot(region=aka)  # this to some raw string.\n                # print(\"picture!\",type(p),dir(p))\n                # usually have some deficiencies here.\n                # do not save them!\n                # print(aka)\n                # without clicking data?\n                # i don't care!\n                p = p.tobytes(\"raw\")\n                initial(\"projects\", [[interval, *aka, p]])\n                print(\"imported snapshot\",aka)\n                cons_int=interval\n            # print(p)\n            # print(type(p))\n        # can you see the cursor?\n        # use boundary-safe function to do this cropping task.\n        # with mouse?\n        # is my code right?\n        # it is going crazy.\n        # print(dir(p))\n        # p.show()\n        # cv2.show(p)\n    # if len(glob)<10:\n    #     glob.append(b)\n    # else:\n    #     # print(glob)\n    #     print(calc(glob))\n    #     glob=[]\n# def a(p,*b):",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_mshot.py:40-69"
+    },
+    "1663": {
+        "file_id": 275,
+        "content": "Code snippet captures screenshot, converts it to a raw string, and saves the screenshot data with interval and coordinates in \"projects\". It also prints imported snapshot's coordinates.",
+        "type": "comment"
+    },
+    "1664": {
+        "file_id": 275,
+        "content": "#     print(time.time(),*b)\n    # how to pass to another function?\n    # send via network.\n# try to specify the process.\n# p= Process(target=)\n    # send via process??\n    # use pipe???\n    # how to write these shits?\n# with pynput.mouse.Listener(on_move=lambda x:a(p,x),on_scroll=lambda x:a(p,x),on_click=lambda x:a(p,x)) as l:\n# there must be a loop.\nwith pynput.mouse.Listener(on_move=a, on_scroll=a, on_click=a) as l:\n    try:\n        l.join()\n    except:\n        pass\n    # fucking cool shit.\n    # print(e)\n# print(dir(pynput))\n# great shit.\n# but this is a huge shit.\n# it takes too many shits.\n# you even have scrolling!\n# now you've got the data! raw data waiting for processing.\n# and you can do it yourself.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/track_mouse_take_div/track_mshot.py:70-93"
+    },
+    "1665": {
+        "file_id": 275,
+        "content": "The code aims to track mouse events (move, scroll, click) using the pynput library. It creates a mouse listener that passes the event data to a function 'a'. The listener runs in a loop and waits for any mouse events, then joins the loop when finished. The author expresses excitement about the raw data available for further processing.",
+        "type": "comment"
+    },
+    "1666": {
+        "file_id": 276,
+        "content": "/bootstrap/legacy/concentration/brainfuck/unicode_tensor.py",
+        "type": "filepath"
+    },
+    "1667": {
+        "file_id": 276,
+        "content": "The code defines functions for manipulating lists and converting them to tensors. The 'chrTens' function takes a list of characters, maps their ASCII values into numbers, and stores the modified list as a torch tensor using deep copy and indexing operations. The 'recv' and 'sayless' functions convert the tensor back to its original character representation by finding the first or last occurrence of non-zero elements in the tensor.",
+        "type": "summary"
+    },
+    "1668": {
+        "file_id": 276,
+        "content": "import torch\nimport copy\ndef callMe(a, b):\n    c = copy.deepcopy(a)\n    c[b] = 1\n    return c\ndef blockMe(a):\n    return a.index(1)\n# man this is not hard.\ndef asshole(a):\n    return a.index(max(a))\ndef chrTens(a):\n    # how about reducing the size?\n    # mini rnn? so cute???\n    # interact????\n    d = [ord(x) for x in a]\n    ops = max(list(set(d)))+1\n    c = [0 for x in range(ops)]\n    return torch.Tensor([callMe(c, x) for x in d])\n# how to shrink model?\n# never mind.\ndef recv(a):\n    return \"\".join([chr(blockMe(x)) for x in a.tolist()])\ndef sayless(a):\n    return \"\".join([chr(asshole(x)) for x in a])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/unicode_tensor.py:1-32"
+    },
+    "1669": {
+        "file_id": 276,
+        "content": "The code defines functions for manipulating lists and converting them to tensors. The 'chrTens' function takes a list of characters, maps their ASCII values into numbers, and stores the modified list as a torch tensor using deep copy and indexing operations. The 'recv' and 'sayless' functions convert the tensor back to its original character representation by finding the first or last occurrence of non-zero elements in the tensor.",
+        "type": "comment"
+    },
+    "1670": {
+        "file_id": 277,
+        "content": "/bootstrap/legacy/concentration/klean.py",
+        "type": "filepath"
+    },
+    "1671": {
+        "file_id": 277,
+        "content": "The code defines a function \"klean\" that uses the \"pywalk\" module to iterate over a given node. It appends node values, levels, and paths to list \"am\". If any exception occurs, it returns the current state of \"am\". The purpose seems to extract information from nodes in some hierarchical structure.",
+        "type": "summary"
+    },
+    "1672": {
+        "file_id": 277,
+        "content": "import pywalk\ndef klean(node):\n    am = []\n    # real shit to make things work.\n    @pywalk.walk(node)\n    # what the fuck?\n    # what if it is about some big, huge nodes?\n    # we do not talk about it.\n    def ak(node):\n        # dir(node),\n        # what is that is_leaf func?\n        # use yleid?\n        try:\n            am.append((node.value, node.level, node.path))\n            # print\n            return True\n        except:\n            return None\n        # print(\">>>report\", node.value, node.is_leaf,\n            # node.is_root, node.key, node.level, node.path)\n    # am=[]\n    try:\n        for x in ak(node):\n            try:\n                if x is not None:\n                    # am.append(x)\n                    pass\n                else:\n                    return am\n                    # break\n            except:\n                return am\n                # break\n    except:\n        return am\n    return am",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/klean.py:1-36"
+    },
+    "1673": {
+        "file_id": 277,
+        "content": "The code defines a function \"klean\" that uses the \"pywalk\" module to iterate over a given node. It appends node values, levels, and paths to list \"am\". If any exception occurs, it returns the current state of \"am\". The purpose seems to extract information from nodes in some hierarchical structure.",
+        "type": "comment"
+    },
+    "1674": {
+        "file_id": 278,
+        "content": "/bootstrap/legacy/concentration/new_toys/batch_wheel.py",
+        "type": "filepath"
+    },
+    "1675": {
+        "file_id": 278,
+        "content": "The code imports libraries, defines a URL formatting function, and gets Baidu search URLs. It extracts titles, sub-urls, and abstracts from paginated results, parses webpage data, writes to \"data.json\", updates file number, and prints results on console for debugging or usage.",
+        "type": "summary"
+    },
+    "1676": {
+        "file_id": 278,
+        "content": "import requests\nfrom dbM import up\nimport urllib.parse\nimport time\nfrom requests.exceptions import RequestException\nfrom urllib.parse import urljoin\nfrom lxml import etree\nimport re\nimport json\n# disable browser protocol.\n# 百度搜索接口\ndef format_url(url, params: dict = None) -> str:\n    query_str = urllib.parse.urlencode(params)\n    return f'{ url }?{ query_str }'\ndef get_url(keyword):\n    params = {\n        'wd': str(keyword)\n    }\n    url = \"https://www.baidu.com/s\"\n    url = format_url(url, params)\n    # print(url)\n    return url\ndef get_page(url):\n    try:\n        headers = {\n            'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',\n            'accept-language': 'zh-CN,zh;q=0.9',\n            'cache-control': 'max-age=0',\n            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'\n        }\n        response = requests.get(url=url, headers=headers)\n        # 更改编码方式，否则会出现乱码的情况\n        response.encoding = \"utf-8\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/batch_wheel.py:1-43"
+    },
+    "1677": {
+        "file_id": 278,
+        "content": "This code imports necessary libraries, defines a function to format URLs, gets a Baidu search URL based on a keyword, and sets headers for making requests.",
+        "type": "comment"
+    },
+    "1678": {
+        "file_id": 278,
+        "content": "        print(response.status_code)\n        # print(response.text)\n        if response.status_code == 200:\n            return response.text\n        return None\n    except RequestException:\n        return None\ndef parse_page(url, page):\n    for i in range(1, int(page)+1):\n        print(\"正在爬取第{}页....\".format(i))\n        title = \"\"\n        sub_url = \"\"\n        abstract = \"\"\n        flag = 11\n        if i == 1:\n            flag = 10\n        html = get_page(url)\n        content = etree.HTML(html)\n        for j in range(1, flag):\n            data = {}\n            res_title = content.xpath(\n                '//*[@id=\"%d\"]/h3/a' % ((i - 1) * 10 + j))\n            if res_title:\n                title = res_title[0].xpath('string(.)')\n            sub_url = content.xpath(\n                '//*[@id=\"%d\"]/h3/a/@href' % ((i - 1) * 10 + j))\n            if sub_url:\n                sub_url = sub_url[0]\n            res_abstract = content.xpath(\n                '//*[@id=\"%d\"]/div[@class=\"c-abstract\"]' % ((i-1)*10+j))\n            if res_abstract:",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/batch_wheel.py:44-79"
+    },
+    "1679": {
+        "file_id": 278,
+        "content": "This function gets the content of a page and parses it to extract titles, sub-urls, and abstracts for each item on the page. It handles error cases by returning None when an unexpected RequestException occurs. The code is designed to work with paginated results where each page contains 10 items. The variable 'i' represents the current page number, while 'j' ranges from 1 to 11 (or 10 on the first page) for each item on a given page. This function is called in a loop to process multiple pages of data.",
+        "type": "comment"
+    },
+    "1680": {
+        "file_id": 278,
+        "content": "                abstract = res_abstract[0].xpath('string(.)')\n            else:\n                res_abstract = content.xpath(\n                    '//*[@id=\"%d\"]/div/div[2]/div[@class=\"c-abstract\"]' % ((i-1)*10+j))\n                if res_abstract:\n                    abstract = res_abstract[0].xpath('string(.)')\n                    # res_abstract = content.xpath('//*[@id=\"%d\"]/div/div[2]/p[1]'%((i-1)*10+j))\n            # if not abstract:\n            #     abstract = content.xpath('//*[@id=\"%d\"]/div/div[2]/p[1]'%((i-1)*10+j))[0].xpath('string(.)')\n            data['title'] = title\n            data['sub_url'] = sub_url\n            data['abstract'] = abstract\n            rel_url = content.xpath('//*[@id=\"page\"]/a[{}]/@href'.format(flag))\n            if rel_url:\n                url = urljoin(url, rel_url[0])\n            else:\n                print(\"无更多页面！～\")\n                return\n            yield data\ndef main(keyword, page):\n    # keyword = input(\"输入关键字:\")\n    #    page = input(\"输入查找页数:\")\n    # page = 2\n    url = get_url(keyword)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/batch_wheel.py:80-106"
+    },
+    "1681": {
+        "file_id": 278,
+        "content": "This code appears to be parsing data from a website. It finds the title, abstract, and related URLs for each page based on a given keyword and page number. If there are no more pages, it prints \"无更多页面！～\" and returns.",
+        "type": "comment"
+    },
+    "1682": {
+        "file_id": 278,
+        "content": "    results = parse_page(url, page)\n    # 写入文件\n    # file = open(\"data.json\", 'w+', encoding='utf-8')\n    file = 0\n    t = int(time.time())\n    for result in results:\n        up(t, file, keyword, result)\n        file += 1\n        # waht if we want to use the result?\n        print(result)\n    #     file.write(json.dumps(result, indent=2, ensure_ascii=False))\n# if __name__ == '__main__':\n#     main()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/batch_wheel.py:108-122"
+    },
+    "1683": {
+        "file_id": 278,
+        "content": "This code is parsing webpage data using the \"parse_page\" function, then writing each result to a file named \"data.json\". It keeps track of the current file number and updates it after each write operation. The results are printed on the console for potential usage or debugging purposes.",
+        "type": "comment"
+    },
+    "1684": {
+        "file_id": 279,
+        "content": "/bootstrap/legacy/concentration/new_toys/been_well.py",
+        "type": "filepath"
+    },
+    "1685": {
+        "file_id": 279,
+        "content": "This code defines a function `ml` that flattens lists, and a `main` function which takes a keyword, retrieves related data using the `getLinked` function, and writes the results to a file. The code uses the `time`, `pythonbasics`, and `dbM` modules for various functionalities. It allows for searching multiple pages of results, but only supports one page at a time. Results are printed, but could potentially be used for other purposes as well.",
+        "type": "summary"
+    },
+    "1686": {
+        "file_id": 279,
+        "content": "import time\nfrom pythonbasics import getSearched as getLinked\nfrom dbM import up\n# to train a typo corrector? statistics will do it.\n# there will be problems, since we have typos or errors in ocr results.\ndef ml(x):\n    return [z for y in x for z in y]\ndef main(keyword):\n    # keyword = input(\"输入关键字:\")\n    # only supports one page.\n    # page = input(\"输入查找页数:\")\n    # url = get_url(keyword)\n    # p=int(page)\n    # results=ml([getLinked(keyword) for d in range(p)])\n    results = getLinked(keyword)\n    # results = parse_page(url, page)\n    # # 写入文件\n    # file = open(\"data.json\", 'w+', encoding='utf-8')\n    # it is not that fast.\n    file = -1\n    t = int(time.time())\n    for result in results:\n        up(t, file, keyword, result)\n        file -= 1\n        # waht if we want to use the result?\n        print(result)\n    #     file.write(json.dumps(result, indent=2, ensure_ascii=False))\n# if __name__ == '__main__':\n#     main()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/been_well.py:1-33"
+    },
+    "1687": {
+        "file_id": 279,
+        "content": "This code defines a function `ml` that flattens lists, and a `main` function which takes a keyword, retrieves related data using the `getLinked` function, and writes the results to a file. The code uses the `time`, `pythonbasics`, and `dbM` modules for various functionalities. It allows for searching multiple pages of results, but only supports one page at a time. Results are printed, but could potentially be used for other purposes as well.",
+        "type": "comment"
+    },
+    "1688": {
+        "file_id": 280,
+        "content": "/bootstrap/legacy/concentration/new_toys/bing_wheel.py",
+        "type": "filepath"
+    },
+    "1689": {
+        "file_id": 280,
+        "content": "This Python script takes a user input keyword and searches for related information. It supports only one search page, and the results are stored in a file named \"data.json\". The code uses the functions getSearched and parse_page to retrieve and process the data, respectively. The script prints each result to the console, but could be modified to use the results as needed. The execution time is recorded and stored with each result.",
+        "type": "summary"
+    },
+    "1690": {
+        "file_id": 280,
+        "content": "import time\nfrom pythonbasics import getSearched as getLinked\nfrom dbM import up\ndef ml(x):\n    return [z for y in x for z in y]\ndef main():\n    keyword = input(\"输入关键字:\")\n    # only supports one page.\n    # page = input(\"输入查找页数:\")\n    # url = get_url(keyword)\n    # p=int(page)\n    # results=ml([getLinked(keyword) for d in range(p)])\n    results = getLinked(keyword)\n    # results = parse_page(url, page)\n    # # 写入文件\n    # file = open(\"data.json\", 'w+', encoding='utf-8')\n    # it is not that fast.\n    file = -1\n    t = int(time.time())\n    for result in results:\n        up(t, file, keyword, result)\n        file -= 1\n        # waht if we want to use the result?\n        print(result)\n    #     file.write(json.dumps(result, indent=2, ensure_ascii=False))\nif __name__ == '__main__':\n    main()",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/bing_wheel.py:1-33"
+    },
+    "1691": {
+        "file_id": 280,
+        "content": "This Python script takes a user input keyword and searches for related information. It supports only one search page, and the results are stored in a file named \"data.json\". The code uses the functions getSearched and parse_page to retrieve and process the data, respectively. The script prints each result to the console, but could be modified to use the results as needed. The execution time is recorded and stored with each result.",
+        "type": "comment"
+    },
+    "1692": {
+        "file_id": 281,
+        "content": "/bootstrap/legacy/concentration/new_toys/chaotic_search.py",
+        "type": "filepath"
+    },
+    "1693": {
+        "file_id": 281,
+        "content": "The code employs a chaotic approach for searching through projects, randomly generating word combinations and checking duplicates until reaching the specified iteration limit or encountering an error.",
+        "type": "summary"
+    },
+    "1694": {
+        "file_id": 281,
+        "content": "# randomly browsing the websites. like I do.\n# but with initial values.\n# with a global forbidden list?\n# examine if it is the same.\n# you can set time of getting bored.\nimport random\nimport re\nimport time\nimport traceback\nimport jieba\nfrom dbM import initial, up\nfrom the_real_wheel import parse_page, get_url\nb_page = 2\nrecur = 20\ndef check_duplicate(a, b):\n    # a for query.\n    y = set(re.findall('r[^ ]+', a))\n    return sum([int(set(y).issubset(set(x))) for x in b]) != 0\nwhile True:\n    try:\n        s = int(input(\"enter depth of recursions:\\n\"))\n        a = input(\"enter initial keyword phrase.\\n\")\n        i = [re.findall(r'[^ ]+', x[0]) for x in set(initial(\"projects\"))]\n        assert s >= 5 and type(a) == str\n        assert not check_duplicate(a, i)\n        break\n    except:\n        e = traceback.format_exc()\n        print(e)\n        continue\nwhile True:\n    # print(i)\n    # what about query?\n    p = [x for x in parse_page(get_url(a), b_page)]\n    y = [jieba.lcut_for_search(x['title']) for x in p]\n    z = [jieba.lcut_for_search(x['abstract']) for x in p]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/chaotic_search.py:1-41"
+    },
+    "1695": {
+        "file_id": 281,
+        "content": "This code randomly browses websites using initial values, checks for duplicate queries and depth of recursions. It uses regular expressions, Jieba library for Chinese text segmentation, and imports functions from other modules like dbM and the_real_wheel. The user is prompted to enter a keyword phrase and the depth of recursions to control the search process.",
+        "type": "comment"
+    },
+    "1696": {
+        "file_id": 281,
+        "content": "    # for x in p:\n    file = 0\n    t = int(time.time())\n    for result in p:\n        up(t, file, a, result)\n        file += 1\n        # waht if we want to use the result?\n        print(result)\n    halt = 0\n    while True:\n        try:\n            r = random.choice(random.choice(y))\n            f = random.choice(random.choice(z))\n            if len(r) > 10 or len(f) > 10:\n                continue\n            k = \" \".join([r, f])\n            if check_duplicate(k, i):\n                continue\n        except:\n            e = traceback.format_exc()\n            print(e)\n            continue\n        halt += 1\n        if halt > recur:\n            raise Exception(\"RECURSION ERROR\")\n        a = k\n        print(\">>>Next chaotic approach<<<\", a)\n        break\n    # a=k\n    s -= 1\n    i = [re.findall(r'[^ ]+', x[0]) for x in set(initial(\"projects\"))]\n    if s <= 0:\n        break\nprint(\"chaotic search complete!\")\n# finally:",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/new_toys/chaotic_search.py:42-76"
+    },
+    "1697": {
+        "file_id": 281,
+        "content": "The code uses a chaotic approach to search through a set of projects, generating random combinations of words and checking for duplicates. It continues this process until it reaches the specified number of iterations (recur) or encounters a recursion error. The code then prints \"chaotic search complete!\" when all iterations have been completed.",
+        "type": "comment"
+    },
+    "1698": {
+        "file_id": 282,
+        "content": "/bootstrap/legacy/concentration/new_toys/curl_.php",
+        "type": "filepath"
+    },
+    "1699": {
+        "file_id": 282,
+        "content": "This PHP script reads the URL from stdin, uses cURL to fetch it (following redirects), and outputs the final effective URL.",
+        "type": "summary"
+    }
+}

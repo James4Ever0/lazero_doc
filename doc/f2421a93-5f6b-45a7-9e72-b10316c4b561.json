@@ -1,0 +1,10 @@
+{
+    "summary": "The code is running an Electron application using Bash, where \"demo_app.js\" is the JavaScript entry point for the application.",
+    "details": [
+        {
+            "comment": "The code is running an Electron application using Bash, where \"demo_app.js\" is the JavaScript entry point for the application.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/demo_app.sh\":0-1",
+            "content": "#!/bin/bash\nelectron demo_app.js"
+        }
+    ]
+}

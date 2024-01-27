@@ -1,0 +1,529 @@
+{
+    "2600": {
+        "file_id": 397,
+        "content": "/lego/autosave_redis.sh",
+        "type": "filepath"
+    },
+    "2601": {
+        "file_id": 397,
+        "content": "This Bash script launches the autosave_redis.py Python program with arguments and redirects its output to /dev/null, using disown for process management.",
+        "type": "summary"
+    },
+    "2602": {
+        "file_id": 397,
+        "content": "#!/bin/bash\npython3 autosave_redis.py 20 </dev/null &>/dev/null &\ndisown",
+        "type": "code",
+        "location": "/lego/autosave_redis.sh:1-3"
+    },
+    "2603": {
+        "file_id": 397,
+        "content": "This Bash script launches the autosave_redis.py Python program with arguments and redirects its output to /dev/null, using disown for process management.",
+        "type": "comment"
+    },
+    "2604": {
+        "file_id": 398,
+        "content": "/lego/bash_plan.sh",
+        "type": "filepath"
+    },
+    "2605": {
+        "file_id": 398,
+        "content": "This script is designed to be a flexible and extendable tool for executing Python scripts and processing their outputs. The code includes multiple examples of piping and redirection, suggesting various ways to handle input/output streams. It also hints at the possibility of developing additional tools or a web app to interact with the output data. However, the overall purpose and functionality are not entirely clear without further context or documentation.",
+        "type": "summary"
+    },
+    "2606": {
+        "file_id": 398,
+        "content": "#!/bin/bash\n# we are gonna use this script. does the hashtag help?\necho hello world\n# it is meant to be extensible. show me some juice.\n# create some specific tools.\n# the data is not fully under control. it is splited by return.\n# we shall never merge it in the first place. now consider what? a web app?\n# or simply interact with that web-pasteboard?\npython3 demo_error_out.py 2>&1 | python3 process_out.py\npython3 python_exec.py python3 demo_error_out.py | python3 process_out_raw.py\n# so this shell is excellent.\n# can you tell the difference?\n#python3 demo_error_out.py >[1=2] |[2] python3 process_out.py\n# there's only one stdin. so consider pipe to different process.\n# what is that?\n# so that's over. though you can run a prefixer from the command?\n# you can take arguments. then output it in json form.",
+        "type": "code",
+        "location": "/lego/bash_plan.sh:1-17"
+    },
+    "2607": {
+        "file_id": 398,
+        "content": "This script is designed to be a flexible and extendable tool for executing Python scripts and processing their outputs. The code includes multiple examples of piping and redirection, suggesting various ways to handle input/output streams. It also hints at the possibility of developing additional tools or a web app to interact with the output data. However, the overall purpose and functionality are not entirely clear without further context or documentation.",
+        "type": "comment"
+    },
+    "2608": {
+        "file_id": 399,
+        "content": "/lego/binameter.py",
+        "type": "filepath"
+    },
+    "2609": {
+        "file_id": 399,
+        "content": "This Python script reads input data from stdin, converts it into a byte string, and calculates the percentage of binary content. It then prints the binary percentage.",
+        "type": "summary"
+    },
+    "2610": {
+        "file_id": 399,
+        "content": "# some tool to indicate the binary percentage. not absolutely reliable.\nimport sys\nb= b\"\"\nfor x in sys.stdin.buffer:\n    # so there are bytes.\n    #print(type(x),len(x))\n    b+=x\n#print(len(b))\n#open(\"libj.so\",\"wb+\").write(b)\n# check if this works.\n# now do the stuff.\nx0=0\n# so we try this anyway?\n# trying to decode part of the string?\nbs = b.split()\nbx = sum([len(x) for x in bs])\nfor x in bs: \n    try:\n#        print(type(x),x)\n        x.decode()\n        x0+=len(x)\n    except:\n#        print(\"error decoding\")\n        pass\n# shall also check binary distribution.\"\n# or not.\npr = 1-x0/bx\nprint(\"binary percentage\", pr)",
+        "type": "code",
+        "location": "/lego/binameter.py:1-28"
+    },
+    "2611": {
+        "file_id": 399,
+        "content": "This Python script reads input data from stdin, converts it into a byte string, and calculates the percentage of binary content. It then prints the binary percentage.",
+        "type": "comment"
+    },
+    "2612": {
+        "file_id": 400,
+        "content": "/lego/blackmagic.py",
+        "type": "filepath"
+    },
+    "2613": {
+        "file_id": 400,
+        "content": "The code creates two pseudo-terminal devices, forwards master file descriptors to child processes, monitors input from their stdout and stderr streams, executes Python scripts printing messages at timed intervals, reads up to 1024 bytes of data, then closes all master file descriptors.",
+        "type": "summary"
+    },
+    "2614": {
+        "file_id": 400,
+        "content": "#!/usr/bin/env python3\nimport errno\nimport os\nimport pty\nimport sys\nfrom select import select\nfrom subprocess import Popen\nmasters, slaves = zip(pty.openpty(), pty.openpty())\nwith Popen([sys.executable, '-c', r'''import sys, time\nprint('stdout', 1) # no explicit flush\ntime.sleep(.5)\nprint('stderr', 2, file=sys.stderr)\ntime.sleep(.5)\nprint('stdout', 3)\ntime.sleep(.5)\nprint('stderr', 4, file=sys.stderr)\n'''],\n           stdin=slaves[0], stdout=slaves[0], stderr=slaves[1]):\n    for fd in slaves:\n        os.close(fd) # no input\n    readable = {\n        masters[0]: sys.stdout.buffer, # log separately\n        masters[1]: sys.stderr.buffer,\n    }\n    while readable:\n        for fd in select(readable, [], [])[0]:\n            try:\n                data = os.read(fd, 1024) # read available\n            except OSError as e:\n                if e.errno != errno.EIO:\n                    raise #XXX cleanup\n                del readable[fd] # EIO means EOF on some systems\n            else:\n                if not data: # EOF\n                    del readable[fd]",
+        "type": "code",
+        "location": "/lego/blackmagic.py:1-36"
+    },
+    "2615": {
+        "file_id": 400,
+        "content": "This code opens two pseudo-terminal devices, forwards the master file descriptors to child processes, and monitors input from the child's standard output and error streams. It executes a Python script in each process that prints messages at timed intervals to stdout and stderr. The code reads up to 1024 bytes of data from these streams until there is no more data or an end-of-file condition occurs, and then removes the corresponding file descriptor from the readable list.",
+        "type": "comment"
+    },
+    "2616": {
+        "file_id": 400,
+        "content": "                else:\n                    readable[fd].write(data)\n                    readable[fd].flush()\nfor fd in masters:\n    os.close(fd)",
+        "type": "code",
+        "location": "/lego/blackmagic.py:37-41"
+    },
+    "2617": {
+        "file_id": 400,
+        "content": "This code writes data to a file, flushes the buffer, and then closes all the master file descriptors.",
+        "type": "comment"
+    },
+    "2618": {
+        "file_id": 401,
+        "content": "/lego/catmagic.py",
+        "type": "filepath"
+    },
+    "2619": {
+        "file_id": 401,
+        "content": "Code opens two slave and master file descriptors, runs a \"cat\" subprocess with its output redirected to the slave file descriptors. It then reads from both file descriptors in a loop, writing to stdout or stderr if there is data until it reaches EOF. Finally, it closes the masters and slaves file descriptors.",
+        "type": "summary"
+    },
+    "2620": {
+        "file_id": 401,
+        "content": "#!/usr/bin/env python3\nimport errno\nimport os\nimport pty\nimport sys\nfrom select import select\nfrom subprocess import Popen\nmasters, slaves = zip(pty.openpty(), pty.openpty())\nwith Popen([\"cat\"],\n           stdout=slaves[0], stderr=slaves[1]):\n    for fd in slaves:\n        os.close(fd) # no input\n    readable = {\n        masters[0]: sys.stdout.buffer, # log separately\n        masters[1]: sys.stderr.buffer,\n    }\n    while readable:\n        for fd in select(readable, [], [])[0]:\n            try:\n                data = os.read(fd, 1024) # read available\n            except OSError as e:\n                if e.errno != errno.EIO:\n                    raise #XXX cleanup\n                del readable[fd] # EIO means EOF on some systems\n            else:\n                if not data: # EOF\n                    del readable[fd]\n                else:\n                    readable[fd].write(data)\n                    readable[fd].flush()\nfor fd in masters:\n    os.close(fd)",
+        "type": "code",
+        "location": "/lego/catmagic.py:1-33"
+    },
+    "2621": {
+        "file_id": 401,
+        "content": "Code opens two slave and master file descriptors, runs a \"cat\" subprocess with its output redirected to the slave file descriptors. It then reads from both file descriptors in a loop, writing to stdout or stderr if there is data until it reaches EOF. Finally, it closes the masters and slaves file descriptors.",
+        "type": "comment"
+    },
+    "2622": {
+        "file_id": 402,
+        "content": "/lego/check_daemon.py",
+        "type": "filepath"
+    },
+    "2623": {
+        "file_id": 402,
+        "content": "The code reads a PID from the command line, then expects a single line of input containing process information. It parses this information for specific values and decides whether to print that it's a daemon or kill the process based on the input received.",
+        "type": "summary"
+    },
+    "2624": {
+        "file_id": 402,
+        "content": "# there supposed to be something big here.\n# but nothing.\n# do you know the relationship?\nimport sys\nimport re\nx0 = []\nPID = sys.argv[1]\n#print(\"PID\",PID)\nfor x in sys.stdin:\n    x0.append(x)\nif len(x0)==1:\n#    print(x0)\n    x = x0[0]\n    x = re.findall(r'\\(\\d+\\)',x)\n    # old problem prevails.\n#    print(x)\n    if len(x) == 2 and x[0] == \"(1)\":\n        print(PID,\"is a daemon\")\n        exit(1)\n    else:\n#        print(\"shall be killed\")\n        exit(0)\n        # shall be killed. consider relaunching.\n        # or return something?\n    # start working.\nelse:\n    exit(0)\n#    print(\"going wrong\")\n    # going wrong. kill that pid.",
+        "type": "code",
+        "location": "/lego/check_daemon.py:1-29"
+    },
+    "2625": {
+        "file_id": 402,
+        "content": "The code reads a PID from the command line, then expects a single line of input containing process information. It parses this information for specific values and decides whether to print that it's a daemon or kill the process based on the input received.",
+        "type": "comment"
+    },
+    "2626": {
+        "file_id": 403,
+        "content": "/lego/check_daemon.sh",
+        "type": "filepath"
+    },
+    "2627": {
+        "file_id": 403,
+        "content": "This script is likely used to monitor a specific daemon process, possibly related to the kernel. It utilizes the pstree command and python3 check_daemon.py script for analysis.",
+        "type": "summary"
+    },
+    "2628": {
+        "file_id": 403,
+        "content": "#!/bin/bash\n# who cares? it is all about the kernel. all relatively simple.\n# not this?\npstree $1 -p -s -T | python3 check_daemon.py $1\n# we do not need to understand the whole tree.",
+        "type": "code",
+        "location": "/lego/check_daemon.sh:1-5"
+    },
+    "2629": {
+        "file_id": 403,
+        "content": "This script is likely used to monitor a specific daemon process, possibly related to the kernel. It utilizes the pstree command and python3 check_daemon.py script for analysis.",
+        "type": "comment"
+    },
+    "2630": {
+        "file_id": 404,
+        "content": "/lego/check_daemon_multiargs.sh",
+        "type": "filepath"
+    },
+    "2631": {
+        "file_id": 404,
+        "content": "This script checks the length of command-line arguments, examines each process, and kills non-daemon processes. If all processes are daemons, it exits with status 1; otherwise, it exits with status 0. The last line suggests that only understanding parts of the code tree is necessary for its operation.",
+        "type": "summary"
+    },
+    "2632": {
+        "file_id": 404,
+        "content": "#!/bin/bash\n# who cares? it is all about the kernel. all relatively simple.\n# not this?\n# check the length. the argument length.\nedy=$#\nedv=$edy\nfor var in \"$@\"\ndo\n\techo \"examing process $var\"\n\tpstree $var -p -s -T | python3 check_daemon.py $var\n\tedx=$?\n\tif [ $edx -eq 0 ]\n\tthen\n\t\tedy=$(($edy - 1))\n\t\techo \"killing non-daemon $var\"\n\t\tkill $var\n\tfi\ndone\nif [ $edy -eq $edv ]\nthen\n\texit 1\nfi\nexit 0\n# we do not need to understand the whole tree.",
+        "type": "code",
+        "location": "/lego/check_daemon_multiargs.sh:1-25"
+    },
+    "2633": {
+        "file_id": 404,
+        "content": "This script checks the length of command-line arguments, examines each process, and kills non-daemon processes. If all processes are daemons, it exits with status 1; otherwise, it exits with status 0. The last line suggests that only understanding parts of the code tree is necessary for its operation.",
+        "type": "comment"
+    },
+    "2634": {
+        "file_id": 405,
+        "content": "/lego/check_ports.sh",
+        "type": "filepath"
+    },
+    "2635": {
+        "file_id": 405,
+        "content": "This Bash script uses Nmap to scan for open ports on localhost, then filters the results using grep and outputs them into a \"ports.log\" file. The final two comments express frustration and resignation about the task's meaninglessness.",
+        "type": "summary"
+    },
+    "2636": {
+        "file_id": 405,
+        "content": "#!/bin/bash\nnmap -p- localhost | grep open | grep -Eo \"^[0-9]+\" > ports.log\n#cat ports.log\n# whatever. it will work.\n# fuck. it is all meaningless.",
+        "type": "code",
+        "location": "/lego/check_ports.sh:1-5"
+    },
+    "2637": {
+        "file_id": 405,
+        "content": "This Bash script uses Nmap to scan for open ports on localhost, then filters the results using grep and outputs them into a \"ports.log\" file. The final two comments express frustration and resignation about the task's meaninglessness.",
+        "type": "comment"
+    },
+    "2638": {
+        "file_id": 406,
+        "content": "/lego/daemon_server.sh",
+        "type": "filepath"
+    },
+    "2639": {
+        "file_id": 406,
+        "content": "This script starts a Python web server named \"webpaste.py\" as a background process and ensures it doesn't get terminated when the terminal disconnects or script finishes executing.",
+        "type": "summary"
+    },
+    "2640": {
+        "file_id": 406,
+        "content": "#!/bin/bash\n# check for the registry. we need a main lazero registry launcher.\npython3 webpaste.py </dev/null &>/dev/null &\ndisown",
+        "type": "code",
+        "location": "/lego/daemon_server.sh:1-4"
+    },
+    "2641": {
+        "file_id": 406,
+        "content": "This script starts a Python web server named \"webpaste.py\" as a background process and ensures it doesn't get terminated when the terminal disconnects or script finishes executing.",
+        "type": "comment"
+    },
+    "2642": {
+        "file_id": 407,
+        "content": "/lego/demo_error_out.py",
+        "type": "filepath"
+    },
+    "2643": {
+        "file_id": 407,
+        "content": "This code writes \"hello world error\" to the standard error stream and \"hello world from stdout\" to the standard output stream.",
+        "type": "summary"
+    },
+    "2644": {
+        "file_id": 407,
+        "content": "import sys\nsys.stderr.write(\"hello world error\\n\")\nsys.stdout.write(\"hello world from stdout\\n\")",
+        "type": "code",
+        "location": "/lego/demo_error_out.py:1-3"
+    },
+    "2645": {
+        "file_id": 407,
+        "content": "This code writes \"hello world error\" to the standard error stream and \"hello world from stdout\" to the standard output stream.",
+        "type": "comment"
+    },
+    "2646": {
+        "file_id": 408,
+        "content": "/lego/docker_terminal_server/README",
+        "type": "filepath"
+    },
+    "2647": {
+        "file_id": 408,
+        "content": "This code creates a terminal emulator using ElectronJS, potentially with some superficial issues that could be resolved through JavaScript expertise.",
+        "type": "summary"
+    },
+    "2648": {
+        "file_id": 408,
+        "content": "what you are doing is basically a terminal emulator.\nhttps://www.electronjs.org/docs/api/accelerator\nthis one is superficial and might have issues. but i can be good at js.",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/README:1-5"
+    },
+    "2649": {
+        "file_id": 408,
+        "content": "This code creates a terminal emulator using ElectronJS, potentially with some superficial issues that could be resolved through JavaScript expertise.",
+        "type": "comment"
+    },
+    "2650": {
+        "file_id": 409,
+        "content": "/lego/docker_terminal_server/demo_app.js",
+        "type": "filepath"
+    },
+    "2651": {
+        "file_id": 409,
+        "content": "This code utilizes Electron to create a window, sets up an HTTP server on port 7777, processes user input via JavaScript and HTML responses, handles HTTP methods, logs data, sets headers, and listens for GET requests at \"/display\" without mentioning watchdog or restart options.",
+        "type": "summary"
+    },
+    "2652": {
+        "file_id": 409,
+        "content": "// run this under electron prefix?\n// will it continue to run?\n// it is running just fine. but how to hide it?\n// might be good representative for browser server.\nconst { app,BrowserWindow } = require(\"electron\");\nfunction createWindow(){\nconst win = new BrowserWindow({show:true})\n//const win = new BrowserWindow({ width: 800, height: 1500 ,show:true})\n//const win = new BrowserWindow({ width: 800, height: 1500 ,show:false})\nwin.loadURL('http://localhost:9997')\nconst contents = win.webContents\nvar http = require('http');\nvar url = require('url');\n//logger=require('html-differ/lib/logger')\n//this is too slow.\nvar prev=null\n    var server = http.createServer ( function(request,response){\n    response.writeHead(200,{\"Content-Type\":\"text/plain\"});\n    if(request.method == \"GET\")\n        {\n\t\tvar resp = \"\";\n\t\tconsole.log(request.url);\n\t\tvar u = url.parse(request.url,true);\n if (u.pathname==\"/display\"){\n\t //var search = u.search;\n\t //console.log(search);\n\t contents.executeJavaScript('document.getElementsByTagName(\"html\")[0].outerHTML', true)",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/demo_app.js:1-30"
+    },
+    "2653": {
+        "file_id": 409,
+        "content": "This code uses Electron to create a browser window and loads a local server at 'http://localhost:9997'. It also sets up an HTTP server that executes JavaScript in the browser window when a GET request is made to \"/display\". The code aims to hide the window, but it is unclear how effective this is.",
+        "type": "comment"
+    },
+    "2654": {
+        "file_id": 409,
+        "content": "  .then((result) => {\n    resp+=result // Will be the JSON object from the fetch call\n\t  //  may cause connection close. how do you restart the whole thing?\n\t  //  refresh?\n response.writeHead(200, {'Content-Type': 'text/html'}) \n            response.end(resp)\n  })\n//\t resp+=win.webContents.innerHTML;\n\t }else if(u.pathname==\"/input\") {\n//\t\t console.log(u)\n\t\t // execute the command here.\n\t\t // no other commands?\n\t\t var udtype = u.query.type\n\t\t var ustype = u.query.b64type\n\t\t var uktype = u.query.autoreturn\n\t\t if( typeof(udtype) === \"string\" ){\n//\t\t var utype = udtype.toUpperCase()\n\t\t for (var i in udtype){contents.sendInputEvent({\"type\":\"char\",\"keyCode\":udtype[i]})}\n\t\t\t if (uktype == \"true\"){contents.sendInputEvent({\"type\":\"char\",keyCode:\"\\n\"})}\n\t\t\t contents.executeJavaScript('document.getElementsByTagName(\"html\")[0].outerHTML', true)\n  .then((result) => {\n    resp+=result // Will be the JSON object from the fetch call\n response.writeHead(200, {'Content-Type': 'text/html'}) \n            response.end(resp)\n  }) }else if (typeof(ustype) === \"string\" ){",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/demo_app.js:31-55"
+    },
+    "2655": {
+        "file_id": 409,
+        "content": "Code snippet fetches data and responds with HTML content. It handles two types of input: string characters and base64-encoded data. If a string is provided, it sends each character as an input event and appends the resulting HTML to the response. If a base64-encoded type is provided, it executes JavaScript on the webpage and appends the result to the response. The response is then sent back with a 200 status code.",
+        "type": "comment"
+    },
+    "2656": {
+        "file_id": 409,
+        "content": "let buff = Buffer.from(ustype,'base64')\n\t  let text = buff.toString(\"utf-8\")\n\t\t for (var i in text){contents.sendInputEvent({\"type\":\"char\",\"keyCode\":text[i]})}\n\t\t\t if (uktype == \"true\"){contents.sendInputEvent({\"type\":\"char\",keyCode:\"\\n\"})}\n\t\t\t contents.executeJavaScript('document.getElementsByTagName(\"html\")[0].outerHTML', true)\n  .then((result) => {\n    resp+=result // Will be the JSON object from the fetch call\n response.writeHead(200, {'Content-Type': 'text/html'}) \n            response.end(resp)})\n  } else {\n\t\t\t contents.executeJavaScript('document.getElementsByTagName(\"html\")[0].outerHTML', true)\n  .then((result) => {\n    resp+=result // Will be the JSON object from the fetch call\n response.writeHead(200, {'Content-Type': 'text/html'}) \n            response.end(resp)})\n  }\n\t }\n\t\telse{\n\t\t\tresponse.writeHead(200, {'Content-Type': 'text/html'}) \n            response.end(resp)\n\t\t}\n\t// Get the path\n\t\t// there's no option for restart.\n\t\t// no watchdog, neither superdog.\n\t/*var p = u.pathname;\n\t\tconsole.log(u);\n\t\tconsole.log(p);*/",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/demo_app.js:56-82"
+    },
+    "2657": {
+        "file_id": 409,
+        "content": "Code processes user input and executes JavaScript, then sends response with HTML. If \"uktype\" is true, adds a newline key event. If no options are provided, it sends a 200 OK response with the HTML content. No option for restarting or watchdog functionality mentioned.",
+        "type": "comment"
+    },
+    "2658": {
+        "file_id": 409,
+        "content": "\t\t//what?\n\t/*var body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('GET Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('GET Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})\n            response.end(\"received GET request.\")\n    })*/\n\t\t//parse query string?\n\t}\n    else if(request.method == \"POST\")\n        {//console.log(request.data);\n\t\tvar body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})\n      response.end('post received')\n    })\n        }\n    else\n        {\n            response.end(\"Undefined request .\");\n        }\n});\n//arbitrary path.\nserver.listen(7777);",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/demo_app.js:83-124"
+    },
+    "2659": {
+        "file_id": 409,
+        "content": "Code snippet handles HTTP requests by identifying the request method (GET or POST), logs partial and complete body data, sets response headers, and sends appropriate responses. It listens on port 7777 for incoming connections.",
+        "type": "comment"
+    },
+    "2660": {
+        "file_id": 409,
+        "content": "console.log(\"Server running on port 7777\");\n//contents.sendInputEvent(inputEvent)\n/*\nconst contents = win.webContents\n//console.log(console.dir(contents))\ncontents.executeJavaScript('document.getElementsByTagName(\"html\")[0].outerHTML', true)\n  .then((result) => {\n    console.log(result) // Will be the JSON object from the fetch call\n  })\n  */\n}\napp.on('ready', createWindow);\n// can we use nightmare here?\n// can we import other packages?\n// app is launched, but headless. great. Now check modules.",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/demo_app.js:125-139"
+    },
+    "2661": {
+        "file_id": 409,
+        "content": "This code sets up a server on port 7777, creates a window, and executes JavaScript in the HTML document. The JSON object from the fetch call is logged to the console.",
+        "type": "comment"
+    },
+    "2662": {
+        "file_id": 410,
+        "content": "/lego/docker_terminal_server/demo_app.sh",
+        "type": "filepath"
+    },
+    "2663": {
+        "file_id": 410,
+        "content": "The code is running an Electron application using Bash, where \"demo_app.js\" is the JavaScript entry point for the application.",
+        "type": "summary"
+    },
+    "2664": {
+        "file_id": 410,
+        "content": "#!/bin/bash\nelectron demo_app.js",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/demo_app.sh:1-2"
+    },
+    "2665": {
+        "file_id": 410,
+        "content": "The code is running an Electron application using Bash, where \"demo_app.js\" is the JavaScript entry point for the application.",
+        "type": "comment"
+    },
+    "2666": {
+        "file_id": 411,
+        "content": "/lego/docker_terminal_server/demo_usage.sh",
+        "type": "filepath"
+    },
+    "2667": {
+        "file_id": 411,
+        "content": "Starts a gotty server on port 9997, passing ./start_ro.sh as the command to execute inside the container.",
+        "type": "summary"
+    },
+    "2668": {
+        "file_id": 411,
+        "content": "#!/bin/bash\n./gotty_linux_amd64 -p 9997 -w ./start_ro.sh",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/demo_usage.sh:1-2"
+    },
+    "2669": {
+        "file_id": 411,
+        "content": "Starts a gotty server on port 9997, passing ./start_ro.sh as the command to execute inside the container.",
+        "type": "comment"
+    },
+    "2670": {
+        "file_id": 412,
+        "content": "/lego/docker_terminal_server/killall.sh",
+        "type": "filepath"
+    },
+    "2671": {
+        "file_id": 412,
+        "content": "This Bash script terminates all active Podman containers.",
+        "type": "summary"
+    },
+    "2672": {
+        "file_id": 412,
+        "content": "#!/bin/bash\npodman kill -a",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/killall.sh:1-2"
+    },
+    "2673": {
+        "file_id": 412,
+        "content": "This Bash script terminates all active Podman containers.",
+        "type": "comment"
+    },
+    "2674": {
+        "file_id": 413,
+        "content": "/lego/docker_terminal_server/preload.js",
+        "type": "filepath"
+    },
+    "2675": {
+        "file_id": 413,
+        "content": "The code logs the string \"preload js\" to the console, indicating the execution of the preload script.",
+        "type": "summary"
+    },
+    "2676": {
+        "file_id": 413,
+        "content": "console.log(\"preload js\");",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/preload.js:1-1"
+    },
+    "2677": {
+        "file_id": 413,
+        "content": "The code logs the string \"preload js\" to the console, indicating the execution of the preload script.",
+        "type": "comment"
+    },
+    "2678": {
+        "file_id": 414,
+        "content": "/lego/docker_terminal_server/recognize.sh",
+        "type": "filepath"
+    },
+    "2679": {
+        "file_id": 414,
+        "content": "The code sends a request to localhost:7777/random, then uses curl to fetch the response. It redirects any error messages to dev/null for silence. The fetched data is piped to python3's html2text module, which converts HTML to plain text. Finally, the plain text is processed by refine.py.",
+        "type": "summary"
+    },
+    "2680": {
+        "file_id": 414,
+        "content": "#!/bin/bash\ncurl http://localhost:7777/random 2>/dev/null | python3 -m html2text | python3 refine.py",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/recognize.sh:1-2"
+    },
+    "2681": {
+        "file_id": 414,
+        "content": "The code sends a request to localhost:7777/random, then uses curl to fetch the response. It redirects any error messages to dev/null for silence. The fetched data is piped to python3's html2text module, which converts HTML to plain text. Finally, the plain text is processed by refine.py.",
+        "type": "comment"
+    },
+    "2682": {
+        "file_id": 415,
+        "content": "/lego/docker_terminal_server/refine.py",
+        "type": "filepath"
+    },
+    "2683": {
+        "file_id": 415,
+        "content": "This code reads input from sys.stdin in pairs, appending the second item of each pair to a list y if it's not empty. It also keeps track of the length of the longest string encountered (yk). Finally, it prints the list y containing the non-empty strings.",
+        "type": "summary"
+    },
+    "2684": {
+        "file_id": 415,
+        "content": "import sys\nc=0\n# so, the missing bit.\ny=[]\nyk = 0\nfor x in sys.stdin:\n    if c%2==1:\n        pass\n    else:\n        if c == 0:\n            pass\n        else:\n#            l=len(x)\n#            if yk>l:\n#                yk=l\n            y.append(x)\n#    print([x])\n    c+=1\nprint(y)",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/refine.py:1-19"
+    },
+    "2685": {
+        "file_id": 415,
+        "content": "This code reads input from sys.stdin in pairs, appending the second item of each pair to a list y if it's not empty. It also keeps track of the length of the longest string encountered (yk). Finally, it prints the list y containing the non-empty strings.",
+        "type": "comment"
+    },
+    "2686": {
+        "file_id": 416,
+        "content": "/lego/docker_terminal_server/start_ro.sh",
+        "type": "filepath"
+    },
+    "2687": {
+        "file_id": 416,
+        "content": "The code starts a container using Podman, but it may fail due to missing image. It runs busybox in read-only mode with limited CPU and memory allocation.",
+        "type": "summary"
+    },
+    "2688": {
+        "file_id": 416,
+        "content": "#!/bin/bash\n# use podman? but we have not had the image!\npodman run --rm --read-only -ti --cpus 0.01 --memory 2m localhost/busybox\n# t -> visual\n# i -> communication",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/start_ro.sh:1-5"
+    },
+    "2689": {
+        "file_id": 416,
+        "content": "The code starts a container using Podman, but it may fail due to missing image. It runs busybox in read-only mode with limited CPU and memory allocation.",
+        "type": "comment"
+    },
+    "2690": {
+        "file_id": 417,
+        "content": "/lego/docker_terminal_server/type.sh",
+        "type": "filepath"
+    },
+    "2691": {
+        "file_id": 417,
+        "content": "The code is using curl to send an HTTP request to a server at http://localhost:7777 with the query parameter \"type\" set to \"anything\". This request could be for data retrieval or any other operation specified by the server. The output of the command is redirected to stderr (2) and then merged with stdout (1).",
+        "type": "summary"
+    },
+    "2692": {
+        "file_id": 417,
+        "content": "#!/bin/bash\ncurl http://localhost:7777/input?type=anything 2>/dev/null  1>&2 ",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/type.sh:1-2"
+    },
+    "2693": {
+        "file_id": 417,
+        "content": "The code is using curl to send an HTTP request to a server at http://localhost:7777 with the query parameter \"type\" set to \"anything\". This request could be for data retrieval or any other operation specified by the server. The output of the command is redirected to stderr (2) and then merged with stdout (1).",
+        "type": "comment"
+    },
+    "2694": {
+        "file_id": 418,
+        "content": "/lego/docker_terminal_server/type_false_b64.sh",
+        "type": "filepath"
+    },
+    "2695": {
+        "file_id": 418,
+        "content": "This Bash script uses curl to send a GET request to http://localhost:7777/input with b64type parameter set to \"anything\". It redirects error messages (2) to the standard error output and redirects the standard output (1) to the standard error output.",
+        "type": "summary"
+    },
+    "2696": {
+        "file_id": 418,
+        "content": "#!/bin/bash\ncurl http://localhost:7777/input?b64type=anything 2>/dev/null  1>&2 ",
+        "type": "code",
+        "location": "/lego/docker_terminal_server/type_false_b64.sh:1-2"
+    },
+    "2697": {
+        "file_id": 418,
+        "content": "This Bash script uses curl to send a GET request to http://localhost:7777/input with b64type parameter set to \"anything\". It redirects error messages (2) to the standard error output and redirects the standard output (1) to the standard error output.",
+        "type": "comment"
+    },
+    "2698": {
+        "file_id": 419,
+        "content": "/lego/docker_terminal_server/type_fault.sh",
+        "type": "filepath"
+    },
+    "2699": {
+        "file_id": 419,
+        "content": "This script uses curl to send a GET request to localhost on port 7777, with \"null=anything\" as the query parameter. It redirects any error messages (stderr) to /dev/null and sends stdout to stderr.",
+        "type": "summary"
+    }
+}

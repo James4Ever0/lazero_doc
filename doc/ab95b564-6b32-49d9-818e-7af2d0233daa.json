@@ -1,0 +1,10 @@
+{
+    "summary": "This script checks if the Redis server is running correctly by executing a background save, waiting for 1 second, and then running another script called \"redis_checker.py\". It stores the exit code (ecp) from the script and uses it to determine whether to kill a Redis server elsewhere or not.",
+    "details": [
+        {
+            "comment": "This script checks if the Redis server is running correctly by executing a background save, waiting for 1 second, and then running another script called \"redis_checker.py\". It stores the exit code (ecp) from the script and uses it to determine whether to kill a Redis server elsewhere or not.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/redis_checker.sh\":0-11",
+            "content": "#!/bin/bash\n# check if the thing is running properly.\nredis-cli bgsave\n# check the time.\nsleep 1\n#echo sleep done\npython3 redis_checker.py \necp=$?\necho $ecp\n# use this value somehow. kill redis server running elsewhere.\n# check if it is here.\n# if getting that value, then we'll return."
+        }
+    ]
+}

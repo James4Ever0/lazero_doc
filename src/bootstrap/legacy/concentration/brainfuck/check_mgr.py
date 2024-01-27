@@ -1,0 +1,4 @@
+import multiprocessing
+mgr=multiprocessing.Manager()
+print(dir(mgr))
+# ['Array', 'Barrier', 'BoundedSemaphore', 'Condition', 'Event', 'JoinableQueue', 'Lock', 'Namespace', 'Pool', 'Queue', 'RLock', 'Semaphore', 'Value', '_Client', '_Listener', '_Server', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__enter__', '__eq__', '__exit__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_address', '_authkey', '_create', '_ctx', '_debug_info', '_finalize_manager', '_number_of_objects', '_process', '_registry', '_run_server', '_serializer', '_state', 'address', 'connect', 'dict', 'get_server', 'join', 'list', 'register', 'shutdown', 'start']

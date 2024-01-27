@@ -1,0 +1,528 @@
+{
+    "2800": {
+        "file_id": 442,
+        "content": "#include <unistd.h>\nint main(){usleep(1000*25);return 0;}",
+        "type": "code",
+        "location": "/lego/jail/sleep25ms.cpp:1-2"
+    },
+    "2801": {
+        "file_id": 442,
+        "content": "The code is a C program that uses the \"usleep\" function to pause for 250 milliseconds before returning 0.",
+        "type": "comment"
+    },
+    "2802": {
+        "file_id": 443,
+        "content": "/lego/jail/sleep500ms.cpp",
+        "type": "filepath"
+    },
+    "2803": {
+        "file_id": 443,
+        "content": "This code sleeps for 500ms using the usleep function, which is a standard UNIX system call for pausing program execution. The program will return an exit status of 0 upon completion.",
+        "type": "summary"
+    },
+    "2804": {
+        "file_id": 443,
+        "content": "#include <unistd.h>\nint main(){usleep(1000*500);return 0;}",
+        "type": "code",
+        "location": "/lego/jail/sleep500ms.cpp:1-2"
+    },
+    "2805": {
+        "file_id": 443,
+        "content": "This code sleeps for 500ms using the usleep function, which is a standard UNIX system call for pausing program execution. The program will return an exit status of 0 upon completion.",
+        "type": "comment"
+    },
+    "2806": {
+        "file_id": 444,
+        "content": "/lego/jail/sleep50ms.cpp",
+        "type": "filepath"
+    },
+    "2807": {
+        "file_id": 444,
+        "content": "This code uses the 'usleep' function to pause the execution of the program for 50 milliseconds before returning a value of 0.",
+        "type": "summary"
+    },
+    "2808": {
+        "file_id": 444,
+        "content": "#include <unistd.h>\nint main(){usleep(1000*50);return 0;}",
+        "type": "code",
+        "location": "/lego/jail/sleep50ms.cpp:1-2"
+    },
+    "2809": {
+        "file_id": 444,
+        "content": "This code uses the 'usleep' function to pause the execution of the program for 50 milliseconds before returning a value of 0.",
+        "type": "comment"
+    },
+    "2810": {
+        "file_id": 445,
+        "content": "/lego/jail/sleep5ms.cpp",
+        "type": "filepath"
+    },
+    "2811": {
+        "file_id": 445,
+        "content": "The code includes the unistd.h library and defines a main function that uses the usleep function to pause execution for 5000 microseconds (5 milliseconds). The function returns an integer value of 0, indicating successful program termination.",
+        "type": "summary"
+    },
+    "2812": {
+        "file_id": 445,
+        "content": "#include <unistd.h>\nint main(){usleep(1000*5);return 0;}",
+        "type": "code",
+        "location": "/lego/jail/sleep5ms.cpp:1-2"
+    },
+    "2813": {
+        "file_id": 445,
+        "content": "The code includes the unistd.h library and defines a main function that uses the usleep function to pause execution for 5000 microseconds (5 milliseconds). The function returns an integer value of 0, indicating successful program termination.",
+        "type": "comment"
+    },
+    "2814": {
+        "file_id": 446,
+        "content": "/lego/jail/strict_base_jail.sh",
+        "type": "filepath"
+    },
+    "2815": {
+        "file_id": 446,
+        "content": "Script to set up a strict base jail for Python3 application, using firejail for increased security. The script creates a temporary RAM disk and applies various security restrictions, such as AppArmor, read-only access to /, private ramdisk, and seccomp rules to drop certain system calls.",
+        "type": "summary"
+    },
+    "2816": {
+        "file_id": 446,
+        "content": "#!/bin/bash\n# that one is not right, which will quit and leave everything unconfigured.\n./unloadram.sh\nsudo mkdir ramdisk\nsudo chmod 777 ramdisk\nsudo mount -t tmpfs -o size=10m myramdisk ramdisk\n# what the fuck is going on?\n# wtf? try to block everything.\nfirejail --apparmor --read-only=/ --private=ramdisk/ --seccomp.drop=shutdown,@privileged python3\n# and this is useless.\n#firejail  --read-only=/ --private=ramdisk/ --seccomp=!shutdown,!restart_syscall\n#firejail --noprofile --read-only=/ --private=ramdisk/ --seccomp.drop=@reboot,@mount,@chown\n#--seccomp.print\n# this is shit.",
+        "type": "code",
+        "location": "/lego/jail/strict_base_jail.sh:1-14"
+    },
+    "2817": {
+        "file_id": 446,
+        "content": "Script to set up a strict base jail for Python3 application, using firejail for increased security. The script creates a temporary RAM disk and applies various security restrictions, such as AppArmor, read-only access to /, private ramdisk, and seccomp rules to drop certain system calls.",
+        "type": "comment"
+    },
+    "2818": {
+        "file_id": 447,
+        "content": "/lego/jail/unloadram.sh",
+        "type": "filepath"
+    },
+    "2819": {
+        "file_id": 447,
+        "content": "This script unmounts a RAM disk and removes its contents, ensuring it's cleared from the system.",
+        "type": "summary"
+    },
+    "2820": {
+        "file_id": 447,
+        "content": "#!/bin/bash\nsudo umount ramdisk\nsudo rm -rf ramdisk",
+        "type": "code",
+        "location": "/lego/jail/unloadram.sh:1-3"
+    },
+    "2821": {
+        "file_id": 447,
+        "content": "This script unmounts a RAM disk and removes its contents, ensuring it's cleared from the system.",
+        "type": "comment"
+    },
+    "2822": {
+        "file_id": 448,
+        "content": "/lego/jbash.sh",
+        "type": "filepath"
+    },
+    "2823": {
+        "file_id": 448,
+        "content": "This code is for a Bash script that uses the libjudger.so library to run a program with specific options. The --seccomp_rule_name is set to \"randomfuck\" and the exe_path is set to the path of bash, which is obtained using the which command.",
+        "type": "summary"
+    },
+    "2824": {
+        "file_id": 448,
+        "content": "#!/bin/bash\n./libjudger.so --seccomp_rule_name=\"randomfuck\" --exe_path=$(which bash)\n#./libjudger.so --exe_path=/sbin/shutdown --args=\"0\"\n# this cannot be run.",
+        "type": "code",
+        "location": "/lego/jbash.sh:1-4"
+    },
+    "2825": {
+        "file_id": 448,
+        "content": "This code is for a Bash script that uses the libjudger.so library to run a program with specific options. The --seccomp_rule_name is set to \"randomfuck\" and the exe_path is set to the path of bash, which is obtained using the which command.",
+        "type": "comment"
+    },
+    "2826": {
+        "file_id": 449,
+        "content": "/lego/jpython.sh",
+        "type": "filepath"
+    },
+    "2827": {
+        "file_id": 449,
+        "content": "This script runs libjudger.so with different executable paths, potentially testing its behavior and functionality.",
+        "type": "summary"
+    },
+    "2828": {
+        "file_id": 449,
+        "content": "#!/bin/bash\n./libjudger.so --seccomp_rule_name=\"randomfuck\" --exe_path=$(which python)\n#./libjudger.so --exe_path=/sbin/shutdown --args=\"0\"\n# this cannot be run.",
+        "type": "code",
+        "location": "/lego/jpython.sh:1-4"
+    },
+    "2829": {
+        "file_id": 449,
+        "content": "This script runs libjudger.so with different executable paths, potentially testing its behavior and functionality.",
+        "type": "comment"
+    },
+    "2830": {
+        "file_id": 450,
+        "content": "/lego/kill_redis.sh",
+        "type": "filepath"
+    },
+    "2831": {
+        "file_id": 450,
+        "content": "The script manages Redis processes, killing non-running ones and starting the daemon if needed. It uses multiple Python scripts for process info and checks for multiple instances. After script execution, it can end the process and kill special crafted things. Directory trimming is suggested to use a better tool.",
+        "type": "summary"
+    },
+    "2832": {
+        "file_id": 450,
+        "content": "#!/bin/bash\n# you do not know the directory. where is the PWD of a process?\n# there will be some return values.\n# kill all not running locally, and launch the auto saving daemon if not launched.\n# what's next? onward to redis relocation.\n# we need to break here. there are no findings here.\nhello_world () {\n\tps -A | grep -E \" redis-server\\$\" | python3 pgrep.py | python3 ppwdx.py | python3 proc_grep.py | python3 exam_and_run.py\n}\ngoodbye_world () {\n\tps aux | grep \" python3 \" | grep -E \" autosave_redis.py [0-9]+\\$\" | python3 pgrep.py | python3 ppwdx.py | python3 proc_grep.py | python3 exam_and_run_autosave.py \n}\nhello_world\n# if not, just return the pid back.\n# this time taking a single argument.\npwy=$(ps -A | grep -E \" redis-server\\$\" | python3 pgrep.py | xargs)\n./check_daemon_multiargs.sh $pwy\npwx=$?\n#echo \"main server $pwx\"\nif [ $pwx -eq 0 ]\nthen\n\techo \"killing non-daemon $pwy\"\n\tkill $pwy\n\thello_world\nfi\n# what if having multiple things?\ngoodbye_world\n# argument is wrong.\npwy=$(ps aux | grep \" python3 \" | grep -E \" autosave_redis.py [0-9]+\\$\" | python3 pgrep.py | xargs)",
+        "type": "code",
+        "location": "/lego/kill_redis.sh:1-31"
+    },
+    "2833": {
+        "file_id": 450,
+        "content": "The script aims to kill non-running Redis processes and start the auto-saving daemon if not already running, checking for multiple instances if necessary. It utilizes several Python scripts for processing process information.",
+        "type": "comment"
+    },
+    "2834": {
+        "file_id": 450,
+        "content": "./check_daemon_multiargs.sh $pwy\npwx=$?\n#echo \"watchdog $pwx\"\nif [ $pwx -eq 0 ]\nthen\n\techo \"killing non-daemon $pwy\"\n\tkill $pwy\n\tgoodbye_world\t\nfi\n# you can run this script after it is running.\n# after killing this, we must check the special crafted thing is running.\n# you are getting the trimmed thing.\n# pwdx.\n# finding not within the directory.\n# can't you use a better tool?",
+        "type": "code",
+        "location": "/lego/kill_redis.sh:32-47"
+    },
+    "2835": {
+        "file_id": 450,
+        "content": "Checks if the daemon process is running and kills it if not, then executes goodbye_world. Can be run after script execution, checks if a special crafted thing is running and uses kill command. Trimmed directory finding and suggests using a better tool.",
+        "type": "comment"
+    },
+    "2836": {
+        "file_id": 451,
+        "content": "/lego/kill_webpaste.sh",
+        "type": "filepath"
+    },
+    "2837": {
+        "file_id": 451,
+        "content": "This script sets a limit for monitoring processes and allows reconfiguration of servers. It uses various commands to find running Python webpaste.py processes, kills non-running ones, and checks the exit status of watchdog command. If no reconfiguration is needed, it exits gracefully.",
+        "type": "summary"
+    },
+    "2838": {
+        "file_id": 451,
+        "content": "#!/bin/bash\nlimit=5\nif [ $# -eq 1 ]\nthen\n\tif [ $1 -gt 0 ]\n\tthen\n\t\tlimit=$1\n\tfi\nfi\necho \"limit of process: $limit\"\n#limit=$(($limit + 1))\n# you do not know the directory. where is the PWD of a process?\n# there will be some return values.\n# kill all not running locally, and launch the auto saving daemon if not launched.\n# what's next? onward to redis relocation.\n# we need to break here. there are no findings here.\n# the naming problem. there's the thing.\ngoodbye_world () {\n\tps aux | grep \" python3 \" | grep -E \" webpaste.py\\$\" | python3 pgrep.py | python3 ppwdx.py | python3 proc_grep.py | python3 exam_and_run_webpaste.py $limit\n}\n# that's merging multiple arguments.\n# shall kill those that running elsewhere.\ngoodbye_world\npwy=$(ps aux | grep python3 | grep webpaste.py | python3 pgrep.py | xargs)\n#echo $pwy\n# what is that thing above?\n./check_daemon_multiargs.sh $pwy\n# you kill all non-daemon things and return the status.\npwx=$?\n# there shall be multiple elements. so what to do?\n#echo \"watchdog $pwx\"\nif [ $pwx -eq 0 ]\nthen",
+        "type": "code",
+        "location": "/lego/kill_webpaste.sh:1-33"
+    },
+    "2839": {
+        "file_id": 451,
+        "content": "The script sets a limit for the number of processes to monitor and then checks if there is an argument provided. It echoes the process limit, increases it by 1 (commented out), asks for the directory, mentions return values, and killing non-running locally processes while launching the auto saving daemon if needed. The script uses various commands like \"pgrep\", \"ppwdx\", and \"proc_grep\" to find and examine running Python webpaste.py processes, storing the result in pwy variable. It then calls another script with the process list to kill all non-daemon things before checking the exit status of the watchdog command and returning its status.",
+        "type": "comment"
+    },
+    "2840": {
+        "file_id": 451,
+        "content": "\techo \"need reconfiguration\"\n\tgoodbye_world\t\n\texit 0\nfi\necho \"no need to reconfigure\"\nexit 0\n# define the maximum server number. such as 5.\n# you can run this script after it is running.\n# after killing this, we must check the special crafted thing is running.\n# you are getting the trimmed thing.\n# pwdx.\n# finding not within the directory.\n# can't you use a better tool?",
+        "type": "code",
+        "location": "/lego/kill_webpaste.sh:34-46"
+    },
+    "2841": {
+        "file_id": 451,
+        "content": "This code is used to reconfigure a server, and if no reconfiguration is needed, it exits gracefully. It defines the maximum server number and allows running the script while already running. After killing the process, it checks for a special crafted thing and suggests using a better tool.",
+        "type": "comment"
+    },
+    "2842": {
+        "file_id": 452,
+        "content": "/lego/mag.py",
+        "type": "filepath"
+    },
+    "2843": {
+        "file_id": 452,
+        "content": "The code runs a curl command to fetch data from cn.bing.com and logs both standard output (stdout) and standard error (stderr) separately, buffering the output in sys.stdout. It uses select() to read available data on the file descriptors associated with stdout and stderr, reading 1024 bytes at a time until it encounters EOF, then removes the corresponding file descriptor from the readable dictionary.",
+        "type": "summary"
+    },
+    "2844": {
+        "file_id": 452,
+        "content": "#!/usr/bin/env python3\nimport os\nimport sys\nfrom select import select\nfrom subprocess import Popen, PIPE\n# it works somehow.\nwith Popen(['stdbuf', '-oL', '-e0', 'curl', 'cn.bing.com'],\n           stdout=PIPE, stderr=PIPE) as p:\n    readable = {\n        p.stdout.fileno(): sys.stdout.buffer, # log separately\n        p.stderr.fileno(): sys.stdout.buffer,\n    }\n    while readable:\n        for fd in select(readable, [], [])[0]:\n            data = os.read(fd, 1024) # read available\n            if not data: # EOF\n                del readable[fd]\n            else: \n                readable[fd].write(data)\n                readable[fd].flush()",
+        "type": "code",
+        "location": "/lego/mag.py:1-20"
+    },
+    "2845": {
+        "file_id": 452,
+        "content": "The code runs a curl command to fetch data from cn.bing.com and logs both standard output (stdout) and standard error (stderr) separately, buffering the output in sys.stdout. It uses select() to read available data on the file descriptors associated with stdout and stderr, reading 1024 bytes at a time until it encounters EOF, then removes the corresponding file descriptor from the readable dictionary.",
+        "type": "comment"
+    },
+    "2846": {
+        "file_id": 453,
+        "content": "/lego/main_redis_server.sh",
+        "type": "filepath"
+    },
+    "2847": {
+        "file_id": 453,
+        "content": "This script sets up a Redis server process, running it in the background and disowning it to prevent termination on script exit. The port number is not specified, but information can be posted on a public board for users to locate it.",
+        "type": "summary"
+    },
+    "2848": {
+        "file_id": 453,
+        "content": "#!/bin/bash\n# configure the autosave and so on.\nredis-server </dev/null &>/dev/null &\ndisown\n# do not know the port. but we can put some information on public board.",
+        "type": "code",
+        "location": "/lego/main_redis_server.sh:1-5"
+    },
+    "2849": {
+        "file_id": 453,
+        "content": "This script sets up a Redis server process, running it in the background and disowning it to prevent termination on script exit. The port number is not specified, but information can be posted on a public board for users to locate it.",
+        "type": "comment"
+    },
+    "2850": {
+        "file_id": 454,
+        "content": "/lego/matcher.py",
+        "type": "filepath"
+    },
+    "2851": {
+        "file_id": 454,
+        "content": "This code reads two log files, identifies numbers in the first file and numbers in the second file, finds their intersection, converts intersected numbers to integers, and then prints these integers.",
+        "type": "summary"
+    },
+    "2852": {
+        "file_id": 454,
+        "content": "import re\na = open(\"candidate.log\",\"r\").read()\nb = open(\"pid_matcher.log\",\"r\").read().split()\npa = set(b)\nr = re.findall(r\"\\d+\",a)\npb = set(r)\n#print(dir(pb))\n# so we do not know.\nps = pb.intersection(pa)\n#print(ps)\nps = [x for x in ps if len(x)>3]\n#print(ps)\npy = []\nfor x in ps:\n    try:\n        ix = int(x)\n        py.append(ix)\n        print(ix)\n    except:\n        pass\n#print(py)",
+        "type": "code",
+        "location": "/lego/matcher.py:1-21"
+    },
+    "2853": {
+        "file_id": 454,
+        "content": "This code reads two log files, identifies numbers in the first file and numbers in the second file, finds their intersection, converts intersected numbers to integers, and then prints these integers.",
+        "type": "comment"
+    },
+    "2854": {
+        "file_id": 455,
+        "content": "/lego/num_args.sh",
+        "type": "filepath"
+    },
+    "2855": {
+        "file_id": 455,
+        "content": "This Bash script counts the number of arguments passed and iterates through them, decrementing a counter with each iteration. It then displays the final counter value and the original counter value before exiting with an exit code of 2.",
+        "type": "summary"
+    },
+    "2856": {
+        "file_id": 455,
+        "content": "#!/bin/bash\necho \"argument length $#\"\nnum=$#\norg=$num\nfor var in \"$@\"\ndo\n\techo \"argument $var\"\n\tnum=$(($num - 1))\ndone\necho \"final counter $num\"\necho \"original counter $org\"\nexit 2",
+        "type": "code",
+        "location": "/lego/num_args.sh:1-12"
+    },
+    "2857": {
+        "file_id": 455,
+        "content": "This Bash script counts the number of arguments passed and iterates through them, decrementing a counter with each iteration. It then displays the final counter value and the original counter value before exiting with an exit code of 2.",
+        "type": "comment"
+    },
+    "2858": {
+        "file_id": 456,
+        "content": "/lego/overlay/README",
+        "type": "filepath"
+    },
+    "2859": {
+        "file_id": 456,
+        "content": "This code appears to be a comment expressing frustration with the inability of overlay filesystems to control their size. It suggests that users should stop expecting this feature from overlay and instead find alternative solutions.",
+        "type": "summary"
+    },
+    "2860": {
+        "file_id": 456,
+        "content": "cat /proc/filesystems\ndo not expect for overlay. it cannot control the size. just fuck off please?",
+        "type": "code",
+        "location": "/lego/overlay/README:1-3"
+    },
+    "2861": {
+        "file_id": 456,
+        "content": "This code appears to be a comment expressing frustration with the inability of overlay filesystems to control their size. It suggests that users should stop expecting this feature from overlay and instead find alternative solutions.",
+        "type": "comment"
+    },
+    "2862": {
+        "file_id": 457,
+        "content": "/lego/overlay/junk/loadram.sh",
+        "type": "filepath"
+    },
+    "2863": {
+        "file_id": 457,
+        "content": "This script executes unloadram.sh, creates a directory fs/workdir, sets its permissions to 777, and mounts a tmpfs filesystem named myramdisk_workdir with 10M size on fs/workdir directory.",
+        "type": "summary"
+    },
+    "2864": {
+        "file_id": 457,
+        "content": "#!/bin/bash\n./unloadram.sh\n#sudo mkdir ramdisk\nsudo mkdir fs/workdir\nsudo chmod 777 fs/workdir\nsudo mount -t tmpfs -o size=10m myramdisk_workdir fs/workdir",
+        "type": "code",
+        "location": "/lego/overlay/junk/loadram.sh:1-6"
+    },
+    "2865": {
+        "file_id": 457,
+        "content": "This script executes unloadram.sh, creates a directory fs/workdir, sets its permissions to 777, and mounts a tmpfs filesystem named myramdisk_workdir with 10M size on fs/workdir directory.",
+        "type": "comment"
+    },
+    "2866": {
+        "file_id": 458,
+        "content": "/lego/overlay/junk/loadram_fs.sh",
+        "type": "filepath"
+    },
+    "2867": {
+        "file_id": 458,
+        "content": "This code is a shell script for Linux. It executes an unloadram_fs.sh file, creates a directory called \"fs\", sets the necessary permissions using sudo chmod 777, and mounts a tmpfs filesystem named myramdisk_fs with a size of 10m to the directory \"fs\". This process involves loading RAM disk into memory.",
+        "type": "summary"
+    },
+    "2868": {
+        "file_id": 458,
+        "content": "#!/bin/bash\n./unloadram_fs.sh\n#sudo mkdir ramdisk\nsudo mkdir fs\nsudo chmod 777 fs\nsudo mount -t tmpfs -o size=10m myramdisk_fs fs",
+        "type": "code",
+        "location": "/lego/overlay/junk/loadram_fs.sh:1-6"
+    },
+    "2869": {
+        "file_id": 458,
+        "content": "This code is a shell script for Linux. It executes an unloadram_fs.sh file, creates a directory called \"fs\", sets the necessary permissions using sudo chmod 777, and mounts a tmpfs filesystem named myramdisk_fs with a size of 10m to the directory \"fs\". This process involves loading RAM disk into memory.",
+        "type": "comment"
+    },
+    "2870": {
+        "file_id": 459,
+        "content": "/lego/overlay/junk/loadram_upper.sh",
+        "type": "filepath"
+    },
+    "2871": {
+        "file_id": 459,
+        "content": "This script executes unloadram_upper.sh, creates a directory for upper filesystem with 777 permissions, and mounts a temporary filesystem (myramdisk_upper) of 10M size into the fs/upper directory.",
+        "type": "summary"
+    },
+    "2872": {
+        "file_id": 459,
+        "content": "#!/bin/bash\n./unloadram_upper.sh\nsudo mkdir fs/upper\nsudo chmod 777 fs/upper\nsudo mount -t tmpfs -o size=10m myramdisk_upper fs/upper",
+        "type": "code",
+        "location": "/lego/overlay/junk/loadram_upper.sh:1-5"
+    },
+    "2873": {
+        "file_id": 459,
+        "content": "This script executes unloadram_upper.sh, creates a directory for upper filesystem with 777 permissions, and mounts a temporary filesystem (myramdisk_upper) of 10M size into the fs/upper directory.",
+        "type": "comment"
+    },
+    "2874": {
+        "file_id": 460,
+        "content": "/lego/overlay/junk/loadroot.sh",
+        "type": "filepath"
+    },
+    "2875": {
+        "file_id": 460,
+        "content": "The code executes unloadroot.sh, creates a directory fs/lower with permissions 777, and bind-mounts the root filesystem at fs/lower for read-only access.",
+        "type": "summary"
+    },
+    "2876": {
+        "file_id": 460,
+        "content": "#!/bin/bash\n./unloadroot.sh\nsudo mkdir fs/lower\nsudo chmod 777 fs/lower\nsudo mount --bind -r / fs/lower/",
+        "type": "code",
+        "location": "/lego/overlay/junk/loadroot.sh:1-5"
+    },
+    "2877": {
+        "file_id": 460,
+        "content": "The code executes unloadroot.sh, creates a directory fs/lower with permissions 777, and bind-mounts the root filesystem at fs/lower for read-only access.",
+        "type": "comment"
+    },
+    "2878": {
+        "file_id": 461,
+        "content": "/lego/overlay/junk/prepare.sh",
+        "type": "filepath"
+    },
+    "2879": {
+        "file_id": 461,
+        "content": "This script loads various files and sets up directories before mounting an overlay filesystem. It executes four Bash scripts in order, then creates the fs/overlay directory and mounts the overlay filesystem with specified directories as lower, upper, and workdir.",
+        "type": "summary"
+    },
+    "2880": {
+        "file_id": 461,
+        "content": "#!/bin/bash\nbash -c ./loadram_fs.sh\nbash -c ./loadroot.sh\nbash -c ./loadram.sh\nbash -c ./loadram_upper.sh\nmkdir -p fs/overlay\nmount -t overlay -o rw,lowerdir=fs/lower,upperdir=fs/upper,workdir=fs/workdir overlay fs/overlay",
+        "type": "code",
+        "location": "/lego/overlay/junk/prepare.sh:1-7"
+    },
+    "2881": {
+        "file_id": 461,
+        "content": "This script loads various files and sets up directories before mounting an overlay filesystem. It executes four Bash scripts in order, then creates the fs/overlay directory and mounts the overlay filesystem with specified directories as lower, upper, and workdir.",
+        "type": "comment"
+    },
+    "2882": {
+        "file_id": 462,
+        "content": "/lego/overlay/junk/unloadoverlay.sh",
+        "type": "filepath"
+    },
+    "2883": {
+        "file_id": 462,
+        "content": "This script is unmounting a file system, counting the number of characters in the overlay directory, and if it's zero, deletes the overlay directory. It also mentions caution when doing chroot or symlink operations.",
+        "type": "summary"
+    },
+    "2884": {
+        "file_id": 462,
+        "content": "#!/bin/bash\nsudo umount fs/overlay\npsk=$(sudo ls -1 fs/overlay/ | wc -c)\n#psk=$(sudo mount | grep $PWD/root | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf fs/overlay\nfi",
+        "type": "code",
+        "location": "/lego/overlay/junk/unloadoverlay.sh:1-11"
+    },
+    "2885": {
+        "file_id": 462,
+        "content": "This script is unmounting a file system, counting the number of characters in the overlay directory, and if it's zero, deletes the overlay directory. It also mentions caution when doing chroot or symlink operations.",
+        "type": "comment"
+    },
+    "2886": {
+        "file_id": 463,
+        "content": "/lego/overlay/junk/unloadram.sh",
+        "type": "filepath"
+    },
+    "2887": {
+        "file_id": 463,
+        "content": "Unmounts and removes the filesystem workdir directory using sudo commands.",
+        "type": "summary"
+    },
+    "2888": {
+        "file_id": 463,
+        "content": "#!/bin/bash\nsudo umount fs/workdir\nsudo rm -rf fs/workdir",
+        "type": "code",
+        "location": "/lego/overlay/junk/unloadram.sh:1-3"
+    },
+    "2889": {
+        "file_id": 463,
+        "content": "Unmounts and removes the filesystem workdir directory using sudo commands.",
+        "type": "comment"
+    },
+    "2890": {
+        "file_id": 464,
+        "content": "/lego/overlay/junk/unloadram_fs.sh",
+        "type": "filepath"
+    },
+    "2891": {
+        "file_id": 464,
+        "content": "This script is unmounting a filesystem, checking if it exists, and removing the directory if nonexistent. It also mentions caution when dealing with chroot or symlinks on Windows.",
+        "type": "summary"
+    },
+    "2892": {
+        "file_id": 464,
+        "content": "#!/bin/bash\nsudo umount fs\npsk=$(sudo ls -1 fs/ | wc -c)\n#psk=$(sudo mount | grep $PWD/root | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf fs\nfi",
+        "type": "code",
+        "location": "/lego/overlay/junk/unloadram_fs.sh:1-11"
+    },
+    "2893": {
+        "file_id": 464,
+        "content": "This script is unmounting a filesystem, checking if it exists, and removing the directory if nonexistent. It also mentions caution when dealing with chroot or symlinks on Windows.",
+        "type": "comment"
+    },
+    "2894": {
+        "file_id": 465,
+        "content": "/lego/overlay/junk/unloadram_upper.sh",
+        "type": "filepath"
+    },
+    "2895": {
+        "file_id": 465,
+        "content": "This script unmounts the \"fs/upper\" filesystem and deletes its directory, likely as part of a system maintenance or cleanup process.",
+        "type": "summary"
+    },
+    "2896": {
+        "file_id": 465,
+        "content": "#!/bin/bash\nsudo umount fs/upper\nsudo rm -rf fs/upper",
+        "type": "code",
+        "location": "/lego/overlay/junk/unloadram_upper.sh:1-3"
+    },
+    "2897": {
+        "file_id": 465,
+        "content": "This script unmounts the \"fs/upper\" filesystem and deletes its directory, likely as part of a system maintenance or cleanup process.",
+        "type": "comment"
+    },
+    "2898": {
+        "file_id": 466,
+        "content": "/lego/overlay/junk/unloadroot.sh",
+        "type": "filepath"
+    },
+    "2899": {
+        "file_id": 466,
+        "content": "This script unmounts the lower filesystem, checks if it's mounted using 'mount', removes the lower filesystem directory if not mounted, and handles potential failures.",
+        "type": "summary"
+    }
+}

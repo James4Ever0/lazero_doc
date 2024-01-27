@@ -1,0 +1,20 @@
+It is the derived project Blitx.
+There used to be browser plugins, android clients.
+
+For compatibility reasons, we use Dredd as the backend of sandbox, though other things like proot might help but have not yet been fully understood.
+
+cgroup v2 might be enabled.
+it seems to be caused by docker, which only supports v1. (no it's systemd)
+so differ.
+
+the control is maintained by init file. but can we write it to the place? we can do the parametric things.
+currently not knowing cpu things under DOS. it was slow as hell and nightmare maybe. consider bring lastpass here. might help for system encryption. it is both a password generator and mananger.
+
+So for GUI stuff, sandboxie and firejail will help, while locking to the target is also critical to safety.
+It's about the relation between pid and GUI handles.
+
+Imminent target is about understanding of these strings and bytes, and then feed it back to the system.
+
+Must look down on every source file and intepreter. Their implementation is wasteful.
+
+In order to save time, online reference and internal simulation is needed, filling the gap between reality and imagination.

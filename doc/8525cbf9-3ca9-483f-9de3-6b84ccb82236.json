@@ -1,0 +1,10 @@
+{
+    "summary": "The code reads input from stdin, extracts path information using regular expressions and stores it in a dictionary for later use. It uses the \"path_finder\" function to extract the path component after the number, then dumps the resulting dictionary as a pickle object to stdout.",
+    "details": [
+        {
+            "comment": "The code reads input from stdin, extracts path information using regular expressions and stores it in a dictionary for later use. It uses the \"path_finder\" function to extract the path component after the number, then dumps the resulting dictionary as a pickle object to stdout.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proc_grep.py\":0-20",
+            "content": "import re,sys\nimport pickle\ndef path_finder(a):\n    for x in range(len(a)):\n        if a[x] == \"/\":\n            return a[x:-1]\n    return \"\"\ndx = {}\nfor x in sys.stdin:\n    rf = re.findall(r\"\\d+\",x)\n    if len(rf)>0:\n        s = rf[0]+\":\"\n        e = x.replace(s,\"\")\n        pr = path_finder(e)\n        dx.update({rf[0]:pr})\n# or use some glue.\npickle.dump(dx,sys.stdout.buffer)\n# print(dx)\n#        print(pr)\n#        print(rf[0])"
+        }
+    ]
+}

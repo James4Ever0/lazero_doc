@@ -1,0 +1,15 @@
+{
+    "summary": "The code imports functions to define a virtual function that takes two arguments, applies it to each value in a dictionary, filters out certain values, and stores the result for later use. The author discusses removing a specific element due to compatibility issues with 'xrange' and finding alternative solutions before deciding to remove it.",
+    "details": [
+        {
+            "comment": "Code imports functions returnXList and storeXList, klean function from the klean library, and defines a virtual function that takes two arguments: r1 (a variable) and v (an integer). The code then creates a dictionary r using the returned list from returnXList and applies the virtual function to each value in the dictionary. It filters out certain values, stores the result in p, and finally calls storeXList with p as an argument. The code also contains a commented section that seems unfinished or not used.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/trench_exam.py\":0-34",
+            "content": "from getFromDill import returnXList\n# import pywalk\n# check if these things are visible?\n# we can determine the shape of these chars?\nfrom storeADill import storeXList\nfrom klean import klean\ndef virtual(r1,v):\n    assert type(v)==int and v>=0\n    k = klean(r1)\n    # print(k)\n    k=list(map(lambda x: x[0],k))\n    # print(k)\n    # all shit.\n    k=list(filter(lambda x: x in [True,False],k))\n    # k=list(filter(lambda x: type(x) is bool,k))\n    # all shit.\n    k=list(map(int,k))\n    k=sum(k)\n    return k>v\n    # what the heck?\n# def sumOne(a):\n#     if type(a)==dict:\n#         return\n# # get all values?\nr = returnXList(\"trench\")\n# r0 = [x for x in r.keys()][0]\nr={x:virtual(r[x],0) for x in r.keys()}\np=[x for x in r.keys() if r[x]==False]\nstoreXList(p,\"invisible_0\")\n# it would be great measurement if used to all unicode chars.\n# ok! now use it to do our task!\n# r1 = r[r0]\n# # print(r1)\n# r1 = (1, 2, 3, 4, {\"json\": [1, 2, 3, 4, [2, 2, 3, 4, [3, 2, 3, 4]]], \"nothing\":(1, 2, 3, 4, (2, 2, 3, 4))}, (2, 2, 3, 4))\n# really strange."
+        },
+        {
+            "comment": "The code snippet is discussing the process of modifying a function to remove a specific element, possibly due to a compatibility issue with 'xrange' and considering alternative solutions such as using a list or an iterator. The author eventually finds a solution to the problem and decides to remove the element.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/trench_exam.py\":35-42",
+            "content": "# ca we just preserve the path?\n# xrange not defined. modify it!\n    # ak(pywalk.walk(node))?\n    # iterator?\n    # what if we have the list?\n    # what the heck?\n# alright. problem solved.\n# we are removing it."
+        }
+    ]
+}

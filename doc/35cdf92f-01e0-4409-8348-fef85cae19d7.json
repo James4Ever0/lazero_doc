@@ -1,0 +1,10 @@
+{
+    "summary": "Code creates an HTTP server handling GET and POST requests. It logs the partial body of a POST request and returns \"post received\" upon receiving a valid POST request. The server listens on port 7777.",
+    "details": [
+        {
+            "comment": "Code creates an HTTP server handling GET and POST requests. It logs the partial body of a POST request and returns \"post received\" upon receiving a valid POST request. The server listens on port 7777.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/koa-post.js\":0-34",
+            "content": "var http = require('http');\n//logger=require('html-differ/lib/logger')\n//this is too slow.\nvar prev=null\n    var server = http.createServer ( function(request,response){\n    response.writeHead(200,{\"Content-Type\":\"text/plain\"});\n    if(request.method == \"GET\")\n        {\n            response.end(\"received GET request.\")\n        }\n    else if(request.method == \"POST\")\n        {//console.log(request.data);\n\t\tvar body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})\n      response.end('post received')\n    })\n        }\n    else\n        {\n            response.end(\"Undefined request .\");\n        }\n});\n//arbitrary path.\nserver.listen(7777);\nconsole.log(\"Server running on port 7777\");"
+        }
+    ]
+}

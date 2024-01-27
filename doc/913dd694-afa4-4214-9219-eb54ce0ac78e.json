@@ -1,0 +1,10 @@
+{
+    "summary": "The script uses Bash to:\n1. Save current directory (ro)\n2. Change directory to /dev/shm\n3. List all running processes with \"http\" in their arguments (rg -a \"http\")\n4. Pass the list of running processes to a Python script (firefox_memdump.py) located at the original root directory (saved in ro).",
+    "details": [
+        {
+            "comment": "The script uses Bash to:\n1. Save current directory (ro)\n2. Change directory to /dev/shm\n3. List all running processes with \"http\" in their arguments (rg -a \"http\")\n4. Pass the list of running processes to a Python script (firefox_memdump.py) located at the original root directory (saved in ro).",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/search_dump.sh\":0-4",
+            "content": "#!/bin/bash\nro=$(pwd)\ncd /dev/shm\nrg -a \"http\" | python3 \"$ro/firefox_memdump.py\"\n# do it more."
+        }
+    ]
+}

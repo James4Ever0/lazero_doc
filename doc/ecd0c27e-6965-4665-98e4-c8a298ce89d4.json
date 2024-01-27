@@ -1,0 +1,10 @@
+{
+    "summary": "This code generates a sample C program, compiles it, and then deletes the temporary file.",
+    "details": [
+        {
+            "comment": "This code generates a sample C program, compiles it, and then deletes the temporary file.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/main.sh\":0-3",
+            "content": "#!/bin/bash\n# whatever you think. this computer must be rearranged.\n# all bullshit.\necho -e '#include <stdio.h>\\nint main(){printf(\"this is the main lazero program.\\\\\\n\");}'>/dev/shm/sample.c && command c /dev/shm/sample.c && rm /dev/shm/sample.c"
+        }
+    ]
+}

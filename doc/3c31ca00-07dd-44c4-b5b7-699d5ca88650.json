@@ -1,0 +1,10 @@
+{
+    "summary": "Links provide information on creating detached processes with redirected input and output, using console handles in Windows, and starting a background process in PowerShell.",
+    "details": [
+        {
+            "comment": "Links provide information on creating detached processes with redirected input and output, using console handles in Windows, and starting a background process in PowerShell.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/WINDOWS_NOTE\":0-3",
+            "content": "https://cn.bing.com/search?q=windows+start+detached+process&qs=n&form=QBRE&sp=-1&ghc=1&pq=windows+start+detached&sc=0-22&sk=&cvid=19FCE05323354661B2DC4D04DC5A0493\nhttps://docs.microsoft.com/en-us/windows/win32/procthread/creating-a-child-process-with-redirected-input-and-output\nhttps://docs.microsoft.com/en-us/windows/console/console-handles\nhttps://stackoverflow.com/questions/25023458/start-a-detached-background-process-in-powershell"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code opens a file in binary mode and reads its content, then prints the hexadecimal value and type of each byte. It does this for every byte in the file, ultimately converting them into integers. The function `getBin` is used to read files and returns the entire file's contents as a string.",
+    "details": [
+        {
+            "comment": "This code opens a file in binary mode and reads its content, then prints the hexadecimal value and type of each byte. It does this for every byte in the file, ultimately converting them into integers. The function `getBin` is used to read files and returns the entire file's contents as a string.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/read_shit.py\":0-10",
+            "content": "# we're gonna open some file?\n# reversing time is important in intelligence.\ndef getBin(a):\n    with open(a,\"rb\") as f:\n        return f.read()# k=getBin(\"Monitor.db\")\n# it is so easy, you suppose?\n# must be done in a universial way.\nk=getBin(\"Monitor.db\")\nfor x in k:\n    print(hex(x),type(x))\n    # we have integers now! cannot believe it!"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The code defines functions for manipulating lists and converting them to tensors. The 'chrTens' function takes a list of characters, maps their ASCII values into numbers, and stores the modified list as a torch tensor using deep copy and indexing operations. The 'recv' and 'sayless' functions convert the tensor back to its original character representation by finding the first or last occurrence of non-zero elements in the tensor.",
+    "details": [
+        {
+            "comment": "The code defines functions for manipulating lists and converting them to tensors. The 'chrTens' function takes a list of characters, maps their ASCII values into numbers, and stores the modified list as a torch tensor using deep copy and indexing operations. The 'recv' and 'sayless' functions convert the tensor back to its original character representation by finding the first or last occurrence of non-zero elements in the tensor.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/unicode_tensor.py\":0-31",
+            "content": "import torch\nimport copy\ndef callMe(a, b):\n    c = copy.deepcopy(a)\n    c[b] = 1\n    return c\ndef blockMe(a):\n    return a.index(1)\n# man this is not hard.\ndef asshole(a):\n    return a.index(max(a))\ndef chrTens(a):\n    # how about reducing the size?\n    # mini rnn? so cute???\n    # interact????\n    d = [ord(x) for x in a]\n    ops = max(list(set(d)))+1\n    c = [0 for x in range(ops)]\n    return torch.Tensor([callMe(c, x) for x in d])\n# how to shrink model?\n# never mind.\ndef recv(a):\n    return \"\".join([chr(blockMe(x)) for x in a.tolist()])\ndef sayless(a):\n    return \"\".join([chr(asshole(x)) for x in a])"
+        }
+    ]
+}

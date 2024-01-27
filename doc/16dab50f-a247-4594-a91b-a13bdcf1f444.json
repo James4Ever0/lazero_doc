@@ -1,0 +1,10 @@
+{
+    "summary": "Imports zmq, random, sys, and time libraries. Defines the port number as \"5757\". Initializes a ZMQ context and creates a PAIR socket. Sets socket to not linger on disconnect. Connects the socket to a server at \"tcp://127.0.0.7:%s\" % port. Prompts for user input, sends it through the socket in non-blocking mode, and handles any potential timeout.",
+    "details": [
+        {
+            "comment": "Imports zmq, random, sys, and time libraries. Defines the port number as \"5757\". Initializes a ZMQ context and creates a PAIR socket. Sets socket to not linger on disconnect. Connects the socket to a server at \"tcp://127.0.0.7:%s\" % port. Prompts for user input, sends it through the socket in non-blocking mode, and handles any potential timeout.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/pairclient.py\":0-27",
+            "content": "import zmq\nimport random\nimport sys\nimport time\n# from sub2 import timeout\nport = \"5757\"\ncontext = zmq.Context()\nsocket = context.socket(zmq.PAIR)\nsocket.setsockopt(zmq.LINGER, 0)\n# this works. not blocking.\nsocket.connect(\"tcp://127.0.0.7:%s\" % port)\n#while True:\n#        msg = socket.recv()\n#        print msg\n# performing one-shot.\n#        socket.send(\"client message to server1\")\n# fuck.\n# for the latter.\nsend_string = socket.send_string\n# send_string = timeout(1)(socket.send_string)\nsend_string(input(\"Enter the command:\\r\\n\"))\n# cannot send shit.\n# will stuck if no receive. switch to non-block mode here?\n#        time.sleep(1)\n# asshole.\n# WTF?\n# just to send one single string."
+        }
+    ]
+}

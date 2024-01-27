@@ -1,0 +1,10 @@
+{
+    "summary": "This code uses Nightmare.js to automate a search on Yahoo's search engine and retrieve the first result link URL.",
+    "details": [
+        {
+            "comment": "This code uses Nightmare.js to automate a search on Yahoo's search engine and retrieve the first result link URL.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/nightlight.js\":0-17",
+            "content": "var Nightmare = require('nightmare')\nvar nightmare = Nightmare({ show: true })\nnightmare\n  .goto('http://yahoo.com')\n  .type('form[action*=\"/search\"] [name=p]', 'github nightmare')\n  .click('form[action*=\"/search\"] [type=submit]')\n  .wait('#main')\n  .evaluate(function() {\n    return document.querySelector('#main .searchCenterMiddle li a').href\n  })\n  .end()\n  .then(function(result) {\n    console.log(result)\n  })\n  .catch(function(error) {\n    console.error('Search failed:', error)\n  })"
+        }
+    ]
+}

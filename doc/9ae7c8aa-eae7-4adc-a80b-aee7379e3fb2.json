@@ -1,0 +1,10 @@
+{
+    "summary": "This code sleeps for 500ms using the usleep function, which is a standard UNIX system call for pausing program execution. The program will return an exit status of 0 upon completion.",
+    "details": [
+        {
+            "comment": "This code sleeps for 500ms using the usleep function, which is a standard UNIX system call for pausing program execution. The program will return an exit status of 0 upon completion.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/sleep500ms.cpp\":0-1",
+            "content": "#include <unistd.h>\nint main(){usleep(1000*500);return 0;}"
+        }
+    ]
+}

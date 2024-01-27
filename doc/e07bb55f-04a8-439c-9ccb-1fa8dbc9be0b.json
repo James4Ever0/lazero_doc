@@ -1,0 +1,10 @@
+{
+    "summary": "This script searches for running Python processes with \"webpaste.py\" in their command line and stores their PIDs in a file named candidate.log, then it retrieves the PIDs of all Python processes and lists them in pid_matcher.log. Finally, it uses another Python script to process these PIDs (likely to match specific ones), kills the corresponding processes with xargs, and possibly generates a killing script in the end.",
+    "details": [
+        {
+            "comment": "This script searches for running Python processes with \"webpaste.py\" in their command line and stores their PIDs in a file named candidate.log, then it retrieves the PIDs of all Python processes and lists them in pid_matcher.log. Finally, it uses another Python script to process these PIDs (likely to match specific ones), kills the corresponding processes with xargs, and possibly generates a killing script in the end.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/find_and_kill.sh\":0-6",
+            "content": "#!/bin/bash\nps aux | grep python3 | grep webpaste.py > candidate.log\nps -A | grep python | grep -Eo \"[0-9]+\" > pid_matcher.log\n# show the capability. the logic.\npython matcher.py | xargs kill\n# so nothing there, once killed.\n# generate killing script."
+        }
+    ]
+}

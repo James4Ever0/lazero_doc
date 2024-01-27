@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a \"recv\" function that takes a number as input and stores it in the \"registry\" variable if it's the first time receiving that number. If not, it returns the sum of the received number and the current registry value. The list \"px\" contains a sequence of numbers, which are then passed to the \"recv\" function and printed. This process is self-repeating as each number in the list is used as input for the function. The author believes that this process could be used to generate data for deep learning applications by converting abstract concepts into numerical form.",
+    "details": [
+        {
+            "comment": "This code defines a \"recv\" function that takes a number as input and stores it in the \"registry\" variable if it's the first time receiving that number. If not, it returns the sum of the received number and the current registry value. The list \"px\" contains a sequence of numbers, which are then passed to the \"recv\" function and printed. This process is self-repeating as each number in the list is used as input for the function. The author believes that this process could be used to generate data for deep learning applications by converting abstract concepts into numerical form.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archiver/exp_img.py\":0-18",
+            "content": "registry = None\ndef recv(number):\n    global registry\n    if registry is not None:\n        if number == registry:\n            return number+number*1j\n        else:\n            r=number+registry*1j\n            registry=number\n            return r\n    else:\n        registry=number\n        return number\n# this is self-repeating.\npx=[1,2,3,4,5,4,3,2,1]\nfor x in px:\n    print(recv(x))\n    # are you sure we can do deeplearning by generating numbers?\n    # yes! i am pretty sure. by generating numbers, computer can turn some abstract things into their puriest form."
+        }
+    ]
+}

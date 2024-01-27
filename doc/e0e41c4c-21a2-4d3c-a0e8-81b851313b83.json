@@ -1,0 +1,15 @@
+{
+    "summary": "The function decomposes characters based on their position in words, lines, and sentences, handling spaces and newlines. The code reads a file, tokenizes content into words, sentences, and lines, converts text to one-hot encoded format, visualizes, and prints results.",
+    "details": [
+        {
+            "comment": "This function decompose each character in a string by its position within a word, line, and sentence. It handles spaces and newlines to identify the corresponding positions for each character encountered.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_char.py\":0-36",
+            "content": "# schema: position in word. position in the overall paragraph.\ndef acquire(a):\n    with open(a, \"r\") as f:\n        return f.read()\ndef charDecompose(a):\n    # it is a sparse matrix?\n    # yes fuck it.\n    word_pos=0\n    line_pos=0\n    sent_pos=0\n    fk=[]\n    prev_char=\"\"\n    # these are shits.\n    for x in a:\n        # print(a)\n        if x == \" \":\n            if prev_char==\" \":\n                word_pos+=1\n                # fk.append((x,word_pos,line_pos,sent_pos))\n            else:\n                word_pos=0\n                sent_pos+=1\n                prev_char=\" \"\n            # fk.append((x,word_pos,line_pos,sent_pos))\n            # fk.append((x,word_pos,sent_pos,line_pos))\n        elif x == \"\\n\":\n            if prev_char==\"\\n\":\n                word_pos+=1\n                # fk.append((x,word_pos,line_pos,sent_pos))\n            else:\n                word_pos=0\n                sent_pos+=1\n                prev_char=\"\\n\"\n            line_pos+=1\n            sent_pos=0\n            # fk.append((x,word_pos,sent_pos,line_pos))"
+        },
+        {
+            "comment": "This code reads a file and decomposes it by tokenizing words, sentences, and lines. It then converts the text into a one-hot encoded format, visualizes the results, and prints them out.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_mimic/decompose_char.py\":37-62",
+            "content": "        else:\n            if prev_char!=x:\n                word_pos+=1\n                # fk.append((x,word_pos,line_pos,sent_pos))\n            else:\n                word_pos=0\n                sent_pos+=1\n                # prev_char=\"\\n\"\n            # line_pos+=1\n            # fk.append((x,word_pos,sent_pos,))\n        fk.append((x,word_pos,sent_pos,line_pos))\n    return fk,list(set(a))\ndef img(a,k):\n    # use charhot.\n    return [(k[x[0]]+1j*x[1],x[2]+1j*x[3]) for x in a]\ndef oneHot(a):\n    return {a[x]:x for x in range(len(a))}\n# start your slow reading. just by posing them. select your target. the most valuable one. think you can solve it?\nif __name__ == \"__main__\":\n    a=acquire(\"decompose_0.py\")\n    b,k=charDecompose(a)\n    c=img(b,oneHot(k))\n    for x in c:\n        print(x)"
+        }
+    ]
+}

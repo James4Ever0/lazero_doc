@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports Sympy library, creates symbolic variables x and y, defines an expression, prints the expression, calculates its derivative with respect to x using Derivative function, and then prints both the result of the differentiation and the original expression. The code also mentions challenges related to math symbols and matrix operations.",
+    "details": [
+        {
+            "comment": "Code imports Sympy library, creates symbolic variables x and y, defines an expression, prints the expression, calculates its derivative with respect to x using Derivative function, and then prints both the result of the differentiation and the original expression. The code also mentions challenges related to math symbols and matrix operations.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/the_new_pack/smb_dev.py\":0-15",
+            "content": "# import sympy\n# d=dir(sympy.calculus)\nfrom sympy import * # this is horrible.\n# about to put something into the matrix.\n# things will go nasty.\nx, y = symbols(\"x y\")\nexpr = x**2+2*y+y**3\nprint(\"expression:{}\".format(expr))\ndf = Derivative(expr, x)\n# diff is a function here.\nprint(\"derivative with respect of x:{}\".format(df.doit()))\nprint(\"derivative with respect of x:{}\".format(df))\n# i, always hate math symbols.\n# print(d)\n# how to take partial derivative?\n# how to put variable into matrix?"
+        }
+    ]
+}

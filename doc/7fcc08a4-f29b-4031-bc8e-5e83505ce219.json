@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports numpy library, creates a list r with values [1,2,3,4,3,2,1], converts the list to a numpy array, and then uses np.diff function to calculate the differences in the array for three different n values. The resulting output shows the calculated differences printed for each x value (0-2) in the loop.",
+    "details": [
+        {
+            "comment": "This code imports numpy library, creates a list r with values [1,2,3,4,3,2,1], converts the list to a numpy array, and then uses np.diff function to calculate the differences in the array for three different n values. The resulting output shows the calculated differences printed for each x value (0-2) in the loop.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/npdiff.py\":0-4",
+            "content": "import numpy as np\nr=[1,2,3,4,3,2,1]\nr=np.array(r)\nfor x in range(3):\n    print(x,np.diff(r,n=x))"
+        }
+    ]
+}

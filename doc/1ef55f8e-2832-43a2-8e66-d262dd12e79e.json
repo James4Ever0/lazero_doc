@@ -1,0 +1,15 @@
+{
+    "summary": "Blitx is a project derived from browser plugins and Android clients, using Dredd as its backend for compatibility. It faces issues with cgroup v2 support and system encryption can be improved with LastPass. Optimizing interpreters and source files are needed. Online references and internal simulations help save time.",
+    "details": [
+        {
+            "comment": "This project, Blitx, was derived from browser plugins and Android clients. It uses Dredd as the backend of sandbox for compatibility reasons, although other options like proot may be helpful. Cgroup v2 might be enabled, but docker only supports v1 (systemd is causing issues). The control is maintained by an init file, and system encryption can be improved with tools like LastPass. Sandboxie and Firejail are useful for GUI tasks, while understanding the relation between pid and GUI handles is critical to safety. Interpreters and source files need optimization as they are currently wasteful.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/README\":0-19",
+            "content": "It is the derived project Blitx.\nThere used to be browser plugins, android clients.\nFor compatibility reasons, we use Dredd as the backend of sandbox, though other things like proot might help but have not yet been fully understood.\ncgroup v2 might be enabled.\nit seems to be caused by docker, which only supports v1. (no it's systemd)\nso differ.\nthe control is maintained by init file. but can we write it to the place? we can do the parametric things.\ncurrently not knowing cpu things under DOS. it was slow as hell and nightmare maybe. consider bring lastpass here. might help for system encryption. it is both a password generator and mananger.\nSo for GUI stuff, sandboxie and firejail will help, while locking to the target is also critical to safety.\nIt's about the relation between pid and GUI handles.\nImminent target is about understanding of these strings and bytes, and then feed it back to the system.\nMust look down on every source file and intepreter. Their implementation is wasteful.\nIn order to "
+        },
+        {
+            "comment": "The code mentions the importance of having online references and internal simulations to save time, bridging the gap between reality and imagination.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/README\":19-19",
+            "content": "save time, online reference and internal simulation is needed, filling the gap between reality and imagination."
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The provided code, located at \"lazero/bootstrap/legacy/container_1/infinia.c\", contains a simple infinite loop function main() that continuously loops forever.",
+    "details": [
+        {
+            "comment": "The provided code, located at \"lazero/bootstrap/legacy/container_1/infinia.c\", contains a simple infinite loop function main() that continuously loops forever.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_1/infinia.c\":0-0",
+            "content": "int main(){while(1);}"
+        }
+    ]
+}

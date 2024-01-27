@@ -1,0 +1,10 @@
+{
+    "summary": "This code loads data from stdin, identifies processes to kill based on certain conditions, and performs the necessary actions accordingly. It also relaunches a program if not running or kills excessive ones when applicable. However, it currently fails to daemonize and requires improvements for handling errors.",
+    "details": [
+        {
+            "comment": "This code loads data from stdin, identifies processes to kill based on certain conditions, and performs the necessary actions accordingly. It also relaunches a program if not running or kills excessive ones when applicable. However, it currently fails to daemonize and requires improvements for handling errors.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/exam_and_run_autosave.py\":0-30",
+            "content": "import pickle,sys,os\nimport signal\nPWD = os.environ[\"PWD\"]\n#print(\"pwd\",PWD)\nx = pickle.load(sys.stdin.buffer)\n#print(x)\n# so how to get the kill?\npx = []\nfor y in x.keys():\n    yx = x[y]\n    if yx != PWD:\n        print(\"will be killed\",y)\n        os.kill(int(y),signal.SIGKILL)\n    else:\n        px.append(int(y))\nif len(px)==0:\n    # not running.\n    print(\"relaunching program\")\n    os.system(\"./autosave_redis.sh\")\n    # this is not working as expected.\n    # must daemonize the thing.\nelif len(px)==1:\n    print(\"normal running.\")\nelse:\n    # error here. must kill excessive ones.\n    for x in px[1:]:\n        print(\"killing excessive redis\",x)\n        os.kill(x,signal.SIGKILL)\n        # must keep at least one running.\n        # so what?"
+        }
+    ]
+}

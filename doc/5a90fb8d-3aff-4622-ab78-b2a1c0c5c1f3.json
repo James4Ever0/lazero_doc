@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports ZMQ, random, sys, and time libraries. It sets the port to 5757 and creates a socket using ZMQ's PAIR type. The socket binds to the local IP address on the specified port. In an infinite loop, it receives messages from clients, prints them, and may pause for one second before repeating.",
+    "details": [
+        {
+            "comment": "This code imports ZMQ, random, sys, and time libraries. It sets the port to 5757 and creates a socket using ZMQ's PAIR type. The socket binds to the local IP address on the specified port. In an infinite loop, it receives messages from clients, prints them, and may pause for one second before repeating.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/aloofserver.py\":0-18",
+            "content": "import zmq\nimport random\nimport sys\nimport time\nport = \"5757\"\ncontext = zmq.Context()\nsocket = context.socket(zmq.PAIR)\nsocket.bind(\"tcp://127.0.0.7:%s\" % port)\nwhile True:\n#        socket.send_string(\"Server message to client3\")\n# what the fuck is this?\n    msg = (socket.recv_string()+\"\\r\\n\").encode()\n    print(msg)\n    # will it stuck?\n    # print(type(msg),msg)\n        # this is fuck.\n#        time.sleep(1)\n# we'll receive it."
+        }
+    ]
+}

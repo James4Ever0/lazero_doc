@@ -1,0 +1,15 @@
+{
+    "summary": "The code is a Lazero plugin that listens for checkForWord requests, changes document border color if allowed, and checks if jQuery library is loaded on the page. It considers limitations such as slow websites and unofficial Chrome kernel installations.",
+    "details": [
+        {
+            "comment": "The code is a Lazero plugin that listens for checkForWord requests and tries to change the document body's border color when the condition allows. It also includes functions and comments about potential limitations and considerations, such as running on slow websites and installation methods for unofficial Chrome kernel.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/ced/content.js\":0-22",
+            "content": "// // listen for checkForWord request, call getTags which includes callback to sendResponse.\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));}\nconsole.log(\"LAZERO PLUGIN\\n    -\\n   |               ___  __  __\\n  / \\\\  |    /|  /  ___ |   |  |\\n \\\\  _\\\\ |__ / | /__ ___ |   |__|\\n\\nTo make everything\\nexecutable, analyzable, controllable.\");\n// do not do it twice.\nasync function dfunc(){\nwhile(true){await sleep(500);\ntry { document.body.style.border = \"5px solid red\"; break}\ncatch (e) { console.log(e); }}}\ndfunc();\n// chrome.runtime.onMessage.addListener(\n//   function (request, sender, sendResponse) {\n//     if (request.action === 'checkForWord') {\n//       checkForWord(request, sender, sendResponse);\n//       // this is required to use sendResponse asynchronously\n//       return true;\n//     }\n//   }\n// );\n// think about it.\n// not able to run on super slow websites.\n// for unofficial chrome kernel, we can install with .crx\n// // Returns the index of the first instance of the desired word on the page."
+        },
+        {
+            "comment": "This code checks if the jQuery library is loaded on the page by iterating through script tags and searching for 'jquery' in their src attribute. If found, it sends a response with the script index; otherwise, it returns 0.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/ced/content.js\":23-34",
+            "content": "// // send what?\n// // hardware-level -> bios-level -> system-level -> browser-level\n// function checkForWord(request, sender, sendResponse) {\n//   var scripts = document.getElementsByTagName('script');\n//   for (var i = 0; i < scripts.length; i++) {\n//     if (scripts[i].src.toLowerCase().indexOf('jquery') > -1) {\n//       return sendResponse({ results: i + 1 });\n//     }\n//   }\n//   return sendResponse({ results: 0 });\n// }\n// fucking hell. there's no need to see anyone."
+        }
+    ]
+}

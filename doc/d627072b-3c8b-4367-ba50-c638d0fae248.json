@@ -1,0 +1,10 @@
+{
+    "summary": "This code discusses the installation of portaudio(xx)-dev on Linux, the uncertainty of OBS bindings working on Android, checking the logic for an Android broadcast app, and obtaining a virtual Termux runtime by packing it up.",
+    "details": [
+        {
+            "comment": "This code discusses the installation of portaudio(xx)-dev on Linux, the uncertainty of OBS bindings working on Android, checking the logic for an Android broadcast app, and obtaining a virtual Termux runtime by packing it up.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/audio_record/README\":0-4",
+            "content": "linux needs portaudio(xx)-dev installed.\ndon't know if obs bindings working for android. maybe?\nshall check logic for android broadcast app. demo please?\nyou can get a virtual termux runtime by simply packing it up."
+        }
+    ]
+}

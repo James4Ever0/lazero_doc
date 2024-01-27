@@ -1,0 +1,10 @@
+{
+    "summary": "This script unloads the root filesystem, creates a new directory for it, sets appropriate permissions, and mounts the existing root filesystem onto the newly created directory.",
+    "details": [
+        {
+            "comment": "This script unloads the root filesystem, creates a new directory for it, sets appropriate permissions, and mounts the existing root filesystem onto the newly created directory.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/loadroot.sh\":0-4",
+            "content": "#!/bin/bash\n./unloadroot.sh\nsudo mkdir root\nsudo chmod 777 root\nsudo mount --bind -r / root/"
+        }
+    ]
+}

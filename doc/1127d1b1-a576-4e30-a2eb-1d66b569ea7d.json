@@ -1,0 +1,10 @@
+{
+    "summary": "This script runs a read-only container using Alpine Linux, limiting CPU usage and memory allocations. It also checks for the rootlesskit and mentions potential XFS storage improvement.",
+    "details": [
+        {
+            "comment": "This script runs a read-only container using Alpine Linux, limiting CPU usage and memory allocations. It also checks for the rootlesskit and mentions potential XFS storage improvement.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_1/dockerXFS.sh\":0-7",
+            "content": "#!/bin/bash\n# not even a tty! better run away from this.\n#echo parrot | sudo -S docker run --rm --kernel-memory=\"8m\" --memory-swap=\"16m\" --cpus=\"0.05\" --memory=\"16m\" --memory-reservation=\"8m\" -it alpine sh\ndocker run --rm --read-only --kernel-memory=\"8m\" --cpus=\"0.05\" --memory=\"16m\" --memory-reservation=\"8m\" -it alpine sh\n# better check the rootlesskit.\n# this one is for service. # --storage-opt overlay2.size=0.008G\n# --read-only\n# if it is XFS it is way better than now."
+        }
+    ]
+}

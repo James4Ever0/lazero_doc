@@ -1,0 +1,10 @@
+{
+    "summary": "Imports Redis and time modules, sets name value in Redis with expiry, continuously prints and checks the name value until it expires.",
+    "details": [
+        {
+            "comment": "Imports Redis and time modules, sets name value in Redis with expiry, continuously prints and checks the name value until it expires.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/rlink.py\":0-12",
+            "content": "import redis   # \u5bfc\u5165redis \u6a21\u5757\nimport time\nr = redis.Redis(host='localhost', port=6379, decode_responses=True)   \nr.set('name', 'runoob',ex=3)  # \u8bbe\u7f6e name \u5bf9\u5e94\u7684\u503c\nwhile True:\n    try:\n        print(r['name'])\n        print(r.get('name'))  # \u53d6\u51fa\u952e name \u5bf9\u5e94\u7684\u503c\n        print(type(r.get('name')))\n    except:\n        print(\"expired\")\n    time.sleep(1)"
+        }
+    ]
+}

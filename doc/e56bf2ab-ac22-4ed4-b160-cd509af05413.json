@@ -1,0 +1,15 @@
+{
+    "summary": "This code analyzes data using sets, lists and dictionaries. It defines functions for handling data such as 'al', 'ak', 'akII', 'am' and 'ajam'. The 'ajam' function checks a condition and returns True or False. The product of x and y is checked in the function to determine if it is greater than or equal to 'b'.",
+    "details": [
+        {
+            "comment": "The code defines functions for handling and analyzing data. It uses sets, lists, and dictionaries to store and manipulate data. The 'al' function returns a set of values from input data, while the 'ak' function calculates the difference between consecutive elements in a list. The 'akII' function recursively applies the 'ak' function on a list. The 'am' function computes the second derivative of data and stores it in a dictionary. The 'ajam' function analyzes data based on specific conditions, returning True if certain criteria are met.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/repeating.py\":0-45",
+            "content": "def al(a):\n    return set(a)\ndef ak(a):\n    # print(a)\n    return [a[x]-a[x+1] for x in range(len(a)-1)]\n# all kind of things?\ndef akII(a, s=2):\n    assert type(s) == int and s >= 0\n    if s > 0:\n        return akII(ak(a), s-1)\n    else:\n        return a\n# double derivative.\n# when is the time that you do not need to learn shit?\ndef am(a):\n    i = al(a)\n    return {x: akII([y for y in range(len(a)) if a[y] == x], 2) for x in i}\ndef ajam(a, b, c, d, e):\n    j = am(a)\n    # test_val: continuously getting zero for longer than b:\n    # print(j)\n    # you should sort it.\n    s = list(sorted([(x, sum(j[x])) for x in j.keys()], key=lambda x: x[1]))\n    s = list(map(lambda x: x[0], s))\n    for x in s:\n        xj = j[x]\n        xy = 0\n        xd = 0\n        # buf=xj[0]\n        for y in xj:\n            if y != 0:\n                if xy < b*c:\n                    xy = 0\n                    if xy > b*e:\n                        xd += xy**c\n            else:\n                xy += 1\n            if xy >= b or xd >= d:\n                return True"
+        },
+        {
+            "comment": "This code segment checks if the product of x and y is greater than or equal to a given value, 'b'. If it is, then it returns True; otherwise, it returns False. The variable \"buf\" is set equal to 'y', which may be used in later calculations.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/repeating.py\":46-49",
+            "content": "            # buf = y\n        if xy >= b:\n            return True\n    return False"
+        }
+    ]
+}

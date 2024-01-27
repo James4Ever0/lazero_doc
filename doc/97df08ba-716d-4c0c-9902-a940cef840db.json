@@ -1,0 +1,10 @@
+{
+    "summary": "Code is creating a set of unique projects from the database and then applying a custom function to count occurrences of each project, storing the results in a dictionary. The code then prints the project name, its occurrence count as computed by the function, and the actual count of occurrences in the database.",
+    "details": [
+        {
+            "comment": "Code is creating a set of unique projects from the database and then applying a custom function to count occurrences of each project, storing the results in a dictionary. The code then prints the project name, its occurrence count as computed by the function, and the actual count of occurrences in the database.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/internet_maps/sim0.py\":0-31",
+            "content": "# make set.\nfrom dbM2 import regcheck\n# a,b,c,d\ndef commPat(a, b):\n    c = []\n    buf = None\n    for x in a:\n        if buf == None:\n            c.append(x == b)\n            buf = x\n        else:\n            if x == buf:\n                pass\n            else:\n                c.append(x == b)\n                buf = x\n    return c\n# what the heck is actually going on?\n# why it cannot be done?\n# it is sorted, but undone.\n# count!\n# remember these numbers.\nr = regcheck(\"projects\")\nr = [x[0] for x in r]\nr0 = set(r)\nr1 = {x: commPat(r, x) for x in r0}\nfor x in r1.keys():\n    print(x, r1[x],r.count(x))\n    print(\"_____________________SPLITER_____________________\")\n# what the fuck is going on?"
+        }
+    ]
+}

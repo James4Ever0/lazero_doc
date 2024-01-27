@@ -1,0 +1,10 @@
+{
+    "summary": "Code generates a 2D array of random integers from 0 to 499, converts it to ASCII characters and prints the resulting string.",
+    "details": [
+        {
+            "comment": "Code generates a 2D array of random integers from 0 to 499, converts it to ASCII characters and prints the resulting string.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/npgen.py\":0-4",
+            "content": "import numpy as np\ns=np.random.randint(low=0, high=500, size=500*500)\nd=\"\".join([chr(x) for x in s])\nprint(d)"
+        }
+    ]
+}

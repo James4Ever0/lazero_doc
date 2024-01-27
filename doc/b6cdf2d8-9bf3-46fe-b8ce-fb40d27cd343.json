@@ -1,0 +1,10 @@
+{
+    "summary": "This code appears to be written in the Fish shell and is intended for use with the C programming language. It seems to involve compiling and running a C program, possibly involving Python includes and deep learning. However, the code contains several comments expressing frustration and suggesting it may require further improvements or adjustments.",
+    "details": [
+        {
+            "comment": "This code appears to be written in the Fish shell and is intended for use with the C programming language. It seems to involve compiling and running a C program, possibly involving Python includes and deep learning. However, the code contains several comments expressing frustration and suggesting it may require further improvements or adjustments.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/sample.sh\":0-12",
+            "content": "#!/usr/bin/fish\n# only work for fish shell.\n# command c main.c &| xargs c lazero.c\n# tell you how to cut strings.\n# this requires deeplearning.\n# tell you how to find important things.\n# getting offline, enjoy the fucking show???\n# how about setting the lnclude variable?\n# you know nothing about the fucking file? and what do you want then?\n# c is the worst lang I've ever used.\n# your process should be making more sense, make the process easier to go.\ncommand c \"-I/usr/include/python2.7 main.c\" &| cat\n# do you accept new input from some brand new system?"
+        }
+    ]
+}

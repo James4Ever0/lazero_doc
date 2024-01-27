@@ -1,0 +1,549 @@
+{
+    "2300": {
+        "file_id": 368,
+        "content": "        if config.blinkOnActions:\n            self.node.blink()\n        result = self.__action.doAction(self.__index)\n        doDelay(config.actionDelay)\n        return result\nclass Node(object):\n    \"\"\"\n    A node in the tree of UI elements. This class is mixed in with\n    Accessibility.Accessible to both make it easier to use and to add\n    additional functionality. It also has a debugName which is set up\n    automatically when doing searches.\n    \"\"\"\n    childrenLimit=100\n    def __setupUserData(self):\n        try:\n            len(self.user_data)\n        except (AttributeError, TypeError):\n            self.user_data = {}\n    @property\n    def debugName(self):\n        \"\"\"debug name assigned during search operations\"\"\"\n        self.__setupUserData()\n        return self.user_data.get('debugName', None)\n    @debugName.setter\n    def debugName(self, debugName):\n        self.__setupUserData()\n        self.user_data['debugName'] = debugName\n    #\n    # Accessible\n    #\n    @property\n    def dead(self):\n        \"\"\"\n        Is the node dead (defunct)?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:180-218"
+    },
+    "2301": {
+        "file_id": 368,
+        "content": "The code snippet initializes a node in a tree-like structure of UI elements. It checks if the blinkOnActions configuration is enabled and triggers blinking if so. Then, it performs an action using the __action object and waits for the specified delay before returning the result. The Node class also has methods to manage user data and debug names for each node during search operations.",
+        "type": "comment"
+    },
+    "2302": {
+        "file_id": 368,
+        "content": "        \"\"\"\n        try:\n            if self.roleName == 'invalid':\n                return True\n            self.role\n            self.name\n            if len(self) > 0:\n                self[0]\n        except:\n            return True\n        return False\n    @property\n    def children(self):\n        \"\"\"\n        A list of this Accessible's children\n        \"\"\"\n        if self.parent and self.parent.roleName == 'hyper link':\n            print(self.parent.role)\n            return []\n        children = []\n        childCount = self.childCount\n        # you can do some change.\n        # actually just use the plain number.\n        if childCount > self.childrenLimit:\n            global haveWarnedAboutChildrenLimit\n            if not haveWarnedAboutChildrenLimit:\n                logger.log(\"Only returning %s children. You may change \"\n                           \"config.childrenLimit if you wish. This message will only\"\n                           \" be printed once.\" % str(self.childrenLimit))\n                haveWarnedAboutChildrenLimit = True",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:219-249"
+    },
+    "2303": {
+        "file_id": 368,
+        "content": "This code snippet is part of a class that appears to be related to web accessibility. It checks if the roleName is 'invalid', handles exceptions, and returns a list of children Accessibles if applicable. If the child count exceeds the childrenLimit, it warns once and limits the returned children accordingly.",
+        "type": "comment"
+    },
+    "2304": {
+        "file_id": 368,
+        "content": "                childCount = self.childrenLimit\n        for i in range(childCount):\n            # Workaround for GNOME bug #465103\n            # also solution for GNOME bug #321273\n            try:\n                child = self[i]\n            except LookupError:\n                child = None\n            if child:\n                children.append(child)\n        invalidChildren = childCount - len(children)\n        if invalidChildren and config.debugSearching:\n            logger.log(str(\"Skipped %s invalid children of %s\") %\n                       (invalidChildren, str(self)))\n        try:\n            ht = self.queryHypertext()\n            for li in range(ht.getNLinks()):\n                link = ht.getLink(li)\n                for ai in range(link.nAnchors):\n                    child = link.getObject(ai)\n                    if child == self:\n                        continue\n                    child.__setupUserData()\n                    child.user_data['linkAnchor'] = \\\n                        LinkAnchor(node=child,\n                                   hypertext=ht,",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:250-276"
+    },
+    "2305": {
+        "file_id": 368,
+        "content": "This code is a workaround for GNOME bugs #465103 and #321273, which involves checking the number of children in a container and appending valid ones to a list. It also logs any skipped invalid children if debugSearching is enabled. The code then queries hypertext, iterates over links, and sets up user data for each child object except for itself.",
+        "type": "comment"
+    },
+    "2306": {
+        "file_id": 368,
+        "content": "                                   linkIndex=li,\n                                   anchorIndex=ai)\n                    children.append(child)\n        except (NotImplementedError, AttributeError):\n            pass\n        return children\n    roleName = property(Accessibility.Accessible.getRoleName)\n    role = property(Accessibility.Accessible.getRole)\n    indexInParent = property(Accessibility.Accessible.getIndexInParent)\n    #\n    # Action\n    #\n    # Needed to be renamed from doAction due to conflicts\n    # with 'Accessibility.Accessible.doAction' in gtk3 branch\n    def doActionNamed(self, name):\n        \"\"\"\n        Perform the action with the specified name. For a list of actions\n        supported by this instance, check the 'actions' property.\n        \"\"\"\n        actions = self.actions\n        if name in actions:\n            return actions[name].do()\n        raise ActionNotSupported(name, self)\n    @property\n    def actions(self):\n        \"\"\"\n        A dictionary of supported action names as keys, with Action objects as",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:277-310"
+    },
+    "2307": {
+        "file_id": 368,
+        "content": "This code defines a class called Accessibility.Accessible, which represents an accessible object. It has properties like roleName, role, and indexInParent, and a method doActionNamed that performs actions with specified names. The class also has an actions property, which is a dictionary of supported action names as keys, with Action objects as values.",
+        "type": "comment"
+    },
+    "2308": {
+        "file_id": 368,
+        "content": "        values. Common action names include:\n        'click' 'press' 'release' 'activate' 'jump' 'check' 'dock' 'undock'\n        'open' 'menu'\n        \"\"\"\n        actions = {}\n        try:\n            action = self.queryAction()\n            for i in range(action.nActions):\n                a = Action(self, action, i)\n                actions[action.getName(i)] = a\n        finally:\n            return actions\n    @property\n    def combovalue(self):\n        \"\"\"\n        The value (as a string) currently selected in the combo box.\n        \"\"\"\n        return self.name\n    @combovalue.setter\n    def combovalue(self, value):\n        logger.log(str(\"Setting combobox %s to '%s'\") % (self.getLogString(), str(value)))\n        self.childNamed(childName=value).doActionNamed('click')\n        doDelay()\n    #\n    # Hypertext and Hyperlink\n    #\n    @property\n    def URI(self):\n        try:\n            return self.user_data['linkAnchor'].URI\n        except (KeyError, AttributeError):\n            raise NotImplementedError\n    #\n    # Text and EditableText",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:311-350"
+    },
+    "2309": {
+        "file_id": 368,
+        "content": "The code defines a class with properties and methods for interacting with various GUI elements like buttons, comboboxes, hypertext, and editable text. It allows setting values in comboboxes and clicking on hyperlinks. The code also includes exception handling and logging functionality.",
+        "type": "comment"
+    },
+    "2310": {
+        "file_id": 368,
+        "content": "    #\n    @property\n    def text(self):\n        \"\"\"\n        For instances with an AccessibleText interface, the text as a\n        string. This is read-only, unless the instance also has an\n        AccessibleEditableText interface. In this case, you can write values\n        to the attribute. This will get logged in the debug log, and a delay\n        will be added.\n        If this instance corresponds to a password entry, use the passwordText\n        property instead.\n        \"\"\"\n        try:\n            return self.queryText().getText(0, -1)\n        except NotImplementedError:\n            return None\n    @text.setter\n    def text(self, text):\n        try:\n            if config.debugSearching:\n                msg = \"Setting text of %s to %s\"\n                # Let's not get too crazy if 'text' is really large...\n                # FIXME: Sometimes the next line screws up Unicode strings.\n                if len(text) > 140:\n                    txt = text[:134] + \" [...]\"\n                else:\n                    txt = text",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:351-381"
+    },
+    "2311": {
+        "file_id": 368,
+        "content": "This code defines a property named 'text' for instances with an AccessibleText interface. It returns the text as a string and allows writing values to the attribute if the instance also has an AccessibleEditableText interface. The code includes exception handling for NotImplementedError, returning None when not implemented. If config.debugSearching is True, it logs setting the text of the instance with the provided message and adds a delay. This property should be used instead of passwordText for non-password entry instances.",
+        "type": "comment"
+    },
+    "2312": {
+        "file_id": 368,
+        "content": "                logger.log(str(msg) % (self.getLogString(), str(\"'%s'\") % str(txt)))\n            self.queryEditableText().setTextContents(text)\n        except NotImplementedError:\n            raise AttributeError(\"can't set attribute\")\n    @property\n    def caretOffset(self):\n        \"\"\"\n        For instances with an AccessibleText interface, the caret offset as an integer.\n        \"\"\"\n        return self.queryText().caretOffset\n    @caretOffset.setter\n    def caretOffset(self, offset):\n        return self.queryText().setCaretOffset(offset)\n    #\n    # Component\n    #\n    @property\n    def position(self):\n        \"\"\"\n        A tuple containing the position of the Accessible: (x, y)\n        \"\"\"\n        return self.queryComponent().getPosition(pyatspi.DESKTOP_COORDS)\n    @property\n    def size(self):\n        \"\"\"\n        A tuple containing the size of the Accessible: (w, h)\n        \"\"\"\n        return self.queryComponent().getSize()\n    @property\n    def extents(self):\n        \"\"\"\n        A tuple containing the location and size of the Accessible: (x, y, w, h)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:382-419"
+    },
+    "2313": {
+        "file_id": 368,
+        "content": "This code snippet defines properties and methods for an Accessible interface in a GUI library. It retrieves information about the position, size, and caret offset of the Accessible object, and allows setting text contents. It also handles exceptions such as NotImplementedError and AttributeError.",
+        "type": "comment"
+    },
+    "2314": {
+        "file_id": 368,
+        "content": "        \"\"\"\n        try:\n            ex = self.queryComponent().getExtents(pyatspi.DESKTOP_COORDS)\n            return (ex.x, ex.y, ex.width, ex.height)\n        except NotImplementedError:\n            return None\n    def contains(self, x, y):\n        try:\n            return self.queryComponent().contains(x, y, pyatspi.DESKTOP_COORDS)\n        except NotImplementedError:\n            return False\n    def getChildAtPoint(self, x, y):\n        node = self\n        while True:\n            try:\n                child = node.queryComponent().getAccessibleAtPoint(x, y, pyatspi.DESKTOP_COORDS)\n                if child and child.contains(x, y):\n                    node = child\n                else:\n                    break\n            except NotImplementedError:\n                break\n        if node and node.contains(x, y):\n            return node\n        else:\n            return None\n    def grabFocus(self):\n        \"\"\"\n        Attempts to set the keyboard focus to this Accessible.\n        \"\"\"\n        return self.queryComponent().grabFocus()",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:420-453"
+    },
+    "2315": {
+        "file_id": 368,
+        "content": "The code appears to be a part of an object with methods for obtaining the component's extents, checking if a point is contained within it, retrieving the accessible child at a given point, and setting keyboard focus. The methods handle potential NotImplementedError exceptions, returning default values or None when applicable.",
+        "type": "comment"
+    },
+    "2316": {
+        "file_id": 368,
+        "content": "    def click(self, button=1):\n        \"\"\"\n        Generates a raw mouse click event, using the specified button.\n            - 1 is left,\n            - 2 is middle,\n            - 3 is right.\n        \"\"\"\n        logger.log(str(\"Clicking on %s\") % self.getLogString())\n        clickX = self.position[0] + self.size[0] / 2\n        clickY = self.position[1] + self.size[1] / 2\n        if config.debugSearching:\n            logger.log(str(\"raw click on %s %s at (%s,%s)\") %\n                       (str(self.name), self.getLogString(), str(clickX), str(clickY)))\n        rawinput.click(clickX, clickY, button)\n    def doubleClick(self, button=1):\n        \"\"\"\n        Generates a raw mouse double-click event, using the specified button.\n        \"\"\"\n        clickX = self.position[0] + self.size[0] / 2\n        clickY = self.position[1] + self.size[1] / 2\n        if config.debugSearching:\n            logger.log(str(\"raw click on %s %s at (%s,%s)\") %\n                       (str(self.name), self.getLogString(), str(clickX), str(clickY)))",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:455-478"
+    },
+    "2317": {
+        "file_id": 368,
+        "content": "The code provides functions for generating raw mouse click and double-click events using the specified button (1 for left, 2 for middle, 3 for right). It logs information related to the action performed, such as the target object's name and position. In debug mode, it also logs the specific coordinates of the click event. The functions use the 'rawinput' module to execute the actual mouse click or double-click.",
+        "type": "comment"
+    },
+    "2318": {
+        "file_id": 368,
+        "content": "        rawinput.doubleClick(clickX, clickY, button)\n    def point(self, mouseDelay=None):\n        \"\"\"\n        Move mouse cursor to the center of the widget.\n        \"\"\"\n        pointX = self.position[0] + self.size[0] / 2\n        pointY = self.position[1] + self.size[1] / 2\n        logger.log(str(\"Pointing on %s %s at (%s,%s)\") %\n                   (str(self.name), self.getLogString(), str(pointX), str(pointY)))\n        rawinput.registry.generateMouseEvent(pointX, pointY, 'abs')\n        if mouseDelay:\n            doDelay(mouseDelay)\n        else:\n            doDelay()\n    #\n    # RelationSet\n    #\n    @property\n    def labeler(self):\n        \"\"\"\n        'labeller' (read-only list of Node instances):\n        The node(s) that is/are a label for this node. Generated from 'relations'.\n        \"\"\"\n        relationSet = self.getRelationSet()\n        for relation in relationSet:\n            if relation.getRelationType() == pyatspi.RELATION_LABELLED_BY:\n                if relation.getNTargets() == 1:\n                    return relation.getTarget(0)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:479-508"
+    },
+    "2319": {
+        "file_id": 368,
+        "content": "The code defines a function `point` which moves the mouse cursor to the center of a widget and logs the information. It also provides a property `labeler` that returns the node(s) acting as label for the node, generated from 'relations'.",
+        "type": "comment"
+    },
+    "2320": {
+        "file_id": 368,
+        "content": "                targets = []\n                for i in range(relation.getNTargets()):\n                    targets.append(relation.getTarget(i))\n                return targets\n    labeller = labeler\n    @property\n    def labelee(self):\n        \"\"\"\n        'labellee' (read-only list of Node instances):\n        The node(s) that this node is a label for. Generated from 'relations'.\n        \"\"\"\n        relationSet = self.getRelationSet()\n        for relation in relationSet:\n            if relation.getRelationType() == pyatspi.RELATION_LABEL_FOR:\n                if relation.getNTargets() == 1:\n                    return relation.getTarget(0)\n                targets = []\n                for i in range(relation.getNTargets()):\n                    targets.append(relation.getTarget(i))\n                return targets\n    labellee = labelee\n    #\n    # StateSet\n    #\n    @property\n    def sensitive(self):\n        \"\"\"\n        Is the Accessible sensitive (i.e. not greyed out)?\n        \"\"\"\n        return self.getState().contains(pyatspi.STATE_SENSITIVE)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:509-540"
+    },
+    "2321": {
+        "file_id": 368,
+        "content": "This code defines a class with properties for targets, labeler, labelee, and sensitive. The 'targets' property returns the list of targets from a relation. The 'labelee' property returns the node(s) that this node is a label for, based on the relation type and target count. Finally, the 'sensitive' property checks if the Accessible is sensitive or not by checking its state.",
+        "type": "comment"
+    },
+    "2322": {
+        "file_id": 368,
+        "content": "    @property\n    def showing(self):\n        \"\"\"\n        Is the Accessible really showing (rendered and visible) on the screen?\n        \"\"\"\n        return self.getState().contains(pyatspi.STATE_SHOWING)\n    @property\n    def focusable(self):\n        \"\"\"\n        Is the Accessible capable of having keyboard focus?\n        \"\"\"\n        return self.getState().contains(pyatspi.STATE_FOCUSABLE)\n    @property\n    def focused(self):\n        \"\"\"\n        Does the Accessible have keyboard focus?\n        \"\"\"\n        return self.getState().contains(pyatspi.STATE_FOCUSED)\n    @property\n    def checked(self):\n        \"\"\"\n        Is the Accessible a checked checkbox?\n        \"\"\"\n        return self.getState().contains(pyatspi.STATE_CHECKED)\n    @property\n    def isChecked(self):\n        \"\"\"\n        Is the Accessible a checked checkbox? Compatibility property, same as Node.checked.\n        \"\"\"\n        return self.checked\n    @property\n    def visible(self):\n        \"\"\"\n        Is the Accessible set to be visible? A widget with set attribute",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:542-580"
+    },
+    "2323": {
+        "file_id": 368,
+        "content": "The code defines several properties for an Accessible object in a user interface. These properties include whether it is showing, focusable, focused, checked or visible. The code also provides compatibility functions isChecked and visible which are the same as Node.checked and Node.visible respectively.",
+        "type": "comment"
+    },
+    "2324": {
+        "file_id": 368,
+        "content": "        'visible' is supposed to be shown and doesn't need to be actually\n        rendered. On the other hand, a widget with unset attribute 'visible'\n        \"\"\"\n        return self.getState().contains(pyatspi.STATE_VISIBLE)\n    #\n    # Selection\n    #\n    def selectAll(self):\n        \"\"\"\n        Selects all children.\n        \"\"\"\n        result = self.querySelection().selectAll()\n        doDelay()\n        return result\n    def deselectAll(self):\n        \"\"\"\n        Deselects all selected children.\n        \"\"\"\n        result = self.querySelection().clearSelection()\n        doDelay()\n        return result\n    def select(self):\n        \"\"\"\n        Selects the Accessible.\n        \"\"\"\n        try:\n            parent = self.parent\n        except AttributeError:\n            raise NotImplementedError\n        result = parent.querySelection().selectChild(self.indexInParent)\n        doDelay()\n        return result\n    def deselect(self):\n        \"\"\"\n        Deselects the Accessible.\n        \"\"\"\n        try:\n            parent = self.parent",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:581-623"
+    },
+    "2325": {
+        "file_id": 368,
+        "content": "This code seems to be part of a Python class, possibly for an Accessibility framework. It includes methods for checking if the 'visible' attribute is set and manipulating the selection state of child widgets. The class likely inherits from pyatspi.Accessible and has a parent property.",
+        "type": "comment"
+    },
+    "2326": {
+        "file_id": 368,
+        "content": "        except AttributeError:\n            raise NotImplementedError\n        result = parent.querySelection().deselectChild(self.indexInParent)\n        doDelay()\n        return result\n    @property\n    def isSelected(self):\n        \"\"\"\n        Is the Accessible selected? Compatibility property, same as Node.selected.\n        \"\"\"\n        try:\n            parent = self.parent\n        except AttributeError:\n            raise NotImplementedError\n        return parent.querySelection().isChildSelected(self.indexInParent)\n    @property\n    def selected(self):\n        \"\"\"\n        Is the Accessible selected?\n        \"\"\"\n        return self.isSelected\n    @property\n    def selectedChildren(self):\n        \"\"\"\n        Returns a list of children that are selected.\n        \"\"\"\n        # TODO: hideChildren for Hyperlinks?\n        selection = self.querySelection()\n        selectedChildren = []\n        for i in range(selection.nSelectedChildren):\n            selectedChildren.append(selection.getSelectedChild(i))\n    #\n    # Value\n    #",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:624-661"
+    },
+    "2327": {
+        "file_id": 368,
+        "content": "Except block catches AttributeError for self.parent, NotImplementedError raised if caught, querySelection deselects child and delays, returns result. isSelected property checks if Accessible is selected, uses try-except to catch AttributeError, returns parent's selection status. selected property mirrors isSelected. selectedChildren gets all selected children from querySelection.",
+        "type": "comment"
+    },
+    "2328": {
+        "file_id": 368,
+        "content": "    @property\n    def value(self):\n        \"\"\"\n        The value contained by the AccessibleValue interface.\n        \"\"\"\n        try:\n            return self.queryValue().currentValue\n        except NotImplementedError:\n            pass\n    @value.setter\n    def value(self, value):\n        \"\"\"\n        Setter for the value contained by the AccessibleValue interface.\n        \"\"\"\n        self.queryValue().currentValue = value\n    @property\n    def minValue(self):\n        \"\"\"\n        The minimum value of self.value\n        \"\"\"\n        try:\n            return self.queryValue().minimumValue\n        except NotImplementedError:\n            pass\n    @property\n    def minValueIncrement(self):\n        \"\"\"\n        The minimum value increment of self.value\n        \"\"\"\n        try:\n            return self.queryValue().minimumIncrement\n        except NotImplementedError:\n            pass\n    @property\n    def maxValue(self):\n        \"\"\"\n        The maximum value of self.value\n        \"\"\"\n        try:\n            return self.queryValue().maximumValue",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:663-706"
+    },
+    "2329": {
+        "file_id": 368,
+        "content": "This code defines several properties (value, minValue, maxValue) for an AccessibleValue interface, with each property providing access to specific value attributes. If the attribute is not implemented, a NotImplementedError exception is caught and silently ignored.",
+        "type": "comment"
+    },
+    "2330": {
+        "file_id": 368,
+        "content": "        except NotImplementedError:\n            pass\n    def typeText(self, string):\n        \"\"\"\n        Type the given text into the node, with appropriate delays and logging.\n        \"\"\"\n        logger.log(str(\"Typing text into %s: '%s'\") % (self.getLogString(), str(string)))\n        if self.focusable:\n            if not self.focused:\n                try:\n                    self.grabFocus()\n                except Exception:\n                    logger.log(\"Node is focusable but I can't grabFocus!\")\n            rawinput.typeText(string)\n        else:\n            logger.log(\"Node is not focusable; falling back to inserting text\")\n            et = self.queryEditableText()\n            et.insertText(self.caretOffset, string, len(string))\n            self.caretOffset += len(string)\n            doDelay()\n    def keyCombo(self, comboString):\n        if config.debugSearching:\n            logger.log(str(\"Pressing keys '%s' into %s\") %\n                       (str(comboString), self.getLogString()))\n        if self.focusable:",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:707-734"
+    },
+    "2331": {
+        "file_id": 368,
+        "content": "This code snippet defines two functions, `typeText` and `keyCombo`, within the class. The `typeText` function types the given text into a node with appropriate delays and logging. It first checks if the node is focusable; if not, it falls back to inserting the text. If focusable, it tries to grab focus before typing the text. The `keyCombo` function presses keys defined by the `comboString` input into the node, logging a debug message if necessary. Both functions check whether the node is focusable before performing their respective operations.",
+        "type": "comment"
+    },
+    "2332": {
+        "file_id": 368,
+        "content": "            if not self.focused:\n                try:\n                    self.grabFocus()\n                except Exception:\n                    logger.log(\"Node is focusable but I can't grabFocus!\")\n        else:\n            logger.log(\"Node is not focusable; trying key combo anyway\")\n        rawinput.keyCombo(comboString)\n    def getLogString(self):\n        \"\"\"\n        Get a string describing this node for the logs,\n        respecting the config.absoluteNodePaths boolean.\n        \"\"\"\n        if config.absoluteNodePaths:\n            return self.getAbsoluteSearchPath()\n        else:\n            return str(self)\n    def satisfies(self, pred):\n        \"\"\"\n        Does this node satisfy the given predicate?\n        \"\"\"\n        # the logic is handled by the predicate:\n        assert isinstance(pred, predicate.Predicate)\n        return pred.satisfiedByNode(self)\n    def dump(self, type='plain', fileName=None):\n        from dogtail import dump\n        dumper = getattr(dump, type)\n        dumper(self, fileName)\n    def getAbsoluteSearchPath(self):",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:735-767"
+    },
+    "2333": {
+        "file_id": 368,
+        "content": "This code snippet is for a class representing a node in a tree. It can grab focus and handle input through key combos, log relevant information about its state, satisfy certain predicates, and dump itself to file in different formats. The code checks if the node is focusable and tries to grab focus if not, before attempting a key combo. If not focusable, it logs the fact. The getLogString method returns a string representation of the node for logging, based on a configurable absoluteNodePaths boolean. The satisfies method checks whether a given predicate is satisfied by the node. The dump method dumps the node to file in plain or other formats specified by the dogtail module. The getAbsoluteSearchPath method returns the absolute search path if config.absoluteNodePaths is true, otherwise it returns the string representation of the node.",
+        "type": "comment"
+    },
+    "2334": {
+        "file_id": 368,
+        "content": "        \"\"\"\n        FIXME: this needs rewriting...\n        Generate a SearchPath instance giving the 'best'\n        way to find the Accessible wrapped by this node again, starting\n        at the root and applying each search in turn.\n        This is somewhat analagous to an absolute path in a filesystem,\n        except that some of searches may be recursive, rather than just\n        searching direct children.\n        Used by the recording framework for identifying nodes in a\n        persistent way, independent of the style of script being\n        written.\n        FIXME: try to ensure uniqueness\n        FIXME: need some heuristics to get 'good' searches, whatever\n        that means\n        \"\"\"\n        if config.debugSearchPaths:\n            logger.log(\"getAbsoluteSearchPath(%s)\" % self)\n        if self.roleName == 'application':\n            result = path.SearchPath()\n            result.append(predicate.IsAnApplicationNamed(self.name), False)\n            return result\n        else:\n            if self.parent:\n                (ancestor, pred, isRecursive) = self.getRelativeSearch()",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:768-795"
+    },
+    "2335": {
+        "file_id": 368,
+        "content": "This code generates a SearchPath instance by providing the best way to find an Accessible node. It starts from the root and applies each search in turn, similar to an absolute path in a filesystem. Used for identifying nodes independently of script style. Needs rewriting for uniqueness, better heuristics, and debugging options.",
+        "type": "comment"
+    },
+    "2336": {
+        "file_id": 368,
+        "content": "                if config.debugSearchPaths:\n                    logger.log(\"got ancestor: %s\" % ancestor)\n                ancestorPath = ancestor.getAbsoluteSearchPath()\n                ancestorPath.append(pred, isRecursive)\n                return ancestorPath\n            else:\n                # This should be the root node:\n                return path.SearchPath()\n    def getRelativeSearch(self):\n        \"\"\"\n        Get a (ancestorNode, predicate, isRecursive) triple that identifies the\n        best way to find this Node uniquely.\n        FIXME: or None if no such search exists?\n        FIXME: may need to make this more robust\n        FIXME: should this be private?\n        \"\"\"\n        if config.debugSearchPaths:\n            logger.log(\"getRelativeSearchPath(%s)\" % self)\n        assert self\n        assert self.parent\n        isRecursive = False\n        ancestor = self.parent\n        # iterate up ancestors until you reach an identifiable one,\n        # setting the search to be isRecursive if need be:\n        while not self.__nodeIsIdentifiable(ancestor):",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:796-825"
+    },
+    "2337": {
+        "file_id": 368,
+        "content": "The code retrieves a relative search path for a given node. If the node's debug search paths are enabled, it logs the ancestor information. It then gets the absolute search path of the ancestor and appends the predicate and recursive flag if necessary. If the root node is reached, it returns a new search path.",
+        "type": "comment"
+    },
+    "2338": {
+        "file_id": 368,
+        "content": "            ancestor = ancestor.parent\n            isRecursive = True\n        # Pick the most appropriate predicate for finding this node:\n        if self.labellee:\n            if self.labellee.name:\n                return (ancestor, predicate.IsLabelledAs(self.labellee.name), isRecursive)\n        if self.roleName == 'menu':\n            return (ancestor, predicate.IsAMenuNamed(self.name), isRecursive)\n        elif self.roleName == 'menu item' or self.roleName == 'check menu item':\n            return (ancestor, predicate.IsAMenuItemNamed(self.name), isRecursive)\n        elif self.roleName == 'text':\n            return (ancestor, predicate.IsATextEntryNamed(self.name), isRecursive)\n        elif self.roleName == 'push button':\n            return (ancestor, predicate.IsAButtonNamed(self.name), isRecursive)\n        elif self.roleName == 'frame':\n            return (ancestor, predicate.IsAWindowNamed(self.name), isRecursive)\n        elif self.roleName == 'dialog':\n            return (ancestor, predicate.IsADialogNamed(self.name), isRecursive)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:826-845"
+    },
+    "2339": {
+        "file_id": 368,
+        "content": "The code selects the most appropriate predicate for finding a specific node based on its role and name. It returns a tuple containing the ancestor, predicate, and a flag indicating whether the search is recursive or not.",
+        "type": "comment"
+    },
+    "2340": {
+        "file_id": 368,
+        "content": "        else:\n            pred = predicate.GenericPredicate(\n                name=self.name, roleName=self.roleName)\n            return (ancestor, pred, isRecursive)\n    def __nodeIsIdentifiable(self, ancestor):\n        if ancestor.labellee:\n            return True\n        elif ancestor.name:\n            return True\n        elif not ancestor.parent:\n            return True\n        else:\n            return False\n    def _fastFindChild(self, pred, recursive=True, showingOnly=None):\n        \"\"\"\n        Searches for an Accessible using methods from pyatspi.utils\n        \"\"\"\n        if isinstance(pred, predicate.Predicate):\n            pred = pred.satisfiedByNode\n        if showingOnly is None:\n            showingOnly = config.searchShowingOnly\n        if showingOnly:\n            orig_pred = pred\n            pred = lambda n: orig_pred(n) and \\\n                             n.getState().contains(pyatspi.STATE_SHOWING)\n        if not recursive:\n            cIter = iter(self)\n            while True:\n                try:\n                    child = next(cIter)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:846-877"
+    },
+    "2341": {
+        "file_id": 368,
+        "content": "The code contains a function `__nodeIsIdentifiable` that checks if an ancestor node is identifiable based on its label and parent, and a function `_fastFindChild` that searches for an Accessible node using pyatspi.utils methods. The code also initializes a GenericPredicate object with a given name and roleName in certain conditions.",
+        "type": "comment"
+    },
+    "2342": {
+        "file_id": 368,
+        "content": "                except StopIteration:\n                    break\n                if child is not None and pred(child):\n                    return child\n        else:\n            return pyatspi.utils.findDescendant(self, pred)\n    def findChild(self, pred, recursive=True, debugName=None, retry=True, requireResult=True, showingOnly=None):\n        \"\"\"\n        Search for a node satisyfing the predicate, returning a Node.\n        If retry is True (the default), it makes multiple attempts,\n        backing off and retrying on failure, and eventually raises a\n        descriptive exception if the search fails.\n        If retry is False, it gives up after one attempt.\n        If requireResult is True (the default), an exception is raised after all\n        attempts have failed. If it is false, the function simply returns None.\n        \"\"\"\n        def describeSearch(parent, pred, recursive, debugName):\n            \"\"\"\n            Internal helper function\n            \"\"\"\n            if recursive:\n                noun = \"descendent\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:878-903"
+    },
+    "2343": {
+        "file_id": 368,
+        "content": "This code defines a function `findChild` that searches for a node satisfying the given predicate, returning it if found. It allows for multiple attempts with backoff and retrying, or gives up after one attempt depending on the 'retry' parameter. If no result is found after all attempts and 'requireResult' is True, an exception is raised; otherwise, it simply returns None. The `describeSearch` function is an internal helper function.",
+        "type": "comment"
+    },
+    "2344": {
+        "file_id": 368,
+        "content": "            else:\n                noun = \"child\"\n            if debugName is None:\n                debugName = pred.describeSearchResult()\n            return str(\"%s of %s: %s\") % (str(noun), parent.getLogString(), str(debugName))\n        compare_func = None\n        if isinstance(pred, LambdaType):\n            compare_func = pred\n            if debugName is None:\n                debugName = \"child satisyfing a custom lambda function\"\n        else:\n            assert isinstance(pred, predicate.Predicate)\n            compare_func = pred.satisfiedByNode\n        numAttempts = 0\n        while numAttempts < config.searchCutoffCount:\n            if numAttempts >= config.searchWarningThreshold or config.debugSearching:\n                logger.log(str(\"searching for %s (attempt %i)\") %\n                           (describeSearch(self, pred, recursive, debugName), numAttempts))\n            result = self._fastFindChild(compare_func, recursive, showingOnly=showingOnly)\n            if result:\n                assert isinstance(result, Node)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:904-927"
+    },
+    "2345": {
+        "file_id": 368,
+        "content": "This code snippet checks if a specific condition is met for a child node, using either a custom lambda function or a pre-defined predicate. If the condition is not met, it returns a descriptive string indicating so. The code also implements a search algorithm that tries to find a matching child node within a given cutoff count, logging its progress if necessary.",
+        "type": "comment"
+    },
+    "2346": {
+        "file_id": 368,
+        "content": "                if debugName:\n                    result.debugName = debugName\n                else:\n                    result.debugName = pred.describeSearchResult()\n                return result\n            else:\n                if not retry:\n                    break\n                numAttempts += 1\n                if config.debugSearching or config.debugSleep:\n                    logger.log(\"sleeping for %f\" % config.searchBackoffDuration)\n                sleep(config.searchBackoffDuration)\n        if requireResult:\n            raise SearchError(describeSearch(self, pred, recursive, debugName))\n    # The canonical \"search for multiple\" method:\n    def findChildren(self, pred, recursive=True, isLambda=False, showingOnly=None):\n        \"\"\"\n        Find all children/descendents satisfying the predicate.\n        You can also use lambdas in place of pred that will enable search also against\n        pure dogtail Node properties (like showing). I.e: \"lambda x: x.roleName == 'menu item'\n        and x.showing is True\". isLambda does not have to be set, it's kept only for api compatibility.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:928-949"
+    },
+    "2347": {
+        "file_id": 368,
+        "content": "This code defines a method to find all children/descendents of an object satisfying a given predicate. If the search fails, it retries with backoff, logs sleep time, and handles debugging. It supports using lambdas for searching against pure Dogtail Node properties like showing. The method also has an optional recursive flag and can handle pure dogtail Node properties when isLambda is set to True.",
+        "type": "comment"
+    },
+    "2348": {
+        "file_id": 368,
+        "content": "        \"\"\"\n        # always use lambda search, but we keep isLambda param for api compatibility\n        compare_func = None\n        if isLambda is True or isinstance(pred, LambdaType):\n            compare_func = pred\n        else:\n            assert isinstance(pred, predicate.Predicate)\n            compare_func = pred.satisfiedByNode\n        if showingOnly is None:\n            showingOnly = config.searchShowingOnly\n        if showingOnly:\n            orig_compare_func = compare_func\n            compare_func = lambda n: orig_compare_func(n) and \\\n                                     n.getState().contains(pyatspi.STATE_SHOWING)\n        results = []\n        numAttempts = 0\n        while numAttempts < config.searchCutoffCount:\n            if numAttempts >= config.searchWarningThreshold or config.debugSearching:\n                logger.log(\"a11y errors caught, making attempt %i\" % numAttempts)\n            try:\n                if recursive:\n                    results = pyatspi.utils.findAllDescendants(self, compare_func)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:950-972"
+    },
+    "2349": {
+        "file_id": 368,
+        "content": "The code defines a function that takes in a search predicate and applies it to the container's nodes, while also checking if they are showing or not. It uses lambda functions for faster execution, but keeps the isLambda parameter for API compatibility. The function will continue trying until it reaches the cutoff count. If warnings or debugging is enabled, it logs the number of attempts made.",
+        "type": "comment"
+    },
+    "2350": {
+        "file_id": 368,
+        "content": "                else:\n                    results = list(filter(compare_func, self.children))\n                break\n            except (GLib.GError, TypeError):\n                numAttempts += 1\n                if numAttempts == config.searchCutoffCount:\n                    logger.log(\"warning: errors caught from the a11y tree, giving up search\")\n                else:\n                    sleep(config.searchBackoffDuration)\n                continue\n        return results\n    # The canonical \"search above this node\" method:\n    def findAncestor(self, pred, showingOnly=None):\n        \"\"\"\n        Search up the ancestry of this node, returning the first Node\n        satisfying the predicate, or None.\n        \"\"\"\n        assert isinstance(pred, predicate.Predicate)\n        candidate = self.parent\n        while candidate is not None:\n            if candidate.satisfies(pred):\n                return candidate\n            else:\n                candidate = candidate.parent\n        # Not found:\n        return None\n    # Various wrapper/helper search methods:",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:973-1001"
+    },
+    "2351": {
+        "file_id": 368,
+        "content": "The code defines a method that searches for a node satisfying a specific predicate. If no suitable node is found within a certain number of attempts, it logs a warning and stops searching. The code also includes a helper method to find the first ancestor satisfying a given predicate and additional search wrapper methods.",
+        "type": "comment"
+    },
+    "2352": {
+        "file_id": 368,
+        "content": "    def child(self, name='', roleName='', description='', label='', recursive=True, retry=True, debugName=None, showingOnly=None):\n        \"\"\"\n        Finds a child satisying the given criteria.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        \"\"\"\n        return self.findChild(predicate.GenericPredicate(name=name, roleName=roleName, description=description,\n                              label=label), recursive=recursive, retry=retry, debugName=debugName, showingOnly=showingOnly)\n    def isChild(self, name='', roleName='', description='', label='', recursive=True, retry=False, debugName=None, showingOnly=None):\n        \"\"\"\n        Determines whether a child satisying the given criteria exists.\n        This is implemented using findChild, but will not automatically retry\n        if no such child is found. To make the function retry multiple times set retry to True.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1002-1018"
+    },
+    "2353": {
+        "file_id": 368,
+        "content": "This code defines two methods: \"child\" and \"isChild\". The \"child\" method finds a child node that satisfies the given criteria using the \"findChild\" function, which automatically retries if no such child is found. It also logs the search process. The \"isChild\" method determines whether a child node exists based on the provided criteria using the \"findChild\" function but does not retry automatically; if you want it to try multiple times, set the \"retry\" parameter to True.",
+        "type": "comment"
+    },
+    "2354": {
+        "file_id": 368,
+        "content": "        Returns a boolean value depending on whether the child was eventually found. Similar to\n        'child', yet it catches SearchError exception to provide for False results, will raise\n        any other exceptions. It also logs the search.\n        \"\"\"\n        found = True\n        try:\n            self.findChild(\n                predicate.GenericPredicate(\n                    name=name, roleName=roleName, description=description, label=label),\n                recursive=recursive, retry=retry, debugName=debugName, showingOnly=showingOnly)\n        except SearchError:\n            found = False\n        return found\n    def menu(self, menuName, recursive=True, showingOnly=None):\n        \"\"\"\n        Search below this node for a menu with the given name.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        \"\"\"\n        return self.findChild(predicate.IsAMenuNamed(menuName=menuName), recursive, showingOnly=showingOnly)",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1019-1041"
+    },
+    "2355": {
+        "file_id": 368,
+        "content": "The code contains two methods: 'findChild' and 'menu'. 'findChild' returns a boolean value indicating if the child was eventually found, handling SearchError exceptions and logging the search. 'menu' searches for a menu with the given name by calling 'findChild', automatically retrying if no such child is found and raising an exception when it does not exist, while also logging the search.",
+        "type": "comment"
+    },
+    "2356": {
+        "file_id": 368,
+        "content": "    def menuItem(self, menuItemName, recursive=True, showingOnly=None):\n        \"\"\"\n        Search below this node for a menu item with the given name.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        \"\"\"\n        return self.findChild(predicate.IsAMenuItemNamed(menuItemName=menuItemName), recursive, showingOnly=showingOnly)\n    def textentry(self, textEntryName, recursive=True, showingOnly=None):\n        \"\"\"\n        Search below this node for a text entry with the given name.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        \"\"\"\n        return self.findChild(predicate.IsATextEntryNamed(textEntryName=textEntryName), recursive, showingOnly=showingOnly)\n    def button(self, buttonName, recursive=True, showingOnly=None):",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1043-1063"
+    },
+    "2357": {
+        "file_id": 368,
+        "content": "The code defines functions `menuItem`, `textentry`, and `button` which search for child nodes with specific names within a tree-like structure. The search is performed using the `findChild` method, which automatically retries if no child node with the given name is found initially. This function also logs the search process.",
+        "type": "comment"
+    },
+    "2358": {
+        "file_id": 368,
+        "content": "        \"\"\"\n        Search below this node for a button with the given name.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        \"\"\"\n        return self.findChild(predicate.IsAButtonNamed(buttonName=buttonName), recursive, showingOnly=showingOnly)\n    def childLabelled(self, labelText, recursive=True, showingOnly=None):\n        \"\"\"\n        Search below this node for a child labelled with the given text.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        \"\"\"\n        return self.findChild(predicate.IsLabelledAs(labelText), recursive, showingOnly=showingOnly)\n    def childNamed(self, childName, recursive=True, showingOnly=None):\n        \"\"\"\n        Search below this node for a child with the given name.\n        This is implemented using findChild, and hence will automatically retry",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1064-1087"
+    },
+    "2359": {
+        "file_id": 368,
+        "content": "This code contains three methods - 'childNamed', 'childLabelled', and 'searchBelow'. These methods search for children nodes below the current node in a tree-like structure. The methods use the 'findChild' function to perform the search, which automatically retries if no child is found initially and eventually raises an exception if it still can't find one. The searches are logged as well.",
+        "type": "comment"
+    },
+    "2360": {
+        "file_id": 368,
+        "content": "        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        \"\"\"\n        return self.findChild(predicate.IsNamed(childName), recursive, showingOnly=showingOnly)\n    def tab(self, tabName, recursive=True, showingOnly=None):\n        \"\"\"\n        Search below this node for a tab with the given name.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        \"\"\"\n        return self.findChild(predicate.IsATabNamed(tabName=tabName), recursive, showingOnly=showingOnly)\n    def getUserVisibleStrings(self):\n        \"\"\"\n        Get all user-visible strings in this node and its descendents.\n        (Could be implemented as an attribute)\n        \"\"\"\n        result = []\n        if self.name:\n            result.append(self.name)\n        if self.description:\n            result.append(self.description)\n        try:\n            children = self.children",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1088-1115"
+    },
+    "2361": {
+        "file_id": 368,
+        "content": "This code snippet contains three methods: \"findChild\", \"tab\", and \"getUserVisibleStrings\". The findChild method searches for a child with given attributes, retries if not found, and logs the search. The tab method uses findChild to search for a tab with a specific name. The getUserVisibleStrings method collects all user-visible strings in a node and its descendants.",
+        "type": "comment"
+    },
+    "2362": {
+        "file_id": 368,
+        "content": "        except Exception:\n            return result\n        for child in children:\n            result.extend(child.getUserVisibleStrings())\n        return result\n    def blink(self):\n        \"\"\"\n        Blink, baby!\n        \"\"\"\n        if not self.extents:\n            return False\n        else:\n            (x, y, w, h) = self.extents\n            Blinker(x, y, w, h)\n            return True\nclass LinkAnchor(object):\n    \"\"\"\n    Class storing info about an anchor within an Accessibility.Hyperlink, which\n    is in turn stored within an Accessibility.Hypertext.\n    \"\"\"\n    def __init__(self, node, hypertext, linkIndex, anchorIndex):\n        self.node = node\n        self.hypertext = hypertext\n        self.linkIndex = linkIndex\n        self.anchorIndex = anchorIndex\n    @property\n    def link(self):\n        return self.hypertext.getLink(self.linkIndex)\n    @property\n    def URI(self):\n        return self.link.getURI(self.anchorIndex)\nclass Root (Node):\n    \"\"\"\n    FIXME:\n    \"\"\"\n    def applications(self):\n        \"\"\"\n        Get all applications.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1116-1162"
+    },
+    "2363": {
+        "file_id": 368,
+        "content": "The code defines a class \"LinkAnchor\" that represents an anchor within an Accessibility.Hyperlink in an Accessibility.Hypertext. It includes methods to access the link's URI and other properties. The \"Root\" class inherits from \"Node\" and provides a method to get all applications. The \"blink\" method is used for blinking animation if there are extents present. The code contains exception handling, and functions return their results.",
+        "type": "comment"
+    },
+    "2364": {
+        "file_id": 368,
+        "content": "        \"\"\"\n        return root.findChildren(predicate.GenericPredicate(roleName=\"application\"), recursive=False, showingOnly=False)\n    def application(self, appName, retry=True):\n        \"\"\"\n        Gets an application by name, returning an Application instance\n        or raising an exception.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        \"\"\"\n        return root.findChild(predicate.IsAnApplicationNamed(appName), recursive=False, retry=retry, showingOnly=False)\nclass Application (Node):\n    def dialog(self, dialogName, recursive=False, showingOnly=None):\n        \"\"\"\n        Search below this node for a dialog with the given name,\n        returning a Window instance.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        FIXME: should this method activate the dialog?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1163-1188"
+    },
+    "2365": {
+        "file_id": 368,
+        "content": "This code defines a class called `Application` which extends `Node`. The `Application` class has a method `dialog` that searches for a dialog with the given name below the current node, returning a `Window` instance. It uses the `findChild` function for searching and automatically retries if no such child is found. This function also logs the search process.",
+        "type": "comment"
+    },
+    "2366": {
+        "file_id": 368,
+        "content": "        \"\"\"\n        return self.findChild(predicate.IsADialogNamed(dialogName=dialogName), recursive, showingOnly=showingOnly)\n    def window(self, windowName, recursive=False, showingOnly=None):\n        \"\"\"\n        Search below this node for a window with the given name,\n        returning a Window instance.\n        This is implemented using findChild, and hence will automatically retry\n        if no such child is found, and will eventually raise an exception. It\n        also logs the search.\n        FIXME: this bit isn't true:\n        The window will be automatically activated (raised and focused\n        by the window manager) if wnck bindings are available.\n        \"\"\"\n        result = self.findChild(predicate.IsAWindowNamed(windowName=windowName), recursive, showingOnly=showingOnly)\n        # FIXME: activate the WnckWindow ?\n        # if gotWnck:\n        #       result.activate()\n        return result\n    def getWnckApplication(self, showingOnly=None):  # pragma: no cover\n        \"\"\"\n        Get the wnck.Application instance for this application, or None",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1189-1213"
+    },
+    "2367": {
+        "file_id": 368,
+        "content": "This code defines functions for finding a dialog, window, and wnck application within the container hierarchy. The \"findChild\" function is used to search for a child node based on a given predicate, recursively if needed, and showing only specific types of nodes. The \"window\" function searches below the current node for a window with a specified name and returns a Window instance. It also logs the search and can automatically retry if no child is found. Finally, the \"getWnckApplication\" function retrieves the wnck.Application instance for a given application, or None if not found. The code contains a FIXME note regarding activating Wnck windows using wnck bindings.",
+        "type": "comment"
+    },
+    "2368": {
+        "file_id": 368,
+        "content": "        Currently implemented via a hack: requires the app to have a\n        window, and looks up the application of that window\n        wnck.Application can give you the pid, the icon, etc\n        FIXME: untested\n        \"\"\"\n        window = self.child(roleName='frame', showingOnly=showingOnly)\n        if window:\n            wnckWindow = window.getWnckWindow()\n            return wnckWindow.get_application()\nclass Window (Node):\n    def getWnckWindow(self):  # pragma: no cover\n        \"\"\"\n        Get the wnck.Window instance for this window, or None\n        \"\"\"\n        # FIXME: this probably needs rewriting:\n        screen = Wnck.screen_get_default()\n        # You have to force an update before any of the wnck methods\n        # do anything:\n        screen.force_update()\n        for wnckWindow in screen.get_windows():\n            # FIXME: a dubious hack: search by window title:\n            if wnckWindow.get_name() == self.name:\n                return wnckWindow\n    def activate(self):  # pragma: no cover\n        \"\"\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1215-1247"
+    },
+    "2369": {
+        "file_id": 368,
+        "content": "This code retrieves a wnck.Window instance for the specified window and returns the associated application. It currently relies on a hack involving window titles, which may need refactoring in the future. The getWnckWindow method forces an update before using any wnck methods, potentially to ensure accurate results. The activate method is also present but not commented.",
+        "type": "comment"
+    },
+    "2370": {
+        "file_id": 368,
+        "content": "        Activates the wnck.Window associated with this Window.\n        FIXME: doesn't yet work\n        \"\"\"\n        wnckWindow = self.getWnckWindow()\n        # Activate it with a timestamp of 0; this may confuse\n        # alt-tabbing through windows etc:\n        # FIXME: is there a better way of getting a timestamp?\n        # gdk_x11_get_server_time (), with a dummy window\n        wnckWindow.activate(0)\nclass Wizard (Window):\n    \"\"\"\n    Note that the buttons of a GnomeDruid were not accessible until\n    recent versions of libgnomeui.  This is\n    http://bugzilla.gnome.org/show_bug.cgi?id=157936\n    and is fixed in gnome-2.10 and gnome-2.12 (in CVS libgnomeui);\n    there's a patch attached to that bug.\n    This bug is known to affect FC3; fixed in FC5\n    \"\"\"\n    def __init__(self, node, debugName=None):\n        Node.__init__(self, node)\n        if debugName:\n            self.debugName = debugName\n        logger.log(str(\"%s is on '%s' page\") % (self, str(self.getPageTitle())))\n    def currentPage(self):\n        \"\"\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1248-1278"
+    },
+    "2371": {
+        "file_id": 368,
+        "content": "The code is part of a Window class that interacts with wnck.Window and GnomeDruid. The Wizard class inherits from the Window class and has an init method for initializing instances. The activate method in the Window class activates the associated wnck.Window but mentions it doesn't work yet. The __init__ method of the Wizard class initializes a Node object and logs its current page using logger. Lastly, the currentPage method is mentioned but not implemented.",
+        "type": "comment"
+    },
+    "2372": {
+        "file_id": 368,
+        "content": "        Get the current page of this wizard\n        FIXME: this is currently a hack, supporting only GnomeDruid\n        \"\"\"\n        pageHolder = self.child(roleName='panel')\n        for child in pageHolder.children:\n            if child.showing:\n                return child\n        raise \"Unable to determine current page of %s\" % self\n    def getPageTitle(self):\n        \"\"\"\n        Get the string title of the current page of this wizard\n        FIXME: this is currently a total hack, supporting only GnomeDruid\n        \"\"\"\n        currentPage = self.currentPage()\n        return currentPage.child(roleName='panel').child(roleName='panel').child(roleName='label', recursive=False).text\n    def clickForward(self):\n        \"\"\"\n        Click on the 'Forward' button to advance to next page of wizard.\n        It will log the title of the new page that is reached.\n        FIXME: what if it's Next rather than Forward ???\n        This will only work if your libgnomeui has accessible buttons;\n        see above.\n        \"\"\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1279-1308"
+    },
+    "2373": {
+        "file_id": 368,
+        "content": "The code is part of a wizard GUI class, designed to work with the GnomeDruid library. It provides methods for determining the current page and clicking forward. However, it has multiple FIXME notes indicating hacks and limitations related to specific implementation details.",
+        "type": "comment"
+    },
+    "2374": {
+        "file_id": 368,
+        "content": "        fwd = self.child(\"Forward\")\n        fwd.click()\n        # Log the new wizard page; it's helpful when debugging scripts\n        logger.log(str(\"%s is now on '%s' page\") % (self, str(self.getPageTitle())))\n        # FIXME disabled for now (can't get valid page titles)\n    def clickApply(self):\n        \"\"\"\n        Click on the 'Apply' button to advance to next page of wizard.\n        FIXME: what if it's Finish rather than Apply ???\n        This will only work if your libgnomeui has accessible buttons;\n        see above.\n        \"\"\"\n        fwd = self.child(\"Apply\")\n        fwd.click()\n        # FIXME: debug logging?\nAccessibility.Accessible.__bases__ = (\n    Application, Root, Node,) + Accessibility.Accessible.__bases__\ntry:\n    root = pyatspi.Registry.getDesktop(0)\n    root.debugName = 'root'\nexcept Exception:  # pragma: no cover\n    # Warn if AT-SPI's desktop object doesn't show up.\n    logger.log(\"Error: AT-SPI's desktop is not visible. Do you have accessibility enabled?\")\n# Check that there are applications running. Warn if none are.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1309-1339"
+    },
+    "2375": {
+        "file_id": 368,
+        "content": "The code is interacting with a GUI application using the Accessibility module in Python. It clicks on buttons labeled \"Forward\" and \"Apply,\" logs page titles for debugging, and handles potential exceptions when accessing AT-SPI's desktop object.",
+        "type": "comment"
+    },
+    "2376": {
+        "file_id": 368,
+        "content": "children = root.children\nif not children:  # pragma: no cover\n    logger.log(\n        \"Warning: AT-SPI's desktop is visible but it has no children. Are you running any AT-SPI-aware applications?\")\ndel children\n# sniff also imports from tree and we don't want to run this code from sniff itself\nif not os.path.exists('/tmp/sniff_running.lock'):\n    if not os.path.exists('/tmp/sniff_refresh.lock'):  # may have already been locked by dogtail.procedural\n        # 'tell' newly opened sniff not to use auto-refresh while script using this module is running\n        sniff_lock = Lock(lockname='sniff_refresh.lock', randomize=False, unlockOnExit=True)\n        try:\n            sniff_lock.lock()\n        except OSError:  # pragma: no cover\n            pass\nelif 'sniff' not in sys.argv[0]:\n    print(\"Dogtail: Warning: Running sniff has been detected.\")\n    print(\"Please make sure sniff has the 'Auto Refresh' disabled.\")\n    print(\"NOTE: Running scripts with sniff present is not recommended.\")\n# Convenient place to set some debug variables:",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1340-1361"
+    },
+    "2377": {
+        "file_id": 368,
+        "content": "The code checks if AT-SPI's desktop has any children. If not, it logs a warning and deletes the 'children' variable. It then checks if a file exists indicating sniff is running, and if not, locks another file to prevent auto-refresh while a script using this module runs. If the file already exists and sniff is detected, it prints warnings and advises disabling auto-refresh. Finally, it provides a convenient place to set debug variables.",
+        "type": "comment"
+    },
+    "2378": {
+        "file_id": 368,
+        "content": "# config.debugSearching = True\n# config.absoluteNodePaths = True\n# config.logDebugToFile = False",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/tree_modified.py:1362-1364"
+    },
+    "2379": {
+        "file_id": 368,
+        "content": "These lines set configuration options for debugging and logging. Debug searching is enabled, absolute node paths are used, and debug information is not logged to a file.",
+        "type": "comment"
+    },
+    "2380": {
+        "file_id": 369,
+        "content": "/bootstrap/legacy/container_1/random/welcome.py",
+        "type": "filepath"
+    },
+    "2381": {
+        "file_id": 369,
+        "content": "The code imports the 'colored' function from 'termcolor' library, then prints a welcome message with colored text. The colors are used for decorative purposes to create a visually appealing output.",
+        "type": "summary"
+    },
+    "2382": {
+        "file_id": 369,
+        "content": "from termcolor import colored\nprint()\nprint(colored(\"    -\",\"red\"))\nprint(colored(\"   |    \",\"red\")+colored(\"            ___  __  __\",\"cyan\"))\nprint(colored(\"  / \\   \",\"red\")+colored(\"|    /|  /  ___ |   |  |\",\"cyan\"))\nprint(colored(\" \\  _\\  \",\"red\")+colored(\"|__ / | /__ ___ |   |__|\",\"cyan\"))\nprint()\nprint(colored(\"\"\"To make everything\nexecutable, analyzable, controllable.\"\"\",\"yellow\"))\nprint()",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/welcome.py:1-10"
+    },
+    "2383": {
+        "file_id": 369,
+        "content": "The code imports the 'colored' function from 'termcolor' library, then prints a welcome message with colored text. The colors are used for decorative purposes to create a visually appealing output.",
+        "type": "comment"
+    },
+    "2384": {
+        "file_id": 370,
+        "content": "/bootstrap/legacy/container_1/random/with_id_sample_manager.py",
+        "type": "filepath"
+    },
+    "2385": {
+        "file_id": 370,
+        "content": "The code imports Dogtail library, defines a GUI traversal function, and applies it to the root with configurable children limit. It appears outdated or unused with debugging statements, possibly for testing or accessibility purposes on different OSs.",
+        "type": "summary"
+    },
+    "2386": {
+        "file_id": 370,
+        "content": "# import dogtail\nfrom dogtail import *\n# actually you can find out what is in here by looking into the globals.\n# can you do anonymous shits? adding prefix will do the trick.\n# finally get it right?\nf=\"________________________________________________________________\"\n# # distribution?\n# # fuck the code?\n# print(f)\n# for x in dir(utils):\n#     print(x)\ndef walker(a,f):\n    for x in a.children:\n        for j in f:\n            try:\n                eval(\"\"\"print(\">>>>>{}\",x.{})\"\"\".format(j,j))\n            except:\n                pass\n        walker(x,f)\n# Only returning 100 children. You may change config.childrenLimit if you wish. This message will only be printed once.\n# so change it?\nr=tree.root\n#print(r.id)\nf=dir(r)\nwalker(r,f)\n#for x in r.children:\n#    print(x.id)\n# get a walker for this.\n#print(r,type(r))\n#print(f)\n#for x in dir(r):\n#    print(x)\n#print(f)\n#print(r.dump())\n# this is fucking awesome.\n# what is this class??\n    # always the fucking cron job!\n    # it is hard to tell. check that shit first?\n    # this is gnome compatible. but remember, there's some tinycore linux over the spot.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/with_id_sample_manager.py:1-39"
+    },
+    "2387": {
+        "file_id": 370,
+        "content": "The code is importing the Dogtail library and defining a function called \"walker\" that traverses a GUI tree and prints out information about each element. It then applies this walker function to the root of the GUI tree, returning 100 children by default but allowing the config.childrenLimit to be changed. The purpose seems to be for testing or debugging purposes to inspect the structure and properties of the GUI elements.",
+        "type": "comment"
+    },
+    "2388": {
+        "file_id": 370,
+        "content": "    # well, we don't use it.\n    # there is a sniff util.\n# f=utils.isA11yEnabled()\n# f=utils.screenshot()\n# print(f)\n# returning a path.\n# it can be done with a little script.\n# whatever. this is not the main focus.\n# print the tree of all shits? what about windows?\n# shit man.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/random/with_id_sample_manager.py:40-49"
+    },
+    "2389": {
+        "file_id": 370,
+        "content": "This code seems to contain debugging statements that are no longer in use, and mentions a \"sniff util\" possibly for accessibility. There is also a comment about capturing a screenshot with the \"utils\" module, but it doesn't return anything useful. The code author expresses frustration about dealing with different operating systems. Overall, this code seems to be outdated or unused.",
+        "type": "comment"
+    },
+    "2390": {
+        "file_id": 371,
+        "content": "/bootstrap/legacy/container_1/rustup.sh",
+        "type": "filepath"
+    },
+    "2391": {
+        "file_id": 371,
+        "content": "The script downloads and prepares dependencies for Rustup installation, detecting CPU architecture and OS type, supports various platforms, and ensures secure downloads with TLS v1.2 and strong cipher suites.",
+        "type": "summary"
+    },
+    "2392": {
+        "file_id": 371,
+        "content": "#!/bin/sh\n# shellcheck shell=dash\n# This is just a little script that can be downloaded from the internet to\n# install rustup. It just does platform detection, downloads the installer\n# and runs it.\n# It runs on Unix shells like {a,ba,da,k,z}sh. It uses the common `local`\n# extension. Note: Most shells limit `local` to 1 var per line, contra bash.\nset -u\n# If RUSTUP_UPDATE_ROOT is unset or empty, default it.\nRUSTUP_UPDATE_ROOT=\"${RUSTUP_UPDATE_ROOT:-https://static.rust-lang.org/rustup}\"\n#XXX: If you change anything here, please make the same changes in setup_mode.rs\nusage() {\n    cat 1>&2 <<EOF\nrustup-init 1.22.1 (76644d669 2020-07-08)\nThe installer for rustup\nUSAGE:\n    rustup-init [FLAGS] [OPTIONS]\nFLAGS:\n    -v, --verbose           Enable verbose output\n    -q, --quiet             Disable progress output\n    -y                      Disable confirmation prompt.\n        --no-modify-path    Don't configure the PATH environment variable\n    -h, --help              Prints help information\n    -V, --version           Prints version information",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:1-31"
+    },
+    "2393": {
+        "file_id": 371,
+        "content": "This script downloads and runs the Rustup installer, allowing users to easily set up Rust on Unix shells. It checks platform, sets environment variables, provides usage instructions, and offers flags for verbose output, disabling confirmation prompts or modifying PATH.",
+        "type": "comment"
+    },
+    "2394": {
+        "file_id": 371,
+        "content": "OPTIONS:\n        --default-host <default-host>              Choose a default host triple\n        --default-toolchain <default-toolchain>    Choose a default toolchain to install\n        --default-toolchain none                   Do not install any toolchains\n        --profile [minimal|default|complete]       Choose a profile\n    -c, --component <components>...                Component name to also install\n    -t, --target <targets>...                      Target name to also install\nEOF\n}\nmain() {\n    downloader --check\n    need_cmd uname\n    need_cmd mktemp\n    need_cmd chmod\n    need_cmd mkdir\n    need_cmd rm\n    need_cmd rmdir\n    get_architecture || return 1\n    local _arch=\"$RETVAL\"\n    assert_nz \"$_arch\" \"arch\"\n    local _ext=\"\"\n    case \"$_arch\" in\n        *windows*)\n            _ext=\".exe\"\n            ;;\n    esac\n    local _url=\"${RUSTUP_UPDATE_ROOT}/dist/${_arch}/rustup-init${_ext}\"\n    local _dir\n    _dir=\"$(mktemp -d 2>/dev/null || ensure mktemp -d -t rustup)\"\n    local _file=\"${_dir}/rustup-init${_ext}\"",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:33-67"
+    },
+    "2395": {
+        "file_id": 371,
+        "content": "This code is setting up the necessary dependencies and downloading a file for installation. It checks the target architecture, creates a temporary directory, and downloads the appropriate executable (with .exe extension on Windows) to that directory. The purpose is likely to install or update Rust toolchain components and/or targets using rustup, which requires these prerequisites before proceeding with installation or updates.",
+        "type": "comment"
+    },
+    "2396": {
+        "file_id": 371,
+        "content": "    local _ansi_escapes_are_valid=false\n    if [ -t 2 ]; then\n        if [ \"${TERM+set}\" = 'set' ]; then\n            case \"$TERM\" in\n                xterm*|rxvt*|urxvt*|linux*|vt*)\n                    _ansi_escapes_are_valid=true\n                ;;\n            esac\n        fi\n    fi\n    # check if we have to use /dev/tty to prompt the user\n    local need_tty=yes\n    for arg in \"$@\"; do\n        case \"$arg\" in\n            -h|--help)\n                usage\n                exit 0\n                ;;\n            -y)\n                # user wants to skip the prompt -- we don't need /dev/tty\n                need_tty=no\n                ;;\n            *)\n                ;;\n        esac\n    done\n    if $_ansi_escapes_are_valid; then\n        printf \"\\33[1minfo:\\33[0m downloading installer\\n\" 1>&2\n    else\n        printf '%s\\n' 'info: downloading installer' 1>&2\n    fi\n    ensure mkdir -p \"$_dir\"\n    ensure downloader \"$_url\" \"$_file\" \"$_arch\"\n    ensure chmod u+x \"$_file\"\n    if [ ! -x \"$_file\" ]; then\n        printf '%s\\n' \"Cannot execute $_file (likely because of mounting /tmp as noexec).\" 1>&2",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:69-107"
+    },
+    "2397": {
+        "file_id": 371,
+        "content": "This code checks if ANSI escapes are valid, prompts the user to download an installer, and ensures the installer is executable. It handles arguments like -h or --help, skips prompt with -y, and handles non-executable installers. The usage of printf and mkdir is evident.",
+        "type": "comment"
+    },
+    "2398": {
+        "file_id": 371,
+        "content": "        printf '%s\\n' \"Please copy the file to a location where you can execute binaries and run ./rustup-init${_ext}.\" 1>&2\n        exit 1\n    fi\n    if [ \"$need_tty\" = \"yes\" ]; then\n        # The installer is going to want to ask for confirmation by\n        # reading stdin.  This script was piped into `sh` though and\n        # doesn't have stdin to pass to its children. Instead we're going\n        # to explicitly connect /dev/tty to the installer's stdin.\n        if [ ! -t 1 ]; then\n            err \"Unable to run interactively. Run with -y to accept defaults, --help for additional options\"\n        fi\n        ignore \"$_file\" \"$@\" < /dev/tty\n    else\n        ignore \"$_file\" \"$@\"\n    fi\n    local _retval=$?\n    ignore rm \"$_file\"\n    ignore rmdir \"$_dir\"\n    return \"$_retval\"\n}\nget_bitness() {\n    need_cmd head\n    # Architecture detection without dependencies beyond coreutils.\n    # ELF files start out \"\\x7fELF\", and the following byte is\n    #   0x01 for 32-bit and\n    #   0x02 for 64-bit.\n    # The printf builtin on some shells like dash only supports octal",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_1/rustup.sh:108-140"
+    },
+    "2399": {
+        "file_id": 371,
+        "content": "This code segment is responsible for handling interactive and non-interactive installations of rustup. It checks if the installation requires user interaction or not, sets up the necessary environment variables, removes temporary files and directories, and returns the exit status. Additionally, it provides architecture detection without dependencies using ELF file format.",
+        "type": "comment"
+    }
+}

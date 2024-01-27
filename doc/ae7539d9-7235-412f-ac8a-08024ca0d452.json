@@ -1,0 +1,15 @@
+{
+    "summary": "The code sets up a secure, private jail environment using \"firejail\" and seccomp rules to restrict system calls before executing the \"jbash.sh\" script. However, the author finds it ineffective or insufficient.",
+    "details": [
+        {
+            "comment": "The code is attempting to create a read-only, private jail environment using the \"firejail\" tool. It sets up a RAM disk with limited permissions and tries various seccomp rules to restrict system calls. It then executes the \"jbash.sh\" script within this secure environment.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/base_jail.sh\":0-21",
+            "content": "#!/bin/bash\n# that one is not right, which will quit and leave everything unconfigured.\n# you know that i just want to trap that thing into the folder.\n./unloadram.sh\nsudo mkdir ramdisk\nsudo chmod 777 ramdisk\nsudo mount -t tmpfs -o size=10m myramdisk ramdisk\n# what the fuck is going on?\n# wtf? try to block everything.\n# how about copy things into that thing?\ncp republica/* ramdisk/\nchmod 777 ramdisk/*\n#mkdir -p ramdisk/ramdisk\n# not able to execute script!\n# do not use double seccomp rules!\nfirejail --noprofile --read-only=/ --private=ramdisk/ ./jbash.sh\n#firejail --noprofile --read-only=/ --read-only=ramdisk/libjudger.so --read-only=ramdisk/jpython.sh --read-only=ramdisk/jbash.sh --read-write=ramdisk/ramdisk --private=ramdisk/ ./jbash.sh\n#firejail --noprofile --read-only=/ --private=ramdisk/ \n#firejail --read-only=/ --private=ramdisk/ --seccomp.drop=@reboot,shutdown ./jbash.sh\n#firejail  --apparmor --read-only=/ --private=ramdisk/ --seccomp.drop=@reboot,shutdown\n#./jbash.sh\n#firejail  --apparmor --read-only=/ --private=ramdisk/ --seccomp.drop=@reboot,shutdown "
+        },
+        {
+            "comment": "This code snippet in base_jail.sh is blocking all sbin access, making the ramdisk private, and dropping certain system call permissions using seccomp. The last lines indicate that the author finds it useless or not satisfactory.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/base_jail.sh\":22-27",
+            "content": "# we'll block all sbin.\n# and this is useless.\n#firejail  --read-only=/ --private=ramdisk/ --seccomp=!shutdown,!restart_syscall\n#firejail --noprofile --read-only=/ --private=ramdisk/ --seccomp.drop=@reboot,@mount,@chown\n#--seccomp.print\n# this is shit."
+        }
+    ]
+}

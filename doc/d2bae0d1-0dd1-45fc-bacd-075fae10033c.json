@@ -1,0 +1,10 @@
+{
+    "summary": "This script searches for all point of interest in a file, using convolution and rounds. It calculates the number of characters in the file and then performs rounds of iterations to extract substrings based on the length of each iteration. It uses head, tail, grep commands to find samples in the file and outputs the results. The author expresses frustration with the code's grammar and wishes it could be written in Python.",
+    "details": [
+        {
+            "comment": "This script searches for all point of interest in a file, using convolution and rounds. It calculates the number of characters in the file and then performs rounds of iterations to extract substrings based on the length of each iteration. It uses head, tail, grep commands to find samples in the file and outputs the results. The author expresses frustration with the code's grammar and wishes it could be written in Python.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/unique.sh\":0-28",
+            "content": "#!/bin/bash\n# find all point of interest.\n# len 1, len 2, convolution.\nnumber=$(cat /dev/shm/lazero | wc -c)\n# echo $number\nrounds=1\n# formula -> [x:y] head -c y | tail -c y-x\n# what the fuck?\n# shit code.\n# k=10\nwhile [ $rounds -le 10 ]\ndo\ny=0\nf=$[$number-$rounds]\necho $f\nwhile [ $y -le $f ]\ndo\nsample=$(cat /dev/shm/lazero | head -c $y | tail -c $rounds)\ncat /dev/shm/lazero | rg \"$sample\"\necho \"___________spliter___________\"\ny=$[y+1]\ndone\nrounds=$[rounds+1]\ndone\n# no one will keep good grammar. if people talk shit, i don't have to.\n# man i want to do this in python script. this sucks.\n# read something and automatically get the collections right.\n# guess this is the right place to do the thing.\n# i want secondary order logic!"
+        }
+    ]
+}

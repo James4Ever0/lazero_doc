@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports os and sys modules, iterates through stdin lines, and executes \"pwdx\" command with each line's content. It may be used for process tracking or monitoring purposes.",
+    "details": [
+        {
+            "comment": "Code imports os and sys modules, iterates through stdin lines, and executes \"pwdx\" command with each line's content. It may be used for process tracking or monitoring purposes.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/ppwdx.py\":0-2",
+            "content": "import os,sys\nfor x in sys.stdin:\n    os.system(\"pwdx {}\".format(x))"
+        }
+    ]
+}

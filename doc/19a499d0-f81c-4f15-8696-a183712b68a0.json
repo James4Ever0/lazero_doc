@@ -1,0 +1,15 @@
+{
+    "summary": "The code imports libraries, defines an array 's' with complex values and reshapes it. It converts the reshaped array to a ComplexTensor object and checks its length. The code also initializes a nested dictionary 'r', converts it to a numpy array 's', reshapes and flattens it, then creates a torch tensor from the array.",
+    "details": [
+        {
+            "comment": "Code imports necessary libraries and defines an array 's' with complex values. It then reshapes the numpy array using .reshape() method, prints the reshaped array and its shape. Converts the reshaped array into a ComplexTensor object, prints the tensor and its shape. Finally, it checks the length of the tensor, which is different from the original array size due to the complex format.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/package_archive/reshaper.py\":0-40",
+            "content": "import numpy as np\nimport torch\n# import torch_complex\nfrom pytorch_complex_tensor import ComplexTensor\n# n = np.array([1, 2, 3, 4, 2, 2, 3, 4])\n# d = n.reshape(-1, 4, 1)\n# print(d)\n# # compare with tensor.\n# t=torch.tensor(d)\n# # what the heck?\n# print(t)\n# t0=d.tolist()\n# t0=torch.tensor(t0)\n# print(t0)\n# # fuck.\n# different reprsentation.\ns=[[[1.0], [0.0], [0.0], [1.0], [1.0],\n                    [1.0], [0.0], [0.0], [1.0], [1.0]], [[0.5], [-0.2], [-0.5], [-0.3], [1.0],\n                                                         [-0.2], [0.8], [0.5], [-0.1], [0.1]]]\ns0=np.array(s)\n# strange, no matter how you call it.\ns1=s0.reshape(2,-1)\nprint(s1,s1.shape)\ny = ComplexTensor(s1)\nprint(y,y.shape)\n# # print(dir(y))\nprint(len(y))\n# it does not have the correct format.\n# e=[x for x in y]\n# print(e)\n# z=y.tolist()\n# # print()\n# e=torch.tensor(z)\n# print(e,e.shape)\n# # print(z)\n# that's why i say it is strange.\n# print(n.shape, d.shape)\n# # what is the difference?\n# print(n.tolist())\n# print(d.tolist())\n# # this is how we flattern shits? what about dict?"
+        },
+        {
+            "comment": "Code snippet initializes a nested dictionary 'r' and converts it to a numpy array 's'. The code then converts the numpy array back to a list, 'f', reshapes it, prints the flattened list and its shape. Finally, it creates a torch tensor from the numpy array, printing the tensor and its type.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/package_archive/reshaper.py\":41-58",
+            "content": "# # r={\"1\",1,\"2\",2}\n# # holy shit. this is comprehensible. can this be tensor?\n# r = {\"1\": 1, \"2\": 2, \"v\": {\"#\": 3, \"s\": {\"##\": 4}}}\n# # this is a set, not a dict\n# s = np.array(r)\n# print(s, type(s), type(r))\n# # flat.\n# # this one has size one.\n# f = s.tolist()\n# print(f, type(f))\n# holy shit.\n# f=s.reshape(-1,0)\n# print(f,f.shape)\n# what the heck?\n# v=torch.Tensor(s)\n# type is object.\n# print(v,type(v))\n# everything numpy?"
+        }
+    ]
+}

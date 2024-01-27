@@ -1,0 +1,10 @@
+{
+    "summary": "This script is unmounting a filesystem, checking if it exists, and removing the directory if nonexistent. It also mentions caution when dealing with chroot or symlinks on Windows.",
+    "details": [
+        {
+            "comment": "This script is unmounting a filesystem, checking if it exists, and removing the directory if nonexistent. It also mentions caution when dealing with chroot or symlinks on Windows.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/unloadram_fs.sh\":0-10",
+            "content": "#!/bin/bash\nsudo umount fs\npsk=$(sudo ls -1 fs/ | wc -c)\n#psk=$(sudo mount | grep $PWD/root | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf fs\nfi"
+        }
+    ]
+}

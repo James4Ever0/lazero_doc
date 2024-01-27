@@ -1,0 +1,10 @@
+{
+    "summary": "This script sends a GET request to \"http://localhost:7777/input\" with the query parameters \"type=anything\" and \"autoreturn=true\".",
+    "details": [
+        {
+            "comment": "This script sends a GET request to \"http://localhost:7777/input\" with the query parameters \"type=anything\" and \"autoreturn=true\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/type_return.sh\":0-1",
+            "content": "#!/bin/bash\ncurl \"http://localhost:7777/input?type=anything&autoreturn=true\" 2>/dev/null  1>&2 "
+        }
+    ]
+}

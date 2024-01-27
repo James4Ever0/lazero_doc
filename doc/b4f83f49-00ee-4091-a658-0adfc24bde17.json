@@ -1,0 +1,10 @@
+{
+    "summary": "This script starts a virtual machine with Firejail, sets read-only access to the root directory, and sets up private RAM disk. It then initiates reboot of the VM and logs Seccomp information to \"reboot.log\".",
+    "details": [
+        {
+            "comment": "This script starts a virtual machine with Firejail, sets read-only access to the root directory, and sets up private RAM disk. It then initiates reboot of the VM and logs Seccomp information to \"reboot.log\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/risk_reboot.sh\":0-3",
+            "content": "#!/bin/bash\nfirejail --apparmor --read-only=/ --private=ramdisk/ --name=browser0 reboot &\n./sleep50ms\nfirejail --seccomp.print=browser0 &> reboot.log"
+        }
+    ]
+}

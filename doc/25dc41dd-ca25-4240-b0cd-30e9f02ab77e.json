@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the subprocess module and defines three functions: getReal, getNormal, and getEncoding. The getReal function takes a string input, passes it through a PHP script using echo command, and returns the output. The getNormal function also takes a string input but directly executes it as a subprocess command and returns its status and output. Lastly, the getEncoding function uses the getNormal function to identify the encoding of a given string by executing the chardet command.",
+    "details": [
+        {
+            "comment": "This code imports the subprocess module and defines three functions: getReal, getNormal, and getEncoding. The getReal function takes a string input, passes it through a PHP script using echo command, and returns the output. The getNormal function also takes a string input but directly executes it as a subprocess command and returns its status and output. Lastly, the getEncoding function uses the getNormal function to identify the encoding of a given string by executing the chardet command.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/new_toys/standard_parse.py\":0-12",
+            "content": "import subprocess\ndef getReal(a):\n    assert type(a)==str\n    x=\"echo \\\"{}\\\" | php no_extra.php\".format(a)\n#    return subprocess.check_output([x], stderr=subprocess.STDOUT)\n    return subprocess.getstatusoutput(x)[1]\ndef getNormal(a):\n    assert type(a)==str\n    return subprocess.getstatusoutput(a)\ndef getEncoding(a):\n    return getNormal(\"chardet {}\".format(a))"
+        }
+    ]
+}

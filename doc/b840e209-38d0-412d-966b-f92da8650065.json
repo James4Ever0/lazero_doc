@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports BeautifulSoup, defines functions to open and parse HTML data using BeautifulSoup, and extracts text from specific HTML tags within the data.",
+    "details": [
+        {
+            "comment": "Code imports BeautifulSoup, defines functions to open and parse HTML data using BeautifulSoup, and extracts text from specific HTML tags within the data.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/fuck.py\":0-17",
+            "content": "from bs4 import BeautifulSoup\ndef soup(a):\n    return BeautifulSoup(a,features=\"html.parser\")\ndef openShit(b):\n    return b\ndef shit(x):\n    try:\n        s=soup(openShit(x)).find_all(name=\"ul\",attrs={\"class\":\"repo-list\"})[0].find_all(name=\"a\",attrs={\"class\":\"v-align-middle\"},recursive=True)\n        return [s0.get_text() for s0 in s]\n    except:\n        return []\n# fuck you.\n#e=[[shit(c) for c ]]\n#print(len(d))"
+        }
+    ]
+}

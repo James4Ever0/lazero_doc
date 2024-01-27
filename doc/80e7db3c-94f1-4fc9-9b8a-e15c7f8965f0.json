@@ -1,0 +1,10 @@
+{
+    "summary": "This Python script reads input data from stdin, converts it into a byte string, and calculates the percentage of binary content. It then prints the binary percentage.",
+    "details": [
+        {
+            "comment": "This Python script reads input data from stdin, converts it into a byte string, and calculates the percentage of binary content. It then prints the binary percentage.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/binameter.py\":0-27",
+            "content": "# some tool to indicate the binary percentage. not absolutely reliable.\nimport sys\nb= b\"\"\nfor x in sys.stdin.buffer:\n    # so there are bytes.\n    #print(type(x),len(x))\n    b+=x\n#print(len(b))\n#open(\"libj.so\",\"wb+\").write(b)\n# check if this works.\n# now do the stuff.\nx0=0\n# so we try this anyway?\n# trying to decode part of the string?\nbs = b.split()\nbx = sum([len(x) for x in bs])\nfor x in bs: \n    try:\n#        print(type(x),x)\n        x.decode()\n        x0+=len(x)\n    except:\n#        print(\"error decoding\")\n        pass\n# shall also check binary distribution.\"\n# or not.\npr = 1-x0/bx\nprint(\"binary percentage\", pr)"
+        }
+    ]
+}

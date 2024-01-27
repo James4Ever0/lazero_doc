@@ -1,0 +1,10 @@
+{
+    "summary": "Code launches PhantomJS with necessary configurations for web security, local URL access, and ignores SSL errors to run the 'phantom_server.js' script. This setup allows the server to operate without restrictions on local or remote URLs and bypasses SSL certificate verification.",
+    "details": [
+        {
+            "comment": "Code launches PhantomJS with necessary configurations for web security, local URL access, and ignores SSL errors to run the 'phantom_server.js' script. This setup allows the server to operate without restrictions on local or remote URLs and bypasses SSL certificate verification.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/phantom_server.sh\":0-2",
+            "content": "#!/bin/bash\nphantomjs --local-url-access=true  --local-to-remote-url-access=true --web-security=false --ignore-ssl-errors=true phantom_server.js \n# cannot get content."
+        }
+    ]
+}

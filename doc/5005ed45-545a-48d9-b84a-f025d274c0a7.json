@@ -1,0 +1,10 @@
+{
+    "summary": "This code configures the Docker daemon service. It specifies the description, sets the executable start command with registry mirror, and adds it to the multi-user target installation.",
+    "details": [
+        {
+            "comment": "This code configures the Docker daemon service. It specifies the description, sets the executable start command with registry mirror, and adds it to the multi-user target installation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_1/dockerd.service\":0-8",
+            "content": "[Unit]\nDescription=Docker daemon Service.\n[Service]\nType=simple\nExecStart=/usr/bin/dockerd --registry-mirror=http://hub-mirror.c.163.com\n[Install]\nWantedBy=multi-user.target"
+        }
+    ]
+}

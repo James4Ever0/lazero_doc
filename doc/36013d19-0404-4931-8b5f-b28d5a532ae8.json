@@ -1,0 +1,10 @@
+{
+    "summary": "This code is writing memory contents to a file named 'dump' in the directory '/dev/shm'.",
+    "details": [
+        {
+            "comment": "This code is writing memory contents to a file named 'dump' in the directory '/dev/shm'.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/COMMAND\":0-0",
+            "content": "dump memory /dev/shm/dump"
+        }
+    ]
+}

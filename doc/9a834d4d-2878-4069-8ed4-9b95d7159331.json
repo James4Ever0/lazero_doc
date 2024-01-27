@@ -1,0 +1,10 @@
+{
+    "summary": "The script continuously executes the \"mlinks.sh\" script in a loop. This is likely used for monitoring or continuous processing tasks.",
+    "details": [
+        {
+            "comment": "The script continuously executes the \"mlinks.sh\" script in a loop. This is likely used for monitoring or continuous processing tasks.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/deathloop.sh\":0-4",
+            "content": "#!/bin/bash\nwhile true;\ndo\n\t./mlinks.sh\ndone"
+        }
+    ]
+}

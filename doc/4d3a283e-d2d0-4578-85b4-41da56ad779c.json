@@ -1,0 +1,10 @@
+{
+    "summary": "This code is executing an echo command with escaped characters. The \"\\x00\\xd0\\x9d\\x09\" sequence sets the current shell PID as environment variable $$ using octal notation.",
+    "details": [
+        {
+            "comment": "This code is executing an echo command with escaped characters. The \"\\x00\\xd0\\x9d\\x09\" sequence sets the current shell PID as environment variable $$ using octal notation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/bashrc\":0-0",
+            "content": "echo -e \"\\x00\\xd0\\x9d\\x09$$\""
+        }
+    ]
+}

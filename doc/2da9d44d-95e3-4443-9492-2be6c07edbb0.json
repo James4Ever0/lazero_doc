@@ -1,0 +1,10 @@
+{
+    "summary": "Code opens two slave and master file descriptors, runs a \"cat\" subprocess with its output redirected to the slave file descriptors. It then reads from both file descriptors in a loop, writing to stdout or stderr if there is data until it reaches EOF. Finally, it closes the masters and slaves file descriptors.",
+    "details": [
+        {
+            "comment": "Code opens two slave and master file descriptors, runs a \"cat\" subprocess with its output redirected to the slave file descriptors. It then reads from both file descriptors in a loop, writing to stdout or stderr if there is data until it reaches EOF. Finally, it closes the masters and slaves file descriptors.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/catmagic.py\":0-32",
+            "content": "#!/usr/bin/env python3\nimport errno\nimport os\nimport pty\nimport sys\nfrom select import select\nfrom subprocess import Popen\nmasters, slaves = zip(pty.openpty(), pty.openpty())\nwith Popen([\"cat\"],\n           stdout=slaves[0], stderr=slaves[1]):\n    for fd in slaves:\n        os.close(fd) # no input\n    readable = {\n        masters[0]: sys.stdout.buffer, # log separately\n        masters[1]: sys.stderr.buffer,\n    }\n    while readable:\n        for fd in select(readable, [], [])[0]:\n            try:\n                data = os.read(fd, 1024) # read available\n            except OSError as e:\n                if e.errno != errno.EIO:\n                    raise #XXX cleanup\n                del readable[fd] # EIO means EOF on some systems\n            else:\n                if not data: # EOF\n                    del readable[fd]\n                else:\n                    readable[fd].write(data)\n                    readable[fd].flush()\nfor fd in masters:\n    os.close(fd)"
+        }
+    ]
+}

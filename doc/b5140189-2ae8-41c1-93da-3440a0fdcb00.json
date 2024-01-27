@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the Flask module and creates a Flask application instance. It defines two routes: one for the root (\"/\") with a default path and another for any path (\"/<path:path>\"). The catch_all function is used to handle requests on both routes, printing the path and returning \"PATH\" followed by the path (or rendering 'index.html' in the original code). Finally, it runs the Flask application on port 5001, instructing not to use a browser for testing.",
+    "details": [
+        {
+            "comment": "This code imports the Flask module and creates a Flask application instance. It defines two routes: one for the root (\"/\") with a default path and another for any path (\"/<path:path>\"). The catch_all function is used to handle requests on both routes, printing the path and returning \"PATH\" followed by the path (or rendering 'index.html' in the original code). Finally, it runs the Flask application on port 5001, instructing not to use a browser for testing.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/flaskall.py\":0-23",
+            "content": "from flask import Flask\n#from flask import Flask, render_template\napp = Flask(__name__)\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return render_template('index.html')\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\n@app.route('/<path:path>',methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return \"PATH \"+path\n    #return render_template('index.html')\n# do not use browser. use code like js or curl to test connection.\n\"\"\"\n@app.route('/')\ndef homepage():\n    return \"Hello world!\"\n\"\"\"\napp.run(port=5001)"
+        }
+    ]
+}

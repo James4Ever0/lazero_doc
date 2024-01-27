@@ -1,0 +1,10 @@
+{
+    "summary": "Function \"arbitrary\" takes a URL as input, retrieves its content using \"links\", and stores the result in global variable \"retval\". The script reads lines from SEED file and passes each line to \"arbitrary\" function. Finally, it sends the \"retval\" to a local server on port 7777.",
+    "details": [
+        {
+            "comment": "Function \"arbitrary\" takes a URL as input, retrieves its content using \"links\", and stores the result in global variable \"retval\". The script reads lines from SEED file and passes each line to \"arbitrary\" function. Finally, it sends the \"retval\" to a local server on port 7777.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/mlinks.sh\":0-22",
+            "content": "#!/bin/bash\n# use global variable.\n# heck.\nretval=\"\"\n# it is not going to work. captcha here. maybe use internal browser as a solution. create a server inside? manual server, getting quest from the localhost and post it back.\nfunction arbitrary(){\n\tCLO=$(echo \"$1\" | python3 curl_baidu.py)\n#\techo $CLO\n\tretval=$(links -source \"$CLO\")\n\t#retval=\n\t#return \"hello world\"\n\t# only numeric.\n}\nIFS=$'\\n' read -d '' -r -a lines < SEED\nfor i in \"${lines[@]}\";\ndo\n\techo $i\n\tarbitrary \"$i\"\n#\techo $?\n\techo $retval | curl --header 'Content-Type: text/html; charset=UTF-8' --request POST --data-binary @- --no-buffer http://localhost:7777/keller\n# and that's your fucking dream.\ndone\n# store it into variables."
+        }
+    ]
+}

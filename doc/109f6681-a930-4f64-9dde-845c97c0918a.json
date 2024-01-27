@@ -1,0 +1,15 @@
+{
+    "summary": "The code creates two pseudo-terminal devices, forwards master file descriptors to child processes, monitors input from their stdout and stderr streams, executes Python scripts printing messages at timed intervals, reads up to 1024 bytes of data, then closes all master file descriptors.",
+    "details": [
+        {
+            "comment": "This code opens two pseudo-terminal devices, forwards the master file descriptors to child processes, and monitors input from the child's standard output and error streams. It executes a Python script in each process that prints messages at timed intervals to stdout and stderr. The code reads up to 1024 bytes of data from these streams until there is no more data or an end-of-file condition occurs, and then removes the corresponding file descriptor from the readable list.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/blackmagic.py\":0-35",
+            "content": "#!/usr/bin/env python3\nimport errno\nimport os\nimport pty\nimport sys\nfrom select import select\nfrom subprocess import Popen\nmasters, slaves = zip(pty.openpty(), pty.openpty())\nwith Popen([sys.executable, '-c', r'''import sys, time\nprint('stdout', 1) # no explicit flush\ntime.sleep(.5)\nprint('stderr', 2, file=sys.stderr)\ntime.sleep(.5)\nprint('stdout', 3)\ntime.sleep(.5)\nprint('stderr', 4, file=sys.stderr)\n'''],\n           stdin=slaves[0], stdout=slaves[0], stderr=slaves[1]):\n    for fd in slaves:\n        os.close(fd) # no input\n    readable = {\n        masters[0]: sys.stdout.buffer, # log separately\n        masters[1]: sys.stderr.buffer,\n    }\n    while readable:\n        for fd in select(readable, [], [])[0]:\n            try:\n                data = os.read(fd, 1024) # read available\n            except OSError as e:\n                if e.errno != errno.EIO:\n                    raise #XXX cleanup\n                del readable[fd] # EIO means EOF on some systems\n            else:\n                if not data: # EOF\n                    del readable[fd]"
+        },
+        {
+            "comment": "This code writes data to a file, flushes the buffer, and then closes all the master file descriptors.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/blackmagic.py\":36-40",
+            "content": "                else:\n                    readable[fd].write(data)\n                    readable[fd].flush()\nfor fd in masters:\n    os.close(fd)"
+        }
+    ]
+}

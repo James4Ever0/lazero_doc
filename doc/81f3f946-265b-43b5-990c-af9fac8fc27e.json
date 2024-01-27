@@ -1,0 +1,10 @@
+{
+    "summary": "This script uses firejail to launch a read-only, private session with the browser and then powers off. It includes a sleep of 100ms and logs the results in poweroff.log.",
+    "details": [
+        {
+            "comment": "This script uses firejail to launch a read-only, private session with the browser and then powers off. It includes a sleep of 100ms and logs the results in poweroff.log.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/risk_powerdown.sh\":0-5",
+            "content": "#!/bin/bash\nfirejail --apparmor --read-only=/ --private=ramdisk/ --name=browser poweroff &\n# use some sleep?\n# too damn quick.\n./sleep100ms\nfirejail --seccomp.print=browser &> poweroff.log"
+        }
+    ]
+}

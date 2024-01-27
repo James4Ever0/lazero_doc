@@ -1,0 +1,10 @@
+{
+    "summary": "The code includes the unistd.h library and defines a main function that uses the usleep function to pause execution for 5000 microseconds (5 milliseconds). The function returns an integer value of 0, indicating successful program termination.",
+    "details": [
+        {
+            "comment": "The code includes the unistd.h library and defines a main function that uses the usleep function to pause execution for 5000 microseconds (5 milliseconds). The function returns an integer value of 0, indicating successful program termination.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/sleep5ms.cpp\":0-1",
+            "content": "#include <unistd.h>\nint main(){usleep(1000*5);return 0;}"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports functions from dbM2 and basepak modules. It creates a main function and defines a verx function. Then, it iterates through a range of 11 values, limits the ranges based on each value, initializes data for each range with different conditions, and prints the configured number for each iteration.",
+    "details": [
+        {
+            "comment": "The code imports functions from dbM2 and basepak modules. It creates a main function and defines a verx function. Then, it iterates through a range of 11 values, limits the ranges based on each value, initializes data for each range with different conditions, and prints the configured number for each iteration.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/internet_maps/configure2.py\":0-28",
+            "content": "from dbM2 import createMain, initial\nfrom basepak import getRange\n# format is png.\ncreateMain()\n# def verx(a, b):\n#     if len(a) == 0:\n#         return True\n#     else:\n#         r = [int(x in b) for x in a]\n#         return len(r) == sum(r)\n# math won't hurt.\nfor x in range(11):\n    limit = 2**x  # less than this.\n    g = getRange(x)\n    # initial(\"projects\", g)\n    # this is wrong.\n    g0 = [(x, a, b, 0) for a, b in g]\n    initial(\"projects\", g0)\n    g1 = [(x, a, b, 1) for a, b in g if a+1 < limit]\n    initial(\"projects\", g1)\n    g2 = [(x, a, b, 2) for a, b in g if b+1 < limit]\n    initial(\"projects\", g2)\n    g3 = [(x, a, b, 3) for a, b in g if ((a+1 < limit) and (b+1 < limit))]\n    initial(\"projects\", g3)\n    print(\"configured\", x)"
+        }
+    ]
+}

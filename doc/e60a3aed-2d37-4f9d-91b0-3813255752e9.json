@@ -1,0 +1,10 @@
+{
+    "summary": "Starts a gotty server on port 9997, passing ./start_ro.sh as the command to execute inside the container.",
+    "details": [
+        {
+            "comment": "Starts a gotty server on port 9997, passing ./start_ro.sh as the command to execute inside the container.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/demo_usage.sh\":0-1",
+            "content": "#!/bin/bash\n./gotty_linux_amd64 -p 9997 -w ./start_ro.sh"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "summary": "The code imports soundcard and numpy libraries, checks audio devices, records and plays audio data on default speaker and microphone. It may have issues with no audio data despite playing.",
+    "details": [
+        {
+            "comment": "Code imports soundcard (sc) and numpy libraries, checks for installed audio devices on the system, lists all speakers and microphones, sets default speaker and microphone, records audio data from the default microphone at a specified sample rate and duration, and prints the recorded data.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/audio_record/sc.py\":0-36",
+            "content": "import soundcard as sc\nimport numpy\n# not working for android.\n# is this shit realy installed?\n# don't know if working for android or windows. check first.\n# you can use numba. just maybe.\n# but useless on ARM.\n# get a list of all speakers:\n# this is shit.\nspeakers = sc.all_speakers()\nprint(speakers)\n# get the current default speaker on your system:\ndefault_speaker = sc.default_speaker()\n# get a list of all microphones:\nmics = sc.all_microphones(include_loopback=True,exclude_monitors=False)\nprint(mics)\n# get the current default microphone on your system:\n#default_mic = sc.default_microphone()\ndefault_mic=mics[0]\ndata = default_mic.record(samplerate=48000, numframes=48000*5)\n# reshape the thing?\n\"\"\"data=numpy.linspace(-1000,10000,48000*5)\ndata=numpy.sin(data)\ndata=data.tolist()\ndata=list(zip(data,data))\ndata=numpy.array(data)\"\"\"\nprint(data)\nprint(\"finished record\")\n#numpy.random.shuffle(data)\n# this will generate white noise.\n# junk^2 = worse junk\n# junk*0 = clear\n# no output.\n# what the fuck?\n# so it makes the sound.\n# but how to record that back? get the thing?"
+        },
+        {
+            "comment": "This code is playing audio data with maximum value from numpy on the default speaker at a sampling rate of 48000. The comments suggest checking for a sound card by substring and investigating why there's no audio data even though it's still playing.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/audio_record/sc.py\":37-44",
+            "content": "default_speaker.play(data/numpy.max(data), samplerate=48000)\n#print(data/numpy.max(data))\n#print(data.shape)\n#print(data)\n# nothing there. but still playing?\n#check this!\n# search for a sound card by substring:\n# check all these shits."
+        }
+    ]
+}

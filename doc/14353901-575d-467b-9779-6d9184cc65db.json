@@ -1,0 +1,15 @@
+{
+    "summary": "This code includes queue, stack, and Meta classes with methods for adding/removing items based on FIFO/FILO principles or specified index. The 'duplicate' method adds elements to the core stack from the end based on parameter 'a'.",
+    "details": [
+        {
+            "comment": "This code defines three classes: queue, stack, and Meta. The queue and stack classes have methods to add/remove items following the first-in-first-out (queue) or last-in-first-out (stack) principles. The Meta class has methods to add an item and remove an item at a specified index. All three classes can hold a maximum size of items specified during instantiation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/stackMe.py\":0-55",
+            "content": "# three method to deal with new input.\n# throw away any of original content, or just bounce off.\nclass queue:\n# i'm gonna die.\n\tdef __init__(self,a):\n\t\tself.size=a\n\t\tself.core=[]\n\tdef queue(self,a):\n\t\tif len(self.core)<self.size:\n\t\t\tself.core.append(a)\n\t\telse:\n\t\t\tself.core.pop(0)\n\t\t\tself.core.append(a)\n\tdef dequeue(self):\n\t\tif len(self.core)!=0:\n\t\t\treturn self.core.pop(0)\n\t\telse:\n\t\t\treturn\n\tdef dump(self):\n\t\treturn self.core\nclass stack:\n\tdef __init__(self,a):\n\t\tself.size=a\n\t\tself.core=[]\n\tdef push(self,a):\n\t\tif len(self.core)<self.size:\n\t\t\tself.core.append(a)\n\t\telse:\n\t\t\tself.core.pop(0)\n\t\t\tself.core.append(a)\n\tdef pop(self):\n\t\tif len(self.core)!=0:\n\t\t\treturn self.core.pop(-1)\n\t\telse:\n\t\t\treturn\n\tdef dump(self):\n\t\treturn self.core\nclass Meta:\n# i'm gonna die.\n\tdef __init__(self,a):\n\t\tself.size=a\n\t\tself.core=[]\n\tdef add(self,a):\n\t\tif len(self.core)<self.size:\n\t\t\tself.core.append(a)\n\t\telse:\n\t\t\tself.core.pop(0)\n\t\t\tself.core.append(a)\n\tdef minus(self,a):\n\t\tif len(self.core)!=0:\n\t\t\treturn self.core.pop(-int(a))\n\t\telse:\n\t\t\treturn\n\tdef dump(self):"
+        },
+        {
+            "comment": "The code snippet defines a method 'duplicate' that duplicates the core stack by adding elements from the end based on the given parameter 'a'. The 'core' stack is returned, and the 'add' method is used to add elements to the stack.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/stackMe.py\":56-58",
+            "content": "\t\treturn self.core\n\tdef duplicate(self,a):\n\t\tself.add(self.core[-int(a)])"
+        }
+    ]
+}

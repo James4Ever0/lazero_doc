@@ -1,0 +1,15 @@
+{
+    "summary": "The code creates a Gtk.Window with an embedded Vte.Terminal, sets window size and default terminal options, spawns an asynchronous process, places elements in a scroller, sets up connections, and starts the GTK main loop.",
+    "details": [
+        {
+            "comment": "This code imports necessary libraries and defines a class called TheWindow, which is a Gtk.Window instance with a Vte.Terminal embedded in it. It sets the default size of the window to 600x300 pixels and creates a terminal object. It then spawns an asynchronous process for running Python code inside the terminal using pty_new_sync and GLib.SpawnFlags.DO_NOT_REAP_CHILD, and places it within a Gtk.Box and Gtk.ScrolledWindow for user interaction.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_0/term.py\":0-35",
+            "content": "from gi.repository import Gtk, Vte, GLib, Pango, Gio\nimport gi\ngi.require_version('Gtk', '3.0')\ngi.require_version('Vte', '2.91')\n# if you really want to, use java instead to do terminal emulation.\n# no fucking horrible shits, please?\n# either replace it or use it.\nclass TheWindow(Gtk.Window):\n    def __init__(self):\n        Gtk.Window.__init__(self, title=\"GTK3 IDE\")\n        self.set_default_size(600, 300)\n        terminal = Vte.Terminal()\n        #pty = terminal.pty_new_sync(Vte.PtyFlags.DEFAULT)\n        pty = Vte.Pty.new_sync(Vte.PtyFlags.DEFAULT)\n        terminal.set_pty(pty)\n        pty.spawn_async(\n            None,\n            [\"/bin/python\"],\n            None,\n            GLib.SpawnFlags.DO_NOT_REAP_CHILD,\n            None,\n            None,\n            -1,\n            None,\n            self.ready\n        )\n        # self.terminal.get_pty(self.pty)\n        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)\n        scroller = Gtk.ScrolledWindow()\n        scroller.set_hexpand(True)\n        scroller.set_vexpand(True)"
+        },
+        {
+            "comment": "This code creates a window, adds a scroller and terminal to it, sets up connections for when the window is destroyed, shows all elements in the window, and starts the GTK main loop.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_0/term.py\":36-49",
+            "content": "        scroller.add(terminal)\n        box.pack_start(scroller, False, True, 2)\n        self.add(box)\n    def ready(self, pty, task):\n        print('pty ', pty)\nwin = TheWindow()\nwin.connect('destroy', Gtk.main_quit)\nwin.show_all()\nGtk.main()\n#  what the heck?\n# check the implementation of vscode terminal. -> the joke out there."
+        }
+    ]
+}

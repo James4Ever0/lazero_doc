@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the Redis module and performs various operations with a Redis database. It defines functions for setting, getting, and batching data in Redis, as well as scanning keys. The code includes debugging commands to test key retrieval and printing of keys in batches.",
+    "details": [
+        {
+            "comment": "This code imports the Redis module and performs various operations with a Redis database. It defines functions for setting, getting, and batching data in Redis, as well as scanning keys. The code includes debugging commands to test key retrieval and printing of keys in batches.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/ralink.py\":0-39",
+            "content": "import redis   # \u5bfc\u5165redis \u6a21\u5757\nfrom itertools import zip_longest as izip_longest\nr = redis.Redis(host='localhost', port=6379, decode_responses=True)\ndef rset(a,b,c=3):\n    r.set(a,b,ex=c)  # \u8bbe\u7f6e name \u5bf9\u5e94\u7684\u503c\n\"\"\"while True:\n    try:\n        print(r['name'])\n        print(r.get('name'))  # \u53d6\u51fa\u952e name \u5bf9\u5e94\u7684\u503c\n        print(type(r.get('name')))\n    except:\n        print(\"expired\")\n    time.sleep(1)\"\"\"\ndef rget(a):\n    try:\n        return r.get(a)\n    except:\n        return None\ndef rbset(a,b,c=3):\n    pipe = r.pipeline()\n    for x in a:\n        #pipe.lpush(b,x)\n        pipe.setex(x,c,b)\n    pipe.execute()\n    print(\"done: \",len(a))\ndef batcher(iterable, n):\n    args = [iter(iterable)] * n\n    return izip_longest(*args)\n# in batches of 500 delete keys matching user:*\n# do you know when things going to shit?\ndef rka():\n    return batcher(r.scan_iter('*'),500)\ndef pka():\n    for keybatch in rka():\n        print(*keybatch)"
+        }
+    ]
+}

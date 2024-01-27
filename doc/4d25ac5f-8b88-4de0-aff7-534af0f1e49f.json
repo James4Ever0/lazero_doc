@@ -1,0 +1,10 @@
+{
+    "summary": "This function compares the similarity between two sets, allowing for a margin of error based on set lengths and sigma value. It returns True if the intersection of the sets is greater than or equal to the average length minus the difference in lengths multiplied by sigma. The main section of the code tests the function with different sets.",
+    "details": [
+        {
+            "comment": "This function compares the similarity between two sets, allowing for a margin of error based on set lengths and sigma value. It returns True if the intersection of the sets is greater than or equal to the average length minus the difference in lengths multiplied by sigma. The main section of the code tests the function with different sets.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/the_new_pack/util_func.py\":0-13",
+            "content": "def checkFuzzy(a, b, sigma=0.4):\n    c = abs(len(a)-len(b))\n    r = a.intersection(b)\n    d = int((len(a)+len(b))/2)\n    return len(r) >= (d-c*sigma)\n# already useful.\nif __name__ == \"__main__\":\n    a = set(\"remainder\")\n    b = set(\"reminder\")\n    # c = set(\"remin\")  # what the fuck?\n    c = set(\"s\")\n    print(checkFuzzy(a, b), checkFuzzy(a, c), checkFuzzy(b, c))"
+        }
+    ]
+}

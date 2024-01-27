@@ -1,0 +1,10 @@
+{
+    "summary": "This script checks available localhost ports and creates a protocol, then generates a list of things. It uses check_ports.sh to get the desired port and retrieves information from an unknown source. The script echoes the info, uses curl to access a URL with a random port, and pipes the results into server_info.log. Finally, it processes the data using multiple Python scripts before choosing a random port for comparison purposes.",
+    "details": [
+        {
+            "comment": "This script checks available localhost ports and creates a protocol, then generates a list of things. It uses check_ports.sh to get the desired port and retrieves information from an unknown source. The script echoes the info, uses curl to access a URL with a random port, and pipes the results into server_info.log. Finally, it processes the data using multiple Python scripts before choosing a random port for comparison purposes.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/paste_test.sh\":0-13",
+            "content": "#!/bin/bash\n# checking avaliable localhost ports?\n# let's just create some protocol here.\n# getting avaliable list of things.\n./check_ports.sh\n# do it one by one.\n# so this is not ideal.\n# how to get the desired port? get the info back with me.\n# some info from unknown.\ncat ports.log | xargs -I % bash -c \"echo -e '\\ninfo from %\\n' && curl --max-time 1 http://localhost:%/uuid\" &> server_info.log\ncat server_info.log | python3 server_discover.py | python3 random_chooser.py \n# you are gonna compare.\n# so getting something.\n# choose a random port."
+        }
+    ]
+}

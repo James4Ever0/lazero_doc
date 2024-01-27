@@ -1,0 +1,15 @@
+{
+    "summary": "The code uses the 'highlighter' module to highlight code in a file, experimenting with other language highlighters. The developer expresses dissatisfaction with a previous language's highlight feature and praises JavaScript for its performance. They also consider alternatives like CUDA and discuss possible disk performance issues.",
+    "details": [
+        {
+            "comment": "This code imports the 'highlighter' module, reads a file ('scipy.html'), and uses 'highlighter' to highlight the code within the file. It then outputs the highlighted code wrapped in HTML for viewing, with a reference to an external CSS file. The code also demonstrates some experimentation with other language highlighters, such as 'highlight-xml' and 'highlight-javascript'.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/package_archive/highlight_mycode.js\":0-24",
+            "content": "var Highlight = require('highlighter')();\n// var marked = require('marked');//just test.\n// no module.\n// var style =\n// it even got brainfuck.\n// it does have the output. but never render it to image. or you have to use chrome.\nvar fs = require('fs');\n// //does this work?\n// did not applied the style.\n// it is getting altered by cnpm.\n// var html = require('highlight-xml');\n// var js = require('highlight-javascript');\n// it is always about the <pre></pre>\n// i can do it. i can let my computer to shredder.\nvar data = fs.readFileSync('scipy.html', 'utf8'); // it works.\n// var data = fs.readFileSync('./fix_x_torch.py', 'utf8');\nvar a = Highlight(data, \"html\");// does this work?\nconsole.log('<html><head><link rel=\"stylesheet\" type=\"text/css\" href=\"androidstudio.css\" ></head><body><pre><code>' + a + \"</code></pre></body></html>\");\n// it got shit for every shit.\n// what about other languages?\n// var highlight = new Highlight()\n//   .use(html)\n//   .use(js);\n// html=data\n// // var el = document.querySelector('.code-sample');"
+        },
+        {
+            "comment": "Code chunk discusses frustration with the current codebase, mentioning JavaScript advantages and potential disk performance issues. The developer is expressing their dissatisfaction with a previous language's highlight feature and appreciates that JavaScript \"just fucking works\". They also briefly touch upon possible alternatives like CUDA and Chrome performance issues.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/package_archive/highlight_mycode.js\":25-37",
+            "content": "// // highlight.element(el);\n// highlight.all();\n// console.log(html);\n// this is not a package.\n// i have to admit javascript has some advantages here.\n// and it just fucking works.\n// we always got a lot of fucks.\n// broken code, and more.\n// the guesslang might be good but we need to have conda or something that can switch to cuda.\n// nvm. move forward.\n// is my disk getting slow? that could be serious problem.\n// chrome is not working.\n// fuck it. it sucks."
+        }
+    ]
+}

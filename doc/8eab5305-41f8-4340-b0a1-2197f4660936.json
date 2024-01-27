@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports functions from dbM and basepak modules to create main function and initialize data. It iterates through a range (10 times), gets a range of data, formats it into a list, initializes \"projects\" with the data, and prints configuration status for each iteration.",
+    "details": [
+        {
+            "comment": "Code imports functions from dbM and basepak modules to create main function and initialize data. It iterates through a range (10 times), gets a range of data, formats it into a list, initializes \"projects\" with the data, and prints configuration status for each iteration.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/internet_maps/configure.py\":0-9",
+            "content": "from dbM import createMain, initial\nfrom basepak import getRange\n# format is png.\ncreateMain()\nfor x in range(11):\n    g=getRange(x)\n    g=[(x,a,b) for a,b in g]\n    initial(\"projects\",g)\n    print(\"configured\",x)"
+        }
+    ]
+}

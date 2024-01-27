@@ -1,0 +1,10 @@
+{
+    "summary": "Code suggests attempting to import binary data using CSV method, considering alternative methods like assembly code or base64 encoding for potential decoding during import.",
+    "details": [
+        {
+            "comment": "Code suggests attempting to import binary data using CSV method, considering alternative methods like assembly code or base64 encoding for potential decoding during import.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/README\":0-3",
+            "content": "But the csv import does not support binary data.\nYou can try some assembly code or some specific code.\nYou can try base64 encoding.\nJust do it. maybe there's chance to decode data during import?"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Imports `runpy` and `os`, sets `param` to \"hello world\", changes directory, runs the script \"some_script.py\" in the new directory, prints type and result of execution, cannot access native path due to limitations with running as main, unable to reach content.",
+    "details": [
+        {
+            "comment": "Imports `runpy` and `os`, sets `param` to \"hello world\", changes directory, runs the script \"some_script.py\" in the new directory, prints type and result of execution, cannot access native path due to limitations with running as main, unable to reach content.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/runner_param.py\":0-8",
+            "content": "import runpy\nimport os\nparam=\"hello world\"\nos.chdir(\"../\")\nr=runpy.run_path(\"some_script.py\",init_globals=globals(),run_name=\"__main__\")\n# cannot reach native path.\nprint(type(r),r)\n# so it is working, and can be think out of brain IF HAVE EXPERIENCE.\n# not running as main. cannot reach the content."
+        }
+    ]
+}

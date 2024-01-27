@@ -1,0 +1,10 @@
+{
+    "summary": "This script executes unloadram_upper.sh, creates a directory for upper filesystem with 777 permissions, and mounts a temporary filesystem (myramdisk_upper) of 10M size into the fs/upper directory.",
+    "details": [
+        {
+            "comment": "This script executes unloadram_upper.sh, creates a directory for upper filesystem with 777 permissions, and mounts a temporary filesystem (myramdisk_upper) of 10M size into the fs/upper directory.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/junk/loadram_upper.sh\":0-4",
+            "content": "#!/bin/bash\n./unloadram_upper.sh\nsudo mkdir fs/upper\nsudo chmod 777 fs/upper\nsudo mount -t tmpfs -o size=10m myramdisk_upper fs/upper"
+        }
+    ]
+}

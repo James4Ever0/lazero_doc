@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports MemoryTempfile and memory_tempfile, sets a fallback to False, checks if a memory temp directory is found, and then prints the usable paths and the current temporary directory being used. Finally, it creates a named temporary file for usage.",
+    "details": [
+        {
+            "comment": "This code imports MemoryTempfile and memory_tempfile, sets a fallback to False, checks if a memory temp directory is found, and then prints the usable paths and the current temporary directory being used. Finally, it creates a named temporary file for usage.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/demo.py\":0-17",
+            "content": "# We now do not want to use /dev/shm or /run/shm and no ramfs paths\n# If /run/user/{uid} is available, we prefer it to /tmp\n# And we want to try /var/run as a last resort\n# If all fails, fallback to platform's tmp dir\nfrom memory_tempfile import MemoryTempfile\nimport memory_tempfile\n# By the way, all paths with string {uid} will have it replaced with the user id\ntempfile = MemoryTempfile(fallback=False)\nif tempfile.found_mem_tempdir():\n    print('We could use any of the followig paths: {}'.format(tempfile.get_usable_mem_tempdir_paths()))\n    print('And we are using now: {}'.format(tempfile.gettempdir()))\nwith tempfile.NamedTemporaryFile() as ntf:\n    # use it as usual...\n    pass"
+        }
+    ]
+}

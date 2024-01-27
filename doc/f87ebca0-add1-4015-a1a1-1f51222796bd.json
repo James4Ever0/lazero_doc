@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script uses curl to send a GET request to http://localhost:7777/input with b64type parameter set to \"anything\". It redirects error messages (2) to the standard error output and redirects the standard output (1) to the standard error output.",
+    "details": [
+        {
+            "comment": "This Bash script uses curl to send a GET request to http://localhost:7777/input with b64type parameter set to \"anything\". It redirects error messages (2) to the standard error output and redirects the standard output (1) to the standard error output.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/type_false_b64.sh\":0-1",
+            "content": "#!/bin/bash\ncurl http://localhost:7777/input?b64type=anything 2>/dev/null  1>&2 "
+        }
+    ]
+}

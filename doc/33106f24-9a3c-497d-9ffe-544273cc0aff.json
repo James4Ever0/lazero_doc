@@ -1,0 +1,15 @@
+{
+    "summary": "The script manages Redis processes, killing non-running ones and starting the daemon if needed. It uses multiple Python scripts for process info and checks for multiple instances. After script execution, it can end the process and kill special crafted things. Directory trimming is suggested to use a better tool.",
+    "details": [
+        {
+            "comment": "The script aims to kill non-running Redis processes and start the auto-saving daemon if not already running, checking for multiple instances if necessary. It utilizes several Python scripts for processing process information.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/kill_redis.sh\":0-30",
+            "content": "#!/bin/bash\n# you do not know the directory. where is the PWD of a process?\n# there will be some return values.\n# kill all not running locally, and launch the auto saving daemon if not launched.\n# what's next? onward to redis relocation.\n# we need to break here. there are no findings here.\nhello_world () {\n\tps -A | grep -E \" redis-server\\$\" | python3 pgrep.py | python3 ppwdx.py | python3 proc_grep.py | python3 exam_and_run.py\n}\ngoodbye_world () {\n\tps aux | grep \" python3 \" | grep -E \" autosave_redis.py [0-9]+\\$\" | python3 pgrep.py | python3 ppwdx.py | python3 proc_grep.py | python3 exam_and_run_autosave.py \n}\nhello_world\n# if not, just return the pid back.\n# this time taking a single argument.\npwy=$(ps -A | grep -E \" redis-server\\$\" | python3 pgrep.py | xargs)\n./check_daemon_multiargs.sh $pwy\npwx=$?\n#echo \"main server $pwx\"\nif [ $pwx -eq 0 ]\nthen\n\techo \"killing non-daemon $pwy\"\n\tkill $pwy\n\thello_world\nfi\n# what if having multiple things?\ngoodbye_world\n# argument is wrong.\npwy=$(ps aux | grep \" python3 \" | grep -E \" autosave_redis.py [0-9]+\\$\" | python3 pgrep.py | xargs)"
+        },
+        {
+            "comment": "Checks if the daemon process is running and kills it if not, then executes goodbye_world. Can be run after script execution, checks if a special crafted thing is running and uses kill command. Trimmed directory finding and suggests using a better tool.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/kill_redis.sh\":31-46",
+            "content": "./check_daemon_multiargs.sh $pwy\npwx=$?\n#echo \"watchdog $pwx\"\nif [ $pwx -eq 0 ]\nthen\n\techo \"killing non-daemon $pwy\"\n\tkill $pwy\n\tgoodbye_world\t\nfi\n# you can run this script after it is running.\n# after killing this, we must check the special crafted thing is running.\n# you are getting the trimmed thing.\n# pwdx.\n# finding not within the directory.\n# can't you use a better tool?"
+        }
+    ]
+}

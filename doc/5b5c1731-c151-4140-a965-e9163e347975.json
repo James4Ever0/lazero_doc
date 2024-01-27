@@ -1,0 +1,10 @@
+{
+    "summary": "This Bash script defines a function, ListAllCommands(), which takes the PATH as input and searches for executable files within that path. It uses xargs to find all executable files under each directory in the given PATH, excluding subdirectories, and sorts them uniquely before printing.",
+    "details": [
+        {
+            "comment": "This Bash script defines a function, ListAllCommands(), which takes the PATH as input and searches for executable files within that path. It uses xargs to find all executable files under each directory in the given PATH, excluding subdirectories, and sorts them uniquely before printing.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/XListAllCommands.sh\":0-6",
+            "content": "#!/bin/bash\nfunction ListAllCommands\n{\n    echo -n $PATH | xargs -d : -I {} find {} -maxdepth 1 \\\n        -executable -type f -printf '%P\\n' | sort -u\n}\nListAllCommands"
+        }
+    ]
+}

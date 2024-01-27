@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports functions, makes a copy of a list, iterates through the keys in the original list, runs a function with each key as input, updates another list, and stores the updated list. It appears to be part of a larger program that uses batch processing and time intervals.",
+    "details": [
+        {
+            "comment": "This code imports functions, makes a copy of a list, iterates through the keys in the original list, runs a function with each key as input, updates another list, and stores the updated list. It appears to be part of a larger program that uses batch processing and time intervals.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/new_toys/lida_y.py\":0-15",
+            "content": "from batch_wheel import main\nfrom getFromDill import returnXList\nfrom storeADill import storeXList\nimport copy\nimport time\nif __name__ == \"__main__\":\n    r = returnXList(\"rockstars\")\n    # r = returnXList(\"rock\")\n    f = copy.copy(r)\n    r0 = [x for x in r.keys() if not r[x]]\n    for y in r0:\n        main(y,2)\n        f.update({y: True})\n        storeXList(f, \"rockstars\")\n        time.sleep(5)\n# need for failsafe."
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "This code uses the 'usleep' function to pause the execution of the program for 50 milliseconds before returning a value of 0.",
+    "details": [
+        {
+            "comment": "This code uses the 'usleep' function to pause the execution of the program for 50 milliseconds before returning a value of 0.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/sleep50ms.cpp\":0-1",
+            "content": "#include <unistd.h>\nint main(){usleep(1000*50);return 0;}"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Code starts with a bash script, displays \"no hello shit but screw you\", refers to a composer (possibly referring to a music composer), states \"no shit but screw you\" twice, mentions writing a kernel and accepting the idea.",
+    "details": [
+        {
+            "comment": "Code starts with a bash script, displays \"no hello shit but screw you\", refers to a composer (possibly referring to a music composer), states \"no shit but screw you\" twice, mentions writing a kernel and accepting the idea.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/shit.sh\":0-6",
+            "content": "#!/bin/bash\necho \"no hello shit but screw you\"\n# so that's our starting point. great composer?\necho \"no shit but screw you\"\necho echo\n# fool man, i am the lego man.\n# it is good to write a kernel. in fact, i fully accept the idea."
+        }
+    ]
+}

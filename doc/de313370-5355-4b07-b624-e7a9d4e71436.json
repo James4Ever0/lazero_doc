@@ -1,0 +1,15 @@
+{
+    "summary": "The code creates a Flask app with a single route that continuously checks for changes in the mainfile list, processes images using pytesseract, and sleeps if no form data is received. A thread starts the scanner function when \"screenshot\" parameter is detected. The app runs on port 4999.",
+    "details": [
+        {
+            "comment": "This code defines a Flask application with a single route, '/sample', that accepts POST requests. The scanner function runs in an infinite loop, continuously checking for changes in the mainfile list and processing images when a change is detected. It uses pytesseract to extract text from images and prints the extracted text. If no form data is received in the POST request, it will sleep for 1 second before checking again. The code also initializes two global lists - mainfile and filerefresh.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/flaskServe.py\":0-36",
+            "content": "from flask import Flask, request\nimport threading\nimport pytesseract\nimport time\nimport copy\nimport io\nfrom PIL import Image\ndef scanner(mainfile,filerefresh):\n    while True:\n        if (filerefresh[0]):\n            try:\n                data=copy.copy(mainfile[0])\n                #print(type(data),len(data))\n                image = Image.open(io.BytesIO(data))\n                text = pytesseract.image_to_string(image,lang='eng') #\u4f7f\u7528\u7b80\u4f53\u4e2d\u6587\u89e3\u6790\u56fe\u7247\n                # so goddamn slow.\n                # but it is because without direct access.\n                print(text)\n                filerefresh[0]=False\n            except:\n                #print(\"MISSED\")\n        else:\n            time.sleep(1)\nmainfile=[None]\nfilerefresh=[False]\napp = Flask(__name__)\n@app.route('/sample', methods=['POST'])\n# use a separate thread to process this saving thing.\ndef result():\n    # get all things.\n    #print(request.data)\n    files=request.files\n    form=request.form\n    pr=[files[x] for x in list(files)]\n    pr0=[form[x] for x in list(form)]\n    if len(pr0)==1:"
+        },
+        {
+            "comment": "This code segment checks if the first parameter is \"screenshot\". If it is, it reads and assigns the data to mainfile and sets filerefresh to True. Then, it starts a thread for scanner function with mainfile and filerefresh as arguments before running the app on port 4999.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/flaskServe.py\":37-47",
+            "content": "        if pr0[0]==\"screenshot\":\n            mainfile[0]=pr[0].read()\n            filerefresh[0]=True\n            #print(pr[0])\n    #print(request.form['foo']) # should display 'bar'\n    return 'Received !' # response to your request.\np=threading.Thread(target=scanner,args=(mainfile,filerefresh))\np.setDaemon(True)\np.start()\napp.run(port=4999)"
+        }
+    ]
+}

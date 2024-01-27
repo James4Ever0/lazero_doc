@@ -1,0 +1,15 @@
+{
+    "summary": "The code performs a search and applies convolutional filtering using 'rg' command, but is complex and lacks clear comments. It retrieves values potentially from a database/API call, involving Unicode processing.",
+    "details": [
+        {
+            "comment": "The code performs a search operation using the 'rg' command for pattern matching and then applies convolutional filtering to the results. It is unclear why the author chose this complex approach, as there are more straightforward ways to achieve the same result. The code also prints the results and includes unnecessary comments.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/unique.py\":0-28",
+            "content": "import subprocess\n# matter of calculation?\n# this is shit. I cannot tell what the fuck is going on.\n# what is the mother fucking pattern??\n# ant what about the fucking crunching machine?\ndef searcher(y):\n    assert type(y)==str\n    s=subprocess.Popen([\"rg\",\"--multiline\",\"'{}'\".format(y),\"/dev/shm/lazero\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    v=s.communicate()\n    return v\n    # making it hard to redirect the output.\n# what the heck? this cannot be done in this way.\ndef convolutional(a,b):\n    return [a[c:c+b] for c in range(len(a)-b)]\ndef getSearched():\n    s=subprocess.Popen([\"cat\",\"/dev/shm/lazero\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    v=s.communicate()\n    v=v[0]\n    for r in range(2,20):\n        s=convolutional(v,r)\n        for s0 in s:\n            # print(s0)\n            k=searcher(s0.decode())\n            print(k)\n            print(\"_____________________spliter_____________________\")\n        print(\"_______end___of____conv_______\")\n# you want this computer to read shit for you?\nif __name__ == '__main__':"
+        },
+        {
+            "comment": "This code snippet appears to be retrieving a searched value, potentially from a database or API call. It seems to involve Unicode processing and may require decoding or encoding for certain operations. However, the code is difficult to understand due to its complexity and lack of clear comments.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/unique.py\":29-33",
+            "content": "    getSearched()\n    # this is crazy. I cannot tell what the heck is going on.\n    # shall we consider the unicode shit?\n# i can hardly tell where to start.\n# but this is not going to end anyway. all the fucking code I've wrote, all the fucking books, all the fucking man pages."
+        }
+    ]
+}

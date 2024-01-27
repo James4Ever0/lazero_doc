@@ -1,0 +1,10 @@
+{
+    "summary": "This code is adding a listener for messages sent by the Chrome extension runtime. If a message with \"something_completed\" is received, it logs the subject and content of the request to the console.",
+    "details": [
+        {
+            "comment": "This code is adding a listener for messages sent by the Chrome extension runtime. If a message with \"something_completed\" is received, it logs the subject and content of the request to the console.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/ced/popup.js\":0-11",
+            "content": "chrome.runtime.onMessage.addListener(\n    function(request, sender, sendResponse) {\n        if (request.msg === \"something_completed\") {\n            //  To do something\n            // document.write\n            // not even conplete.\n            // use the chrome.tabs -> firefox.tab?\n            console.log(request.data.subject)\n            console.log(request.data.content)\n        }\n    }\n);"
+        }
+    ]
+}

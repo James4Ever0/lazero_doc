@@ -1,0 +1,10 @@
+{
+    "summary": "This code uses Node.js to spawn an Electron process with a specified set of command-line arguments, adding \"--no-sandbox\" for security purposes. It handles termination signals (SIGINT and SIGTERM) to kill the child process if needed, and exits the program with the appropriate code.",
+    "details": [
+        {
+            "comment": "This code uses Node.js to spawn an Electron process with a specified set of command-line arguments, adding \"--no-sandbox\" for security purposes. It handles termination signals (SIGINT and SIGTERM) to kill the child process if needed, and exits the program with the appropriate code.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/cli_electron_backup.js\":0-27",
+            "content": "#!/usr/bin/env node\n// it is linked here. so do another thing, magic patch.\nvar electron = require('./')\nvar proc = require('child_process')\nvar patch =  process.argv.slice(2)\npatch.unshift(\"--no-sandbox\");\n//patch.prepend(\"--no-sandbox\")\n//console.log(patch,typeof(patch));\nvar child = proc.spawn(electron,patch, { stdio: 'inherit', windowsHide: false })\nchild.on('close', function (code, signal) {\n  if (code === null) {\n    console.error(electron, 'exited with signal', signal)\n    process.exit(1)\n  }\n  process.exit(code)\n})\nconst handleTerminationSignal = function (signal) {\n  process.on(signal, function signalHandler () {\n    if (!child.killed) {\n      child.kill(signal)\n    }\n  })\n}\nhandleTerminationSignal('SIGINT')\nhandleTerminationSignal('SIGTERM')"
+        }
+    ]
+}

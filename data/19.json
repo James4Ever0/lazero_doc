@@ -1,0 +1,539 @@
+{
+    "1900": {
+        "file_id": 314,
+        "content": "# say we've got a sample.\n# you can adjust this.\ndef knock(sample):\n    sd = sample[1:3]\n    sv = sample[-1]\n    sk = sample[0]\n    sn = [sample[:-1]]+getShift(sd, sv, sk), sv\n    return sn\ndef get_1(s0, sv):\n    assert sv == 1\n    assert len(s0) == 2\n    # print(type(s0), len(s0))\n    s1 = s0[0]\n    # s2=cv2.imread(s1)\n    # this is not right.\n    # oh you may say, let the machine to decode the image!\n    # just wait.\n    s2 = np.frombuffer(s1, np.uint8)\n    s2 = cv2.imdecode(s2, 1)\n    s3 = np.frombuffer(s0[1], np.uint8)\n    s3 = cv2.imdecode(s3, 1)\n    # s4=s3\n    h1, w1 = s3.shape[:2]\n    h2, w2 = s2.shape[:2]\n    res = np.zeros(shape=(max(h1, h2), w1+w2, 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res[:h2, :w2, i] = np.ones([h1, w1])*s2[:, :, i]\n        res[:h2, w2:w2+w1, i] = np.ones([h1, w1])*s3[:, :, i]\n    _, w1 = res.shape[:2]\n    w1 = int(w1/4)\n    return res[:, w1:w1*3, :]\ndef get_2(s0, sv):\n    assert sv == 2\n    assert len(s0) == 2\n    # print(type(s0), len(s0))\n    s1 = s0[0]\n    # s2=cv2.imread(s1)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py:43-85"
+    },
+    "1901": {
+        "file_id": 314,
+        "content": "This code defines three functions: \"knock\", \"get_1\", and \"get_2\". The \"knock\" function takes a sample, extracts the first 3 elements, and adds them to a list with the last element. The \"get_1\" function takes a sample and an integer, asserts that the integer is 1, and returns an image after processing it. Similarly, the \"get_2\" function takes a sample and an integer, asserts that the integer is 2, and also returns an image after processing it. The code seems to be related to image processing and manipulation.",
+        "type": "comment"
+    },
+    "1902": {
+        "file_id": 314,
+        "content": "    # this is not right.\n    # oh you may say, let the machine to decode the image!\n    # just wait.\n    s2 = np.frombuffer(s1, np.uint8)\n    s2 = cv2.imdecode(s2, 1)\n    s3 = np.frombuffer(s0[1], np.uint8)\n    s3 = cv2.imdecode(s3, 1)\n    # s4=s3\n    h1, w1 = s3.shape[:2]\n    h2, w2 = s2.shape[:2]\n    res = np.zeros(shape=(h1+h2, max(w1, w2), 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res[:h2, :w2, i] = np.ones([h1, w1])*s2[:, :, i]\n        res[h2:h2+h1, :w1, i] = np.ones([h1, w1])*s3[:, :, i]\n    w1, _ = res.shape[:2]\n    w1 = int(w1/4)\n    return res[w1:w1*3, :, :]\ndef get_0(s0, sv):\n    assert sv == 0\n    assert len(s0) == 1\n    s2 = np.frombuffer(s0[0], np.uint8)\n    s2 = cv2.imdecode(s2, 1)\n    return s2\n# it keeps ketting stuck.\ndef get_3(s0, sv):\n    assert sv == 3\n    assert len(s0) == 4\n    # print(type(s0), len(s0))\n    s1 = s0[0]\n    # s2=cv2.imread(s1)\n    # this is not right.\n    # oh you may say, let the machine to decode the image!\n    # just wait.\n    s2 = np.frombuffer(s1, np.uint8)\n    s2 = cv2.imdecode(s2, 1)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py:86-125"
+    },
+    "1903": {
+        "file_id": 314,
+        "content": "This code performs image processing tasks using the OpenCV library. It decodes images from buffer and combines them into a single result. The functions `get_3()` read an image file, but there is a note suggesting that the current method is not right and it might be better to let the machine decode the image.",
+        "type": "comment"
+    },
+    "1904": {
+        "file_id": 314,
+        "content": "    s3 = np.frombuffer(s0[1], np.uint8)\n    s3 = cv2.imdecode(s3, 1)\n    # s4=s3\n    h1, w1 = s3.shape[:2]\n    h2, w2 = s2.shape[:2]\n    res = np.zeros(shape=(h1+h2, max(w1, w2), 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res[:h2, :w2, i] = np.ones([h1, w1])*s2[:, :, i]\n        res[h2:h2+h1, :w1, i] = np.ones([h1, w1])*s3[:, :, i]\n    s4 = np.frombuffer(s0[2], np.uint8)\n    s4 = cv2.imdecode(s4, 1)\n    s5 = np.frombuffer(s0[3], np.uint8)\n    s5 = cv2.imdecode(s5, 1)\n    h1, w1 = s5.shape[:2]\n    h2, w2 = s4.shape[:2]\n    res0 = np.zeros(shape=(h1+h2, max(w1, w2), 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res0[:h2, :w2, i] = np.ones([h1, w1])*s4[:, :, i]\n        res0[h2:h2+h1, :w1, i] = np.ones([h1, w1])*s5[:, :, i]\n    h1, w1 = res.shape[:2]\n    h2, w2 = res0.shape[:2]\n    res1 = np.zeros(shape=(max(h1, h2), w1+w2, 3), dtype=np.uint8)\n    for i in range(s2.shape[2]):\n        res1[:h2, :w2, i] = np.ones([h1, w1])*res[:, :, i]\n        res1[:h2, w2:w2+w1, i] = np.ones([h1, w1])*res0[:, :, i]",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py:126-150"
+    },
+    "1905": {
+        "file_id": 314,
+        "content": "This code is merging two image arrays (s2 and s3) into a single one named res. It then proceeds to merge two more image arrays (s4 and s5) into another res0. Finally, it combines the two resulting merged images (res and res0) into a single image called res1. The code utilizes numpy and OpenCV functions for merging, reshaping, and decoding image data.",
+        "type": "comment"
+    },
+    "1906": {
+        "file_id": 314,
+        "content": "    h1, w1 = res1.shape[:2]\n    h1, w1 = int(h1/4), int(w1/4)\n    res2 = res1[h1:h1*3, w1:w1*3, :]\n    return res2\ndef getSingle(sample):\n    s, sv = knock(sample)\n    s0 = show(table_name, s)\n    if sv == 0:\n        return get_0(s0, sv)\n    elif sv == 1:\n        return get_1(s0, sv)\n    elif sv == 2:\n        return get_2(s0, sv)\n    elif sv == 3:\n        return get_3(s0, sv)\n    else:\n        raise Exception(\"shit happens!\")\n    return\ndef ver_black(p):\n    return np.mean(p) > threshold\ndef getDouble(sample):\n    g = getSingle(sample)\n    if ver_black(g):\n        b = batchRead(g)\n        return {sample: b if b != None else []}\n        # this sometimes doesn't return shit.\n    else:\n        return {sample: []}\n# no, just stop?\n# there's still something?\n# def streamDouble(smp):\n#     r = parallel(len(smp), getDouble, smp)\n#     r0 = {}\n#     for x in r:\n#         r0.update(x)\n#     return r0\n# there are many dots over the spot.\n# result will be inaccurate.\ndef upDouble(d):\n    y = d.keys()\n    # for x in y:\n    inf(table_name, [(d[x], *x) for x in y])",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py:151-201"
+    },
+    "1907": {
+        "file_id": 314,
+        "content": "The code contains functions for image resizing, reading a single image, determining if an image is black or not, and processing multiple images. It also includes a function to update the database with the processed images' data. However, there are some issues with the \"streamDouble\" and \"upDouble\" functions that need to be addressed as they might return incorrect results due to parallel processing and inaccuracies from having many dots over the spot.",
+        "type": "comment"
+    },
+    "1908": {
+        "file_id": 314,
+        "content": "    # print(\"imports:\", len(y), \"contents:\", *[d[x] for x in y])\n    return\n# all shit.\n# you may increase the workload?\n# always like to tap dev options. it is killing me.\ndef singleton(a):\n    r = getDouble(a)\n    upDouble(r)\n    return\nif __name__ == \"__main__\":\n    freeze_support()\n    f = regcheck(table_name)\n    print(\"WORKLOAD\", len(f))\n    a = []\n    # you can set some batch size.\n    f0 = windowEndmarkEx(f, THROTTLE)\n    # print(f0)  # working.\n    for z in f0:\n        a = clean(a)\n        b = check(a)\n        # b = check_r(a)\n        # what the fuck.\n        if b < GFC:\n            for y in range(len(z)):\n                c = b+y  # just a hint.\n                print(\"dispached\", c)\n                zx = z[y]\n                p = Process(target=singleton, args=(zx,))\n                p.start()\n                a.append((p, zx))\n        else:\n            print(\"waiting\", b)\n            time.sleep(1)\n        # print(z)\n        # s = streamDouble(z)\n        # upDouble(s)\n# you plan to get it all?\n# sample = (5, 0, 0, 2)  # to pics.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py:202-242"
+    },
+    "1909": {
+        "file_id": 314,
+        "content": "This code is implementing a process handling system. It starts by importing necessary modules and then defines the \"singleton\" function, which performs some operation on input data. The main part of the code creates a list of workloads (f) and splits them into smaller batches (f0). For each batch, it processes the data, creating new processes to handle individual items if the data meets certain conditions, otherwise it waits for a set time before proceeding. It appears to be designed for handling large amounts of data in parallel while managing resource usage efficiently.",
+        "type": "comment"
+    },
+    "1910": {
+        "file_id": 314,
+        "content": "# s, sv = knock(sample)\n# # print(s)\n# s0 = show(table_name, s)\n# r = get_2(s0, sv)\n# sample = (5, 0, 0, 3)  # to pics.\n# s, sv = knock(sample)\n# # print(s)\n# s0 = show(table_name, s)\n# r0 = get_3(s0, sv)\n# e=[r,r0]\n# e0=batchRead(e)\n# print(e0)\n# skip pure black.\n# be it 2.\n# sv=sample[-1]\n# try different.\n# opencv is great but i cannot expolre.\n# print(r)\n# you will always get only one result.\n# p = np.mean(r)\n# print(p)\n# if this is applied, then return '' instead of None.\n# cv2.imshow(\" \", r)\n# cv2.waitKey(0)\n# cv2.imshow(\" \",res2)\n# cv2.waitKey(0)\n# just combine? too much computation.\n# not too bad.\n# same, do not do that to skimage. it sucks.\n# print(s2,s2.shape)\n# # not working.\n# people tend to freak each other out.\n# perform a single shot.\n# print(s)\n# now, how to get those pics?\n# print(sd,sv)\n# s=show(table_name,[(0,0,0)])\n# just get one?\n# print(s)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/multiCheck.py:243-281"
+    },
+    "1911": {
+        "file_id": 314,
+        "content": "The code is performing image processing and data analysis. It reads samples, applies operations using OpenCV, and prints the results. It seems to be testing different methods and trying various approaches to obtain accurate results from images. It also discusses some challenges encountered during the process and potential improvements. Overall, it appears to be a part of an experiment or prototype for image processing.",
+        "type": "comment"
+    },
+    "1912": {
+        "file_id": 315,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/sim0.py",
+        "type": "filepath"
+    },
+    "1913": {
+        "file_id": 315,
+        "content": "Code is creating a set of unique projects from the database and then applying a custom function to count occurrences of each project, storing the results in a dictionary. The code then prints the project name, its occurrence count as computed by the function, and the actual count of occurrences in the database.",
+        "type": "summary"
+    },
+    "1914": {
+        "file_id": 315,
+        "content": "# make set.\nfrom dbM2 import regcheck\n# a,b,c,d\ndef commPat(a, b):\n    c = []\n    buf = None\n    for x in a:\n        if buf == None:\n            c.append(x == b)\n            buf = x\n        else:\n            if x == buf:\n                pass\n            else:\n                c.append(x == b)\n                buf = x\n    return c\n# what the heck is actually going on?\n# why it cannot be done?\n# it is sorted, but undone.\n# count!\n# remember these numbers.\nr = regcheck(\"projects\")\nr = [x[0] for x in r]\nr0 = set(r)\nr1 = {x: commPat(r, x) for x in r0}\nfor x in r1.keys():\n    print(x, r1[x],r.count(x))\n    print(\"_____________________SPLITER_____________________\")\n# what the fuck is going on?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/sim0.py:1-32"
+    },
+    "1915": {
+        "file_id": 315,
+        "content": "Code is creating a set of unique projects from the database and then applying a custom function to count occurrences of each project, storing the results in a dictionary. The code then prints the project name, its occurrence count as computed by the function, and the actual count of occurrences in the database.",
+        "type": "comment"
+    },
+    "1916": {
+        "file_id": 316,
+        "content": "/bootstrap/legacy/concentration/old_toys/internet_maps/strings.py",
+        "type": "filepath"
+    },
+    "1917": {
+        "file_id": 316,
+        "content": "The given code is part of a multithreaded program, incomplete and lacking context. It contains notes for debugging and experiments on pickling and running on a cellphone while iterating over lists and printing data types.",
+        "type": "summary"
+    },
+    "1918": {
+        "file_id": 316,
+        "content": "from dbM import regcheck, inf\nimport requests\nimport requests_ftp\nimport random\n# from endmark import windowEndMarkEx\nfrom basepak import getPic\nfrom multiprocessing import Process, freeze_support\nimport time\nfrom endmark import windowEndMarkEx as windowEndmarkEx\nGFC = 45\n# does not matter. it is all the same.\n# limitation on max connection.\nTHROTTLE = 10\nMAX_PATIENCE = 5\nRESETTING = 5\n# def parallel(v, z):\n#     with Pool(processes=len(z)) as pool:\n#         return pool.map(v, z)\n# really strange idea.\n# will you encounter some overflow issues?\n# in theory, no.\n# you can also set it to be 20.\ndef check(a):\n    return sum([int(x.is_alive()) for x in a]+[0])\ndef clean(a):\n    return [x for x in a if x.is_alive()]\n# def check_w(s, x):\n#     while True:\n#         try:\n#             # r = random.random()*0.1\n#             # time.sleep(r)\n#             with open(s, \"w+\") as f:\n#                 f.write(str(x))\n#             break  # also dead code.\n#         except:\n#             dum()\n#             continue\n#     return\n# just dead code.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/strings.py:1-44"
+    },
+    "1919": {
+        "file_id": 316,
+        "content": "This code contains several functions and variables. It imports necessary modules, defines constants like GFC and THROTTLE, and has a function named 'check' that checks if a list of processes is still alive using the 'is_alive()' method. The variable MAX_PATIENCE sets the maximum patience time, RESETTING sets the reset time, and there are unused functions like 'clean', 'parallel', and 'check_w'. The code appears to be part of a larger program that may use multithreading and process management.",
+        "type": "comment"
+    },
+    "1920": {
+        "file_id": 316,
+        "content": "def dum():\n    r = random.random()*0.1\n    time.sleep(r)\n# def check_r(s):\n#     while True:\n#         try:\n#             with open(s, \"r\") as f:\n#                 return int(f.read())\n#             break  # also dead code.\n#         except:\n#             dum()\n#             continue\n#     return GFC  # dead code.\n    # not greater than 10.\n# just pass it through.\n    # return\n# use a database to do the task.\n# this sucks.\n# it is getting sparsed.\ndef scars(r0):\n    try:\n        return getPic(*r0)\n        # requests_ftp.monkeypatch_session()\n        # s = requests.Session()\n        # # really fucking slow?\n        # r1 = s.get(r0)\n        # s.close()\n        # return r1.content\n    except:\n        return\n    return\n# no idea where it is heading to.\ndef checker(a, c):\n    d = scars(a)\n    inf(\"projects\", [(d, *a)]) # it should be inserted.\n    dum()\n    # b = check_r(c)-1\n    # check_w(c, b)\n    print(\"DONE\", b, a)\n    return\n    # dead code?\n# i do not know. maybe it is for http only.\nif __name__ == \"__main__\":\n    r = regcheck(\"projects\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/strings.py:47-96"
+    },
+    "1921": {
+        "file_id": 316,
+        "content": "The code contains several functions and definitions, but it seems incomplete and possibly unfinished as some sections are commented out or have dead code. The 'scars' function uses the 'getPic' method to retrieve an image from a URL, while 'checker' function takes two parameters, retrieves data using 'scars', and then inserts it into a \"projects\" database. However, many parts of the code are unclear or not properly implemented.",
+        "type": "comment"
+    },
+    "1922": {
+        "file_id": 316,
+        "content": "    # # print(r)\n    zr = windowEndmarkEx(r, THROTTLE)\n    a = []\n    # a = \"proc_shuffle.log\"\n    # check_w(a, 0)\n    # r = list(map(lambda x: x[0], r))\n    # r = windowEndMarkEx(r, 10)  # strange\n    # do it on cellphone. pack it up.\n    # maybe the .gz file really helps.\n    print(\"REMAINING WORK\", len(r))\n    pxx = 0\n    pb = None\n    for x in zr:\n        a = clean(a)\n        b = check(a)\n        # b = check_r(a)\n        if b < GFC:\n            for y in range(len(x)):\n                c = b+y  # just a hint.\n                print(\"dispached\", c)\n                # cannot pass this around?\n                # strange.\n                # just do not make the fucking same mistake.\n                p = Process(target=checker, args=(x[y], c))\n                p.start()\n                a.append(p)\n            # b += 1\n            # check_w(a, b)\n        else:  # do a purge logic.\n            if pb == b:\n                pxx += 1\n            else:\n                pxx = 0\n            pb = b\n            if pxx >= MAX_PATIENCE:\n                counter = 0",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/strings.py:97-132"
+    },
+    "1923": {
+        "file_id": 316,
+        "content": "This code seems to be managing a process where it is dealing with a list of items and handling them in chunks. It appears that the code is implementing a process queue, assigning tasks to separate threads and checking for completion. The code also includes various checks and control flow logic for managing the process. However, the specific functionality and context remain unclear without additional information about the environment or variables being used.",
+        "type": "comment"
+    },
+    "1924": {
+        "file_id": 316,
+        "content": "                skip_counter = 0\n                for f0 in a:\n                    try:\n                        f0.terminate()\n                        print(\"purge\", counter)\n                        # that process does not indicate shit.\n                        counter += 1\n                    except:\n                        print(\"skip\", skip_counter)\n                        skip_counter += 1\n                        pass\n                print(\"kill\", counter, \"skip\", skip_counter)\n                a = []\n                time.sleep(RESETTING)\n                print(\"RESETTING FOR\", RESETTING, \"SECS\")\n                # reset the pxx.\n                pxx = 0\n            else:\n                print(\"waiting\", b, \"patience\", MAX_PATIENCE-pxx)\n                time.sleep(1)\n        # else:\n        #     print(\"OVERLOAD!\", b)\n        #     print(\"RESETTING TO ZERO!\")\n        #     check_w(a, 0)\n        # p = parallel(wrapper, x)\n        # try:\n        #     inf(\"projects\", p)\n        # except:\n        #     print(\"___FAILURE___\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/strings.py:133-161"
+    },
+    "1925": {
+        "file_id": 316,
+        "content": "This code appears to be part of a larger program that manages processes. It terminates and skips certain processes based on specific conditions, counts the number of kills and skips, resets variables after a specified time delay, and handles potential failures by printing messages. The purpose or context of these operations is unclear without further information about the overall system.",
+        "type": "comment"
+    },
+    "1926": {
+        "file_id": 316,
+        "content": "        # # really no issue?\n    # alright. problem occurs.\n    # maybe run this on cellphone?\n    # pickle issue.\n    # print(p)\n    # print(type(p))\n    # this is really slow as hell.\n    # print(len(p))\n    # ok now i can prepare for the stuff?\n    # just try once.\n    # for x in r:\n        # do it.\n        # r0=r[0]\n        # print(r0)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/internet_maps/strings.py:162-175"
+    },
+    "1927": {
+        "file_id": 316,
+        "content": "The code snippet appears to contain notes and potential debugging steps, possibly related to an issue involving pickling and running on a cellphone. The developer is experimenting with printing data types, lengths, and iterating over lists. They are trying different approaches before preparing for the next step in their program.",
+        "type": "comment"
+    },
+    "1928": {
+        "file_id": 317,
+        "content": "/bootstrap/legacy/concentration/old_toys/links_play/README",
+        "type": "filepath"
+    },
+    "1929": {
+        "file_id": 317,
+        "content": "The code discusses the potential benefits of using memory-based temporary files, virtual file objects, and a database for accessing output generated by other programs. It suggests using wget for downloads, avoiding multithreading, and considering tools to handle .arpa files. The author also recommends using a pool of workers instead of forcing the process.",
+        "type": "summary"
+    },
+    "1930": {
+        "file_id": 317,
+        "content": "it could be decent if one can make some tempfile in memory to store html.\nit would be great if we all can access some files in memory via url or some database or just some output generated by another program and then suddenly every shit will thenbe solved.\nconsider some virtual file objects, if any.\ndirect access to memory? c language?\nthese are identical outputs. beware.\none could train the bot to find some files inside the xml tree, finding structures inside by comparing the formatted document and the html thing.\nwhat is your plan? download via commandline or a download manager?\nanyway, download manager might just screw things together. wget is a good choice. run download inside the script.\nhow about database? again, this is no joke.\ndo you really want multithreading? it will screw you up.\ndoes these .arpa stuff really help? i don't know shit, but consider some tools to deal it.\njust use some pool workers, and do not do it with force.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/README:1-18"
+    },
+    "1931": {
+        "file_id": 317,
+        "content": "The code discusses the potential benefits of using memory-based temporary files, virtual file objects, and a database for accessing output generated by other programs. It suggests using wget for downloads, avoiding multithreading, and considering tools to handle .arpa files. The author also recommends using a pool of workers instead of forcing the process.",
+        "type": "comment"
+    },
+    "1932": {
+        "file_id": 318,
+        "content": "/bootstrap/legacy/concentration/old_toys/links_play/create_dir.py",
+        "type": "filepath"
+    },
+    "1933": {
+        "file_id": 318,
+        "content": "This code creates a list of organizations and then iterates through each organization, printing the command to remove all files and directories related to that organization.",
+        "type": "summary"
+    },
+    "1934": {
+        "file_id": 318,
+        "content": "a = [\"afrinic\", \"apnic\", \"lacnic\", \"arin\", \"ripe\"]\nfor x in a:\n    print(\"rm -rf \",x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/create_dir.py:1-3"
+    },
+    "1935": {
+        "file_id": 318,
+        "content": "This code creates a list of organizations and then iterates through each organization, printing the command to remove all files and directories related to that organization.",
+        "type": "comment"
+    },
+    "1936": {
+        "file_id": 319,
+        "content": "/bootstrap/legacy/concentration/old_toys/links_play/createdir.sh",
+        "type": "filepath"
+    },
+    "1937": {
+        "file_id": 319,
+        "content": "This script deletes directories for various regional internet registries (RIRs). It uses Bash and the 'rm -rf' command to forcefully remove empty or non-empty directories, irrespective of any potential error messages. The comment expresses frustration with German language settings, possibly referring to XDM display manager.",
+        "type": "summary"
+    },
+    "1938": {
+        "file_id": 319,
+        "content": "#!/bin/bash\n# without shebang it will not be executable.\n# i hate german. especially to the fucking xdm.\nrm -rf  afrinic\nrm -rf  apnic\nrm -rf  lacnic\nrm -rf  arin\nrm -rf  ripe",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/createdir.sh:1-8"
+    },
+    "1939": {
+        "file_id": 319,
+        "content": "This script deletes directories for various regional internet registries (RIRs). It uses Bash and the 'rm -rf' command to forcefully remove empty or non-empty directories, irrespective of any potential error messages. The comment expresses frustration with German language settings, possibly referring to XDM display manager.",
+        "type": "comment"
+    },
+    "1940": {
+        "file_id": 320,
+        "content": "/bootstrap/legacy/concentration/old_toys/links_play/endmark.py",
+        "type": "filepath"
+    },
+    "1941": {
+        "file_id": 320,
+        "content": "This code provides window conversion and pattern matching functions using regular expressions, enabling specific segment extraction. It checks input types and ranges, iterates through converted values to count occurrences within specified lengths, and returns true if count is within given limits.",
+        "type": "summary"
+    },
+    "1942": {
+        "file_id": 320,
+        "content": "import re\ndef windowConv(a, window_size):\n    return [a[x: x + window_size] for x in range(len(a) - window_size)]\ndef windowEndMark(a, window_size):\n    return [a[x * window_size: (x + 1) * window_size] for x in range(len(a) // window_size)]\ndef windowEndMarkEx(a, window_size):\n    return [a[x * window_size: (x + 1) * window_size] for x in range(len(a) // window_size)]+[a[len(a)-len(a)%window_size:len(a)]]\ndef phraseStartMark(a, start_phrase):\n    return re.findall(r'{}.+'.format(re.escape(start_phrase)), a)\ndef phraseEndMark(a, end_phrase):\n    return re.findall(r'.+{}'.format(re.escape(end_phrase)), a)\ndef phraseSegment(a, start_phrase, end_phrase):\n    return re.findall(r'{}.+{}'.format(re.escape(start_phrase), re.escape(end_phrase)), a)\ndef setStartMark(a, start_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(start_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    start_phrase = \"\".join(set(start_phrase))\n    return re.findall(r'['+r'{}'.format(re.escape(start_phrase))+r']{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:1-33"
+    },
+    "1943": {
+        "file_id": 320,
+        "content": "This code includes various functions for window conversion and pattern matching using regular expressions. The functions are windowConv, windowEndMark, windowEndMarkEx, phraseStartMark, phraseEndMark, phraseSegment, and setStartMark. These functions can be used to extract specific segments or patterns from a given string based on window sizes, start and end phrases, and optional sigma value for randomness.",
+        "type": "comment"
+    },
+    "1944": {
+        "file_id": 320,
+        "content": "def setEndMark(a, end_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(end_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    end_phrase = \"\".join(set(end_phrase))\n    return re.findall(r'.+[{}]'.format(re.escape(end_phrase))+r'{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)\ndef setSegment(a, start_phrase, end_phrase, sigma):\n    assert sigma < 1 and sigma > 0\n    len_phrase = len(end_phrase)\n    a0, a1 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    len_phrase = len(start_phrase)\n    a2, a3 = list(map(round, [len_phrase * sigma, len_phrase / sigma]))\n    start_phrase = \"\".join(set(start_phrase))\n    end_phrase = \"\".join(set(end_phrase))\n    return re.findall(r'['+r'{}'.format(re.escape(start_phrase))+r']{'+r'{},{}'.format(str(a2), str(a3))+r'}'+r'.+[{}]'.format(re.escape(end_phrase))+r'{'+r'{},{}'.format(str(a0), str(a1))+r'}.+', a)\ndef containRestrict(a, text, least_occurance, most_occurance):\n    assert least_occurance <= most_occurance",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:36-56"
+    },
+    "1945": {
+        "file_id": 320,
+        "content": "This code contains functions setEndMark, setSegment and containRestrict for pattern matching. The setEndMark function takes in a string 'a', end_phrase, and sigma to find occurrences of the end phrase within 'a' by considering two possible lengths based on sigma value. Similarly, the setSegment function finds occurrences of a segment defined by start and end phrases within 'a' using sigma-based lengths for both phrases. Finally, containRestrict asserts that least_occurance is less than or equal to most_occurance before searching for a pattern in string 'a'.",
+        "type": "comment"
+    },
+    "1946": {
+        "file_id": 320,
+        "content": "    assert type(least_occurance) == int\n    assert type(most_occurance) == int\n    assert least_occurance >= 1\n    assert type(text) == str\n    lt = len(text)\n    assert lt >= 1\n    gc = 0\n    for x in windowConv(a, lt):\n        if x == text:\n            gc += 1\n    return (gc >= least_occurance and gc <= most_occurance)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/brainfuck/theMonkey/endmark.py:57-67"
+    },
+    "1947": {
+        "file_id": 320,
+        "content": "This code checks the input types and ranges, then iterates through window converted values to count occurrences of text within a specified length range. It returns true if the count is within the given least/most occurrence limits.",
+        "type": "comment"
+    },
+    "1948": {
+        "file_id": 321,
+        "content": "/bootstrap/legacy/concentration/old_toys/links_play/formal.py",
+        "type": "filepath"
+    },
+    "1949": {
+        "file_id": 321,
+        "content": "The code imports libraries and defines functions for handling parallel HTTP requests with error handling and logging. It faces issues running as expected, possibly designed for a cellphone, and deals with debugging details related to a variable 'p' and slow process speed.",
+        "type": "summary"
+    },
+    "1950": {
+        "file_id": 321,
+        "content": "from dbM import regcheck, inf\nimport requests\nimport requests_ftp\nfrom endmark import windowEndMarkEx\nfrom multiprocessing import Pool, freeze_support\ndef parallel(v, z):\n    with Pool(processes=len(z)) as pool:\n        return pool.map(v, z)\ndef scars(r0):\n    try:\n        requests_ftp.monkeypatch_session()\n        s = requests.Session()\n        # really fucking slow?\n        r1 = s.get(r0)\n        s.close()\n        return r1.content\n    except:\n        return\n    return\ndef wrapper(a):\n    b = scars(a)\n    print(\"DONE\", a)\n    return (b, a)\n    # dead code?\n# i do not know. maybe it is for http only.\nif __name__ == \"__main__\":\n    r = regcheck(\"projects\")\n    # print(r)\n    r = list(map(lambda x: x[0], r))\n    r = windowEndMarkEx(r, 10) # strange\n    # do it on cellphone. pack it up.\n    # maybe the .gz file really helps.\n    for x in r:\n        p = parallel(wrapper, x)\n        try:\n            inf(\"projects\", p)\n        except:\n            print(\"___FAILURE___\")\n        # really no issue?\n    # alright. problem occurs.\n    # maybe run this on cellphone?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/formal.py:1-48"
+    },
+    "1951": {
+        "file_id": 321,
+        "content": "This code is importing various libraries and defining functions to handle requests and processes. It then tries to perform parallel HTTP requests using a session-based approach, with error handling and logging the status of each request. The main execution part checks for a project list, processes it in parallel, and updates some information. However, it seems to have issues running as expected and might be designed to run on a cellphone.",
+        "type": "comment"
+    },
+    "1952": {
+        "file_id": 321,
+        "content": "    # pickle issue.\n    # print(p)\n    # print(type(p))\n    # this is really slow as hell.\n    # print(len(p))\n    # ok now i can prepare for the stuff?\n    # just try once.\n    # for x in r:\n        # do it.\n        # r0=r[0]\n        # print(r0)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/formal.py:49-59"
+    },
+    "1953": {
+        "file_id": 321,
+        "content": "The code appears to be debugging and printing various details about a variable 'p'. The programmer mentions a pickle issue, which seems to be causing some concern. They also note that the process is slow, but it's unclear why or what the ultimate goal of this code might be.",
+        "type": "comment"
+    },
+    "1954": {
+        "file_id": 322,
+        "content": "/bootstrap/legacy/concentration/old_toys/links_play/initial_works.py",
+        "type": "filepath"
+    },
+    "1955": {
+        "file_id": 322,
+        "content": "This code imports necessary modules and defines a function 'xygen' which extracts specific information from input strings. It then generates a list of tuples by calling 'xygen' on each combination of input keys and values, stores the result in 'f', and finally calls 'initial' to store 'f' in the 'projects' database.",
+        "type": "summary"
+    },
+    "1956": {
+        "file_id": 322,
+        "content": "from dbM import initial\nfrom getFromDill import returnXList\nimport re\ndef xygen(x,y):\n    x0=re.findall(r'^[^_]+',x)[0]\n    y0=re.findall(r'[^/]+$',y)[0]\n    return (x0,y0,y)\nr=returnXList(\"rock\")\n# print(r)\nf=[]\nfor x in r.keys():\n    for y in r[x]:\n        z=xygen(x,y)\n        # print(z)\n        f.append(z)\ninitial(\"projects\",f)\nprint(\"DONE!\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/initial_works.py:1-19"
+    },
+    "1957": {
+        "file_id": 322,
+        "content": "This code imports necessary modules and defines a function 'xygen' which extracts specific information from input strings. It then generates a list of tuples by calling 'xygen' on each combination of input keys and values, stores the result in 'f', and finally calls 'initial' to store 'f' in the 'projects' database.",
+        "type": "comment"
+    },
+    "1958": {
+        "file_id": 323,
+        "content": "/bootstrap/legacy/concentration/old_toys/links_play/naus.py",
+        "type": "filepath"
+    },
+    "1959": {
+        "file_id": 323,
+        "content": "This code retrieves log files, stores URLs in a dictionary and list, performs data cleaning, and potentially processes the data using batch worker. The purpose remains unclear due to lack of context.",
+        "type": "summary"
+    },
+    "1960": {
+        "file_id": 323,
+        "content": "import re\nfrom storeADill import storeXList\n# just assemble them.\ndef getCode(a):\n    b = a.split(\"\\n\")\n    b = list(map(lambda x: re.findall(r'[^ ]+$', x), b))\n    b = list(filter(lambda x: len(x) == 1, b))\n    # print(len(b))\n    b = list(map(lambda x: x[0], b))\n    b = list(filter(lambda x: \".arpa\" in x and (\n        \".asc\" not in x and \".md5\" not in x and \".sha1\" not in x and \".gz\" not in x), b))\n    return b\n# highlighter can be in trouble?\n# what about other registries?\n# do the same.\n# it could not be good.\n# we need to deal with them differently. may have duplicated names across servers.\ndef openText(a):\n    with open(a, \"r\") as f:\n        return f.read()\n# \"apnic_rdns.log\"\ndef getCoords(a):\n    a = openText(a)\n    a = getCode(a)\n    return a\ndef genDict(a):\n    return {x+\"_rdns.log\": \"ftp://ftp.\"+x+\".net/pub/zones/\" for x in a}\n# for x in a:\n#     print(x)\n# all the same.\n# add them together.\na = [\"afrinic\", \"apnic\", \"lacnic\", \"arin\", \"ripe\"]\na = genDict(a)\na = {x: list(map(lambda y: a[x]+y, getCoords(x))) for x in a.keys()}",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/naus.py:1-45"
+    },
+    "1961": {
+        "file_id": 323,
+        "content": "This code retrieves and processes text data from multiple sources, likely FTP servers, extracting specific log files related to IP address allocation. It then generates a dictionary containing the URLs for each of these logs and stores them in a list. The code also performs some cleaning steps on the extracted data.",
+        "type": "comment"
+    },
+    "1962": {
+        "file_id": 323,
+        "content": "# i said, put it into database.\nstoreXList(a,\"rock\")\n# think about it.\n# print(a)\n# a=[y for z in [a[x] for x in a.keys()] for y in z]\n# for x in a:\n#     print(x)\n# we'd better flattern this thing.\n# check if it is done?\n# use batch worker.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/naus.py:46-55"
+    },
+    "1963": {
+        "file_id": 323,
+        "content": "The code seems to be performing the following actions:\n1. Stores a list called \"a\" into the database with the label \"rock\".\n2. Flattens the list \"a\" using a list comprehension and potentially prints each element.\n3. Contemplates flattening the list further, possibly for easier processing or analysis.\n4. Checks if the operation is completed, but it's unclear what it's checking against.\n5. Considers using batch worker to process the flattened data.\n\nThis code seems incomplete and lacks proper context, making it difficult to understand its purpose.",
+        "type": "comment"
+    },
+    "1964": {
+        "file_id": 324,
+        "content": "/bootstrap/legacy/concentration/old_toys/links_play/strings.py",
+        "type": "filepath"
+    },
+    "1965": {
+        "file_id": 324,
+        "content": "The code fetches data from a URL and stores it in a database, with potential for optimization. The developer is trying to parallelize the task using sessions and considers running on a cellphone. Lengthy lists slow down the process.",
+        "type": "summary"
+    },
+    "1966": {
+        "file_id": 324,
+        "content": "from dbM import regcheck, inf\nimport requests\nimport requests_ftp\nimport random\n# from endmark import windowEndMarkEx\nfrom multiprocessing import Process, freeze_support\nimport time\nGFC = 20\n# def parallel(v, z):\n#     with Pool(processes=len(z)) as pool:\n#         return pool.map(v, z)\n# really strange idea.\n# will you encounter some overflow issues?\n# in theory, no.\n# you can also set it to be 20.\ndef check_w(s, x):\n    while True:\n        try:\n            # r = random.random()*0.1\n            # time.sleep(r)\n            with open(s, \"w+\") as f:\n                f.write(str(x))\n            break  # also dead code.\n        except:\n            dum()\n            continue\n    return\n# just dead code.\ndef dum():\n    r = random.random()*0.1\n    time.sleep(r)\ndef check_r(s):\n    while True:\n        try:\n            with open(s, \"r\") as f:\n                return int(f.read())\n            break  # also dead code.\n        except:\n            dum()\n            continue\n    return GFC  # dead code.\n    # not greater than 10.\n# just pass it through.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/strings.py:1-48"
+    },
+    "1967": {
+        "file_id": 324,
+        "content": "The code includes functions for writing and reading data from files, using random time delays, and a constant value. The parallel function (not implemented) is defined but never used. The check_w function writes a file with the specified value and the check_r function reads that value back from the file. The dead code comments indicate unused or unreachable code segments.",
+        "type": "comment"
+    },
+    "1968": {
+        "file_id": 324,
+        "content": "    # return\n# use a database to do the task.\n# this sucks.\n# it is getting sparsed.\ndef scars(r0):\n    try:\n        requests_ftp.monkeypatch_session()\n        s = requests.Session()\n        # really fucking slow?\n        r1 = s.get(r0)\n        s.close()\n        return r1.content\n    except:\n        return\n    return\ndef checker(a, c):\n    d = scars(a)\n    inf(\"projects\", [(d, a)])\n    dum()\n    b = check_r(c)-1\n    check_w(c, b)\n    print(\"DONE\", b, a)\n    return\n    # dead code?\n# i do not know. maybe it is for http only.\nif __name__ == \"__main__\":\n    r = regcheck(\"projects\")\n    # print(r)\n    a = \"proc_shuffle.log\"\n    check_w(a, 0)\n    r = list(map(lambda x: x[0], r))\n    # r = windowEndMarkEx(r, 10)  # strange\n    # do it on cellphone. pack it up.\n    # maybe the .gz file really helps.\n    for x in r:\n        b = check_r(a)\n        if b < GFC:\n            print(\"dispached\", b)\n            # cannot pass this around?\n            p = Process(target=checker, args=(x, a))\n            p.start()\n            b += 1\n            check_w(a, b)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/strings.py:49-97"
+    },
+    "1969": {
+        "file_id": 324,
+        "content": "The code appears to be performing a task related to fetching data from a specified URL and storing it in a database. It seems to have some redundant or potentially dead code, and could benefit from optimization as it is currently slow and might not be efficient for handling HTTP requests. There may also be a possibility that the code is specifically designed for use with HTTP connections only. The main functionality involves using a session to fetch data from a URL, storing it in the database, and possibly dispatching sub-tasks to separate processes.",
+        "type": "comment"
+    },
+    "1970": {
+        "file_id": 324,
+        "content": "        else:\n            print(\"waiting\", b)\n            time.sleep(1)\n        # p = parallel(wrapper, x)\n        # try:\n        #     inf(\"projects\", p)\n        # except:\n        #     print(\"___FAILURE___\")\n        # # really no issue?\n    # alright. problem occurs.\n    # maybe run this on cellphone?\n    # pickle issue.\n    # print(p)\n    # print(type(p))\n    # this is really slow as hell.\n    # print(len(p))\n    # ok now i can prepare for the stuff?\n    # just try once.\n    # for x in r:\n        # do it.\n        # r0=r[0]\n        # print(r0)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/strings.py:98-119"
+    },
+    "1971": {
+        "file_id": 324,
+        "content": "This code attempts to parallelize a task, but is experiencing issues with pickle and timing out. The developer is considering running it on a cellphone and experimenting with different approaches. The length of the list seems to be slowing down the process.",
+        "type": "comment"
+    },
+    "1972": {
+        "file_id": 325,
+        "content": "/bootstrap/legacy/concentration/old_toys/links_play/telescoper.py",
+        "type": "filepath"
+    },
+    "1973": {
+        "file_id": 325,
+        "content": "The code defines a `checker` function for file operations, likely part of multiprocessing tasks. It involves reading and writing to files, with a global failsafe constant `GFC`, and contains outdated, dead or unnecessary parts. The function creates a process to check a file and increments its value if it's less than `GFC`.",
+        "type": "summary"
+    },
+    "1974": {
+        "file_id": 325,
+        "content": "from multiprocessing import Process, freeze_support\nimport time\nimport random\n# prevent collision.\n# global failsafe: 10\nGFC = 10\ndef check_w(s, x):\n    while True:\n        try:\n            # r = random.random()*0.1\n            # time.sleep(r)\n            with open(s, \"w+\") as f:\n                f.write(str(x))\n            break  # also dead code.\n        except:\n            dum()\n            continue\n    return\n# just dead code.\ndef dum():\n    r = random.random()*0.1\n    time.sleep(r)\ndef check_r(s):\n    while True:\n        try:\n            with open(s, \"r\") as f:\n                return int(f.read())\n            break  # also dead code.\n        except:\n            dum()\n            continue\n    return GFC  # dead code.\n    # not greater than 10.\n# just pass it through.\n    # return\n# use a database to do the task.\n# this sucks.\n# it is getting sparsed.\ndef checker(a):\n    # global a\n    time.sleep(10)\n    # a[0] -= 1\n    dum()\n    b = check_r(a)-1\n    check_w(a, b)\n    # it is final process.\n    print(\"process is here\", b)\nif __name__ == '__main__':",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/telescoper.py:1-56"
+    },
+    "1975": {
+        "file_id": 325,
+        "content": "The code defines a function `checker` that seems to involve reading and writing to files, potentially as part of a multiprocessing task. The function `check_r` reads the contents of a file, while `check_w` writes to a file. There is also a global failsafe constant `GFC` set to 10, which might be used for error handling or collision prevention. The code seems outdated and contains many dead or unnecessary parts. It uses multiprocessing and time delays, suggesting it may have been designed for parallel processing tasks.",
+        "type": "comment"
+    },
+    "1976": {
+        "file_id": 325,
+        "content": "    # a = [0]\n    a = \"proc_shuffle.log\"\n    check_w(a, 0)\n    while True:\n        b = check_r(a)\n        if b < GFC:\n            print(\"dispached\", b)\n            p = Process(target=checker, args=(a,))  # cannot pass this around?\n            p.start()\n            b += 1\n            check_w(a, b)\n        else:\n            print(\"waiting\", b)\n            time.sleep(1)\n    # checker(a)\n    # print(a)\n    # you can do some memory task.\n# does work.\n# use some mutable object, like list, set.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/links_play/telescoper.py:57-75"
+    },
+    "1977": {
+        "file_id": 325,
+        "content": "This code is creating a process to check a file and increment its value if it's less than GFC. The process starts when the condition is met, waits if not, and uses a mutable object like list or set for memory tasks.",
+        "type": "comment"
+    },
+    "1978": {
+        "file_id": 326,
+        "content": "/bootstrap/legacy/concentration/old_toys/random_interactive.py",
+        "type": "filepath"
+    },
+    "1979": {
+        "file_id": 326,
+        "content": "The code uses Paramiko for SSH connections, defines functions to handle remote commands and exceptions, interacts with external programs or scripts, handles timeouts and parallel processing using multiprocessing, and updates a dictionary stored in \"rock\" file.",
+        "type": "summary"
+    },
+    "1980": {
+        "file_id": 326,
+        "content": "import paramiko\nimport time\nfrom core4 import createLinks\nfrom sub2 import timeout\n# import traceback\nfrom getFromDill import returnXList\nfrom storeADill import storeXList\nimport copy\nfrom endmark import windowEndMarkEx\nfrom multiprocessing import Pool, freeze_support\nfrom repeating import ajam\n# we need a record.\n# try that thing! the jediterm.\n# we are reusing the database! it is cool!\n# there might be some detaching issues. launching firefox or something.\n# it needs for display. unlike windows.\n# if that happens, it is windows to blame.\n# but xdm is a different thing, it always pops up to me.\n# without my fucking keyboard, i'm feeling shit.\ndef autoreturn(a):\n    return a.replace(\"\\n\", \"\")+\"\\n\"\n# there seems to some problems inside.\n# repetitive patterns.\n# set some total buffer size.\n# charlen: 10000\ndef the_loop(a):\n    # private_key = paramiko.RSAKey.from_private_key_file(\n    #     '/root/.ssh/id_rsa')  # 使用目标的私钥来登录\n    ssh = paramiko.SSHClient()\n    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())\n    # ssh.connect(hostname='127.0.0.1',port=22,username='root',pkey=private_key)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_interactive.py:1-35"
+    },
+    "1981": {
+        "file_id": 326,
+        "content": "The code appears to be a part of a larger program that uses Paramiko library for SSH connections. It defines a function `autoreturn(a)` and another function `the_loop(a)`. The code also imports various modules like `createLinks`, `timeout`, `returnXList`, `storeXList`, `copy`, `endmark`, and `multiprocessing.Pool`. There seem to be some issues with repetitive patterns in the code, and a total buffer size is set for `the_loop(a)` function.",
+        "type": "comment"
+    },
+    "1982": {
+        "file_id": 326,
+        "content": "    # we will do recording later.\n    # ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())\n    # 连接服务器\n    ssh.connect(hostname='127.0.0.1', port=22,\n                username='test', password='test')\n    # it is my system password after all.\n    #cmd = 'yes'\n    #stdin, stdout, stderr = ssh.exec_command(cmd)\n    timestamp = time.time()\n    # accept float?\n    remote_conn = ssh.invoke_shell()\n    # nothing is like this.\n    # remote_conn.send(\"python\\n\")\n    # what about errors?\n    time.sleep(2)\n    # you even have that shell thing!\n    # remote_conn.send(\"yes\\n\")\n    # yes! it does matters.\n    # by the way, I fucking hate shell command typing. It is awful.\n    # what about networking and GUI clicking?\n    # same to me! ok?\n    output = remote_conn.recv(1000)\n    # but where the fuck is stderr?\n    # remote_conn.send(\"happybirthday\\n\")\n    # a = \"msfconsole\"\n    remote_conn.send(autoreturn(a))\n    command_init = [a, 0]\n    output_init = []\n    # time.sleep(20)\n    # what is going on?\n    # just to check.\n    # it is working, after all.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_interactive.py:36-69"
+    },
+    "1983": {
+        "file_id": 326,
+        "content": "Code establishes a connection to the server, uses shell command input for certain actions, and records output. It faces issues with stderr and lacks error handling. The purpose appears to involve executing commands remotely and recording the results in some way.",
+        "type": "comment"
+    },
+    "1984": {
+        "file_id": 326,
+        "content": "    # may miss a bit?\n    # you should get that thing!\n    # no error! strange thing!\n    # there should be error.\n    # no respond! how about python?\n    # why you have to wait\n    # sleep for a while?\n    timeall = 1000\n    charlen_buff = 40000\n    time_limit = 10\n    # will be problem.\n    # computer is gonna blow.\n    # this will be incredible.\n    # time precision.\n    # we are gonna count.\n    counter = 0\n    patience = 5\n    # is it too much?\n    # self-related?\n    jam_warn = False\n    global_buff = \"\"\n    while timeall >= 0 and patience > 0 and charlen_buff > 0 and time.time()-timestamp < time_limit and not jam_warn:\n        # i want to see some web repl.\n        # always logic mistakes. so there should be alternative?\n        #result = stdout.read()\n        # while not stdout.channel.exit_status_ready():\n        #    # Only print data if there is data to read in the channel\n        #    if stdout.channel.recv_ready():\n        #        rl, wl, xl = select.select([stdout.channel], [], [], 0.0)\n        #        if len(rl) > 0:",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_interactive.py:70-99"
+    },
+    "1985": {
+        "file_id": 326,
+        "content": "This code snippet seems to be part of a larger program that deals with time limits, character buffers, and waiting for responses from a web repl. It uses a while loop with conditions for timeall, patience, charlen_buff, and time difference to check if the program should continue running or exit. The code also mentions checking for alternative logic mistakes and reading from stdout (standard output). It seems to handle potential errors and warns about possible issues related to the self-related variable 'jam_warn'. The global_buff variable is used but its purpose isn't clear in this context. Overall, the purpose of this specific segment of code is unclear without understanding the larger program it's a part of.",
+        "type": "comment"
+    },
+    "1986": {
+        "file_id": 326,
+        "content": "        # Print data from stdout\n        #            print(stdout.channel.recv(1024),)\n        # this is not good.\n        # if not result:\n        # search for possible errors!\n        # errors are sweet?\n        # it is all connected.\n        # does the order matters?\n        # print(output.decode())\n        try:\n            # p = timeout(0.1)(output.decode)\n            p = timeout(1)(remote_conn.recv)\n            # we are missing things.\n            x = p(1000).decode()\n            if len(x) > 135:\n                if ajam(x, 75, 0.7, 500, 0.3):\n                    jam_warn = True\n                    break\n            global_buff += x\n            # total counts?\n            # anyway, hope this works.\n            # there could be limit.\n            # dynamic things?\n            if ajam(global_buff, 75, 0.7, 500, 0.3):\n                jam_warn = True\n                break\n            # if highly repetitive, break.\n            # decode?\n            output_init.append([x, counter, time.time()])\n            # print(x)",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_interactive.py:100-129"
+    },
+    "1987": {
+        "file_id": 326,
+        "content": "This code is trying to read data from stdout, decode it, and check for potential errors or repetitive patterns. If the output exceeds a certain length or contains too much repetition, it triggers a warning flag. The code also stores initial outputs in a list with their timestamp.",
+        "type": "comment"
+    },
+    "1988": {
+        "file_id": 326,
+        "content": "            charlen_buff -= len(x)\n            counter += 1\n            # it is shit.\n            # but then we get stuck.\n        except:\n            # print(traceback.format_exc())\n            patience -= 1\n            # there is no error.\n            pass\n        # well, for those non-ending.\n        # code is intepretable for shell but no unicode support?\n    #    print(output)\n        # what is the color?\n        # check it?\n        # time.sleep(0.1)\n        # print(timeall, time.time()-timestamp)\n        # it is likely to fail.\n        timeall -= 1\n    # do we really know it is repl?\n    # never mind. we can do manual debugging from now on.\n    #    result = stderr.read()\n    # timestamp?\n    # a highighter will be useful.\n    ssh.close()\n    for x in output_init:\n        row = x[2]-timestamp\n        createLinks(timestamp, row,\n                    command_init[0], command_init[1], x[0], x[1])\n    # print(result.decode())\n    # it takes a long time.\n    # let's check.\n# def metaloop(a):\n# /usr/share/neo4j/data/databases/graph.db/",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_interactive.py:130-162"
+    },
+    "1989": {
+        "file_id": 326,
+        "content": "This code seems to handle interactions with an external program or script, potentially dealing with exceptions and timeouts. It also includes printing statements for debugging and error handling, as well as interacting with a database (neo4j) and managing timestamps. Additionally, it mentions the possibility of using a highlighter for better readability. Overall, this code appears to be part of a larger system that involves executing commands, reading output, and interacting with external resources.",
+        "type": "comment"
+    },
+    "1990": {
+        "file_id": 326,
+        "content": "def parallel(v, z):\n    with Pool(processes=len(z)) as pool:\n        return pool.map(v, z)\nif __name__ == \"__main__\":\n    freeze_support()\n    r = returnXList(\"rock\")\n    f = copy.copy(r)\n    r0 = [x for x in r.keys() if not r[x]]\n    r1 = windowEndMarkEx(r0, 10)\n    # very strange.\n    # not too damn much.\n    # you want this.\n    rx = len(r0)\n    for x in r1:\n        # p=Pool(the_loop,x)\n        print(rx, \"items left\")\n        p = \"\".join(str(parallel(the_loop, x)))\n        # what the heck.\n        for y in x:\n            f.update({y: True})\n        storeXList(f, \"rock\")\n        rx -= len(x)\n# rebuild the thing.\n# maybe it is deleted.",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_interactive.py:165-190"
+    },
+    "1991": {
+        "file_id": 326,
+        "content": "The code creates a parallel function, \"parallel\", that utilizes the multiprocessing Pool module. It takes two arguments, \"v\" and \"z,\" and uses Pool's map() function to perform some operation on each element in list \"z.\" The main part of the code initializes variables, calls the parallel function, updates a dictionary, and finally stores the updated dictionary in a file named \"rock\".",
+        "type": "comment"
+    },
+    "1992": {
+        "file_id": 327,
+        "content": "/bootstrap/legacy/concentration/old_toys/random_shell.py",
+        "type": "filepath"
+    },
+    "1993": {
+        "file_id": 327,
+        "content": "The code uses Paramiko to connect to a server, runs a Python script, logs stderr, and debugs manually due to difficulties in handling REPL. The author is considering writing their own shell in Python.",
+        "type": "summary"
+    },
+    "1994": {
+        "file_id": 327,
+        "content": "import paramiko\nimport time\nfrom sub2 import timeout\nimport traceback\n# private_key = paramiko.RSAKey.from_private_key_file('/root/.ssh/id_rsa')#使用目标的私钥来登录\n# consider that.\n# should you cut it down? by means of optimization.\n# you are some agencies sharing the same screen.\ndef getOutput(remote_conn):\n    timeall = 10\n    while timeall >= 0:\n        try:\n            output = timeout(0.1)(remote_conn.recv)\n            output = output(1000)\n            print(output)\n            print(type(output))\n            # it will be problematic.\n            # it is just preprocessing. calm down.\n        except:\n            e = traceback.format_exc()\n            print(e)\n        # it was stuck. once again. we should use that timer.\n# i want to see some web repl.\n#result = stdout.read()\n# while not stdout.channel.exit_status_ready():\n#    # Only print data if there is data to read in the channel\n#    if stdout.channel.recv_ready():\n#        rl, wl, xl = select.select([stdout.channel], [], [], 0.0)\n#        if len(rl) > 0:\n            # Print data from stdout",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_shell.py:1-31"
+    },
+    "1995": {
+        "file_id": 327,
+        "content": "This code imports paramiko, time, sub2 (timeout), and traceback. It defines a function getOutput that takes in a remote_conn object. The function uses a while loop to attempt to receive data from the remote_conn with a timeout of 10 seconds. If an exception occurs, it prints the traceback. The code also contains comments suggesting potential improvements and discussing some issues encountered during development.",
+        "type": "comment"
+    },
+    "1996": {
+        "file_id": 327,
+        "content": "#            print(stdout.channel.recv(1024),)\n            # this is not good.\n# if not result:\n# search for possible errors!\n# errors are sweet?\n# it is all connected.\n# does the order matters?\n#        print(output.decode())\n        # print(output)\n        # print(type(output))\n    # code is intepretable for shell but no unicode support?\n#    print(output)\n    # what is the color?\n    # check it?\n#        time.sleep(0.1)\n        timeall -= 1\n        if timeall <= 0:\n            break\n    print(\"next_session\")\n    # there could be things going around.\n    # how about writing a shell in python? which will be a lot easier than anything?\n    # really? not for me?\n    # what the heck?\n# if i can only debug vscode.\n# it will always clear the buffer, which is fairly awful.\nssh = paramiko.SSHClient()\nssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())\n# ssh.connect(hostname='127.0.0.1',port=22,username='root',pkey=private_key)\n# vim should be not working.\n# ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())\n# 连接服务器",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_shell.py:32-64"
+    },
+    "1997": {
+        "file_id": 327,
+        "content": "This code seems to be attempting to establish a connection with a server using Paramiko library, but the author is facing issues and considering writing their own shell in Python. They also mention some difficulties with VSCode's behavior while debugging. The code has comments suggesting potential improvements or investigations but overall goal remains unclear.",
+        "type": "comment"
+    },
+    "1998": {
+        "file_id": 327,
+        "content": "ssh.connect(hostname='127.0.0.1', port=22, username='root', password='kali')\n# it is my system password after all.\n# cannot let you do no harm.\n# create user on windows as well!\n# i do not know things. can these commands being sent to neo4j?\n# they are raw data. it might fail.\n#cmd = 'yes'\n#stdin, stdout, stderr = ssh.exec_command(cmd)\nremote_conn = ssh.invoke_shell()\n# nothing is like this.\n# remote_conn.send(\"python\\n\")\n# what about errors?\ntime.sleep(2)\n# you even have that shell thing!\n# remote_conn.send(\"yes\\n\")\n# yes! it does matters.\n# by the way, I fucking hate shell command typing. It is awful.\n# what about networking and GUI clicking?\n# same to me! ok?\noutput = remote_conn.recv(1000)\n# remote_conn.send(\"happybirthday\\n\")\nremote_conn.send(\"screen -x ServerFault\\n\")\n# allow same input??\ngetOutput(remote_conn)\n# time.sleep(20)\n# what is going on?\n# just to check.\n# it is working, after all.\n# may miss a bit?\n# you should get that thing!\n# no error! strange thing!\n# there should be error.\n# no respond! how about python?",
+        "type": "code",
+        "location": "/bootstrap/legacy/concentration/old_toys/random_shell.py:65-98"
+    },
+    "1999": {
+        "file_id": 327,
+        "content": "This code establishes an SSH connection to a remote host, executes shell commands on the remote system to invoke a Python script and access a specific server (ServerFault), potentially waits for output or error messages, and seems to handle potential network issues or GUI interactions. It also mentions frustration with shell command typing and concerns about possible errors or lack of response from Python execution.",
+        "type": "comment"
+    }
+}

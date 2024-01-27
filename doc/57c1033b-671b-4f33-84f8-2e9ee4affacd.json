@@ -1,0 +1,10 @@
+{
+    "summary": "This script uses Bash to update the database of files and then redirects the locate command output for \"/\" path to a log file named \"locate.log\".",
+    "details": [
+        {
+            "comment": "This script uses Bash to update the database of files and then redirects the locate command output for \"/\" path to a log file named \"locate.log\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/filesuite.sh\":0-2",
+            "content": "#!/bin/bash\nupdatedb\nlocate / > locate.log"
+        }
+    ]
+}

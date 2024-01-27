@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports pandas library and defines a timedelta object representing 2 days, 2 hours, 15 minutes, and 30 seconds. It then prints the timedelta object and its attributes.",
+    "details": [
+        {
+            "comment": "The code imports pandas library and defines a timedelta object representing 2 days, 2 hours, 15 minutes, and 30 seconds. It then prints the timedelta object and its attributes.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/pdelta.py\":0-5",
+            "content": "import pandas as pd\n# no keras.\ntimediff = pd.Timedelta('2 days 2 hours 15 minutes 30 seconds')\nprint(timediff)\nprint(dir(timediff))"
+        }
+    ]
+}

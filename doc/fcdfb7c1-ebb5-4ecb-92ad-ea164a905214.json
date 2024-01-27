@@ -1,0 +1,10 @@
+{
+    "summary": "The script unmounts an Alpine Linux read-only file system, checks its size, and deletes it if empty to avoid unnecessary clutter. It serves as a safety measure for users who might have made mistakes during chroot/symlink operations.",
+    "details": [
+        {
+            "comment": "The script unmounts an Alpine Linux read-only file system, checks its size, and deletes it if empty to avoid unnecessary clutter. It serves as a safety measure for users who might have made mistakes during chroot/symlink operations.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/aunloadroot.sh\":0-9",
+            "content": "#!/bin/bash\nsudo umount alpine-ro\npsk=$(sudo ls -1 alpine-ro | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf alpine-ro\nfi"
+        }
+    ]
+}

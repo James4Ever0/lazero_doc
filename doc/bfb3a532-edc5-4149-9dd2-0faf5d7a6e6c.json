@@ -1,0 +1,10 @@
+{
+    "summary": "This code generates a random character in a string and replaces it with an empty string, creating a new string each time. It then prints the original string followed by the modified string repeatedly until stopped.",
+    "details": [
+        {
+            "comment": "This code generates a random character in a string and replaces it with an empty string, creating a new string each time. It then prints the original string followed by the modified string repeatedly until stopped.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_mimic/randomForget.py\":0-11",
+            "content": "import random\ndef r(a):\n    l= len(a)\n    b=list(a)\n    b[random.choice(range(l))]=\"\"\n    return \"\".join(b)\nif __name__ == '__main__':\n    k=\"torch is the besh shit ever\"\n    while True:\n        print(k)\n        k=r(k)"
+        }
+    ]
+}

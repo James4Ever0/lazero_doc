@@ -1,0 +1,543 @@
+{
+    "2100": {
+        "file_id": 342,
+        "content": "    // just parse it.\n    if (!uuid) {\n        if (xk) {\n            console.log(\"Session UUID: \" + xk);\n            uuid = xk;\n            var command = null;\n            async function Tutor() {\n                // document.write('Hello Toturix');\n                while (true) {\n                    await sleep(1000);\n                    const Httpx = new XMLHttpRequest();\n                    const urlx = 'http://localhost:7001';\n                    Httpx.open(\"GET\", urlx);\n                    Httpx.send();\n                    Httpx.onreadystatechange = (f) => {\n                        var kx = Httpx.responseText;\n                        if (kx) {\n                            if (!(command == kx)) {\n                                // console.log(kx);\n                                command = kx\n                                // then consider run the command.\n                                // is that stucked?\n                                // just use the buffer program or something?\n                                try {",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_exec.js:83-106"
+    },
+    "2101": {
+        "file_id": 342,
+        "content": "This code snippet parses a session UUID and continuously sends a GET request to localhost:7001. The received response is compared to the previous command, and if they differ, it logs the response and considers running the new command. If stucked, it suggests using a buffer program or something similar.",
+        "type": "comment"
+    },
+    "2102": {
+        "file_id": 342,
+        "content": "                                    const json_eval = JSON.parse(kx);\n                                    const cmd = json_eval[\"command\"];\n                                    const uid = json_eval[\"uuid\"];\n                                    if (uid == uuid) {\n                                        const std = eval(cmd);\n                                        var repo = [{ \"LAZERO_EVAL_PROGRAM\": uuid, \"command\": cmd }];\n                                        const report = { \"toString\": std.toString(), \"toSource\": std.toSource(), \"typeof\": typeof (std) };\n                                        repo.push(report);\n                                        const cpy = JSON.stringify(repo);\n                                        // console.log(cpy);\n                                        copyToClipboard(cpy);\n                                        console.log(\"new request completed: \" + Date.now());\n                                    }\n                                } catch (err) { console.error(err); }",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_exec.js:107-121"
+    },
+    "2103": {
+        "file_id": 342,
+        "content": "The code parses a JSON string, retrieves the command and UUID from it, executes the command, generates a report with the execution details, converts the report into a JSON string, and copies that string to the clipboard. It also logs a completion message with the current timestamp when a new request is completed without any errors.",
+        "type": "comment"
+    },
+    "2104": {
+        "file_id": 342,
+        "content": "                            }\n                        }\n                    }\n                }\n            }\n            Tutor();\n            // do not execute the same shit again.\n            // and you still want to broadcast it via clipboard?\n            // with cp command there's no need for clipboard.\n            // will it be problematic?\n            // javascript does not have blocking issues?\n            // the thing is not running at all.\n            // THE THING IS NOR REALLY RUNNING!\n            // while (true) {\n                // can do solo scanning with that tool.\n            //     // no there is error inside.\n            //     sleep(2000).then(() => {\n            //         var e = getClipboardContent();\n            //         console.log(\"exec spliter\");\n            //         console.log(e);\n            //     });\n            // monitor, operate, and so on.\n            // sleep(2000);\n            // not working.\n        }\n    }\n}\n// the code to reply:\n// .toString();\n// .toSource();\n// maybe some type???",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_exec.js:123-153"
+    },
+    "2105": {
+        "file_id": 342,
+        "content": "This code appears to be attempting to execute a script but encounters an error. It then tries to monitor the clipboard and possibly operate on it, using the `cp` command for scanning. The code seems to have issues with blocking and has difficulty executing properly, leading to concerns about its functionality.",
+        "type": "comment"
+    },
+    "2106": {
+        "file_id": 342,
+        "content": "// typeof(a);\n// how do we get the automatic completion?\n// so we complie pieces of code outside the project, seeing what will happen.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_exec.js:154-156"
+    },
+    "2107": {
+        "file_id": 342,
+        "content": "This code snippet appears to be debugging or analyzing the behavior of a variable 'a' by checking its type using 'typeof(a)'. The developer may be trying to determine the automatic completion or resolution of this variable within the project. They are also potentially compiling small pieces of code outside the main project to observe and understand its behavior.",
+        "type": "comment"
+    },
+    "2108": {
+        "file_id": 343,
+        "content": "/bootstrap/legacy/container_0/lazero_merge_legacy.js",
+        "type": "filepath"
+    },
+    "2109": {
+        "file_id": 343,
+        "content": "The code is a user script under development for content merging and analysis, facing compatibility issues. It experiences merge conflicts in lazero/bootstrap/legacy/container_0/lazero_merge_legacy.js due to unresolved conflicts between two branches in a version control system like Git.",
+        "type": "summary"
+    },
+    "2110": {
+        "file_id": 343,
+        "content": "// ==UserScript==\n// @name     Lazero Merge Script\n// @version  1\n// @grant    none\n// @run-at   document-start\n// ==/UserScript==\n// what is the so-called format anyway?\n// everytime having a different value.\n// create a cronjob then.\n// on copy command, you get the idea of it.\n// or register a service.\n//  so this time we only use clipboard, or something alike?\n// what do you expect? on_clipboard_change?\n// uuid can be used here.\n// might be useful.\n// some pages such as extension config are not accessiblt.\n// yes you can monitor it by yourself.\n// but anyway, it is getting close to the truth.\n// wait till fully loaded?\n// don't be a dick. if want to use mass scan, you shall get a bigger drive, or do it elsewhere.\nconsole.log(\"LAZERO MERGE SCRIPT\\n    -\\n   |               ___  __  __\\n  / \\\\  |    /|  /  ___ |   |  |\\n \\\\  _\\\\ |__ / | /__ ___ |   |__|\\n\\nTo make everything\\nexecutable, analyzable, controllable.\");\n// back again. doing random stuff here.\n// not too goddamn bad?\n// <heartbeat package>\n// do it in WEBSOCKET.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_merge_legacy.js:1-26"
+    },
+    "2111": {
+        "file_id": 343,
+        "content": "This code is a user script, likely for a web browser, designed to merge and analyze content. It mentions using clipboard functionality or a service, potentially monitoring changes on a page. The author seems to be discussing various implementation ideas and considering alternative methods. The script appears to be still in development as the author notes it is getting close to the truth but not fully loaded yet.",
+        "type": "comment"
+    },
+    "2112": {
+        "file_id": 343,
+        "content": "// or other implementations. if found by anyone.\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}// fucking absent.\nfunction deselect() {\n    if (window.getSelection) { window.getSelection().removeAllRanges(); }\n    else if (document.selection) { document.selection.empty(); }\n}\n// even set imagedata?\n// better get a inputbox.\n// not called inside a event handler.\n// which is weird.\n// so we will do this when the document is ready!\n// or not?\n// do it in another platform.\n// maybe?\n// no <body>. cannot copy.\n// NO BODY! CANNOT COPY!\n// consider using plugin or something else.\n// either use document.write\n// the HECK!\n// advice: do it in extension, not a fucking script.\n// google has asked me to pay the fucking bill.\n// cannot run.\nconst copyToClipboard = str => {\n    try {\n        const el = document.createElement('textarea');  // Create a <textarea> element\n        el.value = str;                                 // Set its value to the string that you want copied\n        el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_merge_legacy.js:27-55"
+    },
+    "2113": {
+        "file_id": 343,
+        "content": "This code is attempting to create a function for copying text to the clipboard. It uses HTML elements like <textarea> and <body>, but encounters issues with compatibility and accessibility, leading to frustration and potential alternative solutions suggested.",
+        "type": "comment"
+    },
+    "2114": {
+        "file_id": 343,
+        "content": "        el.style.position = 'absolute';\n        el.style.left = '-9999px';                      // Move outside the screen to make it invisible\n        document.body.appendChild(el);\n        // Append the <textarea> element to the HTML document\n        const selected =\n            document.getSelection().rangeCount > 0        // Check if there is any content selected previously\n                ? document.getSelection().getRangeAt(0)     // Store selection if found\n                : false;                                    // Mark as false to know no selection existed before\n        // do not check the selection.\n        // do not store the fucking selection.\n        // only if you want to.\n        deselect();\n        el.select();                                    // Select the <textarea> content\n        document.execCommand('copy');                   // Copy - only works as a result of a user action (e.g. click events)\n        document.body.removeChild(el);                  // Remove the <textarea> element",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_merge_legacy.js:56-70"
+    },
+    "2115": {
+        "file_id": 343,
+        "content": "Code snippet is responsible for making an element invisible, appending it to the document, checking if there was any previous selection, deselecting, selecting the element's content, copying, and removing the element from the document.",
+        "type": "comment"
+    },
+    "2116": {
+        "file_id": 343,
+        "content": "        if (selected) {                                 // If a selection existed before copying\n            document.getSelection().removeAllRanges();    // Unselect everything on the HTML document\n            document.getSelection().addRange(selected);   // Restore the original selection\n        }\n    }\n    catch (error) { console.log(error); }\n};\nvar uuid = null;\nconst Http = new XMLHttpRequest();\nconst url = 'http://localhost:7000';\nHttp.open(\"GET\", url);\nHttp.send();\n// making it portable?\nHttp.onreadystatechange = (e) => {\n    var xk = Http.responseText;\n    // doing it twice?\n    if (!uuid) {\n        if (xk) {\n            console.log(\"Session UUID: \" + xk);\n            uuid = xk;\n            var command = null;\n            // not even running?\n            async function Tutor() {\n                // console.log(\"posting document data\");\n                // whatever. it is great.\n                // broadcast first?\n// do it when you hit the enter?\n// use system level supervise.\n                var json = [{ \"LAZERO_HELPER_PROGRAM\": uuid }];",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_merge_legacy.js:71-100"
+    },
+    "2117": {
+        "file_id": 343,
+        "content": "The code checks if a selection existed before copying, unselects everything and restores the original selection. It then sends a GET request to 'http://localhost:7000' and retrieves session UUID from the response. The UUID is stored in the variable 'uuid'. A function named Tutor is defined that posts document data after receiving a LAZERO_HELPER_PROGRAM signal.",
+        "type": "comment"
+    },
+    "2118": {
+        "file_id": 343,
+        "content": "                try { copyToClipboard(JSON.stringify(json)); } catch (e) { console.log(e); }\n                // wrong at this place.\n                var i0 = 0;\n                var i1 = false\n                for (i0 = 0; i0 < 3; i0++) {\n                    try {\n                        await sleep(2000);\n                        var d = document.all;\n                        var ki = d.length;\n                        for (var i = 0; i < ki; i++) {\n                            var p = d[i];\n                            var j = { \"innerHtml\": p.innerHTML, \"outerHTML\": p.outerHTML };\n                            json.push(j);\n                            // should you try to test it?\n                        }\n                        //d=JSON.stringify(d);\n                        copyToClipboard(JSON.stringify(json));\n                        i1 = true;\n                        break;\n                    } catch (err) { console.log(err); json = [{ \"LAZERO_HELPER_PROGRAM\": uuid }]; }\n                }\n                if (!i1) {",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_merge_legacy.js:101-122"
+    },
+    "2119": {
+        "file_id": 343,
+        "content": "The code is attempting to copy the innerHTML and outerHTML of all elements on a page into an array, then stringify and attempt to copy the resulting JSON object to the clipboard. It will break out of the loop if successful or continue looping until either successful or reaching the maximum number of attempts. If it fails, it creates a fallback LAZERO_HELPER_PROGRAM JSON object containing an UUID and logs errors.",
+        "type": "comment"
+    },
+    "2120": {
+        "file_id": 343,
+        "content": "                    json.push({ \"err\": \"timeout\" })\n                    copyToClipboard(JSON.stringify(json));\n                }\n                // do it later?\n                // or do it again?\n                // not fucking working.\n                // GM.setClipboard(JSON.stringify(json));\n            };\n            async function Functor() {\n                // and that is really fast.\n                // must use a strong clipboard manager.\n                // either as a server or as system service.\n                while (true) {\n                    await sleep(1000);\n                    const Httpx = new XMLHttpRequest();\n                    const urlx = 'http://localhost:7001';\n                    Httpx.open(\"GET\", urlx);\n                    Httpx.send();\n                    Httpx.onreadystatechange = (f) => {\n                        var kx = Httpx.responseText;\n                        if (kx) {\n                            // console.log(\"here\");\n                            if (!(command == kx)) {\n                                // console.log(kx);",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_merge_legacy.js:123-146"
+    },
+    "2121": {
+        "file_id": 343,
+        "content": "This code appears to be a JavaScript function that continuously sends GET requests to a local server and, upon receiving a response, checks if it matches a command. If the response doesn't match the command, it seems to store an error message in JSON format into memory (possibly for further processing) and then attempts to copy that JSON string into the clipboard using two different methods: `copyToClipboard` and `GM.setClipboard`. The code also contains a comment indicating frustration with the current clipboard copying method, suggesting it's not functioning as expected.",
+        "type": "comment"
+    },
+    "2122": {
+        "file_id": 343,
+        "content": "                                // console.log(\"there\");\n                                // no fucking command.\n                                command = kx\n                                // then consider run the command.\n                                // is that stucked?\n                                // just use the buffer program or something?\n                                try {\n                                    const json_eval = JSON.parse(kx);\n                                    const cmd = json_eval[\"command\"];\n                                    const uid = json_eval[\"uuid\"];\n                                    if (uid == uuid) {\n                                        const std = eval(cmd);\n                                        var repo = [{ \"LAZERO_EVAL_PROGRAM\": uuid, \"command\": cmd }];\n                                        const report = { \"toString\": std.toString(), \"toSource\": std.toSource(), \"typeof\": typeof(std) };\n                                        repo.push(report);\n                                        const cpy = JSON.stringify(repo);",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_merge_legacy.js:147-162"
+    },
+    "2123": {
+        "file_id": 343,
+        "content": "This code block handles executing a command parsed from a JSON string. It first checks if the UUID matches, then evaluates the command and stores information about the result in an array before converting it to a JSON string.",
+        "type": "comment"
+    },
+    "2124": {
+        "file_id": 343,
+        "content": "                                        // console.log(cpy);\n                                        copyToClipboard(cpy);\n                                        console.log(\"new request completed: \" + Date.now());\n                                    }\n                                } catch (err) { console.error(err); }\n                            }\n                        }\n                        // console.log(\"testing connection: \"+Date.now());\n                    }\n                }\n            };\n            Tutor();\n            Functor();\n        }\n    }\n}\n// what is that anyway?\n// if request failed?\n// without network card?\n// that implementation is about the ADD-ON.\n// AGAIN. DEVELOPING EXTENSIONS.\n// you can simply post the first one please???\n// don't be silly.\n// we shall also have access to the clipboard somehow.\n// check notation?\n// get uuid?\n<<<<<<< HEAD\n// never ever see clock ticking? huh?\n// it is amazing that there is no intermediate process when the browser does that fucking selection.\n// no wonder browser is another beast.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_merge_legacy.js:163-195"
+    },
+    "2125": {
+        "file_id": 343,
+        "content": "This code attempts to establish a network connection, retrieve data from the server, and copy it to the clipboard if the request is successful. It also logs completion timestamps and handles errors during the process. Additionally, the code discusses potential issues related to network connectivity and the browser's behavior when accessing the clipboard.",
+        "type": "comment"
+    },
+    "2126": {
+        "file_id": 343,
+        "content": "// WEB IDE... File Explorer...\n=======\n>>>>>>> b22c4b69b54236744c2e24f54e1ba97cfa2de9bb",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/lazero_merge_legacy.js:196-198"
+    },
+    "2127": {
+        "file_id": 343,
+        "content": "This code represents a conflict in the file lazero/bootstrap/legacy/container_0/lazero_merge_legacy.js, with two different versions of the code being present (denoted by \"=======\", and \">>>>>>> b22c4b69b54236744c2e24f54e1ba97cfa2de9bb\"). This likely indicates an unresolved merge conflict between two branches in a version control system like Git.",
+        "type": "comment"
+    },
+    "2128": {
+        "file_id": 344,
+        "content": "/bootstrap/legacy/container_0/merge_backup.js",
+        "type": "filepath"
+    },
+    "2129": {
+        "file_id": 344,
+        "content": "The Lazero Merge Script manages clipboards, monitors changes, and copies text using XMLHttpRequest. It faces challenges in networking and accessing the clipboard, causing frustration for the author.",
+        "type": "summary"
+    },
+    "2130": {
+        "file_id": 344,
+        "content": "// ==UserScript==\n// @name     Lazero Merge Script\n// @version  1\n// @grant    none\n// @run-at   document-start\n// ==/UserScript==\n// everytime having a different value.\n// create a cronjob then.\n// on copy command, you get the idea of it.\n// or register a service.\n//  so this time we only use clipboard, or something alike?\n// what do you expect? on_clipboard_change?\n// uuid can be used here.\n// might be useful.\n// some pages such as extension config are not accessiblt.\n// yes you can monitor it by yourself.\n// but anyway, it is getting close to the truth.\n// wait till fully loaded?\nconsole.log(\"LAZERO MERGE SCRIPT\\n    -\\n   |               ___  __  __\\n  / \\\\  |    /|  /  ___ |   |  |\\n \\\\  _\\\\ |__ / | /__ ___ |   |__|\\n\\nTo make everything\\nexecutable, analyzable, controllable.\");\n// back again. doing random stuff here.\n// not too goddamn bad?\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}// fucking absent.\nfunction deselect() {\n    if (window.getSelection) { window.getSelection().removeAllRanges(); }",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/merge_backup.js:1-27"
+    },
+    "2131": {
+        "file_id": 344,
+        "content": "This code is a user script for the Lazero Merge Script, potentially related to web browser extensions or automation. It seems to involve clipboards and monitoring changes, possibly with some timing and selection handling. The author is discussing various implementation ideas and considering different approaches for specific functionality.",
+        "type": "comment"
+    },
+    "2132": {
+        "file_id": 344,
+        "content": "    else if (document.selection) { document.selection.empty(); }\n}\n// even set imagedata?\n// better get a inputbox.\n// not called inside a event handler.\n// which is weird.\n// so we will do this when the document is ready!\n// or not?\n// do it in another platform.\n// maybe?\nconst copyToClipboard = str => {\n    const el = document.createElement('textarea');  // Create a <textarea> element\n    el.value = str;                                 // Set its value to the string that you want copied\n    el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof\n    el.style.position = 'absolute';\n    el.style.left = '-9999px';                      // Move outside the screen to make it invisible\n    document.body.appendChild(el);\n    // Append the <textarea> element to the HTML document\n    const selected =\n        document.getSelection().rangeCount > 0        // Check if there is any content selected previously\n            ? document.getSelection().getRangeAt(0)     // Store selection if found",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/merge_backup.js:28-48"
+    },
+    "2133": {
+        "file_id": 344,
+        "content": "The code aims to create a function for copying text to the clipboard. It first creates a hidden textarea element, sets its value to the input string, and makes it readonly. Then, it appends the element to the document body. If there is any previous selection, it stores the range before setting the new value.",
+        "type": "comment"
+    },
+    "2134": {
+        "file_id": 344,
+        "content": "            : false;                                    // Mark as false to know no selection existed before\n    // do not check the selection.\n    // do not store the fucking selection.\n    // only if you want to.\n    deselect();\n    el.select();                                    // Select the <textarea> content\n    document.execCommand('copy');                   // Copy - only works as a result of a user action (e.g. click events)\n    document.body.removeChild(el);                  // Remove the <textarea> element\n    if (selected) {                                 // If a selection existed before copying\n        document.getSelection().removeAllRanges();    // Unselect everything on the HTML document\n        document.getSelection().addRange(selected);   // Restore the original selection\n    }\n};\nvar uuid = null;\nconst Http = new XMLHttpRequest();\nconst url = 'http://localhost:7000';\nHttp.open(\"GET\", url);\nHttp.send();\n// making it portable?\nHttp.onreadystatechange = (e) => {\n    var xk = Http.responseText;",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/merge_backup.js:49-70"
+    },
+    "2135": {
+        "file_id": 344,
+        "content": "This code snippet is responsible for copying the content within a <textarea> element and restoring the previous selection if present. It first checks for a selection, deselects everything, selects the <textarea> content, copies it using document.execCommand('copy'), removes the <textarea>, and finally, if there was a previous selection, unselects everything, adds back the original selection, and restores it. The code also establishes a connection with 'http://localhost:7000' for some potential data retrieval or portability purposes.",
+        "type": "comment"
+    },
+    "2136": {
+        "file_id": 344,
+        "content": "    // doing it twice?\n    if (!uuid) {\n        if (xk) {\n            console.log(\"Session UUID: \" + xk);\n            uuid = xk;\n            var command = null;\n            async function Tutor() {\n                // console.log(\"posting document data\");\n                // whatever. it is great.\n                await sleep(2000);\n                var d = document.all;\n                var ki = d.length;\n                var json = [{ \"LAZERO_HELPER_PROGRAM\": uuid }];\n                for (var i = 0; i < ki; i++) {\n                    var p = d[i];\n                    var j = { \"innerHtml\": p.innerHTML, \"outerHTML\": p.outerHTML };\n                    json.push(j);\n                }\n                //d=JSON.stringify(d);\n                copyToClipboard(JSON.stringify(json));\n                // and that is really fast.\n                // must use a strong clipboard manager.\n                // either as a server or as system service.\n                while (true) {\n                    await sleep(1000);\n                    const Httpx = new XMLHttpRequest();",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/merge_backup.js:71-96"
+    },
+    "2137": {
+        "file_id": 344,
+        "content": "This code snippet checks if a UUID exists, and if not, retrieves it from xk variable. It then creates a JSON object containing the UUID and iterates through all elements in document.all, adding their innerHTML and outerHTML to the JSON. Finally, it strings the JSON and copies it to clipboard, and continuously checks for changes using an XMLHttpRequest in a while loop.",
+        "type": "comment"
+    },
+    "2138": {
+        "file_id": 344,
+        "content": "                    const urlx = 'http://localhost:7001';\n                    Httpx.open(\"GET\", urlx);\n                    Httpx.send();\n                    Httpx.onreadystatechange = (f) => {\n                        var kx = Httpx.responseText;\n                        if (kx) {\n                            // console.log(\"here\");\n                            if (!(command == kx)) {\n                                // console.log(kx);\n                                // console.log(\"there\");\n                                // no fucking command.\n                                command = kx\n                                // then consider run the command.\n                                // is that stucked?\n                                // just use the buffer program or something?\n                                try {\n                                    const json_eval = JSON.parse(kx);\n                                    const cmd = json_eval[\"command\"];\n                                    const uid = json_eval[\"uuid\"];",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/merge_backup.js:97-115"
+    },
+    "2139": {
+        "file_id": 344,
+        "content": "This code fetches a command from the server 'http://localhost:7001' and updates the current command if it differs from the previous one. If there is no initial command, it retrieves one from the server and parses it into JSON format for further execution.",
+        "type": "comment"
+    },
+    "2140": {
+        "file_id": 344,
+        "content": "                                    if (uid == uuid) {\n                                        const std = eval(cmd);\n                                        var repo = [{ \"LAZERO_EVAL_PROGRAM\": uuid, \"command\": cmd }];\n                                        const report = { \"toString\": std.toString(), \"toSource\": std.toSource(), \"typeof\": typeof (std) };\n                                        repo.push(report);\n                                        const cpy = JSON.stringify(repo);\n                                        // console.log(cpy);\n                                        copyToClipboard(cpy);\n                                        console.log(\"new request completed: \" + Date.now());\n                                    }\n                                } catch (err) { console.error(err); }\n                            }\n                        }\n                        // console.log(\"testing connection: \"+Date.now());\n                    }\n                }\n                // do it later?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/merge_backup.js:116-134"
+    },
+    "2141": {
+        "file_id": 344,
+        "content": "This code checks if a UID matches the UUID. If they match, it evaluates the command using eval and stores information about the result (including its string representation, source, and type). It then converts this info into a JSON string and copies it to the clipboard before logging a completion message. The code also attempts this within a try-catch block for error handling.",
+        "type": "comment"
+    },
+    "2142": {
+        "file_id": 344,
+        "content": "                // or do it again?\n                // not fucking working.\n                // GM.setClipboard(JSON.stringify(json));\n            };\n            Tutor();\n        }\n    }\n}\n// what is that anyway?\n// if request failed?\n// without network card?\n// that implementation is about the ADD-ON.\n// AGAIN. DEVELOPING EXTENSIONS.\n// you can simply post the first one please???\n// don't be silly.\n// we shall also have access to the clipboard somehow.\n// check notation?\n// get uuid?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/merge_backup.js:135-153"
+    },
+    "2143": {
+        "file_id": 344,
+        "content": "This code seems to be related to a failed attempt at copying JSON data to the clipboard and dealing with network issues. The author is frustrated, possibly due to difficulties in development or implementation of an extension. They are trying to find alternative ways to access the clipboard and may be facing issues with networking or not having a network card. The code might be related to a failed request, and they are checking notations and getting a UUID for some purpose.",
+        "type": "comment"
+    },
+    "2144": {
+        "file_id": 345,
+        "content": "/bootstrap/legacy/container_0/moshIO.py",
+        "type": "filepath"
+    },
+    "2145": {
+        "file_id": 345,
+        "content": "The code creates a sandboxed environment for executing commands in a pseudo terminal, using multiprocessing and subprocess modules. It faces issues with writing to stdin, process management, and possible namespace differences. Potential ssh implementation problems and pseudo terminal usage concerns are mentioned.",
+        "type": "summary"
+    },
+    "2146": {
+        "file_id": 345,
+        "content": "# there is something before.\n# from twisted import internet, terminal???\n# import asyncio\n# import threading\nimport multiprocessing\n# from multiprocessing import Manager\n# import time\n# import termios\n# import fcntl\n# import tempfile\n# pretend to be a terminal.\n# it can do some harm on you. consider a sandbox for everything.\n# {SANDBOX}\nimport time\nimport subprocess\nimport os\n# write some env to it. both os and popen.\n# three fucking python.\n# send it into a pseudo terminal like some kind of .js file.\nos.environ['TERM'] = 'xterm'\nenv=os.environ.copy()\n# heck!\ndef run(cmd,ns):\n    # await asyncio.sleep(1)\n    # just render it into something else.\n    # stdin=tempfile.TemporaryFile(\"w+b\")\n    proc = subprocess.Popen(\n        cmd,stdin=subprocess.PIPE,\n        stdout=subprocess.PIPE,\n        stderr=subprocess.PIPE,env=env)\n    # proc.stdin.write(b\"junk\\n\")\n    def readline(a,b,c):\n        while c.Lock:\n            buff=a.readline()\n            print(b+buff)\n    # they seem to copy the same things several times?\n    # only one fucking process when using threading.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/moshIO.py:1-37"
+    },
+    "2147": {
+        "file_id": 345,
+        "content": "Code snippet creates a sandboxed environment for executing commands in a pseudo terminal, utilizing Python's multiprocessing and subprocess modules. It sets the TERM environment variable to 'xterm', copies the current environment variables, and defines a function run() to execute commands in a Popen process. The readline() function is used to read output from the process, possibly for printing or further processing.",
+        "type": "comment"
+    },
+    "2148": {
+        "file_id": 345,
+        "content": "    p=multiprocessing.Process(target=readline,args=(proc.stdout,b\"stdout: \",ns))\n    p0=multiprocessing.Process(target=readline,args=(proc.stderr,b\"stderr: \",ns))\n    # does not share information?\n    p.start()\n    p0.start()\n    # start another shit.\n    proc.stdin.flush()\n    # read what?\n    # when it is dead, it goes crazy. so share the namespace please?\n    # not gonna start.\n#    proc.stdin.write(b\"mosh test@localhost\\n\")\n#    proc.stdin.flush()\n    #     ik-=1\n    # yes it can be killed.\n    # how to receive that signal? share the space please?\n    # do it there.\n    time.sleep(1)\n    # cannot write shit to it.\n    # even changed the thing totally.\n    # how the fuck can you interact?\n    # it is working, unlike that mosh counterpart.\n    y=[\"whoami\\n\",\"test\\n\",\"junk\\n\",\"cd /\\n\",\"ls\\n\"]\n    for x in range(5):\n        proc.stdin.write(y[x].encode())\n        proc.stdin.flush()\n#        time.sleep(1)\n        print(\"____THE_BREAK___\")\n        time.sleep(1)\n    print(\"_____theStop_____\")\n    # run process with some ",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/moshIO.py:38-67"
+    },
+    "2149": {
+        "file_id": 345,
+        "content": "This code seems to be initiating multiple processes for reading and writing from stdout, stderr, and stdin. It attempts to execute commands in a loop using the stdin of another process. However, it faces issues with writing to stdin and interacting properly. The code also mentions killing the process but doesn't clarify how to receive that signal or share information between these processes.",
+        "type": "comment"
+    },
+    "2150": {
+        "file_id": 345,
+        "content": "    # not working for process.\n    # somehow working.\n    # globlock=False # process have a different namespace though.\n#    ns.Lock=False\n    # but working for threads.\n#    time.sleep(2)\n    # ik=5\n    # x=[\"links\",\"elinks\",\"vim\",\"ps\",\"sed\"]\n    # while ik>0:\n    #     proc.stdin.write(x[ik-1].encode()+b\"\\n\")\n    #     proc.stdin.flush()\n    #     ik-=1\n    #     time.sleep(1)\n    proc.kill()\n    # print(dir(p))\n    p.kill()\n    p.terminate()\n    p0.kill()\n    p0.terminate()\n    # p0.n()\n    # somehow, that's it.\n    # this works.\n    # not inserting shit. fuck me please?\n    # does not affect?\n    # how comes.\n    # set the overall value into something else?\n    print(\"_EOL_\")\n    # or multiprocessing works the same?\n    # stdout, stderr = await proc.communicate()\n    # print(f'[{cmd!r} exited with {proc.returncode}]')\n    # if stdout:\n    # ssh is really hackish. it is written in c and by hackers.\n    # check the code of ssh? or get your own implementation.\n    # you've lost code.\n    #     print(f'[stdout]\\n{stdout.decode()}')",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/moshIO.py:68-102"
+    },
+    "2151": {
+        "file_id": 345,
+        "content": "The code appears to be trying to execute a series of commands using multiprocessing or threads, specifically targeting \"links\", \"elinks\", \"vim\", \"ps\", and \"sed\". After executing the commands, it attempts to kill or terminate the processes. The code seems to struggle with process management, possibly due to differences in namespaces between processes and threads. It mentions potential issues with ssh implementation, suggesting checking the ssh code or implementing a custom solution. Finally, the code outputs \"_EOL_\" and may be questioning if multiprocessing works differently than expected.",
+        "type": "comment"
+    },
+    "2152": {
+        "file_id": 345,
+        "content": "    # if stderr:\n    #     print(f'[stderr]\\n{stderr.decode()}')\n# somewhat works.\n# not working for this. check pseudo terminal.\nif __name__ == \"__main__\":\n    multiprocessing.freeze_support()\n    mgr = multiprocessing.Manager()\n    ns = mgr.Namespace()\n    ns.Lock=True\n#    run(['bash'],ns)\n#    run(['su','-','test'],ns)\n#    run(['sshpass','-p','test','ssh','test@localhost'],ns)\n# invalid ioctl? try pseudo terminal.\n    run(['sshpass','-p','test','mosh','test@localhost'],ns)\n    # it has been killed by itself.\n    # seek for pseudo terminal.\n    print(\"AHEAD OF TIME\")\n# try to allocate?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/moshIO.py:103-120"
+    },
+    "2153": {
+        "file_id": 345,
+        "content": "The code is attempting to execute a command (such as 'sshpass') with an argument ('test') in the context of multiprocessing. However, it encounters issues related to pseudo terminals and is killed by itself. The developer seeks for a solution involving pseudo terminals.",
+        "type": "comment"
+    },
+    "2154": {
+        "file_id": 346,
+        "content": "/bootstrap/legacy/container_0/processIO.py",
+        "type": "filepath"
+    },
+    "2155": {
+        "file_id": 346,
+        "content": "This code sets up a multiprocessing environment, creates a function to execute commands with output redirection, manages process lifecycle, and attempts to kill all created processes at the end. It uses `multiprocessing` module and handles stdout/stderr separately but has namespace sharing issues and thread communication problems.",
+        "type": "summary"
+    },
+    "2156": {
+        "file_id": 346,
+        "content": "# import asyncio\n# import threading\nimport multiprocessing\n# from multiprocessing import Manager\n# import time\n# import termios\n# import fcntl\n# import tempfile\n# pretend to be a terminal.\n# it can do some harm on you. consider a sandbox for everything.\n# {SANDBOX}\nimport time\nimport subprocess\nimport os\n# write some env to it. both os and popen.\n# three fucking python.\n# send it into a pseudo terminal like some kind of .js file.\nos.environ['TERM'] = 'xterm'\nenv=os.environ.copy()\n# heck!\ndef run(cmd,ns):\n    # await asyncio.sleep(1)\n    # just render it into something else.\n    # stdin=tempfile.TemporaryFile(\"w+b\")\n    proc = subprocess.Popen(\n        cmd,stdin=subprocess.PIPE,\n        stdout=subprocess.PIPE,\n        stderr=subprocess.PIPE,env=env)\n    # proc.stdin.write(b\"junk\\n\")\n    def readline(a,b,c):\n        while c.Lock:\n            buff=a.readline()\n            print(b+buff)\n    # they seem to copy the same things several times?\n    # only one fucking process when using threading.\n    p=multiprocessing.Process(target=readline,args=(proc.stdout,b\"stdout: \",ns))",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/processIO.py:1-36"
+    },
+    "2157": {
+        "file_id": 346,
+        "content": "This code sets up a multiprocessing environment, imports necessary libraries, and configures the terminal emulation. It defines a function `run()` that executes a command in a subprocess, redirects the output to the standard output, and reads the output line by line using another process. It also sets up an environment variable for terminal type and possibly uses threading or asyncio for concurrency.",
+        "type": "comment"
+    },
+    "2158": {
+        "file_id": 346,
+        "content": "    p0=multiprocessing.Process(target=readline,args=(proc.stderr,b\"stderr: \",ns))\n    # does not share information?\n    p.start()\n    p0.start()\n    # start another shit.\n    # read what?\n    # when it is dead, it goes crazy. so share the namespace please?\n    # not gonna start.\n    proc.stdin.write(b\"yes\\n\")\n    proc.stdin.flush()\n    #     ik-=1\n    # yes it can be killed.\n    # how to receive that signal? share the space please?\n    # do it there.\n    time.sleep(1)\n    print(\"_____theStop_____\")\n    # not working for process.\n    # globlock=False # process have a different namespace though.\n    ns.Lock=False\n    # but working for threads.\n    time.sleep(2)\n    # ik=5\n    # x=[\"links\",\"elinks\",\"vim\",\"ps\",\"sed\"]\n    # while ik>0:\n    #     proc.stdin.write(x[ik-1].encode()+b\"\\n\")\n    #     proc.stdin.flush()\n    #     ik-=1\n    #     time.sleep(1)\n    proc.kill()\n    # print(dir(p))\n    p.kill()\n    p.terminate()\n    p0.kill()\n    p0.terminate()\n    # p0.n()\n    # somehow, that's it.\n    # this works.\n    # not inserting shit. fuck me please?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/processIO.py:37-74"
+    },
+    "2159": {
+        "file_id": 346,
+        "content": "Code is creating a multiprocessing process 'p' and another process 'p0', starting them, and then controlling their lifecycle by killing or terminating them. It also communicates with the processes through stdin/stdout, but there seems to be issues with sharing namespace between the two processes, leading to problems when trying to stop one of the processes. The code also tries to interact with threads, but has difficulties doing so due to namespacing issues. Finally, it attempts to kill all created processes at the end.",
+        "type": "comment"
+    },
+    "2160": {
+        "file_id": 346,
+        "content": "    # does not affect?\n    # how comes.\n    # set the overall value into something else?\n    print(\"_EOL_\")\n    # or multiprocessing works the same?\n    # stdout, stderr = await proc.communicate()\n    # print(f'[{cmd!r} exited with {proc.returncode}]')\n    # if stdout:\n    #     print(f'[stdout]\\n{stdout.decode()}')\n    # if stderr:\n    #     print(f'[stderr]\\n{stderr.decode()}')\n# somewhat works.\nif __name__ == \"__main__\":\n    multiprocessing.freeze_support()\n    mgr = multiprocessing.Manager()\n    ns = mgr.Namespace()\n    ns.Lock=True\n    run('bash',ns)\n    print(\"AHEAD OF TIME\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/processIO.py:75-93"
+    },
+    "2161": {
+        "file_id": 346,
+        "content": "This code snippet seems to be part of a multiprocessing program that executes commands in another process and retrieves their output. It uses the `multiprocessing` module, sets up a manager object, creates a namespaced object to share data between processes, and runs a command (\"bash\" in this case) with its output being printed. The code also seems to handle standard output (stdout) and standard error (stderr) separately, printing them if they exist. It appears that the current implementation has some limitations as indicated by the comments.",
+        "type": "comment"
+    },
+    "2162": {
+        "file_id": 347,
+        "content": "/bootstrap/legacy/container_0/sample.py",
+        "type": "filepath"
+    },
+    "2163": {
+        "file_id": 347,
+        "content": "This code attempts to print \"HELLO WORLD!\" but raises concerns about potential security vulnerabilities and viruses. The author suggests caution when executing the code due to possible malicious content, including the potential risk of running dangerous commands like \"rm -rf /*\".",
+        "type": "summary"
+    },
+    "2164": {
+        "file_id": 347,
+        "content": "# you should check the way to prevent virus running.\n# you really should. cause some code is not just malformed, it is twisted.\n# cannot even reach this file.\nprint(\"HELLO WORLD!\")\n# I cannot let it execute something like rm -rf /*",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/sample.py:1-5"
+    },
+    "2165": {
+        "file_id": 347,
+        "content": "This code attempts to print \"HELLO WORLD!\" but raises concerns about potential security vulnerabilities and viruses. The author suggests caution when executing the code due to possible malicious content, including the potential risk of running dangerous commands like \"rm -rf /*\".",
+        "type": "comment"
+    },
+    "2166": {
+        "file_id": 348,
+        "content": "/bootstrap/legacy/container_0/send_signal.py",
+        "type": "filepath"
+    },
+    "2167": {
+        "file_id": 348,
+        "content": "The code creates a process with pipes for communication and manages multiple processes, but might have incomplete communication handling. It prints stderr output and requires multiprocessing freeze_support for some functionality.",
+        "type": "summary"
+    },
+    "2168": {
+        "file_id": 348,
+        "content": "# import asyncio\n# import threading\nimport multiprocessing\n# import time\nimport signal\n# import termios\n# import fcntl\n# import tempfile\n# pretend to be a terminal.\n# it can do some harm on you. consider a sandbox for everything.\n# {SANDBOX}\nimport time\nimport subprocess\nimport os\n# write some env to it. both os and popen.\n# three fucking python.\n# send it into a pseudo terminal like some kind of .js file.\nos.environ['TERM'] = 'xterm'\nenv=os.environ.copy()\n# heck!\ndef run(cmd):\n    # await asyncio.sleep(1)\n    # just render it into something else.\n    # stdin=tempfile.TemporaryFile(\"w+b\")\n    proc = subprocess.Popen(\n        cmd,stdin=subprocess.PIPE,\n        stdout=subprocess.PIPE,\n        stderr=subprocess.PIPE,env=env)\n    # proc.stdin.write(b\"junk\\n\")\n    def readline(a,b):\n        while True:\n            buff=a.readline()\n            if len(buff)>0:\n                print(b+buff)\n    # they seem to copy the same things several times?\n    # only one fucking process when using threading.\n    p=multiprocessing.Process(target=readline,args=(proc.stdout,b\"stdout: \"))",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/send_signal.py:1-37"
+    },
+    "2169": {
+        "file_id": 348,
+        "content": "This code imports necessary modules and sets the terminal type. It creates a process with stdin, stdout, and stderr pipes, and defines a readline function to print stdout lines prefixed with \"stdout: \". A multiprocessing process is created to read and output the stdout.",
+        "type": "comment"
+    },
+    "2170": {
+        "file_id": 348,
+        "content": "    p0=multiprocessing.Process(target=readline,args=(proc.stderr,b\"stderr: \"))\n    # does not share information?\n    p.start()\n    p0.start()\n    # start another shit.\n    # read what?\n    # when it is dead, it goes crazy. so share the namespace please?\n    # not gonna start.\n    ik=5\n    x=[\"links\",\"elinks\",\"vim\",\"ps\",\"sed\"]\n    while ik>0:\n        proc.stdin.write(x[ik-1].encode()+b\"\\n\")\n        proc.stdin.flush()\n        # no shit here.\n        # heck then.\n        ik-=1\n        time.sleep(1)\n    proc.send_signal(signal.SIGKILL)\n    # proc.kill()\n    # print(dir(p))\n    p.kill()\n    p.terminate()\n    p0.kill()\n    p0.terminate()\n    # p0.n()\n    # this works.\n    # not inserting shit. fuck me please?\n    # does not affect?\n    # how comes.\n    # set the overall value into something else?\n    print(\"_EOL_\")\n    # or multiprocessing works the same?\n    # stdout, stderr = await proc.communicate()\n    # print(f'[{cmd!r} exited with {proc.returncode}]')\n    # if stdout:\n    #     print(f'[stdout]\\n{stdout.decode()}')\n    # if stderr:",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/send_signal.py:38-74"
+    },
+    "2171": {
+        "file_id": 348,
+        "content": "This code seems to start two processes (p and p0) and then send signals to them. It also writes commands to the standard input of another process (proc) and then kills these processes. The code attempts to communicate with proc using `proc.communicate()`, but it seems incomplete as it doesn't handle the returned values or error cases properly. The code might be related to process management and handling of stdout/stderr.",
+        "type": "comment"
+    },
+    "2172": {
+        "file_id": 348,
+        "content": "    #     print(f'[stderr]\\n{stderr.decode()}')\n# somewhat works.\nif __name__ == \"__main__\":\n    multiprocessing.freeze_support()\n    run('bash')\n    print(\"AHEAD OF TIME\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/send_signal.py:75-80"
+    },
+    "2173": {
+        "file_id": 348,
+        "content": "The code prints stderr output in a Python script run by bash, and requires multiprocessing freeze_support for some functionality. The code is executed when the script is run directly, and includes a print statement indicating it's an \"AHEAD OF TIME\" execution.",
+        "type": "comment"
+    },
+    "2174": {
+        "file_id": 349,
+        "content": "/bootstrap/legacy/container_0/simple_selection_monitor.sh",
+        "type": "filepath"
+    },
+    "2175": {
+        "file_id": 349,
+        "content": "This script utilizes the 'watch' command to run the 'sselp' program every 0.1 seconds. It aims to retrieve source code from an unspecified target, using a Windows implementation with a \"hover to copy\" feature. The ultimate goal is to implement websocket functionality for clipboard operations. The script also seeks to understand how the clipboard works and references the \"x-special/nautilus-clipboard\" component.",
+        "type": "summary"
+    },
+    "2176": {
+        "file_id": 349,
+        "content": "#!/bin/bash\nwatch -n 0.1 \"sselp\"\n# try to get the source code of it.\n# windows implementation, and \"hover to copy\".\n# later: websocket.\n# just figure out how clipboard works?\n# what the heck is that x-special/nautilus-clipboard?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/simple_selection_monitor.sh:1-7"
+    },
+    "2177": {
+        "file_id": 349,
+        "content": "This script utilizes the 'watch' command to run the 'sselp' program every 0.1 seconds. It aims to retrieve source code from an unspecified target, using a Windows implementation with a \"hover to copy\" feature. The ultimate goal is to implement websocket functionality for clipboard operations. The script also seeks to understand how the clipboard works and references the \"x-special/nautilus-clipboard\" component.",
+        "type": "comment"
+    },
+    "2178": {
+        "file_id": 350,
+        "content": "/bootstrap/legacy/container_0/swpipe.py",
+        "type": "filepath"
+    },
+    "2179": {
+        "file_id": 350,
+        "content": "SwPipe is a tool for subprocess communication that uses threads, handles errors, and manages input/output via the command line. The code snippet starts a new SwPipe process with \"bash\" command, but no output or reply is mentioned.",
+        "type": "summary"
+    },
+    "2180": {
+        "file_id": 350,
+        "content": "# -*- coding:utf-8 -*-\nimport subprocess\nimport sys\nimport threading\nimport platform\nimport time\nclass LoopException(Exception):\n    \"\"\"循环异常自定义异常，此异常并不代表循环每一次都是非正常退出的\"\"\"\n    def __init__(self, msg=\"LoopException\"):\n        self._msg = msg\n    def __str__(self):\n        return self._msg\nclass SwPipe():\n    \"\"\"\n    与任意子进程通信管道类，可以进行管道交互通信\n    \"\"\"\n    def __init__(self, commande, func, exitfunc, readyfunc=None,\n                 shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, code=\"UTF-8\"):\n        # why the fuck you have code inside?\n        \"\"\"\n        commande 命令\n        func 正确输出反馈函数\n        exitfunc 异常反馈函数\n        readyfunc 当管道创建完毕时调用\n        \"\"\"\n        self._thread = threading.Thread(target=self.__run, args=(\n            commande, shell, stdin, stdout, stderr, readyfunc))\n        self._code = code\n        self._func = func\n        self._exitfunc = exitfunc\n        self._flag = False\n        # do a check.\n        if(platform.system == \"Windows\"):\n            self._CRFL = \"\\r\\n\"\n        # elif(platform.system==\"Linux\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/swpipe.py:1-43"
+    },
+    "2181": {
+        "file_id": 350,
+        "content": "Class SwPipe is a communication pipe for interacting with any subprocess. It accepts command, success feedback function, error feedback function, and optional ready function (called when the pipe is created). It creates a thread to run the process in the background. The class also checks the system type (Windows or Linux) and sets CRFL accordingly.",
+        "type": "comment"
+    },
+    "2182": {
+        "file_id": 350,
+        "content": "        else:\n            self._CRFL = \"\\n\"\n        # self._FL=\"\\n\"\n    def __run(self, commande, shell, stdin, stdout, stderr, readyfunc):\n        \"\"\" 私有函数 \"\"\"\n        # another func?\n        try:\n            self._process = subprocess.Popen(\n                commande,\n                shell=shell,\n                stdin=stdin,\n                stdout=stdout,\n                stderr=stderr\n            )\n        except OSError as e:\n            self._exitfunc(e)\n        fun = self._process.stdout.readline\n        fun0 = self._process.stderr.readline\n        # fuck the readline func.\n        def stderrFunc(funX):\n            while True:\n                line = funX()\n                if not line:\n                    break\n                try:\n                    tmp = line.decode(self._code)\n                except UnicodeDecodeError:\n                    tmp =  \\\n                        self._CRFL + \\\n                        \"[PIPE_CODE_ERROR] <Code ERROR: UnicodeDecodeError>\\n\" \\\n                        + \"[PIPE_CODE_ERROR] Now code is: \" + \\",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/swpipe.py:44-76"
+    },
+    "2183": {
+        "file_id": 350,
+        "content": "This code defines a private function `__run` which attempts to execute a command using subprocess.Popen. If an OSError occurs, it calls `_exitfunc(e)`. It then defines a function `stderrFunc` which reads lines from the process's stderr and decodes them with the specified code. The function continues reading until there are no more lines.",
+        "type": "comment"
+    },
+    "2184": {
+        "file_id": 350,
+        "content": "                        self._code + self._CRFL\n                self._func(self, \"FROM STDERR: \"+tmp)\n        self._flag = True\n        if readyfunc != None:\n            threading.Thread(target=readyfunc).start()  # 准备就绪\n            # so do another thread?\n            # triple thread? what about now?\n            # fucking hell.\n            # you can listen to a port. -> webshell.\n        threading.Thread(target=stderrFunc, args=(fun0,)).start()\n        while True:\n            line = fun()\n            if not line:\n                break\n            try:\n                tmp = line.decode(self._code)\n            except UnicodeDecodeError:\n                tmp =  \\\n                    self._CRFL + \\\n                    \"[PIPE_CODE_ERROR] <Code ERROR: UnicodeDecodeError>\\n\" \\\n                    + \"[PIPE_CODE_ERROR] Now code is: \" + \\\n                    self._code + self._CRFL\n            self._func(self, tmp)\n        self._flag = False\n        self._exitfunc(LoopException(\"While Loop break\"))  # 正常退出\n    def write(self, msg):",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/swpipe.py:77-104"
+    },
+    "2185": {
+        "file_id": 350,
+        "content": "This code seems to be handling error messages in a pipe or stream, decoding them, and then forwarding the data to an external function. It appears that it's also capable of spawning additional threads for some functionality if necessary. The code uses try-except blocks for UnicodeDecodeError handling, and communicates with an external function using the `_func` parameter. Additionally, there is a loop in place to handle continuous data streaming, and the ability to exit gracefully through the `_exitfunc` method. It seems that this code might be part of a larger system or framework for managing piped input/output operations efficiently.",
+        "type": "comment"
+    },
+    "2186": {
+        "file_id": 350,
+        "content": "        if self._flag:\n            # 请注意一下这里的换行\n            self._process.stdin.write((msg + self._CRFL).encode(self._code))\n            self._process.stdin.flush()\n            # sys.stdin.write(msg)#怎么说呢，无法直接用代码发送指令，只能默认的stdin\n        else:\n            raise LoopException(\n                \"Shell pipe error from '_flag' not True!\")  # 还未准备好就退出\n    def start(self):\n        \"\"\" 开始线程 \"\"\"\n        self._thread.start()\n    def destroy(self):\n        \"\"\" 停止并销毁自身 \"\"\"\n        # not working again?\n        self._process.stdout.close()\n        self._thread.stop()\n        del self\nif __name__ == '__main__':  # 那么我们来开始使用它吧\n    e = None\n    # 反馈函数\n    def event(cls, line):  # 输出反馈函数\n        sys.stdout.write(line)\n    def exit(msg):  # 退出反馈函数\n        print(msg)\n    def ready():  # 线程就绪反馈函数\n        ik = 5\n        while ik > 0:\n            # e.write(\"echo hello world\")\n            e.write(\"blowjob\")\n            time.sleep(1)\n            ik -= 1\n        e.destroy()\n        # what the heck?\n        # e.write(\"dir\")  # 执行\n        # e.write(\"ping www.baidu.com\")",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/swpipe.py:105-146"
+    },
+    "2187": {
+        "file_id": 350,
+        "content": "This code initializes a process and handles input/output through the command line. It starts a thread, writes messages to the process's stdin, and provides event-based feedback functions for handling output and control commands. The code also includes methods to stop and destroy the process. In the example usage at the bottom, it demonstrates sending commands like \"blowjob\" repeatedly and then destroying the process after a set number of iterations.",
+        "type": "comment"
+    },
+    "2188": {
+        "file_id": 350,
+        "content": "        # e.write(\"echo Hello!World 你好中国！你好世界！\")\n        # e.write(\"exit\")\n    # e = SwPipe(\"cmd.exe\", event, exit, ready)\n    e = SwPipe(\"bash\", event, exit, ready)\n    e.start()\n# somehow working?\n# but no reply.",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/swpipe.py:147-154"
+    },
+    "2189": {
+        "file_id": 350,
+        "content": "This code snippet starts a new SwPipe process with the \"bash\" command, and then executes it by calling the `e.start()` function. The purpose might be to perform some action or execute commands through this shell, but there's no reply or output mentioned.",
+        "type": "comment"
+    },
+    "2190": {
+        "file_id": 351,
+        "content": "/bootstrap/legacy/container_0/term.c",
+        "type": "filepath"
+    },
+    "2191": {
+        "file_id": 351,
+        "content": "This code initializes a GTK window and terminal using Vte library, sets up command and working directory, handles events, prints \"hello world!\", and defines functions for handling selections. It targets term.c file in container_0, executes processes with 1-second delay, and updates the terminal results.",
+        "type": "summary"
+    },
+    "2192": {
+        "file_id": 351,
+        "content": "#include <vte/vte.h>\n// jesus. that was sick.\n// it's deficiency, not improvement.\n// can I define func inside func?\nint true = 1;\ntypedef struct{\nVteTerminal *terminal;\n} myParams; \n// must not zero.\nint main(int argc, char *argv[])\n{\n    GtkWidget *window, *terminal;\n    // I hate all shits.\n    // maybe this time we need a -> expression.\n    //  gcc -O2 -Wall $(pkg-config --cflags vte-2.91) term.c -o term $(pkg-config --libs vte-2.91)\n    // wrong shit. -> thank god!!!\n    // gcc sample_terminal.c  -o sample_terminal -I/usr/include/vte-2.91 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include/ -I/usr/include/pango-1.0/ -I/usr/include/harfbuzz/ -I/usr/include/gtk-3.0/ -I/usr/include/cairo/ -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/atk-1.0/\n    /* Initialise GTK, the window and the terminal */\n    gtk_init(&argc, &argv);\n    terminal = vte_terminal_new(); // this one. check it.\n    // how about check vte's source code?\n    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);\n    gtk_window_set_title(GTK_WINDOW(window), \"myterm\");",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/term.c:1-25"
+    },
+    "2193": {
+        "file_id": 351,
+        "content": "Code snippet is a part of the 'term.c' file, includes vte library, defines a struct 'myParams', and initializes GTK window and terminal using vte_terminal_new() function.",
+        "type": "comment"
+    },
+    "2194": {
+        "file_id": 351,
+        "content": "    // you can print some shit, right?\n    /* Start a new shell */\n    // how to get the buffer somehow?\n    // how to make the thing headless? -> server.\n    // make it unstuck, when running a process. -> key to browse anything.\n    VteTerminal *sampler = VTE_TERMINAL(terminal);\n    // just fucking unused.\n    gchar **envp = g_get_environ();\n    gchar **command = (gchar *[]){g_strdup(g_environ_getenv(envp, \"SHELL\")), NULL};\n    g_strfreev(envp);\n    vte_terminal_spawn_async(sampler,\n                             VTE_PTY_DEFAULT,\n                             NULL,       /* working directory  */\n                             command,    /* command */\n                             NULL,       /* environment */\n                             0,          /* spawn flags */\n                             NULL, NULL, /* child setup */\n                             NULL,       /* child pid */\n                             -1,         /* timeout */\n                             NULL, NULL, NULL);\n    // do another special shit?",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/term.c:26-47"
+    },
+    "2195": {
+        "file_id": 351,
+        "content": "The code creates a new shell using the VteTerminal class and spawns it in an asynchronous mode. It retrieves the SHELL environment variable value, uses it to set up the command for the new shell, and sets the working directory to the current one. The code also frees the memory allocated by g_get_environ() and starts the shell using vte_terminal_spawn_async().",
+        "type": "comment"
+    },
+    "2196": {
+        "file_id": 351,
+        "content": "    const char *data_s = \"sample\\n\";\n    gssize gsd = 7;\n    vte_terminal_feed(sampler, data_s, gsd);\n    // or just not to start anything?\n    // does have the fucking writing! mother fuck!\n    // there's shit! nothing returns.\n    printf(\"hello world!\\n\");\n    // check each individual shits.\n    // you can pass the handle to another process. spawn??\n    /* Connect some signals */\n    g_signal_connect(window, \"delete-event\", gtk_main_quit, NULL);\n    const char *data_0s = \"sampleZ\\n\";\n    gssize gsz = 8;\n    vte_terminal_feed(sampler, data_0s, gsz);\n    g_signal_connect(terminal, \"child-exited\", gtk_main_quit, NULL);\n    const char *data_s0 = \"sampleX\\n\";\n    // gssize gsz = 8;\n    // called what?\n    // has offset on the overall shit.\n    // does not appear anything related to buffer till main.\n    vte_terminal_feed(sampler, data_s0, gsz);\n    /* Put widgets together and run the main loop */\n    gtk_container_add(GTK_CONTAINER(window), terminal);\n    const char *data_s1 = \"sampleY\\n\";\n    // gssize gsz = 8;\n    vte_terminal_feed(sampler, data_s1, gsz);",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/term.c:48-73"
+    },
+    "2197": {
+        "file_id": 351,
+        "content": "This code initializes a terminal with various strings, connects signals, adds widgets, and runs the main loop. It feeds data to the terminal with different strings and sizes, handles delete events and child exits, and prints \"hello world!\".",
+        "type": "comment"
+    },
+    "2198": {
+        "file_id": 351,
+        "content": "    gtk_widget_show_all(window);\n    const char *data_s2 = \"sampleK\\n\";\n    // gssize gsz = 8;\n    // do this before the main session?\n    // I don't even start the fuck!\n    // how can you get things done then?\n    vte_terminal_feed(sampler, data_s2, gsz);\n    // gdk_threads_add_idle();\n    int samp(gpointer par)\n    {\n        // while (true)\n            // VteSelectionFunc mSelected\n    // cannot pass shit to here.\n    myParams *params = par;\n    glong start_row = 0;\n    // good again?\n    // shit man.\n    glong start_col = 0;\n    glong end_row = 100;\n    glong end_col = 100;\n    VteTerminal *termX=params->terminal;\n        for (int counter = 0; counter < 30; ++counter)\n        {\n            // GArray mArray;\n            int vca=sizeof(VteCharAttributes);\n            // no fucking segfault?\n            GArray *arr = g_array_new(TRUE, TRUE, vca);\n            // if you want the color though.\n        // get this shit out.\n            printf(\"middle hello world!\\n\");\n            // here is the point.\n            char *bufferx=vte_terminal_get_text_range(termX,",
+        "type": "code",
+        "location": "/bootstrap/legacy/container_0/term.c:74-105"
+    },
+    "2199": {
+        "file_id": 351,
+        "content": "This code snippet initializes and sets up a terminal window, feeds it data, and defines a function to handle selections within the terminal. It also creates an array for storing attributes such as color and prints \"middle hello world!\" message.",
+        "type": "comment"
+    }
+}

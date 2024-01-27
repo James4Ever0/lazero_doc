@@ -1,0 +1,10 @@
+{
+    "summary": "This code discusses the challenges of preventing suicide and the limitations of existing solutions like proot. It recommends using a mixed jail or creating bindfs without tmux for better security measures, and questions whether it's similar to Sandboxie on Linux.",
+    "details": [
+        {
+            "comment": "This code discusses the challenges of preventing suicide and the limitations of existing solutions like proot. It recommends using a mixed jail or creating bindfs without tmux for better security measures, and questions whether it's similar to Sandboxie on Linux.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/README\":0-16",
+            "content": "it turns out that it is very hard to prevent suicide.\nbut can we log it? can we make that thing logged?\nstill won't get fixed. how the heck can the problem being solved?\non android, the root permission must be constrained. but for what reason that this process hangs?\nthere's proot but that's not enough. proot won't provide context.\n\thttps://github.com/proot-me/proot/issues/123\nboth can prevent jail evasion using tmux.\nhowever, proot is not recommended. better use mixed jail, or create bindfs without tmux binary.\nis it like sandboxie on linux?"
+        }
+    ]
+}

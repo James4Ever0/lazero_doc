@@ -1,0 +1,10 @@
+{
+    "summary": "This repository serves as a demo for Dan Shultz's tutorial on creating a basic Chrome extension. It also includes fixes for some typographical errors in the original code. The JavaScript code might need to be adapted due to differences between Chrome and other browsers, specifically when working with WebSockets.",
+    "details": [
+        {
+            "comment": "This repository serves as a demo for Dan Shultz's tutorial on creating a basic Chrome extension. It also includes fixes for some typographical errors in the original code. The JavaScript code might need to be adapted due to differences between Chrome and other browsers, specifically when working with WebSockets.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/ced/README.md\":0-6",
+            "content": "# Derived Project\nThis repo is the demo for Dan Shultz's tutorial [\"Creating A Basic Chrome Extension\"](https://www.thepolyglotdeveloper.com/2018/09/creating-basic-chrome-extension/). I fixed some typos in his code.\n# Chrome is different\nMight because there needs different js code to do websocket."
+        }
+    ]
+}

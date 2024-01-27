@@ -1,0 +1,10 @@
+{
+    "summary": "This code snippet is listing two Python libraries, 'flask-sockets' and 'websocket-client', which are likely required for a Flask application involving socket communication.",
+    "details": [
+        {
+            "comment": "This code snippet is listing two Python libraries, 'flask-sockets' and 'websocket-client', which are likely required for a Flask application involving socket communication.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/requirements.txt\":0-1",
+            "content": "flask-sockets\nwebsocket-client"
+        }
+    ]
+}

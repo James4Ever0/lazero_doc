@@ -1,0 +1,10 @@
+{
+    "summary": "Function `commandFuse` takes a string argument 'a' and an optional float/int argument 'f'. Asserts that 'f' is of type float or int, greater than 0, and 'a' is non-empty string. Returns the formatted string \"timeout {f} {a}\".",
+    "details": [
+        {
+            "comment": "Function `commandFuse` takes a string argument 'a' and an optional float/int argument 'f'. Asserts that 'f' is of type float or int, greater than 0, and 'a' is non-empty string. Returns the formatted string \"timeout {f} {a}\".",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/linux_failsafe.py\":0-4",
+            "content": "def commandFuse(a, f=1):\n    assert type(f) in [float, int] and f > 0\n    assert type(a) == str and len(a) > 0\n    return \"timeout {} {}\".format(f, a)\n# now, time to check if you can read shit?"
+        }
+    ]
+}

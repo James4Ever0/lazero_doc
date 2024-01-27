@@ -1,0 +1,10 @@
+{
+    "summary": "This code reads input from stdin, uses regular expressions to find integer numbers in the input, and prints the first one found if there is at least one.",
+    "details": [
+        {
+            "comment": "This code reads input from stdin, uses regular expressions to find integer numbers in the input, and prints the first one found if there is at least one.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/pgrep.py\":0-4",
+            "content": "import re,sys\nfor x in sys.stdin:\n    rf = re.findall(r\"\\d+\",x)\n    if len(rf)>0:\n        print(rf[0])"
+        }
+    ]
+}

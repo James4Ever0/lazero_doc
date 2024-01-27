@@ -1,0 +1,15 @@
+{
+    "summary": "This script sets up a proot jail for Termux users, adjusts permissions, configures LD_PRELOAD and mounts directories before running the command \"sh\". It also checks for command-line arguments to execute or configure commands.",
+    "details": [
+        {
+            "comment": "This script is for Termux users and sets up a proot jail. It changes permissions, configures LD_PRELOAD, and mounts necessary directories before running the command \"sh\" inside the proot jail.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/tsimple_jail.sh\":0-32",
+            "content": "#!/data/data/com.termux/files/usr/bin/bash\n# cd $(dirname $0)\n## unset LD_PRELOAD in case termux-exec is installed\n./tloadroot.sh\n./aloadroot.sh\n./loadram.sh\nchmod 777 $PREFIX/bin/*\nunset LD_PRELOAD\n#set LD_PRELOAD=/lib/libtermux-exec.so\n#set LD_LIBRARY=/lib\ncommand=\"sudo proot\"\ncommand+=\" --link2symlink\"\n#command+=\" -0\"\ncommand+=\" -r alpine-ro\"\ncommand+=\" -b /dev\"\ncommand+=\" -b /proc\"\ncommand+=\" -b root:/termux\"\n#command+=\" -b /system/bin/env:/sbin/env\"\ncommand+=\" -b ramdisk:/ramdisk\"\n## uncomment the following line to have access to the home directory of termux\n#command+=\" -b /data/data/com.termux/files/home:/root\"\n## uncomment the following line to mount /sdcard directly to /\n#command+=\" -b /sdcard\"\ncommand+=\" -w /ramdisk\"\ncommand+=\" /bin/busybox env -i\"\ncommand+=\" HOME=/ramdisk\"\ncommand+=\" PREFIX=/termux\"\ncommand+=\" PATH=/termux/bin:/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin\"\ncommand+=\" TERM=$TERM\"\ncommand+=\" LD_PRELOAD=/lib/libtermux-exec.so\"\ncommand+=\" LANG=C.UTF-8\"\n#command+=\" bash\"\ncommand+=\" /bin/busybox sh\""
+        },
+        {
+            "comment": "This code checks if a command-line argument is provided. If not, it executes the command directly; otherwise, it runs the command with the given argument as its configuration.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/tsimple_jail.sh\":33-38",
+            "content": "com=\"$@\"\nif [ -z \"$1\" ];then\n    exec $command\nelse\n    $command -c \"$com\"\nfi"
+        }
+    ]
+}

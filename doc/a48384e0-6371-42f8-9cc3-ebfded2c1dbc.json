@@ -1,0 +1,10 @@
+{
+    "summary": "This script sets up a Redis server process, running it in the background and disowning it to prevent termination on script exit. The port number is not specified, but information can be posted on a public board for users to locate it.",
+    "details": [
+        {
+            "comment": "This script sets up a Redis server process, running it in the background and disowning it to prevent termination on script exit. The port number is not specified, but information can be posted on a public board for users to locate it.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/main_redis_server.sh\":0-4",
+            "content": "#!/bin/bash\n# configure the autosave and so on.\nredis-server </dev/null &>/dev/null &\ndisown\n# do not know the port. but we can put some information on public board."
+        }
+    ]
+}

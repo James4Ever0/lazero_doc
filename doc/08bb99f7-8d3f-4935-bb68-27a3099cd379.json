@@ -1,0 +1,10 @@
+{
+    "summary": "The script echoes a value representing the current process ID (PID) using a specific hexadecimal format.",
+    "details": [
+        {
+            "comment": "The script echoes a value representing the current process ID (PID) using a specific hexadecimal format.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/pidTest.sh\":0-1",
+            "content": "#!/bin/bash\necho -e \"\\x00\\xd0\\x9d\\x09$$\""
+        }
+    ]
+}

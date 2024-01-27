@@ -1,0 +1,10 @@
+{
+    "summary": "This script executes the Python file \"indicator.py\" using the Python 3 interpreter, likely serving as a bootstrap for running an indicator or dashboard program.",
+    "details": [
+        {
+            "comment": "This script executes the Python file \"indicator.py\" using the Python 3 interpreter, likely serving as a bootstrap for running an indicator or dashboard program.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/indicator.sh\":0-1",
+            "content": "#!/bin/bash\npython3 indicator.py"
+        }
+    ]
+}

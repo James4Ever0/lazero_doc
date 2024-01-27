@@ -1,0 +1,10 @@
+{
+    "summary": "This script is using Firejail to perform a clean operation within a container. It attempts to run on Android phones but encounters limitations. The --overlay-clean command is executed, but it doesn't solve the problem as all files are kept after invocation.",
+    "details": [
+        {
+            "comment": "This script is using Firejail to perform a clean operation within a container. It attempts to run on Android phones but encounters limitations. The --overlay-clean command is executed, but it doesn't solve the problem as all files are kept after invocation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/jail/docker_jail_clean.sh\":0-5",
+            "content": "#!/bin/bash\n# but we're still far from reach, cannot make it running on android phone!\n#firejail --apparmor --read-only=/ --private=ramdisk/ --rlimit-as=50000000 --rlimit-fsize=5000 --rlimit-cpu=1 --rlimit-fsize=100 --rlimit-nproc=10 --rlimit-sigpending=3\nfirejail --overlay-clean\n# no that won't solve the problem.\n# all files are kept after invocation."
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports the 'random' module and initializes an empty string. It reads a file named \"links.log\" and stores its content in the variable 'a'. The code then splits the string 'a' into a list of words and prints one random word from that list using the 'random.choice()' function.",
+    "details": [
+        {
+            "comment": "The code imports the 'random' module and initializes an empty string. It reads a file named \"links.log\" and stores its content in the variable 'a'. The code then splits the string 'a' into a list of words and prints one random word from that list using the 'random.choice()' function.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/sample.py\":0-22",
+            "content": "import random\na=\"\"\n# non-standard. but we've got bytes.\n# you mean char-level? pix-level?\nwith open(\"links.log\",\"r\") as f:\n    a=f.read()\n# for x in a:\n#     print(x)\n# and that's learning.\n# FAIL: stdin waiting; stdout nothing (when expecting something); stderr something.\n# RULE: time, space.\n# that's how you comprehend things?\n# what is the fucking work here?\n# how to do the work? finding the way to crack the parameter?\n# assemble them together? making some concept nodes?\n# well, you say that.\n# print(a.split())\n# i did found some universial function works for every shit.\n# s=a.split()\n# f=[lambda x: x==b for b in s]\n# z=[list(map(k,s)) for k in f]\n# print(z)\nprint(random.choice(a.split()))"
+        }
+    ]
+}

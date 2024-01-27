@@ -1,0 +1,530 @@
+{
+    "300": {
+        "file_id": 39,
+        "content": "/bootstrap/blitx/src/audio_record/sc.py",
+        "type": "filepath"
+    },
+    "301": {
+        "file_id": 39,
+        "content": "The code imports soundcard and numpy libraries, checks audio devices, records and plays audio data on default speaker and microphone. It may have issues with no audio data despite playing.",
+        "type": "summary"
+    },
+    "302": {
+        "file_id": 39,
+        "content": "import soundcard as sc\nimport numpy\n# not working for android.\n# is this shit realy installed?\n# don't know if working for android or windows. check first.\n# you can use numba. just maybe.\n# but useless on ARM.\n# get a list of all speakers:\n# this is shit.\nspeakers = sc.all_speakers()\nprint(speakers)\n# get the current default speaker on your system:\ndefault_speaker = sc.default_speaker()\n# get a list of all microphones:\nmics = sc.all_microphones(include_loopback=True,exclude_monitors=False)\nprint(mics)\n# get the current default microphone on your system:\n#default_mic = sc.default_microphone()\ndefault_mic=mics[0]\ndata = default_mic.record(samplerate=48000, numframes=48000*5)\n# reshape the thing?\n\"\"\"data=numpy.linspace(-1000,10000,48000*5)\ndata=numpy.sin(data)\ndata=data.tolist()\ndata=list(zip(data,data))\ndata=numpy.array(data)\"\"\"\nprint(data)\nprint(\"finished record\")\n#numpy.random.shuffle(data)\n# this will generate white noise.\n# junk^2 = worse junk\n# junk*0 = clear\n# no output.\n# what the fuck?\n# so it makes the sound.\n# but how to record that back? get the thing?",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/audio_record/sc.py:1-37"
+    },
+    "303": {
+        "file_id": 39,
+        "content": "Code imports soundcard (sc) and numpy libraries, checks for installed audio devices on the system, lists all speakers and microphones, sets default speaker and microphone, records audio data from the default microphone at a specified sample rate and duration, and prints the recorded data.",
+        "type": "comment"
+    },
+    "304": {
+        "file_id": 39,
+        "content": "default_speaker.play(data/numpy.max(data), samplerate=48000)\n#print(data/numpy.max(data))\n#print(data.shape)\n#print(data)\n# nothing there. but still playing?\n#check this!\n# search for a sound card by substring:\n# check all these shits.",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/audio_record/sc.py:38-45"
+    },
+    "305": {
+        "file_id": 39,
+        "content": "This code is playing audio data with maximum value from numpy on the default speaker at a sampling rate of 48000. The comments suggest checking for a sound card by substring and investigating why there's no audio data even though it's still playing.",
+        "type": "comment"
+    },
+    "306": {
+        "file_id": 40,
+        "content": "/bootstrap/blitx/src/cagen.sh",
+        "type": "filepath"
+    },
+    "307": {
+        "file_id": 40,
+        "content": "This script generates SSL certificates for a localhost server. It creates directories, generates and signs key and certificate files using OpenSSL commands, and follows specific configuration steps for the server and CA certificates.",
+        "type": "summary"
+    },
+    "308": {
+        "file_id": 40,
+        "content": "#!/bin/bash\nrm -rf certs\nmkdir -p certs/ca\ncd certs/ca\nopenssl genrsa -out ca.key 2048\nopenssl req -x509 -new -nodes \\\n      -key ca.key -subj \"/CN=localhost/C=US/L=CALIFORNIA\" \\\n      -days 1825 -out ca.crt\ncd ..\nopenssl genrsa -out server.key 2048\ncat > csr.conf <<EOF\n[ req ]\ndefault_bits = 2048\nprompt = no\ndefault_md = sha256\nreq_extensions = req_ext\ndistinguished_name = dn\n[ dn ]\nC = US\nST = California\nL = San Fransisco\nO = Scriptcrunch\nOU = Scriptcrunch Dev\nCN = localhost\n[ req_ext ]\nsubjectAltName = @alt_names\n[ alt_names ]\nDNS.1 = localhost\nIP.1 = 127.0.0.1\nEOF\nopenssl req -new -key server.key -out server.csr -config csr.conf\nopenssl x509 -req -in server.csr -CA ca/ca.crt -CAkey ca/ca.key \\\n-CAcreateserial -out server.crt -days 10000 \\\n-extfile csr.conf",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/cagen.sh:1-38"
+    },
+    "309": {
+        "file_id": 40,
+        "content": "This script generates SSL certificates for a localhost server. It creates directories, generates and signs key and certificate files using OpenSSL commands, and follows specific configuration steps for the server and CA certificates.",
+        "type": "comment"
+    },
+    "310": {
+        "file_id": 41,
+        "content": "/bootstrap/blitx/src/choice.py",
+        "type": "filepath"
+    },
+    "311": {
+        "file_id": 41,
+        "content": "Code imports a function to return a list, then defines a choice function using SystemRandom for random selection. The choice function is applied on the returned list from \"returnXList\" and the result is printed.",
+        "type": "summary"
+    },
+    "312": {
+        "file_id": 41,
+        "content": "from getFromDill import returnXList\nimport random\ndef choice(s):\n    rng=random.SystemRandom()\n    return rng.choice(s)\nf=returnXList(\"within\")\nprint(choice(f))",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/choice.py:1-7"
+    },
+    "313": {
+        "file_id": 41,
+        "content": "Code imports a function to return a list, then defines a choice function using SystemRandom for random selection. The choice function is applied on the returned list from \"returnXList\" and the result is printed.",
+        "type": "comment"
+    },
+    "314": {
+        "file_id": 42,
+        "content": "/bootstrap/blitx/src/deathride.sh",
+        "type": "filepath"
+    },
+    "315": {
+        "file_id": 42,
+        "content": "This script continuously attempts to install pytesseract using pip3 and breaks the loop if installation is successful.",
+        "type": "summary"
+    },
+    "316": {
+        "file_id": 42,
+        "content": "#!/bin/bash\nwhile true\ndo\n\tpip3 install pytesseract\n\tif [ $? -eq 0 ]; then\n                break\n\tfi\ndone",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/deathride.sh:1-8"
+    },
+    "317": {
+        "file_id": 42,
+        "content": "This script continuously attempts to install pytesseract using pip3 and breaks the loop if installation is successful.",
+        "type": "comment"
+    },
+    "318": {
+        "file_id": 43,
+        "content": "/bootstrap/blitx/src/demo-https.sh",
+        "type": "filepath"
+    },
+    "319": {
+        "file_id": 43,
+        "content": "This code demonstrates various ways to make HTTPS requests with certificates, using curl and wget. The first section uses `curl` to make an HTTPS request without trusting all certificates by specifying the certificate file path. The second part uses `wget` with the same configuration but in system level.",
+        "type": "summary"
+    },
+    "320": {
+        "file_id": 43,
+        "content": "#!/bin/bash\n#curl -k \"https://localhost:5001/s/s\"\n#not to trust all.\ncurl --cacert certs/ca/ca.crt \"https://localhost:5001/s/s\"\necho\necho \"___spilter___\"\necho\n#wget -q -O - \"https://localhost:5001/s/s\" --no-check-certificate\nwget -q -O - \"https://localhost:5001/s/s\" --ca-certificate=certs/ca/ca.crt\n# what if do it in system level?",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/demo-https.sh:1-10"
+    },
+    "321": {
+        "file_id": 43,
+        "content": "This code demonstrates various ways to make HTTPS requests with certificates, using curl and wget. The first section uses `curl` to make an HTTPS request without trusting all certificates by specifying the certificate file path. The second part uses `wget` with the same configuration but in system level.",
+        "type": "comment"
+    },
+    "322": {
+        "file_id": 44,
+        "content": "/bootstrap/blitx/src/demo.py",
+        "type": "filepath"
+    },
+    "323": {
+        "file_id": 44,
+        "content": "This code imports MemoryTempfile and memory_tempfile, sets a fallback to False, checks if a memory temp directory is found, and then prints the usable paths and the current temporary directory being used. Finally, it creates a named temporary file for usage.",
+        "type": "summary"
+    },
+    "324": {
+        "file_id": 44,
+        "content": "# We now do not want to use /dev/shm or /run/shm and no ramfs paths\n# If /run/user/{uid} is available, we prefer it to /tmp\n# And we want to try /var/run as a last resort\n# If all fails, fallback to platform's tmp dir\nfrom memory_tempfile import MemoryTempfile\nimport memory_tempfile\n# By the way, all paths with string {uid} will have it replaced with the user id\ntempfile = MemoryTempfile(fallback=False)\nif tempfile.found_mem_tempdir():\n    print('We could use any of the followig paths: {}'.format(tempfile.get_usable_mem_tempdir_paths()))\n    print('And we are using now: {}'.format(tempfile.gettempdir()))\nwith tempfile.NamedTemporaryFile() as ntf:\n    # use it as usual...\n    pass",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/demo.py:1-18"
+    },
+    "325": {
+        "file_id": 44,
+        "content": "This code imports MemoryTempfile and memory_tempfile, sets a fallback to False, checks if a memory temp directory is found, and then prints the usable paths and the current temporary directory being used. Finally, it creates a named temporary file for usage.",
+        "type": "comment"
+    },
+    "326": {
+        "file_id": 45,
+        "content": "/bootstrap/blitx/src/direct-https.sh",
+        "type": "filepath"
+    },
+    "327": {
+        "file_id": 45,
+        "content": "This code sets up a secure connection for file transfer using curl and wget. It first uses cURL to fetch a file over HTTPS without validating the certificate, then echoes some content, and finally uses wget to re-fetch the same file over HTTPS. The last line suggests doing this at a system level.",
+        "type": "summary"
+    },
+    "328": {
+        "file_id": 45,
+        "content": "#!/bin/bash\n#curl -k \"https://localhost:5001/s/s\"\n#not to trust all.\ncurl \"https://localhost:5001/s/s\"\necho\necho \"___spilter___\"\necho\nwget -q -O - \"https://localhost:5001/s/s\"\n# what if do it in system level?",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/direct-https.sh:1-9"
+    },
+    "329": {
+        "file_id": 45,
+        "content": "This code sets up a secure connection for file transfer using curl and wget. It first uses cURL to fetch a file over HTTPS without validating the certificate, then echoes some content, and finally uses wget to re-fetch the same file over HTTPS. The last line suggests doing this at a system level.",
+        "type": "comment"
+    },
+    "330": {
+        "file_id": 46,
+        "content": "/bootstrap/blitx/src/filesuite.sh",
+        "type": "filepath"
+    },
+    "331": {
+        "file_id": 46,
+        "content": "This script uses Bash to update the database of files and then redirects the locate command output for \"/\" path to a log file named \"locate.log\".",
+        "type": "summary"
+    },
+    "332": {
+        "file_id": 46,
+        "content": "#!/bin/bash\nupdatedb\nlocate / > locate.log",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/filesuite.sh:1-3"
+    },
+    "333": {
+        "file_id": 46,
+        "content": "This script uses Bash to update the database of files and then redirects the locate command output for \"/\" path to a log file named \"locate.log\".",
+        "type": "comment"
+    },
+    "334": {
+        "file_id": 47,
+        "content": "/bootstrap/blitx/src/flaskServe.py",
+        "type": "filepath"
+    },
+    "335": {
+        "file_id": 47,
+        "content": "The code creates a Flask app with a single route that continuously checks for changes in the mainfile list, processes images using pytesseract, and sleeps if no form data is received. A thread starts the scanner function when \"screenshot\" parameter is detected. The app runs on port 4999.",
+        "type": "summary"
+    },
+    "336": {
+        "file_id": 47,
+        "content": "from flask import Flask, request\nimport threading\nimport pytesseract\nimport time\nimport copy\nimport io\nfrom PIL import Image\ndef scanner(mainfile,filerefresh):\n    while True:\n        if (filerefresh[0]):\n            try:\n                data=copy.copy(mainfile[0])\n                #print(type(data),len(data))\n                image = Image.open(io.BytesIO(data))\n                text = pytesseract.image_to_string(image,lang='eng') #使用简体中文解析图片\n                # so goddamn slow.\n                # but it is because without direct access.\n                print(text)\n                filerefresh[0]=False\n            except:\n                #print(\"MISSED\")\n        else:\n            time.sleep(1)\nmainfile=[None]\nfilerefresh=[False]\napp = Flask(__name__)\n@app.route('/sample', methods=['POST'])\n# use a separate thread to process this saving thing.\ndef result():\n    # get all things.\n    #print(request.data)\n    files=request.files\n    form=request.form\n    pr=[files[x] for x in list(files)]\n    pr0=[form[x] for x in list(form)]\n    if len(pr0)==1:",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/flaskServe.py:1-37"
+    },
+    "337": {
+        "file_id": 47,
+        "content": "This code defines a Flask application with a single route, '/sample', that accepts POST requests. The scanner function runs in an infinite loop, continuously checking for changes in the mainfile list and processing images when a change is detected. It uses pytesseract to extract text from images and prints the extracted text. If no form data is received in the POST request, it will sleep for 1 second before checking again. The code also initializes two global lists - mainfile and filerefresh.",
+        "type": "comment"
+    },
+    "338": {
+        "file_id": 47,
+        "content": "        if pr0[0]==\"screenshot\":\n            mainfile[0]=pr[0].read()\n            filerefresh[0]=True\n            #print(pr[0])\n    #print(request.form['foo']) # should display 'bar'\n    return 'Received !' # response to your request.\np=threading.Thread(target=scanner,args=(mainfile,filerefresh))\np.setDaemon(True)\np.start()\napp.run(port=4999)",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/flaskServe.py:38-48"
+    },
+    "339": {
+        "file_id": 47,
+        "content": "This code segment checks if the first parameter is \"screenshot\". If it is, it reads and assigns the data to mainfile and sets filerefresh to True. Then, it starts a thread for scanner function with mainfile and filerefresh as arguments before running the app on port 4999.",
+        "type": "comment"
+    },
+    "340": {
+        "file_id": 48,
+        "content": "/bootstrap/blitx/src/flaskall.py",
+        "type": "filepath"
+    },
+    "341": {
+        "file_id": 48,
+        "content": "This code imports the Flask module and creates a Flask application instance. It defines two routes: one for the root (\"/\") with a default path and another for any path (\"/<path:path>\"). The catch_all function is used to handle requests on both routes, printing the path and returning \"PATH\" followed by the path (or rendering 'index.html' in the original code). Finally, it runs the Flask application on port 5001, instructing not to use a browser for testing.",
+        "type": "summary"
+    },
+    "342": {
+        "file_id": 48,
+        "content": "from flask import Flask\n#from flask import Flask, render_template\napp = Flask(__name__)\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return render_template('index.html')\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\n@app.route('/<path:path>',methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return \"PATH \"+path\n    #return render_template('index.html')\n# do not use browser. use code like js or curl to test connection.\n\"\"\"\n@app.route('/')\ndef homepage():\n    return \"Hello world!\"\n\"\"\"\napp.run(port=5001)",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/flaskall.py:1-24"
+    },
+    "343": {
+        "file_id": 48,
+        "content": "This code imports the Flask module and creates a Flask application instance. It defines two routes: one for the root (\"/\") with a default path and another for any path (\"/<path:path>\"). The catch_all function is used to handle requests on both routes, printing the path and returning \"PATH\" followed by the path (or rendering 'index.html' in the original code). Finally, it runs the Flask application on port 5001, instructing not to use a browser for testing.",
+        "type": "comment"
+    },
+    "344": {
+        "file_id": 49,
+        "content": "/bootstrap/blitx/src/fuck.py",
+        "type": "filepath"
+    },
+    "345": {
+        "file_id": 49,
+        "content": "Code imports BeautifulSoup, defines functions to open and parse HTML data using BeautifulSoup, and extracts text from specific HTML tags within the data.",
+        "type": "summary"
+    },
+    "346": {
+        "file_id": 49,
+        "content": "from bs4 import BeautifulSoup\ndef soup(a):\n    return BeautifulSoup(a,features=\"html.parser\")\ndef openShit(b):\n    return b\ndef shit(x):\n    try:\n        s=soup(openShit(x)).find_all(name=\"ul\",attrs={\"class\":\"repo-list\"})[0].find_all(name=\"a\",attrs={\"class\":\"v-align-middle\"},recursive=True)\n        return [s0.get_text() for s0 in s]\n    except:\n        return []\n# fuck you.\n#e=[[shit(c) for c ]]\n#print(len(d))",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/fuck.py:1-18"
+    },
+    "347": {
+        "file_id": 49,
+        "content": "Code imports BeautifulSoup, defines functions to open and parse HTML data using BeautifulSoup, and extracts text from specific HTML tags within the data.",
+        "type": "comment"
+    },
+    "348": {
+        "file_id": 50,
+        "content": "/bootstrap/blitx/src/getSrc.py",
+        "type": "filepath"
+    },
+    "349": {
+        "file_id": 50,
+        "content": "This code imports a function and returns a flattened list, then prints each element. It may be part of a larger process involving data retrieval and processing.",
+        "type": "summary"
+    },
+    "350": {
+        "file_id": 50,
+        "content": "from getFromDill import returnAList\nr=returnAList()\nr=[x for y in r for x in y]\nfor x in r:\n    print(x)",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/getSrc.py:1-5"
+    },
+    "351": {
+        "file_id": 50,
+        "content": "This code imports a function and returns a flattened list, then prints each element. It may be part of a larger process involving data retrieval and processing.",
+        "type": "comment"
+    },
+    "352": {
+        "file_id": 51,
+        "content": "/bootstrap/blitx/src/github_parser.py",
+        "type": "filepath"
+    },
+    "353": {
+        "file_id": 51,
+        "content": "This code imports libraries, defines a GitHub data retrieval function, and counts active threads using threading. It uses BeautifulSoup, re, and Thread class to parse webpages, extract URLs, and start concurrent tasks, ultimately storing some data upon completion.",
+        "type": "summary"
+    },
+    "354": {
+        "file_id": 51,
+        "content": "# get the thing.\n# from bs4 import BeautifulSoup\nimport requests\nimport re\nimport copy\nfrom storeADill import storeAList\nfrom threading import Thread\nimport time\nimport threading\nfrom fuck import shit\nimport random\ndef tar(init,s,t):\n    i=True\n    while i:\n        try:                \n            r=requests.get(\"https://github.com\"+s,timeout=20)\n            req=r.text\n            sf=shit(req)\n            if (sf==[]):\n                time.sleep(random.random()+random.choice(range(5)))\n                continue\n            else:\n                init.append(copy.copy(sf)) \n                i=False\n                print(\"done\",t)\n        except:\n            time.sleep(random.random()+random.choice(range(5)))\n            continue\ninit=[]\nlistString = [\"artificial\", \"life\"]\nlittle = \"+\".join(listString)\nformatString = \"https://github.com/search?q={}\".format(little)\ni=True\nres=None\nwhile i:\n    try:\n        r = requests.get(formatString)\n        res = r.text\n        sf=shit(res)\n        if (sf==[]):\n            time.sleep(2)\n            continue",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/github_parser.py:1-45"
+    },
+    "355": {
+        "file_id": 51,
+        "content": "The code imports necessary libraries, defines a function to retrieve data from GitHub, and initializes an empty list for storing results. It then creates search query strings, retrieves data from the GitHub search page using requests module, and handles any potential errors or timeouts. If successful, it appends the retrieved data to the result list and prints \"done\" followed by the current thread number.",
+        "type": "comment"
+    },
+    "356": {
+        "file_id": 51,
+        "content": "        else:\n            init.append(copy.copy(sf))\n            i=False\n    except:\n        time.sleep(2)\n        continue\ndef dnf(x):\n    if len(x) > 0:\n        return x[0]\n    else:\n        return None\n# print(res,type(res))\n# get largest number.\n# html = BeautifulSoup(res,features='lxml')\n# \"/search?p=3&amp;q=artificial+life&amp;type=Repositories\"\ntarget = list(filter(lambda x: little in x,\n                     re.findall(r\"/search\\?p=\\d+[^\\\"]+\", res)))\ntarget = list(\n    map(lambda x: dnf(re.findall(r\"[0-9]+\", x)), target))\ntarget = list(map(lambda x: int(x), list(\n    filter(lambda x: x is not None, target))))\n# for x in target:\n#     print(x)\n# target = list(map(lambda x: dnf(re.findall(r\"\\d+\", x)),\n#                   list(filter(lambda x: x is not None, target))))\n# # # for x in target:\n# #     print(x)\nmax=sorted(target)[-1]\nfor x in range(max-1):\n    y=x+2\n    #print(y)\n    s=\"/search?p={}&amp;q={}&amp;type=Repositories\".format(y,little)\n    Thread(target=tar,args=(init,s,y)).start()\nwhile True:\n    time.sleep(2)",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/github_parser.py:46-85"
+    },
+    "357": {
+        "file_id": 51,
+        "content": "This code parses a webpage, extracts repository search page URLs with a given keyword, finds the largest number among them, and starts multiple threads to fetch data from these pages. It uses BeautifulSoup for HTML parsing, re module for regular expressions, and Thread class from threading module to run concurrent tasks.",
+        "type": "comment"
+    },
+    "358": {
+        "file_id": 51,
+        "content": "    count=threading.active_count()\n    print(\"ACTIVE\",count)\n    if (count==1):\n        break\nstoreAList(init)",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/github_parser.py:86-90"
+    },
+    "359": {
+        "file_id": 51,
+        "content": "This code is counting the number of active threads using threading.active_count(). If there's only one thread left (indicating other threads have finished executing), it breaks from the loop and calls storeAList(init) to store some data.",
+        "type": "comment"
+    },
+    "360": {
+        "file_id": 52,
+        "content": "/bootstrap/blitx/src/httpsall.py",
+        "type": "filepath"
+    },
+    "361": {
+        "file_id": 52,
+        "content": "This code sets up a Flask application with secure HTTPS connection on port 5001. It includes two routes: one for the root path and another for a dynamic path. The catch-all function prints the path and returns \"PATH\" followed by the path. The homepage route simply returns \"Hello world!\". This code uses SSL certificates from the 'certs/ca' directory.",
+        "type": "summary"
+    },
+    "362": {
+        "file_id": 52,
+        "content": "from flask import Flask\n#from flask import Flask, render_template\napp = Flask(__name__)\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return render_template('index.html')\n\"\"\"\n@app.route('/', defaults={'path': ''},methods=['POST','GET'])\n@app.route('/<path:path>',methods=['POST','GET'])\ndef catch_all(path):\n    print(\"path\",path)\n    return \"PATH \"+path\n    #return render_template('index.html')\n# do not use browser. use code like js or curl to test connection.\n\"\"\"\n@app.route('/')\ndef homepage():\n    return \"Hello world!\"\n\"\"\"\napp.run(port=5001,ssl_context=('certs/ca/ca.crt', 'certs/ca/ca.key'))\n#app.run(port=5001,ssl_context=('certs/server.crt', 'certs/server.key'))",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/httpsall.py:1-25"
+    },
+    "363": {
+        "file_id": 52,
+        "content": "This code sets up a Flask application with secure HTTPS connection on port 5001. It includes two routes: one for the root path and another for a dynamic path. The catch-all function prints the path and returns \"PATH\" followed by the path. The homepage route simply returns \"Hello world!\". This code uses SSL certificates from the 'certs/ca' directory.",
+        "type": "comment"
+    },
+    "364": {
+        "file_id": 53,
+        "content": "/bootstrap/blitx/src/keygen.sh",
+        "type": "filepath"
+    },
+    "365": {
+        "file_id": 53,
+        "content": "This script creates a new directory 'certs', generates an X.509 self-signed certificate with a 4096-bit RSA key, and saves it as cert.pem and key.pem in the 'certs' directory, all valid for 365 days.",
+        "type": "summary"
+    },
+    "366": {
+        "file_id": 53,
+        "content": "#!/bin/bash\nmkdir certs\nopenssl req -x509 -newkey rsa:4096 -nodes -out certs/cert.pem -keyout certs/key.pem -days 365",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/keygen.sh:1-3"
+    },
+    "367": {
+        "file_id": 53,
+        "content": "This script creates a new directory 'certs', generates an X.509 self-signed certificate with a 4096-bit RSA key, and saves it as cert.pem and key.pem in the 'certs' directory, all valid for 365 days.",
+        "type": "comment"
+    },
+    "368": {
+        "file_id": 54,
+        "content": "/bootstrap/blitx/src/oneShot.py",
+        "type": "filepath"
+    },
+    "369": {
+        "file_id": 54,
+        "content": "Code imports necessary modules, sets database file path, retrieves data from \"projects\" table, and prints each row.",
+        "type": "summary"
+    },
+    "370": {
+        "file_id": 54,
+        "content": "import sys\nsys.path.append(\"../\")\nimport dbM\ndbM.setter(\"../Monitor.db\")\na=dbM.show(\"projects\")\nfor x in a:\n    print(x)",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/oneShot.py:1-7"
+    },
+    "371": {
+        "file_id": 54,
+        "content": "Code imports necessary modules, sets database file path, retrieves data from \"projects\" table, and prints each row.",
+        "type": "comment"
+    },
+    "372": {
+        "file_id": 55,
+        "content": "/bootstrap/blitx/src/platform.sh",
+        "type": "filepath"
+    },
+    "373": {
+        "file_id": 55,
+        "content": "This Bash script identifies the processor architecture using the 'uname -m' command.",
+        "type": "summary"
+    },
+    "374": {
+        "file_id": 55,
+        "content": "#!/bin/bash\nuname -m",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/platform.sh:1-2"
+    },
+    "375": {
+        "file_id": 55,
+        "content": "This Bash script identifies the processor architecture using the 'uname -m' command.",
+        "type": "comment"
+    },
+    "376": {
+        "file_id": 56,
+        "content": "/bootstrap/blitx/src/poster.js",
+        "type": "filepath"
+    },
+    "377": {
+        "file_id": 56,
+        "content": "The code sets up an Express server handling POST requests at '/sample' endpoint, generating a UUID and allowing parameterLimit 1000000 with body-parser middleware. It listens on port 4999, logs messages, and responds with status 200 and 'text/plain'.",
+        "type": "summary"
+    },
+    "378": {
+        "file_id": 56,
+        "content": "// #!/usr/bin/nodejs\nvar express = require('express')\n// var crypto = require('crypto');\n// not this one.\nfunction uuidv4() {\n  var dt = new Date().getTime()\n  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (\n    c\n  ) {\n    var r = (dt + Math.random() * 16) % 16 | 0\n    dt = Math.floor(dt / 16)\n    return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16)\n  })\n  return uuid\n}\nvar parser = require('body-parser')\n//  app.use(bodyParser.json({ limit: '50mb' }))\nvar app = express()\napp.use(\n  parser.urlencoded({\n    parameterLimit: 1000000,\n    extended: true,\n    limit: '50mb',\n  })\n)\n// return it via web or clipboard.\napp.post('/sample', function (req, res) {\n  var k = uuidv4()\n  // const body = req.body.Body\n  // why nothing here?\n  console.log(req.body)\n  // console.log(req.data)\n  res.set('Access-Control-Allow-Origin', '*')\n  res.set('Content-Type', 'text/plain')\n  res.send(k)\n})\n// payload too large\n// what the heck?\n// var server = http.createServer(function (request, response) {\n// //   // never read the request?",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/poster.js:1-40"
+    },
+    "379": {
+        "file_id": 56,
+        "content": "This code sets up an Express server to handle POST requests at '/sample' endpoint. It generates a random UUID and sends it as a plain text response with 'Access-Control-Allow-Origin' header set to '*'. The server also uses body-parser middleware for URL-encoded data, allowing parameterLimit of 1000000, extended true, and limit of '50mb'.",
+        "type": "comment"
+    },
+    "380": {
+        "file_id": 56,
+        "content": "//   response.writeHead(200, { 'Content-Type': 'text/plain' })\n// use some standard outputs, redirect them.\n//     console.log(\"message received.\")\n//     console.log(request.data)\n//     // console.log(request.content)\n//     // does not distinguish type?\n//     response.end(k)\n// })\napp.listen(4999)",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/poster.js:41-49"
+    },
+    "381": {
+        "file_id": 56,
+        "content": "This code sets up a server to listen on port 4999. Upon receiving a request, it logs \"message received\" and the request data, but does not distinguish between different content types. The response is then sent back with status 200 and 'text/plain' content type.",
+        "type": "comment"
+    },
+    "382": {
+        "file_id": 57,
+        "content": "/bootstrap/blitx/src/randomAccess.py",
+        "type": "filepath"
+    },
+    "383": {
+        "file_id": 57,
+        "content": "The code imports the necessary modules, reads data from a file, applies a specific function to it, and then stores the processed data in an external storage. It also provides an option to retrieve a random element from the processed data and store it in a database as a service.",
+        "type": "summary"
+    },
+    "384": {
+        "file_id": 57,
+        "content": "f=None\nimport sys\nsys.path.append(\"../\")\nfrom cruncher import multibw as blackwhite\nwith open(\"locate.log\",\"rb\") as fs:\n    f=fs.read()\n    #x=\"\".join([chr(o) for o in range(500)]).encode()\n    f=blackwhite(f,b\"\\n\",8,False)\n    #f=f.split(\"\\n\")\n    # bytes are strange.\n\"\"\"\nimport random\ndef choice(s):\n    rng=random.SystemRandom()\n    return rng.choice(s)\nprint(choice(f))\"\"\"\nfrom storeADill import storeXList\nstoreXList(f,\"within\")\n# store in a db as a service. get count and acquire one.",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/randomAccess.py:1-20"
+    },
+    "385": {
+        "file_id": 57,
+        "content": "The code imports the necessary modules, reads data from a file, applies a specific function to it, and then stores the processed data in an external storage. It also provides an option to retrieve a random element from the processed data and store it in a database as a service.",
+        "type": "comment"
+    },
+    "386": {
+        "file_id": 58,
+        "content": "/bootstrap/blitx/src/randomAccess.sh",
+        "type": "filepath"
+    },
+    "387": {
+        "file_id": 58,
+        "content": "This script executes Python code \"choice.py\" using the bash shell and allows interactive mode by utilizing '-i' flag in Python 3.",
+        "type": "summary"
+    },
+    "388": {
+        "file_id": 58,
+        "content": "#!/bin/bash\npython3 -i choice.py",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/randomAccess.sh:1-2"
+    },
+    "389": {
+        "file_id": 58,
+        "content": "This script executes Python code \"choice.py\" using the bash shell and allows interactive mode by utilizing '-i' flag in Python 3.",
+        "type": "comment"
+    },
+    "390": {
+        "file_id": 59,
+        "content": "/bootstrap/blitx/src/register.js",
+        "type": "filepath"
+    },
+    "391": {
+        "file_id": 59,
+        "content": "This code sets up an Express application for file uploads, using Multer and generating unique UUIDs. It handles POST requests on '/sample', logs data, sets headers, and sends a response with a unique identifier. The server listens on port 4999 but does not distinguish content types.",
+        "type": "summary"
+    },
+    "392": {
+        "file_id": 59,
+        "content": "// #!/usr/bin/nodejs\nvar express = require('express')\n// var crypto = require('crypto');\n// not this one.\nvar multer = require('multer')\nvar upload = multer({dest:''})\nfunction uuidv4() {\n  var dt = new Date().getTime()\n  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (\n    c\n  ) {\n    var r = (dt + Math.random() * 16) % 16 | 0\n    dt = Math.floor(dt / 16)\n    return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16)\n  })\n  return uuid\n}\n//  app.use(bodyParser.json({ limit: '50mb' }))\nvar app = express()\n// return it via web or clipboard.\napp.post('/sample',upload.single('file'), function (req, res,next) {\n  var k = uuidv4()\n  // const body = req.body.Body\n  // why nothing here?\n  console.log(req.body)\n  console.log(req.file)\n  // console.log(req.data)\n  res.set('Access-Control-Allow-Origin', '*')\n  res.set('Content-Type', 'text/plain')\n  res.send(k)\n})\n// payload too large\n// what the heck?\n// var server = http.createServer(function (request, response) {\n// //   // never read the request?\n//   response.writeHead(200, { 'Content-Type': 'text/plain' })",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/register.js:1-36"
+    },
+    "393": {
+        "file_id": 59,
+        "content": "The code is an Express application that handles POST requests on the '/sample' route for file uploads. It uses Multer for file handling and generates a unique UUID for each request. The app logs the received data from the request, sets appropriate headers, and sends back a unique identifier as the response. The code also includes an unfinished attempt to handle HTTP requests using `http.createServer`.",
+        "type": "comment"
+    },
+    "394": {
+        "file_id": 59,
+        "content": "// use some standard outputs, redirect them.\n//     console.log(\"message received.\")\n//     console.log(request.data)\n//     // console.log(request.content)\n//     // does not distinguish type?\n//     response.end(k)\n// })\napp.listen(4999)",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/register.js:37-44"
+    },
+    "395": {
+        "file_id": 59,
+        "content": "This code is setting up a server to listen on port 4999. It logs \"message received\" and the request data to the console, but does not distinguish between different content types. The response ends with 'k'.",
+        "type": "comment"
+    },
+    "396": {
+        "file_id": 60,
+        "content": "/bootstrap/blitx/src/video_record/mss_rec.py",
+        "type": "filepath"
+    },
+    "397": {
+        "file_id": 60,
+        "content": "This code captures a portion of the screen, converts it to a NumPy array and displays it using OpenCV. It calculates FPS and continues until 'q' is pressed.",
+        "type": "summary"
+    },
+    "398": {
+        "file_id": 60,
+        "content": "import time\nimport cv2\nimport mss\nimport numpy\nwith mss.mss() as sct:\n    # Part of the screen to capture\n    monitor = {'top': 40, 'left': 0, 'width': 800, 'height': 640}\n    while 'Screen capturing':\n        last_time = time.time()\n        # Get raw pixels from the screen, save it to a Numpy array\n        img = numpy.array(sct.grab(monitor))\n        # Display the picture\n        cv2.imshow('OpenCV/Numpy normal', img)\n        # Display the picture in grayscale\n        # cv2.imshow('OpenCV/Numpy grayscale',\n        # cv2.cvtColor(img, cv2.COLOR_BGRA2GRAY))\n        print('fps: {0}'.format(1 / (time.time()-last_time)))\n        # Press \"q\" to quit\n        if cv2.waitKey(25) & 0xFF == ord('q'):\n            cv2.destroyAllWindows()\n            break",
+        "type": "code",
+        "location": "/bootstrap/blitx/src/video_record/mss_rec.py:1-29"
+    },
+    "399": {
+        "file_id": 60,
+        "content": "This code captures a portion of the screen, converts it to a NumPy array and displays it using OpenCV. It calculates FPS and continues until 'q' is pressed.",
+        "type": "comment"
+    }
+}

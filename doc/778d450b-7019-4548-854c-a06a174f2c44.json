@@ -1,0 +1,10 @@
+{
+    "summary": "This code is running PhantomJS script (phantom_post.js) with web security disabled and ignoring SSL errors, allowing the script to execute without restrictions or certificate checks.",
+    "details": [
+        {
+            "comment": "This code is running PhantomJS script (phantom_post.js) with web security disabled and ignoring SSL errors, allowing the script to execute without restrictions or certificate checks.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/phantom_post.sh\":0-1",
+            "content": "#!/bin/bash\nphantomjs --web-security=false --ignore-ssl-errors=true phantom_post.js "
+        }
+    ]
+}

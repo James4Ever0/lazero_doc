@@ -1,0 +1,15 @@
+{
+    "summary": "The code sets up an Express server handling POST requests at '/sample' endpoint, generating a UUID and allowing parameterLimit 1000000 with body-parser middleware. It listens on port 4999, logs messages, and responds with status 200 and 'text/plain'.",
+    "details": [
+        {
+            "comment": "This code sets up an Express server to handle POST requests at '/sample' endpoint. It generates a random UUID and sends it as a plain text response with 'Access-Control-Allow-Origin' header set to '*'. The server also uses body-parser middleware for URL-encoded data, allowing parameterLimit of 1000000, extended true, and limit of '50mb'.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/poster.js\":0-39",
+            "content": "// #!/usr/bin/nodejs\nvar express = require('express')\n// var crypto = require('crypto');\n// not this one.\nfunction uuidv4() {\n  var dt = new Date().getTime()\n  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (\n    c\n  ) {\n    var r = (dt + Math.random() * 16) % 16 | 0\n    dt = Math.floor(dt / 16)\n    return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16)\n  })\n  return uuid\n}\nvar parser = require('body-parser')\n//  app.use(bodyParser.json({ limit: '50mb' }))\nvar app = express()\napp.use(\n  parser.urlencoded({\n    parameterLimit: 1000000,\n    extended: true,\n    limit: '50mb',\n  })\n)\n// return it via web or clipboard.\napp.post('/sample', function (req, res) {\n  var k = uuidv4()\n  // const body = req.body.Body\n  // why nothing here?\n  console.log(req.body)\n  // console.log(req.data)\n  res.set('Access-Control-Allow-Origin', '*')\n  res.set('Content-Type', 'text/plain')\n  res.send(k)\n})\n// payload too large\n// what the heck?\n// var server = http.createServer(function (request, response) {\n// //   // never read the request?"
+        },
+        {
+            "comment": "This code sets up a server to listen on port 4999. Upon receiving a request, it logs \"message received\" and the request data, but does not distinguish between different content types. The response is then sent back with status 200 and 'text/plain' content type.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/poster.js\":40-48",
+            "content": "//   response.writeHead(200, { 'Content-Type': 'text/plain' })\n// use some standard outputs, redirect them.\n//     console.log(\"message received.\")\n//     console.log(request.data)\n//     // console.log(request.content)\n//     // does not distinguish type?\n//     response.end(k)\n// })\napp.listen(4999)"
+        }
+    ]
+}

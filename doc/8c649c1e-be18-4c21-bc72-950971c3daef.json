@@ -1,0 +1,10 @@
+{
+    "summary": "This script is unmounting the \"root\" directory, checking if it's empty to remove it safely, and handling potential errors with caution for both Linux and Windows systems.",
+    "details": [
+        {
+            "comment": "This script is unmounting the \"root\" directory, checking if it's empty to remove it safely, and handling potential errors with caution for both Linux and Windows systems.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/proot_ro/unloadroot.sh\":0-10",
+            "content": "#!/bin/bash\nsudo umount root\npsk=$(sudo ls -1 root/ | wc -c)\n#psk=$(sudo mount | grep $PWD/root | wc -c)\n# if failed, then do not continue! unless you are an idiot.\n# or not.\n# just think! also for symlink on windows. caution when doing chroot/symlink.\nif [ $psk -eq 0 ]\nthen\n\tsudo rm -rf root\nfi"
+        }
+    ]
+}

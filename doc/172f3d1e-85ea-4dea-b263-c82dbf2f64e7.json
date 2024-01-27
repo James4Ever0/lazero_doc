@@ -1,0 +1,10 @@
+{
+    "summary": "This script reads the contents of SEED file line by line using a bash loop and assigns each line to variable \"i\". It then outputs each line, likely for further processing or analysis.",
+    "details": [
+        {
+            "comment": "This script reads the contents of SEED file line by line using a bash loop and assigns each line to variable \"i\". It then outputs each line, likely for further processing or analysis.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/readseed.sh\":0-9",
+            "content": "#!/bin/bash\n#kern=$(cat SEED)\n#echo $kern\n# that is not. i need to read line by line.\n#read -d ADDR <<< \"$kern\"\nIFS=$'\\n' read -d '' -r -a lines < SEED\nfor i in \"${lines[@]}\";\ndo\n\techo $i\ndone"
+        }
+    ]
+}

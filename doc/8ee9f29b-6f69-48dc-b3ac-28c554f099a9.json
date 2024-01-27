@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports necessary modules, checks if \"dump.rdb\" file exists in the current directory, runs a shell script and parses its output. If there is only one number present, it compares it to DEFAULT and exits with a status code indicating success or failure.",
+    "details": [
+        {
+            "comment": "Code imports necessary modules, checks if \"dump.rdb\" file exists in the current directory, runs a shell script and parses its output. If there is only one number present, it compares it to DEFAULT and exits with a status code indicating success or failure.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/redis_checker.py\":0-26",
+            "content": "import os\nimport subprocess\nfrom parse import *\nDEFAULT=5\no = os.listdir(\".\")\nif \"dump.rdb\" in o:\n    s = subprocess.Popen([\"./rdb_checker.sh\"],stdout=subprocess.PIPE,stderr= subprocess.PIPE)\n    s = s.communicate()\n    pr = parse(\"{}\",s[0].decode())\n    pr = [x for x in pr]\n    dec = False\n    if len(pr)==1:\n        try:\n            i = int(pr[0])\n            print(\"the number:\",i)\n            dec = i<DEFAULT\n            # what is wrong?\n#            exit(0)\n        except:\n            print(\"error\")\n            pass\n#            exit(False)\n        exit(dec)\n    else:\n        print(\"not qualified\")\n        exit(False)\n# execute some commands."
+        }
+    ]
+}

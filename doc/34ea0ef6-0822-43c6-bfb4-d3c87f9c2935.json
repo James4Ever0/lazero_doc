@@ -1,0 +1,10 @@
+{
+    "summary": "This code appears to be a comment expressing frustration with the inability of overlay filesystems to control their size. It suggests that users should stop expecting this feature from overlay and instead find alternative solutions.",
+    "details": [
+        {
+            "comment": "This code appears to be a comment expressing frustration with the inability of overlay filesystems to control their size. It suggests that users should stop expecting this feature from overlay and instead find alternative solutions.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/overlay/README\":0-2",
+            "content": "cat /proc/filesystems\ndo not expect for overlay. it cannot control the size. just fuck off please?"
+        }
+    ]
+}

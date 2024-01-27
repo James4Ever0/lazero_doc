@@ -1,0 +1,10 @@
+{
+    "summary": "The code reads a PID from the command line, then expects a single line of input containing process information. It parses this information for specific values and decides whether to print that it's a daemon or kill the process based on the input received.",
+    "details": [
+        {
+            "comment": "The code reads a PID from the command line, then expects a single line of input containing process information. It parses this information for specific values and decides whether to print that it's a daemon or kill the process based on the input received.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/check_daemon.py\":0-28",
+            "content": "# there supposed to be something big here.\n# but nothing.\n# do you know the relationship?\nimport sys\nimport re\nx0 = []\nPID = sys.argv[1]\n#print(\"PID\",PID)\nfor x in sys.stdin:\n    x0.append(x)\nif len(x0)==1:\n#    print(x0)\n    x = x0[0]\n    x = re.findall(r'\\(\\d+\\)',x)\n    # old problem prevails.\n#    print(x)\n    if len(x) == 2 and x[0] == \"(1)\":\n        print(PID,\"is a daemon\")\n        exit(1)\n    else:\n#        print(\"shall be killed\")\n        exit(0)\n        # shall be killed. consider relaunching.\n        # or return something?\n    # start working.\nelse:\n    exit(0)\n#    print(\"going wrong\")\n    # going wrong. kill that pid."
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "summary": "The code sets up a headless browser, opens a webpage, takes a PNG screenshot, converts it to Base64, and sends it as a POST request to a local server without web security measures.",
+    "details": [
+        {
+            "comment": "This code sets up a headless browser with specific viewport size and clips the area to take a screenshot. It then opens a webpage, takes a PNG screenshot, converts it to Base64, and sends it as a POST request to a local server.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/phantom_server.js\":0-26",
+            "content": "var page = require('webpage').create();\n  //viewportSize being the actual size of the headless browser\n  page.viewportSize = { width: 1024, height: 768 };\n  //the clipRect is the portion of the page you are taking a screenshot of\n  page.clipRect = { top: 0, left: 0, width: 1024, height: 768 };\n  //the rest of the code is the same as the previous example\n  page.open('https://www.baidu.com/', function() {\n//    page.render('github.png')\nvar base64 = page.renderBase64('PNG');\n\t  // full of error.\n  console.log(base64);\nvar http = new XMLHttpRequest();\n\t  http.open(\"POST\", \"http://localhost:7777/phantom_render\", true);\n//\t  http.setRequestHeader(\"Content-type\",\"application/png\");\n\t  http.send(base64);\n\t  //  string. can be other things. make a post request. fetch.\n\t  /*var data= new FormData();\n\t  data.append(\"screenshot\",data)*/\n\t  /*fetch(\"http://localhost:7777/phantom_render\",{\n\t\t  method:\"POST\",\n\t\t  body:base64\n\t  });*/\n\t  // send it into other things.\n//    phantom.exit();\n\t  //    don't you quit.\n  });\n// this one is called the webkit."
+        },
+        {
+            "comment": "This line of code indicates that there are no web security measures in place.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/phantom_server.js\":27-27",
+            "content": "// no websecurity."
+        }
+    ]
+}

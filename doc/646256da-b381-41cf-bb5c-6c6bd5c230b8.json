@@ -1,0 +1,10 @@
+{
+    "summary": "Code loads data from stdin, identifies processes to kill or relaunch based on their IDs, and executes kill commands. If no process is running, it launches a new one; if multiple are running, it kills excess ones while keeping at least one alive.",
+    "details": [
+        {
+            "comment": "Code loads data from stdin, identifies processes to kill or relaunch based on their IDs, and executes kill commands. If no process is running, it launches a new one; if multiple are running, it kills excess ones while keeping at least one alive.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/exam_and_run.py\":0-29",
+            "content": "import pickle,sys,os\nimport signal\nPWD = os.environ[\"PWD\"]\n#print(\"pwd\",PWD)\nx = pickle.load(sys.stdin.buffer)\n#print(x)\n# so how to get the kill?\npx = []\nfor y in x.keys():\n    yx = x[y]\n    if yx != PWD:\n        print(\"will be killed\",y)\n        os.kill(int(y),signal.SIGKILL)\n    else:\n        px.append(int(y))\nif len(px)==0:\n    # not running.\n    print(\"relaunching program\")\n    os.system(\"./main_redis_server.sh\")\n    # must daemonize the thing.\nelif len(px)==1:\n    print(\"normal running.\")\nelse:\n    # error here. must kill excessive ones.\n    for x in px[1:]:\n        print(\"killing excessive redis\",x)\n        os.kill(x,signal.SIGKILL)\n        # must keep at least one running.\n        # so what?"
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "summary": "Iterates through input lines, then characters in each line, encodes and prints the character along with its type. Ends each line with \"one line ends.\" message.",
+    "details": [
+        {
+            "comment": "Iterates through input lines, then characters in each line, encodes and prints the character along with its type. Ends each line with \"one line ends.\" message.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/pidTest.py\":0-5",
+            "content": "import sys\nfor x in sys.stdin:\n    for z in x:\n        print(z.encode(),type(z))\n# to integer?\n    print(\"one line ends.\")"
+        }
+    ]
+}

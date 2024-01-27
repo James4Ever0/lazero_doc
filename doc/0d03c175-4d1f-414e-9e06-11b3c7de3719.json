@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports necessary libraries and continuously executes a redis-cli command every 'tm' seconds to save the program's state in Redis.",
+    "details": [
+        {
+            "comment": "This code imports necessary libraries and continuously executes a redis-cli command every 'tm' seconds to save the program's state in Redis.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/autosave_redis.py\":0-8",
+            "content": "import time,os,sys\nsv = sys.argv\n#print(sv)\ntm = 2\nif len(sv) == 2:\n    tm = int(sv[1])\nwhile True:\n    time.sleep(tm)\n    os.system(\"redis-cli bgsave\")"
+        }
+    ]
+}

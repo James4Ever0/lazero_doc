@@ -1,0 +1,10 @@
+{
+    "summary": "This code demonstrates the usage of MPI library for parallel computing in C. It initializes the MPI environment, gets information about the process and other processes, retrieves processor name, prints a hello world message, and finally finalizes the MPI environment.",
+    "details": [
+        {
+            "comment": "This code demonstrates the usage of MPI library for parallel computing in C. It initializes the MPI environment, gets information about the process and other processes, retrieves processor name, prints a hello world message, and finally finalizes the MPI environment.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/main_pack/main_1/sample_mpi.c\":0-27",
+            "content": "#include <mpi.h>\n#include <stdio.h>\n// there is a complier for this.\n// and also separate executables.\nint main(int argc, char** argv) {\n    // Initialize the MPI environment\n    MPI_Init(NULL, NULL);\n    // Get the number of processes\n    int world_size;\n    MPI_Comm_size(MPI_COMM_WORLD, &world_size);\n    // Get the rank of the process\n    int world_rank;\n    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);\n    // Get the name of the processor\n    char processor_name[MPI_MAX_PROCESSOR_NAME];\n    int name_len;\n    MPI_Get_processor_name(processor_name, &name_len);\n    // Print off a hello world message\n    printf(\"Hello world from processor %s, rank %d out of %d processors\\n\",\n           processor_name, world_rank, world_size);\n    // Finalize the MPI environment.\n    MPI_Finalize();\n}"
+        }
+    ]
+}

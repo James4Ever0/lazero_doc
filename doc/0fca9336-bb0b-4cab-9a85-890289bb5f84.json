@@ -1,0 +1,10 @@
+{
+    "summary": "The code imports the 'colored' function from 'termcolor' library, then prints a welcome message with colored text. The colors are used for decorative purposes to create a visually appealing output.",
+    "details": [
+        {
+            "comment": "The code imports the 'colored' function from 'termcolor' library, then prints a welcome message with colored text. The colors are used for decorative purposes to create a visually appealing output.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/container_1/random/welcome.py\":0-9",
+            "content": "from termcolor import colored\nprint()\nprint(colored(\"    -\",\"red\"))\nprint(colored(\"   |    \",\"red\")+colored(\"            ___  __  __\",\"cyan\"))\nprint(colored(\"  / \\   \",\"red\")+colored(\"|    /|  /  ___ |   |  |\",\"cyan\"))\nprint(colored(\" \\  _\\  \",\"red\")+colored(\"|__ / | /__ ___ |   |__|\",\"cyan\"))\nprint()\nprint(colored(\"\"\"To make everything\nexecutable, analyzable, controllable.\"\"\",\"yellow\"))\nprint()"
+        }
+    ]
+}

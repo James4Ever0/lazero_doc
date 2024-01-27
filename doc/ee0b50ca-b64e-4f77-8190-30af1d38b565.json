@@ -1,0 +1,10 @@
+{
+    "summary": "This script continuously executes the Python script \"sc.py\" in an infinite loop using Bash.",
+    "details": [
+        {
+            "comment": "This script continuously executes the Python script \"sc.py\" in an infinite loop using Bash.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/audio_record/deathmatch.sh\":0-4",
+            "content": "#!/bin/bash\nwhile true\ndo\n\tpython3 sc.py\ndone"
+        }
+    ]
+}

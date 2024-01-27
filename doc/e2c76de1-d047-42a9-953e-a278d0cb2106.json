@@ -1,0 +1,10 @@
+{
+    "summary": "The code logs the string \"preload js\" to the console, indicating the execution of the preload script.",
+    "details": [
+        {
+            "comment": "The code logs the string \"preload js\" to the console, indicating the execution of the preload script.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/docker_terminal_server/preload.js\":0-0",
+            "content": "console.log(\"preload js\");"
+        }
+    ]
+}

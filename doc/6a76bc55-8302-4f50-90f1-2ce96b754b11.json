@@ -1,0 +1,10 @@
+{
+    "summary": "This script executes Python code \"choice.py\" using the bash shell and allows interactive mode by utilizing '-i' flag in Python 3.",
+    "details": [
+        {
+            "comment": "This script executes Python code \"choice.py\" using the bash shell and allows interactive mode by utilizing '-i' flag in Python 3.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/src/randomAccess.sh\":0-1",
+            "content": "#!/bin/bash\npython3 -i choice.py"
+        }
+    ]
+}

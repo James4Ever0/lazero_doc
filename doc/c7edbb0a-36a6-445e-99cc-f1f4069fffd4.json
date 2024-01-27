@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports necessary modules and defines a function 'xygen' which extracts specific information from input strings. It then generates a list of tuples by calling 'xygen' on each combination of input keys and values, stores the result in 'f', and finally calls 'initial' to store 'f' in the 'projects' database.",
+    "details": [
+        {
+            "comment": "This code imports necessary modules and defines a function 'xygen' which extracts specific information from input strings. It then generates a list of tuples by calling 'xygen' on each combination of input keys and values, stores the result in 'f', and finally calls 'initial' to store 'f' in the 'projects' database.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/links_play/initial_works.py\":0-18",
+            "content": "from dbM import initial\nfrom getFromDill import returnXList\nimport re\ndef xygen(x,y):\n    x0=re.findall(r'^[^_]+',x)[0]\n    y0=re.findall(r'[^/]+$',y)[0]\n    return (x0,y0,y)\nr=returnXList(\"rock\")\n# print(r)\nf=[]\nfor x in r.keys():\n    for y in r[x]:\n        z=xygen(x,y)\n        # print(z)\n        f.append(z)\ninitial(\"projects\",f)\nprint(\"DONE!\")"
+        }
+    ]
+}

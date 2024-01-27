@@ -1,0 +1,10 @@
+{
+    "summary": "This code creates a list of organizations and then iterates through each organization, printing the command to remove all files and directories related to that organization.",
+    "details": [
+        {
+            "comment": "This code creates a list of organizations and then iterates through each organization, printing the command to remove all files and directories related to that organization.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/old_toys/links_play/create_dir.py\":0-2",
+            "content": "a = [\"afrinic\", \"apnic\", \"lacnic\", \"arin\", \"ripe\"]\nfor x in a:\n    print(\"rm -rf \",x)"
+        }
+    ]
+}

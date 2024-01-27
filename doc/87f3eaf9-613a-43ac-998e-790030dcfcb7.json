@@ -1,0 +1,10 @@
+{
+    "summary": "This code is a shell script for Linux that checks if the cgroup filesystem is mounted on the system. It uses 'sudo mount' to list all mounted file systems, 'grep -i cgroup' to filter the output for any lines containing \"cgroup\", and 'awk' to print only the device name, mount point, and target of the cgroup mount point if it exists.",
+    "details": [
+        {
+            "comment": "This code is a shell script for Linux that checks if the cgroup filesystem is mounted on the system. It uses 'sudo mount' to list all mounted file systems, 'grep -i cgroup' to filter the output for any lines containing \"cgroup\", and 'awk' to print only the device name, mount point, and target of the cgroup mount point if it exists.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/check_mount_aarch64.sh\":0-1",
+            "content": "#!/data/data/com.termux/files/usr/bin/bash\nsudo mount | grep -i cgroup | awk '{print $1\" \" $3\" \" $6}'"
+        }
+    ]
+}

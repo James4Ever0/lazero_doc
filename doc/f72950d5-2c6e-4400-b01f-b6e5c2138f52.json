@@ -1,0 +1,10 @@
+{
+    "summary": "This code uses a system randomizer to generate choices from a list of functions, allowing the user to input a string and receive a randomly selected output based on the applied function.",
+    "details": [
+        {
+            "comment": "This code uses a system randomizer to generate choices from a list of functions, allowing the user to input a string and receive a randomly selected output based on the applied function.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/keller/src/strdemo.py\":0-12",
+            "content": "import random\n#demo=[]\n# no right or wrong? five/five?\nrng=random.SystemRandom()\na=lambda x: x+x\nb=lambda x: x[0]\nc=lambda x: rng.choice(list(x))\nd=lambda x: x[-1]\ndemo=[a,b,c,d]\nwhile True:\n    get=input(\"enter a string, we'll output some result for you.\\n\")\n    r=rng.choice(demo)(get)\n    print(\"reselt:\",r)"
+        }
+    ]
+}

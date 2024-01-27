@@ -1,0 +1,15 @@
+{
+    "summary": "This code uses libraries to define variables, create tensors, and initialize weights. It computes loss and calculates gradients for backpropagation, zeroing w1 gradient data and printing it for verification.",
+    "details": [
+        {
+            "comment": "This code imports necessary libraries and defines variables. It creates input and target tensors from data, initializes a weight tensor with normal distribution, computes the loss between predictions and targets using mean squared error, and calculates gradients for backpropagation.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_package/rgrad.py\":0-38",
+            "content": "import torch\nimport numpy as np\nfrom torch.autograd import Variable\nimport torch.nn.init as init\ndtype = torch.FloatTensor\ninput_size, hidden_size, output_size = 7, 6, 1\nepochs = 300\nseq_length = 20\nlr = 0.1\ndata_time_steps = np.linspace(2, 10, seq_length+1)\n# print(data_time_steps)\n# not a rng.\n# strange conversion.\n# u use sin!\ndata = np.sin(data_time_steps)\ndata.resize((seq_length+1, 1))\n# print(data.shape)\nx = Variable(torch.Tensor(data[:-1]).type(dtype), requires_grad=False)\ny = Variable(torch.Tensor(data[1:]).type(dtype), requires_grad=False)\n# print(x.shape)\n# print(y.shape)\n# mismatched thing.\nw1 = torch.FloatTensor(input_size, hidden_size).type(dtype)\nw1 = Variable(w1, requires_grad=True)\ninit.normal_(w1, 0.0, 0.4)\n# w1.backward()\n# w1=w1.mm(w1.T)\n# w1=sum(w1)\npred = w1\n# target=np.sin(w1*2)\ntarget = Variable(torch.FloatTensor(np.sin(w1.detach().numpy())).type(dtype))\n# it sums all shit up.\nloss = (pred-target).pow(2).sum()/2\n# w1.backward()\nloss.backward()\n# do it implicitly.\n# fucking hell.\n# what the heck?\n# print(w1.shape)"
+        },
+        {
+            "comment": "Setting w1 gradient data (2D) to zero.\nPrinting the new zeroed w1.grad.data for verification or debugging purposes.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/legacy/concentration/brainfuck/archive_package/rgrad.py\":39-42",
+            "content": "# 2 dims.\n# w1.grad.data.zero_()\nwx = w1.grad.data\nprint(wx)"
+        }
+    ]
+}

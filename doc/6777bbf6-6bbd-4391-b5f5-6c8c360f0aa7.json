@@ -1,0 +1,10 @@
+{
+    "summary": "This code is executing two shell scripts (indicator_x86_64.sh and batcher_x86_64.sh) concurrently on an x86_64 architecture system using Bash shell. The ampersand (&) symbol allows the second command to run in the background while the first one continues execution. This could be part of a setup process where these scripts perform different tasks in parallel.",
+    "details": [
+        {
+            "comment": "This code is executing two shell scripts (indicator_x86_64.sh and batcher_x86_64.sh) concurrently on an x86_64 architecture system using Bash shell. The ampersand (&) symbol allows the second command to run in the background while the first one continues execution. This could be part of a setup process where these scripts perform different tasks in parallel.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/bootstrap/blitx/aloof_x86_64.sh\":0-1",
+            "content": "#!/bin/bash\n./indicator_x86_64.sh & ./batcher_x86_64.sh"
+        }
+    ]
+}

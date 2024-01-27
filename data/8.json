@@ -1,0 +1,531 @@
+{
+    "800": {
+        "file_id": 138,
+        "content": "/bootstrap/keller/src/kget.js",
+        "type": "filepath"
+    },
+    "801": {
+        "file_id": 138,
+        "content": "This code creates an HTTP server handling GET and POST requests, logging data for \"/random\" path, captures and logs request body for POST, and listens on port 7777.",
+        "type": "summary"
+    },
+    "802": {
+        "file_id": 138,
+        "content": "var http = require('http');\nvar url = require('url');\n//logger=require('html-differ/lib/logger')\n//this is too slow.\nvar prev=null\n    var server = http.createServer ( function(request,response){\n    response.writeHead(200,{\"Content-Type\":\"text/plain\"});\n    if(request.method == \"GET\")\n        {\n\t\tconsole.log(request.url);\n\t\tvar u = url.parse(request.url,true);\n if (u.pathname==\"/random\"){var search = u.search;\n\t console.log(search);}\n\t// Get the path\n\t/*var p = u.pathname;\n\t\tconsole.log(u);\n\t\tconsole.log(p);*/\n\t\t//what?\n\t/*var body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('GET Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('GET Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})\n            response.end(\"received GET request.\")\n    })*/\n\t\t//parse query string?\n response.writeHead(200, {'Content-Type': 'text/html'}) \n            response.end(\"received GET request.\")",
+        "type": "code",
+        "location": "/bootstrap/keller/src/kget.js:1-36"
+    },
+    "803": {
+        "file_id": 138,
+        "content": "Code creates an HTTP server that handles GET requests, logs the request URL and query parameters if the path is \"/random\", and sends a response indicating a successful GET request. It also includes commented-out code for handling data from the request body and parsing the query string.",
+        "type": "comment"
+    },
+    "804": {
+        "file_id": 138,
+        "content": "\t}\n    else if(request.method == \"POST\")\n        {//console.log(request.data);\n\t\tvar body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})\n      response.end('post received')\n    })\n        }\n    else\n        {\n            response.end(\"Undefined request .\");\n        }\n});\n//arbitrary path.\nserver.listen(7777);\nconsole.log(\"Server running on port 7777\");",
+        "type": "code",
+        "location": "/bootstrap/keller/src/kget.js:38-62"
+    },
+    "805": {
+        "file_id": 138,
+        "content": "This code handles HTTP requests and responses. If the request method is POST, it captures and logs the request body data in chunks, then sends a response with status 200 and \"post received\" message. For other methods, it sends an undefined request error. The server listens on port 7777.",
+        "type": "comment"
+    },
+    "806": {
+        "file_id": 139,
+        "content": "/bootstrap/keller/src/koa-post.js",
+        "type": "filepath"
+    },
+    "807": {
+        "file_id": 139,
+        "content": "Code creates an HTTP server handling GET and POST requests. It logs the partial body of a POST request and returns \"post received\" upon receiving a valid POST request. The server listens on port 7777.",
+        "type": "summary"
+    },
+    "808": {
+        "file_id": 139,
+        "content": "var http = require('http');\n//logger=require('html-differ/lib/logger')\n//this is too slow.\nvar prev=null\n    var server = http.createServer ( function(request,response){\n    response.writeHead(200,{\"Content-Type\":\"text/plain\"});\n    if(request.method == \"GET\")\n        {\n            response.end(\"received GET request.\")\n        }\n    else if(request.method == \"POST\")\n        {//console.log(request.data);\n\t\tvar body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})\n      response.end('post received')\n    })\n        }\n    else\n        {\n            response.end(\"Undefined request .\");\n        }\n});\n//arbitrary path.\nserver.listen(7777);\nconsole.log(\"Server running on port 7777\");",
+        "type": "code",
+        "location": "/bootstrap/keller/src/koa-post.js:1-35"
+    },
+    "809": {
+        "file_id": 139,
+        "content": "Code creates an HTTP server handling GET and POST requests. It logs the partial body of a POST request and returns \"post received\" upon receiving a valid POST request. The server listens on port 7777.",
+        "type": "comment"
+    },
+    "810": {
+        "file_id": 140,
+        "content": "/bootstrap/keller/src/kzombie.js",
+        "type": "filepath"
+    },
+    "811": {
+        "file_id": 140,
+        "content": "The code sets up an HTTP server handling GET/POST requests, visiting URLs with specific search parameters, logging cookies, and responding accordingly. It listens on port 7777 and logs confirmation.",
+        "type": "summary"
+    },
+    "812": {
+        "file_id": 140,
+        "content": "var http = require('http');\nvar url = require('url');\nconst max_sess=1;\nvar sess=0;\nconst Browser = require('zombie');                         function bfunc(a){\n        return 'https://www.baidu.com/s'+a;\n}\nconst browser = new Browser();\n// will have cookie anyway?                                // does have shits. but then it will get stuck.\n// reuse the cookie once again?\nfunction bvisit(a){\n\tif (sess<max_sess){\n\t\tsess+=1;\nbrowser.visit(bfunc(a),function() {\n//  const value = browser.getCookie('session');\n        const value = browser.source;\n\ttry{\t\n  console.log('Cookie',typeof(value),value.length);   } catch(e){console.log(e);}finally{sess-=1;}\n});}\n}\n//logger=require('html-differ/lib/logger')\n//this is too slow.\nvar prev=null\n    var server = http.createServer ( function(request,response){\n    response.writeHead(200,{\"Content-Type\":\"text/plain\"});\n    if(request.method == \"GET\")\n        {\n\t\tconsole.log(request.url);\n\t\tvar u = url.parse(request.url,true);\n if (u.pathname==\"/random\"){var search = u.search;\n\t console.log(search);bvisit(search);",
+        "type": "code",
+        "location": "/bootstrap/keller/src/kzombie.js:1-32"
+    },
+    "813": {
+        "file_id": 140,
+        "content": "The code initializes a Zombie browser and sets up a server to handle HTTP requests. It visits URLs with specific search parameters, retrieves the cookie and source of each page visited, and logs the Cookie's type and length. The server listens for GET requests on \"/random\" path and calls bvisit() function with corresponding search parameters.",
+        "type": "comment"
+    },
+    "814": {
+        "file_id": 140,
+        "content": " }\n\t// Get the path\n\t/*var p = u.pathname;\n\t\tconsole.log(u);\n\t\tconsole.log(p);*/\n\t\t//what?\n\t/*var body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('GET Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('GET Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})\n            response.end(\"received GET request.\")\n    })*/\n\t\t//parse query string?\n response.writeHead(200, {'Content-Type': 'text/html'}) \n            response.end(\"received GET request.\")\n\t}\n    else if(request.method == \"POST\")\n        {//console.log(request.data);\n\t\tvar body=[]\n\t\trequest.on('data', function(data) {\n      body.push(data)\n      console.log('Partial body: ' , data)\n    })\n    request.on('end', function() {\n\t    var concatBody=Buffer.concat(body)\n\t    var next=concatBody.toString('utf-8')\n      console.log('Body End:',next.length)\n      response.writeHead(200, {'Content-Type': 'text/html'})",
+        "type": "code",
+        "location": "/bootstrap/keller/src/kzombie.js:33-70"
+    },
+    "815": {
+        "file_id": 140,
+        "content": "This code handles both GET and POST requests, reads the request method, and writes a response with a status of 200 and content type set to 'text/html'. It also logs the request data and body length.",
+        "type": "comment"
+    },
+    "816": {
+        "file_id": 140,
+        "content": "      response.end('post received')\n    })\n        }\n    else\n        {\n            response.end(\"Undefined request .\");\n        }\n});\n//arbitrary path.\nserver.listen(7777);\nconsole.log(\"Server running on port 7777\");",
+        "type": "code",
+        "location": "/bootstrap/keller/src/kzombie.js:71-81"
+    },
+    "817": {
+        "file_id": 140,
+        "content": "Code handles HTTP POST requests, sends \"post received\" response if request is valid, otherwise sends \"Undefined request\" message. Server runs on port 7777 and logs a confirmation.",
+        "type": "comment"
+    },
+    "818": {
+        "file_id": 141,
+        "content": "/bootstrap/keller/src/merge.sh",
+        "type": "filepath"
+    },
+    "819": {
+        "file_id": 141,
+        "content": "The code is a Bash script that takes input from a file, calls the \"arbitrary\" function on each line, and then sends the result to a local server. The \"arbitrary\" function uses curl with headers mimicking a browser to interact with an external website, and the function's result is stored in the \"retval\" variable.",
+        "type": "summary"
+    },
+    "820": {
+        "file_id": 141,
+        "content": "#!/bin/bash\n# use global variable.\n# heck.\nretval=\"\"\n# it is not going to work. captcha here. maybe use internal browser as a solution. create a server inside? manual server, getting quest from the localhost and post it back.\nfunction arbitrary(){\n\tCLO=$(echo \"$1\" | python3 curl_baidu.py)\n#\techo $CLO\n\tretval=$(curl --header \"user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36\" --header \"accept-language: zh-CN,zh;q=0.9\" --header \"cache-control: max-age=0\" --header \"accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8\" \"$CLO\")\n\t#retval=\n\t#return \"hello world\"\n\t# only numeric.\n}\nIFS=$'\\n' read -d '' -r -a lines < SEED\nfor i in \"${lines[@]}\";\ndo\n\techo $i\n\tarbitrary \"$i\"\n#\techo $?\n\techo $retval | curl --header 'Content-Type: text/html; charset=UTF-8' --request POST --data-binary @- --no-buffer http://localhost:7777/keller\n# and that's your fucking dream.\ndone\n# store it into variables.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/merge.sh:1-23"
+    },
+    "821": {
+        "file_id": 141,
+        "content": "The code is a Bash script that takes input from a file, calls the \"arbitrary\" function on each line, and then sends the result to a local server. The \"arbitrary\" function uses curl with headers mimicking a browser to interact with an external website, and the function's result is stored in the \"retval\" variable.",
+        "type": "comment"
+    },
+    "822": {
+        "file_id": 142,
+        "content": "/bootstrap/keller/src/mlinks.sh",
+        "type": "filepath"
+    },
+    "823": {
+        "file_id": 142,
+        "content": "Function \"arbitrary\" takes a URL as input, retrieves its content using \"links\", and stores the result in global variable \"retval\". The script reads lines from SEED file and passes each line to \"arbitrary\" function. Finally, it sends the \"retval\" to a local server on port 7777.",
+        "type": "summary"
+    },
+    "824": {
+        "file_id": 142,
+        "content": "#!/bin/bash\n# use global variable.\n# heck.\nretval=\"\"\n# it is not going to work. captcha here. maybe use internal browser as a solution. create a server inside? manual server, getting quest from the localhost and post it back.\nfunction arbitrary(){\n\tCLO=$(echo \"$1\" | python3 curl_baidu.py)\n#\techo $CLO\n\tretval=$(links -source \"$CLO\")\n\t#retval=\n\t#return \"hello world\"\n\t# only numeric.\n}\nIFS=$'\\n' read -d '' -r -a lines < SEED\nfor i in \"${lines[@]}\";\ndo\n\techo $i\n\tarbitrary \"$i\"\n#\techo $?\n\techo $retval | curl --header 'Content-Type: text/html; charset=UTF-8' --request POST --data-binary @- --no-buffer http://localhost:7777/keller\n# and that's your fucking dream.\ndone\n# store it into variables.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/mlinks.sh:1-23"
+    },
+    "825": {
+        "file_id": 142,
+        "content": "Function \"arbitrary\" takes a URL as input, retrieves its content using \"links\", and stores the result in global variable \"retval\". The script reads lines from SEED file and passes each line to \"arbitrary\" function. Finally, it sends the \"retval\" to a local server on port 7777.",
+        "type": "comment"
+    },
+    "826": {
+        "file_id": 143,
+        "content": "/bootstrap/keller/src/nfenco.py",
+        "type": "filepath"
+    },
+    "827": {
+        "file_id": 143,
+        "content": "This code sets up a Flask application with WebSocket functionality for handling client connections, processing messages, and sending responses. It includes a \"hello\" function that prints the HTTP path and serves a WSGI server using provided key and cert files.",
+        "type": "summary"
+    },
+    "828": {
+        "file_id": 143,
+        "content": "# encoding: utf-8\n\"\"\"\n@version: v1.0\n@author: W_H_J\n@license: Apache Licence\n@contact: 415900617@qq.com\n@software: PyCharm\n@file: flaskWebSocket.py\n@time: 2019/2/19 10:20\n@describe: flask_sockets 实现websocket\n\"\"\"\nimport json\nimport sys\nimport os\nfrom flask_sockets import Sockets\nimport time\nfrom gevent import monkey\nfrom flask import Flask, request\nfrom gevent import pywsgi\nfrom geventwebsocket.handler import WebSocketHandler\nsys.path.append(os.path.abspath(os.path.dirname(__file__) + '/' + '..'))\nsys.path.append(\"..\")\nmonkey.patch_all()\napp = Flask(__name__)\nsockets = Sockets(app)\nnow = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))\n# when using wifi, it is damn easy to get yourself blocked. static ip. so use browser to get fresh cookies, in case of nasty shits. \n@sockets.route('/',defaults={'path': ''})  # 指定路由\n@sockets.route('/<path:path>')\ndef echo_socket(ws,path):\n    while not ws.closed:\n        print(\"WS: \",path)\n        ws.send(str(\"message test!\"))  # 回传给clicent\n        # this is just a heartbeat package. check the content first.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/nfenco.py:1-36"
+    },
+    "829": {
+        "file_id": 143,
+        "content": "This code imports necessary libraries, sets up a Flask application with WebSocket functionality using gevent and flask_sockets. The code defines a route for the WebSocket and includes an infinite loop to send messages from the server to the connected clients. It also handles client connections and disconnections by checking if the WebSocket is closed. The code includes a timestamping function and a note about using static IPs or browser cookies to avoid potential issues when using WiFi.",
+        "type": "comment"
+    },
+    "830": {
+        "file_id": 143,
+        "content": "        \"\"\" 服务端必须接收到客户端发的消息才能保持该服务运行，如果ws.receive()没有接收到客户端发送的\n         消息，那么它会关闭与客户端建立的链接\n         底层解释：Read and return a message from the stream. If `None` is returned, then\n        the socket is considered closed/errored.\n        所以客户端只建立连接，不与服务端交互通信，则无法实现自由通信状态，之后在客户端代码处会有详细内容。\n         \"\"\"\n        message = ws.receive()  # 接收到消息\n        if message is not None:\n            print(\"%s receive msg==> \" % now, str(json.dumps(message)))\n            \"\"\" 如果客户端未发送消息给服务端，就调用接收消息方法，则会导致receive()接收消息为空，关闭此次连接 \"\"\"\n#            ws.send(str(json.dumps(message)))  # 回传给clicent\n# this connection is not async. check async websocket.\n            time.sleep(1)\n# wait for a while. shall we?\n            ws.send(\"https://www.baidu.com/s?wd=how+to+kill+your+father%0A\")\n            # to disable the protocol, you might need another background script.\n            # sending string. check data type.\n            # natural clustering.\n        else:\n            print(now, \"no receive\")\n@app.route('/',defaults={'path': ''})\n@app.route('/<path:path>')",
+        "type": "code",
+        "location": "/bootstrap/keller/src/nfenco.py:37-60"
+    },
+    "831": {
+        "file_id": 143,
+        "content": "This code snippet is responsible for receiving messages from a WebSocket connection and processing them. If a message is received, it prints the message, sends an acknowledgement back to the client, and waits for a second before sending additional data. If no message is received within a certain time frame, the connection is closed.",
+        "type": "comment"
+    },
+    "832": {
+        "file_id": 143,
+        "content": "def hello(path):\n    print(\"HTTP: \",path)\n    return 'Hello World! server start！'\nif __name__ == \"__main__\":\n    server = pywsgi.WSGIServer(('localhost', 7777), app, handler_class=WebSocketHandler,keyfile=\"certs/server.key\",certfile=\"certs/server.crt\")\n    #server = pywsgi.WSGIServer(('localhost', 5000), app, handler_class=WebSocketHandler,keyfile=\"certs/ca/ca.key\",certfile=\"certs/ca/ca.crt\")\n    print('server start')\n    server.serve_forever()",
+        "type": "code",
+        "location": "/bootstrap/keller/src/nfenco.py:61-70"
+    },
+    "833": {
+        "file_id": 143,
+        "content": "This code defines a function \"hello\" that prints the HTTP path and returns 'Hello World! server start!'. It then creates a WSGI server with specified key and cert files, and starts serving forever.",
+        "type": "comment"
+    },
+    "834": {
+        "file_id": 144,
+        "content": "/bootstrap/keller/src/nightknight.js",
+        "type": "filepath"
+    },
+    "835": {
+        "file_id": 144,
+        "content": "This code uses Nightmare, a headless browser for automating tasks in Node.js, to navigate to the Baidu website and retrieve its title. It also includes functions for sleep (pausing execution) and a placeholder for a Santa function. However, it has issues running on Linux due to sandbox restrictions.",
+        "type": "summary"
+    },
+    "836": {
+        "file_id": 144,
+        "content": "//use nodejs this time.\nconst Nightmare = require('nightmare')\n//const nightmare = Nightmare({ show: true,switches:{'ignore-certificate-errors': true}})\n// shit. nightmare won't run on linux.\n// too few?\n// must be string array.\nconst nightmare = Nightmare({cli_args:[\"--no-sandbox\"],show:true});\n//const nightmare = Nightmare({width:1000,height:1000,switches: {\"sandbox\":false},show:true});\n// not running.\nfunction sleep(ms) {\n    return new Promise(resolve => setTimeout(resolve, ms));\n}\nnightmare.goto('https://www.baidu.com').evaluate(() => {return document.title;}).end().then((title) => {console.log(title);})\nasync function santa(){await sleep(10);}\nsanta();\n// all fucked up.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/nightknight.js:1-18"
+    },
+    "837": {
+        "file_id": 144,
+        "content": "This code uses Nightmare, a headless browser for automating tasks in Node.js, to navigate to the Baidu website and retrieve its title. It also includes functions for sleep (pausing execution) and a placeholder for a Santa function. However, it has issues running on Linux due to sandbox restrictions.",
+        "type": "comment"
+    },
+    "838": {
+        "file_id": 145,
+        "content": "/bootstrap/keller/src/nightlight.js",
+        "type": "filepath"
+    },
+    "839": {
+        "file_id": 145,
+        "content": "This code uses Nightmare.js to automate a search on Yahoo's search engine and retrieve the first result link URL.",
+        "type": "summary"
+    },
+    "840": {
+        "file_id": 145,
+        "content": "var Nightmare = require('nightmare')\nvar nightmare = Nightmare({ show: true })\nnightmare\n  .goto('http://yahoo.com')\n  .type('form[action*=\"/search\"] [name=p]', 'github nightmare')\n  .click('form[action*=\"/search\"] [type=submit]')\n  .wait('#main')\n  .evaluate(function() {\n    return document.querySelector('#main .searchCenterMiddle li a').href\n  })\n  .end()\n  .then(function(result) {\n    console.log(result)\n  })\n  .catch(function(error) {\n    console.error('Search failed:', error)\n  })",
+        "type": "code",
+        "location": "/bootstrap/keller/src/nightlight.js:1-18"
+    },
+    "841": {
+        "file_id": 145,
+        "content": "This code uses Nightmare.js to automate a search on Yahoo's search engine and retrieve the first result link URL.",
+        "type": "comment"
+    },
+    "842": {
+        "file_id": 146,
+        "content": "/bootstrap/keller/src/npdiff.py",
+        "type": "filepath"
+    },
+    "843": {
+        "file_id": 146,
+        "content": "This code imports numpy library, creates a list r with values [1,2,3,4,3,2,1], converts the list to a numpy array, and then uses np.diff function to calculate the differences in the array for three different n values. The resulting output shows the calculated differences printed for each x value (0-2) in the loop.",
+        "type": "summary"
+    },
+    "844": {
+        "file_id": 146,
+        "content": "import numpy as np\nr=[1,2,3,4,3,2,1]\nr=np.array(r)\nfor x in range(3):\n    print(x,np.diff(r,n=x))",
+        "type": "code",
+        "location": "/bootstrap/keller/src/npdiff.py:1-5"
+    },
+    "845": {
+        "file_id": 146,
+        "content": "This code imports numpy library, creates a list r with values [1,2,3,4,3,2,1], converts the list to a numpy array, and then uses np.diff function to calculate the differences in the array for three different n values. The resulting output shows the calculated differences printed for each x value (0-2) in the loop.",
+        "type": "comment"
+    },
+    "846": {
+        "file_id": 147,
+        "content": "/bootstrap/keller/src/npgen.py",
+        "type": "filepath"
+    },
+    "847": {
+        "file_id": 147,
+        "content": "Code generates a 2D array of random integers from 0 to 499, converts it to ASCII characters and prints the resulting string.",
+        "type": "summary"
+    },
+    "848": {
+        "file_id": 147,
+        "content": "import numpy as np\ns=np.random.randint(low=0, high=500, size=500*500)\nd=\"\".join([chr(x) for x in s])\nprint(d)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/npgen.py:1-5"
+    },
+    "849": {
+        "file_id": 147,
+        "content": "Code generates a 2D array of random integers from 0 to 499, converts it to ASCII characters and prints the resulting string.",
+        "type": "comment"
+    },
+    "850": {
+        "file_id": 148,
+        "content": "/bootstrap/keller/src/pdelta.py",
+        "type": "filepath"
+    },
+    "851": {
+        "file_id": 148,
+        "content": "The code imports pandas library and defines a timedelta object representing 2 days, 2 hours, 15 minutes, and 30 seconds. It then prints the timedelta object and its attributes.",
+        "type": "summary"
+    },
+    "852": {
+        "file_id": 148,
+        "content": "import pandas as pd\n# no keras.\ntimediff = pd.Timedelta('2 days 2 hours 15 minutes 30 seconds')\nprint(timediff)\nprint(dir(timediff))",
+        "type": "code",
+        "location": "/bootstrap/keller/src/pdelta.py:1-6"
+    },
+    "853": {
+        "file_id": 148,
+        "content": "The code imports pandas library and defines a timedelta object representing 2 days, 2 hours, 15 minutes, and 30 seconds. It then prints the timedelta object and its attributes.",
+        "type": "comment"
+    },
+    "854": {
+        "file_id": 149,
+        "content": "/bootstrap/keller/src/phantom_post.js",
+        "type": "filepath"
+    },
+    "855": {
+        "file_id": 149,
+        "content": "The code makes a POST request with base64 data and spawns a child process using curl for an HTTP GET request, logging the output, logs errors, handles exceptions, and exits with a timeout.",
+        "type": "summary"
+    },
+    "856": {
+        "file_id": 149,
+        "content": "const base64=\"hello world\";\nvar http = new XMLHttpRequest();\nhttp.open(\"POST\", \"http://localhost:7777/phantom_render\", true);\n//\t  http.setRequestHeader(\"Content-type\",\"application/png\");\nhttp.send(base64);\n// can you get return value? we need the return.\n\t  //  string. can be other things. make a post request. fetch.\n\t  /*var data= new FormData();\n\t  data.append(\"screenshot\",data)*/\n\t  /*fetch(\"http://localhost:7777/phantom_render\",{\n\t\t  method:\"POST\",\n\t\t  body:base64\n\t  });*/\n\t  // send it into other things.\n// this one is called the webkit.\n// no websecurity.\nvar spawn = require(\"child_process\").spawn\nvar execFile = require(\"child_process\").execFile\n// not getting shit from this.\nvar child = spawn(\"curl\", [\"http://localhost:7777/random\"])\nchild.stdout.on(\"data\", function (data) {\n  console.log(\"spawnSTDOUT: \");\n\tconsole.log(data);\n\t// no multi-arg log support.\n})\nchild.stderr.on(\"data\", function (data) {\n  console.log(\"spawnSTDERR: \");\n\tconsole.log(data);\n})\nchild.on(\"exit\", function (code) {\n  console.log(\"spawnEXIT: \")",
+        "type": "code",
+        "location": "/bootstrap/keller/src/phantom_post.js:1-35"
+    },
+    "857": {
+        "file_id": 149,
+        "content": "This code is making a POST request with base64 encoded data to \"http://localhost:7777/phantom_render\". It also spawns a child process using the \"curl\" command to make an HTTP GET request to \"http://localhost:7777/random\" and logs the standard output, standard error, and exit code.",
+        "type": "comment"
+    },
+    "858": {
+        "file_id": 149,
+        "content": "\tconsole.log(code);\n})\n// but no returning.\n//child.kill(\"SIGKILL\")\n// all fucked up.\n/*execFile(\"curl\", [\"-v\",\"http://localhost:7777/phantomjs\"], null, function (err, stdout, stderr) {\n  console.log(\"execFileSTDOUT:\");\n\tconsole.log(typeof(stdout));\n  console.log(\"execFileSTDERR:\");\n\t\tconsole.log(typeof(stderr));\n})*/\n/*\nsetTimeout(function () {\n  phantom.exit(0)\n}, 2000)*/",
+        "type": "code",
+        "location": "/bootstrap/keller/src/phantom_post.js:36-50"
+    },
+    "859": {
+        "file_id": 149,
+        "content": "Code snippet is logging an error, killing the child process, and executing a curl command to make an HTTP request. It also has a timeout function for phantom.exit().",
+        "type": "comment"
+    },
+    "860": {
+        "file_id": 150,
+        "content": "/bootstrap/keller/src/phantom_post.sh",
+        "type": "filepath"
+    },
+    "861": {
+        "file_id": 150,
+        "content": "This code is running PhantomJS script (phantom_post.js) with web security disabled and ignoring SSL errors, allowing the script to execute without restrictions or certificate checks.",
+        "type": "summary"
+    },
+    "862": {
+        "file_id": 150,
+        "content": "#!/bin/bash\nphantomjs --web-security=false --ignore-ssl-errors=true phantom_post.js ",
+        "type": "code",
+        "location": "/bootstrap/keller/src/phantom_post.sh:1-2"
+    },
+    "863": {
+        "file_id": 150,
+        "content": "This code is running PhantomJS script (phantom_post.js) with web security disabled and ignoring SSL errors, allowing the script to execute without restrictions or certificate checks.",
+        "type": "comment"
+    },
+    "864": {
+        "file_id": 151,
+        "content": "/bootstrap/keller/src/phantom_server.js",
+        "type": "filepath"
+    },
+    "865": {
+        "file_id": 151,
+        "content": "The code sets up a headless browser, opens a webpage, takes a PNG screenshot, converts it to Base64, and sends it as a POST request to a local server without web security measures.",
+        "type": "summary"
+    },
+    "866": {
+        "file_id": 151,
+        "content": "var page = require('webpage').create();\n  //viewportSize being the actual size of the headless browser\n  page.viewportSize = { width: 1024, height: 768 };\n  //the clipRect is the portion of the page you are taking a screenshot of\n  page.clipRect = { top: 0, left: 0, width: 1024, height: 768 };\n  //the rest of the code is the same as the previous example\n  page.open('https://www.baidu.com/', function() {\n//    page.render('github.png')\nvar base64 = page.renderBase64('PNG');\n\t  // full of error.\n  console.log(base64);\nvar http = new XMLHttpRequest();\n\t  http.open(\"POST\", \"http://localhost:7777/phantom_render\", true);\n//\t  http.setRequestHeader(\"Content-type\",\"application/png\");\n\t  http.send(base64);\n\t  //  string. can be other things. make a post request. fetch.\n\t  /*var data= new FormData();\n\t  data.append(\"screenshot\",data)*/\n\t  /*fetch(\"http://localhost:7777/phantom_render\",{\n\t\t  method:\"POST\",\n\t\t  body:base64\n\t  });*/\n\t  // send it into other things.\n//    phantom.exit();\n\t  //    don't you quit.\n  });\n// this one is called the webkit.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/phantom_server.js:1-27"
+    },
+    "867": {
+        "file_id": 151,
+        "content": "This code sets up a headless browser with specific viewport size and clips the area to take a screenshot. It then opens a webpage, takes a PNG screenshot, converts it to Base64, and sends it as a POST request to a local server.",
+        "type": "comment"
+    },
+    "868": {
+        "file_id": 151,
+        "content": "// no websecurity.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/phantom_server.js:28-28"
+    },
+    "869": {
+        "file_id": 151,
+        "content": "This line of code indicates that there are no web security measures in place.",
+        "type": "comment"
+    },
+    "870": {
+        "file_id": 152,
+        "content": "/bootstrap/keller/src/phantom_server.sh",
+        "type": "filepath"
+    },
+    "871": {
+        "file_id": 152,
+        "content": "Code launches PhantomJS with necessary configurations for web security, local URL access, and ignores SSL errors to run the 'phantom_server.js' script. This setup allows the server to operate without restrictions on local or remote URLs and bypasses SSL certificate verification.",
+        "type": "summary"
+    },
+    "872": {
+        "file_id": 152,
+        "content": "#!/bin/bash\nphantomjs --local-url-access=true  --local-to-remote-url-access=true --web-security=false --ignore-ssl-errors=true phantom_server.js \n# cannot get content.",
+        "type": "code",
+        "location": "/bootstrap/keller/src/phantom_server.sh:1-3"
+    },
+    "873": {
+        "file_id": 152,
+        "content": "Code launches PhantomJS with necessary configurations for web security, local URL access, and ignores SSL errors to run the 'phantom_server.js' script. This setup allows the server to operate without restrictions on local or remote URLs and bypasses SSL certificate verification.",
+        "type": "comment"
+    },
+    "874": {
+        "file_id": 153,
+        "content": "/bootstrap/keller/src/phantom_test.js",
+        "type": "filepath"
+    },
+    "875": {
+        "file_id": 153,
+        "content": "Creates a headless browser with specified viewport size, sets clipRect to capture the entire page, opens \"https://www.baidu.com/\", renders as \"github.png\", and exits.",
+        "type": "summary"
+    },
+    "876": {
+        "file_id": 153,
+        "content": "var page = require('webpage').create();\n  //viewportSize being the actual size of the headless browser\n  page.viewportSize = { width: 1024, height: 768 };\n  //the clipRect is the portion of the page you are taking a screenshot of\n  page.clipRect = { top: 0, left: 0, width: 1024, height: 768 };\n  //the rest of the code is the same as the previous example\n  page.open('https://www.baidu.com/', function() {\n    page.render('github.png');\n    phantom.exit();\n  });",
+        "type": "code",
+        "location": "/bootstrap/keller/src/phantom_test.js:1-10"
+    },
+    "877": {
+        "file_id": 153,
+        "content": "Creates a headless browser with specified viewport size, sets clipRect to capture the entire page, opens \"https://www.baidu.com/\", renders as \"github.png\", and exits.",
+        "type": "comment"
+    },
+    "878": {
+        "file_id": 154,
+        "content": "/bootstrap/keller/src/ralink.py",
+        "type": "filepath"
+    },
+    "879": {
+        "file_id": 154,
+        "content": "This code imports the Redis module and performs various operations with a Redis database. It defines functions for setting, getting, and batching data in Redis, as well as scanning keys. The code includes debugging commands to test key retrieval and printing of keys in batches.",
+        "type": "summary"
+    },
+    "880": {
+        "file_id": 154,
+        "content": "import redis   # 导入redis 模块\nfrom itertools import zip_longest as izip_longest\nr = redis.Redis(host='localhost', port=6379, decode_responses=True)\ndef rset(a,b,c=3):\n    r.set(a,b,ex=c)  # 设置 name 对应的值\n\"\"\"while True:\n    try:\n        print(r['name'])\n        print(r.get('name'))  # 取出键 name 对应的值\n        print(type(r.get('name')))\n    except:\n        print(\"expired\")\n    time.sleep(1)\"\"\"\ndef rget(a):\n    try:\n        return r.get(a)\n    except:\n        return None\ndef rbset(a,b,c=3):\n    pipe = r.pipeline()\n    for x in a:\n        #pipe.lpush(b,x)\n        pipe.setex(x,c,b)\n    pipe.execute()\n    print(\"done: \",len(a))\ndef batcher(iterable, n):\n    args = [iter(iterable)] * n\n    return izip_longest(*args)\n# in batches of 500 delete keys matching user:*\n# do you know when things going to shit?\ndef rka():\n    return batcher(r.scan_iter('*'),500)\ndef pka():\n    for keybatch in rka():\n        print(*keybatch)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/ralink.py:1-40"
+    },
+    "881": {
+        "file_id": 154,
+        "content": "This code imports the Redis module and performs various operations with a Redis database. It defines functions for setting, getting, and batching data in Redis, as well as scanning keys. The code includes debugging commands to test key retrieval and printing of keys in batches.",
+        "type": "comment"
+    },
+    "882": {
+        "file_id": 155,
+        "content": "/bootstrap/keller/src/readseed.sh",
+        "type": "filepath"
+    },
+    "883": {
+        "file_id": 155,
+        "content": "This script reads the contents of SEED file line by line using a bash loop and assigns each line to variable \"i\". It then outputs each line, likely for further processing or analysis.",
+        "type": "summary"
+    },
+    "884": {
+        "file_id": 155,
+        "content": "#!/bin/bash\n#kern=$(cat SEED)\n#echo $kern\n# that is not. i need to read line by line.\n#read -d ADDR <<< \"$kern\"\nIFS=$'\\n' read -d '' -r -a lines < SEED\nfor i in \"${lines[@]}\";\ndo\n\techo $i\ndone",
+        "type": "code",
+        "location": "/bootstrap/keller/src/readseed.sh:1-10"
+    },
+    "885": {
+        "file_id": 155,
+        "content": "This script reads the contents of SEED file line by line using a bash loop and assigns each line to variable \"i\". It then outputs each line, likely for further processing or analysis.",
+        "type": "comment"
+    },
+    "886": {
+        "file_id": 156,
+        "content": "/bootstrap/keller/src/register.js",
+        "type": "filepath"
+    },
+    "887": {
+        "file_id": 156,
+        "content": "This Express server sets up a single '/keller' endpoint that generates UUIDs on POST requests while handling CORS. It listens on port 7777 and logs request data to the console.",
+        "type": "summary"
+    },
+    "888": {
+        "file_id": 156,
+        "content": "// #!/usr/bin/nodejs\nvar express = require('express')\n// var crypto = require('crypto');\n// not this one.\n//var multer = require('multer')\n//var upload = multer({dest:''})\nfunction uuidv4() {\n  var dt = new Date().getTime()\n  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (\n    c\n  ) {\n    var r = (dt + Math.random() * 16) % 16 | 0\n    dt = Math.floor(dt / 16)\n    return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16)\n  })\n  return uuid\n}\nvar app = express()\n//app.use(myParser.urlencoded({extended : true,limit:'50mb'}));\n//  app.use(bodyParser.json({ limit: '50mb' }))\n// return it via web or clipboard.\napp.post('/keller', function (req, res) {\n  var k = uuidv4()\n  // const body = req.body.Body\n  // why nothing here?\n  //console.log(req.data)\n  //console.log(req.file)\n  // console.log(req.data)\n  res.set('Access-Control-Allow-Origin', '*')\n  res.set('Content-Type', 'text/plain')\n  res.send(k)\n})\n// payload too large\n// what the heck?\n// var server = http.createServer(function (request, response) {",
+        "type": "code",
+        "location": "/bootstrap/keller/src/register.js:1-35"
+    },
+    "889": {
+        "file_id": 156,
+        "content": "This code imports the Express module, defines a function to generate UUIDs, and sets up an Express server with a single endpoint '/keller'. When a POST request is made to '/keller', it generates a new UUID and sends it back as plain text in the response. The code also handles CORS by setting the 'Access-Control-Allow-Origin' header to '*' for the response.",
+        "type": "comment"
+    },
+    "890": {
+        "file_id": 156,
+        "content": "// //   // never read the request?\n//   response.writeHead(200, { 'Content-Type': 'text/plain' })\n// use some standard outputs, redirect them.\n//     console.log(\"message received.\")\n//     console.log(request.data)\n//     // console.log(request.content)\n//     // does not distinguish type?\n//     response.end(k)\n// })\napp.listen(7777)",
+        "type": "code",
+        "location": "/bootstrap/keller/src/register.js:36-45"
+    },
+    "891": {
+        "file_id": 156,
+        "content": "Code snippet logs \"message received.\" and request data to console, and sends a 200 response with 'Content-Type' header set to 'text/plain'. It listens on port 7777 for incoming requests.",
+        "type": "comment"
+    },
+    "892": {
+        "file_id": 157,
+        "content": "/bootstrap/keller/src/requirements.txt",
+        "type": "filepath"
+    },
+    "893": {
+        "file_id": 157,
+        "content": "This code snippet is listing two Python libraries, 'flask-sockets' and 'websocket-client', which are likely required for a Flask application involving socket communication.",
+        "type": "summary"
+    },
+    "894": {
+        "file_id": 157,
+        "content": "flask-sockets\nwebsocket-client",
+        "type": "code",
+        "location": "/bootstrap/keller/src/requirements.txt:1-2"
+    },
+    "895": {
+        "file_id": 157,
+        "content": "This code snippet is listing two Python libraries, 'flask-sockets' and 'websocket-client', which are likely required for a Flask application involving socket communication.",
+        "type": "comment"
+    },
+    "896": {
+        "file_id": 158,
+        "content": "/bootstrap/keller/src/requirements_flask.txt",
+        "type": "filepath"
+    },
+    "897": {
+        "file_id": 158,
+        "content": "The code is listing Python packages for a Flask application, specifically requiring Flask, Flask-Sockets, gevent, and gevent-websocket. These packages are necessary for building an interactive Flask application with real-time socket support using gevent for concurrency.",
+        "type": "summary"
+    },
+    "898": {
+        "file_id": 158,
+        "content": "flask\nFlask-Sockets\ngevent\ngevent-websocket",
+        "type": "code",
+        "location": "/bootstrap/keller/src/requirements_flask.txt:1-4"
+    },
+    "899": {
+        "file_id": 158,
+        "content": "The code is listing Python packages for a Flask application, specifically requiring Flask, Flask-Sockets, gevent, and gevent-websocket. These packages are necessary for building an interactive Flask application with real-time socket support using gevent for concurrency.",
+        "type": "comment"
+    }
+}

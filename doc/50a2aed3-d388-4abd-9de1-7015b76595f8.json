@@ -1,0 +1,10 @@
+{
+    "summary": "The code is calling the exit() function with an argument of 100. This indicates an abnormal program termination or an error occurred with a specific exit code (100 in this case).",
+    "details": [
+        {
+            "comment": "The code is calling the exit() function with an argument of 100. This indicates an abnormal program termination or an error occurred with a specific exit code (100 in this case).",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/python_return.py\":0-0",
+            "content": "exit(100)"
+        }
+    ]
+}

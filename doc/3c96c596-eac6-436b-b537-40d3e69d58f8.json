@@ -1,0 +1,15 @@
+{
+    "summary": "This script creates and tests multiple executable files, iterating over each line of the input file. It avoids direct system command execution by manipulating function structure for safer execution.",
+    "details": [
+        {
+            "comment": "The code opens a file, reads its content, and iterates over each line to execute it safely. It creates a new file, writes the current line to it, makes it executable, and runs it using libjudger. The output is printed for timing purposes. This script seems to be creating and testing multiple executable files.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/syntax.py\":0-29",
+            "content": "a = open(\"shit.sh\",\"r\").read()\n#print(a)\n# ready to learn shit or be shit.\n# you know that. python is just another unsafe implementation of CMD.\ns = [x for x in a]\nprint(s)\n# so let's conclude. how many syntaxs are there?\nimport os\nimport subprocess\n# for safe evaluation.\n# the execution cannot be done too fast.\n# os.system(\"\".join(s))\n# executed without problem.\n# check this out.\nfor x in range(len(s)):\n    print(x,len(s[x:]))\n    # map things here.\n#   print(s[x:])\n# tell me, that I can imagine the scenario a bit.\n    with open(\"fuck.sh\",\"w+\") as f:\n        f.write(\"\".join(s[x:]))\n    os.system(\"chmod +x fuck.sh\")\n    # do other stuff.\n    sx = subprocess.Popen([\"./libjudger.so\",\"--exe_path=fuck.sh\",\"--max_cpu_time=500\",\"--max_real_time=500\"],stdout=subprocess.PIPE,stderr=subprocess.PIPE)\n    stdoe = sx.communicate()\n    # so we are creating a civilization.\n    # we need to time it. so in order to time, either do it in libjudger or in here.\n    print(stdoe)\n    # so how you're gonna execute the thing?\n    # we're gonna pretend the thing to happen."
+        },
+        {
+            "comment": "Extracting function structure to manipulate it again, avoiding direct system command execution.",
+            "location": "\"/media/root/Prima/works/generated_docs/lazero_doc/src/lego/syntax.py\":30-33",
+            "content": "    # do emulate the process first?\n    # so this is a no-go. must check the things first?\n#    os.system(\"\".join(s[x:]))\n# so what the fuss? extract some function structure so we can manipulate it again?"
+        }
+    ]
+}
