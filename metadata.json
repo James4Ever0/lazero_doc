@@ -7,7 +7,7 @@
         "0": {
             "filepath": "/README.md",
             "entry_id": 0,
-            "language_id": "markdown"
+            "language_id": "plain-text"
         },
         "1": {
             "filepath": "/bootstrap/FlappyBird/js/game.js",
@@ -522,7 +522,7 @@
         "103": {
             "filepath": "/bootstrap/keller/src/ced/README.md",
             "entry_id": 598,
-            "language_id": "markdown"
+            "language_id": "plain-text"
         },
         "104": {
             "filepath": "/bootstrap/keller/src/ced/borderify.js",
